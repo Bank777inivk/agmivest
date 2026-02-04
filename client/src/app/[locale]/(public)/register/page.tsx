@@ -12,8 +12,9 @@ import { useTranslations } from "next-intl";
 
 type Step = 1 | 2 | 3;
 
-import { auth } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { useRouter } from "@/i18n/routing";
 
 export default function RegisterPage() {
@@ -73,8 +74,28 @@ export default function RegisterPage() {
         setIsLoading(true);
 
         try {
-            await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-            // Optionally save extra user data to Firestore here
+            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+            const user = userCredential.user;
+
+            // Save extra user data to Firestore
+            await setDoc(doc(db, "users", user.uid), {
+                uid: user.uid,
+                email: formData.email,
+                civility: formData.civility,
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                birthDate: formData.birthDate,
+                birthPlace: formData.birthPlace,
+                nationality: formData.nationality,
+                address: formData.address,
+                city: formData.city,
+                zipCode: formData.zipCode,
+                phone: formData.phone,
+                country: formData.country,
+                createdAt: serverTimestamp(),
+                role: "client"
+            });
+
             router.push("/dashboard");
         } catch (err: any) {
             console.error("Registration error:", err);
