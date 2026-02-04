@@ -1,0 +1,22 @@
+{
+    "Navigation": {
+        "home": "Startseite",
+        "services": "Unsere Leistungen",
+        "about": "Über Uns",
+        "contact": "Kontakt",
+        "clientArea": "Kundenbereich"
+    },
+    "Hero": {
+        "title": "Verwirklichen Sie Ihre Projekte mit",
+        "subtitle": "AGM INVEST Kredit & Versicherungen",
+        "description": "Ihr vertrauenswürdiger Partner für Immobilienfinanzierung, Kreditkonsolidierung und Restschuldversicherung.",
+        "cta": "Mein Projekt simulieren",
+        "secondaryCta": "Entdecken Sie unsere Dienstleistungen"
+    },
+    "Stats": {
+        "clients": "Zufriedene Kunden",
+        "volume": "Finanziertes Volumen",
+        "partners": "Bankpartner",
+        "experts": "Experten zu Ihren Diensten"
+    }
+}

@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #001A4B;
+
+  --primary: #001A4B;
+  --accent: #00D1B2;
+  --secondary: #2C3E50;
+
+  --gradient-start: #004354;
+  --gradient-end: #001A4B;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-secondary: var(--secondary);
+
+  --color-ely-blue: #001A4B;
+  --color-ely-mint: #00D1B2;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
+.ely-gradient {
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+}
+
+.text-mint {
+  color: var(--color-ely-mint);
+}
+
+.bg-mint {
+  background-color: var(--color-ely-mint);
+}

@@ -1,0 +1,22 @@
+{
+    "Navigation": {
+        "home": "Acasă",
+        "services": "Serviciile Noastre",
+        "about": "Despre Noi",
+        "contact": "Contact",
+        "clientArea": "Zona Clienți"
+    },
+    "Hero": {
+        "title": "Realizează-ți proiectele cu",
+        "subtitle": "AGM INVEST Credit & Asigurări",
+        "description": "Partenerul tău de încredere pentru finanțare imobiliară, consolidare de credite și asigurări de împrumut.",
+        "cta": "Simulează proiectul meu",
+        "secondaryCta": "Descoperă serviciile noastre"
+    },
+    "Stats": {
+        "clients": "Clienți Mulțumiți",
+        "volume": "Volum Finanțat",
+        "partners": "Parteneri Bancari",
+        "experts": "Experți la dispoziția ta"
+    }
+}

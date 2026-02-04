@@ -1,0 +1,530 @@
+{
+  "Navigation": {
+    "brandSubtitle": "Crédit & Assurances",
+    "reviews": "Avis",
+    "appointment": "Prendre rendez-vous",
+    "home": "Accueil",
+    "services": "Nos services",
+    "documents": "Préparez vos documents",
+    "about": "Qui sommes-nous ?",
+    "contact": "Contact",
+    "creditRequest": "Demander un crédit",
+    "becomeClient": "Devenir Client"
+  },
+  "Hero": {
+    "titleLine1": "Votre prêt",
+    "titleLine2": "immobilier, bien",
+    "titleLine3": "accompagné",
+    "description1": "Votre emprunt immobilier ou assurance emprunteur aux meilleures conditions :",
+    "descriptionHighlight": "c'est l'expertise AGM INVEST !",
+    "description2": "Depuis 20 ans, notre équipe vous accompagne de la préparation de votre projet jusqu'à la remise de vos clés.",
+    "tagline": "Tout simplement !",
+    "cta": "Prendre rendez-vous"
+  },
+  "Stats": {
+    "clients": "Clients Satisfaits",
+    "volume": "Volume Financé",
+    "partners": "Partenaires Bancaires",
+    "experts": "Experts à votre service"
+  },
+  "AdBanner": {
+    "msg1": "Besoin d'un prêt ? Je suis là pour vous aider !",
+    "msg2": "Obtenez votre simulation en 2 minutes !",
+    "msg3": "Nos clients nous font confiance depuis 20 ans",
+    "msg4": "Taux compétitifs garantis !",
+    "msg5": "Accompagnement personnalisé à chaque étape"
+  },
+  "Services": {
+    "title": "Nos Services",
+    "subtitle": "Une expertise complète pour tous vos besoins de financement",
+    "Items": {
+      "realEstate": {
+        "title": "Crédit Immobilier",
+        "description": "Négociation des meilleurs taux pour votre résidence principale, secondaire ou locative."
+      },
+      "insurance": {
+        "title": "Assurance Emprunteur",
+        "description": "Économisez jusqu'à 50% sur votre assurance de prêt avec les mêmes garanties."
+      },
+      "creditConsolidation": {
+        "title": "Rachat de Crédit",
+        "description": "Regroupez vos crédits pour réduire vos mensualités et simplifier votre budget."
+      },
+      "professionalLoan": {
+        "title": "Prêt Professionnel",
+        "description": "Financement de vos locaux, fonds de commerce ou équipements professionnels."
+      },
+      "renegotiation": {
+        "title": "Renégociation de taux",
+        "description": "Profitez des baisses de taux actuelles pour réduire le coût de votre crédit actuel."
+      },
+      "support": {
+        "title": "Accompagnement",
+        "description": "Un conseiller dédié vous suit de la simulation jusqu'à la signature chez le notaire."
+      }
+    }
+  },
+  "About": {
+    "title": "Qui sommes-nous ?",
+    "subtitle": "Votre partenaire de confiance pour tous vos projets immobiliers",
+    "Stats": {
+      "experience": {
+        "value": "20+",
+        "label": "Années d'expérience"
+      },
+      "clients": {
+        "value": "5000+",
+        "label": "Clients satisfaits"
+      },
+      "acceptance": {
+        "value": "98%",
+        "label": "Taux d'acceptation"
+      },
+      "secure": {
+        "value": "100%",
+        "label": "Sécurisé"
+      }
+    },
+    "Mission": {
+      "title": "Notre mission",
+      "p1": "Depuis plus de 20 ans, <highlight>AGM INVEST</highlight> accompagne les particuliers dans la réalisation de leurs projets immobiliers. Notre équipe d'experts vous guide à chaque étape pour obtenir le meilleur financement.",
+      "p2": "Nous négocions pour vous auprès de nos partenaires bancaires et vous garantissons un accompagnement personnalisé, de la simulation jusqu'à la signature chez le notaire."
+    },
+    "Values": {
+      "title": "Nos valeurs",
+      "v1": "Transparence totale sur les taux et les frais",
+      "v2": "Accompagnement personnalisé et humain",
+      "v3": "Réactivité et disponibilité de nos conseillers",
+      "v4": "Expertise reconnue du marché immobilier"
+    }
+  },
+  "Testimonials": {
+    "title": "Ce que disent nos clients",
+    "rating": "4.9/5 sur Google",
+    "Items": {
+      "t1": {
+        "name": "Sophie Martin",
+        "role": "Premier achat immobilier",
+        "content": "Un accompagnement exceptionnel du début à la fin. Notre conseiller a su nous rassurer et nous trouver un taux que nous n'aurions jamais eu seuls."
+      },
+      "t2": {
+        "name": "Thomas Dubois",
+        "role": "Investissement locatif",
+        "content": "Rapidité, efficacité et professionnalisme. AGM INVEST m'a permis de concrétiser mon projet d'investissement dans des délais records."
+      },
+      "t3": {
+        "name": "Marie & Pierre L.",
+        "role": "Rachat de crédit",
+        "content": "Grâce à la renégociation de notre prêt, nous économisons plus de 150€ par mois. Merci à toute l'équipe pour leur écoute."
+      }
+    }
+  },
+  "Contact": {
+    "title": "Nous contacter",
+    "subtitle": "Une question ? Un projet ? Notre équipe vous répond sous 24h",
+    "minimalTitle": "Envoyez-nous un message",
+    "form": {
+      "name": "Nom complet *",
+      "namePlaceholder": "Jean Dupont",
+      "email": "Email *",
+      "emailPlaceholder": "jean.dupont@email.com",
+      "phone": "Téléphone",
+      "phonePlaceholder": "06 12 34 56 78",
+      "message": "Votre message *",
+      "messagePlaceholder": "Décrivez votre projet ou posez votre question...",
+      "submit": "Envoyer le message"
+    },
+    "Why": {
+      "title": "Pourquoi nous contacter ?",
+      "reasons": {
+        "r1": "Obtenir une simulation personnalisée gratuite",
+        "r2": "Poser vos questions à nos experts",
+        "r3": "Prendre rendez-vous avec un conseiller",
+        "r4": "Découvrir nos offres exclusives"
+      }
+    },
+    "QuickResponse": {
+      "title": "Réponse rapide garantie",
+      "text": "Notre équipe s'engage à vous répondre dans les <bold>24 heures</bold>. Pour une réponse immédiate, n'hésitez pas à nous appeler au"
+    }
+  },
+  "Simulator": {
+    "amountLabel": "Montant du prêt",
+    "durationLabel": "Durée (ans)",
+    "durationSuffix": "ans",
+    "rateLabel": "Taux d'intérêt (%)",
+    "monthlyEstimate": "Votre mensualité estimée",
+    "disclaimer": "Estimation hors assurance. Taux variable selon votre profil et les conditions du marché.",
+    "startRequest": "Démarrer ma demande",
+    "perMonth": "/mois"
+  },
+  "Partners": {
+    "title": "Nos partenaires bancaires",
+    "subtitle": "Et bien d'autres partenaires assureurs et banques spécialisées...",
+    "Network": {
+      "title": "Notre force ? Un réseau solide.",
+      "description": "En tant que courtier spécialisé, nous entretenons des relations de proximité avec les plus grandes banques nationales. Cela nous permet de défendre votre dossier au plus haut niveau et d'obtenir des conditions dérogatoires que vous ne pourriez obtenir seul en agence."
+    },
+    "stats": {
+      "banks": "Banques & Assureurs",
+      "support": "Accompagnement"
+    }
+  },
+  "Location": {
+    "title": "Où nous trouver",
+    "subtitle": "Venez nous rencontrer dans notre agence ou contactez-nous",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "email": "Email",
+    "hours": {
+      "title": "Horaires",
+      "week": "Lundi - Vendredi : 9h00 - 18h00",
+      "saturday": "Samedi : 9h00 - 12h00",
+      "sunday": "Dimanche : Fermé"
+    }
+  },
+  "HomePage": {
+    "Services": {
+      "title": "Nos Services",
+      "subtitle": "Une expertise complète pour tous vos besoins de financement.",
+      "cta": "Voir tous nos services"
+    },
+    "Simulator": {
+      "title": "Simulateur de prêt",
+      "subtitle": "Calculez vos mensualités en quelques clics."
+    },
+    "Contact": {
+      "title": "Contact & Accès",
+      "subtitle": "Une question ? Venez nous rencontrer ou envoyez-nous un message."
+    }
+  },
+  "WhyChooseUs": {
+    "title": "Pourquoi faire appel à <highlight>AGM INVEST</highlight> ?",
+    "subtitle": "Dans un marché complexe, avoir un allié expert à vos côtés fait toute la différence. Nous ne sommes pas de simples intermédiaires, nous sommes les architectes de votre plan de financement.",
+    "Items": {
+      "time": {
+        "title": "Gain de temps",
+        "description": "Un seul interlocuteur pour interroger toutes les banques. Nous gérons toute l'administratif pour vous."
+      },
+      "conditions": {
+        "title": "Conditions préférentielles",
+        "description": "Grâce à notre volume d'affaires, nous négocions des taux et des conditions inaccessibles aux particuliers."
+      },
+      "expert": {
+        "title": "Conseil Expert",
+        "description": "Montage financier optimisé, choix de l'assurance, lissage de crédit... Nous optimisons chaque détail."
+      },
+      "support": {
+        "title": "Accompagnement complet",
+        "description": "Nous sommes à vos côtés de la première simulation jusqu'au déblocage des fonds."
+      }
+    },
+    "Simulation": {
+      "title": "Simulez votre économie",
+      "marketRate": "Taux moyen du marché",
+      "ourRate": "Taux Négocié AGM",
+      "savings": "Économie potentielle",
+      "disclaimer": "*Sur un prêt de 200k€ sur 20 ans"
+    }
+  },
+  "History": {
+    "title": "Notre Histoire",
+    "subtitle": "Près de 20 ans d'expertise et d'innovation au service de vos projets.",
+    "Milestones": {
+      "m2006": {
+        "title": "Création d'AGM Invest",
+        "description": "Fondation du cabinet à Nantes avec une vision : simplifier l'accès au crédit pour les particuliers."
+      },
+      "m2012": {
+        "title": "Expansion Régionale",
+        "description": "Ouverture de 3 nouvelles agences dans le Grand Ouest et recrutement de 10 experts."
+      },
+      "m2018": {
+        "title": "Pôle Professionnel",
+        "description": "Lancement de l'offre dédiée aux entreprises et promoteurs immobiliers."
+      },
+      "m2024": {
+        "title": "Digitalisation 100%",
+        "description": "Mise en place de notre plateforme en ligne permettant un suivi de dossier en temps réel."
+      }
+    }
+  },
+  "Process": {
+    "title": "Votre financement en 4 étapes",
+    "subtitle": "Un processus clair et transparent pour concrétiser votre projet en toute sérénité.",
+    "Steps": {
+      "s1": {
+        "title": "1. Étude de faisabilité",
+        "description": "Analyse gratuite de votre situation et définition de votre enveloppe de financement."
+      },
+      "s2": {
+        "title": "2. Recherche & Négociation",
+        "description": "Nous interrogeons nos partenaires pour obtenir les meilleures conditions du marché."
+      },
+      "s3": {
+        "title": "3. Accord de prêt",
+        "description": "Présentation des offres et sélection de la meilleure proposition bancaire."
+      },
+      "s4": {
+        "title": "4. Signature",
+        "description": "Accompagnement jusqu'à la signature de l'offre et l'acte notarié."
+      }
+    }
+  },
+  "Team": {
+    "title": "Une équipe à votre service",
+    "subtitle": "Des experts passionnés et dédiés à la réussite de votre projet.",
+    "Members": {
+      "marc": {
+        "role": "Directeur Général",
+        "bio": "Expert en financement immobilier depuis 15 ans."
+      },
+      "sophie": {
+        "role": "Responsable Crédit Particuliers",
+        "bio": "Spécialiste des dossiers complexes et rachat de crédit."
+      },
+      "thomas": {
+        "role": "Expert Financement Pro",
+        "bio": "Accompagne les entrepreneurs dans leur développement."
+      },
+      "laura": {
+        "role": "Chargée de Clientèle",
+        "bio": "Votre interlocutrice privilégiée pour le suivi de dossier."
+      }
+    }
+  },
+  "Documents": {
+    "title": "Préparez vos documents",
+    "subtitle": "Pour accélérer votre demande de prêt, préparez ces documents à l'avance",
+    "cta": "Tous les documents peuvent être envoyés en ligne de manière sécurisée",
+    "Items": {
+      "identity": {
+        "title": "Pièce d'identité",
+        "description": "Carte d'identité ou passeport en cours de validité"
+      },
+      "income": {
+        "title": "Justificatifs de revenus",
+        "description": "3 derniers bulletins de salaire et avis d'imposition"
+      },
+      "bank": {
+        "title": "Relevés bancaires",
+        "description": "3 derniers mois de vos comptes courants"
+      },
+      "home": {
+        "title": "Justificatif de domicile",
+        "description": "Facture de moins de 3 mois (électricité, eau, téléphone)"
+      },
+      "sales": {
+        "title": "Compromis de vente",
+        "description": "Si vous avez déjà trouvé votre bien immobilier"
+      },
+      "amortization": {
+        "title": "Tableau d'amortissement",
+        "description": "Si vous avez déjà des crédits en cours"
+      }
+    }
+  },
+  "Footer": {
+    "description": "Votre partenaire de confiance pour tous vos projets de financement immobilier et d'assurances depuis 20 ans.",
+    "linksTitle": "Liens rapides",
+    "contactTitle": "Contact",
+    "copyright": "AGM INVEST Crédit & Assurances. Tous droits réservés.",
+    "Links": {
+      "services": "Nos Services",
+      "simulator": "Simulateur",
+      "documents": "Documents",
+      "about": "Qui sommes-nous ?",
+      "contact": "Contact",
+      "clientArea": "Espace Client"
+    },
+    "legal": {
+      "mentions": "Mentions légales",
+      "privacy": "Politique de confidentialité",
+      "cookies": "Cookies"
+    }
+  },
+  "ServicesPage": {
+    "CTA": {
+      "title": "Prêt à concrétiser votre projet ?",
+      "text": "Ne laissez pas votre financement au hasard. Obtenez une étude personnalisée gratuite et sans engagement dès aujourd'hui.",
+      "button": "Demander mon étude gratuite"
+    }
+  },
+  "CreditRequest": {
+    "title": {
+      "step1": "Simulateur de Financement",
+      "step2": "Simulateur de Financement",
+      "step3": "Simulateur de Financement",
+      "step4": "Simulateur de Financement",
+      "step5": "Simulateur de Financement",
+      "analysis": "Analyse du dossier"
+    },
+    "subtitle": "Complétez votre demande en quelques étapes pour une décision instantanée.",
+    "Steps": {
+      "project": "Projet",
+      "identity": "Identité",
+      "situation": "Situation",
+      "finances": "Finances",
+      "account": "Compte"
+    },
+    "Profile": {
+      "label": "Type de profil",
+      "individual": "Particulier",
+      "professional": "Professionnel",
+      "pro_badge": "Demande Pro",
+      "individual_badge": "Demande Particulier"
+    },
+    "Project": {
+      "label": "Votre projet",
+      "types": {
+        "personal": "Crédit personnel",
+        "auto": "Crédit automobile",
+        "pro": "Crédit professionnel",
+        "other": "Autre projet"
+      },
+      "labels": {
+        "personal": "Personnel",
+        "auto": "Automobile",
+        "pro": "Business",
+        "other": "Autres"
+      },
+      "detailsLabel": "Détails de votre projet",
+      "detailsPlaceholder": "Décrivez votre besoin en quelques mots...",
+      "amount": "Montant souhaité (€)",
+      "duration": "Durée (mois)",
+      "rate": "Taux d'intérêt (%)"
+    },
+    "Identity": {
+      "civility": "Civilité",
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "birthDate": "Date de naissance",
+      "birthPlace": "Lieu de naissance"
+    },
+    "Situation": {
+      "maritalStatus": "Situation matrimoniale",
+      "children": "Enfants à charge",
+      "housingType": "Type de logement",
+      "housingSeniority": "Ancienneté (années)",
+      "options": {
+        "single": "Célibataire",
+        "married": "Marié(e)",
+        "divorced": "Divorcé(e)",
+        "tenant": "Locataire",
+        "owner": "Propriétaire",
+        "hosted": "Hébergé"
+      }
+    },
+    "Finances": {
+      "contractType": "Type de contrat",
+      "profession": "Profession",
+      "company": "Entreprise",
+      "income": "Revenus mensuels nets (€)",
+      "charges": "Charges permanentes",
+      "otherCredits": "Autres crédits",
+      "options": {
+        "cdi": "CDI",
+        "cdd": "CDD",
+        "independent": "Indépendant",
+        "retired": "Retraité"
+      }
+    },
+    "Account": {
+      "email": "Adresse Email",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmation",
+      "terms": "Je certifie l'exactitude des informations et j'accepte les conditions de AGM INVEST."
+    },
+    "Navigation": {
+      "next": "Suivant",
+      "back": "Retour",
+      "submit": "FINALISER MA DEMANDE",
+      "analyzing": "ANALYSE..."
+    },
+    "Result": {
+      "scoreLabel": "Score AGM",
+      "approvedTitle": "Dossier Validé !",
+      "reviewTitle": "Analyse en cours",
+      "rejectedTitle": "Offre Refusée",
+      "approvedMessage": "Votre profil présente une excellente solidité financière. Votre demande a reçu un avis favorable immédiat.",
+      "reviewMessage": "Votre dossier nécessite une analyse complémentaire par l'un de nos conseillers. Nous vous contacterons sous 24h.",
+      "rejectedMessage": "Désolé, votre capacité d'endettement actuelle ne permet pas de valider ce financement pour le moment.",
+      "dashboardButton": "Mon espace client",
+      "newProjectButton": "Nouveau projet"
+    },
+    "Loading": {
+      "title": "Vérification de solvabilité",
+      "subtitle": "Analyse des flux et calcul du score bancaire..."
+    }
+  },
+  "Auth": {
+    "Login": {
+      "title": "Bon retour parmi nous",
+      "subtitle": "Accédez à votre espace sécurisé",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "rememberMe": "Rester connecté",
+      "forgotPassword": "Mot de passe oublié ?",
+      "submit": "Connexion",
+      "newHere": "Nouveau sur AGM INVEST ?",
+      "createAccount": "Ouvrir un compte",
+      "backToHome": "Retour à l'accueil"
+    },
+    "Register": {
+      "title": "Ouverture de compte",
+      "step1": "État Civil",
+      "step2": "Coordonnées",
+      "step3": "Sécurité",
+      "stepIndicator": "Étape {current} sur {total} : {stepName}",
+      "backToHome": "Retour à l'accueil",
+      "alreadyClient": "Déjà client ?",
+      "login": "Se connecter",
+      "submit": {
+        "next": "Suivant",
+        "finish": "Ouvrir mon compte"
+      },
+      "back": "Retour",
+      "Fields": {
+        "civility": "Civilité",
+        "firstName": "Prénom",
+        "lastName": "Nom de famille",
+        "birthDate": "Date de naissance",
+        "birthPlace": "Lieu de naissance",
+        "nationality": "Nationalité",
+        "address": "Adresse de résidence",
+        "zipCode": "Code Postal",
+        "city": "Ville",
+        "phone": "Numéro de téléphone",
+        "email": "Adresse email pro / perso",
+        "password": "Mot de passe de sécurité",
+        "confirmPassword": "Confirmation du mot de passe",
+        "terms": "J'accepte les <bold>CGU</bold> et la <bold>Politique de Confidentialité</bold>."
+      }
+    }
+  },
+  "Legal": {
+    "Mentions": {
+      "title": "Mentions Légales",
+      "content": "Page en construction..."
+    },
+    "Privacy": {
+      "title": "Politique de Confidentialité",
+      "content": "Page en construction..."
+    }
+  },
+  "Home": {
+    "Services": {
+      "title": "Nos Services",
+      "subtitle": "Une expertise complète pour tous vos besoins de financement.",
+      "cta": "Voir tous nos services"
+    },
+    "Simulator": {
+      "title": "Simulateur de prêt",
+      "subtitle": "Calculez vos mensualités en quelques clics."
+    },
+    "Contact": {
+      "title": "Contact & Accès",
+      "subtitle": "Une question ? Venez nous rencontrer ou envoyez-nous un message."
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "elyssio-monorepo",
+  "version": "1.0.0",
+  "description": "Monorepo Elyssio - Admin & Client",
+  "private": true,
+  "scripts": {
+    "dev:admin": "cd admin && npm install && npm run dev",
+    "dev:client": "cd client && npm install && npm run dev",
+    "build:admin": "cd admin && npm run build",
+    "build:client": "cd client && npm run build",
+    "start:admin": "cd admin && npm run start",
+    "start:client": "cd client && npm run start",
+    "lint:admin": "cd admin && npm run lint",
+    "lint:client": "cd client && npm run lint"
+  },
+  "keywords": ["monorepo", "nextjs", "admin", "client"],
+  "author": "",
+  "license": "ISC"
+}

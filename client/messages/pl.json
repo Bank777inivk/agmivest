@@ -1,0 +1,22 @@
+{
+    "Navigation": {
+        "home": "Strona główna",
+        "services": "Nasze Usługi",
+        "about": "O Nas",
+        "contact": "Kontakt",
+        "clientArea": "Strefa Klienta"
+    },
+    "Hero": {
+        "title": "Zrealizuj swoje projekty z",
+        "subtitle": "AGM INVEST Kredyty i Ubezpieczenia",
+        "description": "Twój zaufany partner w finansowaniu nieruchomości, konsolidacji kredytów i ubezpieczeniach kredytobiorców.",
+        "cta": "Symuluj mój projekt",
+        "secondaryCta": "Odkryj nasze usługi"
+    },
+    "Stats": {
+        "clients": "Zadowoleni Klienci",
+        "volume": "Sfinansowany Wolumen",
+        "partners": "Partnerzy Bankowi",
+        "experts": "Eksperci do Twojej dyspozycji"
+    }
+}

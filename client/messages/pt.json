@@ -1,0 +1,22 @@
+{
+    "Navigation": {
+        "home": "Início",
+        "services": "Nossos Serviços",
+        "about": "Quem Somos",
+        "contact": "Contato",
+        "clientArea": "Área do Cliente"
+    },
+    "Hero": {
+        "title": "Realize seus projetos com",
+        "subtitle": "AGM INVEST Crédito e Seguros",
+        "description": "Seu parceiro de confiança para financiamento imobiliário, consolidação de crédito e seguro de mutuário.",
+        "cta": "Simular meu projeto",
+        "secondaryCta": "Descobrir nossos serviços"
+    },
+    "Stats": {
+        "clients": "Clientes Satisfeitos",
+        "volume": "Volume Financiado",
+        "partners": "Parceiros Bancários",
+        "experts": "Especialistas ao seu serviço"
+    }
+}

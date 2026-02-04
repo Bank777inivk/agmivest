@@ -1,0 +1,530 @@
+{
+  "Navigation": {
+    "brandSubtitle": "Credit & Insurance",
+    "reviews": "Reviews",
+    "appointment": "Book an appointment",
+    "home": "Home",
+    "services": "Our Services",
+    "documents": "Prepare documents",
+    "about": "About Us",
+    "contact": "Contact",
+    "creditRequest": "Request a loan",
+    "becomeClient": "Become a Client"
+  },
+  "Hero": {
+    "titleLine1": "Your real estate",
+    "titleLine2": "loan, well",
+    "titleLine3": "supported",
+    "description1": "Your real estate loan or borrower insurance at the best conditions:",
+    "descriptionHighlight": "that's the AGM INVEST expertise!",
+    "description2": "For 20 years, our team has been accompanying you from the preparation of your project to the handing over of your keys.",
+    "tagline": "Simply!",
+    "cta": "Book an appointment"
+  },
+  "Stats": {
+    "clients": "Satisfied Clients",
+    "volume": "Financed Volume",
+    "partners": "Banking Partners",
+    "experts": "Experts at your service"
+  },
+  "AdBanner": {
+    "msg1": "Need a loan? I'm here to help!",
+    "msg2": "Get your simulation in 2 minutes!",
+    "msg3": "Our clients have trusted us for 20 years",
+    "msg4": "Guaranteed competitive rates!",
+    "msg5": "Personalized support at every step"
+  },
+  "Services": {
+    "title": "Our Services",
+    "subtitle": "Complete expertise for all your financing needs",
+    "Items": {
+      "realEstate": {
+        "title": "Real Estate Loan",
+        "description": "Negotiation of the best rates for your primary, secondary, or rental residence."
+      },
+      "insurance": {
+        "title": "Borrower Insurance",
+        "description": "Save up to 50% on your loan insurance with the same guarantees."
+      },
+      "creditConsolidation": {
+        "title": "Credit Consolidation",
+        "description": "Consolidate your loans to reduce your monthly payments and simplify your budget."
+      },
+      "professionalLoan": {
+        "title": "Professional Loan",
+        "description": "Financing for your premises, business assets, or professional equipment."
+      },
+      "renegotiation": {
+        "title": "Rate Renegotiation",
+        "description": "Take advantage of current rate drops to reduce the cost of your current loan."
+      },
+      "support": {
+        "title": "Support",
+        "description": "A dedicated advisor follows you from simulation to signing at the notary."
+      }
+    }
+  },
+  "About": {
+    "title": "About Us",
+    "subtitle": "Your trusted partner for all your real estate projects",
+    "Stats": {
+      "experience": {
+        "value": "20+",
+        "label": "Years of experience"
+      },
+      "clients": {
+        "value": "5000+",
+        "label": "Satisfied clients"
+      },
+      "acceptance": {
+        "value": "98%",
+        "label": "Acceptance rate"
+      },
+      "secure": {
+        "value": "100%",
+        "label": "Secured"
+      }
+    },
+    "Mission": {
+      "title": "Our Mission",
+      "p1": "For over 20 years, <highlight>AGM INVEST</highlight> has been accompanying individuals in realizing their real estate projects. Our team of experts guides you at every step to obtain the best financing.",
+      "p2": "We negotiate for you with our banking partners and guarantee personalized support, from simulation to signing at the notary."
+    },
+    "Values": {
+      "title": "Our Values",
+      "v1": "Total transparency on rates and fees",
+      "v2": "Personalized and human support",
+      "v3": "Responsiveness and availability of our advisors",
+      "v4": "Recognized expertise in the real estate market"
+    }
+  },
+  "Testimonials": {
+    "title": "What our clients say",
+    "rating": "4.9/5 on Google",
+    "Items": {
+      "t1": {
+        "name": "Sophie Martin",
+        "role": "First real estate purchase",
+        "content": "Exceptional support from start to finish. Our advisor reassured us and found us a rate we would never have obtained alone."
+      },
+      "t2": {
+        "name": "Thomas Dubois",
+        "role": "Rental investment",
+        "content": "Speed, efficiency and professionalism. AGM INVEST allowed me to realize my investment project in record time."
+      },
+      "t3": {
+        "name": "Marie & Pierre L.",
+        "role": "Loan consolidation",
+        "content": "Thanks to the renegotiation of our loan, we are saving over €150 per month. Thanks to the whole team for their listening."
+      }
+    }
+  },
+  "Contact": {
+    "title": "Contact Us",
+    "subtitle": "A question? A project? Our team answers you within 24h",
+    "minimalTitle": "Send us a message",
+    "form": {
+      "name": "Full Name *",
+      "namePlaceholder": "John Doe",
+      "email": "Email *",
+      "emailPlaceholder": "john.doe@email.com",
+      "phone": "Phone",
+      "phonePlaceholder": "06 12 34 56 78",
+      "message": "Your message *",
+      "messagePlaceholder": "Describe your project or ask your question...",
+      "submit": "Send message"
+    },
+    "Why": {
+      "title": "Why contact us?",
+      "reasons": {
+        "r1": "Get a free personalized simulation",
+        "r2": "Ask your questions to our experts",
+        "r3": "Book an appointment with an advisor",
+        "r4": "Discover our exclusive offers"
+      }
+    },
+    "QuickResponse": {
+      "title": "Quick response guaranteed",
+      "text": "Our team is committed to answering you within <bold>24 hours</bold>. For an immediate response, do not hesitate to call us at"
+    }
+  },
+  "Simulator": {
+    "amountLabel": "Loan Amount",
+    "durationLabel": "Duration (years)",
+    "durationSuffix": "years",
+    "rateLabel": "Interest Rate (%)",
+    "monthlyEstimate": "Your estimated monthly payment",
+    "disclaimer": "Estimate excluding insurance. Variable rate according to your profile and market conditions.",
+    "startRequest": "Start my request",
+    "perMonth": "/month"
+  },
+  "Partners": {
+    "title": "Our Banking Partners",
+    "subtitle": "And many other insurance partners and specialized banks...",
+    "Network": {
+      "title": "Our strength? A solid network.",
+      "description": "As a specialized broker, we maintain close relationships with the largest national banks. This allows us to defend your file at the highest level and obtain derogatory conditions that you could not obtain alone in a branch."
+    },
+    "stats": {
+      "banks": "Banks & Insurers",
+      "support": "Support"
+    }
+  },
+  "Location": {
+    "title": "Where to find us",
+    "subtitle": "Come meet us at our agency or contact us",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": {
+      "title": "Opening Hours",
+      "week": "Monday - Friday: 9:00 AM - 6:00 PM",
+      "saturday": "Saturday: 9:00 AM - 12:00 PM",
+      "sunday": "Sunday: Closed"
+    }
+  },
+  "HomePage": {
+    "Services": {
+      "title": "Our Services",
+      "subtitle": "Complete expertise for all your financing needs.",
+      "cta": "See all our services"
+    },
+    "Simulator": {
+      "title": "Loan Simulator",
+      "subtitle": "Calculate your monthly payments in a few clicks."
+    },
+    "Contact": {
+      "title": "Contact & Access",
+      "subtitle": "A question? Come meet us or send us a message."
+    }
+  },
+  "WhyChooseUs": {
+    "title": "Why choose <highlight>AGM INVEST</highlight>?",
+    "subtitle": "In a complex market, having an expert ally by your side makes all the difference. We are not just intermediaries, we are the architects of your financing plan.",
+    "Items": {
+      "time": {
+        "title": "Save time",
+        "description": "A single contact to query all banks. We handle all the paperwork for you."
+      },
+      "conditions": {
+        "title": "Preferential conditions",
+        "description": "Thanks to our business volume, we negotiate rates and conditions inaccessible to individuals."
+      },
+      "expert": {
+        "title": "Expert Advice",
+        "description": "Optimized financial assembly, choice of insurance, credit smoothing... We optimize every detail."
+      },
+      "support": {
+        "title": "Complete support",
+        "description": "We are by your side from the first simulation to the release of funds."
+      }
+    },
+    "Simulation": {
+      "title": "Simulate your savings",
+      "marketRate": "Average market rate",
+      "ourRate": "AGM Negotiated Rate",
+      "savings": "Potential savings",
+      "disclaimer": "*On a 200k€ loan over 20 years"
+    }
+  },
+  "History": {
+    "title": "Our History",
+    "subtitle": "Nearly 20 years of expertise and innovation at the service of your projects.",
+    "Milestones": {
+      "m2006": {
+        "title": "Creation of AGM Invest",
+        "description": "Foundation of the firm in Nantes with a vision: simplify access to credit for individuals."
+      },
+      "m2012": {
+        "title": "Regional Expansion",
+        "description": "Opening of 3 new agencies in the Great West and recruitment of 10 experts."
+      },
+      "m2018": {
+        "title": "Professional Hub",
+        "description": "Launch of the offer dedicated to businesses and real estate developers."
+      },
+      "m2024": {
+        "title": "100% Digitalization",
+        "description": "Implementation of our online platform allowing real-time file tracking."
+      }
+    }
+  },
+  "Process": {
+    "title": "Your financing in 4 steps",
+    "subtitle": "A clear and transparent process to realize your project with complete serenity.",
+    "Steps": {
+      "s1": {
+        "title": "1. Feasibility study",
+        "description": "Free analysis of your situation and definition of your financing envelope."
+      },
+      "s2": {
+        "title": "2. Research & Negotiation",
+        "description": "We question our partners to obtain the best market conditions."
+      },
+      "s3": {
+        "title": "3. Loan agreement",
+        "description": "Presentation of offers and selection of the best banking proposal."
+      },
+      "s4": {
+        "title": "4. Signature",
+        "description": "Support until the signature of the offer and the notarial deed."
+      }
+    }
+  },
+  "Team": {
+    "title": "A team at your service",
+    "subtitle": "Passionate experts dedicated to the success of your project.",
+    "Members": {
+      "marc": {
+        "role": "General Manager",
+        "bio": "Real estate financing expert for 15 years."
+      },
+      "sophie": {
+        "role": "Private Credit Manager",
+        "bio": "Specialist in complex files and credit consolidation."
+      },
+      "thomas": {
+        "role": "Pro Financing Expert",
+        "bio": "Accompanies entrepreneurs in their development."
+      },
+      "laura": {
+        "role": "Account Manager",
+        "bio": "Your privileged contact for file tracking."
+      }
+    }
+  },
+  "Documents": {
+    "title": "Prepare your documents",
+    "subtitle": "To accelerate your loan request, prepare these documents in advance",
+    "cta": "All documents can be sent securely online",
+    "Items": {
+      "identity": {
+        "title": "ID Card",
+        "description": "Valid ID card or passport"
+      },
+      "income": {
+        "title": "Proof of income",
+        "description": "Last 3 payslips and tax notice"
+      },
+      "bank": {
+        "title": "Bank statements",
+        "description": "Last 3 months of your current accounts"
+      },
+      "home": {
+        "title": "Proof of address",
+        "description": "Invoice less than 3 months old (electricity, water, phone)"
+      },
+      "sales": {
+        "title": "Sales agreement",
+        "description": "If you have already found your property"
+      },
+      "amortization": {
+        "title": "Amortization table",
+        "description": "If you already have current loans"
+      }
+    }
+  },
+  "Footer": {
+    "description": "Your trusted partner for all your real estate financing and insurance projects for 20 years.",
+    "linksTitle": "Quick Links",
+    "contactTitle": "Contact",
+    "copyright": "AGM INVEST Credit & Insurance. All rights reserved.",
+    "Links": {
+      "services": "Our Services",
+      "simulator": "Simulator",
+      "documents": "Documents",
+      "about": "About Us",
+      "contact": "Contact",
+      "clientArea": "Client Area"
+    },
+    "legal": {
+      "mentions": "Legal Notice",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookies"
+    }
+  },
+  "ServicesPage": {
+    "CTA": {
+      "title": "Ready to make your project a reality?",
+      "text": "Don't leave your financing to chance. Get a free, no-obligation personalized study today.",
+      "button": "Request my free study"
+    }
+  },
+  "CreditRequest": {
+    "title": {
+      "step1": "Financing Simulator",
+      "step2": "Financing Simulator",
+      "step3": "Financing Simulator",
+      "step4": "Financing Simulator",
+      "step5": "Financing Simulator",
+      "analysis": "File Analysis"
+    },
+    "subtitle": "Complete your request in a few steps for an instant decision.",
+    "Steps": {
+      "project": "Project",
+      "identity": "Identity",
+      "situation": "Situation",
+      "finances": "Finances",
+      "account": "Account"
+    },
+    "Profile": {
+      "label": "Profile Type",
+      "individual": "Individual",
+      "professional": "Professional",
+      "pro_badge": "Pro Request",
+      "individual_badge": "Personal Request"
+    },
+    "Project": {
+      "label": "Your project",
+      "types": {
+        "personal": "Personal Loan",
+        "auto": "Auto Loan",
+        "pro": "Business Loan",
+        "other": "Other Project"
+      },
+      "labels": {
+        "personal": "Personal",
+        "auto": "Auto",
+        "pro": "Business",
+        "other": "Other"
+      },
+      "detailsLabel": "Project Details",
+      "detailsPlaceholder": "Describe your need in a few words...",
+      "amount": "Requested Amount (€)",
+      "duration": "Duration (months)",
+      "rate": "Interest Rate (%)"
+    },
+    "Identity": {
+      "civility": "Civility",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "birthDate": "Birth Date",
+      "birthPlace": "Place of Birth"
+    },
+    "Situation": {
+      "maritalStatus": "Marital Status",
+      "children": "Dependent Children",
+      "housingType": "Housing Type",
+      "housingSeniority": "Seniority (years)",
+      "options": {
+        "single": "Single",
+        "married": "Married",
+        "divorced": "Divorced",
+        "tenant": "Tenant",
+        "owner": "Owner",
+        "hosted": "Hosted"
+      }
+    },
+    "Finances": {
+      "contractType": "Contract Type",
+      "profession": "Profession",
+      "company": "Company",
+      "income": "Net Monthly Income (€)",
+      "charges": "Fixed Charges",
+      "otherCredits": "Other Credits",
+      "options": {
+        "cdi": "CDI",
+        "cdd": "CDD",
+        "independent": "Freelance",
+        "retired": "Retired"
+      }
+    },
+    "Account": {
+      "email": "Email Address",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "terms": "I certify the accuracy of the information and accept AGM INVEST terms."
+    },
+    "Navigation": {
+      "next": "Next",
+      "back": "Back",
+      "submit": "FINALIZE MY REQUEST",
+      "analyzing": "ANALYZING..."
+    },
+    "Result": {
+      "scoreLabel": "AGM Score",
+      "approvedTitle": "File Validated!",
+      "reviewTitle": "Analysis in Progress",
+      "rejectedTitle": "Offer Refused",
+      "approvedMessage": "Your profile shows excellent financial strength. Your request has received an immediate favorable opinion.",
+      "reviewMessage": "Your file requires additional analysis by one of our advisors. We will contact you within 24h.",
+      "rejectedMessage": "Sorry, your current debt capacity does not allow us to validate this financing at this time.",
+      "dashboardButton": "My Client Area",
+      "newProjectButton": "New Project"
+    },
+    "Loading": {
+      "title": "Solvency Check",
+      "subtitle": "Analyzing flows and calculating bank score..."
+    }
+  },
+  "Auth": {
+    "Login": {
+      "title": "Welcome Back",
+      "subtitle": "Access your secure area",
+      "email": "Email address",
+      "password": "Password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "submit": "Login",
+      "newHere": "New to AGM INVEST?",
+      "createAccount": "Open an account",
+      "backToHome": "Back to home"
+    },
+    "Register": {
+      "title": "Open Account",
+      "step1": "Civil Status",
+      "step2": "Contact Info",
+      "step3": "Security",
+      "stepIndicator": "Step {current} of {total}: {stepName}",
+      "backToHome": "Back to home",
+      "alreadyClient": "Already a client?",
+      "login": "Login",
+      "submit": {
+        "next": "Next",
+        "finish": "Open my account"
+      },
+      "back": "Back",
+      "Fields": {
+        "civility": "Civility",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "birthDate": "Birth Date",
+        "birthPlace": "Place of Birth",
+        "nationality": "Nationality",
+        "address": "Residence Address",
+        "zipCode": "Zip Code",
+        "city": "City",
+        "phone": "Phone Number",
+        "email": "Email Address (Pro / Personal)",
+        "password": "Security Password",
+        "confirmPassword": "Confirm Password",
+        "terms": "I accept the <bold>Terms</bold> and <bold>Privacy Policy</bold>."
+      }
+    }
+  },
+  "Legal": {
+    "Mentions": {
+      "title": "Legal Notice",
+      "content": "Page under construction..."
+    },
+    "Privacy": {
+      "title": "Privacy Policy",
+      "content": "Page under construction..."
+    }
+  },
+  "Home": {
+    "Services": {
+      "title": "Our Services",
+      "subtitle": "Complete expertise for all your financing needs.",
+      "cta": "See all our services"
+    },
+    "Simulator": {
+      "title": "Loan Simulator",
+      "subtitle": "Calculate your monthly payments in a few clicks."
+    },
+    "Contact": {
+      "title": "Contact & Location",
+      "subtitle": "A question? Come meet us or send us a message."
+    }
+  }
+}

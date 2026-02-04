@@ -1,0 +1,22 @@
+{
+    "Navigation": {
+        "home": "Home",
+        "services": "Onze Diensten",
+        "about": "Over Ons",
+        "contact": "Contact",
+        "clientArea": "Klantzone"
+    },
+    "Hero": {
+        "title": "Realiseer uw projecten met",
+        "subtitle": "AGM INVEST Krediet & Verzekeringen",
+        "description": "Uw vertrouwde partner voor vastgoedfinanciering, kredietconsolidatie en lenersverzekering.",
+        "cta": "Simuleer mijn project",
+        "secondaryCta": "Ontdek onze diensten"
+    },
+    "Stats": {
+        "clients": "Tevreden Klanten",
+        "volume": "Gefinancierd Volume",
+        "partners": "Bankpartners",
+        "experts": "Experts tot uw dienst"
+    }
+}

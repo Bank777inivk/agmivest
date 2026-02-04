@@ -1,0 +1,22 @@
+{
+    "Navigation": {
+        "home": "Hem",
+        "services": "Våra Tjänster",
+        "about": "Om Oss",
+        "contact": "Kontakt",
+        "clientArea": "Kundområde"
+    },
+    "Hero": {
+        "title": "Förverkliga dina projekt med",
+        "subtitle": "AGM INVEST Kredit & Försäkring",
+        "description": "Din pålitliga partner för fastighetsfinansiering, kreditkonsolidering och låntagförsäkring.",
+        "cta": "Simulera mitt projekt",
+        "secondaryCta": "Upptäck våra tjänster"
+    },
+    "Stats": {
+        "clients": "Nöjda Kunder",
+        "volume": "Finansierad Volym",
+        "partners": "Bankpartners",
+        "experts": "Experter till din tjänst"
+    }
+}
