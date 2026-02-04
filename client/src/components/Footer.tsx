@@ -2,6 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import { Phone, Mail, MapPin } from "lucide-react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 export default function Footer() {
@@ -21,8 +22,16 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-10 md:mb-12">
                     {/* Column 1: Branding */}
-                    <div className="col-span-2 lg:col-span-1 space-y-3 md:space-y-4">
-                        <h2 className="text-xl md:text-3xl font-bold tracking-tight uppercase">AGM INVEST</h2>
+                    <div className="col-span-2 lg:col-span-1 space-y-4 md:space-y-6">
+                        <div className="bg-white p-2 rounded-xl inline-block shadow-lg">
+                            <Image
+                                src="/logo.png"
+                                alt="AGM INVEST"
+                                width={120}
+                                height={48}
+                                className="h-12 md:h-16 w-auto"
+                            />
+                        </div>
                         <p className="text-gray-300 text-xs md:text-base max-w-xs leading-relaxed">
                             {t('description')}
                         </p>

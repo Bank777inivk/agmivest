@@ -9,7 +9,8 @@ export default function AdminDashboard() {
       {/* Sidebar */}
       <aside className="w-64 bg-ely-blue text-white flex flex-col pt-8">
         <div className="px-6 mb-12">
-          <span className="text-2xl font-bold tracking-tight uppercase">Elyssio Admin</span>
+          <img src="/logo.png" alt="AGM INVEST" className="h-12 bg-white p-1 rounded-lg" />
+          <span className="text-xs font-bold tracking-tight uppercase block mt-2 opacity-80">ADMIN PANEL</span>
         </div>
 
         <nav className="flex-1 px-4 space-y-2">
@@ -56,7 +57,7 @@ export default function AdminDashboard() {
             </button>
             <div className="flex items-center gap-3">
               <div className="text-right">
-                <p className="text-xs font-bold text-slate-900">Admin Elyssio</p>
+                <p className="text-xs font-bold text-slate-900">Admin AGM INVEST</p>
                 <p className="text-[10px] text-slate-500 uppercase">Super Utilisateur</p>
               </div>
               <div className="w-10 h-10 bg-ely-mint rounded-full flex items-center justify-center text-white font-bold">

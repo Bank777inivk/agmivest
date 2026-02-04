@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Euro, Building2, User, FileText, Send, Calendar, MapPin,
@@ -142,7 +143,11 @@ export default function CreditRequestPage() {
     }
 
     return (
-        <main className="min-h-screen bg-[#F8FAFC] text-[#1E293B] font-sans">
+        <main className="min-h-screen bg-[#F1F5F9] text-[#1E293B] font-sans overflow-x-hidden">
+            {/* Mesh Gradients for Premium Look */}
+            <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-ely-mint/20 blur-[120px] rounded-full -z-10" />
+            <div className="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-ely-blue/10 blur-[120px] rounded-full -z-10" />
+
             {/* Minimalist Background Pattern */}
             <div className="fixed inset-0 pointer-events-none opacity-[0.03] -z-10">
                 <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(#00D1B2 0.5px, transparent 0.5px)", backgroundSize: "24px 24px" }}></div>
@@ -157,10 +162,14 @@ export default function CreditRequestPage() {
                         className="flex flex-wrap items-center justify-center gap-2 mb-4"
                     >
                         <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-ely-blue rounded-lg flex items-center justify-center shrink-0">
-                                <Building2 className="text-white w-5 h-5" />
-                            </div>
-                            <span className="text-xl font-bold tracking-tight text-ely-blue whitespace-nowrap">AGM INVEST</span>
+                            <Image
+                                src="/logo.png"
+                                alt="AGM INVEST"
+                                width={128}
+                                height={64}
+                                className="h-12 sm:h-16 w-auto object-contain"
+                                priority
+                            />
                         </div>
                         <div className="hidden sm:block w-px h-4 bg-gray-200 mx-2"></div>
                         <motion.span
@@ -184,7 +193,9 @@ export default function CreditRequestPage() {
                 </div>
 
                 {/* Main Form Card */}
-                <div className="bg-white rounded-[1.5rem] sm:rounded-[2rem] shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
+                <div className="bg-white rounded-[1.5rem] sm:rounded-[2rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border border-white relative overflow-hidden">
+                    {/* Subtle interior glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-ely-mint/5 -z-10" />
                     {/* Progress Bar (Stepper) */}
                     {step <= 5 && (
                         <div className="bg-gray-50/50 border-b border-gray-100 px-8 py-6">

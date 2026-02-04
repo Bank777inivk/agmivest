@@ -2,6 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import { Phone, Star, Menu, X } from "lucide-react";
+import Image from "next/image";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -23,10 +24,16 @@ export default function Navbar() {
         <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-sm">
             {/* Top Header */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 md:py-4 flex items-center justify-between">
-                <div className="flex flex-col">
-                    <span className="text-xl md:text-2xl font-bold tracking-tight text-ely-blue uppercase">AGM INVEST</span>
-                    <span className="text-[10px] md:text-xs text-ely-blue/80 font-medium">{t('brandSubtitle')}</span>
-                </div>
+                <Link href="/" className="flex items-center">
+                    <Image
+                        src="/logo.png"
+                        alt="AGM INVEST"
+                        width={180}
+                        height={64}
+                        className="h-12 md:h-16 w-auto object-contain"
+                        priority
+                    />
+                </Link>
 
                 {/* Desktop Actions */}
                 <div className="hidden lg:flex items-center gap-4 xl:gap-6">
