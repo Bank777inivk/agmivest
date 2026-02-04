@@ -12,24 +12,33 @@ import { useTranslations } from "next-intl";
 
 type Step = 1 | 2 | 3;
 
+import { auth } from "@/lib/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "@/i18n/routing";
+
 export default function RegisterPage() {
     const t = useTranslations('Auth.Register');
-    const [step, setStep] = useState<Step>(1);
+    const router = useRouter();
+    const [step, setStep] = useState(1);
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
     const [formData, setFormData] = useState({
         // Step 1: État Civil
-        civility: "M.",
+        civility: "M.", // Retained from original, as instruction only showed partial
         firstName: "",
         lastName: "",
         birthDate: "",
         birthPlace: "",
-        nationality: "Française",
+        nationality: "Française", // Retained from original, as instruction only showed partial
 
         // Step 2: Coordonnées
         address: "",
         city: "",
         zipCode: "",
         phone: "",
+        country: "France", // Added from instruction
 
         // Step 3: Sécurité
         email: "",
@@ -39,25 +48,44 @@ export default function RegisterPage() {
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value, type } = e.target;
-        const checked = (e.target as HTMLInputElement).checked;
-
-        setFormData((prev) => ({
-            ...prev,
-            [name]: type === "checkbox" ? checked : value,
-        }));
+        const { name, value, type } = e.target as HTMLInputElement;
+        const val = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
+        setFormData(prev => ({ ...prev, [name]: val }));
     };
 
-    const nextStep = () => setStep((s) => (s < 3 ? (s + 1) as Step : s));
-    const prevStep = () => setStep((s) => (s > 1 ? (s - 1) as Step : s));
+    const handleNext = () => setStep(prev => prev + 1);
+    const handleBack = () => setStep(prev => prev - 1);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError("");
+
         if (step < 3) {
-            nextStep();
+            handleNext();
             return;
         }
-        console.log("Account Opening Data:", formData);
+
+        if (formData.password !== formData.confirmPassword) {
+            setError(t('errorPasswordsDoNotMatch') || "Les mots de passe ne correspondent pas.");
+            return;
+        }
+
+        setIsLoading(true);
+
+        try {
+            await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+            // Optionally save extra user data to Firestore here
+            router.push("/dashboard");
+        } catch (err: any) {
+            console.error("Registration error:", err);
+            let message = "Une erreur est survenue lors de l'inscription.";
+            if (err.code === 'auth/email-already-in-use') {
+                message = t('errorEmailAlreadyInUse') || "Cet email est déjà utilisé.";
+            }
+            setError(message);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const stepVariants = {
@@ -131,7 +159,20 @@ export default function RegisterPage() {
                     {/* Subtle interior glow */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-ely-mint/5 -z-10" />
                     <form className="space-y-6" onSubmit={handleSubmit}>
+                        {error && (
+                            <motion.div
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                className="p-4 bg-red-50 border-l-4 border-red-500 rounded-xl text-red-700 text-sm font-medium mb-6"
+                            >
+                                {error}
+                            </motion.div>
+                        )}
+
                         <AnimatePresence mode="wait">
+                            {/* ... Content of step 1, 2, 3 ... */}
+                            {/* Simplified for brevity in thought, but applying to the real file */}
+                            {/* I will need to be careful with TargetContent here to match the real file */}
                             {step === 1 && (
                                 <motion.div
                                     key="step1"
@@ -411,8 +452,9 @@ export default function RegisterPage() {
                             {step > 1 && (
                                 <button
                                     type="button"
-                                    onClick={prevStep}
-                                    className="flex-1 py-4 px-4 border-2 border-gray-100 text-gray-500 rounded-2xl font-bold text-lg hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
+                                    onClick={handleBack}
+                                    disabled={isLoading}
+                                    className="flex-1 py-4 px-4 border-2 border-gray-100 text-gray-500 rounded-2xl font-bold text-lg hover:bg-gray-50 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                                 >
                                     {t('back')}
                                 </button>
@@ -421,10 +463,17 @@ export default function RegisterPage() {
                                 whileHover={{ scale: 1.01 }}
                                 whileTap={{ scale: 0.98 }}
                                 type="submit"
-                                className="flex-[2] flex justify-center items-center gap-3 py-4 px-4 bg-ely-mint text-white rounded-2xl font-bold text-lg shadow-xl shadow-ely-mint/20 hover:bg-ely-mint/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ely-mint transition-all"
+                                disabled={isLoading}
+                                className={`flex-[2] flex justify-center items-center gap-3 py-4 px-4 bg-ely-mint text-white rounded-2xl font-bold text-lg shadow-xl shadow-ely-mint/20 hover:bg-ely-mint/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ely-mint transition-all ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
                             >
-                                {step === 3 ? t('submit.finish') : t('submit.next')}
-                                {step === 3 ? <CheckCircle className="w-5 h-5" /> : <ArrowRight className="w-5 h-5" />}
+                                {isLoading ? (
+                                    <div className="h-6 w-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                ) : (
+                                    <>
+                                        {step === 3 ? t('submit.finish') : t('submit.next')}
+                                        {step === 3 ? <CheckCircle className="w-5 h-5" /> : <ArrowRight className="w-5 h-5" />}
+                                    </>
+                                )}
                             </motion.button>
                         </div>
                     </form>
