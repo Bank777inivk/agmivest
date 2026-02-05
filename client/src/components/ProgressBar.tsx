@@ -12,8 +12,9 @@ export default function ProgressBarCustom() {
     useEffect(() => {
         nProgress.configure({
             showSpinner: false,
-            speed: 400,
-            minimum: 0.2
+            speed: 200,  // Plus rapide (était 400)
+            minimum: 0.1,  // Commence plus tôt (était 0.2)
+            trickleSpeed: 300  // Animation plus rapide
         });
     }, []);
 

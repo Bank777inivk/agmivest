@@ -9,8 +9,11 @@ import {
     Search, CheckCircle2, AlertCircle, TrendingUp, Mail, Lock, ChevronRight, Percent
 } from "lucide-react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { auth, db } from "@/lib/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc, collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 // Validation logic and score calculation (Mock)
 const calculateScore = (data: any) => {
@@ -119,15 +122,98 @@ export default function CreditRequestPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Validation des mots de passe
+        if (formData.password !== formData.confirmPassword) {
+            alert("Les mots de passe ne correspondent pas.");
+            return;
+        }
+
+        if (formData.password.length < 6) {
+            alert("Le mot de passe doit contenir au moins 6 caractères.");
+            return;
+        }
+
         setIsSubmitting(true);
 
-        // Simulate API call and scoring
-        setTimeout(() => {
+        try {
+            // 1. Créer le compte utilisateur
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                formData.email,
+                formData.password
+            );
+            const user = userCredential.user;
+
+            // 2. Enregistrer les données utilisateur dans Firestore
+            await setDoc(doc(db, "users", user.uid), {
+                email: formData.email,
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                civility: formData.civility,
+                birthDate: formData.birthDate,
+                birthPlace: formData.birthPlace,
+                nationality: formData.nationality,
+                idType: formData.idType,
+                idNumber: formData.idNumber,
+                idExpiry: formData.idExpiry,
+                idIssuingCountry: formData.idIssuingCountry,
+                maritalStatus: formData.maritalStatus,
+                children: parseInt(formData.children) || 0,
+                housingType: formData.housingType,
+                housingSeniority: parseInt(formData.housingSeniority) || 0,
+                address: formData.address,
+                profession: formData.profession,
+                companyName: formData.companyName,
+                contractType: formData.contractType,
+                idStatus: "pending",
+                createdAt: serverTimestamp(),
+                updatedAt: serverTimestamp()
+            });
+
+            // 3. Créer la demande de prêt
+            const requestData = {
+                userId: user.uid,
+                projectType: formData.creditType === "personal" ? "Prêt Personnel" :
+                    formData.creditType === "auto" ? "Crédit Auto" :
+                        formData.creditType === "pro" ? "Crédit Professionnel" : "Autre",
+                amount: parseFloat(formData.amount) || 0,
+                duration: parseInt(formData.duration) || 12,
+                rate: parseFloat(formData.rate) || 4.95,
+                monthlyPayment: (parseFloat(formData.amount) * (1 + (parseFloat(formData.rate) || 4.95) / 100)) / (parseInt(formData.duration) || 12),
+                monthlyIncome: parseFloat(formData.income) || 0,
+                monthlyExpenses: parseFloat(formData.charges) || 0,
+                otherLoans: parseFloat(formData.otherCredits) || 0,
+                profession: formData.profession,
+                situation: formData.contractType,
+                status: "pending",
+                createdAt: serverTimestamp(),
+                updatedAt: serverTimestamp()
+            };
+
+            await addDoc(collection(db, "requests"), requestData);
+
+            // 4. Calculer le score pour affichage
             const result = calculateScore(formData);
             setScoringResult(result);
             setIsSubmitting(false);
             setStep(6);
-        }, 3000);
+
+        } catch (error: any) {
+            setIsSubmitting(false);
+            console.error("Erreur lors de la soumission:", error);
+
+            // Gestion des erreurs Firebase
+            if (error.code === "auth/email-already-in-use") {
+                alert("Cette adresse email est déjà utilisée. Veuillez vous connecter ou utiliser une autre adresse.");
+            } else if (error.code === "auth/weak-password") {
+                alert("Le mot de passe est trop faible. Utilisez au moins 6 caractères.");
+            } else if (error.code === "auth/invalid-email") {
+                alert("L'adresse email n'est pas valide.");
+            } else {
+                alert("Une erreur est survenue lors de la création de votre compte. Veuillez réessayer.");
+            }
+        }
     };
 
     const stepVariants = {
