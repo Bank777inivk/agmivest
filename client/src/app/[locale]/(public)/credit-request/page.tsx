@@ -163,7 +163,7 @@ export default function CreditRequestPage() {
                     >
                         <div className="flex items-center gap-2">
                             <Image
-                                src="/logo.png"
+                                src="/logo-official.png"
                                 alt="AGM INVEST"
                                 width={128}
                                 height={64}

@@ -45,15 +45,15 @@ export default function Simulator({ isMinimal = false }: SimulatorProps) {
                         </div>
                         <input
                             type="range"
-                            min="10000"
+                            min="2000"
                             max="1000000"
-                            step="5000"
+                            step="1000"
                             value={amount}
                             onChange={(e) => setAmount(Number(e.target.value))}
                             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-ely-mint"
                         />
                         <div className="flex justify-between text-xs text-gray-400 font-medium">
-                            <span>10 000 €</span>
+                            <span>2 000 €</span>
                             <span>1 000 000 €</span>
                         </div>
                     </div>
@@ -63,20 +63,20 @@ export default function Simulator({ isMinimal = false }: SimulatorProps) {
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                             <label className="text-base md:text-lg font-semibold text-ely-blue">{t('durationLabel')}</label>
                             <span className="text-xl md:text-2xl font-bold text-ely-blue bg-gray-50 px-4 py-1 rounded-lg w-fit">
-                                {duration} {t('durationSuffix')}
+                                {duration < 1 ? "6 mois" : `${duration} ${t('durationSuffix')}`}
                             </span>
                         </div>
                         <input
                             type="range"
-                            min="5"
+                            min="0.5"
                             max="30"
-                            step="1"
+                            step="0.5"
                             value={duration}
                             onChange={(e) => setDuration(Number(e.target.value))}
                             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-ely-mint"
                         />
                         <div className="flex justify-between text-xs text-gray-400 font-medium">
-                            <span>5 {t('durationSuffix')}</span>
+                            <span>6 mois</span>
                             <span>30 {t('durationSuffix')}</span>
                         </div>
                     </div>
@@ -92,12 +92,16 @@ export default function Simulator({ isMinimal = false }: SimulatorProps) {
                         <input
                             type="range"
                             min="0.5"
-                            max="10"
+                            max="15"
                             step="0.05"
                             value={rate}
                             onChange={(e) => setRate(Number(e.target.value))}
                             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-ely-mint"
                         />
+                        <div className="flex justify-between text-xs text-gray-400 font-medium">
+                            <span>0.5 %</span>
+                            <span>15 %</span>
+                        </div>
                     </div>
                 </div>
 

@@ -138,13 +138,13 @@ export default function RegisterPage() {
 
                     <div className="text-center">
                         <motion.div
-                            initial={{ scale: 0.9 }}
-                            animate={{ scale: 1 }}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5 }}
                             className="inline-block"
                         >
                             <Image
-                                src="/logo.png"
+                                src="/logo-official.png"
                                 alt="AGM INVEST"
                                 width={160}
                                 height={40}

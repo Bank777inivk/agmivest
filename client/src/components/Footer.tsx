@@ -25,7 +25,7 @@ export default function Footer() {
                     <div className="col-span-2 lg:col-span-1 space-y-4 md:space-y-6">
                         <div className="bg-white p-2 rounded-xl inline-block shadow-lg">
                             <Image
-                                src="/logo.png"
+                                src="/logo-official.png"
                                 alt="AGM INVEST"
                                 width={120}
                                 height={48}

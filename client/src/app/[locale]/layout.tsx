@@ -5,6 +5,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import ProgressBar from "@/components/ProgressBar";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,6 +68,9 @@ export default async function LocaleLayout({
         suppressHydrationWarning
       >
         <NextIntlClientProvider messages={messages}>
+          <Suspense fallback={null}>
+            <ProgressBar />
+          </Suspense>
           {children}
         </NextIntlClientProvider>
       </body>

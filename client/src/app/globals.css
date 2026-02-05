@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* Custom NProgress Styles */
+#nprogress .bar {
+  background: #003d82 !important; /* ely-blue */
+  height: 3px !important;
+  z-index: 9999 !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #003d82, 0 0 5px #003d82 !important;
+}
+
+
 :root {
   --background: #ffffff;
   --foreground: #001A4B;

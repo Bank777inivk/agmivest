@@ -9,7 +9,7 @@ export default function AdminDashboard() {
       {/* Sidebar */}
       <aside className="w-64 bg-ely-blue text-white flex flex-col pt-8">
         <div className="px-6 mb-12">
-          <img src="/logo.png" alt="AGM INVEST" className="h-12 bg-white p-1 rounded-lg" />
+          <img src="/logo-official.png" alt="AGM INVEST" className="h-12 bg-white p-1 rounded-lg" />
           <span className="text-xs font-bold tracking-tight uppercase block mt-2 opacity-80">ADMIN PANEL</span>
         </div>
 
