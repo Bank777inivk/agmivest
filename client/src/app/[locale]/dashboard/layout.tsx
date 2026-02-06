@@ -19,6 +19,8 @@ export default function DashboardLayout({
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [loading, setLoading] = useState(false);
     const [idStatus, setIdStatus] = useState<string | null>(null);
+    const [userName, setUserName] = useState<string>("");
+    const [userEmail, setUserEmail] = useState<string | null>(null);
     const router = useRouter();
     const pathname = usePathname();
 
@@ -34,11 +36,14 @@ export default function DashboardLayout({
                 return () => clearTimeout(timeout);
             } else {
                 setLoading(false);
+                setUserEmail(user.email);
 
-                // Fetch user data for identity banner
+                // Fetch user data for identity banner and header
                 unsubUser = onSnapshot(doc(db, "users", user.uid), (docSnap) => {
                     if (docSnap.exists()) {
-                        setIdStatus(docSnap.data().idStatus || null);
+                        const data = docSnap.data();
+                        setIdStatus(data.idStatus || null);
+                        setUserName(`${data.firstName} ${data.lastName}`);
                     }
                 });
             }
@@ -82,7 +87,13 @@ export default function DashboardLayout({
                 className={`flex-1 flex flex-col h-full transition-all duration-300 ease-in-out lg:ml-0 ${isCollapsed ? "lg:ml-20" : "lg:ml-72"
                     }`}
             >
-                <DashboardHeader onMenuClick={() => setIsSidebarOpen(true)} isCollapsed={isCollapsed} />
+                <DashboardHeader
+                    onMenuClick={() => setIsSidebarOpen(true)}
+                    isCollapsed={isCollapsed}
+                    idStatus={idStatus}
+                    userName={userName}
+                    userEmail={userEmail}
+                />
                 <main className="flex-1 overflow-y-auto custom-scrollbar pt-20">
                     <div className="p-4 md:p-8 max-w-7xl mx-auto">
                         <IdentityBanner idStatus={idStatus} />

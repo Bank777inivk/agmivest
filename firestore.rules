@@ -1,0 +1,85 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Fonctions utilisateur
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+             (getUserData().role == 'admin' || getUserData().role == 'super_admin');
+    }
+    
+    function isSuperAdmin() {
+      return isSignedIn() && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+             getUserData().role == 'super_admin';
+    }
+
+    // Collection Utilisateurs (users)
+    match /users/{userId} {
+      // L'utilisateur peut lire son propre profil (Condition simplifiée pour éviter isAdmin si isOwner)
+      allow read: if isSignedIn() && isOwner(userId);
+      // L'admin peut tout lire
+      allow read: if isAdmin();
+      
+      // Inscription : l'utilisateur peut créer son propre document.
+      allow create: if isSignedIn() && isOwner(userId);
+      
+      // Mise à jour : 
+      // - L'utilisateur peut modifier ses propres infos.
+      // - Le 'super_admin' peut modifier n'importe quel utilisateur (ex: changer les rôles).
+      // - L'admin "simple" peut lire mais pas forcément modifier les rôles des autres (selon besoins).
+      allow update: if isSignedIn() && (isOwner(userId) || isSuperAdmin());  
+    }
+
+    // Collection Demandes (requests)
+    match /requests/{requestId} {
+      // Le propriétaire peut lire ses demandes, l'admin peut tout lire.
+      allow read: if isSignedIn() && (
+        ('userId' in resource.data && resource.data.userId == request.auth.uid) || 
+        isAdmin()
+      );
+      
+      // Le propriétaire peut créer une demande pour lui-même.
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      
+      // Seul l'Admin peut modifier une demande (pour changer le statut en 'approved' ou 'rejected').
+      allow update: if isAdmin(); 
+    }
+
+    // Collection Comptes (accounts)
+    match /accounts/{accountId} {
+       // Seul l'Admin peut créer des comptes
+       allow create: if isAdmin();
+       
+       // Le propriétaire peut consulter son compte, l'admin aussi.
+       allow read: if isSignedIn() && (
+         ('userId' in resource.data && resource.data.userId == request.auth.uid) || 
+         isAdmin()
+       );
+       
+       // Seul l'Admin peut mettre à jour un compte (ex: solde, statut).
+       allow update: if isAdmin();
+
+       // L'admin doit pouvoir supprimer un compte lors d'une réinitialisation.
+       allow delete: if isAdmin();
+    }
+    
+    // Refuser tout accès par défaut pour les autres collections non définies
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

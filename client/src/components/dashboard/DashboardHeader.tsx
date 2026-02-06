@@ -1,36 +1,72 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
     Bell,
     Search,
     Menu,
     User,
     ChevronDown,
-    ShieldCheck
+    ShieldCheck,
+    Clock,
+    AlertCircle,
+    XCircle
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { auth, db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 
-export default function DashboardHeader({ onMenuClick, isCollapsed }: { onMenuClick: () => void, isCollapsed: boolean }) {
-    const [userEmail, setUserEmail] = useState<string | null>(null);
-    const [userName, setUserName] = useState<string>("");
+interface DashboardHeaderProps {
+    onMenuClick: () => void;
+    isCollapsed: boolean;
+    idStatus: string | null;
+    userName: string;
+    userEmail: string | null;
+}
+
+export default function DashboardHeader({ onMenuClick, isCollapsed, idStatus, userName, userEmail }: DashboardHeaderProps) {
     const [showProfileMenu, setShowProfileMenu] = useState(false);
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                setUserEmail(user.email);
-                const userDoc = await getDoc(doc(db, "users", user.uid));
-                if (userDoc.exists()) {
-                    setUserName(`${userDoc.data().firstName} ${userDoc.data().lastName}`);
-                }
-            }
-        });
-        return () => unsubscribe();
-    }, []);
+    const getStatusInfo = () => {
+        switch (idStatus) {
+            case 'verified':
+                return {
+                    label: "Client Vérifié",
+                    icon: ShieldCheck,
+                    color: "text-ely-mint",
+                    bgColor: "bg-ely-mint/10"
+                };
+            case 'pending_verification':
+                return {
+                    label: "Vérification en cours",
+                    icon: Clock,
+                    color: "text-blue-500",
+                    bgColor: "bg-blue-50"
+                };
+            case 'verification_required':
+                return {
+                    label: "Action Requise",
+                    icon: AlertCircle,
+                    color: "text-amber-500",
+                    bgColor: "bg-amber-50"
+                };
+            case 'rejected':
+                return {
+                    label: "Identité Refusée",
+                    icon: XCircle,
+                    color: "text-red-500",
+                    bgColor: "bg-red-50"
+                };
+            default:
+                return {
+                    label: "Compte à vérifier",
+                    icon: User,
+                    color: "text-gray-400",
+                    bgColor: "bg-gray-50"
+                };
+        }
+    };
+
+    const statusInfo = getStatusInfo();
 
     return (
         <header className={`fixed top-0 right-0 z-30 flex items-center justify-between h-20 px-4 md:px-8 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300 ${isCollapsed ? "left-0 lg:left-20" : "left-0 lg:left-72"
@@ -72,8 +108,8 @@ export default function DashboardHeader({ onMenuClick, isCollapsed }: { onMenuCl
                         <div className="hidden lg:block text-left">
                             <p className="text-sm font-bold text-gray-900 leading-none">{userName || "Utilisateur"}</p>
                             <div className="flex items-center gap-1 mt-1">
-                                <ShieldCheck className="w-3 h-3 text-ely-mint" />
-                                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Client Vérifié</span>
+                                <statusInfo.icon className={`w-3.5 h-3.5 ${statusInfo.color}`} />
+                                <span className={`text-[10px] font-bold uppercase tracking-wider ${statusInfo.color}`}>{statusInfo.label}</span>
                             </div>
                         </div>
                         <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${showProfileMenu ? 'rotate-180' : ''}`} />

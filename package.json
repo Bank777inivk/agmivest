@@ -4,16 +4,25 @@
   "description": "Monorepo Elyssio - Admin & Client",
   "private": true,
   "scripts": {
-    "dev:admin": "cd admin && npm install && npm run dev",
-    "dev:client": "cd client && npm install && npm run dev",
-    "build:admin": "cd admin && npm run build",
-    "build:client": "cd client && npm run build",
-    "start:admin": "cd admin && npm run start",
-    "start:client": "cd client && npm run start",
-    "lint:admin": "cd admin && npm run lint",
-    "lint:client": "cd client && npm run lint"
+    "dev:admin": "cd admin && pnpm install && pnpm dev",
+    "dev:client": "cd client && pnpm install && pnpm dev",
+    "build:admin": "cd admin && pnpm run build",
+    "build:client": "cd client && pnpm run build",
+    "start:admin": "cd admin && pnpm run start",
+    "start:client": "cd client && pnpm run start",
+    "lint:admin": "cd admin && pnpm run lint",
+    "lint:client": "cd client && pnpm run lint"
   },
-  "keywords": ["monorepo", "nextjs", "admin", "client"],
+  "keywords": [
+    "monorepo",
+    "nextjs",
+    "admin",
+    "client"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  }
 }
