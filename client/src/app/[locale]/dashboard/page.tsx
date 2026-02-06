@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { auth, db } from "@/lib/firebase";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, collection, query, where, limit, orderBy } from "firebase/firestore";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { motion } from "framer-motion";
 import {
@@ -15,7 +15,6 @@ import {
     FileCheck,
     History,
     ChevronRight,
-    Search,
     FileText,
     ShieldCheck,
     HelpCircle,
@@ -23,7 +22,7 @@ import {
     Wallet
 } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
-import { collection, query, where, getDocs, limit, orderBy } from "firebase/firestore";
+import PremiumSpinner from "@/components/dashboard/PremiumSpinner";
 
 interface LoanRequest {
     id: string;
@@ -46,7 +45,6 @@ export default function DashboardPage() {
     const router = useRouter();
     const [user, setUser] = useState<User | null>(null);
     const [firstName, setFirstName] = useState("");
-    const [loanStatus, setLoanStatus] = useState<string | null>(null);
     const [loanAccount, setLoanAccount] = useState<any>(null);
     const [recentRequests, setRecentRequests] = useState<LoanRequest[]>([]);
     const [hasActiveRequest, setHasActiveRequest] = useState(false);
@@ -63,15 +61,12 @@ export default function DashboardPage() {
             if (currentUser) {
                 setUser(currentUser);
 
-                // Real-time user data listener
                 const unsubUser = onSnapshot(doc(db, "users", currentUser.uid), (docSnap) => {
                     if (docSnap.exists()) {
-                        const userData = docSnap.data();
-                        setFirstName(userData.firstName);
+                        setFirstName(docSnap.data().firstName);
                     }
                 });
 
-                // Real-time accounts listener
                 const accountsRef = collection(db, "accounts");
                 const qAccount = query(accountsRef, where("userId", "==", currentUser.uid), limit(1));
                 const unsubAccount = onSnapshot(qAccount, (snapshot) => {
@@ -80,7 +75,6 @@ export default function DashboardPage() {
                     }
                 });
 
-                // Real-time requests listener (for both recent requests and stats)
                 const requestsRef = collection(db, "requests");
                 const requestsQuery = query(
                     requestsRef,
@@ -94,53 +88,20 @@ export default function DashboardPage() {
                         ...doc.data()
                     })) as LoanRequest[];
 
-                    // Update recent requests (top 3)
                     setRecentRequests(allData.slice(0, 3));
-
-                    // Check for active requests
                     const active = allData.some(r => r.status === "pending" || r.status === "processing");
                     setHasActiveRequest(active);
 
-                    // Update stats in real-time
                     setStats([
-                        {
-                            id: 'total',
-                            label: "Total Demandes",
-                            value: allData.length.toString(),
-                            icon: Clock,
-                            color: "blue",
-                            trend: "Live"
-                        },
-                        {
-                            id: 'approved',
-                            label: "Prêts accordés",
-                            value: allData.filter(r => r.status === "approved").length.toString(),
-                            icon: CheckCircle,
-                            color: "green",
-                            trend: `${Math.round((allData.filter(r => r.status === "approved").length / (allData.length || 1)) * 100)}%`
-                        },
-                        {
-                            id: 'pending',
-                            label: "En attente",
-                            value: allData.filter(r => r.status === "pending" || r.status === "processing").length.toString(),
-                            icon: AlertCircle,
-                            color: "orange",
-                            trend: "0"
-                        },
-                        {
-                            id: 'projects',
-                            label: "Projets",
-                            value: new Set(allData.map(r => r.projectType)).size.toString(),
-                            icon: FileCheck,
-                            color: "purple",
-                            trend: "85%"
-                        },
+                        { id: 'total', label: "Total Demandes", value: allData.length.toString(), icon: Clock, color: "blue", trend: "Live" },
+                        { id: 'approved', label: "Prêts accordés", value: allData.filter(r => r.status === "approved").length.toString(), icon: CheckCircle, color: "green", trend: `${Math.round((allData.filter(r => r.status === "approved").length / (allData.length || 1)) * 100)}%` },
+                        { id: 'pending', label: "En attente", value: allData.filter(r => r.status === "pending" || r.status === "processing").length.toString(), icon: AlertCircle, color: "orange", trend: "0" },
+                        { id: 'projects', label: "Projets", value: new Set(allData.map(r => r.projectType)).size.toString(), icon: FileCheck, color: "purple", trend: "85%" },
                     ]);
 
                     setIsLoading(false);
                 });
 
-                // Cleanup function to unsubscribe from all listeners
                 return () => {
                     unsubUser();
                     unsubAccount();
@@ -154,14 +115,11 @@ export default function DashboardPage() {
         return () => unsubscribeAuth();
     }, []);
 
-
     const container = {
         hidden: { opacity: 0 },
         show: {
             opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
+            transition: { staggerChildren: 0.1 }
         }
     };
 
@@ -170,8 +128,17 @@ export default function DashboardPage() {
         show: { opacity: 1, y: 0 }
     };
 
+    if (isLoading) {
+        return <PremiumSpinner />;
+    }
+
     return (
-        <div className="space-y-8">
+        <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-8"
+        >
             <header className="flex flex-col gap-1">
                 <h1 className="text-2xl font-bold text-gray-900">
                     Bonjour, <span className="text-ely-blue">{firstName || "Utilisateur"}</span> 👋
@@ -179,10 +146,8 @@ export default function DashboardPage() {
                 <p className="text-gray-500">Voici un aperçu de vos activités de financement.</p>
             </header>
 
-            {/* Main Activities Header / Hero Section */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2 space-y-8">
-                    {/* Account Preview Card - Moved to top of main content */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -190,7 +155,6 @@ export default function DashboardPage() {
                         onClick={() => router.push("/dashboard/accounts")}
                         className="relative overflow-hidden p-8 md:p-10 rounded-[3rem] shadow-2xl transition-all duration-500 group cursor-pointer border bg-gradient-to-br from-ely-blue to-blue-800 text-white shadow-ely-blue/30 border-white/10"
                     >
-                        {/* Decorative Background Icon */}
                         <div className="absolute top-0 right-0 p-10 transition-all duration-500 opacity-10 group-hover:scale-110 group-hover:opacity-20 text-white">
                             <Landmark className="w-40 h-40" />
                         </div>
@@ -246,21 +210,18 @@ export default function DashboardPage() {
                                 </div>
                             </div>
                         </div>
-
-                        {/* Decorative background glow */}
                         <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-ely-mint/5 rounded-full blur-[80px]" />
                     </motion.div>
                 </div>
             </div>
 
-            {/* Stats Grid - Now below the main account card */}
             <motion.div
                 variants={container}
                 initial="hidden"
                 animate="show"
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
             >
-                {stats.map((stat, i) => {
+                {stats.map((stat) => {
                     const colorClasses: Record<string, string> = {
                         blue: "bg-blue-50 text-blue-600",
                         green: "bg-green-50 text-green-600",
@@ -294,8 +255,6 @@ export default function DashboardPage() {
             </motion.div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Main Activities */}
-                {/* Main Activities */}
                 <div className="lg:col-span-2 space-y-8">
                     <section className="bg-white p-6 md:p-8 rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden relative">
                         <div className="absolute top-0 right-0 p-8 opacity-5">
@@ -392,7 +351,6 @@ export default function DashboardPage() {
                     </section>
                 </div>
 
-                {/* Sidebar Info */}
                 <aside className="space-y-6">
                     <section className="bg-gradient-to-br from-ely-blue to-blue-800 text-white p-8 rounded-[2.5rem] shadow-xl shadow-ely-blue/20 overflow-hidden relative group">
                         <div className="absolute top-0 right-0 w-48 h-48 bg-ely-mint/20 rounded-full -mr-24 -mt-24 blur-3xl transition-all group-hover:scale-150"></div>
@@ -411,7 +369,6 @@ export default function DashboardPage() {
                         </div>
                     </section>
 
-                    {/* Security Tip */}
                     <div className="p-6 bg-ely-mint/5 border border-ely-mint/20 rounded-[2rem]">
                         <div className="flex gap-4">
                             <div className="p-3 bg-white rounded-2xl text-ely-mint h-fit shadow-sm">
@@ -427,7 +384,6 @@ export default function DashboardPage() {
                     </div>
                 </aside>
             </div>
-        </div>
+        </motion.div>
     );
 }
-

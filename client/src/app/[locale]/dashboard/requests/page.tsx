@@ -12,13 +12,13 @@ import {
     Clock,
     AlertCircle,
     ArrowUpRight,
-    TrendingUp,
-    MoreVertical
+    TrendingUp
 } from "lucide-react";
 import { auth, db } from "@/lib/firebase";
-import { collection, query, where, getDocs, orderBy, onSnapshot } from "firebase/firestore";
+import { collection, query, where, orderBy, onSnapshot } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
+import PremiumSpinner from "@/components/dashboard/PremiumSpinner";
 
 const statusStyles: any = {
     pending: { label: "En attente", color: "amber", icon: Clock },
@@ -37,7 +37,6 @@ export default function RequestsPage() {
     useEffect(() => {
         const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
             if (user) {
-                // Real-time requests listener
                 const q = query(
                     collection(db, "requests"),
                     where("userId", "==", user.uid),
@@ -76,8 +75,8 @@ export default function RequestsPage() {
     };
 
     const filteredRequests = requests.filter(req =>
-        req.type?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        req.id?.toLowerCase().includes(searchTerm.toLowerCase())
+        req.id?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        req.projectType?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -106,9 +105,7 @@ export default function RequestsPage() {
             </header>
 
             {isLoading ? (
-                <div className="flex items-center justify-center min-h-[400px]">
-                    <div className="h-8 w-8 border-2 border-ely-blue border-t-transparent rounded-full animate-spin" />
-                </div>
+                <PremiumSpinner />
             ) : filteredRequests.length > 0 ? (
                 <motion.div
                     variants={container}
