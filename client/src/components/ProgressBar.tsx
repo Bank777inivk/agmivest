@@ -12,9 +12,9 @@ export default function ProgressBarCustom() {
     useEffect(() => {
         nProgress.configure({
             showSpinner: false,
-            speed: 250,  // Un peu plus lent pour accompagner le fondu
-            minimum: 0.3,
-            trickleSpeed: 200
+            speed: 100,  // Ultra rapide
+            minimum: 0.05, // Commence tout de suite
+            trickleSpeed: 150
         });
     }, []);
 

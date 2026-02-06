@@ -7,7 +7,6 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import ProgressBar from "@/components/ProgressBar";
 import { Suspense } from "react";
-import PageTransition from "@/components/PageTransition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,9 +70,7 @@ export default async function LocaleLayout({
           <Suspense fallback={null}>
             <ProgressBar />
           </Suspense>
-          <PageTransition>
-            {children}
-          </PageTransition>
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>
