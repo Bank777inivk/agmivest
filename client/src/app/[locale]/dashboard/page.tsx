@@ -46,7 +46,6 @@ export default function DashboardPage() {
     const router = useRouter();
     const [user, setUser] = useState<User | null>(null);
     const [firstName, setFirstName] = useState("");
-    const [idStatus, setIdStatus] = useState<string | null>(null);
     const [loanStatus, setLoanStatus] = useState<string | null>(null);
     const [loanAccount, setLoanAccount] = useState<any>(null);
     const [recentRequests, setRecentRequests] = useState<LoanRequest[]>([]);
@@ -69,7 +68,6 @@ export default function DashboardPage() {
                     if (docSnap.exists()) {
                         const userData = docSnap.data();
                         setFirstName(userData.firstName);
-                        setIdStatus(userData.idStatus || null);
                     }
                 });
 
@@ -180,31 +178,6 @@ export default function DashboardPage() {
                 </h1>
                 <p className="text-gray-500">Voici un aperçu de vos activités de financement.</p>
             </header>
-
-            {/* Critical Identity Verification Alert */}
-            {idStatus === "pending" && (
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-2xl flex items-center justify-between gap-6 shadow-lg shadow-amber-500/10"
-                >
-                    <div className="flex items-center gap-4">
-                        <div className="p-3 bg-white rounded-xl shadow-sm">
-                            <AlertCircle className="w-6 h-6 text-amber-500" />
-                        </div>
-                        <div>
-                            <h4 className="font-bold text-amber-900">Vérification d'identité requise</h4>
-                            <p className="text-sm text-amber-700">Pour finaliser votre dossier, veuillez valider votre identité dans votre profil.</p>
-                        </div>
-                    </div>
-                    <button
-                        onClick={() => router.push("/dashboard/profile")}
-                        className="px-6 py-2.5 bg-amber-500 text-white rounded-xl font-bold hover:bg-amber-600 transition-all shadow-md shadow-amber-500/20"
-                    >
-                        Vérifier maintenant
-                    </button>
-                </motion.div>
-            )}
 
             {/* Main Activities Header / Hero Section */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

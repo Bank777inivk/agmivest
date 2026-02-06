@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
     Euro, Building2, User, FileText, Send, Calendar, MapPin,
     Globe, ShieldCheck, Briefcase, Home, Info, ArrowLeft, ArrowRight,
-    Search, CheckCircle2, AlertCircle, TrendingUp, Mail, Lock, ChevronRight, Percent
+    Search, CheckCircle2, AlertCircle, TrendingUp, Mail, Lock, ChevronRight, Percent, Eye, EyeOff
 } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -55,6 +55,8 @@ export default function CreditRequestPage() {
     const [profileType, setProfileType] = useState<"particulier" | "pro">("particulier");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [scoringResult, setScoringResult] = useState<any>(null);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const [formData, setFormData] = useState({
         // Project
@@ -174,6 +176,9 @@ export default function CreditRequestPage() {
             // 3. Créer la demande de prêt
             const requestData = {
                 userId: user.uid,
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
                 projectType: formData.creditType === "personal" ? "Prêt Personnel" :
                     formData.creditType === "auto" ? "Crédit Auto" :
                         formData.creditType === "pro" ? "Crédit Professionnel" : "Autre",
@@ -429,10 +434,13 @@ export default function CreditRequestPage() {
                                                         <input
                                                             type="number"
                                                             name="rate"
-                                                            readOnly
+                                                            step="0.01"
+                                                            min="0"
+                                                            max="20"
                                                             value={formData.rate}
-                                                            className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-xl outline-none font-semibold text-gray-500 cursor-not-allowed"
-                                                            placeholder="-"
+                                                            onChange={handleChange}
+                                                            className="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint outline-none transition-all font-semibold"
+                                                            placeholder="Ex: 4.95"
                                                         />
                                                     </div>
                                                 </div>
@@ -593,14 +601,42 @@ export default function CreditRequestPage() {
                                                     <label className="text-sm font-semibold text-gray-700">{t('Account.password')}</label>
                                                     <div className="relative">
                                                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                                                        <input type="password" name="password" value={formData.password} onChange={handleChange} className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder="••••••••" />
+                                                        <input
+                                                            type={showPassword ? "text" : "password"}
+                                                            name="password"
+                                                            value={formData.password}
+                                                            onChange={handleChange}
+                                                            className="w-full pl-12 pr-12 p-4 bg-white border border-gray-200 rounded-xl outline-none"
+                                                            placeholder="••••••••"
+                                                        />
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setShowPassword(!showPassword)}
+                                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                                                        >
+                                                            {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                                                        </button>
                                                     </div>
                                                 </div>
                                                 <div className="space-y-3">
                                                     <label className="text-sm font-semibold text-gray-700">{t('Account.confirmPassword')}</label>
                                                     <div className="relative">
                                                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                                                        <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder="••••••••" />
+                                                        <input
+                                                            type={showConfirmPassword ? "text" : "password"}
+                                                            name="confirmPassword"
+                                                            value={formData.confirmPassword}
+                                                            onChange={handleChange}
+                                                            className="w-full pl-12 pr-12 p-4 bg-white border border-gray-200 rounded-xl outline-none"
+                                                            placeholder="••••••••"
+                                                        />
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                                                        >
+                                                            {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -651,13 +687,10 @@ export default function CreditRequestPage() {
                                             </p>
                                         </div>
 
-                                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                        <div className="flex justify-center">
                                             <Link href="/dashboard" className="px-10 py-4 bg-ely-blue text-white rounded-xl font-bold hover:bg-ely-blue/90 shadow-xl shadow-ely-blue/10">
                                                 {t('Result.dashboardButton')}
                                             </Link>
-                                            <button onClick={() => window.location.reload()} className="px-10 py-4 border-2 border-gray-100 text-gray-400 rounded-xl font-bold hover:bg-gray-50">
-                                                {t('Result.newProjectButton')}
-                                            </button>
                                         </div>
                                     </motion.div>
                                 )}

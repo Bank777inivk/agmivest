@@ -19,8 +19,11 @@ import { auth, db } from "@/lib/firebase";
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
+import { useRouter } from "@/i18n/routing";
+
 export default function AccountsPage() {
     const t = useTranslations('Dashboard.Accounts');
+    const router = useRouter();
     const [loanAccount, setLoanAccount] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -63,7 +66,7 @@ export default function AccountsPage() {
     return (
         <div className="space-y-8">
             <header>
-                <h1 className="text-2xl font-bold text-gray-900">Mes Comptes</h1>
+                <h1 className="text-2xl font-bold text-gray-900">Mon solde crédit AGM</h1>
                 <p className="text-gray-500">Gérez vos crédits actifs et suivez vos remboursements.</p>
             </header>
 
@@ -139,7 +142,10 @@ export default function AccountsPage() {
                             </div>
                         </div>
 
-                        <button className="w-full bg-ely-blue text-white p-5 rounded-[2rem] font-bold shadow-xl shadow-ely-blue/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group">
+                        <button
+                            onClick={() => router.push("/dashboard/accounts/schedule")}
+                            className="w-full bg-ely-blue text-white p-5 rounded-[2rem] font-bold shadow-xl shadow-ely-blue/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group"
+                        >
                             Consulter l'échéancier
                             <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </button>

@@ -83,21 +83,21 @@ export default function RequestDetailsPage() {
             desc: "Votre demande a été enregistrée avec succès.",
             date: request.createdAt?.toDate().toLocaleDateString('fr-FR'),
             completed: true,
-            active: request.status === "pending"
+            active: false
         },
         {
             id: 2,
             title: "Analyse technique",
             desc: "Nos experts vérifient la faisabilité de votre projet.",
-            completed: ["processing", "approved", "rejected"].includes(request.status),
-            active: request.status === "processing"
+            completed: request.stepAnalysis === true || request.status === "approved" || request.status === "rejected",
+            active: !request.stepAnalysis && request.status !== "rejected" && request.status !== "approved"
         },
         {
             id: 3,
             title: "Vérification documentaire",
             desc: "Examen détaillé des pièces justificatives transmises.",
-            completed: ["approved", "rejected"].includes(request.status),
-            active: false
+            completed: request.stepVerification === true || request.status === "approved" || request.status === "rejected",
+            active: request.stepAnalysis && !request.stepVerification && request.status !== "rejected" && request.status !== "approved"
         },
         {
             id: 4,
@@ -108,13 +108,39 @@ export default function RequestDetailsPage() {
                     ? "Malheureusement, nous ne pouvons donner suite."
                     : "En attente de la commission finale.",
             completed: ["approved", "rejected"].includes(request.status),
-            active: ["approved", "rejected"].includes(request.status),
-            final: true
+            active: request.stepVerification && request.status !== "approved" && request.status !== "rejected"
         }
     ];
 
     return (
         <div className="max-w-6xl mx-auto space-y-8 pb-20">
+            {/* Celebration Banner for Approved Requests */}
+            {request.status === "approved" && (
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-gradient-to-r from-ely-mint to-[#22c55e] p-1 rounded-[2.5rem] shadow-xl shadow-ely-mint/20"
+                >
+                    <div className="bg-white/10 backdrop-blur-mdrounded-[2.4rem] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 text-white">
+                        <div className="flex items-center gap-6">
+                            <div className="w-16 h-16 bg-white text-ely-mint rounded-2xl flex items-center justify-center shadow-lg animate-bounce">
+                                <CheckCircle2 className="w-8 h-8" />
+                            </div>
+                            <div>
+                                <h2 className="text-2xl font-black mb-1">Félicitations ! Votre crédit est activé.</h2>
+                                <p className="text-white/90 font-medium">Les fonds ont été débloqués. Vous pouvez dès maintenant consulter votre échéancier.</p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={() => router.push("/dashboard/accounts")}
+                            className="whitespace-nowrap px-8 py-4 bg-white text-ely-mint rounded-2xl font-bold hover:scale-105 transition-transform shadow-lg"
+                        >
+                            Accéder à mon compte
+                        </button>
+                    </div>
+                </motion.div>
+            )}
+
             {/* Header / Back */}
             <button
                 onClick={() => router.push("/dashboard/requests")}

@@ -1,14 +1,17 @@
 import Hero from "@/components/Hero";
-import Simulator from "@/components/Simulator";
-import AboutSection from "@/components/AboutSection";
-import ServicesSection from "@/components/ServicesSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import PartnersSection from "@/components/PartnersSection";
-import ContactSection from "@/components/ContactSection";
-import LocationSection from "@/components/LocationSection";
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+
+// Lazy loading for components below the fold
+const Simulator = dynamic(() => import("@/components/Simulator"));
+const AboutSection = dynamic(() => import("@/components/AboutSection"));
+const ServicesSection = dynamic(() => import("@/components/ServicesSection"));
+const TestimonialsSection = dynamic(() => import("@/components/TestimonialsSection"));
+const PartnersSection = dynamic(() => import("@/components/PartnersSection"));
+const ContactSection = dynamic(() => import("@/components/ContactSection"));
+const LocationSection = dynamic(() => import("@/components/LocationSection"));
 
 export default function Home() {
   const t = useTranslations('Home');

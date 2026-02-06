@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import Sidebar from "@/components/dashboard/Sidebar";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
+import IdentityBanner from "@/components/dashboard/IdentityBanner";
 import { usePathname } from "next/navigation";
-import { auth } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { doc, onSnapshot } from "firebase/firestore";
 import { useRouter } from "@/i18n/routing";
 
 export default function DashboardLayout({
@@ -15,32 +17,44 @@ export default function DashboardLayout({
 }) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [idStatus, setIdStatus] = useState<string | null>(null);
     const router = useRouter();
     const pathname = usePathname();
 
     useEffect(() => {
+        let unsubUser: () => void;
+
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (!user) {
-                router.push("/login");
+                // On laisse un petit délai pour éviter les faux positifs au chargement
+                const timeout = setTimeout(() => {
+                    if (!auth.currentUser) router.push("/login");
+                }, 1000);
+                return () => clearTimeout(timeout);
             } else {
                 setLoading(false);
+
+                // Fetch user data for identity banner
+                unsubUser = onSnapshot(doc(db, "users", user.uid), (docSnap) => {
+                    if (docSnap.exists()) {
+                        setIdStatus(docSnap.data().idStatus || null);
+                    }
+                });
             }
         });
 
         // Close mobile sidebar on route change
         setIsSidebarOpen(false);
 
-        return () => unsubscribe();
+        return () => {
+            unsubscribe();
+            if (unsubUser) unsubUser();
+        };
     }, [pathname, router]);
 
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50">
-                <div className="h-10 w-10 border-4 border-ely-blue/30 border-t-ely-blue rounded-full animate-spin" />
-            </div>
-        );
-    }
+    // On ne bloque plus le rendu global par un spinner
+    // Le contenu (children) sera géré par loading.tsx si nécessaire
 
     return (
         <div className="h-screen bg-[#F8FAFC] overflow-hidden flex">
@@ -71,6 +85,7 @@ export default function DashboardLayout({
                 <DashboardHeader onMenuClick={() => setIsSidebarOpen(true)} isCollapsed={isCollapsed} />
                 <main className="flex-1 overflow-y-auto custom-scrollbar pt-20">
                     <div className="p-4 md:p-8 max-w-7xl mx-auto">
+                        <IdentityBanner idStatus={idStatus} />
                         {children}
                     </div>
                 </main>

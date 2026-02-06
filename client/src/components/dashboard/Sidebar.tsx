@@ -32,7 +32,7 @@ import { useRouter } from "@/i18n/routing";
 
 const menuItems = [
     { icon: LayoutDashboard, label: "Mon Espace Client", href: "/dashboard" },
-    { icon: Landmark, label: "Mes Comptes", href: "/dashboard/accounts" },
+    { icon: Landmark, label: "Mon solde crédit AGM", href: "/dashboard/accounts" },
     { icon: Plus, label: "Faire une demande", href: "/dashboard/credit" },
     { icon: FileText, label: "Mes Demandes", href: "/dashboard/requests" },
     { icon: FolderOpen, label: "Mes Documents", href: "/dashboard/documents" },
@@ -70,7 +70,7 @@ export default function Sidebar({
             {/* Logo Area */}
             <div className="p-6">
                 <Link href="/" className={`flex items-center gap-3 transition-all duration-300 ${isCollapsed && !isMobile ? "justify-center" : ""}`}>
-                    <div className={`bg-white p-2 rounded-xl shadow-lg transition-all duration-300 ${isCollapsed && !isMobile ? "w-11 h-11 flex items-center justify-center" : "w-40 h-16"}`}>
+                    <div className={`bg-white p-2 rounded-xl shadow-lg transition-all duration-300 ${isCollapsed && !isMobile ? "w-11 h-11 flex items-center justify-center" : "w-32 h-12"}`}>
                         <div className="relative w-full h-full">
                             <Image
                                 src="/logo-official.png"
@@ -84,28 +84,28 @@ export default function Sidebar({
             </div>
 
             {/* Navigation Section */}
-            <div className="flex-1 px-4 space-y-8 py-4 overflow-y-auto custom-scrollbar">
+            <div className="flex-1 px-4 space-y-4 py-2 overflow-y-auto custom-scrollbar">
                 <div>
                     {!isCollapsed && (
                         <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] px-5 mb-4 drop-shadow-sm">
                             Menu Principal
                         </p>
                     )}
-                    <nav className="space-y-1">
+                    <nav className="space-y-0.5">
                         {menuItems.map((item) => {
                             const isActive = pathname.includes(item.href);
                             return (
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className={`flex items-center gap-3 px-4 py-2 rounded-2xl transition-all duration-300 group relative overflow-hidden ${isActive
+                                    className={`flex items-center gap-3 px-4 py-2 rounded-xl transition-all duration-300 group relative overflow-hidden ${isActive
                                         ? "bg-white/10 backdrop-blur-md text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] border-l-4 border-ely-mint pl-3"
                                         : "text-white hover:bg-white/10"
                                         }`}
                                 >
-                                    <item.icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${isActive ? 'scale-110 text-ely-mint' : 'group-hover:scale-110 text-white translate-z-0'}`} />
+                                    <item.icon className={`w-4 h-4 flex-shrink-0 transition-transform duration-300 ${isActive ? 'scale-110 text-ely-mint' : 'group-hover:scale-110 text-white translate-z-0'}`} />
                                     {(!isCollapsed || isMobile) && (
-                                        <span className={`font-semibold tracking-wide transition-all duration-300 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
+                                        <span className={`text-sm font-semibold tracking-wide transition-all duration-300 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
                                             {item.label}
                                         </span>
                                     )}
@@ -129,21 +129,21 @@ export default function Sidebar({
                             Préférences
                         </p>
                     )}
-                    <nav className="space-y-1">
+                    <nav className="space-y-0.5">
                         {secondaryItems.map((item) => {
                             const isActive = pathname.includes(item.href);
                             return (
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className={`flex items-center gap-3 px-4 py-2 rounded-2xl transition-all duration-300 group relative overflow-hidden ${isActive
+                                    className={`flex items-center gap-3 px-4 py-2 rounded-xl transition-all duration-300 group relative overflow-hidden ${isActive
                                         ? "bg-white/10 backdrop-blur-md text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] border-l-4 border-ely-mint pl-3"
                                         : "text-white hover:bg-white/10"
                                         }`}
                                 >
-                                    <item.icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${isActive ? 'scale-110 text-ely-mint' : 'group-hover:scale-110 text-white'}`} />
+                                    <item.icon className={`w-4 h-4 flex-shrink-0 transition-transform duration-300 ${isActive ? 'scale-110 text-ely-mint' : 'group-hover:scale-110 text-white'}`} />
                                     {(!isCollapsed || isMobile) && (
-                                        <span className={`font-semibold tracking-wide transition-all duration-300 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
+                                        <span className={`text-sm font-semibold tracking-wide transition-all duration-300 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
                                             {item.label}
                                         </span>
                                     )}
