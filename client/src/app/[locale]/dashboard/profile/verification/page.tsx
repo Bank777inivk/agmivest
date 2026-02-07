@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
 import { auth, db } from "@/lib/firebase";
-import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { doc, updateDoc, serverTimestamp, onSnapshot } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import Image from "next/image";
 
@@ -32,6 +32,8 @@ interface DocumentUpload {
     preview: string | null;
     url: string | null;
     status: "idle" | "uploading" | "success" | "error";
+    reviewStatus?: "pending" | "approved" | "rejected";
+    rejectionReason?: string;
 }
 
 export default function IdentityVerificationPage() {
@@ -75,14 +77,53 @@ export default function IdentityVerificationPage() {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
+        let unsubDoc: () => void;
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUserId(user.uid);
+
+                // Load existing KYC documents
+                const userDocRef = doc(db, "users", user.uid);
+                unsubDoc = onSnapshot(userDocRef, (docSnap) => {
+                    if (docSnap.exists()) {
+                        const userData = docSnap.data();
+                        const kycDocs = userData.kycDocuments || {};
+
+                        // Update documents state with existing data
+                        setDocuments(prev => {
+                            const updated = { ...prev };
+                            Object.keys(updated).forEach(key => {
+                                const docData = kycDocs[key];
+                                if (docData) {
+                                    const url = typeof docData === 'string' ? docData : docData?.url;
+                                    const reviewStatus = typeof docData === 'object' ? docData?.status : 'pending';
+                                    const rejectionReason = typeof docData === 'object' ? docData?.rejectionReason : null;
+
+                                    updated[key as DocType] = {
+                                        ...updated[key as DocType],
+                                        url,
+                                        reviewStatus,
+                                        rejectionReason,
+                                        status: url ? 'success' : 'idle'
+                                    };
+                                }
+                            });
+                            return updated;
+                        });
+                    }
+                }, (error) => {
+                    console.error("Firestore Error (KYC Doc):", error);
+                });
             } else {
+                // CLEANUP IMMEDIATELY ON LOGOUT
+                if (unsubDoc) unsubDoc();
                 router.push("/login");
             }
         });
-        return () => unsubscribe();
+        return () => {
+            unsubscribe();
+            if (unsubDoc) unsubDoc();
+        };
     }, [router]);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -158,8 +199,8 @@ export default function IdentityVerificationPage() {
     const handleSubmit = async () => {
         if (!userId) return;
 
-        // Vérifier si tous les documents sont présents
-        const allDocsPresent = Object.values(documents).every(doc => doc.file);
+        // Vérifier si tous les documents sont présents (soit déjà uploadés, soit nouveaux)
+        const allDocsPresent = Object.values(documents).every(doc => doc.file || doc.url);
         if (!allDocsPresent) {
             alert("Veuillez fournir tous les documents demandés.");
             return;
@@ -168,36 +209,57 @@ export default function IdentityVerificationPage() {
         setIsSubmitting(true);
 
         try {
-            const uploadedUrls: Record<string, string> = {};
-            const updatedDocs = { ...documents };
+            const kycDocuments: Record<string, any> = {};
 
-            // Upload séquentiel
+            // Process each document
             for (const type of Object.keys(documents) as DocType[]) {
-                setDocuments(prev => ({
-                    ...prev,
-                    [type]: { ...prev[type], status: "uploading" }
-                }));
+                const doc = documents[type];
 
-                try {
-                    const url = await uploadToCloudinary(documents[type].file!);
-                    uploadedUrls[type] = url;
+                if (doc.file) {
+                    // New file to upload
                     setDocuments(prev => ({
                         ...prev,
-                        [type]: { ...prev[type], status: "success", url }
+                        [type]: { ...prev[type], status: "uploading" }
                     }));
-                } catch (error) {
-                    setDocuments(prev => ({
-                        ...prev,
-                        [type]: { ...prev[type], status: "error" }
-                    }));
-                    throw error;
+
+                    try {
+                        const url = await uploadToCloudinary(doc.file);
+                        kycDocuments[type] = {
+                            url,
+                            status: 'pending',
+                            uploadedAt: serverTimestamp()
+                        };
+                        setDocuments(prev => ({
+                            ...prev,
+                            [type]: { ...prev[type], status: "success", url }
+                        }));
+                    } catch (error) {
+                        setDocuments(prev => ({
+                            ...prev,
+                            [type]: { ...prev[type], status: "error" }
+                        }));
+                        throw error;
+                    }
+                } else if (doc.url && doc.reviewStatus === 'approved') {
+                    // Keep approved documents as-is
+                    kycDocuments[type] = {
+                        url: doc.url,
+                        status: 'approved',
+                        reviewedAt: serverTimestamp()
+                    };
+                } else if (doc.url) {
+                    // Keep existing documents with their current status
+                    kycDocuments[type] = {
+                        url: doc.url,
+                        status: doc.reviewStatus || 'pending'
+                    };
                 }
             }
 
             // Mettre à jour Firestore
             await updateDoc(doc(db, "users", userId), {
                 idStatus: "pending_verification",
-                kycDocuments: uploadedUrls,
+                kycDocuments,
                 kycSubmittedAt: serverTimestamp(),
                 updatedAt: serverTimestamp()
             });
@@ -217,7 +279,7 @@ export default function IdentityVerificationPage() {
     const isAllSuccess = Object.values(documents).every(doc => doc.status === "success");
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8 pb-12">
+        <div className="max-w-4xl mx-auto space-y-8 pb-12 relative min-h-[600px]">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
@@ -252,19 +314,57 @@ export default function IdentityVerificationPage() {
                         >
                             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                                 <div className={`p-4 rounded-2xl ${doc.status === 'success' ? 'bg-emerald-50 text-emerald-600' :
-                                        doc.status === 'uploading' ? 'bg-blue-50 text-blue-600' :
-                                            'bg-gray-50 text-gray-400'
+                                    doc.status === 'uploading' ? 'bg-blue-50 text-blue-600' :
+                                        'bg-gray-50 text-gray-400'
                                     }`}>
                                     {doc.status === 'success' ? <CheckCircle className="w-6 h-6" /> : <doc.icon className="w-6 h-6" />}
                                 </div>
 
                                 <div className="flex-1">
-                                    <h3 className="text-lg font-bold text-gray-900">{doc.label}</h3>
+                                    <div className="flex items-center gap-3 mb-1">
+                                        <h3 className="text-lg font-bold text-gray-900">{doc.label}</h3>
+                                        {doc.reviewStatus === 'approved' && (
+                                            <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold flex items-center gap-1">
+                                                <CheckCircle className="w-3 h-3" />
+                                                Validé
+                                            </span>
+                                        )}
+                                        {doc.reviewStatus === 'rejected' && (
+                                            <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-bold flex items-center gap-1">
+                                                <AlertCircle className="w-3 h-3" />
+                                                Refusé
+                                            </span>
+                                        )}
+                                        {doc.reviewStatus === 'pending' && doc.url && (
+                                            <span className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-bold flex items-center gap-1">
+                                                <AlertCircle className="w-3 h-3" />
+                                                En attente
+                                            </span>
+                                        )}
+                                    </div>
                                     <p className="text-sm text-gray-500">{doc.description}</p>
+                                    {doc.rejectionReason && (
+                                        <div className="mt-2 p-3 bg-red-50 border border-red-200 rounded-xl">
+                                            <p className="text-xs text-red-700"><strong>Raison du refus :</strong> {doc.rejectionReason}</p>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="w-full md:w-auto">
-                                    {doc.preview ? (
+                                    {doc.url && doc.reviewStatus === 'approved' ? (
+                                        // Document approved - show preview only, no re-upload
+                                        <div className="relative group">
+                                            <div className="relative w-24 h-16 rounded-lg overflow-hidden border-2 border-emerald-500">
+                                                <Image
+                                                    src={doc.url}
+                                                    alt="Document validé"
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            </div>
+                                        </div>
+                                    ) : doc.preview ? (
+                                        // New file selected for upload
                                         <div className="relative group cursor-pointer">
                                             <div className="relative w-24 h-16 rounded-lg overflow-hidden border border-gray-200">
                                                 <Image
@@ -288,7 +388,29 @@ export default function IdentityVerificationPage() {
                                                 </button>
                                             )}
                                         </div>
+                                    ) : doc.url && (doc.reviewStatus === 'pending' || doc.reviewStatus === 'rejected') ? (
+                                        // Document pending or rejected - show current + allow re-upload
+                                        <div className="flex flex-col gap-2">
+                                            <div className="relative w-24 h-16 rounded-lg overflow-hidden border border-gray-200">
+                                                <Image
+                                                    src={doc.url}
+                                                    alt="Document actuel"
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            </div>
+                                            {doc.reviewStatus === 'rejected' && (
+                                                <button
+                                                    onClick={() => triggerFileInput(doc.type)}
+                                                    className="px-4 py-2 bg-red-600 text-white rounded-xl font-bold hover:bg-red-700 transition-all flex items-center gap-2 text-xs"
+                                                >
+                                                    <Upload className="w-3 h-3" />
+                                                    Remplacer
+                                                </button>
+                                            )}
+                                        </div>
                                     ) : (
+                                        // No document yet - allow upload
                                         <button
                                             onClick={() => triggerFileInput(doc.type)}
                                             className="px-6 py-2.5 bg-gray-900 text-white rounded-xl font-bold hover:bg-black transition-all flex items-center gap-2 text-sm"
@@ -335,8 +457,8 @@ export default function IdentityVerificationPage() {
                         onClick={handleSubmit}
                         disabled={isSubmitting || isAllSuccess}
                         className={`w-full py-4 rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 ${isSubmitting || isAllSuccess
-                                ? 'bg-gray-800 text-gray-400 cursor-not-allowed'
-                                : 'bg-ely-mint text-gray-900 hover:bg-ely-mint/90 shadow-xl shadow-ely-mint/10'
+                            ? 'bg-gray-800 text-gray-400 cursor-not-allowed'
+                            : 'bg-ely-mint text-gray-900 hover:bg-ely-mint/90 shadow-xl shadow-ely-mint/10'
                             }`}
                     >
                         {isSubmitting ? (
@@ -374,11 +496,11 @@ export default function IdentityVerificationPage() {
 
             {/* Success Overlay */}
             <AnimatePresence>
-                {isAllSuccess && (
+                {isAllSuccess && !Object.values(documents).some(doc => doc.reviewStatus === 'rejected') && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="fixed inset-0 z-50 bg-white flex items-center justify-center p-6"
+                        className="absolute inset-0 z-10 bg-white/95 backdrop-blur-sm flex items-center justify-center p-6 rounded-3xl"
                     >
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0 }}

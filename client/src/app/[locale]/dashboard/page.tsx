@@ -49,6 +49,7 @@ export default function DashboardPage() {
     const [recentRequests, setRecentRequests] = useState<LoanRequest[]>([]);
     const [hasActiveRequest, setHasActiveRequest] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [idStatus, setIdStatus] = useState<string | null>(null);
     const [stats, setStats] = useState([
         { id: 'total', label: "Total Demandes", value: "0", icon: Clock, color: "blue", trend: "0%" },
         { id: 'approved', label: "Prêts accordés", value: "0", icon: CheckCircle, color: "green", trend: "0%" },
@@ -57,22 +58,33 @@ export default function DashboardPage() {
     ]);
 
     useEffect(() => {
+        let unsubUser: () => void;
+        let unsubAccount: () => void;
+        let unsubRequests: () => void;
+
         const unsubscribeAuth = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
                 setUser(currentUser);
 
-                const unsubUser = onSnapshot(doc(db, "users", currentUser.uid), (docSnap) => {
+                unsubUser = onSnapshot(doc(db, "users", currentUser.uid), (docSnap) => {
                     if (docSnap.exists()) {
                         setFirstName(docSnap.data().firstName);
+                        setIdStatus(docSnap.data().idStatus || null);
                     }
+                }, (error) => {
+                    if (error.code === 'permission-denied' && !auth.currentUser) return;
+                    console.error("Firestore Error (User):", error);
                 });
 
                 const accountsRef = collection(db, "accounts");
                 const qAccount = query(accountsRef, where("userId", "==", currentUser.uid), limit(1));
-                const unsubAccount = onSnapshot(qAccount, (snapshot) => {
+                unsubAccount = onSnapshot(qAccount, (snapshot) => {
                     if (!snapshot.empty) {
                         setLoanAccount({ id: snapshot.docs[0].id, ...snapshot.docs[0].data() });
                     }
+                }, (error) => {
+                    if (error.code === 'permission-denied' && !auth.currentUser) return;
+                    console.error("Firestore Error (Account):", error);
                 });
 
                 const requestsRef = collection(db, "requests");
@@ -82,7 +94,7 @@ export default function DashboardPage() {
                     orderBy("createdAt", "desc")
                 );
 
-                const unsubRequests = onSnapshot(requestsQuery, (snapshot) => {
+                unsubRequests = onSnapshot(requestsQuery, (snapshot) => {
                     const allData = snapshot.docs.map(doc => ({
                         id: doc.id,
                         ...doc.data()
@@ -100,20 +112,28 @@ export default function DashboardPage() {
                     ]);
 
                     setIsLoading(false);
+                }, (error) => {
+                    if (error.code === 'permission-denied' && !auth.currentUser) return;
+                    console.error("Firestore Error (Requests):", error);
+                    setIsLoading(false);
                 });
-
-                return () => {
-                    unsubUser();
-                    unsubAccount();
-                    unsubRequests();
-                };
             } else {
+                // CLEANUP IMMEDIATELY ON LOGOUT
+                if (unsubUser) unsubUser();
+                if (unsubAccount) unsubAccount();
+                if (unsubRequests) unsubRequests();
+
                 setIsLoading(false);
             }
         });
 
-        return () => unsubscribeAuth();
-    }, []);
+        return () => {
+            unsubscribeAuth();
+            if (unsubUser) unsubUser();
+            if (unsubAccount) unsubAccount();
+            if (unsubRequests) unsubRequests();
+        };
+    }, [router]);
 
     const container = {
         hidden: { opacity: 0 },
@@ -145,6 +165,89 @@ export default function DashboardPage() {
                 </h1>
                 <p className="text-gray-500">Voici un aperçu de vos activités de financement.</p>
             </header>
+
+
+            {/* Active Loan Success Alert */}
+            {loanAccount?.status === 'active' && (
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="bg-gradient-to-br from-[#064e3b] to-[#059669] rounded-[2.5rem] p-8 text-white shadow-2xl shadow-emerald-900/20 relative overflow-hidden group mb-8 border border-white/10"
+                >
+                    <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:scale-110 transition-transform">
+                        <CheckCircle className="w-32 h-32 text-white" />
+                    </div>
+                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div className="flex items-center gap-6">
+                            <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shrink-0">
+                                <CheckCircle className="w-8 h-8 text-white" />
+                            </div>
+                            <div>
+                                <h2 className="text-2xl font-black tracking-tight mb-1">Félicitations ! Votre crédit est activé.</h2>
+                                <p className="text-white/80 text-sm font-medium">Les fonds ont été débloqués. Vous pouvez dès maintenant consulter votre échéancier.</p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={() => router.push("/dashboard/accounts")}
+                            className="px-8 py-4 bg-white text-emerald-800 rounded-2xl font-bold text-sm hover:bg-emerald-50 transition-all shadow-xl shadow-black/5 whitespace-nowrap"
+                        >
+                            Accéder à mon compte
+                        </button>
+                    </div>
+                </motion.div>
+            )}
+
+            {/* Rejected Identity Alert */}
+            {idStatus === 'rejected' && (
+                <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-gradient-to-br from-red-600/10 to-orange-600/10 border-2 border-red-500/30 rounded-3xl p-6 flex items-start gap-4"
+                >
+                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-lg shadow-red-500/20">
+                        <AlertCircle className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                        <h3 className="text-lg font-bold text-red-700 mb-1">Identité Refusée</h3>
+                        <p className="text-sm text-red-600/80 leading-relaxed mb-3">
+                            Votre demande de vérification d'identité a été refusée. Pour connaître les raisons et soumettre à nouveau vos documents, veuillez contacter notre service client.
+                        </p>
+                        <button
+                            onClick={() => router.push("/dashboard/support")}
+                            className="px-6 py-2.5 bg-red-600 text-white rounded-xl font-bold text-sm hover:bg-red-700 transition-all flex items-center gap-2 shadow-lg shadow-red-500/20"
+                        >
+                            <HelpCircle className="w-4 h-4" />
+                            Contacter le Support
+                        </button>
+                    </div>
+                </motion.div>
+            )}
+
+            {/* Partial Rejection Alert - Documents à compléter */}
+            {idStatus === 'partial_rejection' && (
+                <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-gradient-to-br from-orange-600/10 to-yellow-600/10 border-2 border-orange-500/30 rounded-3xl p-6 flex items-start gap-4"
+                >
+                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-500/20">
+                        <FileText className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                        <h3 className="text-lg font-bold text-orange-700 mb-1">Documents à compléter</h3>
+                        <p className="text-sm text-orange-800/80 leading-relaxed mb-3">
+                            Certains documents de votre dossier nécessitent une correction ou n'ont pas été validés. Veuillez consulter votre espace de vérification pour les mettre à jour.
+                        </p>
+                        <button
+                            onClick={() => router.push("/dashboard/profile/verification")}
+                            className="px-6 py-2.5 bg-orange-600 text-white rounded-xl font-bold text-sm hover:bg-orange-700 transition-all flex items-center gap-2 shadow-lg shadow-orange-500/20"
+                        >
+                            <ArrowUpRight className="w-4 h-4" />
+                            Voir mes documents
+                        </button>
+                    </div>
+                </motion.div>
+            )}
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2 space-y-8">
@@ -195,7 +298,7 @@ export default function DashboardPage() {
                                                     ? `${((loanAccount.totalAmount - loanAccount.remainingAmount) / loanAccount.totalAmount) * 100}%`
                                                     : "0%"
                                             }}
-                                            className="h-full shadow-[0_0_15px_rgba(40,232,152,0.5)] bg-ely-mint"
+                                            className="h-full shadow-[0_0_15px_rgba(5,150,105,0.4)] bg-ely-mint"
                                         />
                                     </div>
                                     <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-white/40">

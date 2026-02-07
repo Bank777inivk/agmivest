@@ -29,6 +29,11 @@ export default function DashboardLayout({
 
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (!user) {
+                // CLEANUP IMMEDIATELY ON LOGOUT to avoid permission errors during redirection
+                if (unsubUser) {
+                    unsubUser();
+                }
+
                 // On laisse un petit délai pour éviter les faux positifs au chargement
                 const timeout = setTimeout(() => {
                     if (!auth.currentUser) router.push("/login");
@@ -45,6 +50,8 @@ export default function DashboardLayout({
                         setIdStatus(data.idStatus || null);
                         setUserName(`${data.firstName} ${data.lastName}`);
                     }
+                }, (error) => {
+                    console.error("Firestore Error (User Layout):", error);
                 });
             }
         });
@@ -71,6 +78,7 @@ export default function DashboardLayout({
                     setIsOpen={() => { }}
                     isCollapsed={isCollapsed}
                     setIsCollapsed={setIsCollapsed}
+                    idStatus={idStatus}
                 />
             </div>
 
@@ -81,6 +89,7 @@ export default function DashboardLayout({
                 setIsOpen={setIsSidebarOpen}
                 isCollapsed={false}
                 setIsCollapsed={() => { }}
+                idStatus={idStatus}
             />
 
             <div

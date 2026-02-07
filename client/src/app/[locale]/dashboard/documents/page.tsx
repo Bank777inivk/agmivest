@@ -110,8 +110,8 @@ export default function DocumentsPage() {
                         key={cat.id}
                         onClick={() => setActiveCategory(cat.id as Category)}
                         className={`flex items-center gap-3 px-6 py-3 rounded-2xl font-bold transition-all duration-300 ${activeCategory === cat.id
-                                ? `bg-${cat.color === 'ely-mint' ? '[#28E898]' : cat.color === 'ely-blue' ? '[#003d82]' : cat.color + '-600'} text-white shadow-lg`
-                                : "bg-white text-gray-500 hover:bg-gray-50 border border-gray-100"
+                            ? `bg-${cat.color === 'ely-mint' ? 'ely-mint' : cat.color === 'ely-blue' ? '[#003d82]' : cat.color + '-600'} text-white shadow-lg`
+                            : "bg-white text-gray-500 hover:bg-gray-50 border border-gray-100"
                             }`}
                     >
                         <cat.icon className="w-5 h-5" />

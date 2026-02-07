@@ -10,7 +10,8 @@ import {
     ShieldCheck,
     Clock,
     AlertCircle,
-    XCircle
+    XCircle,
+    Crown
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { auth } from "@/lib/firebase";
@@ -55,6 +56,13 @@ export default function DashboardHeader({ onMenuClick, isCollapsed, idStatus, us
                     icon: XCircle,
                     color: "text-red-500",
                     bgColor: "bg-red-50"
+                };
+            case 'partial_rejection':
+                return {
+                    label: "Documents à compléter",
+                    icon: AlertCircle,
+                    color: "text-orange-500",
+                    bgColor: "bg-orange-50"
                 };
             default:
                 return {
@@ -108,6 +116,7 @@ export default function DashboardHeader({ onMenuClick, isCollapsed, idStatus, us
                         <div className="hidden lg:block text-left">
                             <p className="text-sm font-bold text-gray-900 leading-none">{userName || "Utilisateur"}</p>
                             <div className="flex items-center gap-1 mt-1">
+                                {idStatus === 'verified' && <Crown className="w-3.5 h-3.5 text-amber-500 fill-amber-500/20" />}
                                 <statusInfo.icon className={`w-3.5 h-3.5 ${statusInfo.color}`} />
                                 <span className={`text-[10px] font-bold uppercase tracking-wider ${statusInfo.color}`}>{statusInfo.label}</span>
                             </div>

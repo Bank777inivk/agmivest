@@ -418,7 +418,7 @@
     "Finances": {
       "contractType": "Type de contrat",
       "profession": "Profession",
-      "company": "Entreprise",
+      "company": "Nom de l'employeur",
       "income": "Revenus mensuels nets (€)",
       "charges": "Charges permanentes",
       "otherCredits": "Autres crédits",
@@ -427,7 +427,8 @@
         "cdd": "CDD",
         "independent": "Indépendant",
         "retired": "Retraité"
-      }
+      },
+      "disposableIncome": "RESTE À VIVRE"
     },
     "Account": {
       "email": "Adresse Email",

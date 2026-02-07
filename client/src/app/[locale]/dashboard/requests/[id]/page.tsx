@@ -37,12 +37,13 @@ export default function RequestDetailsPage() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        let unsubRequest: (() => void) | null = null;
+
         const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
             if (user && params.id) {
-                // Real-time request listener
                 const docRef = doc(db, "requests", params.id as string);
 
-                const unsubRequest = onSnapshot(docRef, (docSnap) => {
+                unsubRequest = onSnapshot(docRef, (docSnap) => {
                     if (docSnap.exists() && docSnap.data().userId === user.uid) {
                         setRequest({ id: docSnap.id, ...docSnap.data() });
                     } else if (!docSnap.exists()) {
@@ -50,18 +51,28 @@ export default function RequestDetailsPage() {
                     }
                     setIsLoading(false);
                 }, (error) => {
+                    // Ignore permission errors if we're in the middle of logging out
+                    if (error.code === 'permission-denied' && !auth.currentUser) {
+                        return;
+                    }
                     console.error("Error fetching request:", error);
                     setIsLoading(false);
                 });
-
-                return () => unsubRequest();
             } else {
+                // CLEANUP IMMEDIATELY ON LOGOUT
+                if (unsubRequest) {
+                    unsubRequest();
+                    unsubRequest = null;
+                }
                 setIsLoading(false);
             }
         });
 
-        return () => unsubscribeAuth();
-    }, [params.id]);
+        return () => {
+            unsubscribeAuth();
+            if (unsubRequest) unsubRequest();
+        };
+    }, [params.id, router]);
 
     if (isLoading) {
         return (
@@ -119,11 +130,11 @@ export default function RequestDetailsPage() {
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-gradient-to-r from-ely-mint to-[#22c55e] p-1 rounded-[2.5rem] shadow-xl shadow-ely-mint/20"
+                    className="bg-gradient-to-r from-[#064e3b] to-[#047857] p-1 rounded-[2.5rem] shadow-xl shadow-emerald-900/20"
                 >
                     <div className="bg-white/10 backdrop-blur-mdrounded-[2.4rem] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 text-white">
                         <div className="flex items-center gap-6">
-                            <div className="w-16 h-16 bg-white text-ely-mint rounded-2xl flex items-center justify-center shadow-lg animate-bounce">
+                            <div className="w-16 h-16 bg-white text-emerald-700 rounded-2xl flex items-center justify-center shadow-lg animate-pulse">
                                 <CheckCircle2 className="w-8 h-8" />
                             </div>
                             <div>
@@ -133,7 +144,7 @@ export default function RequestDetailsPage() {
                         </div>
                         <button
                             onClick={() => router.push("/dashboard/accounts")}
-                            className="whitespace-nowrap px-8 py-4 bg-white text-ely-mint rounded-2xl font-bold hover:scale-105 transition-transform shadow-lg"
+                            className="whitespace-nowrap px-8 py-4 bg-white text-emerald-800 rounded-2xl font-bold hover:bg-emerald-50 transition-all shadow-lg"
                         >
                             Accéder à mon compte
                         </button>
@@ -154,7 +165,7 @@ export default function RequestDetailsPage() {
                 {/* Main Info */}
                 <div className="lg:col-span-2 space-y-8">
                     <section className="bg-white p-8 md:p-10 rounded-[3rem] shadow-sm border border-gray-100 relative overflow-hidden">
-                        <div className={`absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 bg-${style.color === 'ely-mint' ? '[#28E898]' : style.color === 'ely-blue' ? 'ely-blue' : style.color + '-500'} opacity-5 rounded-full`} />
+                        <div className={`absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 bg-${style.color === 'ely-mint' ? '[#059669]' : style.color === 'ely-blue' ? 'ely-blue' : style.color + '-500'} opacity-5 rounded-full`} />
 
                         <div className="flex flex-col md:flex-row justify-between gap-6 relative z-10">
                             <div className="space-y-4">
@@ -168,9 +179,9 @@ export default function RequestDetailsPage() {
                                     <span className="px-4 py-1.5 bg-gray-50 text-gray-500 rounded-full text-xs font-bold uppercase tracking-widest border border-gray-100">
                                         Réf: {request.id.slice(0, 10).toUpperCase()}
                                     </span>
-                                    <div className={`flex items-center gap-2 px-4 py-1.5 rounded-full bg-${style.color === 'ely-mint' ? '[#28E898]/10' : style.color === 'ely-blue' ? 'ely-blue/10' : style.color + '-50'} border border-${style.color === 'ely-mint' ? '[#28E898]/20' : style.color === 'ely-blue' ? 'ely-blue/20' : style.color + '-100'}`}>
-                                        <style.icon className={`w-4 h-4 text-${style.color === 'ely-mint' ? '[#28E898]' : style.color === 'ely-blue' ? 'ely-blue' : style.color + '-500'}`} />
-                                        <span className={`text-xs font-bold uppercase tracking-widest text-${style.color === 'ely-mint' ? '[#28E898]' : style.color === 'ely-blue' ? 'ely-blue' : style.color + '-500'}`}>
+                                    <div className={`flex items-center gap-2 px-4 py-1.5 rounded-full bg-${style.color === 'ely-mint' ? '[#059669]/10' : style.color === 'ely-blue' ? 'ely-blue/10' : style.color + '-50'} border border-${style.color === 'ely-mint' ? '[#059669]/20' : style.color === 'ely-blue' ? 'ely-blue/20' : style.color + '-100'}`}>
+                                        <style.icon className={`w-4 h-4 text-${style.color === 'ely-mint' ? '[#059669]' : style.color === 'ely-blue' ? 'ely-blue' : style.color + '-500'}`} />
+                                        <span className={`text-xs font-bold uppercase tracking-widest text-${style.color === 'ely-mint' ? '[#059669]' : style.color === 'ely-blue' ? 'ely-blue' : style.color + '-500'}`}>
                                             {style.label}
                                         </span>
                                     </div>

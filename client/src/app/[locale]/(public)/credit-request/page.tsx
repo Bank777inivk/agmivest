@@ -77,6 +77,7 @@ export default function CreditRequestPage() {
         idExpiry: "",
         idIssuingCountry: "France",
         // Personal
+        phone: "",
         maritalStatus: "single",
         children: "0",
         housingType: "tenant",
@@ -160,6 +161,7 @@ export default function CreditRequestPage() {
                 idNumber: formData.idNumber,
                 idExpiry: formData.idExpiry,
                 idIssuingCountry: formData.idIssuingCountry,
+                phone: formData.phone,
                 maritalStatus: formData.maritalStatus,
                 children: parseInt(formData.children) || 0,
                 housingType: formData.housingType,
@@ -168,6 +170,9 @@ export default function CreditRequestPage() {
                 profession: formData.profession,
                 companyName: formData.companyName,
                 contractType: formData.contractType,
+                income: parseFloat(formData.income) || 0,
+                charges: parseFloat(formData.charges) || 0,
+                otherCredits: parseFloat(formData.otherCredits) || 0,
                 idStatus: "pending",
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp()
@@ -189,6 +194,8 @@ export default function CreditRequestPage() {
                 monthlyIncome: parseFloat(formData.income) || 0,
                 monthlyExpenses: parseFloat(formData.charges) || 0,
                 otherLoans: parseFloat(formData.otherCredits) || 0,
+                phone: formData.phone,
+                companyName: formData.companyName,
                 profession: formData.profession,
                 situation: formData.contractType,
                 status: "pending",
@@ -480,8 +487,11 @@ export default function CreditRequestPage() {
                                                 <input type="date" name="birthDate" required value={formData.birthDate} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none" />
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-sm font-semibold text-gray-700">{t('Identity.birthPlace')}</label>
-                                                <input type="text" name="birthPlace" required value={formData.birthPlace} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder="Paris" />
+                                                <label className="text-sm font-semibold text-gray-700">Numéro de Téléphone</label>
+                                                <div className="relative">
+                                                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 rotate-90" />
+                                                    <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder="06 12 34 56 78" />
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4">
@@ -551,8 +561,11 @@ export default function CreditRequestPage() {
                                                 </select>
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-sm font-semibold text-gray-700">{profileType === "pro" ? t('Finances.company') : t('Finances.profession')}</label>
-                                                <input type="text" name="profession" value={formData.profession} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder="Ex: Consultant" />
+                                                <label className="text-sm font-semibold text-gray-700">Nom de l'Employeur / Entreprise</label>
+                                                <div className="relative">
+                                                    <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                                                    <input type="text" name="companyName" value={formData.companyName} onChange={handleChange} className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder="Ex: AGM INVEST" />
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="space-y-4">

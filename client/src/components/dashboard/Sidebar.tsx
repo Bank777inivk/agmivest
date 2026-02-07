@@ -22,7 +22,11 @@ import {
     ChevronRight,
     Search,
     Bell,
-    TrendingUp
+    TrendingUp,
+    Crown,
+    ShieldCheck,
+    XCircle,
+    AlertCircle
 } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -45,12 +49,14 @@ const secondaryItems = [
 ];
 
 export default function Sidebar({
+    idStatus,
     isMobile,
     isOpen,
     setIsOpen,
     isCollapsed,
     setIsCollapsed
 }: {
+    idStatus: string | null,
     isMobile: boolean,
     isOpen: boolean,
     setIsOpen: (val: boolean) => void,
@@ -155,6 +161,82 @@ export default function Sidebar({
                     </nav>
                 </div>
             </div>
+
+            {/* Premium Badge Section */}
+            {idStatus === 'verified' && (
+                <div className="px-4 mb-2">
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className={`relative overflow-hidden group bg-gradient-to-br from-emerald-600/20 to-green-600/20 border border-emerald-500/20 rounded-2xl transition-all duration-300 ${isCollapsed && !isMobile ? "p-2 justify-center" : "p-4"
+                            } flex items-center gap-3`}
+                    >
+                        <div className={`flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform`}>
+                            <ShieldCheck className="w-5 h-5 text-white" />
+                        </div>
+                        {(!isCollapsed || isMobile) && (
+                            <div className="flex flex-col">
+                                <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest leading-none mb-1">Status Premium</span>
+                                <span className="text-sm font-bold text-white leading-none">Client Vérifié</span>
+                            </div>
+                        )}
+                    </motion.div>
+                </div>
+            )}
+
+            {/* Partial Rejection Badge Section - Documents à compléter */}
+            {idStatus === 'partial_rejection' && (
+                <div className="px-4 mb-2">
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className={`relative overflow-hidden group bg-gradient-to-br from-orange-600/20 to-yellow-600/20 border border-orange-500/20 rounded-2xl transition-all duration-300 ${isCollapsed && !isMobile ? "p-2 justify-center" : "p-4"
+                            } flex items-center gap-3`}
+                    >
+                        <div className={`flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform`}>
+                            <AlertCircle className="w-5 h-5 text-white" />
+                        </div>
+                        {(!isCollapsed || isMobile) && (
+                            <div className="flex flex-col gap-1">
+                                <div>
+                                    <span className="text-[10px] font-black text-orange-400 uppercase tracking-widest leading-none">Action Requise</span>
+                                    <p className="text-sm font-bold text-white leading-none mt-1">Documents à compléter</p>
+                                </div>
+                                <p className="text-[10px] text-white/70 leading-tight">
+                                    Certains documents nécessitent votre attention
+                                </p>
+                            </div>
+                        )}
+                    </motion.div>
+                </div>
+            )}
+
+            {/* Rejected Badge Section */}
+            {idStatus === 'rejected' && (
+                <div className="px-4 mb-2">
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className={`relative overflow-hidden group bg-gradient-to-br from-red-600/20 to-orange-600/20 border border-red-500/20 rounded-2xl transition-all duration-300 ${isCollapsed && !isMobile ? "p-2 justify-center" : "p-4"
+                            } flex items-center gap-3`}
+                    >
+                        <div className={`flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-lg shadow-red-500/20 group-hover:scale-110 transition-transform`}>
+                            <XCircle className="w-5 h-5 text-white" />
+                        </div>
+                        {(!isCollapsed || isMobile) && (
+                            <div className="flex flex-col gap-1">
+                                <div>
+                                    <span className="text-[10px] font-black text-red-400 uppercase tracking-widest leading-none">Action Requise</span>
+                                    <p className="text-sm font-bold text-white leading-none mt-1">Identité Refusée</p>
+                                </div>
+                                <p className="text-[10px] text-white/70 leading-tight">
+                                    Contactez le support pour plus d'informations
+                                </p>
+                            </div>
+                        )}
+                    </motion.div>
+                </div>
+            )}
 
             {/* Footer Section */}
             <div className="p-4 border-t border-white/5">
