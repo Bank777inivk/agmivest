@@ -351,6 +351,53 @@
     }
   },
   "CreditRequest": {
+    "Common": {
+      "step": "Étape",
+      "next": "Suivant",
+      "submitting": "Envoi...",
+      "confirm": "Confirmer",
+      "trackRecord": "Suivre mon dossier",
+      "restart": "Recommencer"
+    },
+    "Personal": {
+      "title": "Particulier"
+    },
+    "Professional": {
+      "title": "Professionnel"
+    },
+    "Simulator": {
+      "personalProject": "Personnel",
+      "autoProject": "Auto/Moto",
+      "proProject": "Business",
+      "otherProject": "Autre",
+      "otherPrompt": "Précisez votre projet...",
+      "amountLabel": "Montant",
+      "durationLabel": "Durée",
+      "rateLabel": "Taux Fixe",
+      "months": "mois",
+      "monthlyLabel": "Mensualité"
+    },
+    "Form": {
+      "civility": "Civilité",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "birthDate": "Date de naissance",
+      "maritalStatus": "État Civil",
+      "single": "Célibataire",
+      "married": "Marié(e)",
+      "pacs": "Pacsé(e)",
+      "divorced": "Divorcé(e)",
+      "widow": "Veuf/Veuve",
+      "address": "Adresse",
+      "zipCode": "Code Postal",
+      "city": "Ville",
+      "monthlyIncome": "Revenus mensuels nets",
+      "monthlyCharges": "Charges mensuelles",
+      "contractType": "Contrat",
+      "temporary": "Intérimaire",
+      "civilServant": "Fonctionnaire",
+      "independent": "Indépendant"
+    },
     "title": {
       "step1": "Simulateur de Financement",
       "step2": "Simulateur de Financement",
@@ -478,6 +525,9 @@
       "analyzing": "ANALYSE..."
     },
     "Result": {
+      "summaryTitle": "Récapitulatif",
+      "checkPrompt": "Vérifiez vos informations",
+      "checkMessage": "Une erreur peut retarder votre dossier.",
       "scoreLabel": "Score AGM",
       "analysisTitle": "Dossier en cours d'analyse",
       "analysisMessage": "Votre demande a été transmise avec succès. Nos experts analysent actuellement votre dossier pour vous proposer la meilleure solution de financement. Vous serez notifié de la validation de votre score sous 24h.",

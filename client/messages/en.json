@@ -351,6 +351,53 @@
     }
   },
   "CreditRequest": {
+    "Common": {
+      "step": "Step",
+      "next": "Next",
+      "submitting": "Sending...",
+      "confirm": "Confirm",
+      "trackRecord": "Track my file",
+      "restart": "Restart"
+    },
+    "Personal": {
+      "title": "Individual"
+    },
+    "Professional": {
+      "title": "Professional"
+    },
+    "Simulator": {
+      "personalProject": "Personal",
+      "autoProject": "Auto/Moto",
+      "proProject": "Business",
+      "otherProject": "Other",
+      "otherPrompt": "Specify your project...",
+      "amountLabel": "Amount",
+      "durationLabel": "Duration",
+      "rateLabel": "Fixed Rate",
+      "months": "months",
+      "monthlyLabel": "Monthly Payment"
+    },
+    "Form": {
+      "civility": "Civility",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "birthDate": "Birth Date",
+      "maritalStatus": "Marital Status",
+      "single": "Single",
+      "married": "Married",
+      "pacs": "Civil Union",
+      "divorced": "Divorced",
+      "widow": "Widowed",
+      "address": "Address",
+      "zipCode": "Zip Code",
+      "city": "City",
+      "monthlyIncome": "Net monthly income",
+      "monthlyCharges": "Monthly charges",
+      "contractType": "Contract",
+      "temporary": "Temporary",
+      "civilServant": "Civil Servant",
+      "independent": "Freelance"
+    },
     "title": {
       "step1": "Financing Simulator",
       "step2": "Financing Simulator",
@@ -442,6 +489,9 @@
       "analyzing": "ANALYZING..."
     },
     "Result": {
+      "summaryTitle": "Summary",
+      "checkPrompt": "Check your details",
+      "checkMessage": "An error may delay your application.",
       "scoreLabel": "AGM Score",
       "approvedTitle": "File Validated!",
       "reviewTitle": "Analysis in Progress",
