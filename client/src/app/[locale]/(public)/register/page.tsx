@@ -13,6 +13,8 @@ import { useTranslations } from "next-intl";
 type Step = 1 | 2 | 3;
 
 import { auth, db } from "@/lib/firebase";
+import { COUNTRY_PHONE_DATA, COUNTRIES } from "@/lib/constants";
+import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { useRouter } from "@/i18n/routing";
@@ -39,6 +41,7 @@ export default function RegisterPage() {
         city: "",
         zipCode: "",
         phone: "",
+        phoneCountry: "France",
         country: "France", // Added from instruction
 
         // Step 3: Sécurité
@@ -50,8 +53,46 @@ export default function RegisterPage() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target as HTMLInputElement;
-        const val = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
-        setFormData(prev => ({ ...prev, [name]: val }));
+        let val = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
+
+        // Restrict phone to digits and spaces, with dynamic max digit limit and generic auto-format
+        if (name === "phone" && typeof val === "string") {
+            let digits = val.replace(/\D/g, "");
+            const country = COUNTRY_PHONE_DATA[formData.phoneCountry];
+            const limit = country?.maxLength || 15;
+            if (digits.length > limit) digits = digits.slice(0, limit);
+
+            if (country && country.grouping) {
+                let formatted = "";
+                let currentPos = 0;
+                for (let groupSize of country.grouping) {
+                    if (currentPos >= digits.length) break;
+                    let group = digits.slice(currentPos, currentPos + groupSize);
+                    formatted += (formatted ? " " : "") + group;
+                    currentPos += groupSize;
+                }
+                val = formatted;
+            } else {
+                val = digits;
+            }
+        }
+
+        setFormData(prev => {
+            const newData = { ...prev, [name]: val };
+            if (name === "country" && COUNTRY_PHONE_DATA[value]) {
+                newData.phoneCountry = value;
+            }
+            return newData;
+        });
+    };
+
+    const handleAddressSelect = (address: { street: string; city: string; zipCode: string }) => {
+        setFormData(prev => ({
+            ...prev,
+            address: address.street,
+            city: address.city,
+            zipCode: address.zipCode
+        }));
     };
 
     const handleNext = () => setStep(prev => prev + 1);
@@ -91,6 +132,7 @@ export default function RegisterPage() {
                 city: formData.city,
                 zipCode: formData.zipCode,
                 phone: formData.phone,
+                phoneCountry: formData.phoneCountry,
                 country: formData.country,
                 createdAt: serverTimestamp(),
                 role: "client"
@@ -215,6 +257,7 @@ export default function RegisterPage() {
                                             >
                                                 <option>M.</option>
                                                 <option>Mme</option>
+                                                <option>Mlle</option>
                                             </select>
                                         </div>
                                         <div className="space-y-1 col-span-2">
@@ -308,17 +351,16 @@ export default function RegisterPage() {
                                     <div className="space-y-1">
                                         <label className="block text-sm font-semibold text-gray-700 ml-1">{t('Fields.address')}</label>
                                         <div className="relative group">
-                                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
                                                 <Home className="h-5 w-5 text-gray-400 group-focus-within:text-ely-mint transition-colors" />
                                             </div>
-                                            <input
-                                                name="address"
-                                                type="text"
-                                                required
+                                            <AddressAutocomplete
                                                 value={formData.address}
-                                                onChange={handleChange}
-                                                className="block w-full pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint transition-all"
+                                                onChange={(val) => setFormData(prev => ({ ...prev, address: val }))}
+                                                onSelect={handleAddressSelect}
+                                                country={formData.country}
                                                 placeholder="123 rue de la Paix"
+                                                className="block w-full pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint transition-all"
                                             />
                                         </div>
                                     </div>
@@ -356,20 +398,37 @@ export default function RegisterPage() {
                                     </div>
 
                                     <div className="space-y-1">
+                                        <label className="block text-sm font-semibold text-gray-700 ml-1">Pays</label>
+                                        <select
+                                            name="country"
+                                            value={formData.country}
+                                            onChange={handleChange}
+                                            className="block w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint transition-all"
+                                        >
+                                            {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
+                                        </select>
+                                    </div>
+
+                                    <div className="space-y-1">
                                         <label className="block text-sm font-semibold text-gray-700 ml-1">{t('Fields.phone')}</label>
-                                        <div className="relative group">
-                                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                <Phone className="h-5 w-5 text-gray-400 group-focus-within:text-ely-mint transition-colors" />
+                                        <div className="flex gap-2 relative group">
+                                            <div className="w-16 flex items-center justify-center bg-gray-50/50 border border-gray-200 rounded-2xl text-2xl select-none" title={formData.phoneCountry}>
+                                                {COUNTRY_PHONE_DATA[formData.phoneCountry]?.flag || "🏳️"}
                                             </div>
-                                            <input
-                                                name="phone"
-                                                type="tel"
-                                                required
-                                                value={formData.phone}
-                                                onChange={handleChange}
-                                                className="block w-full pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint transition-all"
-                                                placeholder="06 12 34 56 78"
-                                            />
+                                            <div className="relative flex-1">
+                                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400 font-medium text-sm">
+                                                    {COUNTRY_PHONE_DATA[formData.phoneCountry]?.code}
+                                                </div>
+                                                <input
+                                                    name="phone"
+                                                    type="tel"
+                                                    required
+                                                    value={formData.phone}
+                                                    onChange={handleChange}
+                                                    className="block w-full pl-14 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint transition-all"
+                                                    placeholder={COUNTRY_PHONE_DATA[formData.phoneCountry]?.placeholder || "06 12 34 56 78"}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </motion.div>

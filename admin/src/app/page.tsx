@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LayoutDashboard, Users, FileText, Settings, LogOut, Search, Bell, CheckCircle, XCircle, Clock, RotateCcw, Menu, X, ExternalLink, ArrowLeft, Shield, Trash2, Mail, Phone, MapPin, TrendingUp, Euro, Briefcase, Calendar } from "lucide-react";
+import { LayoutDashboard, Users, FileText, Settings, LogOut, Search, Bell, CheckCircle, XCircle, Clock, RotateCcw, Menu, X, ExternalLink, ArrowLeft, Shield, Trash2, Mail, Phone, MapPin, TrendingUp, Euro, Briefcase, Calendar, CalendarRange, Send, History, Landmark, ChevronLeft, ChevronRight, CreditCard, ShieldCheck, Info } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { collection, query, orderBy, onSnapshot, doc, updateDoc, addDoc, serverTimestamp, getDoc, deleteDoc, where, getDocs } from "firebase/firestore";
@@ -16,6 +16,8 @@ const navItems = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
   { id: "users", label: "Utilisateurs", icon: Users },
   { id: "requests", label: "Dossiers Prêts", icon: FileText },
+  { id: "transfers", label: "Virements", icon: Send },
+  { id: "schedules", label: "Échéanciers", icon: CalendarRange },
   { id: "kyc", label: "KYC & Documents", icon: Search },
   { id: "settings", label: "Configuration", icon: Settings },
 ];
@@ -119,6 +121,140 @@ function UserAvatar({ name, className }: { name: string; className?: string }) {
   );
 }
 
+function VirementCard({ t, onApprove, onReject, onReview, onAdvanced, onReset, processingId, index }: any) {
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case 'review': return <span className="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-[9px] font-black uppercase tracking-widest border border-blue-100">En Examen</span>;
+      case 'advanced': return <span className="px-3 py-1 bg-purple-50 text-purple-600 rounded-lg text-[9px] font-black uppercase tracking-widest border border-purple-100">Contrôle Avancé</span>;
+      case 'rejected': return <span className="px-3 py-1 bg-red-50 text-red-600 rounded-lg text-[9px] font-black uppercase tracking-widest border border-red-100">Refusé</span>;
+      case 'approved': return <span className="px-3 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-[9px] font-black uppercase tracking-widest border border-emerald-100">Validé</span>;
+      default: return <span className="px-3 py-1 bg-amber-50 text-amber-600 rounded-lg text-[9px] font-black uppercase tracking-widest border border-amber-100">Attente Contrôle</span>;
+    }
+  };
+
+  return (
+    <div className={cn(
+      "p-6 md:p-8 space-y-6 md:space-y-8 rounded-[2rem] md:rounded-[2.5rem] shadow-xl border relative overflow-hidden group hover:shadow-2xl transition-all flex flex-col justify-between min-h-[400px] md:min-h-[450px]",
+      index % 2 === 1
+        ? "bg-gradient-to-br from-ely-blue to-blue-800 border-white/10 text-white shadow-ely-blue/20"
+        : "bg-white border-slate-100 text-slate-900"
+    )}>
+      <div className="flex justify-between items-start gap-4 relative z-10">
+        <div className="flex items-center gap-3 md:gap-4 min-w-0">
+          <UserAvatar name={t.userName} className={cn(
+            "w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl border-none",
+            index % 2 === 1 ? "bg-white text-slate-900" : "bg-slate-50 text-slate-900"
+          )} />
+          <div className="min-w-0">
+            <p className={cn("text-sm md:text-base font-black leading-tight truncate", index % 2 === 1 ? "text-white" : "text-slate-900")}>{t.userName}</p>
+            <p className={cn("text-[9px] md:text-[10px] font-medium mt-1 truncate", index % 2 === 1 ? "text-white/40" : "text-slate-400")}>{t.userEmail}</p>
+          </div>
+        </div>
+        <div className="shrink-0">
+          {index % 2 === 1 ? (
+            <span className="px-3 py-1 bg-white/10 backdrop-blur-md text-white rounded-lg text-[9px] font-black uppercase tracking-[0.15em] border border-white/20 shadow-sm whitespace-nowrap">
+              {t.status === 'pending' ? 'Attente Contrôle' : t.status === 'review' ? 'En Examen' : t.status === 'advanced' ? 'Contrôle Avancé' : t.status === 'approved' ? 'Validé' : 'Refusé'}
+            </span>
+          ) : getStatusBadge(t.status)}
+        </div>
+      </div>
+
+      <div className={cn(
+        "p-4 md:p-6 rounded-[1.5rem] md:rounded-[1.8rem] border relative z-10 space-y-4",
+        index % 2 === 1 ? "bg-white/5 border-white/10 shadow-inner" : "bg-slate-50 border-slate-100"
+      )}>
+        <div className="flex justify-between items-end">
+          <div>
+            <p className={cn("text-[8px] md:text-[9px] uppercase font-black tracking-widest mb-1", index % 2 === 1 ? "text-white/40" : "text-slate-400")}>Montant</p>
+            <p className={cn("text-2xl md:text-3xl font-black tracking-tighter", index % 2 === 1 ? "text-white" : "text-ely-blue")}>
+              {t.amount?.toLocaleString()} €
+            </p>
+          </div>
+          <div className="text-right">
+            <p className={cn("text-[8px] md:text-[9px] uppercase font-black tracking-widest mb-1", index % 2 === 1 ? "text-white/40" : "text-slate-400")}>Date</p>
+            <p className={cn("text-[10px] md:text-[11px] font-bold", index % 2 === 1 ? "text-white/80" : "text-slate-600")}>
+              {t.createdAt?.seconds ? new Date(t.createdAt.seconds * 1000).toLocaleDateString('fr-FR') : 'En cours...'}
+            </p>
+          </div>
+        </div>
+
+        <div className={cn("pt-4 border-t space-y-2", index % 2 === 1 ? "border-white/5" : "border-slate-200/50")}>
+          <p className={cn("text-[8px] md:text-[9px] uppercase font-black tracking-widest", index % 2 === 1 ? "text-white/40" : "text-slate-400")}>Destination</p>
+          <p className={cn("text-[10px] md:text-[11px] font-bold leading-tight", index % 2 === 1 ? "text-white/90" : "text-slate-700")}>{t.bankName}</p>
+          <p className={cn("text-[10px] md:text-[11px] font-mono", index % 2 === 1 ? "text-white/40" : "text-slate-500")}>{t.iban}</p>
+        </div>
+      </div>
+
+      <div className="space-y-2 md:space-y-3 relative z-10">
+        <div className="grid grid-cols-3 gap-2 md:gap-3">
+          <button
+            onClick={() => onReview(t.id)}
+            disabled={processingId === t.id}
+            className={cn(
+              "py-2.5 md:py-3 rounded-xl text-[8px] md:text-[9px] font-black uppercase tracking-widest transition-all border disabled:opacity-50",
+              index % 2 === 1
+                ? "bg-white/10 text-white border-white/10 hover:bg-white/20"
+                : "bg-blue-50 text-blue-600 border-blue-100 hover:bg-blue-100"
+            )}
+          >
+            Examen
+          </button>
+          <button
+            onClick={() => onAdvanced(t.id)}
+            disabled={processingId === t.id}
+            className={cn(
+              "py-2.5 md:py-3 rounded-xl text-[8px] md:text-[9px] font-black uppercase tracking-widest transition-all border disabled:opacity-50",
+              index % 2 === 1
+                ? "bg-white/10 text-white border-white/10 hover:bg-white/20"
+                : "bg-purple-50 text-purple-600 border-purple-100 hover:bg-purple-100"
+            )}
+          >
+            Avancé
+          </button>
+          <button
+            onClick={() => onReset(t.id)}
+            disabled={processingId === t.id}
+            className={cn(
+              "py-2.5 md:py-3 rounded-xl text-[8px] md:text-[9px] font-black uppercase tracking-widest transition-all border disabled:opacity-50",
+              index % 2 === 1
+                ? "bg-white/20 text-white border-white/20 hover:bg-white/30"
+                : "bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200"
+            )}
+          >
+            Réinitialiser
+          </button>
+        </div>
+        <div className="grid grid-cols-2 gap-2 md:gap-3">
+          <button
+            onClick={() => onReject(t.id)}
+            disabled={processingId === t.id}
+            className={cn(
+              "py-3 md:py-4 rounded-xl text-[8px] md:text-[9px] font-black uppercase tracking-widest transition-all border disabled:opacity-50",
+              index % 2 === 1
+                ? "bg-red-400/20 text-red-100 border-red-400/30 hover:bg-red-400/30"
+                : "bg-red-50 text-red-600 border-red-100 hover:bg-red-100"
+            )}
+          >
+            Refuser
+          </button>
+          <button
+            onClick={() => onApprove(t.id)}
+            disabled={processingId === t.id}
+            className={cn(
+              "py-3 md:py-4 rounded-xl text-[8px] md:text-[9px] font-black uppercase tracking-widest transition-all border shadow-lg disabled:opacity-50",
+              index % 2 === 1
+                ? "bg-white text-ely-blue hover:bg-ely-mint hover:text-white border-none"
+                : "bg-emerald-50 text-emerald-600 border-emerald-100 hover:bg-emerald-500 hover:text-white shadow-emerald-500/10"
+            )}
+          >
+            Valider
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function IdentityStatusBadge({ status }: { status: string }) {
   const configs: any = {
     verified: { label: "Vérifié", color: "bg-emerald-50 text-emerald-600 border-emerald-100" },
@@ -138,28 +274,45 @@ function IdentityStatusBadge({ status }: { status: string }) {
   );
 }
 
+function ScoreBadge({ score, status, debtRatio }: { score?: number; status?: string; debtRatio?: number }) {
+  if (!score) return <span className="text-slate-300 text-xs font-medium">N/A</span>;
+
+  const getScoreColor = () => {
+    if (status === "Approved") return "bg-emerald-50 text-emerald-600 border-emerald-200";
+    if (status === "Review") return "bg-amber-50 text-amber-600 border-amber-200";
+    return "bg-red-50 text-red-600 border-red-200";
+  };
+
+  return (
+    <div className={cn("px-3 py-1.5 rounded-xl border font-bold text-xs flex items-center gap-2 shadow-sm w-fit", getScoreColor())} title={`Taux d'endettement: ${debtRatio}%`}>
+      <TrendingUp className="w-3 h-3" />
+      <span>{score}/100</span>
+      {debtRatio !== undefined && <span className="text-[9px] opacity-60">({debtRatio}%)</span>}
+    </div>
+  );
+}
+
+const LoadingSpinner = () => <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />;
+
 function ActionButtons({
   req,
   handleValidateAnalysis,
   handleValidateVerification,
   handleApprove,
-  handleReject,
+  handleRejectLoan,
+  handleRejectDocs,
   handleReset,
+  handleTriggerPayment,
   setSelectedRequest,
   setSelectedDocs,
   setIsDocModalOpen,
   processingId,
-  mobile = false
 }: any) {
   // Always use full width and center content for cleaner grid/stack look
   const btnClass = "w-full justify-center p-1 px-3 rounded-md text-[10px] font-bold flex items-center gap-1 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed";
   const isProcessing = processingId === req.id;
 
-  const containerClass = mobile
-    ? "flex flex-col gap-2 w-full"
-    : "grid grid-cols-2 gap-2 w-[280px] ml-auto [&>button:last-child:nth-child(odd)]:col-span-2";
-
-  const LoadingSpinner = () => <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />;
+  const containerClass = "flex flex-col gap-2 w-[90%] mx-auto md:grid md:grid-cols-2 md:gap-2 md:w-[280px] md:ml-auto md:[&>button:last-child:nth-child(odd)]:col-span-2";
 
   return (
     <div className={containerClass}>
@@ -205,7 +358,7 @@ function ActionButtons({
           {!req.stepVerification && (
             <button
               disabled={isProcessing}
-              onClick={() => handleReject(req)}
+              onClick={() => handleRejectDocs(req)}
               className={cn(btnClass, "bg-red-100 text-red-700 hover:bg-red-200")}
             >
               <XCircle className="w-3 h-3" />
@@ -224,11 +377,21 @@ function ActionButtons({
 
           <button
             disabled={isProcessing}
-            onClick={() => handleReject(req)}
+            onClick={() => handleRejectLoan(req)}
             className={cn(btnClass, "bg-red-100 text-red-700 hover:bg-red-200")}
           >
             {isProcessing ? <LoadingSpinner /> : <XCircle className="w-3 h-3" />}
             Refuser Prêt
+          </button>
+
+          <button
+            disabled={isProcessing}
+            onClick={() => handleTriggerPayment(req)}
+            className={cn(btnClass, "bg-amber-100 text-amber-700 hover:bg-amber-200")}
+            title="Déclencher Paiement"
+          >
+            <CreditCard className="w-3 h-3" />
+            Paiement
           </button>
 
           <button
@@ -242,8 +405,21 @@ function ActionButtons({
         </>
       ) : (
         <div className="flex items-center justify-end gap-1 col-span-2">
-          {req.status === "approved" && <span className="text-xs font-bold text-emerald-600">Traité</span>}
-          {req.status === "rejected" && <span className="text-xs font-bold text-red-600">Refusé</span>}
+          {req.status === "approved" && <span className="text-xs font-bold text-emerald-600 mr-auto">Traité</span>}
+          {req.status === "rejected" && <span className="text-xs font-bold text-red-600 mr-auto">Refusé</span>}
+
+          {req.status === "approved" && (
+            <button
+              disabled={isProcessing}
+              onClick={() => handleTriggerPayment(req)}
+              className={cn(btnClass, "bg-amber-100 text-amber-700 hover:bg-amber-200 w-auto")}
+              title="Déclencher Paiement"
+            >
+              <CreditCard className="w-3 h-3" />
+              Paiement
+            </button>
+          )}
+
           <button
             disabled={isProcessing}
             onClick={() => handleReset(req)}
@@ -298,18 +474,39 @@ function Pagination({ currentPage, totalPages, onPageChange }: any) {
   );
 }
 
+// Helper function to translate contract types
+function getContractLabel(contractType: string | undefined): string {
+  if (!contractType) return '---';
+
+  const labels: { [key: string]: string } = {
+    'cdi': 'CDI',
+    'cdd': 'CDD',
+    'interim': 'Intérim',
+    'freelance': 'Freelance',
+    'business_owner': 'Chef d\'entreprise',
+    'retired': 'Retraité',
+    'student': 'Étudiant',
+    'unemployed': 'Sans emploi',
+    'other': 'Autre'
+  };
+
+  return labels[contractType.toLowerCase()] || contractType.toUpperCase();
+}
+
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState("dashboard");
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('adminActiveTab') || "dashboard";
+    }
+    return "dashboard";
+  });
   const [user, setUser] = useState<any>(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [activeTab]);
-
-  useEffect(() => {
+    localStorage.setItem('adminActiveTab', activeTab);
     setCurrentPage(1);
   }, [activeTab]);
   const [requests, setRequests] = useState<any[]>([]);
@@ -321,18 +518,212 @@ export default function AdminDashboard() {
     rejected: 0,
     totalUsers: 0
   });
+  const [accounts, setAccounts] = useState<any[]>([]);
+  const [transfers, setTransfers] = useState<any[]>([]);
+  const [selectedAccount, setSelectedAccount] = useState<any>(null);
   const [selectedRequest, setSelectedRequest] = useState<any>(null);
   const [selectedDocs, setSelectedDocs] = useState<any>(null);
   const [isDocModalOpen, setIsDocModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeActionMenu, setActiveActionMenu] = useState<string | null>(null);
   const [managingUser, setManagingUser] = useState<any>(null);
+  const [managingTransfersUser, setManagingTransfersUser] = useState<any | null>(null);
   const [processingId, setProcessingId] = useState<string | null>(null);
   const [expandedRequestId, setExpandedRequestId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const [isApproveModalOpen, setIsApproveModalOpen] = useState(false);
+  const [selectedRequestForApproval, setSelectedRequestForApproval] = useState<any>(null);
+  const [startDelay, setStartDelay] = useState(1);
 
+  // Payment Request States
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [selectedRequestForPayment, setSelectedRequestForPayment] = useState<any>(null);
+  const [paymentSettings, setPaymentSettings] = useState({
+    type: 'authentication_deposit',
+    bankName: "ELYSSIO INVESTMENT BANK",
+    iban: "FR76 3000 3020 1000 5000 7890 123",
+    bic: "ELYSPRPPXXX",
+    beneficiary: "ELYSSIO FINANCE - CONSEILLER FINANCIER"
+  });
+
+  const handleAdminAction = async (action: string, id: string, type: 'loan' | 'doc' | 'transfer' = 'loan') => {
+    setProcessingId(id);
+    try {
+      if (type === 'transfer') {
+        const transferRef = doc(dbInstance, "transfers", id);
+        if (action === 'approve') {
+          // 1. Fetch transfer details
+          const transferSnap = await getDoc(transferRef);
+          if (transferSnap.exists()) {
+            const transferData = transferSnap.data();
+
+            // 2. Debit logic for outbound transfers
+            if (transferData.type !== 'inbound' && transferData.type !== 'deposit') {
+              let accountRef = null;
+              let currentRemaining = 0;
+
+              // Try to find account by ID or User ID
+              if (transferData.accountId) {
+                const accRef = doc(dbInstance, "accounts", transferData.accountId);
+                const accSnap = await getDoc(accRef);
+                if (accSnap.exists()) {
+                  accountRef = accRef;
+                  currentRemaining = accSnap.data().remainingAmount || 0;
+                }
+              }
+
+              if (!accountRef && transferData.userId) {
+                const q = query(collection(dbInstance, "accounts"), where("userId", "==", transferData.userId));
+                const qSnap = await getDocs(q);
+                if (!qSnap.empty) {
+                  accountRef = doc(dbInstance, "accounts", qSnap.docs[0].id);
+                  currentRemaining = qSnap.docs[0].data().remainingAmount || 0;
+                }
+              }
+
+              // 3. Execute Debit if account found
+              if (accountRef) {
+                await updateDoc(accountRef, {
+                  remainingAmount: currentRemaining - (transferData.amount || 0),
+                  updatedAt: serverTimestamp()
+                });
+              }
+            }
+          }
+
+          // 4. Update Transfer Status
+          await updateDoc(transferRef, {
+            status: 'approved',
+            updatedAt: serverTimestamp(),
+            approvedBy: user.email
+          });
+        } else if (action === 'review') {
+          await updateDoc(transferRef, {
+            status: 'review',
+            updatedAt: serverTimestamp(),
+            reviewedBy: user.email
+          });
+        } else if (action === 'advanced') {
+          await updateDoc(transferRef, {
+            status: 'advanced',
+            updatedAt: serverTimestamp(),
+            advancedReviewBy: user.email
+          });
+        } else if (action === 'pending') {
+          await updateDoc(transferRef, {
+            status: 'pending',
+            updatedAt: serverTimestamp(),
+            resetBy: user.email
+          });
+        } else if (action === 'reject') {
+          const reason = prompt("Raison du refus :");
+          await updateDoc(transferRef, {
+            status: 'rejected',
+            rejectReason: reason,
+            updatedAt: serverTimestamp(),
+            rejectedBy: user.email
+          });
+        }
+      } else {
+        // ... existing handleApprove / handleReject logic (already handled by other functions in this file)
+      }
+    } catch (error) {
+      console.error(`Error in admin action ${action}:`, error);
+      alert(`Erreur lors de l'action ${action}.`);
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
+  const handleApproveTransfer = (id: string) => handleAdminAction('approve', id, 'transfer');
+  const handleReviewTransfer = (id: string) => handleAdminAction('review', id, 'transfer');
+  const handleAdvancedTransfer = (id: string) => handleAdminAction('advanced', id, 'transfer');
+  const handleRejectTransfer = (id: string) => handleAdminAction('reject', id, 'transfer');
+  const handleResetTransfer = (id: string) => handleAdminAction('pending', id, 'transfer');
+
+  const handleApprove = (request: any) => {
+    setSelectedRequestForApproval(request);
+    setStartDelay(1); // Default to 1 month (standard)
+    setIsApproveModalOpen(true);
+  };
+
+  const confirmApprove = async () => {
+    const request = selectedRequestForApproval;
+    if (!request) return;
+
+    setProcessingId(request.id);
+    try {
+      // Calculate startDate based on delay
+      // Delay 1 month = Start NOW (first payment in 1 month)
+      // Delay 3 months = Start in 2 months (first payment in 3 months)
+      const now = new Date();
+      // If delay is > 1, add (delay - 1) months to start date
+      if (startDelay > 1) {
+        now.setMonth(now.getMonth() + (startDelay - 1));
+      }
+
+      const startDate = now;
+
+      // 1. Update Request Status & Auto-trigger Authentication Deposit (286€)
+      await updateDoc(doc(dbInstance, "requests", request.id), {
+        status: "approved",
+        approvedAt: serverTimestamp(),
+        requiresPayment: true,
+        paymentStatus: 'pending',
+        paymentType: 'authentication_deposit',
+        paymentAmount: 286,
+        customRIB: {
+          bankName: "ELYSSIO INVESTMENT BANK",
+          iban: "FR76 3000 3020 1000 5000 7890 123",
+          bic: "ELYSPRPPXXX",
+          beneficiary: "ELYSSIO FINANCE - CONSEILLER FINANCIER"
+        },
+        paymentTriggeredAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      });
+
+      // 2. Create/Recharge Account
+      await addDoc(collection(dbInstance, "accounts"), {
+        userId: request.userId,
+        requestId: request.id,
+        totalAmount: request.amount,
+        remainingAmount: request.amount,
+        rate: request.annualRate || request.rate || 4.95,
+        duration: request.duration,
+        monthlyPayment: request.monthlyPayment,
+        projectType: request.projectType,
+        status: "active",
+        startDate: startDate,
+        iban: request.iban || "", // Copy IBAN to account
+        createdAt: serverTimestamp(),
+        installments: {},
+        // Keep a copy of full request details for the scheduler
+        details: request.details || {},
+        originalRequest: {
+          amount: request.amount,
+          duration: request.duration,
+          rate: request.annualRate || request.rate
+        }
+      });
+
+      // 3. Update User ID Status if needed
+      await updateDoc(doc(dbInstance, "users", request.userId), {
+        idStatus: "verified",
+        hasActiveLoan: true
+      });
+
+      alert("Prêt accordé et compte rechargé avec succès !");
+      setIsApproveModalOpen(false);
+      setSelectedRequestForApproval(null);
+
+    } catch (error) {
+      console.error("Error approving request:", error);
+      alert("Erreur lors de l'approbation. Vérifiez vos permissions.");
+    } finally {
+      setProcessingId(null);
+    }
+  };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (u) => {
       if (u) {
@@ -403,9 +794,27 @@ export default function AdminDashboard() {
       }
     });
 
+    // 3. Snapshot Accounts
+    const qAcc = query(collection(dbInstance, "accounts"), orderBy("createdAt", "desc"));
+    const unsubAccounts = onSnapshot(qAcc, (snapshot) => {
+      setAccounts(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    }, (error) => {
+      console.error("Firestore Error (Accounts):", error);
+    });
+
+    // 4. Snapshot Transfers
+    const qTransfers = query(collection(dbInstance, "transfers"), orderBy("createdAt", "desc"));
+    const unsubTransfers = onSnapshot(qTransfers, (snapshot) => {
+      setTransfers(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    }, (error) => {
+      console.error("Firestore Error (Transfers):", error);
+    });
+
     return () => {
       unsubUsers();
       unsubRequests();
+      unsubAccounts();
+      unsubTransfers();
     };
   }, [user]);
 
@@ -450,56 +859,8 @@ export default function AdminDashboard() {
     await signOut(auth);
   };
 
-  const handleApprove = async (request: any) => {
-    if (!confirm(`Confirmer l'accord du prêt pour ${request.firstName} ${request.lastName} ?\nMontant: ${request.amount}€`)) return;
-
-    setProcessingId(request.id);
-    try {
-      // 1. Update Request Status
-      await updateDoc(doc(dbInstance, "requests", request.id), {
-        status: "approved",
-        approvedAt: serverTimestamp(),
-        updatedAt: serverTimestamp()
-      });
-
-      // 2. Create/Recharge Account
-      await addDoc(collection(dbInstance, "accounts"), {
-        userId: request.userId,
-        requestId: request.id,
-        totalAmount: request.amount,
-        remainingAmount: request.amount,
-        rate: request.annualRate || request.rate || 4.95,
-        duration: request.duration,
-        monthlyPayment: request.monthlyPayment,
-        projectType: request.projectType,
-        status: "active",
-        startDate: serverTimestamp(),
-        nextPaymentDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toLocaleDateString('fr-FR'),
-        createdAt: serverTimestamp(),
-        // Keep a copy of full request details for the scheduler
-        details: request.details || {},
-        originalRequest: {
-          amount: request.amount,
-          duration: request.duration,
-          rate: request.annualRate || request.rate
-        }
-      });
-
-      // 3. Update User ID Status if needed
-      await updateDoc(doc(dbInstance, "users", request.userId), {
-        idStatus: "verified",
-        hasActiveLoan: true
-      });
-
-      alert("Prêt accordé et compte rechargé avec succès !");
-
-    } catch (error) {
-      console.error("Error approving request:", error);
-      alert("Erreur lors de l'approbation. Vérifiez vos permissions.");
-    } finally {
-      setProcessingId(null);
-    }
-  };
+  // Constants
+  const itemsPerPage = 10;
 
   const handleValidateAnalysis = async (request: any) => {
     if (!confirm(`Valider l'étape "Analyse Technique" pour ${request.firstName} ?`)) return;
@@ -694,6 +1055,85 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleTriggerPayment = (request: any) => {
+    setSelectedRequestForPayment(request);
+    setIsPaymentModalOpen(true);
+  };
+
+  const processPaymentTrigger = async () => {
+    if (!selectedRequestForPayment) return;
+    setProcessingId(selectedRequestForPayment.id);
+    try {
+      await updateDoc(doc(dbInstance, "requests", selectedRequestForPayment.id), {
+        requiresPayment: true,
+        paymentStatus: 'pending',
+        paymentType: paymentSettings.type,
+        customRIB: {
+          bankName: paymentSettings.bankName,
+          iban: paymentSettings.iban,
+          bic: paymentSettings.bic,
+          beneficiary: paymentSettings.beneficiary
+        },
+        paymentTriggeredAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      });
+      alert("Demande de paiement déclenchée avec succès.");
+      setIsPaymentModalOpen(false);
+    } catch (error) {
+      console.error("Error triggering payment:", error);
+      alert("Erreur lors du déclenchement du paiement.");
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
+  const confirmPaymentReceived = async () => {
+    if (!selectedRequestForPayment) return;
+    setProcessingId(selectedRequestForPayment.id);
+    try {
+      // 1. Update request payment status
+      await updateDoc(doc(dbInstance, "requests", selectedRequestForPayment.id), {
+        requiresPayment: false,
+        paymentStatus: 'paid',
+        updatedAt: serverTimestamp()
+      });
+
+      // 2. Credit 286€ to user's account balance
+      const accountsRef = collection(dbInstance, "accounts");
+      const q = query(accountsRef, where("userId", "==", selectedRequestForPayment.userId));
+      const accountSnapshot = await getDocs(q);
+
+      if (!accountSnapshot.empty) {
+        const accountDoc = accountSnapshot.docs[0];
+        const currentRemaining = accountDoc.data().remainingAmount || 0;
+        await updateDoc(doc(dbInstance, "accounts", accountDoc.id), {
+          remainingAmount: currentRemaining + 286,
+          updatedAt: serverTimestamp()
+        });
+
+        // 3. Create transaction record for history
+        await addDoc(collection(dbInstance, "transfers"), {
+          userId: selectedRequestForPayment.userId,
+          accountId: accountDoc.id,
+          type: "inbound", // Changed to inbound for positive value logic if applicable, or rely on status
+          amount: 286,
+          description: "Dépôt d'Authentification",
+          status: "approved", // Changed to 'approved' to match frontend green styling
+          bankName: "Dépôt Initial", // Added for display
+          createdAt: serverTimestamp()
+        });
+      }
+
+      alert("Paiement confirmé avec succès. 286€ ont été crédités au solde du client.");
+      setIsPaymentModalOpen(false);
+    } catch (error) {
+      console.error("Error confirming payment:", error);
+      alert("Erreur lors de la confirmation du paiement.");
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
   const handleReset = async (request: any) => {
     if (!confirm(`Réinitialiser le dossier de ${request.firstName} ?`)) return;
     try {
@@ -702,6 +1142,11 @@ export default function AdminDashboard() {
         stepAnalysis: false,
         stepVerification: false,
         status: "pending",
+        requiresPayment: false,
+        paymentStatus: null,
+        paymentType: null,
+        customRIB: null,
+        paymentTriggeredAt: null,
         updatedAt: serverTimestamp()
       });
 
@@ -720,9 +1165,20 @@ export default function AdminDashboard() {
         const q = query(accountsRef, where("requestId", "==", request.id));
         const querySnapshot = await getDocs(q);
 
-        querySnapshot.forEach(async (docSnapshot) => {
-          await deleteDoc(doc(dbInstance, "accounts", docSnapshot.id));
-        });
+        const accountDeletions = querySnapshot.docs.map(docSnapshot =>
+          deleteDoc(doc(dbInstance, "accounts", docSnapshot.id))
+        );
+        await Promise.all(accountDeletions);
+
+        // 4. Delete all transfers (transaction history)
+        const transfersRef = collection(dbInstance, "transfers");
+        const qTransfers = query(transfersRef, where("userId", "==", request.userId));
+        const transfersSnapshot = await getDocs(qTransfers);
+
+        const transferDeletions = transfersSnapshot.docs.map(docSnapshot =>
+          deleteDoc(doc(dbInstance, "transfers", docSnapshot.id))
+        );
+        await Promise.all(transferDeletions);
       }
 
     } catch (error) {
@@ -751,25 +1207,35 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleReject = async (request: any) => {
-    if (!confirm("Refuser ce dossier ?")) return;
+  const handleRejectLoan = async (request: any) => {
+    if (!confirm("Refuser ce prêt définitivement ? (L'identité de l'utilisateur restera inchangée)")) return;
     setProcessingId(request.id);
     try {
-      // 1. Update Request
       await updateDoc(doc(dbInstance, "requests", request.id), {
         status: "rejected",
         rejectedAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       });
+      alert("Prêt refusé. Le statut de l'utilisateur est préservé.");
+    } catch (error) {
+      console.error("Error rejecting loan:", error);
+    } finally {
+      setProcessingId(null);
+    }
+  };
 
-      // 2. Update User Profile Status to rejected
+  const handleRejectDocs = async (request: any) => {
+    if (!confirm("Refuser les documents (Identité) de cet utilisateur ?")) return;
+    setProcessingId(request.id);
+    try {
       if (request.userId) {
         await updateDoc(doc(dbInstance, "users", request.userId), {
           idStatus: "rejected"
         });
+        alert("Identité marquée comme refusée.");
       }
     } catch (error) {
-      console.error("Error rejecting:", error);
+      console.error("Error rejecting docs:", error);
     } finally {
       setProcessingId(null);
     }
@@ -874,7 +1340,7 @@ export default function AdminDashboard() {
                 { label: "Charges", value: mergedData.monthlyExpenses || mergedData.charges, icon: Euro, color: "text-red-500" },
                 { label: "Reste à vivre", value: (Number(mergedData.monthlyIncome || mergedData.income) || 0) - (Number(mergedData.monthlyExpenses || mergedData.charges) || 0), icon: Shield, color: "text-blue-500" },
                 { label: "Taux", value: mergedData.rate || mergedData.annualRate, icon: CheckCircle, color: "text-blue-600" },
-                { label: "Contrat", value: (mergedData.contractType || mergedData.situation)?.toUpperCase(), icon: Briefcase, color: "text-purple-500" },
+                { label: "Contrat", value: getContractLabel(mergedData.contractType || mergedData.situation), icon: Briefcase, color: "text-purple-500" },
               ].map((stat, i) => (
                 <div key={i} className="bg-white p-4 rounded-3xl border border-slate-200 shadow-sm transition-all hover:shadow-md">
                   <div className="flex items-center gap-2 mb-2">
@@ -1046,16 +1512,52 @@ export default function AdminDashboard() {
                       <div key={req.id} className="bg-gradient-to-br from-ely-blue to-blue-800 rounded-3xl overflow-hidden hover:shadow-xl transition-all relative border border-white/10">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform -z-0" />
                         <div className="p-8 relative z-10">
-                          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                          {/* Mobile Layout */}
+                          <div className="flex flex-col gap-6 md:hidden">
+                            {/* Header: Statut + Meta */}
+                            <div className="flex justify-between items-start">
+                              <StatusBadge status={req.status} />
+                              <div className="text-right">
+                                <span className="block text-[10px] font-mono text-white/40 mb-1">#{req.id.slice(-6).toUpperCase()}</span>
+                                <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">
+                                  {req.createdAt?.seconds ? new Date(req.createdAt.seconds * 1000).toLocaleDateString() : 'N/A'}
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Main Info: Montant & Projet */}
+                            <div className="text-center py-2">
+                              <p className="text-[10px] font-black text-white/40 uppercase tracking-widest mb-2">Montant demandé</p>
+                              <p className="text-3xl font-black text-ely-mint mb-2">
+                                {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(req.amount || 0)}
+                              </p>
+                              <p className="text-sm font-bold text-white">{req.projectType || 'Projet Personnel'}</p>
+                            </div>
+
+                            {/* Secondary Info Grid */}
+                            <div className="grid grid-cols-2 gap-4 bg-white/5 rounded-2xl p-4">
+                              <div className="text-center">
+                                <p className="text-[10px] font-black text-white/40 uppercase tracking-widest mb-1">Taux</p>
+                                <p className="text-lg font-black text-blue-300">{(req.rate || req.annualRate || 0)} %</p>
+                              </div>
+                              <div className="text-center">
+                                <p className="text-[10px] font-black text-white/40 uppercase tracking-widest mb-1">Durée</p>
+                                <p className="text-lg font-bold text-white">{req.duration} mois</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Desktop Layout */}
+                          <div className="hidden md:flex md:flex-row md:items-center justify-between gap-6">
                             <div className="space-y-4">
-                              <div className="flex items-center gap-3">
+                              <div className="flex items-center gap-3 flex-wrap">
                                 <StatusBadge status={req.status} />
                                 <span className="text-[10px] font-mono text-white/40">#{req.id.slice(-6).toUpperCase()}</span>
                                 <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">
                                   {req.createdAt?.seconds ? new Date(req.createdAt.seconds * 1000).toLocaleDateString() : 'N/A'}
                                 </span>
                               </div>
-                              <div className="flex items-center gap-10">
+                              <div className="grid grid-cols-5 gap-10">
                                 <div>
                                   <p className="text-[10px] font-black text-white/40 uppercase tracking-widest">Projet</p>
                                   <p className="text-sm font-bold text-white">{req.projectType || 'Projet Personnel'}</p>
@@ -1078,29 +1580,39 @@ export default function AdminDashboard() {
                             </div>
 
                             <div className="flex flex-col gap-2">
-                              <ActionButtons
-                                req={req}
-                                handleValidateAnalysis={handleValidateAnalysis}
-                                handleValidateVerification={handleValidateVerification}
-                                handleApprove={handleApprove}
-                                handleReject={handleReject}
-                                handleReset={handleReset}
-                                setSelectedRequest={setSelectedRequest}
-                                setSelectedDocs={setSelectedDocs}
-                                setIsDocModalOpen={setIsDocModalOpen}
-                                processingId={processingId}
-                              />
-                              <button
-                                onClick={() => setExpandedRequestId(expandedRequestId === req.id ? null : req.id)}
-                                className="w-full py-2 text-[10px] font-black uppercase text-white/40 hover:text-ely-mint flex items-center justify-center gap-2 transition-colors border border-white/5 hover:border-white/20 rounded-lg hover:bg-white/5"
-                              >
-                                {expandedRequestId === req.id ? (
-                                  <>Réduire les détails <ArrowLeft className="w-3 h-3 rotate-90" /></>
-                                ) : (
-                                  <>Voir les détails complets <ArrowLeft className="w-3 h-3 -rotate-90" /></>
-                                )}
-                              </button>
+                              {/* Desktop Actions will be rendered here via absolute positioning or similar if needed, 
+                                  but current structure wraps actions below. 
+                                  Actually, the original code had ActionButtons outside this div. 
+                                  Let's keep the ActionButtons separate as they were. 
+                              */}
                             </div>
+                          </div>
+
+                          <div className="flex flex-col gap-2">
+                            <ActionButtons
+                              req={req}
+                              handleValidateAnalysis={handleValidateAnalysis}
+                              handleValidateVerification={handleValidateVerification}
+                              handleApprove={handleApprove}
+                              handleRejectLoan={handleRejectLoan}
+                              handleRejectDocs={handleRejectDocs}
+                              handleReset={handleReset}
+                              handleTriggerPayment={handleTriggerPayment}
+                              setSelectedRequest={setSelectedRequest}
+                              setSelectedDocs={setSelectedDocs}
+                              setIsDocModalOpen={setIsDocModalOpen}
+                              processingId={processingId}
+                            />
+                            <button
+                              onClick={() => setExpandedRequestId(expandedRequestId === req.id ? null : req.id)}
+                              className="w-[90%] mx-auto md:w-full py-2 text-[10px] font-black uppercase text-white/40 hover:text-ely-mint flex items-center justify-center gap-2 transition-colors border border-white/5 hover:border-white/20 rounded-lg hover:bg-white/5"
+                            >
+                              {expandedRequestId === req.id ? (
+                                <>Réduire les détails <ArrowLeft className="w-3 h-3 rotate-90" /></>
+                              ) : (
+                                <>Voir les détails complets <ArrowLeft className="w-3 h-3 -rotate-90" /></>
+                              )}
+                            </button>
                           </div>
                         </div>
 
@@ -1132,7 +1644,7 @@ export default function AdminDashboard() {
                                   <div className="space-y-3">
                                     <DetailRow label="Profession" value={req.profession || 'N/A'} />
                                     <DetailRow label="Employeur" value={req.companyName || 'N/A'} />
-                                    <DetailRow label="Contrat" value={req.contractType?.toUpperCase() || 'N/A'} />
+                                    <DetailRow label="Contrat" value={getContractLabel(req.contractType)} />
                                   </div>
                                 </div>
 
@@ -1149,6 +1661,26 @@ export default function AdminDashboard() {
                                     </div>
                                   </div>
                                 </div>
+
+                                {/* Section: Analyse de Solvabilité */}
+                                <div className="space-y-4">
+                                  <h4 className="text-[10px] font-black text-ely-blue uppercase tracking-[0.2em] border-b border-slate-100 pb-2">Analyse de Solvabilité</h4>
+                                  <div className="space-y-3">
+                                    {req.score ? (
+                                      <>
+                                        <DetailRow label="Score AGM" value={`${req.score}/100`} bold color="text-ely-blue" />
+                                        <DetailRow
+                                          label="Statut"
+                                          value={req.scoringStatus === "Approved" ? "Approuvé" : req.scoringStatus === "Review" ? "À réviser" : "Refusé"}
+                                          color={req.scoringStatus === "Approved" ? "text-emerald-600" : req.scoringStatus === "Review" ? "text-amber-600" : "text-red-600"}
+                                        />
+                                        <DetailRow label="Taux d'endettement" value={`${req.debtRatio}%`} color={req.debtRatio < 33 ? "text-emerald-600" : req.debtRatio < 45 ? "text-amber-600" : "text-red-600"} />
+                                      </>
+                                    ) : (
+                                      <p className="text-xs text-slate-400 italic">Score non calculé</p>
+                                    )}
+                                  </div>
+                                </div>
                               </div>
                             </motion.div>
                           )}
@@ -1159,57 +1691,321 @@ export default function AdminDashboard() {
                 )}
               </div>
             </div>
-          </div>
 
-          {/* Quick Actions */}
-          <div className="space-y-8">
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-              <div className="p-6 border-b border-slate-100 bg-slate-50/50">
-                <h3 className="font-bold text-slate-900 flex items-center gap-2">
-                  <Settings className="w-4 h-4 text-slate-400" />
-                  Paramètres du Compte
-                </h3>
-              </div>
-              <div className="p-6 space-y-4">
-                <button
-                  onClick={() => handleToggleAdmin(u)}
-                  className="w-full p-4 hover:bg-slate-50 text-slate-700 text-xs font-bold flex items-center justify-between group transition-all rounded-2xl border border-slate-100"
-                >
-                  <div className="flex items-center gap-3">
-                    <Shield className="w-4 h-4 text-purple-500" />
-                    <span>{u.role === 'super_admin' ? 'Rétrograder en Client' : 'Promouvoir Admin'}</span>
-                  </div>
-                  <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
-                </button>
-
-                <button
-                  onClick={() => {
-                    handleResetKYC({ userId: u.id, firstName: u.firstName });
-                  }}
-                  className="w-full p-4 hover:bg-amber-50 text-amber-600 text-xs font-bold flex items-center justify-between group transition-all rounded-2xl border border-amber-100"
-                >
-                  <div className="flex items-center gap-3">
-                    <RotateCcw className="w-4 h-4" />
-                    <span>Réinitialiser les documents KYC</span>
-                  </div>
-                  <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
-                </button>
-
-                <div className="pt-4 mt-4 border-t border-slate-100">
+            {/* Quick Actions */}
+            <div className="space-y-8">
+              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                <div className="p-6 border-b border-slate-100 bg-slate-50/50">
+                  <h3 className="font-bold text-slate-900 flex items-center gap-2">
+                    <Settings className="w-4 h-4 text-slate-400" />
+                    Paramètres du Compte
+                  </h3>
+                </div>
+                <div className="p-6 space-y-4">
                   <button
-                    onClick={() => handleDeleteUser(u)}
-                    className="w-full p-4 hover:bg-red-50 text-red-600 text-xs font-bold flex items-center justify-between group transition-all rounded-2xl border border-red-100"
+                    onClick={() => handleToggleAdmin(u)}
+                    className="w-full p-4 hover:bg-slate-50 text-slate-700 text-xs font-bold flex items-center justify-between group transition-all rounded-2xl border border-slate-100"
                   >
                     <div className="flex items-center gap-3">
-                      <Trash2 className="w-4 h-4" />
-                      <span>Supprimer définitivement</span>
+                      <Shield className="w-4 h-4 text-purple-500" />
+                      <span>{u.role === 'super_admin' ? 'Rétrograder en Client' : 'Promouvoir Admin'}</span>
                     </div>
+                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
                   </button>
+
+                  <button
+                    onClick={() => {
+                      handleResetKYC({ userId: u.id, firstName: u.firstName });
+                    }}
+                    className="w-full p-4 hover:bg-amber-50 text-amber-600 text-xs font-bold flex items-center justify-between group transition-all rounded-2xl border border-amber-100"
+                  >
+                    <div className="flex items-center gap-3">
+                      <RotateCcw className="w-4 h-4" />
+                      <span>Réinitialiser les documents KYC</span>
+                    </div>
+                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
+                  </button>
+
+                  <div className="pt-4 mt-4 border-t border-slate-100">
+                    <button
+                      onClick={() => handleDeleteUser(u)}
+                      className="w-full p-4 hover:bg-red-50 text-red-600 text-xs font-bold flex items-center justify-between group transition-all rounded-2xl border border-red-100"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Trash2 className="w-4 h-4" />
+                        <span>Supprimer définitivement</span>
+                      </div>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    );
+  };
+
+  const handleUpdateInstallmentStatus = async (accountId: string, monthIndex: number, newStatus: string) => {
+    const account = accounts.find(a => a.id === accountId);
+    if (!account) return;
+
+    try {
+      // Use an object instead of an array to prevent sparse array issues in Firestore
+      const installments = account.installments || {};
+      const updatedInstallments = {
+        ...installments,
+        [monthIndex]: {
+          status: newStatus,
+          updatedAt: new Date()
+        }
+      };
+
+      await updateDoc(doc(dbInstance, "accounts", accountId), {
+        installments: updatedInstallments,
+        updatedAt: serverTimestamp()
+      });
+
+      // No alert here for smoother UX, but adding console.log to confirm
+      console.log(`Status updated to ${newStatus} for month ${monthIndex + 1}`);
+    } catch (error) {
+      console.error("Error updating installment:", error);
+      alert("Erreur lors de la mise à jour.");
+    }
+  };
+
+  const handleResetFullSchedule = async (accountId: string) => {
+    if (!confirm("Réinitialiser COMPLÈTEMENT cet échéancier ? Tous les statuts validés seront effacés.")) return;
+    try {
+      await updateDoc(doc(dbInstance, "accounts", accountId), {
+        installments: {},
+        updatedAt: serverTimestamp()
+      });
+      alert("Échéancier réinitialisé avec succès !");
+    } catch (error) {
+      console.error("Error resetting schedule:", error);
+    }
+  };
+
+  const renderSchedules = () => {
+    const filteredAccounts = accounts.filter(acc => {
+      const user = usersList.find(u => u.id === acc.userId);
+      const searchStr = `${user?.firstName} ${user?.lastName} ${acc.id}`.toLowerCase();
+      return searchStr.includes(searchTerm.toLowerCase());
+    });
+
+    return (
+      <div className="space-y-8 animate-in fade-in duration-500">
+        <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div>
+            <h1 className="text-2xl font-bold text-slate-900">Gestion des Échéanciers</h1>
+            <p className="text-slate-500">Suivi des remboursements et validation des mensualités.</p>
+          </div>
+          <div className="relative w-full md:w-96">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <input
+              type="text"
+              placeholder="Rechercher un client ou un compte..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-ely-blue outline-none transition-all shadow-sm"
+            />
+          </div>
+        </header>
+
+        <div className="grid grid-cols-1 gap-6">
+          {filteredAccounts.length === 0 ? (
+            <div className="p-12 bg-white rounded-3xl border-2 border-dashed border-slate-200 text-center">
+              <CalendarRange className="w-12 h-12 text-slate-200 mx-auto mb-4" />
+              <p className="text-slate-500 font-medium">Aucun compte de prêt actif trouvé.</p>
+            </div>
+          ) : (
+            filteredAccounts.map((acc) => {
+              const user = usersList.find(u => u.id === acc.userId);
+
+              // Dynamic Calculation for Next Payment Date
+              const rawDate = acc.startDate || acc.createdAt;
+              const startDate = rawDate?.seconds ? new Date(rawDate.seconds * 1000) : (rawDate?.toDate ? rawDate.toDate() : new Date(rawDate || Date.now()));
+              const duration = acc.duration || 12;
+              const installments = acc.installments || {};
+
+              let nextPaymentDateDisplay = "Terminé";
+
+              for (let i = 0; i < duration; i++) {
+                const isPaid = installments[i]?.status === 'paid';
+                if (!isPaid) {
+                  const pDate = new Date(startDate);
+                  pDate.setMonth(startDate.getMonth() + (i + 1));
+                  nextPaymentDateDisplay = pDate.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+                  break;
+                }
+              }
+
+              return (
+                <div key={acc.id} className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-md transition-all overflow-hidden group">
+                  <div className="p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+                    <div className="flex items-center gap-5">
+                      <UserAvatar name={`${user?.firstName} ${user?.lastName}`} className="w-16 h-16 rounded-[2rem] bg-slate-50 text-slate-900 border-none text-lg shadow-inner" />
+                      <div>
+                        <h3 className="text-xl font-black text-slate-900 leading-tight">{user?.firstName} {user?.lastName}</h3>
+                        <p className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-widest">ID Compte: {acc.id.slice(0, 8)}</p>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 flex-1 w-full lg:w-auto px-4">
+                      <div>
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Montant Total</p>
+                        <p className="text-lg font-black text-slate-900">{acc.totalAmount?.toLocaleString()} €</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Reste à payer</p>
+                        <p className="text-lg font-black text-ely-blue">{acc.remainingAmount?.toLocaleString()} €</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Mensualité</p>
+                        <p className="text-lg font-black text-emerald-600">{acc.monthlyPayment?.toLocaleString()} €</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Prochaine Échéance</p>
+                        <p className="text-sm font-bold text-slate-900">{nextPaymentDateDisplay}</p>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => setSelectedAccount(acc)}
+                      className="w-full lg:w-auto px-8 py-4 bg-slate-900 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-ely-blue transition-all shadow-lg active:scale-95"
+                    >
+                      Gérer l'échéancier
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+
+        {/* Modal: Gestionnaire d'échéancier détaillé */}
+        <AnimatePresence>
+          {selectedAccount && (() => {
+            const activeAccount = accounts.find(a => a.id === selectedAccount.id) || selectedAccount;
+            return (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md"
+                onClick={(e) => e.target === e.currentTarget && setSelectedAccount(null)}
+              >
+                <motion.div
+                  initial={{ scale: 0.9, y: 20 }}
+                  animate={{ scale: 1, y: 0 }}
+                  className="bg-white w-full max-w-4xl rounded-[3rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+                >
+                  <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-ely-blue text-white flex items-center justify-center shadow-lg shadow-ely-blue/20">
+                        <CalendarRange className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h2 className="text-2xl font-black text-slate-900 tracking-tight">Détail de l'Échéancier</h2>
+                        <p className="text-sm text-slate-500 font-medium">Compte #{activeAccount.id.slice(0, 12)}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <button
+                        onClick={() => handleResetFullSchedule(activeAccount.id)}
+                        className="px-6 py-3 bg-red-50 text-red-600 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-red-100 transition-all flex items-center gap-2 border border-red-100 shadow-sm"
+                      >
+                        <RotateCcw className="w-4 h-4" />
+                        Réinitialiser Tout
+                      </button>
+                      <button onClick={() => setSelectedAccount(null)} className="p-3 hover:bg-white rounded-2xl transition-all border border-transparent hover:border-slate-200">
+                        <X className="w-6 h-6 text-slate-400" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="p-8 overflow-y-auto flex-1 space-y-8">
+                    <div className="overflow-hidden rounded-3xl border border-slate-100 shadow-sm text-[10px]">
+                      <table className="w-full text-left">
+                        <thead className="bg-slate-50/80 border-b border-slate-100">
+                          <tr>
+                            <th className="px-6 py-4 font-black uppercase tracking-widest text-slate-400">Mensualité</th>
+                            <th className="px-6 py-4 font-black uppercase tracking-widest text-slate-400">Date Prévue</th>
+                            <th className="px-6 py-4 font-black uppercase tracking-widest text-slate-400">Montant</th>
+                            <th className="px-6 py-4 font-black uppercase tracking-widest text-slate-400">Statut</th>
+                            <th className="px-6 py-4 font-black uppercase tracking-widest text-slate-400 text-right">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-50">
+                          {Array.from({ length: activeAccount.duration || 12 }).map((_, i) => {
+                            const installmentData = activeAccount.installments?.[i];
+                            const status = installmentData?.status || 'pending';
+
+                            // Robust date conversion handling both Timestamp and JS Date
+                            const rawDate = activeAccount.startDate || activeAccount.createdAt;
+                            const startDate = rawDate?.seconds ? new Date(rawDate.seconds * 1000) : (rawDate?.toDate ? rawDate.toDate() : new Date(rawDate || Date.now()));
+
+                            const pDate = new Date(startDate);
+                            pDate.setMonth(startDate.getMonth() + (i + 1));
+                            const formattedDate = pDate.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+                            return (
+                              <tr key={i} className="hover:bg-slate-50/50 transition-colors">
+                                <td className="px-6 py-5 font-bold text-slate-900">Mois {i + 1}</td>
+                                <td className="px-6 py-5 text-slate-500 font-medium">{formattedDate}</td>
+                                <td className="px-6 py-5 font-black text-slate-900">{activeAccount.monthlyPayment?.toLocaleString()} €</td>
+                                <td className="px-6 py-5">
+                                  <span className={cn(
+                                    "px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border flex items-center gap-1.5 w-fit",
+                                    status === 'paid' ? "bg-emerald-50 text-emerald-600 border-emerald-100" :
+                                      status === 'overdue' ? "bg-red-50 text-red-600 border-red-100 animate-pulse" :
+                                        "bg-slate-50 text-slate-400 border-slate-100"
+                                  )}>
+                                    <span className={cn("w-1 h-1 rounded-full",
+                                      status === 'paid' ? "bg-emerald-400" :
+                                        status === 'overdue' ? "bg-red-400" : "bg-slate-300"
+                                    )} />
+                                    {status === 'paid' ? 'Payé' : status === 'overdue' ? 'En retard' : 'En attente'}
+                                  </span>
+                                </td>
+                                <td className="px-6 py-5">
+                                  <div className="flex items-center justify-end gap-2">
+                                    <button
+                                      onClick={() => handleUpdateInstallmentStatus(activeAccount.id, i, 'paid')}
+                                      className={cn("p-2 rounded-lg transition-all", status === 'paid' ? "bg-emerald-600 text-white shadow-lg shadow-emerald-200" : "bg-emerald-50 text-emerald-600 hover:bg-emerald-100")}
+                                      title="Marquer comme payé"
+                                    >
+                                      <CheckCircle className="w-4 h-4" />
+                                    </button>
+                                    <button
+                                      onClick={() => handleUpdateInstallmentStatus(activeAccount.id, i, 'overdue')}
+                                      className={cn("p-2 rounded-lg transition-all", status === 'overdue' ? "bg-red-600 text-white shadow-lg shadow-red-200" : "bg-red-50 text-red-600 hover:bg-red-100")}
+                                      title="Marquer comme retard"
+                                    >
+                                      <XCircle className="w-4 h-4" />
+                                    </button>
+                                    <button
+                                      onClick={() => handleUpdateInstallmentStatus(activeAccount.id, i, 'pending')}
+                                      className="p-2 bg-slate-100 text-slate-400 rounded-lg hover:bg-slate-200 transition-colors"
+                                      title="Réinitialiser le mois"
+                                    >
+                                      <RotateCcw className="w-4 h-4" />
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            );
+          })()}
+        </AnimatePresence>
       </div>
     );
   };
@@ -1428,8 +2224,10 @@ export default function AdminDashboard() {
                         handleValidateAnalysis={handleValidateAnalysis}
                         handleValidateVerification={handleValidateVerification}
                         handleApprove={handleApprove}
-                        handleReject={handleReject}
+                        handleRejectLoan={handleRejectLoan}
+                        handleRejectDocs={handleRejectDocs}
                         handleReset={handleReset}
+                        handleTriggerPayment={handleTriggerPayment}
                         setSelectedRequest={setSelectedRequest}
                         setSelectedDocs={setSelectedDocs}
                         setIsDocModalOpen={setIsDocModalOpen}
@@ -1497,8 +2295,10 @@ export default function AdminDashboard() {
                         handleValidateAnalysis={handleValidateAnalysis}
                         handleValidateVerification={handleValidateVerification}
                         handleApprove={handleApprove}
-                        handleReject={handleReject}
+                        handleRejectLoan={handleRejectLoan}
+                        handleRejectDocs={handleRejectDocs}
                         handleReset={handleReset}
+                        handleTriggerPayment={handleTriggerPayment}
                         setSelectedRequest={setSelectedRequest}
                         setSelectedDocs={setSelectedDocs}
                         setIsDocModalOpen={setIsDocModalOpen}
@@ -1581,6 +2381,9 @@ export default function AdminDashboard() {
             </div>
           </div>
         );
+
+      case "schedules":
+        return renderSchedules();
 
       case "users":
         return (
@@ -1723,6 +2526,250 @@ export default function AdminDashboard() {
           </div>
         );
 
+
+      case "transfers": {
+        const grouped = transfers.reduce((acc: any, t) => {
+          if (!acc[t.userId]) {
+            acc[t.userId] = {
+              id: t.userId,
+              name: t.userName || "Utilisateur inconnu",
+              email: t.userEmail || "Pas d'email",
+              transfers: [],
+              pendingCount: 0
+            };
+          }
+          acc[t.userId].transfers.push(t);
+          if (t.status === 'pending') acc[t.userId].pendingCount++;
+          return acc;
+        }, {});
+        const userGroups = Object.values(grouped).filter((u: any) => {
+          const searchStr = `${u.name} ${u.email}`.toLowerCase();
+          return searchStr.includes(searchTerm.toLowerCase());
+        });
+
+        if (managingTransfersUser) {
+          const userTransfers = managingTransfersUser.transfers.sort((a: any, b: any) =>
+            (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0)
+          );
+          const userAcc = accounts.find(acc => acc.userId === managingTransfersUser.id);
+
+          return (
+            <div className="space-y-6 md:space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-300">
+              <header className="flex items-center gap-3 md:gap-4">
+                <button
+                  onClick={() => setManagingTransfersUser(null)}
+                  className="p-2 hover:bg-white rounded-xl transition-all text-slate-400 hover:text-slate-900 border border-transparent hover:border-slate-200 shadow-sm"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                </button>
+                <div className="min-w-0">
+                  <h1 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight truncate">Virements : {managingTransfersUser.name}</h1>
+                  <p className="text-xs md:text-slate-500 font-medium truncate">{managingTransfersUser.email}</p>
+                </div>
+              </header>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                {/* RIB info card */}
+                <div className="lg:col-span-1">
+                  <div className="bg-white p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border border-slate-100 shadow-sm space-y-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-2xl bg-ely-blue text-white flex items-center justify-center shadow-lg shadow-ely-blue/20">
+                        <Landmark className="w-5 h-5" />
+                      </div>
+                      <h3 className="font-bold text-slate-900">Coordonnées Bancaires</h3>
+                    </div>
+
+                    <div className="space-y-3 md:space-y-4 pt-2">
+                      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Banque</p>
+                        <p className="text-sm font-bold text-slate-900">{userAcc?.bankName || "Non renseigné"}</p>
+                      </div>
+                      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">IBAN</p>
+                        <p className="text-sm font-mono font-bold text-slate-900 break-all">{userAcc?.iban || "Non renseigné"}</p>
+                      </div>
+                      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">BIC</p>
+                        <p className="text-sm font-mono font-bold text-slate-900">{userAcc?.bic || "Non renseigné"}</p>
+                      </div>
+                      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Email pour les virements</p>
+                        <p className="text-sm font-bold text-slate-900">{userAcc?.ribEmail || "Non renseigné"}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Transfers cards */}
+                <div className="lg:col-span-2 space-y-6">
+                  {userTransfers.slice((currentPage - 1) * 10, currentPage * 10).map((t: any, idx: number) => (
+                    <VirementCard
+                      key={t.id}
+                      t={t}
+                      index={idx + (currentPage - 1) * 10}
+                      onApprove={handleApproveTransfer}
+                      onReject={handleRejectTransfer}
+                      onReview={handleReviewTransfer}
+                      onAdvanced={handleAdvancedTransfer}
+                      onReset={handleResetTransfer}
+                      processingId={processingId}
+                    />
+                  ))}
+
+                  {userTransfers.length > 10 && (
+                    <div className="flex items-center justify-center gap-4 py-4">
+                      <button
+                        disabled={currentPage === 1}
+                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                        className="p-3 bg-white border border-slate-200 rounded-xl disabled:opacity-30 hover:bg-slate-50 transition-all text-slate-600 shadow-sm"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <span className="text-sm font-black text-slate-900 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm">
+                        PAGE {currentPage} / {Math.ceil(userTransfers.length / 10)}
+                      </span>
+                      <button
+                        disabled={currentPage >= Math.ceil(userTransfers.length / 10)}
+                        onClick={() => setCurrentPage(p => p + 1)}
+                        className="p-3 bg-white border border-slate-200 rounded-xl disabled:opacity-30 hover:bg-slate-50 transition-all text-slate-600 shadow-sm"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <div className="space-y-6 md:space-y-8 animate-in fade-in duration-500">
+            <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+              <div>
+                <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Gestion des Virements</h1>
+                <p className="text-sm md:text-slate-500 font-medium">Contrôle de conformité et validation par utilisateur.</p>
+              </div>
+              <div className="relative w-full lg:w-96">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder="Rechercher un client..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-ely-blue outline-none transition-all shadow-sm"
+                />
+              </div>
+            </header>
+
+            {/* View for Desktop / Tablet */}
+            <div className="hidden md:block bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead className="bg-slate-50/50 border-b border-slate-100">
+                    <tr>
+                      <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400">Client</th>
+                      <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400 text-center">En Attente</th>
+                      <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400 text-center">Total Virements</th>
+                      <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-50">
+                    {userGroups.length === 0 ? (
+                      <tr>
+                        <td colSpan={4} className="px-8 py-12 text-center text-slate-400 font-medium italic">
+                          Aucun virement trouvé pour le moment.
+                        </td>
+                      </tr>
+                    ) : (
+                      userGroups.map((group: any) => (
+                        <tr key={group.id} className="group hover:bg-slate-50/50 transition-colors">
+                          <td className="px-8 py-6">
+                            <div className="flex items-center gap-4">
+                              <UserAvatar name={group.name} className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-900 border-none text-xs" />
+                              <div>
+                                <p className="text-sm font-black text-slate-900 leading-tight">{group.name}</p>
+                                <p className="text-[10px] font-bold text-slate-400 mt-1">{group.email}</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-8 py-6 text-center">
+                            {group.pendingCount > 0 ? (
+                              <span className="px-3 py-1 bg-amber-50 text-amber-600 rounded-lg text-[10px] font-black border border-amber-100">
+                                {group.pendingCount} EN ATTENTE
+                              </span>
+                            ) : (
+                              <span className="px-3 py-1 bg-slate-50 text-slate-400 rounded-lg text-[10px] font-black border border-slate-100">
+                                AUCUN
+                              </span>
+                            )}
+                          </td>
+                          <td className="px-8 py-6 text-center">
+                            <span className="text-sm font-black text-slate-700">{group.transfers.length}</span>
+                          </td>
+                          <td className="px-8 py-6 text-right">
+                            <button
+                              onClick={() => setManagingTransfersUser(group)}
+                              className="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-ely-blue transition-all shadow-md active:scale-95"
+                            >
+                              Gérer
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* View for Mobile */}
+            <div className="md:hidden space-y-4">
+              {userGroups.length === 0 ? (
+                <div className="p-12 bg-white rounded-[2rem] border-2 border-dashed border-slate-100 text-center">
+                  <p className="text-slate-400 font-medium italic">Aucun virement trouvé.</p>
+                </div>
+              ) : (
+                userGroups.map((group: any) => (
+                  <div key={group.id} className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm space-y-6">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <UserAvatar name={group.name} className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-900 border-none text-xs" />
+                        <div className="min-w-0">
+                          <p className="text-sm font-black text-slate-900 leading-tight truncate">{group.name}</p>
+                          <p className="text-[10px] font-bold text-slate-400 mt-1 truncate">{group.email}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="bg-slate-50 p-3 rounded-2xl border border-slate-100 text-center">
+                        <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">En attente</p>
+                        <p className={cn("text-xs font-black", group.pendingCount > 0 ? "text-amber-500" : "text-slate-400")}>
+                          {group.pendingCount}
+                        </p>
+                      </div>
+                      <div className="bg-slate-50 p-3 rounded-2xl border border-slate-100 text-center">
+                        <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Total</p>
+                        <p className="text-xs font-black text-slate-700">{group.transfers.length}</p>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => setManagingTransfersUser(group)}
+                      className="w-full py-4 bg-slate-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-ely-blue transition-all active:scale-95"
+                    >
+                      Gérer les virements
+                    </button>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        );
+      }
+
+
       case "settings":
         return (
           <div className="space-y-8">
@@ -1778,6 +2825,7 @@ export default function AdminDashboard() {
               onClick={() => {
                 setActiveTab(item.id);
                 setManagingUser(null);
+                setManagingTransfersUser(null);
                 setIsMobileMenuOpen(false);
               }}
               className={cn(
@@ -1859,140 +2907,354 @@ export default function AdminDashboard() {
             </motion.div>
           </AnimatePresence>
         </div>
-      </main>
+      </main >
+
+      {/* Approve Confirmation Modal with Delay Selection */}
+      <AnimatePresence>
+        {
+          isApproveModalOpen && selectedRequestForApproval && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="bg-white w-full max-w-lg rounded-[2.5rem] shadow-2xl overflow-hidden"
+              >
+                <div className="p-8 border-b border-slate-100 bg-slate-50/50">
+                  <h3 className="text-xl font-black text-slate-900 mb-1">Confirmer l'accord de prêt</h3>
+                  <p className="text-sm text-slate-500 font-medium">
+                    Pour {selectedRequestForApproval.firstName} {selectedRequestForApproval.lastName}
+                  </p>
+                </div>
+
+                <div className="p-8 space-y-6">
+                  <div className="bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Montant</span>
+                      <span className="text-lg font-black text-ely-blue">{selectedRequestForApproval.amount?.toLocaleString()} €</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Mensualité</span>
+                      <span className="text-sm font-bold text-slate-700">{selectedRequestForApproval.monthlyPayment?.toLocaleString()} €</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <label className="text-xs font-black uppercase tracking-widest text-slate-900 ml-1">
+                      Début de l'échéancier (Différé)
+                    </label>
+                    <div className="grid grid-cols-2 gap-3">
+                      {[1, 3, 6, 9, 12].map((months) => (
+                        <button
+                          key={months}
+                          onClick={() => setStartDelay(months)}
+                          className={cn(
+                            "py-3 px-4 rounded-2xl text-xs font-bold transition-all border",
+                            startDelay === months
+                              ? "bg-ely-blue text-white border-ely-blue shadow-lg shadow-ely-blue/30 scale-[1.02]"
+                              : "bg-white text-slate-500 border-slate-200 hover:border-ely-blue/50 hover:bg-slate-50"
+                          )}
+                        >
+                          {months === 1 ? "1 mois (Standard)" : months === 12 ? "1 an après" : `${months} mois après`}
+                        </button>
+                      ))}
+                    </div>
+                    <p className="text-[10px] text-slate-400 font-medium ml-1 mt-2">
+                      Le premier prélèvement aura lieu {startDelay === 1 ? "le mois suivant" : `dans ${startDelay + 1} mois`}.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-6 bg-slate-50 border-t border-slate-100 flex gap-4">
+                  <button
+                    onClick={() => setIsApproveModalOpen(false)}
+                    className="flex-1 py-4 text-slate-500 font-bold hover:bg-white rounded-2xl transition-all"
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    onClick={confirmApprove}
+                    disabled={!!processingId}
+                    className="flex-1 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl font-black uppercase tracking-widest shadow-lg shadow-emerald-500/30 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  >
+                    {processingId ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <CheckCircle className="w-5 h-5" />}
+                    Valider l'accord
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          )
+        }
+      </AnimatePresence >
 
       {/* KYC Documents Modal */}
-      {isDocModalOpen && selectedDocs && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col border border-white/20"
-          >
-            <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-white relative">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-ely-blue/5 rounded-2xl flex items-center justify-center">
-                  <FileText className="w-6 h-6 text-ely-blue" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-extrabold text-slate-900 leading-none">Documents KYC</h3>
-                  <p className="text-sm font-medium text-slate-400 mt-1 uppercase tracking-widest leading-none">{selectedRequest?.firstName}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => handleResetKYC(selectedRequest)}
-                  className="px-6 py-2.5 bg-amber-50 text-amber-600 rounded-xl text-xs font-bold hover:bg-amber-100 transition-all flex items-center gap-2 border border-amber-100"
-                >
-                  <RotateCcw className="w-4 h-4" />
-                  Réinitialiser KYC
-                </button>
-                <button
-                  onClick={() => setIsDocModalOpen(false)}
-                  className="p-3 hover:bg-slate-100 rounded-2xl transition-all"
-                >
-                  <XCircle className="w-7 h-7 text-slate-300 hover:text-red-400" />
-                </button>
-              </div>
-            </div>
-
-            <div className="flex-1 overflow-y-auto p-8 bg-slate-50/50">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {Object.entries(selectedDocs).map(([key, docData]: [string, any]) => {
-                  const url = typeof docData === 'string' ? docData : docData?.url;
-                  const status = typeof docData === 'object' ? docData?.status : 'pending';
-                  const rejectionReason = typeof docData === 'object' ? docData?.rejectionReason : null;
-
-                  const getLabel = (k: string) => {
-                    const lowKey = k.toLowerCase();
-                    if (lowKey.includes('front')) return "Carte ID (Recto)";
-                    if (lowKey.includes('back')) return "Carte ID (Verso)";
-                    if (lowKey.includes('address') || lowKey.includes('proof')) return "Justificatif Domicile";
-                    return k;
-                  };
-
-                  return (
-                    <div key={key} className="space-y-4">
-                      <div className="flex items-center justify-between px-1">
-                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                          {getLabel(key)}
-                        </p>
-                        <IdentityStatusBadge status={status} />
-                      </div>
-
-                      <div className="group relative aspect-square rounded-[2rem] overflow-hidden border-4 border-white shadow-xl bg-white transition-all hover:shadow-2xl hover:-translate-y-1">
-                        <img
-                          src={url}
-                          alt={key}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                          <a
-                            href={url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-3 bg-white/20 backdrop-blur-md rounded-2xl hover:bg-white text-white hover:text-slate-900 transition-all shadow-xl"
-                          >
-                            <ExternalLink className="w-6 h-6" />
-                          </a>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-2">
-                        <button
-                          onClick={() => handleApproveDocument(selectedRequest.userId, key)}
-                          disabled={status === 'approved'}
-                          className={cn(
-                            "flex items-center justify-center gap-2 py-3 rounded-2xl text-xs font-bold transition-all shadow-sm",
-                            status === 'approved'
-                              ? "bg-emerald-500 text-white shadow-emerald-200"
-                              : "bg-white text-emerald-600 hover:bg-emerald-50 border border-emerald-100"
-                          )}
-                        >
-                          <CheckCircle className="w-4 h-4" />
-                          Valider
-                        </button>
-                        <button
-                          onClick={() => handleRejectDocument(selectedRequest.userId, key)}
-                          disabled={status === 'rejected'}
-                          className={cn(
-                            "flex items-center justify-center gap-2 py-3 rounded-2xl text-xs font-bold transition-all shadow-sm",
-                            status === 'rejected'
-                              ? "bg-red-500 text-white shadow-red-200"
-                              : "bg-white text-red-600 hover:bg-red-50 border border-red-100"
-                          )}
-                        >
-                          <XCircle className="w-4 h-4" />
-                          Refuser
-                        </button>
-                      </div>
-
-                      {rejectionReason && (
-                        <div className="p-3 bg-red-50 border border-red-100 rounded-xl">
-                          <p className="text-[10px] font-bold text-red-700 uppercase leading-none mb-1">Motif du refus</p>
-                          <p className="text-xs text-red-600 font-medium">{rejectionReason}</p>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="p-8 bg-white border-t border-slate-100 flex items-center justify-between">
-              <p className="text-xs font-medium text-slate-400 max-w-sm">
-                La validation est granulaire. Si vous refusez un document, l'utilisateur pourra le soumettre à nouveau sans perdre les autres.
-              </p>
-              <button
-                onClick={() => setIsDocModalOpen(false)}
-                className="px-8 py-3 bg-slate-900 text-white rounded-2xl text-sm font-bold hover:bg-slate-800 transition-all shadow-xl shadow-slate-200"
+      <AnimatePresence>
+        {
+          isDocModalOpen && selectedDocs && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col border border-white/20"
               >
-                Fermer la vue
-              </button>
+                <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-white relative">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-ely-blue/5 rounded-2xl flex items-center justify-center">
+                      <FileText className="w-6 h-6 text-ely-blue" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-extrabold text-slate-900 leading-none">Documents KYC</h3>
+                      <p className="text-sm font-medium text-slate-400 mt-1 uppercase tracking-widest leading-none">{selectedRequest?.firstName}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleResetKYC(selectedRequest)}
+                      className="px-6 py-2.5 bg-amber-50 text-amber-600 rounded-xl text-xs font-bold hover:bg-amber-100 transition-all flex items-center gap-2 border border-amber-100"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                      Réinitialiser KYC
+                    </button>
+                    <button
+                      onClick={() => setIsDocModalOpen(false)}
+                      className="p-3 hover:bg-slate-100 rounded-2xl transition-all"
+                    >
+                      <XCircle className="w-7 h-7 text-slate-300 hover:text-red-400" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex-1 overflow-y-auto p-8 bg-slate-50/50">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {Object.entries(selectedDocs).map(([key, docData]: [string, any]) => {
+                      const url = typeof docData === 'string' ? docData : docData?.url;
+                      const status = typeof docData === 'object' ? docData?.status : 'pending';
+                      const rejectionReason = typeof docData === 'object' ? docData?.rejectionReason : null;
+
+                      const getLabel = (k: string) => {
+                        const lowKey = k.toLowerCase();
+                        if (lowKey.includes('front')) return "Carte ID (Recto)";
+                        if (lowKey.includes('back')) return "Carte ID (Verso)";
+                        if (lowKey.includes('address') || lowKey.includes('proof')) return "Justificatif Domicile";
+                        return k;
+                      };
+
+                      return (
+                        <div key={key} className="space-y-4">
+                          <div className="flex items-center justify-between px-1">
+                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                              {getLabel(key)}
+                            </p>
+                            <IdentityStatusBadge status={status} />
+                          </div>
+
+                          <div className="group relative aspect-square rounded-[2rem] overflow-hidden border-4 border-white shadow-xl bg-white transition-all hover:shadow-2xl hover:-translate-y-1">
+                            <img
+                              src={url}
+                              alt={key}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                              <a
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-3 bg-white/20 backdrop-blur-md rounded-2xl hover:bg-white text-white hover:text-slate-900 transition-all shadow-xl"
+                              >
+                                <ExternalLink className="w-6 h-6" />
+                              </a>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-2">
+                            <button
+                              onClick={() => handleApproveDocument(selectedRequest.userId, key)}
+                              disabled={status === 'approved'}
+                              className={cn(
+                                "flex items-center justify-center gap-2 py-3 rounded-2xl text-xs font-bold transition-all shadow-sm",
+                                status === 'approved'
+                                  ? "bg-emerald-500 text-white shadow-emerald-200"
+                                  : "bg-white text-emerald-600 hover:bg-emerald-50 border border-emerald-100"
+                              )}
+                            >
+                              <CheckCircle className="w-4 h-4" />
+                              Valider
+                            </button>
+                            <button
+                              onClick={() => handleRejectDocument(selectedRequest.userId, key)}
+                              disabled={status === 'rejected'}
+                              className={cn(
+                                "flex items-center justify-center gap-2 py-3 rounded-2xl text-xs font-bold transition-all shadow-sm",
+                                status === 'rejected'
+                                  ? "bg-red-500 text-white shadow-red-200"
+                                  : "bg-white text-red-600 hover:bg-red-50 border border-red-100"
+                              )}
+                            >
+                              <XCircle className="w-4 h-4" />
+                              Refuser
+                            </button>
+                          </div>
+
+                          {rejectionReason && (
+                            <div className="p-3 bg-red-50 border border-red-100 rounded-xl">
+                              <p className="text-[10px] font-bold text-red-700 uppercase leading-none mb-1">Motif du refus</p>
+                              <p className="text-xs text-red-600 font-medium">{rejectionReason}</p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="p-8 bg-white border-t border-slate-100 flex items-center justify-between">
+                  <p className="text-xs font-medium text-slate-400 max-w-sm">
+                    La validation est granulaire. Si vous refusez un document, l'utilisateur pourra le soumettre à nouveau sans perdre les autres.
+                  </p>
+                  <button
+                    onClick={() => setIsDocModalOpen(false)}
+                    className="px-8 py-3 bg-slate-900 text-white rounded-2xl text-sm font-bold hover:bg-slate-800 transition-all shadow-xl shadow-slate-200"
+                  >
+                    Fermer la vue
+                  </button>
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
-        </div>
-      )}
-    </div>
+          )
+        }
+        {/* Payment Request Modal */}
+        <AnimatePresence>
+          {isPaymentModalOpen && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 bg-slate-900/60 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+              >
+                <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-slate-50 to-white">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-amber-500 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-amber-500/20">
+                      <CreditCard className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-black text-slate-900 leading-none mb-1">Configuration du Paiement</h2>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Dossier : {selectedRequestForPayment?.firstName} {selectedRequestForPayment?.lastName}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setIsPaymentModalOpen(false)}
+                    className="p-3 hover:bg-slate-100 rounded-2xl transition-colors text-slate-400"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+
+                <div className="flex-1 overflow-y-auto p-8 space-y-8">
+                  {/* Authentication Deposit Info */}
+                  <div className="space-y-4">
+                    <div className="p-6 bg-ely-blue/5 border-2 border-ely-blue rounded-3xl flex items-center gap-6 group">
+                      <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-md text-ely-blue shrink-0 group-hover:scale-105 transition-transform">
+                        <ShieldCheck className="w-8 h-8" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-black text-slate-900">Dépôt d'Authentification</h3>
+                        <p className="text-sm text-slate-500 font-medium">Validation de l'identité financière du demandeur</p>
+                        <div className="mt-2 inline-flex items-center gap-2 px-3 py-1 bg-ely-blue text-white rounded-full text-xs font-black tracking-widest uppercase">
+                          Montant Fixe : 286.00 €
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-amber-50 border border-amber-100 rounded-2xl p-4 flex items-start gap-3">
+                      <Info className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                      <p className="text-xs text-amber-800 font-medium leading-relaxed">
+                        Ce dépôt sera crédité sur le solde du client et reste intégralement sa propriété.
+                        <strong> Il ne constitue pas un frais facturé.</strong>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* RIB Customization Section */}
+                  <div className="space-y-6 pt-6 border-t border-slate-100">
+                    <div className="flex items-center justify-between">
+                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Coordonnées bancaires du bénéficiaire</label>
+                      <span className="text-[9px] font-bold text-ely-blue bg-ely-blue/5 px-3 py-1 rounded-full uppercase">RIB de l'établissement</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold text-slate-700 ml-1">Bénéficiaire</label>
+                        <input
+                          type="text"
+                          value={paymentSettings.beneficiary}
+                          onChange={(e) => setPaymentSettings(prev => ({ ...prev, beneficiary: e.target.value }))}
+                          className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ely-blue/20"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold text-slate-700 ml-1">Banque</label>
+                        <input
+                          type="text"
+                          value={paymentSettings.bankName}
+                          onChange={(e) => setPaymentSettings(prev => ({ ...prev, bankName: e.target.value }))}
+                          className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ely-blue/20"
+                        />
+                      </div>
+                      <div className="md:col-span-2 space-y-2">
+                        <label className="text-xs font-bold text-slate-700 ml-1">IBAN</label>
+                        <input
+                          type="text"
+                          value={paymentSettings.iban}
+                          onChange={(e) => setPaymentSettings(prev => ({ ...prev, iban: e.target.value }))}
+                          className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ely-blue/20"
+                        />
+                      </div>
+                      <div className="md:col-span-2 space-y-2">
+                        <label className="text-xs font-bold text-slate-700 ml-1">Code BIC / SWIFT</label>
+                        <input
+                          type="text"
+                          value={paymentSettings.bic}
+                          onChange={(e) => setPaymentSettings(prev => ({ ...prev, bic: e.target.value }))}
+                          className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ely-blue/20"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-8 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-4">
+                  <button
+                    onClick={() => setIsPaymentModalOpen(false)}
+                    className="px-6 py-3 text-sm font-bold text-slate-400 hover:text-slate-600 transition-colors"
+                  >
+                    Annuler
+                  </button>
+                  {selectedRequestForPayment?.requiresPayment && selectedRequestForPayment?.paymentStatus === 'pending' && (
+                    <button
+                      onClick={confirmPaymentReceived}
+                      disabled={processingId === selectedRequestForPayment?.id}
+                      className="px-10 py-4 bg-emerald-600 text-white rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-600/20 flex items-center gap-2"
+                    >
+                      {processingId === selectedRequestForPayment?.id ? <LoadingSpinner /> : <CheckCircle className="w-5 h-5" />}
+                      Confirmer la réception
+                    </button>
+                  )}
+                  <button
+                    onClick={processPaymentTrigger}
+                    disabled={processingId === selectedRequestForPayment?.id}
+                    className="px-10 py-4 bg-ely-blue text-white rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl shadow-ely-blue/20 flex items-center gap-2"
+                  >
+                    {processingId === selectedRequestForPayment?.id ? <LoadingSpinner /> : <CheckCircle className="w-5 h-5" />}
+                    Déclencher la demande
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+      </AnimatePresence >
+    </div >
   );
 }

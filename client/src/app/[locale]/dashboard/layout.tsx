@@ -37,7 +37,7 @@ export default function DashboardLayout({
                 // On laisse un petit délai pour éviter les faux positifs au chargement
                 const timeout = setTimeout(() => {
                     if (!auth.currentUser) router.push("/login");
-                }, 1000);
+                }, 3000);
                 return () => clearTimeout(timeout);
             } else {
                 setLoading(false);

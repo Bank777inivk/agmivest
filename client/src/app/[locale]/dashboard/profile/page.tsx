@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { User, Mail, Phone, MapPin, Calendar, Globe, Shield, Edit2, Save, X, Briefcase, Euro, Home, Heart, Baby } from "lucide-react";
+import { User, Mail, Phone, MapPin, Calendar, Globe, Shield, Edit2, Edit3, Save, X, Briefcase, Euro, Home, Heart, Baby } from "lucide-react";
 import { collection, query, where, orderBy, limit, getDocs, doc, getDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "@/lib/firebase";
+import { COUNTRY_PHONE_DATA, COUNTRIES } from "@/lib/constants";
 
 export default function ProfilePage() {
     const t = useTranslations('Dashboard.Profile');
@@ -35,6 +36,10 @@ export default function ProfilePage() {
                 // Normalisation initiale
                 let normalized = {
                     ...finalData,
+                    country: finalData.country || "France",
+                    phoneCountry: finalData.phoneCountry || finalData.country || "France",
+                    street: finalData.street || finalData.address || "",
+                    birthCountry: finalData.birthCountry || "France",
                     income: finalData.income || finalData.monthlyIncome || 0,
                     charges: finalData.charges || finalData.monthlyExpenses || 0,
                     otherCredits: finalData.otherCredits || finalData.otherLoans || 0
@@ -60,6 +65,8 @@ export default function ProfilePage() {
                                 otherCredits: latestRequest.otherLoans || latestRequest.otherCredits || 0,
                                 profession: latestRequest.profession || normalized.profession,
                                 companyName: latestRequest.companyName || normalized.companyName,
+                                street: latestRequest.street || latestRequest.address || normalized.street,
+                                birthCountry: latestRequest.birthCountry || normalized.birthCountry,
                                 contractType: latestRequest.contractType || latestRequest.situation || normalized.contractType
                             };
                         }
@@ -79,7 +86,47 @@ export default function ProfilePage() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormData((prev: any) => ({ ...prev, [name]: value }));
+        let val = value;
+
+        // Restrict phone to digits and spaces, with dynamic max digit limit and generic auto-format
+        if (name === "phone") {
+            let digits = val.replace(/\D/g, "");
+            const country = COUNTRY_PHONE_DATA[formData.phoneCountry];
+            const limit = country?.maxLength || 15;
+            if (digits.length > limit) digits = digits.slice(0, limit);
+
+            if (country && country.grouping) {
+                let formatted = "";
+                let currentPos = 0;
+                for (let groupSize of country.grouping) {
+                    if (currentPos >= digits.length) break;
+                    let group = digits.slice(currentPos, currentPos + groupSize);
+                    formatted += (formatted ? " " : "") + group;
+                    currentPos += groupSize;
+                }
+                val = formatted;
+            } else {
+                val = digits;
+            }
+        }
+
+        setFormData((prev: any) => {
+            const newData = { ...prev, [name]: val };
+
+            if (name === "country" && COUNTRY_PHONE_DATA[value]) {
+                newData.phoneCountry = value;
+            }
+
+            // Exclusivité stricte Ans / Mois
+            if (name === "housingSeniority" && value !== "" && parseInt(value) > 0) {
+                newData.housingSeniorityMonths = "0";
+            }
+            if (name === "housingSeniorityMonths" && value !== "" && parseInt(value) > 0) {
+                newData.housingSeniority = "0";
+            }
+
+            return newData;
+        });
     };
 
     const handleSave = async () => {
@@ -174,11 +221,22 @@ export default function ProfilePage() {
             >
                 {/* État Civil */}
                 <motion.section variants={item} className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
-                    <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 bg-ely-blue/5 text-ely-blue rounded-lg">
-                            <User className="w-5 h-5" />
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-ely-blue/5 text-ely-blue rounded-lg">
+                                <User className="w-5 h-5" />
+                            </div>
+                            <h2 className="text-xl font-bold text-slate-900">État Civil</h2>
                         </div>
-                        <h2 className="text-xl font-bold text-slate-900">État Civil</h2>
+                        {!isEditing && (
+                            <button
+                                onClick={() => setIsEditing(true)}
+                                className="p-2 hover:bg-slate-50 text-slate-400 hover:text-ely-blue rounded-xl transition-all"
+                                title="Modifier"
+                            >
+                                <Edit3 className="w-5 h-5" />
+                            </button>
+                        )}
                     </div>
 
                     <div className="space-y-4">
@@ -194,6 +252,7 @@ export default function ProfilePage() {
                                     >
                                         <option value="M.">M.</option>
                                         <option value="Mme">Mme</option>
+                                        <option value="Mlle">Mlle</option>
                                     </select>
                                 ) : (
                                     <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.civility}</p>
@@ -260,31 +319,58 @@ export default function ProfilePage() {
                                 )}
                             </div>
                         </div>
+
+                        <div className="space-y-1">
+                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tIdentity('birthCountry')}</label>
+                            {isEditing ? (
+                                <select
+                                    name="birthCountry"
+                                    value={formData.birthCountry}
+                                    onChange={handleChange}
+                                    className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
+                                >
+                                    {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
+                                </select>
+                            ) : (
+                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.birthCountry || 'France'}</p>
+                            )}
+                        </div>
                     </div>
                 </motion.section>
 
                 {/* Coordonnées */}
                 <motion.section variants={item} className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
-                    <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 bg-ely-mint/5 text-ely-mint rounded-lg">
-                            <MapPin className="w-5 h-5" />
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-ely-mint/5 text-ely-mint rounded-lg">
+                                <MapPin className="w-5 h-5" />
+                            </div>
+                            <h2 className="text-xl font-bold text-slate-900">Coordonnées</h2>
                         </div>
-                        <h2 className="text-xl font-bold text-slate-900">Coordonnées</h2>
+                        {!isEditing && (
+                            <button
+                                onClick={() => setIsEditing(true)}
+                                className="p-2 hover:bg-slate-50 text-slate-400 hover:text-ely-blue rounded-xl transition-all"
+                                title="Modifier"
+                            >
+                                <Edit3 className="w-5 h-5" />
+                            </button>
+                        )}
                     </div>
 
                     <div className="space-y-4">
                         <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Adresse</label>
+                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Adresse (Rue)</label>
                             {isEditing ? (
                                 <input
                                     type="text"
-                                    name="address"
-                                    value={formData.address}
+                                    name="street"
+                                    value={formData.street}
                                     onChange={handleChange}
                                     className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
                                 />
                             ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.address}</p>
+                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.street || '-'}</p>
                             )}
                         </div>
 
@@ -320,24 +406,48 @@ export default function ProfilePage() {
                         </div>
 
                         <div className="space-y-1">
+                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Pays</label>
+                            {isEditing ? (
+                                <select
+                                    name="country"
+                                    value={formData.country}
+                                    onChange={handleChange}
+                                    className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
+                                >
+                                    {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
+                                </select>
+                            ) : (
+                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.country || 'France'}</p>
+                            )}
+                        </div>
+
+                        <div className="space-y-1">
                             <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Téléphone</label>
                             {isEditing ? (
-                                <div className="relative">
-                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                        <Phone className="w-4 h-4 text-slate-400" />
+                                <div className="flex gap-2 relative group">
+                                    <div className="w-16 flex items-center justify-center bg-slate-50 border border-slate-200 rounded-xl text-2xl select-none" title={formData.phoneCountry}>
+                                        {COUNTRY_PHONE_DATA[formData.phoneCountry]?.flag || "🏳️"}
                                     </div>
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
-                                    />
+                                    <div className="relative flex-1">
+                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 font-medium text-sm">
+                                            {COUNTRY_PHONE_DATA[formData.phoneCountry]?.code}
+                                        </div>
+                                        <input
+                                            type="tel"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                            className="w-full pl-14 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
+                                            placeholder={COUNTRY_PHONE_DATA[formData.phoneCountry]?.placeholder || "06 12 34 56 78"}
+                                        />
+                                    </div>
                                 </div>
                             ) : (
                                 <div className="flex items-center gap-3 px-4 py-2 bg-slate-50 rounded-xl">
-                                    <Phone className="w-4 h-4 text-slate-400" />
-                                    <p className="font-medium text-slate-900">{userData?.phone}</p>
+                                    <span className="text-xl">{COUNTRY_PHONE_DATA[userData?.phoneCountry || "France"]?.flag}</span>
+                                    <p className="font-medium text-slate-900">
+                                        {COUNTRY_PHONE_DATA[userData?.phoneCountry || "France"]?.code} {userData?.phone}
+                                    </p>
                                 </div>
                             )}
                         </div>
@@ -346,11 +456,22 @@ export default function ProfilePage() {
 
                 {/* Situation Personnelle */}
                 <motion.section variants={item} className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
-                    <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 bg-rose-50 text-rose-500 rounded-lg">
-                            <Heart className="w-5 h-5" />
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-rose-50 text-rose-500 rounded-lg">
+                                <Heart className="w-5 h-5" />
+                            </div>
+                            <h2 className="text-xl font-bold text-slate-900">Situation Personnelle</h2>
                         </div>
-                        <h2 className="text-xl font-bold text-slate-900">Situation Personnelle</h2>
+                        {!isEditing && (
+                            <button
+                                onClick={() => setIsEditing(true)}
+                                className="p-2 hover:bg-slate-50 text-slate-400 hover:text-ely-blue rounded-xl transition-all"
+                                title="Modifier"
+                            >
+                                <Edit3 className="w-5 h-5" />
+                            </button>
+                        )}
                     </div>
                     <div className="space-y-4">
                         <div className="space-y-1">
@@ -389,9 +510,20 @@ export default function ProfilePage() {
                             <div className="space-y-1">
                                 <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tSituation('housingSeniority')}</label>
                                 {isEditing ? (
-                                    <input type="number" name="housingSeniority" value={formData.housingSeniority} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none" />
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <div className="relative">
+                                            <input type="number" name="housingSeniority" value={formData.housingSeniority} onChange={handleChange} className="w-full px-4 py-2 pr-10 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all" />
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-400 uppercase">{tSituation('seniorityYears')}</span>
+                                        </div>
+                                        <div className="relative">
+                                            <input type="number" name="housingSeniorityMonths" value={formData.housingSeniorityMonths} onChange={handleChange} className="w-full px-4 py-2 pr-10 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all" min="0" max="11" />
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-400 uppercase">{tSituation('seniorityMonths')}</span>
+                                        </div>
+                                    </div>
                                 ) : (
-                                    <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.housingSeniority || 0} ans</p>
+                                    <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">
+                                        {userData?.housingSeniority || 0} {tSituation('seniorityYears').toLowerCase()}, {userData?.housingSeniorityMonths || 0} {tSituation('seniorityMonths').toLowerCase()}
+                                    </p>
                                 )}
                             </div>
                         </div>
@@ -400,11 +532,22 @@ export default function ProfilePage() {
 
                 {/* Situation Professionnelle */}
                 <motion.section variants={item} className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
-                    <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 bg-indigo-50 text-indigo-500 rounded-lg">
-                            <Briefcase className="w-5 h-5" />
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-indigo-50 text-indigo-500 rounded-lg">
+                                <Briefcase className="w-5 h-5" />
+                            </div>
+                            <h2 className="text-xl font-bold text-slate-900">Situation Professionnelle</h2>
                         </div>
-                        <h2 className="text-xl font-bold text-slate-900">Situation Professionnelle</h2>
+                        {!isEditing && (
+                            <button
+                                onClick={() => setIsEditing(true)}
+                                className="p-2 hover:bg-slate-50 text-slate-400 hover:text-ely-blue rounded-xl transition-all"
+                                title="Modifier"
+                            >
+                                <Edit3 className="w-5 h-5" />
+                            </button>
+                        )}
                     </div>
                     <div className="space-y-4">
                         <div className="space-y-1">
@@ -415,22 +558,50 @@ export default function ProfilePage() {
                                 <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.profession || '-'}</p>
                             )}
                         </div>
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tFinances('company')}</label>
-                            {isEditing ? (
-                                <input type="text" name="companyName" value={formData.companyName} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none" />
-                            ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.companyName || '-'}</p>
-                            )}
-                        </div>
+                        {!(formData.contractType === 'retired' || formData.contractType === 'unemployed') && (
+                            <div className="space-y-1">
+                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">
+                                    {formData.contractType === 'student'
+                                        ? "Établissement / Université"
+                                        : formData.contractType === 'apprentice'
+                                            ? "Entreprise d'accueil / CFA"
+                                            : formData.contractType === 'independent'
+                                                ? "Nom de votre activité"
+                                                : formData.contractType === 'artisan'
+                                                    ? "Enseigne / Nom de l'Entreprise"
+                                                    : formData.contractType === 'civil_servant'
+                                                        ? "Ministère / Administration"
+                                                        : formData.contractType === 'temporary'
+                                                            ? "Société d'intérim / Employeur"
+                                                            : formData.contractType === 'liberal'
+                                                                ? "Cabinet / Raison sociale"
+                                                                : formData.contractType === 'business_owner'
+                                                                    ? "Nom de la société / Enseigne"
+                                                                    : tFinances('company')}
+                                </label>
+                                {isEditing ? (
+                                    <input type="text" name="companyName" value={formData.companyName} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none" />
+                                ) : (
+                                    <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.companyName || '-'}</p>
+                                )}
+                            </div>
+                        )}
                         <div className="space-y-1">
                             <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tFinances('contractType')}</label>
                             {isEditing ? (
                                 <select name="contractType" value={formData.contractType} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none">
                                     <option value="cdi">{tFinances('options.cdi')}</option>
                                     <option value="cdd">{tFinances('options.cdd')}</option>
+                                    <option value="temporary">{tFinances('options.temporary')}</option>
+                                    <option value="civil_servant">{tFinances('options.civil_servant')}</option>
+                                    <option value="liberal">{tFinances('options.liberal')}</option>
+                                    <option value="business_owner">{tFinances('options.business_owner')}</option>
+                                    <option value="artisan">{tFinances('options.artisan')}</option>
                                     <option value="independent">{tFinances('options.independent')}</option>
                                     <option value="retired">{tFinances('options.retired')}</option>
+                                    <option value="student">{tFinances('options.student')}</option>
+                                    <option value="apprentice">{tFinances('options.apprentice')}</option>
+                                    <option value="unemployed">{tFinances('options.unemployed')}</option>
                                 </select>
                             ) : (
                                 <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{tFinances(`options.${userData?.contractType || 'cdi'}`)}</p>
@@ -441,15 +612,40 @@ export default function ProfilePage() {
 
                 {/* Situation Financière */}
                 <motion.section variants={item} className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
-                    <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 bg-emerald-50 text-emerald-500 rounded-lg">
-                            <Euro className="w-5 h-5" />
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-emerald-50 text-emerald-500 rounded-lg">
+                                <Euro className="w-5 h-5" />
+                            </div>
+                            <h2 className="text-xl font-bold text-slate-900">Situation Financière</h2>
                         </div>
-                        <h2 className="text-xl font-bold text-slate-900">Situation Financière</h2>
+                        {!isEditing && (
+                            <button
+                                onClick={() => setIsEditing(true)}
+                                className="p-2 hover:bg-slate-50 text-slate-400 hover:text-ely-blue rounded-xl transition-all"
+                                title="Modifier"
+                            >
+                                <Edit3 className="w-5 h-5" />
+                            </button>
+                        )}
                     </div>
                     <div className="space-y-4">
                         <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tFinances('income')}</label>
+                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">
+                                {formData.contractType === 'retired'
+                                    ? "Pension mensuelle"
+                                    : formData.contractType === 'unemployed'
+                                        ? "Allocations / Revenus"
+                                        : formData.contractType === 'student'
+                                            ? "Bourses / Revenus mensuels"
+                                            : formData.contractType === 'apprentice'
+                                                ? "Rémunération mensuelle"
+                                                : formData.contractType === 'civil_servant'
+                                                    ? "Traitement mensuel net"
+                                                    : ['independent', 'artisan', 'liberal', 'business_owner'].includes(formData.contractType)
+                                                        ? "Revenu mensuel moyen"
+                                                        : tFinances('income')}
+                            </label>
                             {isEditing ? (
                                 <input type="number" name="income" value={formData.income} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none" />
                             ) : (

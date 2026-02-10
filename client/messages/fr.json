@@ -154,7 +154,7 @@
     "durationSuffix": "ans",
     "rateLabel": "Taux d'intérêt (%)",
     "monthlyEstimate": "Votre mensualité estimée",
-    "disclaimer": "Estimation hors assurance. Taux variable selon votre profil et les conditions du marché.",
+    "disclaimer": "Assurance incluse (3%). Taux fixe selon les conditions de l'établissement.",
     "startRequest": "Démarrer ma demande",
     "perMonth": "/mois"
   },
@@ -374,6 +374,21 @@
       "pro_badge": "Demande Pro",
       "individual_badge": "Demande Particulier"
     },
+    "Step1": {
+      "amount": "Montant souhaité (€)",
+      "duration": "Durée (mois)",
+      "rate": "Taux d'intérêt (%)",
+      "profileType": "Type de Profil",
+      "projectType": "Type de Projet",
+      "individual": "Particulier",
+      "professional": "Professionnel",
+      "Projects": {
+        "personal": "Personnel",
+        "auto": "Auto",
+        "business": "Business",
+        "other": "Autres"
+      }
+    },
     "Project": {
       "label": "Votre projet",
       "types": {
@@ -399,13 +414,17 @@
       "firstName": "Prénom",
       "lastName": "Nom de famille",
       "birthDate": "Date de naissance",
-      "birthPlace": "Lieu de naissance"
+      "birthPlace": "Lieu de naissance",
+      "birthCountry": "Pays de naissance",
+      "nationality": "Nationalité"
     },
     "Situation": {
       "maritalStatus": "Situation matrimoniale",
       "children": "Enfants à charge",
       "housingType": "Type de logement",
-      "housingSeniority": "Ancienneté (années)",
+      "housingSeniority": "Ancienneté",
+      "seniorityYears": "Ans",
+      "seniorityMonths": "Mois",
       "options": {
         "single": "Célibataire",
         "married": "Marié(e)",
@@ -413,7 +432,10 @@
         "tenant": "Locataire",
         "owner": "Propriétaire",
         "hosted": "Hébergé"
-      }
+      },
+      "street": "Adresse (Rue)",
+      "zipCode": "Code Postal",
+      "city": "Ville"
     },
     "Finances": {
       "contractType": "Type de contrat",
@@ -425,10 +447,23 @@
       "options": {
         "cdi": "CDI",
         "cdd": "CDD",
-        "independent": "Indépendant",
-        "retired": "Retraité"
+        "temporary": "Intérimaire / Mission",
+        "civil_servant": "Fonctionnaire",
+        "liberal": "Profession Libérale",
+        "business_owner": "Chef d'entreprise",
+        "artisan": "Commerçant / Artisan",
+        "independent": "Indépendant / Freelance",
+        "retired": "Retraité",
+        "student": "Étudiant",
+        "apprentice": "Apprenti / Alternant",
+        "unemployed": "Sans emploi"
       },
-      "disposableIncome": "RESTE À VIVRE"
+      "disposableIncome": "RESTE À VIVRE",
+      "bankInfo": "Coordonnées Bancaires",
+      "bankName": "Nom de la banque",
+      "iban": "IBAN",
+      "bic": "Code BIC / SWIFT",
+      "ribEmail": "Email pour les virements"
     },
     "Account": {
       "email": "Adresse Email",
@@ -444,14 +479,14 @@
     },
     "Result": {
       "scoreLabel": "Score AGM",
-      "approvedTitle": "Dossier Validé !",
-      "reviewTitle": "Analyse en cours",
-      "rejectedTitle": "Offre Refusée",
-      "approvedMessage": "Votre profil présente une excellente solidité financière. Votre demande a reçu un avis favorable immédiat.",
-      "reviewMessage": "Votre dossier nécessite une analyse complémentaire par l'un de nos conseillers. Nous vous contacterons sous 24h.",
-      "rejectedMessage": "Désolé, votre capacité d'endettement actuelle ne permet pas de valider ce financement pour le moment.",
-      "dashboardButton": "Mon espace client",
+      "analysisTitle": "Dossier en cours d'analyse",
+      "analysisMessage": "Votre demande a été transmise avec succès. Nos experts analysent actuellement votre dossier pour vous proposer la meilleure solution de financement. Vous serez notifié de la validation de votre score sous 24h.",
+      "dashboardButton": "ACCÉDER À MON ESPACE CLIENT",
       "newProjectButton": "Nouveau projet"
+    },
+    "Errors": {
+      "underage": "Vous devez avoir au moins 18 ans pour faire une demande de crédit.",
+      "invalidDate": "La date de naissance saisie est invalide."
     },
     "Loading": {
       "title": "Vérification de solvabilité",

@@ -1,0 +1,142 @@
+"use client";
+
+import React, { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+    Euro, Building2, User, FileText, Send, Calendar, MapPin,
+    Globe, ShieldCheck, Briefcase, Home, Info, ArrowLeft, ArrowRight,
+    Search, CheckCircle2, AlertCircle, TrendingUp, Mail, Lock, ChevronRight, Percent, Eye, EyeOff, Lightbulb
+} from "lucide-react";
+import Link from "next/link";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { auth, db } from "@/lib/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import Simulator from "@/components/Simulator";
+import { COUNTRY_PHONE_DATA } from "@/lib/constants";
+
+const COUNTRIES = [
+    "France", "Belgique", "Suisse", "Luxembourg", "Allemagne", "Espagne", "Italie", "Portugal",
+    "Royaume-Uni", "Irlande", "Pays-Bas", "Autriche", "Suède", "Norvège", "Danemark", "Finlande",
+    "Brésil", "Argentine", "Colombie", "Chili", "Pérou", "Équateur ", "Uruguay", "Paraguay",
+    "Bolivie", "Guyana", "Suriname", "Venezuela"
+].sort();
+
+const COUNTRY_TO_NATIONALITY: Record<string, string> = {
+    "France": "Française",
+    "Belgique": "Belge",
+    "Suisse": "Suisse",
+    "Luxembourg": "Luxembourgeoise",
+    "Allemagne": "Allemande",
+    "Espagne": "Espagnole",
+    "Italie": "Italienne",
+    "Portugal": "Portugaise",
+    "Royaume-Uni": "Britannique",
+    "Irlande": "Irlandaise",
+    "Pays-Bas": "Néerlandaise",
+    "Autriche": "Autrichienne",
+    "Suède": "Suédoise",
+    "Norvège": "Norvégienne",
+    "Danemark": "Danoise",
+    "Finlande": "Finlandaise",
+    "Brésil": "Brésilienne",
+    "Argentine": "Argentine",
+    "Colombie": "Colombienne",
+    "Chili": "Chilienne",
+    "Pérou": "Péruvienne",
+    "Équateur ": "Équatorienne",
+    "Uruguay": "Uruguayenne",
+    "Paraguay": "Paraguayenne",
+    "Bolivie": "Bolivienne",
+    "Guyana": "Guyanienne",
+    "Suriname": "Surinamaise",
+    "Venezuela": "Vénézuélienne"
+};
+
+// Validation logic and score calculation (Mock)
+const calculateScore = (data: any) => {
+    const income = parseFloat(data.income) || 0;
+    const charges = (parseFloat(data.charges) || 0) + (parseFloat(data.otherCredits) || 0);
+    const requestedAmount = parseFloat(data.amount) || 0;
+    const duration = parseFloat(data.duration) || 12;
+
+    // Theoretical monthly payment (5% annual interest as mock)
+    const monthlyPayment = (requestedAmount * (1 + 0.05)) / duration;
+    const totalNewCharges = charges + monthlyPayment;
+    const debtRatio = income > 0 ? (totalNewCharges / income) * 100 : 100;
+
+    let score = 0;
+    let status = "Review";
+    let messageKey = "";
+
+    if (debtRatio < 33) {
+        score = 85 + Math.random() * 10;
+        status = "Approved";
+        messageKey = "approvedMessage";
+    } else if (debtRatio < 45) {
+        score = 65 + Math.random() * 15;
+        status = "Review";
+        messageKey = "reviewMessage";
+    } else {
+        score = 20 + Math.random() * 20;
+        status = "Rejected";
+        messageKey = "rejectedMessage";
+    }
+
+    return { score: Math.round(score), status, messageKey, debtRatio: Math.round(debtRatio) };
+};
+
+export default function CreditRequestPage() {
+    const t = useTranslations('CreditRequest');
+    const searchParams = useSearchParams();
+    const [step, setStep] = useState(1);
+    const [profileType, setProfileType] = useState<"particulier" | "pro">("particulier");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [scoringResult, setScoringResult] = useState<any>(null);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const [formData, setFormData] = useState({
+        // Project
+        creditType: "personal",
+        amount: "",
+        duration: "",
+        rate: "",
+        purpose: "",
+        // Identity
+        civility: "M.",
+        firstName: "",
+        lastName: "",
+        birthDate: "",
+        birthPlace: "",
+        birthCountry: "France",
+        nationality: "Française",
+        // Personal
+        phone: "",
+        phoneCountry: "France",
+        maritalStatus: "single",
+        children: "0",
+        housingType: "tenant",
+        housingSeniority: "",
+        housingSeniorityMonths: "",
+        street: "",
+        zipCode: "",
+        city: "",
+        // Financial
+        profession: "",
+        companyName: "",
+        contractType: "cdi",
+        income: "",
+        charges: "",
+        otherCredits: "0",
+        bankName: "",
+        iban: "",
+        bic: "",
+        // Account
+        email: "",
+        password: "",
+        confirmPassword: "",
+        acceptTerms: false
+    });

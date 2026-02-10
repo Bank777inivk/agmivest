@@ -70,11 +70,33 @@ service cloud.firestore {
          isAdmin()
        );
        
-       // Seul l'Admin peut mettre à jour un compte (ex: solde, statut).
-       allow update: if isAdmin();
+       // L'utilisateur peut mettre à jour son RIB. L'Admin peut tout modifier.
+       allow update: if isSignedIn() && (
+         (isOwner(resource.data.userId) && 
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['iban', 'bankName', 'bic', 'ribEmail', 'updatedAt'])) ||
+         isAdmin()
+       );
 
        // L'admin doit pouvoir supprimer un compte lors d'une réinitialisation.
        allow delete: if isAdmin();
+    }
+
+    // Collection Virements (transfers)
+    match /transfers/{transferId} {
+      // Les admins peuvent tout lire, modifier et supprimer (pour validation et réinitialisation)
+      allow read, update, delete: if isAdmin();
+      
+      // Les admins peuvent créer des transactions (ex: dépôt d'authentification)
+      allow create: if isAdmin();
+      
+      // Les utilisateurs peuvent lire leurs propres virements
+      allow read: if isSignedIn() && resource.data.userId == request.auth.uid;
+      
+      // Les utilisateurs peuvent créer un virement
+      // Règle CRITIQUE : le statut doit être 'pending' lors de la création par un utilisateur
+      allow create: if isSignedIn() && 
+                    request.resource.data.userId == request.auth.uid &&
+                    request.resource.data.status == 'pending';
     }
     
     // Refuser tout accès par défaut pour les autres collections non définies

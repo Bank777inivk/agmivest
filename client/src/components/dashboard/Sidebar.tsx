@@ -26,7 +26,8 @@ import {
     Crown,
     ShieldCheck,
     XCircle,
-    AlertCircle
+    AlertCircle,
+    CreditCard
 } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -40,6 +41,7 @@ const menuItems = [
     { icon: Plus, label: "Faire une demande", href: "/dashboard/credit" },
     { icon: FileText, label: "Mes Demandes", href: "/dashboard/requests" },
     { icon: FolderOpen, label: "Mes Documents", href: "/dashboard/documents" },
+    { icon: CreditCard, label: "Facturation", href: "/dashboard/billing" },
     { icon: User, label: "Mon Profil", href: "/dashboard/profile" },
 ];
 

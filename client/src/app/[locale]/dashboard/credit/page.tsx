@@ -15,6 +15,35 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
+// Validation logic and score calculation (Mock)
+const calculateScore = (data: any, projectData: any) => {
+    const income = parseFloat(data.income) || 0;
+    const charges = (parseFloat(data.charges) || 0) + (parseFloat(data.otherCredits) || 0);
+    const requestedAmount = parseFloat(projectData.amount) || 0;
+    const duration = parseFloat(projectData.duration) || 12;
+
+    // Theoretical monthly payment (5% annual interest as mock)
+    const monthlyPayment = (requestedAmount * (1 + 0.05)) / duration;
+    const totalNewCharges = charges + monthlyPayment;
+    const debtRatio = income > 0 ? (totalNewCharges / income) * 100 : 100;
+
+    let score = 0;
+    let status = "Review";
+
+    if (debtRatio < 33) {
+        score = 85 + Math.random() * 10;
+        status = "Approved";
+    } else if (debtRatio < 45) {
+        score = 65 + Math.random() * 15;
+        status = "Review";
+    } else {
+        score = 20 + Math.random() * 20;
+        status = "Rejected";
+    }
+
+    return { score: Math.round(score), status, debtRatio: Math.round(debtRatio) };
+};
+
 export default function CreditRequestPage() {
     const t = useTranslations('CreditRequest');
     const router = useRouter();
@@ -23,6 +52,7 @@ export default function CreditRequestPage() {
     const [isCheckingActive, setIsCheckingActive] = useState(true);
     const [hasActiveRequest, setHasActiveRequest] = useState(false);
     const [isApproved, setIsApproved] = useState(false);
+    const [isRejected, setIsRejected] = useState(false);
     const [activeLoanData, setActiveLoanData] = useState<any>(null);
     const [userData, setUserData] = useState<any>(null);
 
@@ -80,9 +110,9 @@ export default function CreditRequestPage() {
                     );
                     const querySnapshot = await getDocs(q);
 
-                    // Find any relevant request (pending, processing, approved, active)
+                    // Find any relevant request (pending, processing, approved, active, rejected)
                     const activeDoc = querySnapshot.docs.find(d =>
-                        ["pending", "processing", "approved", "active"].includes(d.data().status)
+                        ["pending", "processing", "approved", "active", "rejected"].includes(d.data().status)
                     );
 
                     if (activeDoc) {
@@ -91,6 +121,9 @@ export default function CreditRequestPage() {
                         setActiveLoanData(data);
                         if (data.status === "approved" || data.status === "active") {
                             setIsApproved(true);
+                        }
+                        if (data.status === "rejected") {
+                            setIsRejected(true);
                         }
                         setIsCheckingActive(false);
                         return;
@@ -136,6 +169,9 @@ export default function CreditRequestPage() {
         if (!auth.currentUser) return;
         setIsSubmitting(true);
         try {
+            // Calculer le score (Sauvegardé pour l'admin, caché pour le client)
+            const scoring = calculateScore(formData, { amount, duration });
+
             await addDoc(collection(db, "requests"), {
                 userId: auth.currentUser.uid,
                 profileType,
@@ -146,6 +182,9 @@ export default function CreditRequestPage() {
                 annualRate,
                 totalCost,
                 status: "pending",
+                score: scoring.score,
+                scoringStatus: scoring.status,
+                debtRatio: scoring.debtRatio,
                 createdAt: serverTimestamp(),
                 userEmail: auth.currentUser.email,
                 userName: `${formData.firstName} ${formData.lastName}`,
@@ -198,7 +237,20 @@ export default function CreditRequestPage() {
                     </div>
 
                     <div className="relative z-10 space-y-6">
-                        {isApproved ? (
+                        {isRejected ? (
+                            <>
+                                <h2 className="text-4xl font-black text-white tracking-tight uppercase leading-tight">
+                                    Je vous informe que :
+                                </h2>
+                                <p className="text-xl text-white/80 font-medium max-w-xl mx-auto leading-relaxed">
+                                    Votre demande de financement a été refusée par nos services après étude de votre dossier.
+                                    <br /><br />
+                                    <span className="text-white/40 text-lg italic uppercase tracking-tighter">
+                                        Pour plus de détails ou pour échanger avec un conseiller, veuillez contacter notre support.
+                                    </span>
+                                </p>
+                            </>
+                        ) : isApproved ? (
                             <>
                                 <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight uppercase leading-tight">
                                     Félicitations ! <br />
@@ -215,7 +267,7 @@ export default function CreditRequestPage() {
                             </>
                         ) : (
                             <>
-                                <h2 className="text-4xl font-black text-white tracking-tight uppercase">Accès restreint</h2>
+                                <h2 className="text-4xl font-black text-white tracking-tight uppercase">Je vous informe que :</h2>
                                 <p className="text-xl text-white/80 font-medium max-w-xl mx-auto leading-relaxed">
                                     Vous avez déjà une demande de financement en cours de traitement.
                                     <br /><br />
@@ -967,7 +1019,19 @@ export default function CreditRequestPage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-4">
                                     <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">
-                                        Revenus mensuels nets
+                                        {formData.contractType === 'retired'
+                                            ? "Pension mensuelle"
+                                            : formData.contractType === 'unemployed'
+                                                ? "Allocations / Revenus"
+                                                : formData.contractType === 'student'
+                                                    ? "Bourses / Revenus mensuels"
+                                                    : formData.contractType === 'apprentice'
+                                                        ? "Rémunération mensuelle"
+                                                        : formData.contractType === 'civil_servant'
+                                                            ? "Traitement mensuel net"
+                                                            : ['independent', 'artisan', 'liberal', 'business_owner'].includes(formData.contractType)
+                                                                ? "Revenu mensuel moyen"
+                                                                : "Revenus mensuels nets"}
                                     </label>
                                     <div className="relative group">
                                         <input
@@ -997,21 +1061,90 @@ export default function CreditRequestPage() {
                                 </div>
                                 <div className="space-y-4">
                                     <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">
-                                        Profession
+                                        Type de contrat
                                     </label>
                                     <select
-                                        name="profession"
-                                        value={formData.profession}
+                                        name="contractType"
+                                        value={formData.contractType}
                                         onChange={handleChange}
                                         className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm"
                                     >
                                         <option value="cdi">CDI</option>
                                         <option value="cdd">CDD</option>
-                                        <option value="liberal">Libéral / Indépendant</option>
+                                        <option value="temporary">Intérimaire / Mission</option>
+                                        <option value="civil_servant">Fonctionnaire</option>
+                                        <option value="liberal">Profession Libérale</option>
+                                        <option value="business_owner">Chef d'entreprise</option>
+                                        <option value="artisan">Commerçant / Artisan</option>
+                                        <option value="independent">Indépendant / Freelance</option>
                                         <option value="retired">Retraité</option>
                                         <option value="student">Étudiant</option>
+                                        <option value="apprentice">Apprenti / Alternant</option>
+                                        <option value="unemployed">Sans emploi</option>
                                     </select>
                                 </div>
+
+                                {formData.contractType !== 'unemployed' && (
+                                    <div className="space-y-4">
+                                        <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">
+                                            {formData.contractType === 'civil_servant'
+                                                ? "Fonction / Grade"
+                                                : formData.contractType === 'student'
+                                                    ? "Domaine / Filière d'études"
+                                                    : formData.contractType === 'retired'
+                                                        ? "Ancienne profession"
+                                                        : formData.contractType === 'apprentice'
+                                                            ? "Métier préparé"
+                                                            : "Profession / Métier"}
+                                        </label>
+                                        <div className="relative group">
+                                            <input
+                                                type="text"
+                                                name="profession"
+                                                value={formData.profession}
+                                                onChange={handleChange}
+                                                placeholder={formData.contractType === 'civil_servant' ? "Ex: Adjoint Administratif" : formData.contractType === 'student' ? "Ex: Management / Finance" : "Ex: Chef de projet"}
+                                                className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm"
+                                            />
+                                            <Briefcase className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+                                        </div>
+                                    </div>
+                                )}
+
+                                {!(formData.contractType === 'retired' || formData.contractType === 'unemployed') && (
+                                    <div className="space-y-4">
+                                        <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">
+                                            {formData.contractType === 'student'
+                                                ? "Établissement / Université"
+                                                : formData.contractType === 'apprentice'
+                                                    ? "Entreprise d'accueil / CFA"
+                                                    : formData.contractType === 'independent'
+                                                        ? "Nom de votre activité"
+                                                        : formData.contractType === 'artisan'
+                                                            ? "Enseigne / Nom de l'Entreprise"
+                                                            : formData.contractType === 'civil_servant'
+                                                                ? "Ministère / Administration"
+                                                                : formData.contractType === 'temporary'
+                                                                    ? "Société d'intérim / Employeur"
+                                                                    : formData.contractType === 'liberal'
+                                                                        ? "Cabinet / Raison sociale"
+                                                                        : formData.contractType === 'business_owner'
+                                                                            ? "Nom de la société / Enseigne"
+                                                                            : "Nom de l'Employeur"}
+                                        </label>
+                                        <div className="relative group">
+                                            <input
+                                                type="text"
+                                                name="companyName"
+                                                value={formData.companyName}
+                                                onChange={handleChange}
+                                                placeholder={formData.contractType === 'student' ? "Ex: Sorbonne" : formData.contractType === 'independent' ? "Ex: Freelance IT" : formData.contractType === 'civil_servant' ? "Ex: Préfecture" : "Ex: AGM INVEST"}
+                                                className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm"
+                                            />
+                                            <Building2 className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+                                        </div>
+                                    </div>
+                                )}
                                 <div className="space-y-4">
                                     <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">
                                         Banque principale
@@ -1135,9 +1268,36 @@ export default function CreditRequestPage() {
                                             <span className="font-black text-white text-sm">{formData.city}</span>
                                         </div>
                                         <div className="flex justify-between items-center bg-white/5 px-5 py-3.5 rounded-xl border border-white/5">
-                                            <span className="text-white font-bold text-xs">Profession</span>
-                                            <span className="font-black text-white text-xs uppercase tracking-wider">{formData.profession}</span>
+                                            <span className="text-white font-bold text-xs">
+                                                {formData.profession === 'student'
+                                                    ? "Études"
+                                                    : ['retired', 'unemployed'].includes(formData.profession)
+                                                        ? "Situation"
+                                                        : "Contrat"}
+                                            </span>
+                                            <span className="font-black text-white text-xs uppercase tracking-wider">
+                                                {formData.profession === 'cdi' ? 'CDI' :
+                                                    formData.profession === 'cdd' ? 'CDD' :
+                                                        formData.profession === 'temporary' ? 'Intérimaire' :
+                                                            formData.profession === 'civil_servant' ? 'Fonctionnaire' :
+                                                                formData.profession === 'liberal' ? 'Libéral' :
+                                                                    formData.profession === 'business_owner' ? 'Chef entreprise' :
+                                                                        formData.profession === 'artisan' ? 'Artisan' :
+                                                                            formData.profession === 'retired' ? 'Retraité' :
+                                                                                formData.profession === 'student' ? 'Étudiant' :
+                                                                                    formData.profession === 'unemployed' ? 'Sans emploi' :
+                                                                                        formData.profession === 'apprentice' ? 'Apprenti' :
+                                                                                            formData.profession === 'independent' ? 'Freelance' : formData.profession}
+                                            </span>
                                         </div>
+                                        {!(formData.profession === 'retired' || formData.profession === 'unemployed') && formData.companyName && (
+                                            <div className="flex justify-between items-center bg-white/5 px-5 py-3.5 rounded-xl border border-white/5">
+                                                <span className="text-white font-bold text-xs">
+                                                    {formData.profession === 'student' ? "Établissement" : formData.profession === 'apprentice' ? "Structure d'accueil" : formData.profession === 'independent' ? "Activité" : formData.profession === 'artisan' ? "Enseigne" : formData.profession === 'civil_servant' ? "Administration" : formData.profession === 'liberal' ? "Cabinet" : "Structure"}
+                                                </span>
+                                                <span className="font-black text-white text-xs uppercase tracking-wider truncate ml-4">{formData.companyName}</span>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -1187,9 +1347,9 @@ export default function CreditRequestPage() {
                             <CheckCircle2 className="w-12 h-12" />
                         </motion.div>
                         <div className="space-y-4 text-center">
-                            <h2 className="text-4xl font-black text-white tracking-tight uppercase">Dossier Transmis !</h2>
+                            <h2 className="text-4xl font-black text-white tracking-tight uppercase">{t('Result.analysisTitle')}</h2>
                             <p className="text-white font-medium text-lg max-w-lg mx-auto leading-relaxed">
-                                Votre demande de <span className="text-ely-mint font-bold">{amount.toLocaleString()} €</span> est en cours d'analyse.
+                                {t('Result.analysisMessage')}
                             </p>
                         </div>
                         <div className="pt-8 flex flex-col md:flex-row justify-center gap-4">

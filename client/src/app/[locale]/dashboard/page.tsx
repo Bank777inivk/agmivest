@@ -19,7 +19,8 @@ import {
     ShieldCheck,
     HelpCircle,
     Landmark,
-    Wallet
+    Wallet,
+    Euro
 } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
 import PremiumSpinner from "@/components/dashboard/PremiumSpinner";
@@ -39,6 +40,9 @@ interface LoanRequest {
     profession?: string;
     situation?: string;
     createdAt?: any;
+    requiresPayment?: boolean;
+    paymentStatus?: string;
+    paymentType?: string;
 }
 
 export default function DashboardPage() {
@@ -80,7 +84,37 @@ export default function DashboardPage() {
                 const qAccount = query(accountsRef, where("userId", "==", currentUser.uid), limit(1));
                 unsubAccount = onSnapshot(qAccount, (snapshot) => {
                     if (!snapshot.empty) {
-                        setLoanAccount({ id: snapshot.docs[0].id, ...snapshot.docs[0].data() });
+                        const data = snapshot.docs[0].data();
+
+                        // Dynamic Calculation logic similar to accounts page
+                        const rawDate = data.startDate || data.createdAt;
+                        const startDate = rawDate?.seconds ? new Date(rawDate.seconds * 1000) : (rawDate?.toDate ? rawDate.toDate() : new Date());
+                        const startDateFormatted = startDate.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+                        const now = new Date();
+                        const isDeferred = startDate > now;
+
+                        const installments = data.installments || {};
+                        const duration = data.duration || 12;
+                        let countRemaining = 0;
+
+                        if (isDeferred) {
+                            countRemaining = duration;
+                        } else {
+                            for (let i = 0; i < duration; i++) {
+                                if (installments[i]?.status !== 'paid') {
+                                    countRemaining++;
+                                }
+                            }
+                        }
+
+                        setLoanAccount({
+                            id: snapshot.docs[0].id,
+                            ...data,
+                            remainingMonths: countRemaining,
+                            isDeferred,
+                            startDateFormatted
+                        });
                     }
                 }, (error) => {
                     if (error.code === 'permission-denied' && !auth.currentUser) return;
@@ -168,23 +202,64 @@ export default function DashboardPage() {
 
 
             {/* Active Loan Success Alert */}
+            {recentRequests.find(r => r.status === 'rejected') && (
+                <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-gradient-to-br from-red-600/10 to-orange-600/10 border-2 border-red-500/30 rounded-3xl p-6 flex items-start gap-4 mb-8"
+                >
+                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-lg shadow-red-500/20">
+                        <AlertCircle className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                        <h3 className="text-lg font-bold text-red-700 mb-1">Je vous informe que :</h3>
+                        <p className="text-sm text-red-600/80 leading-relaxed mb-3">
+                            Votre demande de financement a été refusée par nos services après étude de votre dossier. Pour plus de détails ou pour échanger avec un conseiller, veuillez contacter notre support.
+                        </p>
+                        <button
+                            onClick={() => router.push("/dashboard/support")}
+                            className="px-6 py-2.5 bg-red-600 text-white rounded-xl font-bold text-sm hover:bg-red-700 transition-all flex items-center gap-2 shadow-lg shadow-red-500/20"
+                        >
+                            <HelpCircle className="w-4 h-4" />
+                            Contacter le Support
+                        </button>
+                    </div>
+                </motion.div>
+            )}
+
+            {/* Active Loan Success Alert */}
             {loanAccount?.status === 'active' && (
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="bg-gradient-to-br from-[#064e3b] to-[#059669] rounded-[2.5rem] p-8 text-white shadow-2xl shadow-emerald-900/20 relative overflow-hidden group mb-8 border border-white/10"
+                    className={`rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden group mb-8 border border-white/10 ${loanAccount.isDeferred ? "bg-gradient-to-br from-amber-600 to-amber-800 shadow-amber-900/20" : "bg-gradient-to-br from-[#064e3b] to-[#059669] shadow-emerald-900/20"}`}
                 >
                     <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:scale-110 transition-transform">
-                        <CheckCircle className="w-32 h-32 text-white" />
+                        {loanAccount.isDeferred ? (
+                            <Clock className="w-32 h-32 text-white" />
+                        ) : (
+                            <CheckCircle className="w-32 h-32 text-white" />
+                        )}
                     </div>
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
                         <div className="flex items-center gap-6">
                             <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shrink-0">
-                                <CheckCircle className="w-8 h-8 text-white" />
+                                {loanAccount.isDeferred ? (
+                                    <Clock className="w-8 h-8 text-white" />
+                                ) : (
+                                    <CheckCircle className="w-8 h-8 text-white" />
+                                )}
                             </div>
                             <div>
-                                <h2 className="text-2xl font-black tracking-tight mb-1">Félicitations ! Votre crédit est activé.</h2>
-                                <p className="text-white/80 text-sm font-medium">Les fonds ont été débloqués. Vous pouvez dès maintenant consulter votre échéancier.</p>
+                                <h2 className="text-2xl font-black tracking-tight mb-1">
+                                    {loanAccount.isDeferred ? "Période de Différé Active" : "Félicitations ! Votre crédit est activé."}
+                                </h2>
+                                <p className="text-white/80 text-sm font-medium">
+                                    {loanAccount.isDeferred
+                                        ? `Le remboursement de votre prêt débutera le ${loanAccount.startDateFormatted}.`
+                                        : "Les fonds ont été débloqués. Vous pouvez dès maintenant consulter votre échéancier."
+                                    }
+                                </p>
                             </div>
                         </div>
                         <button
@@ -228,7 +303,7 @@ export default function DashboardPage() {
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-gradient-to-br from-orange-600/10 to-yellow-600/10 border-2 border-orange-500/30 rounded-3xl p-6 flex items-start gap-4"
+                    className="bg-gradient-to-br from-orange-600/10 to-yellow-600/10 border-2 border-orange-500/30 rounded-3xl p-6 flex items-start gap-4 mb-8"
                 >
                     <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-500/20">
                         <FileText className="w-6 h-6 text-white" />
@@ -248,6 +323,44 @@ export default function DashboardPage() {
                     </div>
                 </motion.div>
             )}
+
+            {/* Payment Alert */}
+            {(() => {
+                const pendingPaymentReq = recentRequests.find(r => r.requiresPayment && r.paymentStatus === 'pending');
+                if (!pendingPaymentReq || pendingPaymentReq.paymentType === 'none') return null;
+
+                const paymentTypeLabel = {
+                    frais_dossier: "Frais de Dossier",
+                    assurance: "Assurance",
+                    frais_notaire: "Frais de Notaire",
+                    authentication_deposit: "Dépôt d'Authentification"
+                }[pendingPaymentReq.paymentType as string] || "Dépôt d'Authentification";
+
+                return (
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-gradient-to-br from-amber-600/10 to-blue-600/10 border-2 border-amber-500/30 rounded-3xl p-6 flex items-start gap-4 mb-8"
+                    >
+                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20">
+                            <Euro className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="flex-1">
+                            <h3 className="text-lg font-bold text-amber-800 mb-1">Étapes de finalisation : {paymentTypeLabel}</h3>
+                            <p className="text-sm text-amber-900/80 leading-relaxed mb-3">
+                                Pour procéder au déblocage des fonds de votre prêt, un <span className="font-bold">dépôt d'authentification</span> est requis. Veuillez consulter nos coordonnées bancaires pour effectuer le virement.
+                            </p>
+                            <button
+                                onClick={() => router.push("/dashboard/billing")}
+                                className="px-6 py-2.5 bg-amber-600 text-white rounded-xl font-bold text-sm hover:bg-amber-700 transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20 uppercase tracking-wider"
+                            >
+                                <ArrowUpRight className="w-4 h-4" />
+                                EFFECTUER LE DEPOT
+                            </button>
+                        </div>
+                    </motion.div>
+                );
+            })()}
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2 space-y-8">

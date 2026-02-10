@@ -2,7 +2,8 @@
 
 /* Custom NProgress Styles */
 #nprogress .bar {
-  background: #003d82 !important; /* ely-blue */
+  background: #003d82 !important;
+  /* ely-blue */
   height: 3px !important;
   z-index: 9999 !important;
 }
@@ -59,4 +60,18 @@ body {
 
 .bg-mint {
   background-color: var(--color-ely-mint);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
 }
