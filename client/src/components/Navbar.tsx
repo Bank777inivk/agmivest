@@ -129,9 +129,6 @@ export default function Navbar() {
                             </Link>
                         ))}
                         <div className="pt-4 border-t border-white/10 space-y-4">
-                            <div className="flex justify-center pb-2">
-                                <LanguageSwitcher />
-                            </div>
                             <Link
                                 href="/credit-request"
                                 className="block w-full bg-ely-mint text-white px-6 py-3 rounded-lg font-bold text-center text-sm"
