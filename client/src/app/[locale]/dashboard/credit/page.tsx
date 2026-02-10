@@ -222,11 +222,11 @@ export default function CreditRequestPage() {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="bg-gradient-to-br from-ely-blue to-blue-800 p-12 md:p-20 rounded-[3.5rem] shadow-2xl shadow-blue-900/40 border border-white/10 space-y-10 relative overflow-hidden"
+                    className="bg-gradient-to-br from-ely-blue to-blue-800 p-6 md:p-20 rounded-[2rem] md:rounded-[3.5rem] shadow-2xl shadow-blue-900/40 border border-white/10 space-y-8 md:space-y-10 relative overflow-hidden"
                 >
                     {/* Decorative background elements */}
-                    <div className="absolute top-0 right-0 p-12 opacity-[0.05] pointer-events-none text-white">
-                        {isApproved ? <TrendingUp className="w-64 h-64" /> : <Lock className="w-64 h-64" />}
+                    <div className="absolute top-0 right-0 p-8 md:p-12 opacity-[0.05] pointer-events-none text-white">
+                        {isApproved ? <TrendingUp className="w-32 h-32 md:w-64 md:h-64" /> : <Lock className="w-32 h-32 md:w-64 md:h-64" />}
                     </div>
 
                     <div className={cn(
@@ -373,7 +373,7 @@ export default function CreditRequestPage() {
                         className="grid grid-cols-1 lg:grid-cols-12 gap-10"
                     >
                         {/* Simulation controls */}
-                        <div className="lg:col-span-8 bg-gradient-to-br from-ely-blue to-blue-800 p-8 md:p-10 rounded-[2.5rem] shadow-2xl shadow-blue-900/30 border border-white/10 space-y-10 relative overflow-hidden group">
+                        <div className="lg:col-span-8 bg-gradient-to-br from-ely-blue to-blue-800 p-6 md:p-10 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl shadow-blue-900/30 border border-white/10 space-y-8 md:space-y-10 relative overflow-hidden group">
                             <div className="absolute top-0 right-0 p-20 opacity-10 pointer-events-none text-white group-hover:scale-110 transition-transform duration-1000">
                                 <Calculator className="w-64 h-64" />
                             </div>
@@ -390,25 +390,25 @@ export default function CreditRequestPage() {
                                     <button
                                         onClick={() => setProfileType("particulier")}
                                         className={cn(
-                                            "py-5 px-6 rounded-[1.4rem] font-black text-xs uppercase tracking-[0.15em] transition-all flex items-center justify-center gap-3",
+                                            "py-4 px-4 md:py-5 md:px-6 rounded-[1.4rem] font-black text-[10px] md:text-xs uppercase tracking-[0.15em] transition-all flex items-center justify-center gap-2 md:gap-3",
                                             profileType === "particulier"
                                                 ? "bg-white text-ely-blue shadow-[0_0_20px_rgba(255,255,255,0.2)] border border-white"
                                                 : "bg-white/10 text-white hover:bg-white/20 border border-white/10"
                                         )}
                                     >
-                                        <User className={cn("w-4 h-4", profileType === "particulier" ? "text-ely-mint" : "text-white/80")} />
+                                        <User className={cn("w-3 h-3 md:w-4 md:h-4", profileType === "particulier" ? "text-ely-mint" : "text-white/80")} />
                                         Particulier
                                     </button>
                                     <button
                                         onClick={() => setProfileType("pro")}
                                         className={cn(
-                                            "py-5 px-6 rounded-[1.4rem] font-black text-xs uppercase tracking-[0.15em] transition-all flex items-center justify-center gap-3",
+                                            "py-4 px-4 md:py-5 md:px-6 rounded-[1.4rem] font-black text-[10px] md:text-xs uppercase tracking-[0.15em] transition-all flex items-center justify-center gap-2 md:gap-3",
                                             profileType === "pro"
                                                 ? "bg-white text-ely-blue shadow-[0_0_20px_rgba(255,255,255,0.2)] border border-white"
                                                 : "bg-white/10 text-white hover:bg-white/20 border border-white/10"
                                         )}
                                     >
-                                        <Building2 className={cn("w-4 h-4", profileType === "pro" ? "text-ely-mint" : "text-white/80")} />
+                                        <Building2 className={cn("w-3 h-3 md:w-4 md:h-4", profileType === "pro" ? "text-ely-mint" : "text-white/80")} />
                                         Professionnel
                                     </button>
                                 </div>
@@ -498,8 +498,8 @@ export default function CreditRequestPage() {
                                         </div>
                                         <p className="text-sm text-white/40 font-medium italic">Ajustez selon votre besoin réel.</p>
                                     </div>
-                                    <div className="px-6 py-3 bg-white/5 rounded-2xl border border-white/5 font-black text-3xl text-white shadow-xl backdrop-blur-md group-hover:scale-105 transition-transform duration-500">
-                                        {amount.toLocaleString()} <span className="text-xl font-black text-white/20 ml-1">€</span>
+                                    <div className="px-4 py-2 md:px-6 md:py-3 bg-white/5 rounded-2xl border border-white/5 font-black text-2xl md:text-3xl text-white shadow-xl backdrop-blur-md group-hover:scale-105 transition-transform duration-500">
+                                        {amount.toLocaleString()} <span className="text-lg md:text-xl font-black text-white/20 ml-1">€</span>
                                     </div>
                                 </div>
                                 <div className="relative pt-4">

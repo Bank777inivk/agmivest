@@ -92,7 +92,7 @@ export default function Sidebar({
             </div>
 
             {/* Navigation Section */}
-            <div className="flex-1 px-4 space-y-4 py-2 overflow-y-auto custom-scrollbar">
+            <div className="flex-1 px-4 space-y-4 py-2 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <div>
                     {!isCollapsed && (
                         <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] px-5 mb-4 drop-shadow-sm">
@@ -106,14 +106,14 @@ export default function Sidebar({
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className={`flex items-center gap-3 px-4 py-2 rounded-xl transition-all duration-300 group relative overflow-hidden ${isActive
+                                    className={`flex items-center gap-3 px-3 py-1.5 rounded-xl transition-all duration-300 group relative overflow-hidden ${isActive
                                         ? "bg-white/10 backdrop-blur-md text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] border-l-4 border-ely-mint pl-3"
                                         : "text-white hover:bg-white/10"
                                         }`}
                                 >
                                     <item.icon className={`w-4 h-4 flex-shrink-0 transition-transform duration-300 ${isActive ? 'scale-110 text-ely-mint' : 'group-hover:scale-110 text-white translate-z-0'}`} />
                                     {(!isCollapsed || isMobile) && (
-                                        <span className={`text-sm font-semibold tracking-wide transition-all duration-300 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
+                                        <span className={`text-xs font-semibold tracking-wide transition-all duration-300 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
                                             {item.label}
                                         </span>
                                     )}
@@ -144,14 +144,14 @@ export default function Sidebar({
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className={`flex items-center gap-3 px-4 py-2 rounded-xl transition-all duration-300 group relative overflow-hidden ${isActive
+                                    className={`flex items-center gap-3 px-3 py-1.5 rounded-xl transition-all duration-300 group relative overflow-hidden ${isActive
                                         ? "bg-white/10 backdrop-blur-md text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] border-l-4 border-ely-mint pl-3"
                                         : "text-white hover:bg-white/10"
                                         }`}
                                 >
                                     <item.icon className={`w-4 h-4 flex-shrink-0 transition-transform duration-300 ${isActive ? 'scale-110 text-ely-mint' : 'group-hover:scale-110 text-white'}`} />
                                     {(!isCollapsed || isMobile) && (
-                                        <span className={`text-sm font-semibold tracking-wide transition-all duration-300 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
+                                        <span className={`text-xs font-semibold tracking-wide transition-all duration-300 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
                                             {item.label}
                                         </span>
                                     )}

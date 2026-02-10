@@ -248,25 +248,25 @@ export default function AccountsPage() {
                     {/* Main Balance Card */}
                     <motion.div
                         variants={item}
-                        className="lg:col-span-2 relative overflow-hidden bg-gradient-to-br from-[#003d82] to-[#001d3d] p-8 rounded-[2.5rem] shadow-2xl shadow-ely-blue/20 text-white"
+                        className="lg:col-span-2 relative overflow-hidden bg-gradient-to-br from-[#003d82] to-[#001d3d] p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl shadow-ely-blue/20 text-white"
                     >
-                        <div className="absolute top-0 right-0 p-8 opacity-10">
-                            <Landmark className="w-32 h-32" />
+                        <div className="absolute top-0 right-0 p-6 md:p-8 opacity-10">
+                            <Landmark className="w-24 h-24 md:w-32 md:h-32" />
                         </div>
 
-                        <div className="relative z-10 flex flex-col h-full justify-between gap-12">
+                        <div className="relative z-10 flex flex-col h-full justify-between gap-8 md:gap-12">
                             <div className="flex items-center justify-between">
-                                <span className="text-sm font-bold uppercase tracking-[0.2em] text-white/60">Solde Total Crédit</span>
+                                <span className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-white/60">Solde Total Crédit</span>
                                 {loanAccount?.isDeferred && (
                                     <span className="px-3 py-1 bg-amber-500/20 border border-amber-500/50 text-amber-300 text-[10px] font-bold uppercase tracking-widest rounded-full backdrop-blur-md">
                                         Période de Différé
                                     </span>
                                 )}
-                                {!loanAccount?.isDeferred && <CreditCard className="w-6 h-6 text-ely-mint" />}
+                                {!loanAccount?.isDeferred && <CreditCard className="w-5 h-5 md:w-6 md:h-6 text-ely-mint" />}
                             </div>
 
                             <div>
-                                <h2 className="text-5xl font-black tracking-tight">
+                                <h2 className="text-4xl md:text-5xl font-black tracking-tight">
                                     {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(loanAccount?.remainingAmount || 0)}
                                 </h2>
                                 <p className="text-white/40 mt-2 font-medium">Capital restant dû</p>

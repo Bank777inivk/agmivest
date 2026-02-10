@@ -64,6 +64,11 @@ export default function Navbar() {
                     </button>
                 </div>
 
+                {/* Mobile Language Switcher */}
+                <div className="lg:hidden mr-1">
+                    <LanguageSwitcher />
+                </div>
+
                 {/* Mobile Menu Button */}
                 <button
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

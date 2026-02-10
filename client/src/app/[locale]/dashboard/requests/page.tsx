@@ -126,28 +126,28 @@ export default function RequestsPage() {
                                 key={req.id}
                                 variants={item}
                                 onClick={() => router.push(`/dashboard/requests/${req.id}`)}
-                                className="group bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer"
+                                className="group bg-white p-5 md:p-6 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className={`p-4 rounded-2xl bg-${style.color === 'ely-mint' ? '[#059669]/10' : style.color === 'ely-blue' ? 'ely-blue/10' : style.color + '-50'} text-${style.color === 'ely-mint' ? '[#059669]' : style.color === 'ely-blue' ? 'ely-blue' : style.color + '-600'} border border-${style.color === 'ely-mint' ? '[#059669]/20' : style.color === 'ely-blue' ? 'ely-blue/20' : style.color + '-100'}`}>
-                                        <FileText className="w-6 h-6" />
+                                    <div className={`p-3 md:p-4 rounded-2xl bg-${style.color === 'ely-mint' ? '[#059669]/10' : style.color === 'ely-blue' ? 'ely-blue/10' : style.color + '-50'} text-${style.color === 'ely-mint' ? '[#059669]' : style.color === 'ely-blue' ? 'ely-blue' : style.color + '-600'} border border-${style.color === 'ely-mint' ? '[#059669]/20' : style.color === 'ely-blue' ? 'ely-blue/20' : style.color + '-100'}`}>
+                                        <FileText className="w-5 h-5 md:w-6 md:h-6" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-slate-900 group-hover:text-ely-blue transition-colors">{req.projectType || "Demande de Crédit"}</h3>
-                                        <p className="text-sm text-slate-400 font-medium tracking-wide mb-1 uppercase">Réf: {req.id.slice(0, 8)}</p>
+                                        <h3 className="font-bold text-slate-900 group-hover:text-ely-blue transition-colors text-sm md:text-base">{req.projectType || "Demande de Crédit"}</h3>
+                                        <p className="text-xs md:text-sm text-slate-400 font-medium tracking-wide mb-1 uppercase">Réf: {req.id.slice(0, 8)}</p>
                                         <div className="flex items-center gap-2">
-                                            <style.icon className={`w-3.5 h-3.5 text-${style.color === 'ely-mint' ? '[#059669]' : style.color === 'ely-blue' ? 'ely-blue' : style.color + '-500'}`} />
-                                            <span className={`text-[11px] font-bold uppercase tracking-wider text-${style.color === 'ely-mint' ? '[#059669]' : style.color === 'ely-blue' ? 'ely-blue' : style.color + '-500'}`}>
+                                            <style.icon className={`w-3 h-3 md:w-3.5 md:h-3.5 text-${style.color === 'ely-mint' ? '[#059669]' : style.color === 'ely-blue' ? 'ely-blue' : style.color + '-500'}`} />
+                                            <span className={`text-[10px] md:text-[11px] font-bold uppercase tracking-wider text-${style.color === 'ely-mint' ? '[#059669]' : style.color === 'ely-blue' ? 'ely-blue' : style.color + '-500'}`}>
                                                 {style.label}
                                             </span>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="flex items-center gap-6 border-t md:border-t-0 pt-4 md:pt-0">
-                                    <div className="text-right hidden sm:block">
-                                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-1">Montant</p>
-                                        <p className="text-xl font-black text-slate-900 leading-none">
+                                <div className="flex items-center justify-between md:justify-end gap-6 border-t md:border-t-0 pt-4 md:pt-0">
+                                    <div className="text-left md:text-right">
+                                        <p className="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-1">Montant</p>
+                                        <p className="text-lg md:text-xl font-black text-slate-900 leading-none">
                                             {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(req.amount || 0)}
                                         </p>
                                     </div>

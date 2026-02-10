@@ -217,10 +217,10 @@ export default function ProfilePage() {
                 variants={container}
                 initial="hidden"
                 animate="show"
-                className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
             >
                 {/* État Civil */}
-                <motion.section variants={item} className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
+                <motion.section variants={item} className="bg-white p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
                     <div className="flex items-center justify-between gap-3 mb-2">
                         <div className="flex items-center gap-3">
                             <div className="p-2 bg-ely-blue/5 text-ely-blue rounded-lg">

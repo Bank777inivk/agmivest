@@ -24,7 +24,7 @@ export default function SupportPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1 }}
-                        className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm text-center space-y-4 hover:shadow-xl transition-all"
+                        className="bg-white p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border border-gray-100 shadow-sm text-center space-y-4 hover:shadow-xl transition-all"
                     >
                         <div className={`w-16 h-16 ${method.color} rounded-2xl flex items-center justify-center mx-auto mb-2`}>
                             <method.icon className="w-8 h-8" />

@@ -176,10 +176,10 @@ export default function BillingPage() {
                                     { label: "Code BIC (SWIFT)", value: advisorRIB.bic, field: "bic", mono: true },
                                 ].map((item, i) => (
                                     <div key={i} className="group relative">
-                                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">{item.label}</p>
-                                        <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100 group-hover:border-ely-blue/30 transition-all">
+                                        <p className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">{item.label}</p>
+                                        <div className="flex items-center justify-between p-3 md:p-4 bg-slate-50 rounded-2xl border border-slate-100 group-hover:border-ely-blue/30 transition-all">
                                             <p className={cn(
-                                                "text-sm font-bold text-slate-900 truncate pr-4",
+                                                "text-xs md:text-sm font-bold text-slate-900 truncate pr-2 md:pr-4",
                                                 item.mono && "font-mono tracking-tighter"
                                             )}>
                                                 {item.value}

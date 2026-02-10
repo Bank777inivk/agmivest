@@ -26,7 +26,7 @@ export default function SettingsPage() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.1 }}
-                        className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex items-center justify-between group hover:shadow-lg transition-all cursor-pointer"
+                        className="bg-white p-5 md:p-6 rounded-[2rem] border border-gray-100 shadow-sm flex items-center justify-between group hover:shadow-lg transition-all cursor-pointer"
                     >
                         <div className="flex items-center gap-4">
                             <div className="p-3 bg-gray-50 text-gray-400 group-hover:bg-ely-blue/10 group-hover:text-ely-blue rounded-xl transition-all">

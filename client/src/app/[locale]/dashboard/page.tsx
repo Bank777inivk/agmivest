@@ -232,22 +232,22 @@ export default function DashboardPage() {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className={`rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden group mb-8 border border-white/10 ${loanAccount.isDeferred ? "bg-gradient-to-br from-amber-600 to-amber-800 shadow-amber-900/20" : "bg-gradient-to-br from-[#064e3b] to-[#059669] shadow-emerald-900/20"}`}
+                    className={`rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 text-white shadow-2xl relative overflow-hidden group mb-8 border border-white/10 ${loanAccount.isDeferred ? "bg-gradient-to-br from-amber-600 to-amber-800 shadow-amber-900/20" : "bg-gradient-to-br from-[#064e3b] to-[#059669] shadow-emerald-900/20"}`}
                 >
-                    <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:scale-110 transition-transform">
+                    <div className="absolute top-0 right-0 p-6 md:p-10 opacity-10 group-hover:scale-110 transition-transform">
                         {loanAccount.isDeferred ? (
-                            <Clock className="w-32 h-32 text-white" />
+                            <Clock className="w-24 h-24 md:w-32 md:h-32 text-white" />
                         ) : (
-                            <CheckCircle className="w-32 h-32 text-white" />
+                            <CheckCircle className="w-24 h-24 md:w-32 md:h-32 text-white" />
                         )}
                     </div>
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div className="flex items-center gap-6">
-                            <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shrink-0">
+                        <div className="flex items-center gap-4 md:gap-6 w-full md:w-auto">
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shrink-0">
                                 {loanAccount.isDeferred ? (
-                                    <Clock className="w-8 h-8 text-white" />
+                                    <Clock className="w-6 h-6 md:w-8 md:h-8 text-white" />
                                 ) : (
-                                    <CheckCircle className="w-8 h-8 text-white" />
+                                    <CheckCircle className="w-6 h-6 md:w-8 md:h-8 text-white" />
                                 )}
                             </div>
                             <div>
