@@ -1075,6 +1075,14 @@ export default function AdminDashboard() {
           kycSubmittedAt: null
         });
 
+        // Réinitialiser aussi la vérification selfie dans la request
+        await updateDoc(doc(dbInstance, "requests", request.id), {
+          paymentVerificationStatus: null,
+          paymentSelfieUrl: null,
+          paymentVideoUrl: null,
+          paymentVerificationSubmittedAt: null
+        });
+
         setIsDocModalOpen(false);
         alert("Les documents ont été réinitialisés. L'utilisateur peut à nouveau soumettre son dossier.");
       }
@@ -1176,6 +1184,10 @@ export default function AdminDashboard() {
         paymentType: null,
         customRIB: null,
         paymentTriggeredAt: null,
+        paymentVerificationStatus: null,
+        paymentSelfieUrl: null,
+        paymentVideoUrl: null,
+        paymentVerificationSubmittedAt: null,
         updatedAt: serverTimestamp()
       });
 
