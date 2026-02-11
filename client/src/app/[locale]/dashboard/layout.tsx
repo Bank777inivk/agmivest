@@ -50,7 +50,7 @@ export default function DashboardLayout({
                         setIdStatus(data.idStatus || null);
                         setUserName(`${data.firstName} ${data.lastName}`);
                     }
-                }, (error) => {
+                }, (error: any) => {
                     console.error("Firestore Error (User Layout):", error);
                 });
             }

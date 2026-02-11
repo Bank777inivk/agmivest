@@ -47,16 +47,24 @@ service cloud.firestore {
     // Collection Demandes (requests)
     match /requests/{requestId} {
       // Le propriétaire peut lire ses demandes, l'admin peut tout lire.
-      allow read: if isSignedIn() && (
-        ('userId' in resource.data && resource.data.userId == request.auth.uid) || 
-        isAdmin()
-      );
+      // Le propriétaire peut lire ses demandes, l'admin peut tout lire.
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
       
       // Le propriétaire peut créer une demande pour lui-même.
       allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
       
       // Seul l'Admin peut modifier une demande (pour changer le statut en 'approved' ou 'rejected').
-      allow update: if isAdmin(); 
+      // Sauf pour la soumission des preuves de vérification de paiement par l'utilisateur.
+      allow update: if isAdmin() || (
+        isSignedIn() && 
+        resource.data.userId == request.auth.uid &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+            'paymentVerificationStatus', 
+            'paymentSelfieUrl', 
+            'paymentVideoUrl', 
+            'paymentVerificationSubmittedAt'
+        ])
+      ); 
     }
 
     // Collection Comptes (accounts)

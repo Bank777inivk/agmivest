@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import {
@@ -12,21 +12,50 @@ import {
     ArrowLeft,
     ShieldCheck,
     Euro,
-    Lock
+    Lock,
+    Camera,
+    Video,
+    Loader2,
+    X,
+    CheckCircle2,
+    Play,
+    StopCircle,
+    History
 } from "lucide-react";
 import { auth, db } from "@/lib/firebase";
-import { collection, query, where, getDocs, limit } from "firebase/firestore";
+import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { collection, query, where, getDocs, limit, onSnapshot } from "firebase/firestore";
+import { AnimatePresence } from "framer-motion";
 import { onAuthStateChanged } from "firebase/auth";
 import { cn } from "@/lib/utils";
 import { useRouter } from "@/i18n/routing";
 import PremiumSpinner from "@/components/dashboard/PremiumSpinner";
+import Image from "next/image";
 
 export default function BillingPage() {
     const t = useTranslations('Dashboard');
     const router = useRouter();
+    const [userId, setUserId] = useState<string | null>(null);
     const [request, setRequest] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [copiedField, setCopiedField] = useState<string | null>(null);
+
+    // Tunnel Steps: 0: Intro, 1: Selfie, 2: Video, 3: Processing, 4: RIB
+    const [verificationStep, setVerificationStep] = useState(0);
+    const [selfiePreview, setSelfiePreview] = useState<string | null>(null);
+    const [selfieFile, setSelfieFile] = useState<File | null>(null);
+    const [videoPreview, setVideoPreview] = useState<string | null>(null);
+    const [videoFile, setVideoFile] = useState<Blob | null>(null);
+    const [isRecording, setIsRecording] = useState(false);
+    const [recordingTime, setRecordingTime] = useState(0);
+    const [stream, setStream] = useState<MediaStream | null>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+    const chunksRef = useRef<Blob[]>([]);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const videoInputRef = useRef<HTMLInputElement>(null);
+    const [systemError, setSystemError] = useState<string | null>(null);
 
     const advisorRIB = request?.customRIB || {
         bankName: "ELYSSIO INVESTMENT BANK",
@@ -46,20 +75,26 @@ export default function BillingPage() {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
+                setUserId(user.uid);
                 try {
                     const q = query(
                         collection(db, "requests"),
                         where("userId", "==", user.uid),
-                        where("requiresPayment", "==", true),
                         limit(1)
                     );
                     const querySnapshot = await getDocs(q);
                     if (!querySnapshot.empty) {
                         const data = querySnapshot.docs[0].data();
                         setRequest({ id: querySnapshot.docs[0].id, ...data });
+
+                        // Si la vérification est déjà faite, on saute au RIB
+                        if (data.paymentVerificationStatus === 'verified' || data.paymentVerificationStatus === 'on_review') {
+                            setVerificationStep(4);
+                        }
                     }
-                } catch (error) {
+                } catch (error: any) {
                     console.error("Error fetching payment request:", error);
+                    setSystemError(error.code === 'permission-denied' ? "Accès refusé aux données de paiement." : error.message);
                 } finally {
                     setIsLoading(false);
                 }
@@ -67,8 +102,169 @@ export default function BillingPage() {
                 router.push("/login");
             }
         });
-        return () => unsubscribe();
+        return () => {
+            unsubscribe();
+            stopCamera();
+        };
     }, [router]);
+
+    const startCamera = async () => {
+        try {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                throw new Error("L'API MediaDevices n'est pas disponible sur ce navigateur.");
+            }
+
+            const mediaStream = await navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: "user",
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 }
+                },
+                audio: false
+            });
+            setStream(mediaStream);
+            if (videoRef.current) {
+                videoRef.current.srcObject = mediaStream;
+            }
+        } catch (error: any) {
+            console.error("Camera error:", error);
+            let msg = "Impossible d'accéder à la caméra.";
+
+            if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
+                msg = "Accès à la caméra refusé. Veuillez autoriser la caméra dans les paramètres de votre navigateur et de votre système (Windows/Mac).";
+            } else if (error.name === "NotFoundError" || error.name === "DevicesNotFoundError") {
+                msg = "Aucune caméra détectée sur votre appareil.";
+            } else if (error.name === "NotReadableError" || error.name === "TrackStartError") {
+                msg = "La caméra est déjà utilisée par une autre application.";
+            }
+
+            setSystemError(msg);
+        }
+    };
+
+    const stopCamera = () => {
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+            setStream(null);
+        }
+    };
+
+    const capturePhoto = () => {
+        if (videoRef.current) {
+            const canvas = document.createElement("canvas");
+            canvas.width = videoRef.current.videoWidth;
+            canvas.height = videoRef.current.videoHeight;
+            const ctx = canvas.getContext("2d");
+            ctx?.drawImage(videoRef.current, 0, 0);
+
+            const dataUrl = canvas.toDataURL("image/jpeg");
+            setSelfiePreview(dataUrl);
+
+            // Convert to file
+            fetch(dataUrl)
+                .then(res => res.blob())
+                .then(blob => {
+                    const file = new File([blob], "selfie.jpg", { type: "image/jpeg" });
+                    setSelfieFile(file);
+                });
+
+            stopCamera();
+            setVerificationStep(2);
+        }
+    };
+
+    const startRecording = () => {
+        if (!stream) return;
+
+        chunksRef.current = [];
+        const mediaRecorder = new MediaRecorder(stream);
+        mediaRecorderRef.current = mediaRecorder;
+
+        mediaRecorder.ondataavailable = (e) => {
+            if (e.data.size > 0) chunksRef.current.push(e.data);
+        };
+
+        mediaRecorder.onstop = () => {
+            const blob = new Blob(chunksRef.current, { type: "video/webm" });
+            const url = URL.createObjectURL(blob);
+            setVideoPreview(url);
+            setVideoFile(blob);
+            stopCamera();
+        };
+
+        mediaRecorder.start();
+        setIsRecording(true);
+        setRecordingTime(0);
+
+        const timer = setInterval(() => {
+            setRecordingTime(prev => {
+                if (prev >= 5) {
+                    clearInterval(timer);
+                    stopRecording();
+                    return 5;
+                }
+                return prev + 1;
+            });
+        }, 1000);
+    };
+
+    const stopRecording = () => {
+        if (mediaRecorderRef.current && isRecording) {
+            mediaRecorderRef.current.stop();
+            setIsRecording(false);
+        }
+    };
+
+    const uploadToCloudinary = async (file: File | Blob, type: "image" | "video") => {
+        const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+        const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", uploadPreset!);
+        formData.append("folder", `payments/verifications/${userId}`);
+
+        try {
+            const response = await fetch(
+                `https://api.cloudinary.com/v1_1/${cloudName}/${type}/upload`,
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+            if (!response.ok) throw new Error("Erreur lors de l'upload");
+            const data = await response.json();
+            return data.secure_url;
+        } catch (error) {
+            console.error("Cloudinary error:", error);
+            throw error;
+        }
+    };
+
+    const finalizeVerification = async () => {
+        if (!userId || !request || !selfieFile || !videoFile) return;
+
+        setIsSubmitting(true);
+        try {
+            const selfieUrl = await uploadToCloudinary(selfieFile, "image");
+            const videoUrl = await uploadToCloudinary(videoFile, "video");
+
+            await updateDoc(doc(db, "requests", request.id), {
+                paymentVerificationStatus: 'on_review',
+                paymentSelfieUrl: selfieUrl,
+                paymentVideoUrl: videoUrl,
+                paymentVerificationSubmittedAt: serverTimestamp()
+            });
+
+            setVerificationStep(4);
+        } catch (error) {
+            console.error("Submit error:", error);
+            setSystemError("Une erreur est survenue lors de l'envoi de votre vérification.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     const copyToClipboard = (text: string, field: string) => {
         navigator.clipboard.writeText(text);
@@ -78,6 +274,21 @@ export default function BillingPage() {
 
     if (isLoading) return <PremiumSpinner />;
 
+    const handleManualSelfie = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        setSelfieFile(file);
+        setSelfiePreview(URL.createObjectURL(file));
+        setVerificationStep(2);
+    };
+
+    const handleManualVideo = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        setVideoFile(file);
+        setVideoPreview(URL.createObjectURL(file));
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -86,6 +297,16 @@ export default function BillingPage() {
         >
             {/* Mobile Decorative Orbs */}
             <div className="absolute top-[-5%] right-[-15%] w-[70%] h-[30%] bg-ely-blue/10 rounded-full blur-[100px] pointer-events-none md:hidden" />
+
+            {systemError && (
+                <div className="absolute top-0 left-0 right-0 z-[100] p-4 bg-red-500 text-white text-center font-bold animate-in slide-in-from-top duration-500">
+                    <p className="flex items-center justify-center gap-2">
+                        <Info className="w-5 h-5" />
+                        {systemError}
+                        <button onClick={() => setSystemError(null)} className="ml-4 underline">OK</button>
+                    </p>
+                </div>
+            )}
 
             <header className="flex items-center gap-4 relative z-10 px-2">
                 <button
@@ -121,6 +342,229 @@ export default function BillingPage() {
                             Tableau de Bord
                         </button>
                     </div>
+                </div>
+            ) : verificationStep < 4 ? (
+                <div className="max-w-3xl mx-auto relative z-10">
+                    <AnimatePresence mode="wait">
+                        {verificationStep === 0 && (
+                            <motion.div
+                                key="intro"
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                className="bg-white rounded-[3.5rem] p-10 md:p-16 border border-slate-100 shadow-xl overflow-hidden text-center space-y-8"
+                            >
+                                <div className="w-20 h-20 bg-ely-blue/10 text-ely-blue rounded-3xl flex items-center justify-center mx-auto ring-8 ring-ely-blue/5">
+                                    <ShieldCheck className="w-10 h-10" />
+                                </div>
+                                <div className="space-y-4">
+                                    <h2 className="text-3xl font-black text-slate-900 tracking-tight uppercase">Vérification de Sécurité</h2>
+                                    <p className="text-slate-500 text-lg font-medium leading-relaxed max-w-lg mx-auto">
+                                        Pour valider votre dépôt d'authentification et sécuriser l'accès aux fonds, nous devons confirmer votre identité par un selfie en direct et une courte séquence vidéo.
+                                    </p>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                                    <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100 flex items-start gap-4">
+                                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm text-ely-blue shrink-0">
+                                            <Camera className="w-5 h-5" />
+                                        </div>
+                                        <p className="text-[11px] font-bold text-slate-500 leading-tight uppercase tracking-wider pt-1">
+                                            <span className="text-slate-900 block mb-1">Selfie Photo</span>
+                                            Visage dégagé, bonne luminosité.
+                                        </p>
+                                    </div>
+                                    <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100 flex items-start gap-4">
+                                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm text-ely-blue shrink-0">
+                                            <Video className="w-5 h-5" />
+                                        </div>
+                                        <p className="text-[11px] font-bold text-slate-500 leading-tight uppercase tracking-wider pt-1">
+                                            <span className="text-slate-900 block mb-1">Selfie Vidéo (5s)</span>
+                                            Tournez légèrement la tête.
+                                        </p>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => {
+                                        setVerificationStep(1);
+                                        startCamera();
+                                    }}
+                                    className="w-full py-6 bg-ely-blue text-white rounded-[2rem] font-black text-sm uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20 active:scale-95"
+                                >
+                                    Démarrer la vérification
+                                </button>
+                                <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Action obligatoire • Conforme GDPR</p>
+                            </motion.div>
+                        )}
+
+                        {(verificationStep === 1 || verificationStep === 2) && (
+                            <motion.div
+                                key="capture"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                className="bg-slate-900 rounded-[3.5rem] p-6 md:p-10 shadow-2xl overflow-hidden relative"
+                            >
+                                <div className="relative aspect-square md:aspect-video rounded-[2.5rem] overflow-hidden bg-black border border-white/10 shadow-inner">
+                                    {stream ? (
+                                        <video
+                                            ref={videoRef}
+                                            autoPlay
+                                            playsInline
+                                            muted
+                                            className="w-full h-full object-cover scale-x-[-1]"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
+                                            <Loader2 className="w-12 h-12 text-ely-blue animate-spin" />
+                                            <p className="text-white/40 font-black uppercase tracking-widest text-xs">Accès caméra en cours...</p>
+                                        </div>
+                                    )}
+
+                                    {/* Overlay elements */}
+                                    <div className="absolute inset-0 pointer-events-none border-[20px] md:border-[40px] border-black/20" />
+                                    <div className="absolute top-8 left-1/2 -translate-x-1/2 px-6 py-2 bg-black/60 backdrop-blur-md rounded-full border border-white/20 whitespace-nowrap">
+                                        <p className="text-white text-[10px] font-black uppercase tracking-[0.2em]">
+                                            {verificationStep === 1 ? "Capturez votre selfie" : isRecording ? `Enregistrement : ${recordingTime}s / 5s` : "Prêt pour la vidéo"}
+                                        </p>
+                                    </div>
+
+                                    {isRecording && (
+                                        <div className="absolute inset-0 border-4 border-red-500 rounded-[2.5rem] animate-pulse pointer-events-none" />
+                                    )}
+                                </div>
+
+                                <div className="mt-8 flex items-center justify-center gap-6">
+                                    <button
+                                        onClick={() => {
+                                            stopCamera();
+                                            setVerificationStep(0);
+                                        }}
+                                        className="p-5 bg-white/5 hover:bg-white/10 text-white rounded-3xl transition-all active:scale-95"
+                                    >
+                                        <X className="w-6 h-6" />
+                                    </button>
+
+                                    {verificationStep === 1 ? (
+                                        <button
+                                            onClick={capturePhoto}
+                                            disabled={!stream}
+                                            className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl active:scale-90 transition-all disabled:opacity-50 disabled:scale-100"
+                                        >
+                                            <div className="w-16 h-16 rounded-full border-4 border-slate-900 border-dashed animate-[spin_10s_linear_infinite]" />
+                                            <Camera className="w-8 h-8 text-slate-900 absolute" />
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={isRecording ? stopRecording : startRecording}
+                                            disabled={!!(!stream || (videoPreview && !isRecording))}
+                                            className={cn(
+                                                "w-20 h-20 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 disabled:opacity-50",
+                                                isRecording ? "bg-red-500 scale-110" : "bg-white"
+                                            )}
+                                        >
+                                            {isRecording ? <StopCircle className="w-10 h-10 text-white" /> : <Play className="w-10 h-10 text-slate-900 ml-1" />}
+                                        </button>
+                                    )}
+
+                                    {videoPreview && !isRecording && (
+                                        <button
+                                            onClick={() => {
+                                                setVideoPreview(null);
+                                                setVideoFile(null);
+                                                startCamera();
+                                            }}
+                                            className="p-5 bg-white/5 hover:bg-white/10 text-white rounded-3xl transition-all active:scale-95"
+                                        >
+                                            <History className="w-6 h-6" />
+                                        </button>
+                                    )}
+
+                                    {!stream && !isRecording && (
+                                        <div className="flex flex-col items-center gap-4">
+                                            <button
+                                                onClick={() => verificationStep === 1 ? fileInputRef.current?.click() : videoInputRef.current?.click()}
+                                                className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-xs font-bold transition-all flex items-center gap-2 border border-white/10"
+                                            >
+                                                {verificationStep === 1 ? "Télécharger Photo" : "Télécharger Vidéo"}
+                                            </button>
+                                            <input type="file" ref={fileInputRef} onChange={handleManualSelfie} accept="image/*" className="hidden" />
+                                            <input type="file" ref={videoInputRef} onChange={handleManualVideo} accept="video/*" className="hidden" />
+                                        </div>
+                                    )}
+                                </div>
+
+                                {(selfiePreview && verificationStep === 2 && !isRecording) && (
+                                    <div className="mt-8 pt-8 border-t border-white/5 flex items-center justify-between">
+                                        <div className="flex gap-4">
+                                            <div className="relative w-16 h-16 rounded-xl overflow-hidden border border-white/10">
+                                                <Image src={selfiePreview} alt="Selfie" fill className="object-cover" />
+                                                <div className="absolute inset-0 bg-emerald-500/20 flex items-center justify-center"><CheckCircle2 className="w-6 h-6 text-white" /></div>
+                                            </div>
+                                            <div className="space-y-1 py-1">
+                                                <p className="text-white font-black text-xs uppercase tracking-widest">Selfie validé</p>
+                                                {videoPreview && <p className="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Vidéo prête (5s)</p>}
+                                            </div>
+                                        </div>
+
+                                        {videoPreview && (
+                                            <button
+                                                onClick={() => setVerificationStep(3)}
+                                                className="px-10 py-5 bg-ely-mint text-slate-900 rounded-3xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-xl shadow-ely-mint/20"
+                                            >
+                                                Finaliser
+                                            </button>
+                                        )}
+                                    </div>
+                                )}
+                            </motion.div>
+                        )}
+
+                        {verificationStep === 3 && (
+                            <motion.div
+                                key="processing"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="bg-white rounded-[3.5rem] p-16 md:p-24 text-center border border-slate-100 shadow-xl space-y-10"
+                            >
+                                <div className="relative w-24 h-24 mx-auto">
+                                    <div className="absolute inset-0 bg-ely-blue/10 rounded-full animate-ping" />
+                                    <div className="relative w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg border border-slate-100">
+                                        {isSubmitting ? <Loader2 className="w-10 h-10 text-ely-blue animate-spin" /> : <CheckCircle2 className="w-10 h-10 text-emerald-500" />}
+                                    </div>
+                                </div>
+                                <div className="space-y-4">
+                                    <h2 className="text-3xl font-black text-slate-900 tracking-tight uppercase">
+                                        {isSubmitting ? "Traitement de vos fichiers" : "Fichiers transmis !"}
+                                    </h2>
+                                    <p className="text-slate-500 text-lg font-medium max-w-sm mx-auto leading-relaxed">
+                                        {isSubmitting
+                                            ? "Nous sécurisons vos données et finalisons la liaison de votre profil de paiement."
+                                            : "Votre identité a été soumise avec succès. Vous pouvez désormais accéder aux coordonnées de dépôt."}
+                                    </p>
+                                </div>
+                                {isSubmitting ? (
+                                    <div className="pt-4 flex flex-col items-center gap-3">
+                                        <div className="w-48 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                            <motion.div
+                                                className="h-full bg-ely-blue"
+                                                initial={{ width: 0 }}
+                                                animate={{ width: "100%" }}
+                                                transition={{ duration: 15 }}
+                                            />
+                                        </div>
+                                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Chiffrement AES-256 en cours</p>
+                                    </div>
+                                ) : (
+                                    <button
+                                        onClick={finalizeVerification}
+                                        className="px-14 py-6 bg-slate-900 text-white rounded-[2rem] font-black text-sm uppercase tracking-widest hover:bg-black transition-all shadow-xl"
+                                    >
+                                        Voir les coordonnées
+                                    </button>
+                                )}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10">

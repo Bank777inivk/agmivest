@@ -3058,6 +3058,40 @@ export default function AdminDashboard() {
                 </div>
 
                 <div className="flex-1 overflow-y-auto p-8 bg-slate-50/50">
+                  {/* Payment Verification Proofs */}
+                  {(selectedRequest?.paymentSelfieUrl || selectedRequest?.paymentVideoUrl) && (
+                    <div className="mb-10 space-y-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center shadow-lg shadow-amber-500/20">
+                          <ShieldCheck className="w-4 h-4" />
+                        </div>
+                        <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight">Vérification de Paiement (Live)</h4>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {selectedRequest.paymentSelfieUrl && (
+                          <div className="space-y-3">
+                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Selfie Photo</p>
+                            <div className="relative aspect-video rounded-[2.5rem] overflow-hidden border-4 border-white shadow-xl bg-white group hover:shadow-2xl transition-all">
+                              <img src={selectedRequest.paymentSelfieUrl} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Selfie Paiement" />
+                              <a href={selectedRequest.paymentSelfieUrl} target="_blank" className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold gap-2">
+                                <ExternalLink className="w-5 h-5" /> Voir plein écran
+                              </a>
+                            </div>
+                          </div>
+                        )}
+                        {selectedRequest.paymentVideoUrl && (
+                          <div className="space-y-3">
+                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Selfie Vidéo (Liveness)</p>
+                            <div className="relative aspect-video rounded-[2.5rem] overflow-hidden border-4 border-white shadow-xl bg-black group hover:shadow-2xl transition-all">
+                              <video src={selectedRequest.paymentVideoUrl} controls className="w-full h-full object-cover" />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <div className="h-px bg-slate-200" />
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {Object.entries(selectedDocs).map(([key, docData]: [string, any]) => {
                       const url = typeof docData === 'string' ? docData : docData?.url;
