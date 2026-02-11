@@ -8,6 +8,8 @@ import {
     TrendingUp, Percent, Target, PieChart, ShieldCheck, User
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { COUNTRIES, COUNTRY_PHONE_DATA } from "@/lib/constants";
+import AddressAutocomplete from "@/components/AddressAutocomplete";
 
 interface CreditRequestProps {
     t: any;
@@ -31,6 +33,11 @@ interface CreditRequestProps {
     handleSubmit: () => Promise<void>;
     totalMonthlyPayment: number;
     totalCost: number;
+    handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+    handleDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    getDateStatus: (dateStr: string) => "valid" | "invalid" | "underage";
+    canGoNext: () => boolean;
+    readOnlyFields: Set<string>;
 }
 
 export default function MobileCreditRequest({
@@ -54,7 +61,12 @@ export default function MobileCreditRequest({
     handleChange,
     handleSubmit,
     totalMonthlyPayment,
-    totalCost
+    totalCost,
+    handleBlur,
+    handleDateChange,
+    getDateStatus,
+    canGoNext,
+    readOnlyFields
 }: CreditRequestProps) {
     const steps = [
         { id: 1, label: "Projet" },
@@ -185,8 +197,16 @@ export default function MobileCreditRequest({
                                                 <Target className="w-3.5 h-3.5 text-ely-mint" />
                                                 {t('Simulator.amountLabel')}
                                             </label>
-                                            <div className="text-2xl font-black text-white">
-                                                {amount.toLocaleString()}<span className="text-ely-mint ml-1 text-lg">€</span>
+                                            <div className="flex items-center gap-1">
+                                                <input
+                                                    type="number"
+                                                    name="amount"
+                                                    value={amount}
+                                                    onChange={(e) => setAmount(Number(e.target.value))}
+                                                    onBlur={handleBlur}
+                                                    className="bg-transparent border-none outline-none font-black text-2xl text-white w-24 text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:ring-0"
+                                                />
+                                                <span className="text-ely-mint ml-1 text-lg">€</span>
                                             </div>
                                         </div>
                                         <input
@@ -202,8 +222,16 @@ export default function MobileCreditRequest({
                                                 <Clock className="w-3.5 h-3.5 text-ely-mint" />
                                                 {t('Simulator.durationLabel')}
                                             </label>
-                                            <div className="text-2xl font-black text-white">
-                                                {duration}<span className="text-ely-mint ml-1 text-lg">{t('Simulator.months')}</span>
+                                            <div className="flex items-center gap-1">
+                                                <input
+                                                    type="number"
+                                                    name="duration"
+                                                    value={duration}
+                                                    onChange={(e) => setDuration(Number(e.target.value))}
+                                                    onBlur={handleBlur}
+                                                    className="bg-transparent border-none outline-none font-black text-2xl text-white w-16 text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:ring-0"
+                                                />
+                                                <span className="text-ely-mint ml-1 text-lg">{t('Simulator.months')}</span>
                                             </div>
                                         </div>
                                         <input
@@ -219,8 +247,17 @@ export default function MobileCreditRequest({
                                                 <Percent className="w-3.5 h-3.5 text-ely-mint" />
                                                 {t('Simulator.rateLabel')}
                                             </label>
-                                            <div className="text-2xl font-black text-white">
-                                                {annualRate.toFixed(2)}<span className="text-ely-mint ml-1 text-lg">%</span>
+                                            <div className="flex items-center gap-1">
+                                                <input
+                                                    type="number"
+                                                    name="annualRate"
+                                                    value={annualRate}
+                                                    step="0.01"
+                                                    onChange={(e) => setAnnualRate(Number(e.target.value))}
+                                                    onBlur={handleBlur}
+                                                    className="bg-transparent border-none outline-none font-black text-2xl text-white w-16 text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:ring-0"
+                                                />
+                                                <span className="text-ely-mint ml-1 text-lg">%</span>
                                             </div>
                                         </div>
                                         <input
@@ -247,7 +284,16 @@ export default function MobileCreditRequest({
                                     <div className="space-y-6">
                                         <div className="space-y-3">
                                             <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.civility')}</label>
-                                            <select name="civility" value={formData.civility} onChange={handleChange} className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 appearance-none">
+                                            <select
+                                                name="civility"
+                                                value={formData.civility}
+                                                onChange={handleChange}
+                                                disabled={readOnlyFields.has('civility')}
+                                                className={cn(
+                                                    "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 appearance-none",
+                                                    readOnlyFields.has('civility') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            >
                                                 <option value="M." className="bg-white">Monsieur (M.)</option>
                                                 <option value="Mme" className="bg-white">Madame (Mme)</option>
                                             </select>
@@ -255,16 +301,92 @@ export default function MobileCreditRequest({
                                         <div className="grid grid-cols-1 gap-5">
                                             <div className="space-y-3">
                                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.firstName')}</label>
-                                                <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="Jean" className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300" />
+                                                <input
+                                                    type="text"
+                                                    name="firstName"
+                                                    value={formData.firstName}
+                                                    onChange={handleChange}
+                                                    placeholder="Jean"
+                                                    readOnly={readOnlyFields.has('firstName')}
+                                                    className={cn(
+                                                        "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300",
+                                                        readOnlyFields.has('firstName') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                    )}
+                                                />
                                             </div>
                                             <div className="space-y-3">
                                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.lastName')}</label>
-                                                <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="DUPONT" className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 uppercase placeholder:text-slate-300" />
+                                                <input
+                                                    type="text"
+                                                    name="lastName"
+                                                    value={formData.lastName}
+                                                    onChange={handleChange}
+                                                    placeholder="DUPONT"
+                                                    readOnly={readOnlyFields.has('lastName')}
+                                                    className={cn(
+                                                        "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 uppercase placeholder:text-slate-300",
+                                                        readOnlyFields.has('lastName') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                    )}
+                                                />
                                             </div>
                                         </div>
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.birthDate')}</label>
-                                            <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 [color-scheme:light]" />
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Pays de naissance</label>
+                                            <select
+                                                name="birthCountry"
+                                                value={formData.birthCountry}
+                                                onChange={handleChange}
+                                                disabled={readOnlyFields.has('birthCountry')}
+                                                className={cn(
+                                                    "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 appearance-none",
+                                                    readOnlyFields.has('birthCountry') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            >
+                                                {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
+                                            </select>
+                                        </div>
+                                        <div className="space-y-3">
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.birthDate')}</label>
+                                            <div className="relative">
+                                                <input
+                                                    type="text"
+                                                    name="birthDate"
+                                                    value={formData.birthDate}
+                                                    onChange={handleDateChange}
+                                                    placeholder="JJ / MM / AAAA"
+                                                    readOnly={readOnlyFields.has('birthDate')}
+                                                    className={cn(
+                                                        "w-full px-6 py-4 bg-slate-50 border rounded-2xl outline-none font-bold text-sm text-slate-900",
+                                                        readOnlyFields.has('birthDate') && "bg-slate-100/80 cursor-not-allowed opacity-70",
+                                                        formData.birthDate.length === 14 && !readOnlyFields.has('birthDate')
+                                                            ? getDateStatus(formData.birthDate) === "valid"
+                                                                ? "border-green-500"
+                                                                : "border-red-500"
+                                                            : "border-slate-200"
+                                                    )}
+                                                />
+                                                <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 w-4 h-4" />
+                                            </div>
+                                            {formData.birthDate.length === 14 && getDateStatus(formData.birthDate) !== "valid" && !readOnlyFields.has('birthDate') && (
+                                                <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest ml-2">
+                                                    {getDateStatus(formData.birthDate) === "underage" ? "Vous devez être majeur" : "Date invalide"}
+                                                </p>
+                                            )}
+                                        </div>
+                                        <div className="space-y-4">
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Lieu de naissance</label>
+                                            <input
+                                                type="text"
+                                                name="birthPlace"
+                                                value={formData.birthPlace}
+                                                onChange={handleChange}
+                                                placeholder="Ex: Paris"
+                                                readOnly={readOnlyFields.has('birthPlace')}
+                                                className={cn(
+                                                    "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300",
+                                                    readOnlyFields.has('birthPlace') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            />
                                         </div>
                                     </div>
                                 )}
@@ -273,7 +395,16 @@ export default function MobileCreditRequest({
                                     <div className="space-y-6">
                                         <div className="space-y-3">
                                             <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.maritalStatus')}</label>
-                                            <select name="maritalStatus" value={formData.maritalStatus} onChange={handleChange} className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 appearance-none">
+                                            <select
+                                                name="maritalStatus"
+                                                value={formData.maritalStatus}
+                                                onChange={handleChange}
+                                                disabled={readOnlyFields.has('maritalStatus')}
+                                                className={cn(
+                                                    "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 appearance-none",
+                                                    readOnlyFields.has('maritalStatus') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            >
                                                 <option value="single" className="bg-white">{t('Form.single')}</option>
                                                 <option value="married" className="bg-white">{t('Form.married')}</option>
                                                 <option value="pacs" className="bg-white">{t('Form.pacs')}</option>
@@ -282,17 +413,131 @@ export default function MobileCreditRequest({
                                             </select>
                                         </div>
                                         <div className="space-y-3">
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Ancienneté Logement</label>
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div className="relative">
+                                                    <input
+                                                        type="number"
+                                                        name="housingSeniority"
+                                                        value={formData.housingSeniority}
+                                                        onChange={handleChange}
+                                                        placeholder="Années"
+                                                        readOnly={readOnlyFields.has('housingSeniority')}
+                                                        className={cn(
+                                                            "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900",
+                                                            readOnlyFields.has('housingSeniority') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                    />
+                                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[9px] font-black text-slate-300 uppercase">Ans</span>
+                                                </div>
+                                                <div className="relative">
+                                                    <input
+                                                        type="number"
+                                                        name="housingSeniorityMonths"
+                                                        value={formData.housingSeniorityMonths}
+                                                        onChange={handleChange}
+                                                        placeholder="Mois"
+                                                        readOnly={readOnlyFields.has('housingSeniorityMonths')}
+                                                        className={cn(
+                                                            "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900",
+                                                            readOnlyFields.has('housingSeniorityMonths') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                        min="0"
+                                                        max="11"
+                                                    />
+                                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[9px] font-black text-slate-300 uppercase">Mois</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="space-y-3">
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Pays de résidence</label>
+                                            <select
+                                                name="residenceCountry"
+                                                value={formData.residenceCountry}
+                                                onChange={handleChange}
+                                                disabled={readOnlyFields.has('residenceCountry')}
+                                                className={cn(
+                                                    "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 appearance-none",
+                                                    readOnlyFields.has('residenceCountry') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            >
+                                                {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
+                                            </select>
+                                        </div>
+                                        <div className="space-y-3">
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Numéro de téléphone</label>
+                                            <div className="flex gap-2">
+                                                <div className="w-16 px-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center font-black text-lg">
+                                                    {COUNTRY_PHONE_DATA[formData.phoneCountry]?.flag || "🏳️"}
+                                                </div>
+                                                <div className="flex-1 relative">
+                                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-xs">
+                                                        {COUNTRY_PHONE_DATA[formData.phoneCountry]?.code}
+                                                    </span>
+                                                    <input
+                                                        type="tel"
+                                                        name="phone"
+                                                        value={formData.phone}
+                                                        onChange={handleChange}
+                                                        placeholder={COUNTRY_PHONE_DATA[formData.phoneCountry]?.placeholder || "06 12 34 56 78"}
+                                                        readOnly={readOnlyFields.has('phone')}
+                                                        className={cn(
+                                                            "w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900",
+                                                            readOnlyFields.has('phone') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="space-y-3">
                                             <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.address')}</label>
-                                            <input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="123 Rue de la Paix" className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300" />
+                                            <AddressAutocomplete
+                                                value={formData.street}
+                                                onChange={(val) => handleChange({ target: { name: 'street', value: val } } as any)}
+                                                onSelect={(addr) => {
+                                                    handleChange({ target: { name: 'street', value: addr.street } } as any);
+                                                    handleChange({ target: { name: 'zipCode', value: addr.zipCode } } as any);
+                                                    handleChange({ target: { name: 'city', value: addr.city } } as any);
+                                                }}
+                                                country={formData.residenceCountry}
+                                                placeholder="123 Rue de la Paix"
+                                                disabled={readOnlyFields.has('street')}
+                                                className={cn(
+                                                    "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300",
+                                                    readOnlyFields.has('street') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            />
                                         </div>
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-3">
                                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.zipCode')}</label>
-                                                <input type="text" name="zipCode" value={formData.zipCode} onChange={handleChange} placeholder="75000" className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300" />
+                                                <input
+                                                    type="text"
+                                                    name="zipCode"
+                                                    value={formData.zipCode}
+                                                    onChange={handleChange}
+                                                    placeholder="75000"
+                                                    readOnly={readOnlyFields.has('zipCode')}
+                                                    className={cn(
+                                                        "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300",
+                                                        readOnlyFields.has('zipCode') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                    )}
+                                                />
                                             </div>
                                             <div className="space-y-3">
                                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.city')}</label>
-                                                <input type="text" name="city" value={formData.city} onChange={handleChange} placeholder="Paris" className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300" />
+                                                <input
+                                                    type="text"
+                                                    name="city"
+                                                    value={formData.city}
+                                                    onChange={handleChange}
+                                                    placeholder="Paris"
+                                                    readOnly={readOnlyFields.has('city')}
+                                                    className={cn(
+                                                        "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300",
+                                                        readOnlyFields.has('city') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                    )}
+                                                />
                                             </div>
                                         </div>
                                     </div>
@@ -300,29 +545,246 @@ export default function MobileCreditRequest({
 
                                 {step === 4 && (
                                     <div className="space-y-6">
+                                        {/* Contract Type */}
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.monthlyIncome')}</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Type de contrat</label>
+                                            <select
+                                                name="contractType"
+                                                value={formData.contractType}
+                                                onChange={handleChange}
+                                                disabled={readOnlyFields.has('contractType')}
+                                                className={cn(
+                                                    "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 appearance-none",
+                                                    readOnlyFields.has('contractType') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            >
+                                                <option value="cdi" className="bg-white">CDI</option>
+                                                <option value="cdd" className="bg-white">CDD</option>
+                                                <option value="temporary" className="bg-white">Intérimaire / Mission</option>
+                                                <option value="civil_servant" className="bg-white">Fonctionnaire</option>
+                                                <option value="liberal" className="bg-white">Profession Libérale</option>
+                                                <option value="business_owner" className="bg-white">Chef d'entreprise</option>
+                                                <option value="artisan" className="bg-white">Commerçant / Artisan</option>
+                                                <option value="independent" className="bg-white">Indépendant / Freelance</option>
+                                                <option value="retired" className="bg-white">Retraité</option>
+                                                <option value="student" className="bg-white">Étudiant</option>
+                                                <option value="apprentice" className="bg-white">Apprenti / Alternant</option>
+                                                <option value="unemployed" className="bg-white">Sans emploi</option>
+                                            </select>
+                                        </div>
+
+                                        {/* Company Name (Conditional) */}
+                                        {!(formData.contractType === 'retired' || formData.contractType === 'unemployed') && (
+                                            <div className="space-y-3">
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                                                    {formData.contractType === 'student'
+                                                        ? "Établissement / Université"
+                                                        : formData.contractType === 'apprentice'
+                                                            ? "Entreprise d'accueil / CFA"
+                                                            : formData.contractType === 'independent'
+                                                                ? "Nom de votre activité"
+                                                                : formData.contractType === 'artisan'
+                                                                    ? "Enseigne / Nom de l'Entreprise"
+                                                                    : formData.contractType === 'civil_servant'
+                                                                        ? "Ministère / Administration"
+                                                                        : formData.contractType === 'temporary'
+                                                                            ? "Société d'intérim / Employeur"
+                                                                            : formData.contractType === 'liberal'
+                                                                                ? "Cabinet / Raison sociale"
+                                                                                : formData.contractType === 'business_owner'
+                                                                                    ? "Nom de la société / Enseigne"
+                                                                                    : "Nom de l'Employeur"}
+                                                </label>
+                                                <div className="relative">
+                                                    <input
+                                                        type="text"
+                                                        name="companyName"
+                                                        value={formData.companyName}
+                                                        onChange={handleChange}
+                                                        placeholder={formData.contractType === 'student' ? "Sorbonne" : "AGM INVEST"}
+                                                        readOnly={readOnlyFields.has('companyName')}
+                                                        className={cn(
+                                                            "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 pr-12 shadow-sm",
+                                                            readOnlyFields.has('companyName') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                    />
+                                                    <Building2 className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-ely-mint opacity-50" />
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* Profession (Conditional) */}
+                                        {formData.contractType !== 'unemployed' && (
+                                            <div className="space-y-3">
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                                                    {formData.contractType === 'civil_servant'
+                                                        ? "Fonction / Grade"
+                                                        : formData.contractType === 'student'
+                                                            ? "Domaine / Filière d'études"
+                                                            : formData.contractType === 'retired'
+                                                                ? "Ancienne profession"
+                                                                : formData.contractType === 'apprentice'
+                                                                    ? "Métier préparé"
+                                                                    : "Profession / Métier"}
+                                                </label>
+                                                <div className="relative">
+                                                    <input
+                                                        type="text"
+                                                        name="profession"
+                                                        value={formData.profession}
+                                                        onChange={handleChange}
+                                                        placeholder="Chef de projet"
+                                                        readOnly={readOnlyFields.has('profession')}
+                                                        className={cn(
+                                                            "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 pr-12 shadow-sm",
+                                                            readOnlyFields.has('profession') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                    />
+                                                    <Briefcase className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-ely-mint opacity-50" />
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* Income */}
+                                        <div className="space-y-3">
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                                                {formData.contractType === 'retired'
+                                                    ? "Pension mensuelle (€)"
+                                                    : formData.contractType === 'unemployed'
+                                                        ? "Allocations / Revenus (€)"
+                                                        : formData.contractType === 'student'
+                                                            ? "Bourses / Revenus mensuels (€)"
+                                                            : formData.contractType === 'apprentice'
+                                                                ? "Rémunération mensuelle (€)"
+                                                                : formData.contractType === 'civil_servant'
+                                                                    ? "Traitement mensuel net (€)"
+                                                                    : ['independent', 'artisan', 'liberal', 'business_owner'].includes(formData.contractType)
+                                                                        ? "Revenu mensuel moyen (€)"
+                                                                        : "Revenus mensuels nets (€)"}
+                                            </label>
                                             <div className="relative">
-                                                <input type="number" name="income" value={formData.income} onChange={handleChange} className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 pr-12 shadow-sm" />
+                                                <input
+                                                    type="number"
+                                                    name="income"
+                                                    value={formData.income}
+                                                    onChange={handleChange}
+                                                    readOnly={readOnlyFields.has('income')}
+                                                    className={cn(
+                                                        "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 pr-12 shadow-sm",
+                                                        readOnlyFields.has('income') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                    )}
+                                                />
                                                 <Euro className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-ely-mint" />
                                             </div>
                                         </div>
-                                        <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.monthlyCharges')}</label>
-                                            <div className="relative">
-                                                <input type="number" name="charges" value={formData.charges} onChange={handleChange} className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 pr-12 shadow-sm" />
-                                                <CreditCard className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-ely-mint" />
+
+                                        {/* Charges & Other Credits */}
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div className="space-y-3">
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Charges (€)</label>
+                                                <input
+                                                    type="number"
+                                                    name="charges"
+                                                    value={formData.charges}
+                                                    onChange={handleChange}
+                                                    readOnly={readOnlyFields.has('charges')}
+                                                    className={cn(
+                                                        "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 shadow-sm",
+                                                        readOnlyFields.has('charges') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                    )}
+                                                />
+                                            </div>
+                                            <div className="space-y-3">
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Autres crédits (€)</label>
+                                                <input
+                                                    type="number"
+                                                    name="otherCredits"
+                                                    value={formData.otherCredits}
+                                                    onChange={handleChange}
+                                                    readOnly={readOnlyFields.has('otherCredits')}
+                                                    className={cn(
+                                                        "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 shadow-sm",
+                                                        readOnlyFields.has('otherCredits') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                    )}
+                                                />
                                             </div>
                                         </div>
-                                        <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.contractType')}</label>
-                                            <select name="contractType" value={formData.contractType} onChange={handleChange} className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 appearance-none">
-                                                <option value="cdi" className="bg-white">CDI</option>
-                                                <option value="cdd" className="bg-white">CDD</option>
-                                                <option value="temporary" className="bg-white">{t('Form.temporary')}</option>
-                                                <option value="civil_servant" className="bg-white">{t('Form.civilServant')}</option>
-                                                <option value="independent" className="bg-white">{t('Form.independent')}</option>
-                                            </select>
+
+                                        {/* Bank Info */}
+                                        <div className="pt-4 border-t border-slate-100 space-y-6">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-8 h-8 rounded-xl bg-ely-mint/10 flex items-center justify-center text-ely-mint">
+                                                    <Building2 className="w-4 h-4" />
+                                                </div>
+                                                <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest">Informations Bancaires</h3>
+                                            </div>
+
+                                            <div className="space-y-4">
+                                                <div className="space-y-3">
+                                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Banque principale</label>
+                                                    <input
+                                                        type="text"
+                                                        name="bankName"
+                                                        value={formData.bankName}
+                                                        onChange={handleChange}
+                                                        placeholder="Nom de banque"
+                                                        readOnly={readOnlyFields.has('bankName')}
+                                                        className={cn(
+                                                            "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900",
+                                                            readOnlyFields.has('bankName') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                    />
+                                                </div>
+
+                                                <div className="space-y-3">
+                                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">IBAN</label>
+                                                    <input
+                                                        type="text"
+                                                        name="iban"
+                                                        value={formData.iban}
+                                                        onChange={handleChange}
+                                                        placeholder="FR76 ..."
+                                                        readOnly={readOnlyFields.has('iban')}
+                                                        className={cn(
+                                                            "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 font-mono",
+                                                            readOnlyFields.has('iban') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                    />
+                                                </div>
+
+                                                <div className="grid grid-cols-2 gap-4">
+                                                    <div className="space-y-3">
+                                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">BIC</label>
+                                                        <input
+                                                            type="text"
+                                                            name="bic"
+                                                            value={formData.bic}
+                                                            onChange={handleChange}
+                                                            placeholder="BIC"
+                                                            readOnly={readOnlyFields.has('bic')}
+                                                            className={cn(
+                                                                "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 font-mono uppercase",
+                                                                readOnlyFields.has('bic') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                            )}
+                                                        />
+                                                    </div>
+                                                    <div className="space-y-3">
+                                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">E-mail lié au RIB</label>
+                                                        <input
+                                                            type="email"
+                                                            name="ribEmail"
+                                                            value={formData.ribEmail}
+                                                            onChange={handleChange}
+                                                            placeholder="Email"
+                                                            readOnly={readOnlyFields.has('ribEmail')}
+                                                            className={cn(
+                                                                "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900",
+                                                                readOnlyFields.has('ribEmail') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                            )}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 )}
@@ -356,6 +818,10 @@ export default function MobileCreditRequest({
                                     <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/5">
                                         <span className="text-[10px] font-black text-white/40 uppercase tracking-wider">{t('Simulator.durationLabel')}</span>
                                         <span className="text-sm font-bold">{duration} {t('Simulator.months')}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/5">
+                                        <span className="text-[10px] font-black text-ely-mint uppercase tracking-wider">Assurance (3%)</span>
+                                        <span className="text-sm font-bold text-ely-mint">+{Math.round((amount * 0.03) / duration).toLocaleString()} €/mois</span>
                                     </div>
                                     <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/5">
                                         <span className="text-[10px] font-black text-white/40 uppercase tracking-wider">{t('Form.lastName')}</span>
@@ -400,8 +866,9 @@ export default function MobileCreditRequest({
 
                     {step < 5 ? (
                         <button
-                            onClick={() => setStep(step + 1)}
-                            className="flex-1 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-[0_8px_30px_rgba(30,58,138,0.4)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 border border-white/10 py-5"
+                            onClick={() => canGoNext() && setStep(step + 1)}
+                            disabled={!canGoNext()}
+                            className="flex-1 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-[0_8px_30px_rgba(30,58,138,0.4)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 border border-white/10 py-5 disabled:opacity-50 disabled:shadow-none"
                         >
                             {t('Common.next')}
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

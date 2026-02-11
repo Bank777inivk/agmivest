@@ -10,6 +10,7 @@ interface AddressAutocompleteProps {
     placeholder?: string;
     country?: string;
     className?: string;
+    disabled?: boolean;
 }
 
 export default function AddressAutocomplete({
@@ -18,7 +19,8 @@ export default function AddressAutocomplete({
     onSelect,
     placeholder,
     country = "France",
-    className
+    className,
+    disabled
 }: AddressAutocompleteProps) {
     const [suggestions, setSuggestions] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -124,10 +126,11 @@ export default function AddressAutocomplete({
                     type="text"
                     value={value}
                     onChange={handleInputChange}
-                    onFocus={() => value.length >= 3 && setIsOpen(true)}
+                    onFocus={() => !disabled && value.length >= 3 && setIsOpen(true)}
                     placeholder={placeholder}
                     className={className}
                     autoComplete="off"
+                    disabled={disabled}
                 />
                 {isLoading && (
                     <div className="absolute right-4 top-1/2 -translate-y-1/2">

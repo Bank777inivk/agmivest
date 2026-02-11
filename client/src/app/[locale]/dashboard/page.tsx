@@ -138,7 +138,7 @@ export default function DashboardPage() {
                     })) as LoanRequest[];
 
                     setRecentRequests(allData.slice(0, 3));
-                    const active = allData.some(r => r.status === "pending" || r.status === "processing");
+                    const active = allData.some(r => r.status === "pending" || r.status === "processing" || r.status === "rejected");
                     setHasActiveRequest(active);
 
                     setStats([

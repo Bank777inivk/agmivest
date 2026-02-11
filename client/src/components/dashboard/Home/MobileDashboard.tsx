@@ -19,6 +19,7 @@ import {
     CreditCard,
     PlusCircle
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
@@ -53,6 +54,7 @@ export default function MobileDashboard({
     idStatus
 }: MobileDashboardProps) {
     const router = useRouter();
+    const t = useTranslations('CreditRequest.Project.labels');
 
     return (
         <motion.div
@@ -258,7 +260,9 @@ export default function MobileDashboard({
                                         <FileText className="w-4 h-4" />
                                     </div>
                                     <div>
-                                        <p className="text-xs font-bold text-gray-900">{req.projectType || "Projet Personnel"}</p>
+                                        <p className="text-xs font-bold text-gray-900">
+                                            {req.projectType ? t(req.projectType.toLowerCase()) : "Projet Personnel"}
+                                        </p>
                                         <p className="text-[9px] text-gray-400 font-medium">#{req.id.slice(0, 8)}</p>
                                     </div>
                                 </div>

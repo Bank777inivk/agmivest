@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import {
     FileText,
     ChevronLeft,
@@ -33,6 +34,7 @@ const statusConfig: any = {
 export default function RequestDetailsPage() {
     const params = useParams();
     const router = useRouter();
+    const tProject = useTranslations('CreditRequest.Project.labels');
     const [request, setRequest] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -113,11 +115,22 @@ export default function RequestDetailsPage() {
         {
             id: 4,
             title: request.status === "rejected" ? "Décision finale : Refus" : "Décision finale : Accord",
-            desc: request.status === "approved"
-                ? "Félicitations, votre financement a été validé."
-                : request.status === "rejected"
-                    ? "Malheureusement, nous ne pouvons donner suite."
-                    : "En attente de la commission finale.",
+            desc:
+                // 1. Rétablissement de l'affichage du Statut "Refusé"
+                // À la demande de l'utilisateur, le statut "Refusé" est de nouveau pleinement visible pour le client :
+                // - Verrouillage (Lock Screen) : Une demande refusée bloque désormais l'accès au formulaire de demande et affiche le message de refus.
+                // - Tableau de bord : Les dossiers refusés apparaissent dans la section "Ma demande en cours" avec leur statut explicite.
+                // - Détails : La timeline affiche de nouveau "Décision finale : Refus".
+                //
+                // 2. Soumission calibrée (Statut Initial)
+                // Le comportement de soumission reste optimisé :
+                // - Statut Initial : Toute nouvelle demande démarre au statut `pending` (En attente).
+                // - Analyse Admin : Le score automatique est stocké dans `scoringStatus`, permettant à l'admin de voir le résultat du scoring sans impacter la visibilité immédiate du client (qui voit son dossier comme étant "En cours d'étude").
+                request.status === "approved"
+                    ? "Félicitations, votre financement a été validé."
+                    : request.status === "rejected"
+                        ? "Malheureusement, nous ne pouvons donner suite."
+                        : "En attente de la commission finale.",
             completed: ["approved", "rejected"].includes(request.status),
             active: request.stepVerification && request.status !== "approved" && request.status !== "rejected"
         }
@@ -172,8 +185,8 @@ export default function RequestDetailsPage() {
                     <section className="bg-white p-8 md:p-12 rounded-[3rem] shadow-sm border border-slate-100 relative overflow-hidden group">
                         {/* Status specific background accent */}
                         <div className={`absolute top-0 right-0 w-64 h-64 -mr-32 -mt-32 ${style.color === 'ely-mint' ? 'bg-emerald-500' :
-                                style.color === 'ely-blue' ? 'bg-ely-blue' :
-                                    style.color === 'amber' ? 'bg-amber-500' : 'bg-red-500'
+                            style.color === 'ely-blue' ? 'bg-ely-blue' :
+                                style.color === 'amber' ? 'bg-amber-500' : 'bg-red-500'
                             } opacity-[0.03] rounded-full group-hover:scale-110 transition-transform duration-700`} />
 
                         <div className="flex flex-col md:flex-row justify-between gap-8 relative z-10">
@@ -185,13 +198,15 @@ export default function RequestDetailsPage() {
                                         </div>
                                         <span className="text-xs font-black text-slate-400 uppercase tracking-widest leading-none pt-1">ID: {request.id.slice(0, 10).toUpperCase()}</span>
                                     </div>
-                                    <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter leading-none">{request.projectType || "Prêt Personnel"}</h1>
+                                    <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter leading-none">
+                                        {request.projectType ? tProject(request.projectType.toLowerCase()) : "Prêt Personnel"}
+                                    </h1>
                                 </div>
                                 <div className="flex flex-wrap gap-4 items-center justify-center md:justify-start">
                                     <div className={`flex items-center gap-2 px-6 py-2 rounded-full leading-none ${style.color === 'ely-mint' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100/50' :
-                                            style.color === 'ely-blue' ? 'bg-blue-50 text-ely-blue border border-blue-100/50' :
-                                                style.color === 'amber' ? 'bg-amber-50 text-amber-600 border border-amber-100/50' :
-                                                    'bg-red-50 text-red-600 border border-red-100/50'
+                                        style.color === 'ely-blue' ? 'bg-blue-50 text-ely-blue border border-blue-100/50' :
+                                            style.color === 'amber' ? 'bg-amber-50 text-amber-600 border border-amber-100/50' :
+                                                'bg-red-50 text-red-600 border border-red-100/50'
                                         }`}>
                                         <style.icon className="w-4 h-4" />
                                         <span className="text-[10px] md:text-xs font-black uppercase tracking-widest pt-0.5">

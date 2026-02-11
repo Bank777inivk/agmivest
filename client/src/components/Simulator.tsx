@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 
 interface SimulatorProps {
     isMinimal?: boolean;
@@ -88,6 +89,22 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
         }
     };
 
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        const num = parseFloat(value);
+
+        if (name === "amount") {
+            if (num < 2000) handleAmountChange(2000);
+            if (num > 1000000) handleAmountChange(1000000);
+        } else if (name === "duration") {
+            if (num < 0.5) handleDurationChange(0.5);
+            if (num > 30) handleDurationChange(30);
+        } else if (name === "rate") {
+            if (num < 0.5) handleRateChange(0.5);
+            if (num > 15) handleRateChange(15);
+        }
+    };
+
     return (
         <div className={`${embedded ? 'bg-gradient-to-br from-white via-gray-50 to-ely-mint/5 p-6 rounded-2xl shadow-xl border-2 border-ely-mint/20 hover:shadow-2xl transition-shadow duration-300' : 'bg-white p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl md:rounded-3xl shadow-2xl border border-gray-100 max-w-6xl mx-auto'}`}>
             <div className={`grid grid-cols-1 ${embedded ? 'gap-6' : isMinimal ? 'lg:grid-cols-2' : 'lg:grid-cols-2'} ${embedded ? '' : 'gap-6 lg:gap-12'} items-center`}>
@@ -98,9 +115,20 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                     <div className={`space-y-${embedded ? '3' : '3 md:space-y-4'}`}>
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                             <label className={`${embedded ? 'text-sm font-bold text-gray-700 tracking-tight' : 'text-base md:text-lg font-semibold text-ely-blue'}`}>{t('amountLabel')}</label>
-                            <span className={`${embedded ? 'text-lg font-black text-ely-blue bg-white shadow-sm border border-gray-100 px-3 py-1.5 rounded-lg w-fit' : 'text-xl md:text-2xl font-bold text-ely-blue bg-gray-50 px-4 py-1 rounded-lg w-fit transition-all hover:bg-ely-mint/10'}`}>
-                                <span suppressHydrationWarning>{hasMounted ? amount.toLocaleString() : amount}</span> €
-                            </span>
+                            <div className={cn(
+                                "flex items-center gap-1",
+                                embedded ? "text-lg font-black text-ely-blue bg-white shadow-sm border border-gray-100 px-3 py-1.5 rounded-lg" : "text-xl md:text-2xl font-bold text-ely-blue bg-gray-50 px-4 py-1 rounded-lg"
+                            )}>
+                                <input
+                                    type="number"
+                                    name="amount"
+                                    value={amount}
+                                    onChange={(e) => handleAmountChange(Number(e.target.value))}
+                                    onBlur={handleBlur}
+                                    className="bg-transparent border-none outline-none text-right w-24 md:w-32 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:ring-0"
+                                />
+                                <span className="ml-1">€</span>
+                            </div>
                         </div>
                         <input
                             type="range"
@@ -121,9 +149,21 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                     <div className={`space-y-${embedded ? '3' : '3 md:space-y-4'}`}>
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                             <label className={`${embedded ? 'text-sm font-bold text-gray-700 tracking-tight' : 'text-base md:text-lg font-semibold text-ely-blue'}`}>{t('durationLabel')}</label>
-                            <span className={`${embedded ? 'text-lg font-black text-ely-blue bg-white shadow-sm border border-gray-100 px-3 py-1.5 rounded-lg w-fit' : 'text-xl md:text-2xl font-bold text-ely-blue bg-gray-50 px-4 py-1 rounded-lg w-fit transition-all hover:bg-ely-mint/10'}`}>
-                                {duration < 1 ? "6 mois" : `${duration} ${t('durationSuffix')}`}
-                            </span>
+                            <div className={cn(
+                                "flex items-center gap-1",
+                                embedded ? "text-lg font-black text-ely-blue bg-white shadow-sm border border-gray-100 px-3 py-1.5 rounded-lg" : "text-xl md:text-2xl font-bold text-ely-blue bg-gray-50 px-4 py-1 rounded-lg"
+                            )}>
+                                <input
+                                    type="number"
+                                    name="duration"
+                                    value={duration}
+                                    step="0.5"
+                                    onChange={(e) => handleDurationChange(Number(e.target.value))}
+                                    onBlur={handleBlur}
+                                    className="bg-transparent border-none outline-none text-right w-16 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:ring-0"
+                                />
+                                <span className="ml-1 text-sm md:text-base font-bold">{t('durationSuffix')}</span>
+                            </div>
                         </div>
                         <input
                             type="range"
@@ -144,9 +184,21 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                     <div className={`space-y-${embedded ? '3' : '3 md:space-y-4'}`}>
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                             <label className={`${embedded ? 'text-sm font-bold text-gray-700 tracking-tight' : 'text-base md:text-lg font-semibold text-ely-blue'}`}>{t('rateLabel')}</label>
-                            <span className={`${embedded ? 'text-lg font-black text-ely-blue bg-white shadow-sm border border-gray-100 px-3 py-1.5 rounded-lg w-fit' : 'text-xl md:text-2xl font-bold text-ely-blue bg-gray-50 px-4 py-1 rounded-lg w-fit transition-all hover:bg-ely-mint/10'}`}>
-                                {rate} %
-                            </span>
+                            <div className={cn(
+                                "flex items-center gap-1",
+                                embedded ? "text-lg font-black text-ely-blue bg-white shadow-sm border border-gray-100 px-3 py-1.5 rounded-lg" : "text-xl md:text-2xl font-bold text-ely-blue bg-gray-50 px-4 py-1 rounded-lg"
+                            )}>
+                                <input
+                                    type="number"
+                                    name="rate"
+                                    value={rate}
+                                    step="0.05"
+                                    onChange={(e) => handleRateChange(Number(e.target.value))}
+                                    onBlur={handleBlur}
+                                    className="bg-transparent border-none outline-none text-right w-16 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:ring-0"
+                                />
+                                <span className="ml-1">%</span>
+                            </div>
                         </div>
                         <input
                             type="range"

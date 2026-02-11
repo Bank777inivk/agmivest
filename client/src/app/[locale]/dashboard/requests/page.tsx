@@ -30,6 +30,7 @@ const statusStyles: any = {
 
 export default function RequestsPage() {
     const t = useTranslations('Dashboard.Requests');
+    const tProject = useTranslations('CreditRequest.Project.labels');
     const router = useRouter();
     const [requests, setRequests] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -142,7 +143,7 @@ export default function RequestsPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-black text-slate-900 group-hover:text-ely-blue transition-colors text-base md:text-xl tracking-tight leading-tight">
-                                            {req.projectType || "Demande de Crédit"}
+                                            {req.projectType ? tProject(req.projectType.toLowerCase()) : "Demande de Crédit"}
                                         </h3>
                                         <div className="flex flex-wrap items-center gap-3 mt-2">
                                             <span className="text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 px-2 py-0.5 rounded-md">

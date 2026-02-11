@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { auth, db } from "@/lib/firebase";
-import { doc, getDoc, addDoc, collection, serverTimestamp, getDocs, query, where, limit, orderBy } from "firebase/firestore";
+import { doc, getDoc, setDoc, addDoc, collection, serverTimestamp, getDocs, query, where, limit, orderBy } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
@@ -12,6 +12,7 @@ import MobileCreditRequest from "@/components/dashboard/Credit/MobileCreditReque
 import PremiumSpinner from "@/components/dashboard/PremiumSpinner";
 import { TrendingUp, Lock, ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { COUNTRIES, COUNTRY_TO_NATIONALITY, COUNTRY_PHONE_DATA } from "@/lib/constants";
 
 // Validation logic and score calculation (Mock)
 const calculateScore = (data: any, projectData: any) => {
@@ -51,6 +52,7 @@ export default function CreditRequestPage() {
     const [hasActiveRequest, setHasActiveRequest] = useState(false);
     const [activeLoanData, setActiveLoanData] = useState<any>(null);
     const [isMounted, setIsMounted] = useState(false);
+    const [readOnlyFields, setReadOnlyFields] = useState<Set<string>>(new Set());
 
     // Form State
     const [amount, setAmount] = useState(50000);
@@ -67,11 +69,17 @@ export default function CreditRequestPage() {
         birthDate: "",
         birthPlace: "",
         nationality: "Française",
+        birthCountry: "France",
         maritalStatus: "single",
         children: "0",
         housingType: "tenant",
         housingSeniority: "",
+        housingSeniorityMonths: "0",
+        residenceCountry: "France",
+        phoneCountry: "France",
+        phone: "",
         address: "",
+        street: "",
         zipCode: "",
         city: "",
         income: "",
@@ -79,7 +87,11 @@ export default function CreditRequestPage() {
         contractType: "cdi",
         profession: "",
         companyName: "",
-        bankName: ""
+        otherCredits: "0",
+        bankName: "",
+        iban: "",
+        bic: "",
+        ribEmail: ""
     });
 
     useEffect(() => {
@@ -89,16 +101,50 @@ export default function CreditRequestPage() {
                 if (user) {
                     // Fetch user data to pre-fill form
                     const userDoc = await getDoc(doc(db, "users", user.uid));
-                    if (userDoc.exists()) {
-                        const userData = userDoc.data();
-                        setFormData(prev => ({
-                            ...prev,
-                            firstName: userData.firstName || "",
-                            lastName: userData.lastName || "",
-                            city: userData.city || "",
-                            address: userData.address || ""
-                        }));
-                    }
+                    const userData = userDoc.exists() ? userDoc.data() : {};
+                    const newReadOnlyFields = new Set<string>();
+
+                    // Fields to pre-fill from Firestore
+                    const fieldsToPreFill = [
+                        'civility', 'firstName', 'lastName', 'birthDate', 'birthPlace',
+                        'birthCountry', 'nationality', 'maritalStatus', 'children',
+                        'housingType', 'housingSeniority', 'housingSeniorityMonths',
+                        'residenceCountry', 'phoneCountry', 'phone', 'address', 'street',
+                        'zipCode', 'city', 'income', 'charges', 'otherCredits',
+                        'contractType', 'profession', 'companyName', 'bankName',
+                        'iban', 'bic', 'ribEmail'
+                    ];
+
+                    // Fields that should be locked if pre-filled (Identity & Address)
+                    const fieldsToLock = [
+                        'civility', 'firstName', 'lastName', 'birthDate', 'birthPlace',
+                        'birthCountry', 'nationality', 'residenceCountry', 'phone',
+                        'address', 'street', 'zipCode', 'city'
+                    ];
+
+                    setFormData(prev => {
+                        const updated = { ...prev };
+                        fieldsToPreFill.forEach(field => {
+                            const value = (field === 'residenceCountry' && !userData[field] && userData['country'])
+                                ? userData['country']
+                                : userData[field];
+
+                            if (value !== undefined && value !== "") {
+                                updated[field as keyof typeof prev] = value;
+
+                                // Only add to read-only if it's in the locking list
+                                if (fieldsToLock.includes(field)) {
+                                    newReadOnlyFields.add(field);
+                                }
+                            }
+                        });
+                        // Special case for street mapping from address if street is missing
+                        if (!userData.street && userData.address) {
+                            updated.street = userData.address;
+                        }
+                        return updated;
+                    });
+                    setReadOnlyFields(newReadOnlyFields);
 
                     // Check for active loan request
                     const q = query(
@@ -111,11 +157,56 @@ export default function CreditRequestPage() {
                     const querySnapshot = await getDocs(q);
                     if (!querySnapshot.empty) {
                         const requestData = querySnapshot.docs[0].data();
-                        // Basic logic: if request is not rejected, it's considered "active" for new requests
-                        if (requestData.status !== "rejected") {
-                            setHasActiveRequest(true);
-                            setActiveLoanData(requestData);
+
+                        // Pre-fill from the last request if data is missing
+                        setFormData(prev => ({
+                            ...prev,
+                            civility: userData.civility || requestData.civility || prev.civility,
+                            firstName: userData.firstName || requestData.firstName || prev.firstName,
+                            lastName: userData.lastName || requestData.lastName || prev.lastName,
+                            birthDate: userData.birthDate || requestData.birthDate || prev.birthDate,
+                            birthPlace: userData.birthPlace || requestData.birthPlace || prev.birthPlace,
+                            birthCountry: userData.birthCountry || requestData.birthCountry || prev.birthCountry,
+                            nationality: userData.nationality || requestData.nationality || prev.nationality,
+                            maritalStatus: userData.maritalStatus || requestData.maritalStatus || prev.maritalStatus,
+                            children: userData.children || requestData.children || prev.children,
+                            housingType: userData.housingType || requestData.housingType || prev.housingType,
+                            housingSeniority: userData.housingSeniority || requestData.housingSeniority || prev.housingSeniority,
+                            housingSeniorityMonths: userData.housingSeniorityMonths || requestData.housingSeniorityMonths || prev.housingSeniorityMonths,
+                            residenceCountry: userData.residenceCountry || userData.country || requestData.residenceCountry || requestData.country || prev.residenceCountry,
+                            phoneCountry: userData.phoneCountry || requestData.phoneCountry || prev.phoneCountry,
+                            phone: userData.phone || requestData.phone || prev.phone,
+                            address: userData.address || requestData.address || prev.address,
+                            street: userData.street || userData.address || requestData.street || requestData.address || prev.street,
+                            zipCode: userData.zipCode || requestData.zipCode || prev.zipCode,
+                            city: userData.city || requestData.city || prev.city,
+                            income: userData.income || requestData.income || prev.income,
+                            charges: userData.charges || requestData.charges || prev.charges,
+                            contractType: userData.contractType || requestData.contractType || prev.contractType,
+                            profession: userData.profession || requestData.profession || prev.profession,
+                            companyName: userData.companyName || requestData.companyName || prev.companyName,
+                            bankName: userData.bankName || requestData.bankName || prev.bankName
+                        }));
+
+                        // Also lock fields pre-filled from request history if they are in security list
+                        const updatedReadOnly = new Set(newReadOnlyFields);
+                        fieldsToLock.forEach(field => {
+                            const userValue = (field === 'residenceCountry' && !userData[field] && userData['country']) ? userData['country'] : userData[field];
+                            const requestValue = (field === 'residenceCountry' && !requestData[field] && requestData['country']) ? requestData['country'] : requestData[field];
+
+                            if ((userValue !== undefined && userValue !== "") ||
+                                (requestValue !== undefined && requestValue !== "")) {
+                                updatedReadOnly.add(field);
+                            }
+                        });
+                        // Specific check for street mapping
+                        if ((!userData.street && userData.address) || (!requestData.street && requestData.address)) {
+                            updatedReadOnly.add('street');
                         }
+                        setReadOnlyFields(updatedReadOnly);
+
+                        setHasActiveRequest(true);
+                        setActiveLoanData(requestData);
                     }
                 } else {
                     router.push("/login");
@@ -138,8 +229,56 @@ export default function CreditRequestPage() {
     const isRejected = activeLoanData?.status === "rejected";
 
     const monthlyRate = annualRate / 100 / 12;
-    const totalMonthlyPayment = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -duration)) + (amount * 0.00035);
+    const totalMonthlyPayment = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -duration)) + ((amount * 0.03) / duration);
     const totalCost = (totalMonthlyPayment * duration) - amount;
+
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        const num = parseFloat(value);
+
+        if (name === "amount") {
+            if (num < 2000) setAmount(2000);
+            if (num > 1000000) setAmount(1000000);
+        } else if (name === "duration") {
+            if (num < 6) setDuration(6);
+            if (num > 360) setDuration(360);
+        } else if (name === "annualRate") {
+            if (num < 0.5) setAnnualRate(0.5);
+            if (num > 15) setAnnualRate(15);
+        }
+    };
+
+    const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let value = e.target.value.replace(/\D/g, "");
+        if (value.length > 8) value = value.slice(0, 8);
+
+        let formatted = "";
+        if (value.length > 0) formatted += value.slice(0, 2);
+        if (value.length > 2) formatted += " / " + value.slice(2, 4);
+        if (value.length > 4) formatted += " / " + value.slice(4, 8);
+
+        setFormData(prev => ({ ...prev, birthDate: formatted }));
+    };
+
+    const getDateStatus = (dateStr: string) => {
+        const cleaned = dateStr.replace(/\s\/\s/g, "");
+        if (cleaned.length !== 8) return "invalid";
+
+        const day = parseInt(cleaned.slice(0, 2));
+        const month = parseInt(cleaned.slice(2, 4)) - 1;
+        const year = parseInt(cleaned.slice(4, 8));
+
+        const date = new Date(year, month, day);
+        if (isNaN(date.getTime()) || date.getDate() !== day || date.getMonth() !== month || date.getFullYear() !== year) {
+            return "invalid";
+        }
+
+        const now = new Date();
+        const age = now.getFullYear() - year - (now.getMonth() < month || (now.getMonth() === month && now.getDate() < day) ? 1 : 0);
+        if (age < 18) return "underage";
+
+        return "valid";
+    };
 
     const handleSubmit = async () => {
         if (!auth.currentUser) return;
@@ -160,12 +299,20 @@ export default function CreditRequestPage() {
                 monthlyPayment: Math.round(totalMonthlyPayment),
                 totalCost: Math.round(totalCost),
                 score,
-                status: status.toLowerCase(),
+                status: "pending",
+                scoringStatus: status,
                 debtRatio,
                 createdAt: serverTimestamp(),
             };
 
             await addDoc(collection(db, "requests"), requestData);
+
+            // Also update user profile with latest info
+            await setDoc(doc(db, "users", auth.currentUser.uid), {
+                ...formData,
+                updatedAt: serverTimestamp()
+            }, { merge: true });
+
             setStep(6);
         } catch (error) {
             console.error("Error submitting request:", error);
@@ -175,9 +322,28 @@ export default function CreditRequestPage() {
         }
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        let newValue = value;
+
+        setFormData(prev => {
+            const updated = { ...prev, [name]: newValue };
+
+            // Sync birthCountry with nationality
+            if (name === "birthCountry") {
+                updated.nationality = COUNTRY_TO_NATIONALITY[value] || prev.nationality;
+            }
+
+            // Mutual exclusivity for housing seniority
+            if (name === "housingSeniority" && value !== "" && parseInt(value) > 0) {
+                updated.housingSeniorityMonths = "0";
+            }
+            if (name === "housingSeniorityMonths" && value !== "" && parseInt(value) > 0) {
+                updated.housingSeniority = "0";
+            }
+
+            return updated;
+        });
     };
 
     if (!isMounted || isCheckingActive) {
@@ -268,6 +434,43 @@ export default function CreditRequestPage() {
         );
     }
 
+    const canGoNext = () => {
+        if (step === 2) {
+            return (
+                formData.firstName.trim() !== "" &&
+                formData.lastName.trim() !== "" &&
+                formData.birthPlace.trim() !== "" &&
+                formData.nationality.trim() !== "" &&
+                getDateStatus(formData.birthDate) === "valid"
+            );
+        }
+        if (step === 3) {
+            return (
+                formData.housingSeniority.toString().trim() !== "" &&
+                formData.phone.trim() !== "" &&
+                formData.street.trim() !== "" &&
+                formData.zipCode.trim() !== "" &&
+                formData.city.trim() !== ""
+            );
+        }
+        if (step === 4) {
+            const isUnemployed = formData.contractType === 'unemployed';
+            const isRetired = formData.contractType === 'retired';
+
+            return (
+                (isUnemployed || formData.profession.trim() !== "") &&
+                (isUnemployed || isRetired || formData.companyName.trim() !== "") &&
+                formData.income.toString().trim() !== "" &&
+                formData.charges.toString().trim() !== "" &&
+                formData.bankName.trim() !== "" &&
+                formData.iban.trim() !== "" &&
+                formData.bic.trim() !== "" &&
+                formData.ribEmail.trim() !== ""
+            );
+        }
+        return true;
+    };
+
     const commonProps = {
         t,
         step,
@@ -290,6 +493,11 @@ export default function CreditRequestPage() {
         handleSubmit,
         totalMonthlyPayment,
         totalCost,
+        handleBlur,
+        handleDateChange,
+        getDateStatus,
+        canGoNext,
+        readOnlyFields
     };
 
     return (

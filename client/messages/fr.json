@@ -530,7 +530,7 @@
       "checkMessage": "Une erreur peut retarder votre dossier.",
       "scoreLabel": "Score AGM",
       "analysisTitle": "Dossier en cours d'analyse",
-      "analysisMessage": "Votre demande a été transmise avec succès. Nos experts analysent actuellement votre dossier pour vous proposer la meilleure solution de financement. Vous serez notifié de la validation de votre score sous 24h.",
+      "analysisMessage": "Votre demande a été transmise avec succès. Nos experts analysent actuellement votre dossier pour vous proposer la meilleure solution de financement. Vous recevrez une réponse dans les plus brefs délais.",
       "dashboardButton": "ACCÉDER À MON ESPACE CLIENT",
       "newProjectButton": "Nouveau projet"
     },
@@ -540,7 +540,7 @@
     },
     "Loading": {
       "title": "Vérification de solvabilité",
-      "subtitle": "Analyse des flux et calcul du score bancaire..."
+      "subtitle": "Analyse des flux et calcul de votre éligibilité..."
     }
   },
   "Auth": {

@@ -8,6 +8,8 @@ import {
     TrendingUp, Percent, Target, PieChart, ShieldCheck, User
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { COUNTRIES, COUNTRY_PHONE_DATA } from "@/lib/constants";
+import AddressAutocomplete from "@/components/AddressAutocomplete";
 
 interface CreditRequestProps {
     t: any;
@@ -31,6 +33,11 @@ interface CreditRequestProps {
     handleSubmit: () => Promise<void>;
     totalMonthlyPayment: number;
     totalCost: number;
+    handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+    handleDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    getDateStatus: (dateStr: string) => "valid" | "invalid" | "underage";
+    canGoNext: () => boolean;
+    readOnlyFields: Set<string>;
 }
 
 export default function DesktopCreditRequest({
@@ -54,7 +61,12 @@ export default function DesktopCreditRequest({
     handleChange,
     handleSubmit,
     totalMonthlyPayment,
-    totalCost
+    totalCost,
+    handleBlur,
+    handleDateChange,
+    getDateStatus,
+    canGoNext,
+    readOnlyFields
 }: CreditRequestProps) {
     const item = {
         hidden: { opacity: 0, y: 20 },
@@ -254,8 +266,16 @@ export default function DesktopCreditRequest({
                                         </div>
                                         <p className="text-sm text-white/40 font-medium italic">Ajustez selon votre besoin réel.</p>
                                     </div>
-                                    <div className="px-4 py-2 md:px-6 md:py-3 bg-white/5 rounded-2xl border border-white/5 font-black text-2xl md:text-3xl text-white shadow-xl backdrop-blur-md group-hover:scale-105 transition-transform duration-500">
-                                        {amount.toLocaleString()} <span className="text-lg md:text-xl font-black text-white/20 ml-1">€</span>
+                                    <div className="flex items-center gap-1 px-4 py-2 md:px-6 md:py-3 bg-white/5 rounded-2xl border border-white/5 shadow-xl backdrop-blur-md transition-transform duration-500">
+                                        <input
+                                            type="number"
+                                            name="amount"
+                                            value={amount}
+                                            onChange={(e) => setAmount(Number(e.target.value))}
+                                            onBlur={handleBlur}
+                                            className="bg-transparent border-none outline-none font-black text-2xl md:text-3xl text-white w-24 md:w-40 text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:ring-0"
+                                        />
+                                        <span className="text-lg md:text-xl font-black text-white/20 ml-1">€</span>
                                     </div>
                                 </div>
                                 <div className="relative pt-4">
@@ -287,8 +307,17 @@ export default function DesktopCreditRequest({
                                         </div>
                                         <p className="text-sm text-white/40 font-medium italic">Taux fixe AGMINVEST</p>
                                     </div>
-                                    <div className="px-6 py-3 bg-white/5 rounded-2xl border border-white/5 font-black text-3xl text-ely-mint shadow-xl backdrop-blur-md">
-                                        {annualRate.toFixed(2)} <span className="text-xl font-black text-white/20 ml-1">%</span>
+                                    <div className="flex items-center gap-1 px-6 py-3 bg-white/5 rounded-2xl border border-white/5 shadow-xl backdrop-blur-md">
+                                        <input
+                                            type="number"
+                                            name="annualRate"
+                                            value={annualRate}
+                                            step="0.01"
+                                            onChange={(e) => setAnnualRate(Number(e.target.value))}
+                                            onBlur={handleBlur}
+                                            className="bg-transparent border-none outline-none font-black text-3xl text-ely-mint w-24 text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:ring-0"
+                                        />
+                                        <span className="text-xl font-black text-white/20 ml-1">%</span>
                                     </div>
                                 </div>
                                 <div className="relative pt-4">
@@ -320,8 +349,16 @@ export default function DesktopCreditRequest({
                                         </div>
                                         <p className="text-sm text-white/40 font-medium italic">Exprimée en mensualités</p>
                                     </div>
-                                    <div className="px-6 py-3 bg-white/5 rounded-2xl border border-white/5 font-black text-3xl text-white shadow-xl backdrop-blur-md">
-                                        {duration} <span className="text-xl font-black text-white/20 ml-1">mois</span>
+                                    <div className="flex items-center gap-1 px-6 py-3 bg-white/5 rounded-2xl border border-white/5 shadow-xl backdrop-blur-md">
+                                        <input
+                                            type="number"
+                                            name="duration"
+                                            value={duration}
+                                            onChange={(e) => setDuration(Number(e.target.value))}
+                                            onBlur={handleBlur}
+                                            className="bg-transparent border-none outline-none font-black text-3xl text-white w-24 text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:ring-0"
+                                        />
+                                        <span className="text-xl font-black text-white/20 ml-1">mois</span>
                                     </div>
                                 </div>
                                 <div className="relative pt-4">
@@ -374,7 +411,11 @@ export default function DesktopCreditRequest({
                                         </div>
                                         <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
                                             <span className="text-xs font-black uppercase tracking-widest text-white/90">Coût total</span>
-                                            <span className="font-black text-sm text-ely-mint">{(totalCost - (amount * 0.00035 * duration)).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 2 })} €</span>
+                                            <span className="font-black text-sm text-ely-mint">{(totalCost - (amount * 0.03)).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 2 })} €</span>
+                                        </div>
+                                        <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
+                                            <span className="text-xs font-black uppercase tracking-widest text-ely-mint">Assurance (3%)</span>
+                                            <span className="font-black text-sm text-ely-mint">+{((amount * 0.03) / duration).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €/mois</span>
                                         </div>
 
                                         <div className="pt-6 px-2 flex justify-between items-end">
@@ -433,30 +474,120 @@ export default function DesktopCreditRequest({
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         <div className="space-y-4">
                                             <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Civilité</label>
-                                            <select name="civility" value={formData.civility} onChange={handleChange} className="w-full px-6 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm">
+                                            <select
+                                                name="civility"
+                                                value={formData.civility}
+                                                onChange={handleChange}
+                                                disabled={readOnlyFields.has('civility')}
+                                                className={cn(
+                                                    "w-full px-6 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('civility') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            >
                                                 <option value="M.">Monsieur (M.)</option>
                                                 <option value="Mme">Madame (Mme)</option>
                                             </select>
                                         </div>
                                         <div className="space-y-4">
                                             <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Nationalité</label>
-                                            <input type="text" name="nationality" value={formData.nationality} onChange={handleChange} placeholder="Ex: Française" className="w-full px-6 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
+                                            <input
+                                                type="text"
+                                                name="nationality"
+                                                value={formData.nationality}
+                                                onChange={handleChange}
+                                                placeholder="Ex: Française"
+                                                readOnly={readOnlyFields.has('nationality')}
+                                                className={cn(
+                                                    "w-full px-6 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('nationality') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            />
                                         </div>
                                         <div className="space-y-4">
                                             <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Prénom</label>
-                                            <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
+                                            <input
+                                                type="text"
+                                                name="firstName"
+                                                value={formData.firstName}
+                                                onChange={handleChange}
+                                                readOnly={readOnlyFields.has('firstName')}
+                                                className={cn(
+                                                    "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('firstName') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            />
                                         </div>
                                         <div className="space-y-4">
                                             <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Nom de famille</label>
-                                            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
+                                            <input
+                                                type="text"
+                                                name="lastName"
+                                                value={formData.lastName}
+                                                onChange={handleChange}
+                                                readOnly={readOnlyFields.has('lastName')}
+                                                className={cn(
+                                                    "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('lastName') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            />
+                                        </div>
+                                        <div className="space-y-4">
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Pays de naissance</label>
+                                            <select
+                                                name="birthCountry"
+                                                value={formData.birthCountry}
+                                                onChange={handleChange}
+                                                disabled={readOnlyFields.has('birthCountry')}
+                                                className={cn(
+                                                    "w-full px-6 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('birthCountry') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            >
+                                                {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
+                                            </select>
                                         </div>
                                         <div className="space-y-4">
                                             <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Date de naissance</label>
-                                            <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm custom-date-input" />
+                                            <div className="relative">
+                                                <input
+                                                    type="text"
+                                                    name="birthDate"
+                                                    value={formData.birthDate}
+                                                    onChange={handleDateChange}
+                                                    placeholder="JJ / MM / AAAA"
+                                                    readOnly={readOnlyFields.has('birthDate')}
+                                                    className={cn(
+                                                        "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                        readOnlyFields.has('birthDate') && "bg-slate-100/80 cursor-not-allowed opacity-70",
+                                                        formData.birthDate.length === 14 && !readOnlyFields.has('birthDate')
+                                                            ? getDateStatus(formData.birthDate) === "valid"
+                                                                ? "border-green-500"
+                                                                : "border-red-500"
+                                                            : "border-slate-100 focus:border-ely-mint"
+                                                    )}
+                                                />
+                                                <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 w-5 h-5" />
+                                            </div>
+                                            {formData.birthDate.length === 14 && getDateStatus(formData.birthDate) !== "valid" && !readOnlyFields.has('birthDate') && (
+                                                <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest ml-4">
+                                                    {getDateStatus(formData.birthDate) === "underage" ? "Vous devez être majeur" : "Date invalide"}
+                                                </p>
+                                            )}
                                         </div>
                                         <div className="space-y-4">
                                             <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Lieu de naissance</label>
-                                            <input type="text" name="birthPlace" value={formData.birthPlace} onChange={handleChange} placeholder="Ex: Paris" className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
+                                            <input
+                                                type="text"
+                                                name="birthPlace"
+                                                value={formData.birthPlace}
+                                                onChange={handleChange}
+                                                placeholder="Ex: Paris"
+                                                readOnly={readOnlyFields.has('birthPlace')}
+                                                className={cn(
+                                                    "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('birthPlace') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            />
                                         </div>
                                     </div>
                                 </>
@@ -472,7 +603,16 @@ export default function DesktopCreditRequest({
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         <div className="space-y-4">
                                             <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">État Civil</label>
-                                            <select name="maritalStatus" value={formData.maritalStatus} onChange={handleChange} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm">
+                                            <select
+                                                name="maritalStatus"
+                                                value={formData.maritalStatus}
+                                                onChange={handleChange}
+                                                disabled={readOnlyFields.has('maritalStatus')}
+                                                className={cn(
+                                                    "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('maritalStatus') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            >
                                                 <option value="single">Célibataire</option>
                                                 <option value="married">Marié(e)</option>
                                                 <option value="pacs">Pacsé(e)</option>
@@ -482,11 +622,30 @@ export default function DesktopCreditRequest({
                                         </div>
                                         <div className="space-y-4">
                                             <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Enfants à charge</label>
-                                            <input type="number" name="children" value={formData.children} onChange={handleChange} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
+                                            <input
+                                                type="number"
+                                                name="children"
+                                                value={formData.children}
+                                                onChange={handleChange}
+                                                readOnly={readOnlyFields.has('children')}
+                                                className={cn(
+                                                    "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('children') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            />
                                         </div>
                                         <div className="space-y-4">
                                             <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Logement actuel</label>
-                                            <select name="housingType" value={formData.housingType} onChange={handleChange} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm">
+                                            <select
+                                                name="housingType"
+                                                value={formData.housingType}
+                                                onChange={handleChange}
+                                                disabled={readOnlyFields.has('housingType')}
+                                                className={cn(
+                                                    "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('housingType') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            >
                                                 <option value="tenant">Locataire</option>
                                                 <option value="owner">Propriétaire</option>
                                                 <option value="owner_mortgage">Propriétaire avec crédit</option>
@@ -494,20 +653,130 @@ export default function DesktopCreditRequest({
                                             </select>
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Ancienneté (ans)</label>
-                                            <input type="number" name="housingSeniority" value={formData.housingSeniority} onChange={handleChange} placeholder="Ex: 5" className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Ancienneté Logement</label>
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div className="relative">
+                                                    <input
+                                                        type="number"
+                                                        name="housingSeniority"
+                                                        value={formData.housingSeniority}
+                                                        onChange={handleChange}
+                                                        placeholder="Années"
+                                                        readOnly={readOnlyFields.has('housingSeniority')}
+                                                        className={cn(
+                                                            "w-full px-6 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                            readOnlyFields.has('housingSeniority') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                    />
+                                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-300 uppercase">Ans</span>
+                                                </div>
+                                                <div className="relative">
+                                                    <input
+                                                        type="number"
+                                                        name="housingSeniorityMonths"
+                                                        value={formData.housingSeniorityMonths}
+                                                        onChange={handleChange}
+                                                        placeholder="Mois"
+                                                        readOnly={readOnlyFields.has('housingSeniorityMonths')}
+                                                        className={cn(
+                                                            "w-full px-6 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                            readOnlyFields.has('housingSeniorityMonths') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                        min="0"
+                                                        max="11"
+                                                    />
+                                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-300 uppercase">Mois</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="space-y-4">
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Pays de résidence</label>
+                                            <select
+                                                name="residenceCountry"
+                                                value={formData.residenceCountry}
+                                                onChange={handleChange}
+                                                disabled={readOnlyFields.has('residenceCountry')}
+                                                className={cn(
+                                                    "w-full px-6 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('residenceCountry') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            >
+                                                {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
+                                            </select>
+                                        </div>
+                                        <div className="md:col-span-2 space-y-4">
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Numéro de téléphone</label>
+                                            <div className="flex gap-4">
+                                                <div className="w-24 px-4 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 flex items-center justify-center font-black text-xl shadow-sm">
+                                                    {COUNTRY_PHONE_DATA[formData.phoneCountry]?.flag || "🏳️"}
+                                                </div>
+                                                <div className="flex-1 relative group">
+                                                    <span className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">
+                                                        {COUNTRY_PHONE_DATA[formData.phoneCountry]?.code}
+                                                    </span>
+                                                    <input
+                                                        type="tel"
+                                                        name="phone"
+                                                        value={formData.phone}
+                                                        onChange={handleChange}
+                                                        placeholder={COUNTRY_PHONE_DATA[formData.phoneCountry]?.placeholder || "06 12 34 56 78"}
+                                                        readOnly={readOnlyFields.has('phone')}
+                                                        className={cn(
+                                                            "w-full pl-16 pr-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                            readOnlyFields.has('phone') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                    />
+                                                </div>
+                                            </div>
                                         </div>
                                         <div className="md:col-span-2 space-y-4">
                                             <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Adresse de résidence</label>
-                                            <input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="Numéro et nom de rue" className="w-full px-8 py-5 bg-slate-50/50 rounded-[2rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
+                                            <AddressAutocomplete
+                                                value={formData.street}
+                                                onChange={(val) => handleChange({ target: { name: 'street', value: val } } as any)}
+                                                onSelect={(addr) => {
+                                                    handleChange({ target: { name: 'street', value: addr.street } } as any);
+                                                    handleChange({ target: { name: 'zipCode', value: addr.zipCode } } as any);
+                                                    handleChange({ target: { name: 'city', value: addr.city } } as any);
+                                                }}
+                                                country={formData.residenceCountry}
+                                                placeholder="Numéro et nom de rue"
+                                                disabled={readOnlyFields.has('street')}
+                                                className={cn(
+                                                    "w-full px-8 py-5 bg-slate-50/50 rounded-[2rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('street') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            />
                                         </div>
                                         <div className="space-y-4">
                                             <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Code Postal</label>
-                                            <input type="text" name="zipCode" value={formData.zipCode} onChange={handleChange} placeholder="Ex: 75000" className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
+                                            <input
+                                                type="text"
+                                                name="zipCode"
+                                                value={formData.zipCode}
+                                                onChange={handleChange}
+                                                placeholder="Ex: 75000"
+                                                readOnly={readOnlyFields.has('zipCode')}
+                                                className={cn(
+                                                    "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('zipCode') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            />
                                         </div>
                                         <div className="space-y-4">
                                             <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Ville</label>
-                                            <input type="text" name="city" value={formData.city} onChange={handleChange} placeholder="Ex: Paris" className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
+                                            <input
+                                                type="text"
+                                                name="city"
+                                                value={formData.city}
+                                                onChange={handleChange}
+                                                placeholder="Ex: Paris"
+                                                readOnly={readOnlyFields.has('city')}
+                                                className={cn(
+                                                    "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                    readOnlyFields.has('city') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                )}
+                                            />
                                         </div>
                                     </div>
                                 </>
@@ -520,50 +789,224 @@ export default function DesktopCreditRequest({
                                         <p className="text-slate-500 font-medium text-base leading-relaxed">Évaluation de la faisabilité de votre projet.</p>
                                     </div>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                        <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Revenus mensuels nets</label>
-                                            <div className="relative group">
-                                                <input type="number" name="income" value={formData.income} onChange={handleChange} className="w-full px-6 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
-                                                <Euro className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+                                    <div className="space-y-8">
+                                        {/* Row 1: Contract Type & Company (Conditional) */}
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                            <div className="space-y-4">
+                                                <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Type de contrat</label>
+                                                <select
+                                                    name="contractType"
+                                                    value={formData.contractType}
+                                                    onChange={handleChange}
+                                                    disabled={readOnlyFields.has('contractType')}
+                                                    className={cn(
+                                                        "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                        readOnlyFields.has('contractType') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                    )}
+                                                >
+                                                    <option value="cdi">CDI</option>
+                                                    <option value="cdd">CDD</option>
+                                                    <option value="temporary">Intérimaire / Mission</option>
+                                                    <option value="civil_servant">Fonctionnaire</option>
+                                                    <option value="liberal">Profession Libérale</option>
+                                                    <option value="business_owner">Chef d'entreprise</option>
+                                                    <option value="artisan">Commerçant / Artisan</option>
+                                                    <option value="independent">Indépendant / Freelance</option>
+                                                    <option value="retired">Retraité</option>
+                                                    <option value="student">Étudiant</option>
+                                                    <option value="apprentice">Apprenti / Alternant</option>
+                                                    <option value="unemployed">Sans emploi</option>
+                                                </select>
+                                            </div>
+
+                                            {!(formData.contractType === 'retired' || formData.contractType === 'unemployed') && (
+                                                <div className="space-y-4">
+                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">
+                                                        {formData.contractType === 'student'
+                                                            ? "Établissement / Université"
+                                                            : formData.contractType === 'apprentice'
+                                                                ? "Entreprise d'accueil / CFA"
+                                                                : formData.contractType === 'independent'
+                                                                    ? "Nom de votre activité"
+                                                                    : formData.contractType === 'artisan'
+                                                                        ? "Enseigne / Nom de l'Entreprise"
+                                                                        : formData.contractType === 'civil_servant'
+                                                                            ? "Ministère / Administration"
+                                                                            : formData.contractType === 'temporary'
+                                                                                ? "Société d'intérim / Employeur"
+                                                                                : formData.contractType === 'liberal'
+                                                                                    ? "Cabinet / Raison sociale"
+                                                                                    : formData.contractType === 'business_owner'
+                                                                                        ? "Nom de la société / Enseigne"
+                                                                                        : "Nom de l'Employeur"}
+                                                    </label>
+                                                    <div className="relative group">
+                                                        <input type="text" name="companyName" value={formData.companyName} onChange={handleChange} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" placeholder={formData.contractType === 'student' ? "Ex: Sorbonne" : formData.contractType === 'independent' ? "Ex: Freelance IT" : formData.contractType === 'civil_servant' ? "Ex: Préfecture" : "Ex: AGM INVEST"} />
+                                                        <Building2 className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Row 2: Profession (Conditional) & Income */}
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                            {formData.contractType !== 'unemployed' && (
+                                                <div className="space-y-4">
+                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">
+                                                        {formData.contractType === 'civil_servant'
+                                                            ? "Fonction / Grade"
+                                                            : formData.contractType === 'student'
+                                                                ? "Domaine / Filière d'études"
+                                                                : formData.contractType === 'retired'
+                                                                    ? "Ancienne profession"
+                                                                    : formData.contractType === 'apprentice'
+                                                                        ? "Métier préparé"
+                                                                        : "Profession / Métier"}
+                                                    </label>
+                                                    <div className="relative group">
+                                                        <input
+                                                            type="text"
+                                                            name="profession"
+                                                            value={formData.profession}
+                                                            onChange={handleChange}
+                                                            placeholder={formData.contractType === 'civil_servant' ? "Ex: Adjoint Administratif" : formData.contractType === 'student' ? "Ex: Management / Finance" : "Ex: Chef de projet"}
+                                                            readOnly={readOnlyFields.has('profession')}
+                                                            className={cn(
+                                                                "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                                readOnlyFields.has('profession') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                            )}
+                                                        />
+                                                        <Briefcase className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            <div className="space-y-4">
+                                                <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">
+                                                    {formData.contractType === 'retired'
+                                                        ? "Pension mensuelle (€)"
+                                                        : formData.contractType === 'unemployed'
+                                                            ? "Allocations / Revenus (€)"
+                                                            : formData.contractType === 'student'
+                                                                ? "Bourses / Revenus mensuels (€)"
+                                                                : formData.contractType === 'apprentice'
+                                                                    ? "Rémunération mensuelle (€)"
+                                                                    : formData.contractType === 'civil_servant'
+                                                                        ? "Traitement mensuel net (€)"
+                                                                        : ['independent', 'artisan', 'liberal', 'business_owner'].includes(formData.contractType)
+                                                                            ? "Revenu mensuel moyen (€)"
+                                                                            : "Revenus mensuels nets (€)"}
+                                                </label>
+                                                <div className="relative group">
+                                                    <input
+                                                        type="number"
+                                                        name="income"
+                                                        value={formData.income}
+                                                        onChange={handleChange}
+                                                        placeholder="0"
+                                                        readOnly={readOnlyFields.has('income')}
+                                                        className={cn(
+                                                            "w-full px-8 py-6 bg-slate-50/50 rounded-[2rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm text-2xl pl-16",
+                                                            readOnlyFields.has('income') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                    />
+                                                    <Euro className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Charges mensuelles</label>
-                                            <div className="relative group">
-                                                <input type="number" name="charges" value={formData.charges} onChange={handleChange} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
-                                                <CreditCard className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+
+                                        {/* Row 3: Charges & Other Credits */}
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                            <div className="space-y-4">
+                                                <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Charges mensuelles (€)</label>
+                                                <div className="relative group">
+                                                    <input
+                                                        type="number"
+                                                        name="charges"
+                                                        value={formData.charges}
+                                                        onChange={handleChange}
+                                                        placeholder="0"
+                                                        readOnly={readOnlyFields.has('charges')}
+                                                        className={cn(
+                                                            "w-full px-8 py-6 bg-slate-50/50 rounded-[2rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm text-2xl pl-16",
+                                                            readOnlyFields.has('charges') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                    />
+                                                    <CreditCard className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+                                                </div>
+                                            </div>
+                                            <div className="space-y-4">
+                                                <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Autres crédits en cours (€)</label>
+                                                <div className="relative group">
+                                                    <input
+                                                        type="number"
+                                                        name="otherCredits"
+                                                        value={formData.otherCredits}
+                                                        onChange={handleChange}
+                                                        placeholder="0"
+                                                        readOnly={readOnlyFields.has('otherCredits')}
+                                                        className={cn(
+                                                            "w-full px-8 py-6 bg-slate-50/50 rounded-[2rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm text-2xl pl-16",
+                                                            readOnlyFields.has('otherCredits') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                        )}
+                                                    />
+                                                    <Percent className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Type de contrat</label>
-                                            <select name="contractType" value={formData.contractType} onChange={handleChange} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm">
-                                                <option value="cdi">CDI</option>
-                                                <option value="cdd">CDD</option>
-                                                <option value="temporary">Intérimaire / Mission</option>
-                                                <option value="civil_servant">Fonctionnaire</option>
-                                                <option value="liberal">Profession Libérale</option>
-                                                <option value="business_owner">Chef d'entreprise</option>
-                                                <option value="artisan">Commerçant / Artisan</option>
-                                                <option value="independent">Indépendant / Freelance</option>
-                                                <option value="retired">Retraité</option>
-                                                <option value="student">Étudiant</option>
-                                                <option value="apprentice">Apprenti / Alternant</option>
-                                                <option value="unemployed">Sans emploi</option>
-                                            </select>
-                                        </div>
-                                        <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Profession / Métier</label>
-                                            <div className="relative group">
-                                                <input type="text" name="profession" value={formData.profession} onChange={handleChange} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
-                                                <Briefcase className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+
+                                        {/* Bank Info Section */}
+                                        <div className="pt-8 border-t border-slate-100 space-y-8">
+                                            <div className="flex items-center gap-4 ml-2">
+                                                <div className="w-10 h-10 rounded-2xl bg-ely-mint/10 flex items-center justify-center text-ely-mint">
+                                                    <Building2 className="w-5 h-5" />
+                                                </div>
+                                                <h3 className="text-xl font-black text-slate-900 uppercase tracking-wider">Informations Bancaires</h3>
                                             </div>
-                                        </div>
-                                        <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Banque principale</label>
-                                            <div className="relative group">
-                                                <input type="text" name="bankName" value={formData.bankName} onChange={handleChange} placeholder="Ex: Société Générale" className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
-                                                <Building2 className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+
+                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                                <div className="space-y-4">
+                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Banque principale</label>
+                                                    <div className="relative group">
+                                                        <input
+                                                            type="text"
+                                                            name="bankName"
+                                                            value={formData.bankName}
+                                                            onChange={handleChange}
+                                                            placeholder="Nom de votre banque"
+                                                            readOnly={readOnlyFields.has('bankName')}
+                                                            className={cn(
+                                                                "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
+                                                                readOnlyFields.has('bankName') && "bg-slate-100/80 cursor-not-allowed opacity-70"
+                                                            )}
+                                                        />
+                                                        <Building2 className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+                                                    </div>
+                                                </div>
+                                                <div className="md:col-span-2 space-y-4">
+                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">IBAN</label>
+                                                    <div className="relative group">
+                                                        <input type="text" name="iban" value={formData.iban} onChange={handleChange} placeholder="FR76 ..." className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm font-mono" />
+                                                        <ShieldCheck className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                                <div className="space-y-4">
+                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">BIC</label>
+                                                    <div className="relative group">
+                                                        <input type="text" name="bic" value={formData.bic} onChange={handleChange} placeholder="XXXXXXXX" className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm font-mono uppercase" />
+                                                        <Lock className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+                                                    </div>
+                                                </div>
+                                                <div className="space-y-4">
+                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">E-mail lié au RIB</label>
+                                                    <div className="relative group">
+                                                        <input type="email" name="ribEmail" value={formData.ribEmail} onChange={handleChange} placeholder="jean@exemple.com" className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
+                                                        <Mail className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -579,8 +1022,9 @@ export default function DesktopCreditRequest({
                                     Précédent
                                 </button>
                                 <button
-                                    onClick={() => setStep(step + 1)}
-                                    className="flex-[2] py-4 bg-gradient-to-br from-ely-blue to-blue-800 text-white rounded-2xl font-black text-[13px] uppercase tracking-widest shadow-xl shadow-ely-blue/20 hover:shadow-ely-blue/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-4 group"
+                                    onClick={() => canGoNext() && setStep(step + 1)}
+                                    disabled={!canGoNext()}
+                                    className="flex-[2] py-4 bg-gradient-to-br from-ely-blue to-blue-800 text-white rounded-2xl font-black text-[13px] uppercase tracking-widest shadow-xl shadow-ely-blue/20 hover:shadow-ely-blue/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-4 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                                 >
                                     Suivant
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
@@ -612,6 +1056,10 @@ export default function DesktopCreditRequest({
                                         <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
                                             <span className="text-xs font-black uppercase tracking-widest text-white/90">Durée</span>
                                             <span className="font-black text-sm">{duration} mois</span>
+                                        </div>
+                                        <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
+                                            <span className="text-xs font-black uppercase tracking-widest text-ely-mint">Assurance (3%)</span>
+                                            <span className="font-black text-sm text-ely-mint">+{Math.round((amount * 0.03) / duration).toLocaleString()} €/mois</span>
                                         </div>
                                         <div className="pt-6 px-2 flex justify-between items-end">
                                             <div className="space-y-1">

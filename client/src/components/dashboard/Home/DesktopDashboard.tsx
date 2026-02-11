@@ -18,6 +18,7 @@ import {
     ShieldCheck,
     CreditCard
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 
 interface DesktopDashboardProps {
@@ -38,6 +39,7 @@ export default function DesktopDashboard({
     idStatus
 }: DesktopDashboardProps) {
     const router = useRouter();
+    const t = useTranslations('CreditRequest.Project.labels');
 
     const container = {
         hidden: { opacity: 0 },
@@ -300,7 +302,9 @@ export default function DesktopDashboard({
                                             <div className="p-3 rounded-xl bg-ely-blue/10 text-ely-blue"><FileText className="w-5 h-5" /></div>
                                             <div>
                                                 <div className="flex items-center gap-2">
-                                                    <span className="font-bold text-gray-900">{request.projectType || "Projet"}</span>
+                                                    <span className="font-bold text-gray-900">
+                                                        {request.projectType ? t(request.projectType.toLowerCase()) : "Projet"}
+                                                    </span>
                                                     <span className="text-[10px] text-gray-400">#{request.id.slice(0, 8)}</span>
                                                 </div>
                                                 <p className="text-xs text-gray-500 mt-0.5">{new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(request.amount || 0)}</p>

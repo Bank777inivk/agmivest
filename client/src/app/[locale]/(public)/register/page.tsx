@@ -13,7 +13,7 @@ import { useTranslations } from "next-intl";
 type Step = 1 | 2 | 3;
 
 import { auth, db } from "@/lib/firebase";
-import { COUNTRY_PHONE_DATA, COUNTRIES } from "@/lib/constants";
+import { COUNTRY_PHONE_DATA, COUNTRIES, COUNTRY_TO_NATIONALITY } from "@/lib/constants";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
@@ -34,7 +34,8 @@ export default function RegisterPage() {
         lastName: "",
         birthDate: "",
         birthPlace: "",
-        nationality: "Française", // Retained from original, as instruction only showed partial
+        birthCountry: "France",
+        nationality: "Française",
 
         // Step 2: Coordonnées
         address: "",
@@ -42,7 +43,7 @@ export default function RegisterPage() {
         zipCode: "",
         phone: "",
         phoneCountry: "France",
-        country: "France", // Added from instruction
+        residenceCountry: "France",
 
         // Step 3: Sécurité
         email: "",
@@ -79,8 +80,14 @@ export default function RegisterPage() {
 
         setFormData(prev => {
             const newData = { ...prev, [name]: val };
-            if (name === "country" && COUNTRY_PHONE_DATA[value]) {
+            if (name === "residenceCountry" && COUNTRY_PHONE_DATA[value]) {
                 newData.phoneCountry = value;
+            }
+            // Auto-update nationality when birthCountry changes
+            if (name === "birthCountry") {
+                if (COUNTRY_TO_NATIONALITY[value]) {
+                    newData.nationality = COUNTRY_TO_NATIONALITY[value];
+                }
             }
             return newData;
         });
@@ -95,7 +102,87 @@ export default function RegisterPage() {
         }));
     };
 
-    const handleNext = () => setStep(prev => prev + 1);
+    const getDateStatus = (dateStr: string) => {
+        const clean = dateStr.replace(/\s/g, "");
+        if (clean.length < 10) return "incomplete";
+
+        const [day, month, year] = clean.split("/").map(Number);
+        const date = new Date(year, month - 1, day);
+        const today = new Date();
+
+        const isLogical = date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+        if (!isLogical || year < 1900 || date > today) return "invalid";
+
+        // Age check
+        let age = today.getFullYear() - date.getFullYear();
+        const m = today.getMonth() - date.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < date.getDate())) age--;
+
+        return age >= 18 ? "valid" : "underage";
+    };
+
+    const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let digits = e.target.value.replace(/\D/g, "");
+        if (digits.length > 8) digits = digits.slice(0, 8);
+
+        // Real-time logical caps
+        let day = digits.slice(0, 2);
+        let month = digits.slice(2, 4);
+        let year = digits.slice(4, 8);
+
+        const currentYear = new Date().getFullYear();
+
+        if (day.length === 2) {
+            let d = parseInt(day);
+            if (d > 31) day = "31";
+            if (d === 0) day = "01";
+        }
+        if (month.length === 2) {
+            let m = parseInt(month);
+            if (m > 12) month = "12";
+            if (m === 0) month = "01";
+        }
+        if (year.length === 4) {
+            let y = parseInt(year);
+            if (y > currentYear) year = currentYear.toString();
+        }
+
+        const value = day + month + year;
+
+        let maskedValue = "";
+        if (value.length > 0) {
+            maskedValue = value.slice(0, 2);
+            if (value.length > 2) {
+                maskedValue += " / " + value.slice(2, 4);
+                if (value.length > 4) {
+                    maskedValue += " / " + value.slice(4, 8);
+                }
+            }
+        }
+
+        setFormData(prev => ({ ...prev, birthDate: maskedValue }));
+    };
+
+    const handleNext = () => {
+        // Validation for Step 1 Date
+        if (step === 1) {
+            const status = getDateStatus(formData.birthDate);
+            if (formData.birthDate.length > 0 && formData.birthDate.length < 14) {
+                setError("Veuillez saisir une date de naissance complète.");
+                return;
+            }
+            if (status === "invalid") {
+                setError("La date de naissance saisie est invalide.");
+                return;
+            }
+            if (status === "underage") {
+                setError("Vous devez avoir au moins 18 ans pour vous inscrire.");
+                return;
+            }
+        }
+        setError("");
+        setStep(prev => (prev + 1) as Step);
+    };
     const handleBack = () => setStep(prev => prev - 1);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -133,7 +220,7 @@ export default function RegisterPage() {
                 zipCode: formData.zipCode,
                 phone: formData.phone,
                 phoneCountry: formData.phoneCountry,
-                country: formData.country,
+                residenceCountry: formData.residenceCountry,
                 createdAt: serverTimestamp(),
                 role: "client"
             });
@@ -296,13 +383,24 @@ export default function RegisterPage() {
                                                 </div>
                                                 <input
                                                     name="birthDate"
-                                                    type="date"
+                                                    type="text"
                                                     required
                                                     value={formData.birthDate}
-                                                    onChange={handleChange}
-                                                    className="block w-full pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint transition-all"
+                                                    onChange={handleDateChange}
+                                                    className={`block w-full pl-12 pr-4 py-3 bg-gray-50/50 border rounded-2xl text-gray-900 focus:outline-none focus:ring-2 transition-all ${formData.birthDate.length === 14
+                                                        ? getDateStatus(formData.birthDate) === "valid"
+                                                            ? "border-green-500 focus:ring-green-200"
+                                                            : "border-red-500 focus:ring-red-200"
+                                                        : "border-gray-200 focus:border-ely-mint focus:ring-ely-mint/20"
+                                                        }`}
+                                                    placeholder="JJ / MM / AAAA"
                                                 />
                                             </div>
+                                            {formData.birthDate.length === 14 && getDateStatus(formData.birthDate) !== "valid" && (
+                                                <p className="text-[10px] text-red-500 font-bold mt-1 ml-2 uppercase tracking-tighter">
+                                                    {getDateStatus(formData.birthDate) === "underage" ? "Âge minimum 18 ans requis" : "Date de naissance invalide"}
+                                                </p>
+                                            )}
                                         </div>
                                         <div className="space-y-1">
                                             <label className="block text-sm font-semibold text-gray-700 ml-1">{t('Fields.birthPlace')}</label>
@@ -318,21 +416,39 @@ export default function RegisterPage() {
                                         </div>
                                     </div>
 
-                                    <div className="space-y-1">
-                                        <label className="block text-sm font-semibold text-gray-700 ml-1">{t('Fields.nationality')}</label>
-                                        <div className="relative group">
-                                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                <Globe className="h-5 w-5 text-gray-400 group-focus-within:text-ely-mint transition-colors" />
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="space-y-1">
+                                            <label className="block text-sm font-semibold text-gray-700 ml-1">Pays de naissance</label>
+                                            <div className="relative group">
+                                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                    <Globe className="h-5 w-5 text-gray-400 group-focus-within:text-ely-mint transition-colors" />
+                                                </div>
+                                                <select
+                                                    name="birthCountry"
+                                                    value={formData.birthCountry}
+                                                    onChange={handleChange}
+                                                    className="block w-full pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint transition-all appearance-none cursor-pointer"
+                                                >
+                                                    {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
+                                                </select>
                                             </div>
-                                            <input
-                                                name="nationality"
-                                                type="text"
-                                                required
-                                                value={formData.nationality}
-                                                onChange={handleChange}
-                                                className="block w-full pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint transition-all"
-                                                placeholder="Française"
-                                            />
+                                        </div>
+                                        <div className="space-y-1">
+                                            <label className="block text-sm font-semibold text-gray-700 ml-1">{t('Fields.nationality')}</label>
+                                            <div className="relative group">
+                                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                    <Globe className="h-5 w-5 text-gray-400 group-focus-within:text-ely-mint transition-colors" />
+                                                </div>
+                                                <input
+                                                    name="nationality"
+                                                    type="text"
+                                                    required
+                                                    value={formData.nationality}
+                                                    onChange={handleChange}
+                                                    className="block w-full pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint transition-all"
+                                                    placeholder="Française"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -358,7 +474,7 @@ export default function RegisterPage() {
                                                 value={formData.address}
                                                 onChange={(val) => setFormData(prev => ({ ...prev, address: val }))}
                                                 onSelect={handleAddressSelect}
-                                                country={formData.country}
+                                                country={formData.residenceCountry}
                                                 placeholder="123 rue de la Paix"
                                                 className="block w-full pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint transition-all"
                                             />
@@ -398,10 +514,10 @@ export default function RegisterPage() {
                                     </div>
 
                                     <div className="space-y-1">
-                                        <label className="block text-sm font-semibold text-gray-700 ml-1">Pays</label>
+                                        <label className="block text-sm font-semibold text-gray-700 ml-1">Pays de résidence</label>
                                         <select
-                                            name="country"
-                                            value={formData.country}
+                                            name="residenceCountry"
+                                            value={formData.residenceCountry}
                                             onChange={handleChange}
                                             className="block w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint transition-all"
                                         >
