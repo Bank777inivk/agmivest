@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { LayoutDashboard, Users, FileText, Settings, LogOut, Search, Bell, CheckCircle, XCircle, Clock, RotateCcw, Menu, X, ExternalLink, ArrowLeft, Shield, Trash2, Mail, Phone, MapPin, TrendingUp, Euro, Briefcase, Calendar, CalendarRange, Send, History, Landmark, ChevronLeft, ChevronRight, CreditCard, ShieldCheck, Info } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import { LayoutDashboard, Users, FileText, Settings, LogOut, Search, Bell, CheckCircle, XCircle, Clock, RotateCcw, Menu, X, ExternalLink, ArrowLeft, Shield, Trash2, Mail, Phone, MapPin, TrendingUp, Euro, Briefcase, Calendar, CalendarRange, Send, History, Landmark, ChevronLeft, ChevronRight, CreditCard, ShieldCheck, Info, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { collection, query, orderBy, onSnapshot, doc, updateDoc, addDoc, serverTimestamp, getDoc, deleteDoc, where, getDocs } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, doc, updateDoc, addDoc, serverTimestamp, getDoc, deleteDoc, where, getDocs, setDoc } from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import AdminChat from "@/components/admin/AdminChat";
 
-// Use standard db instance
 // Use standard db instance
 const dbInstance = db;
 
@@ -19,6 +19,7 @@ const navItems = [
   { id: "transfers", label: "Virements", icon: Send },
   { id: "schedules", label: "Échéanciers", icon: CalendarRange },
   { id: "kyc", label: "KYC & Documents", icon: Search },
+  { id: "support", label: "Support Chat", icon: MessageCircle },
   { id: "settings", label: "Configuration", icon: Settings },
 ];
 
@@ -547,6 +548,9 @@ export default function AdminDashboard() {
     beneficiary: "ELYSSIO FINANCE - CONSEILLER FINANCIER"
   });
 
+  const [chats, setChats] = useState<any[]>([]);
+  const [selectedChat, setSelectedChat] = useState<any>(null);
+
   const handleAdminAction = async (action: string, id: string, type: 'loan' | 'doc' | 'transfer' = 'loan') => {
     setProcessingId(id);
     try {
@@ -598,6 +602,7 @@ export default function AdminDashboard() {
             updatedAt: serverTimestamp(),
             approvedBy: user.email
           });
+
         } else if (action === 'review') {
           await updateDoc(transferRef, {
             status: 'review',
@@ -810,13 +815,37 @@ export default function AdminDashboard() {
       console.error("Firestore Error (Transfers):", error);
     });
 
+    // 4. Snapshot Chats
+    const qChats = query(collection(dbInstance, "chats"), orderBy("lastTimestamp", "desc"));
+    const unsubChats = onSnapshot(qChats, (snapshot) => {
+      setChats(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    });
+
     return () => {
       unsubUsers();
       unsubRequests();
       unsubAccounts();
       unsubTransfers();
+      unsubChats();
     };
   }, [user]);
+
+  // Handle selected chat messages
+
+
+
+
+
+  const renderSupportChat = () => {
+    return (
+      <AdminChat
+        chats={chats}
+        setChats={setChats}
+        selectedChat={selectedChat}
+        setSelectedChat={setSelectedChat}
+      />
+    );
+  };
 
   // Enrich request with user data for display
   const getEnrichedRequest = (req: any) => {
@@ -2769,6 +2798,9 @@ export default function AdminDashboard() {
         );
       }
 
+
+      case "support":
+        return renderSupportChat();
 
       case "settings":
         return (

@@ -11,7 +11,8 @@ import {
     Copy,
     ArrowLeft,
     ShieldCheck,
-    Euro
+    Euro,
+    Lock
 } from "lucide-react";
 import { auth, db } from "@/lib/firebase";
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
@@ -81,140 +82,173 @@ export default function BillingPage() {
         <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-8 max-w-4xl mx-auto"
+            className="space-y-10 pb-20 relative overflow-hidden"
         >
-            <header className="flex items-center gap-4">
+            {/* Mobile Decorative Orbs */}
+            <div className="absolute top-[-5%] right-[-15%] w-[70%] h-[30%] bg-ely-blue/10 rounded-full blur-[100px] pointer-events-none md:hidden" />
+
+            <header className="flex items-center gap-4 relative z-10 px-2">
                 <button
                     onClick={() => router.back()}
-                    className="p-3 bg-white rounded-2xl border border-slate-100 text-slate-400 hover:text-ely-blue transition-all shadow-sm group"
+                    className="p-3.5 bg-white rounded-2xl border border-slate-100 text-slate-400 hover:text-ely-blue transition-all shadow-sm active:scale-95 group"
                 >
                     <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                 </button>
                 <div>
-                    <h1 className="text-2xl font-black text-slate-900 tracking-tight">Mes Factures</h1>
-                    <p className="text-sm text-slate-500 font-medium">Gérez vos paiements et facturations.</p>
+                    <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase">Facturation</h1>
+                    <p className="text-slate-500 font-medium text-lg leading-none mt-1">Gérez vos paiements et vos dépôts sécurisés.</p>
                 </div>
             </header>
 
             {(!request || request.status !== 'approved' || (request.requiresPayment && request.paymentStatus === 'paid') || request.paymentType === 'none') ? (
-                <div className="bg-white rounded-[2.5rem] p-12 text-center border border-slate-100 shadow-xl">
-                    <div className="w-20 h-20 bg-slate-50 text-slate-400 rounded-3xl flex items-center justify-center mx-auto mb-6">
-                        <CreditCard className="w-10 h-10" />
+                <div className="bg-white rounded-[3.5rem] p-16 md:p-24 text-center border border-slate-100 shadow-sm relative z-10 overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-64 h-64 -mr-32 -mt-32 bg-slate-50 opacity-50 rounded-full group-hover:scale-110 transition-transform duration-700" />
+
+                    <div className="relative z-10">
+                        <div className="w-24 h-24 bg-slate-50 rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 transform rotate-3 shadow-inner">
+                            <CreditCard className="w-12 h-12 text-slate-200" />
+                        </div>
+                        <h2 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase">
+                            Aucune facturation en attente
+                        </h2>
+                        <p className="text-slate-500 max-w-sm mx-auto font-medium text-lg leading-relaxed">
+                            Votre compte est à jour. Aucune action de paiement n'est requise pour le moment.
+                        </p>
+                        <button
+                            onClick={() => router.push("/dashboard")}
+                            className="mt-10 px-10 py-5 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-900/10"
+                        >
+                            Tableau de Bord
+                        </button>
                     </div>
-                    <h2 className="text-xl font-bold text-slate-900 mb-2">
-                        Aucune facturation en attente
-                    </h2>
-                    <p className="text-slate-500 max-w-md mx-auto leading-relaxed">
-                        Vous n'avez aucune facturation pour le moment.
-                    </p>
-                    <button
-                        onClick={() => router.push("/dashboard")}
-                        className="mt-8 px-8 py-4 bg-ely-blue text-white rounded-2xl font-bold text-sm hover:shadow-lg hover:shadow-ely-blue/20 transition-all uppercase tracking-widest"
-                    >
-                        Retour au Tableau de Bord
-                    </button>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10">
                     {/* Zero Fee Policy Card */}
-                    <div className="lg:col-span-1 space-y-6">
-                        <div className="bg-gradient-to-br from-slate-900 via-ely-blue to-blue-900 rounded-[2.5rem] p-8 text-white shadow-xl relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-8 opacity-10">
-                                <ShieldCheck className="w-24 h-24" />
+                    <div className="lg:col-span-1 space-y-8">
+                        <div className="bg-gradient-to-br from-slate-900 via-ely-blue to-blue-900 rounded-[3rem] p-10 text-white shadow-2xl shadow-blue-900/40 relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:scale-110 transition-transform duration-700">
+                                <ShieldCheck className="w-32 h-32" />
                             </div>
 
-                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full mb-4 border border-white/10">
+                            <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full mb-8 border border-white/10">
                                 <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                                <span className="text-[10px] font-black tracking-widest uppercase text-white/90">Charte Zéro Frais</span>
+                                <span className="text-[10px] font-black tracking-widest uppercase text-white/90 pt-0.5">Charte Zéro Frais</span>
                             </div>
 
-                            <h3 className="text-lg font-black mb-4 relative z-10 leading-tight">Politique de Transparence</h3>
-                            <p className="text-white/70 text-xs leading-relaxed relative z-10 mb-6 font-medium">
-                                AGM INVEST n'applique <span className="text-white font-bold">aucun frais de dossier, d'assurance ou de notaire</span> à l'ouverture.
+                            <h3 className="text-2xl font-black mb-6 relative z-10 tracking-tight leading-tight uppercase">Politique de Transparence</h3>
+                            <p className="text-white/70 text-base leading-relaxed relative z-10 mb-10 font-medium italic">
+                                AGM INVEST n'applique <span className="text-white font-black underline underline-offset-4 decoration-emerald-400">aucun frais caché</span>.
                                 <br /><br />
-                                Le virement demandé est un <span className="text-white font-bold">Dépôt d'Authentification</span> qui sera intégralement crédité sur votre solde personnel.
+                                Le virement demandé est un <span className="text-white font-bold">Dépôt d'Authentification</span> qui sera crédité sur votre solde.
                             </p>
 
-                            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/10">
-                                <p className="text-[10px] uppercase font-black text-white/60 mb-1 tracking-widest">Dépôt requis</p>
-                                <p className="text-3xl font-black">286.00 €</p>
-                                <p className="text-[9px] font-bold text-emerald-400 mt-1 uppercase tracking-tighter">Récupérable à 100% sur votre solde</p>
+                            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-inner group-hover:bg-white/15 transition-colors">
+                                <p className="text-[10px] uppercase font-black text-white/50 mb-2 tracking-widest">Montant du Dépôt</p>
+                                <p className="text-5xl font-black tracking-tighter">286.00 €</p>
+                                <div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-2">
+                                    <CheckCircle className="w-4 h-4 text-emerald-400" />
+                                    <p className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Crédité à 100%</p>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-[2rem] p-6 border border-slate-100 shadow-sm flex items-start gap-4">
-                            <div className="w-10 h-10 bg-amber-50 text-amber-500 rounded-xl flex items-center justify-center shrink-0">
-                                <Info className="w-5 h-5" />
+                        <div className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm flex items-start gap-5 group transition-all hover:bg-slate-50">
+                            <div className="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center shrink-0 shadow-sm ring-8 ring-amber-50/50 group-hover:scale-110 transition-transform">
+                                <Info className="w-7 h-7" />
                             </div>
                             <div>
-                                <h4 className="font-bold text-slate-900 text-sm mb-1">Sécurité Bancaire</h4>
-                                <p className="text-xs text-slate-500 leading-relaxed uppercase tracking-tighter font-bold">
-                                    Virement SEPA sécurisé vers notre établissement partenaire.
+                                <h4 className="font-black text-slate-900 text-sm mb-1 uppercase tracking-tight">Sécurité SEPA</h4>
+                                <p className="text-sm text-slate-500 leading-relaxed font-bold italic opacity-80">
+                                    Virement instantané sécurisé vers notre partenaire européen.
                                 </p>
                             </div>
                         </div>
                     </div>
 
                     {/* RIB Card */}
-                    <div className="lg:col-span-2 space-y-6">
-                        <div className="bg-white rounded-[2.5rem] p-8 md:p-10 border border-slate-100 shadow-xl relative">
-                            <div className="flex items-center gap-4 mb-10">
-                                <div className="w-14 h-14 bg-ely-blue text-white rounded-2xl flex items-center justify-center shadow-lg shadow-ely-blue/20">
-                                    <Landmark className="w-7 h-7" />
+                    <div className="lg:col-span-2 space-y-8">
+                        <div className="bg-white rounded-[3.5rem] p-10 md:p-14 border border-slate-100 shadow-sm relative overflow-hidden group">
+                            <div className="absolute top-[-5%] left-[-5%] w-64 h-64 bg-slate-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
+
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 relative z-10">
+                                <div className="flex items-center gap-5">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-ely-blue to-blue-700 text-white rounded-2xl flex items-center justify-center shadow-xl shadow-blue-900/20 ring-4 ring-blue-50">
+                                        <Landmark className="w-8 h-8" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-2xl font-black text-slate-900 tracking-tight uppercase leading-none mb-1">Coordonnées</h3>
+                                        <p className="text-[10px] text-slate-400 font-black tracking-widest uppercase">Virement du Dépôt</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 className="text-xl font-bold text-slate-900">RIB du Conseiller</h3>
-                                    <p className="text-xs text-slate-500 font-medium tracking-wide uppercase">Cordonnées de transfert</p>
+                                <div className="hidden md:flex flex-col items-end">
+                                    <div className="flex items-center gap-2 px-3 py-1 bg-blue-50 text-ely-blue rounded-full border border-blue-100">
+                                        <Lock className="w-3.5 h-3.5" />
+                                        <span className="text-[10px] font-black uppercase tracking-widest">Transfert Sécurisé</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="space-y-6">
+                            <div className="space-y-8 relative z-10">
                                 {[
                                     { label: "Bénéficiaire", value: advisorRIB.beneficiary, field: "beneficiary" },
-                                    { label: "Banque", value: advisorRIB.bankName, field: "bank" },
-                                    { label: "IBAN", value: advisorRIB.iban, field: "iban", mono: true },
+                                    { label: "Établissement", value: advisorRIB.bankName, field: "bank" },
+                                    { label: "Code IBAN", value: advisorRIB.iban, field: "iban", mono: true },
                                     { label: "Code BIC (SWIFT)", value: advisorRIB.bic, field: "bic", mono: true },
                                 ].map((item, i) => (
-                                    <div key={i} className="group relative">
-                                        <p className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">{item.label}</p>
-                                        <div className="flex items-center justify-between p-3 md:p-4 bg-slate-50 rounded-2xl border border-slate-100 group-hover:border-ely-blue/30 transition-all">
+                                    <div key={i} className="group/item">
+                                        <div className="flex justify-between items-center mb-3">
+                                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-1">{item.label}</p>
+                                            {copiedField === item.field && (
+                                                <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest animate-in fade-in slide-in-from-right-2">Copié !</span>
+                                            )}
+                                        </div>
+                                        <div className={cn(
+                                            "flex items-center justify-between p-5 md:p-6 bg-slate-50/50 rounded-3xl border border-slate-100 group-hover/item:border-ely-blue/30 group-hover/item:bg-white transition-all duration-300",
+                                            copiedField === item.field && "border-emerald-500/50 bg-emerald-50/10"
+                                        )}>
                                             <p className={cn(
-                                                "text-xs md:text-sm font-bold text-slate-900 truncate pr-2 md:pr-4",
-                                                item.mono && "font-mono tracking-tighter"
+                                                "text-sm md:text-lg font-black text-slate-900 truncate pr-4 transition-colors",
+                                                item.mono && "font-mono tracking-tight text-base md:text-xl",
+                                                copiedField === item.field && "text-emerald-600"
                                             )}>
                                                 {item.value}
                                             </p>
                                             <button
                                                 onClick={() => copyToClipboard(item.value, item.field)}
                                                 className={cn(
-                                                    "p-2 rounded-lg transition-all shrink-0",
+                                                    "p-3 rounded-2xl transition-all shrink-0 active:scale-90",
                                                     copiedField === item.field
-                                                        ? "bg-emerald-500 text-white"
-                                                        : "bg-white text-slate-400 hover:text-ely-blue shadow-sm"
+                                                        ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30"
+                                                        : "bg-white text-slate-400 hover:text-ely-blue shadow-sm border border-slate-100"
                                                 )}
                                             >
-                                                {copiedField === item.field ? <CheckCircle className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                                                {copiedField === item.field ? <CheckCircle className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
                                             </button>
                                         </div>
                                     </div>
                                 ))}
                             </div>
 
-                            <div className="mt-12 flex items-center gap-4 p-6 bg-blue-50/50 rounded-3xl border border-blue-100/50">
-                                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-ely-blue shadow-sm">
-                                    <ShieldCheck className="w-6 h-6" />
+                            <div className="mt-14 flex flex-col md:flex-row items-center gap-6 p-8 bg-blue-50/30 rounded-[2.5rem] border border-blue-100/50 relative overflow-hidden group/info">
+                                <div className="absolute top-0 right-0 p-10 opacity-[0.05] group-hover/info:rotate-12 transition-transform duration-700">
+                                    <ShieldCheck className="w-24 h-24" />
                                 </div>
-                                <p className="text-xs text-blue-800/80 font-medium leading-relaxed">
-                                    Ce transfert est sécurisé. Votre conseiller recevra une notification automatique dès réception des fonds par notre banque partenaire.
+                                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-ely-blue shadow-sm shrink-0 ring-4 ring-blue-50">
+                                    <ShieldCheck className="w-8 h-8" />
+                                </div>
+                                <p className="text-sm text-blue-900/80 font-bold italic leading-relaxed text-center md:text-left relative z-10">
+                                    Ce transfert est strictement confidentiel. Votre conseiller recevra une notification automatique lors de la réception des fonds par notre banque partenaire.
                                 </p>
                             </div>
                         </div>
 
-                        <div className="flex justify-center">
+                        <div className="flex justify-center pt-4">
                             <button
                                 onClick={() => router.push("/dashboard")}
-                                className="flex items-center gap-2 text-slate-400 hover:text-slate-600 transition-all font-bold text-sm"
+                                className="flex items-center gap-2 text-slate-400 hover:text-slate-600 transition-all font-black text-xs uppercase tracking-widest opacity-60 hover:opacity-100"
                             >
+                                <ArrowLeft className="w-4 h-4" />
                                 Revenir plus tard
                             </button>
                         </div>

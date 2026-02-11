@@ -98,6 +98,19 @@ service cloud.firestore {
                     request.resource.data.userId == request.auth.uid &&
                     request.resource.data.status == 'pending';
     }
+
+    // Collection Chat (chats)
+    match /chats/{userId} {
+      // Un utilisateur peut lire et modifier son propre document de chat.
+      // L'admin peut lire et modifier tous les documents.
+      allow read, write: if isSignedIn() && (isOwner(userId) || isAdmin());
+
+      // Sous-collection Messages
+      match /messages/{messageId} {
+        // Même logique pour les messages individuels.
+        allow read, write: if isSignedIn() && (isOwner(userId) || isAdmin());
+      }
+    }
     
     // Refuser tout accès par défaut pour les autres collections non définies
     match /{document=**} {

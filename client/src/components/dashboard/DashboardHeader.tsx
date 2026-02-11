@@ -77,7 +77,7 @@ export default function DashboardHeader({ onMenuClick, isCollapsed, idStatus, us
     const statusInfo = getStatusInfo();
 
     return (
-        <header className={`fixed top-0 right-0 z-30 flex items-center justify-between h-20 px-4 md:px-8 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300 ${isCollapsed ? "left-0 lg:left-20" : "left-0 lg:left-72"
+        <header className={`fixed top-0 right-0 z-40 flex items-center justify-between h-20 px-4 md:px-8 bg-white border-b border-gray-100 transition-all duration-300 ${isCollapsed ? "left-0 lg:left-20" : "left-0 lg:left-72"
             }`}>
             <div className="flex items-center gap-3 md:gap-4">
                 <button

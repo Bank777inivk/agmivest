@@ -100,121 +100,133 @@ export default function DocumentsPage() {
     const hasDocuments = loanAccount || activeRequest;
 
     return (
-        <div className="space-y-8">
-            <header>
-                <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                    <FolderOpen className="text-ely-blue" />
-                    Mes Documents
-                </h1>
-                <p className="text-gray-500">
-                    Consultez et téléchargez vos documents contractuels et attestations.
+        <div className="space-y-10 pb-20 relative overflow-hidden">
+            {/* Mobile Decorative Orbs */}
+            <div className="absolute top-[-5%] right-[-15%] w-[70%] h-[30%] bg-ely-blue/10 rounded-full blur-[100px] pointer-events-none md:hidden" />
+            <div className="absolute bottom-[10%] left-[-10%] w-[60%] h-[25%] bg-ely-mint/5 rounded-full blur-[80px] pointer-events-none md:hidden" />
+
+            <header className="relative z-10 px-2">
+                <div className="flex items-center gap-4 mb-3">
+                    <div className="p-3 bg-white rounded-2xl shadow-sm border border-slate-100 text-ely-blue">
+                        <FolderOpen className="w-8 h-8" />
+                    </div>
+                    <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase">
+                        Mes Documents
+                    </h1>
+                </div>
+                <p className="text-slate-500 font-medium text-lg leading-tight max-w-2xl">
+                    Consultez et téléchargez vos documents contractuels, attestations et garanties certifiées.
                 </p>
             </header>
 
             {!hasDocuments ? (
                 <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white p-12 rounded-[2.5rem] shadow-sm border border-gray-100 text-center"
+                    className="bg-white p-16 md:p-24 rounded-[3.5rem] shadow-sm border border-slate-100 text-center relative z-10 overflow-hidden group"
                 >
-                    <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <FolderOpen className="w-10 h-10 text-gray-300" />
+                    <div className="absolute top-0 right-0 w-64 h-64 -mr-32 -mt-32 bg-slate-50 opacity-50 rounded-full group-hover:scale-110 transition-transform duration-700" />
+
+                    <div className="relative z-10">
+                        <div className="w-24 h-24 bg-slate-50 rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 transform rotate-3 shadow-inner">
+                            <FolderOpen className="w-12 h-12 text-slate-200" />
+                        </div>
+                        <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase">Aucun document disponible</h3>
+                        <p className="text-slate-500 max-w-sm mx-auto font-medium text-lg leading-relaxed">
+                            Vos documents officiels seront générés automatiquement dès que votre financement sera activé.
+                        </p>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Aucun document disponible</h3>
-                    <p className="text-gray-500 max-w-md mx-auto">
-                        Vos documents seront disponibles une fois votre demande de financement validée par nos services.
-                    </p>
                 </motion.div>
             ) : (
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 relative z-10">
                     {/* Contract Card */}
                     <motion.div
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-lg transition-all group relative overflow-hidden"
+                        className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 group relative overflow-hidden flex flex-col"
                     >
-                        <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform">
-                            <FileSignature className="w-32 h-32" />
+                        <div className="absolute top-0 right-0 p-10 opacity-[0.03] group-hover:scale-110 group-hover:rotate-6 transition-all duration-700">
+                            <FileSignature className="w-48 h-48" />
                         </div>
 
                         <div className="relative z-10 flex flex-col h-full">
-                            <div className="w-12 h-12 bg-ely-blue/10 rounded-2xl flex items-center justify-center text-ely-blue mb-6">
-                                <FileText className="w-6 h-6" />
+                            <div className="w-16 h-16 bg-blue-50/50 rounded-2xl flex items-center justify-center text-ely-blue mb-8 ring-8 ring-blue-50/20 group-hover:scale-110 transition-transform duration-500">
+                                <FileText className="w-8 h-8" />
                             </div>
 
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Contrat de Prêt</h3>
-                            <p className="text-sm text-gray-500 mb-8 flex-1">
-                                Votre contrat de crédit détaillé incluant l'échéancier prévisionnel, les conditions générales et les mentions légales obligatoires.
+                            <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase leading-none">Contrat de Prêt</h3>
+                            <p className="text-base font-medium text-slate-500 mb-10 flex-1 leading-relaxed">
+                                Votre contrat complet incluant l'échéancier, les conditions générales et les mentions légales.
                             </p>
 
                             <button
                                 onClick={handleDownloadContract}
-                                className="w-full py-4 bg-ely-blue text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 active:scale-95 transition-all shadow-lg shadow-ely-blue/20"
+                                className="w-full py-5 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-900/10"
                             >
                                 <Download className="w-5 h-5" />
-                                Télécharger le PDF
+                                Télécharger PDF
                             </button>
                         </div>
                     </motion.div>
 
                     {/* Insurance Card */}
                     <motion.div
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-lg transition-all group relative overflow-hidden"
+                        className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 group relative overflow-hidden flex flex-col"
                     >
-                        <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform">
-                            <ShieldCheck className="w-32 h-32 text-emerald-600" />
+                        <div className="absolute top-0 right-0 p-10 opacity-[0.03] group-hover:scale-110 group-hover:-rotate-6 transition-all duration-700">
+                            <ShieldCheck className="w-48 h-48 text-emerald-600" />
                         </div>
 
                         <div className="relative z-10 flex flex-col h-full">
-                            <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6">
-                                <ShieldCheck className="w-6 h-6" />
+                            <div className="w-16 h-16 bg-emerald-50/50 rounded-2xl flex items-center justify-center text-emerald-600 mb-8 ring-8 ring-emerald-50/20 group-hover:scale-110 transition-transform duration-500">
+                                <ShieldCheck className="w-8 h-8" />
                             </div>
 
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Attestation d'Assurance</h3>
-                            <p className="text-sm text-gray-500 mb-8 flex-1">
-                                Certificat d'adhésion à l'assurance emprunteur AGM INVEST (Décès, PTIA, ITT) couvrant votre financement à 100%.
+                            <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase leading-none">Assurance</h3>
+                            <p className="text-base font-medium text-slate-500 mb-10 flex-1 leading-relaxed">
+                                Certificat d'adhésion à l'assurance emprunteur AGM INVEST couvrant votre projet à 100%.
                             </p>
 
                             <button
                                 onClick={handleDownloadInsurance}
-                                className="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-emerald-700 active:scale-95 transition-all shadow-lg shadow-emerald-500/20"
+                                className="w-full py-5 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-emerald-900/10"
                             >
                                 <Download className="w-5 h-5" />
-                                Télécharger le certificat
+                                Télécharger Certificat
                             </button>
                         </div>
                     </motion.div>
 
                     {/* Privacy Policy Card */}
                     <motion.div
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.15 }}
-                        className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-lg transition-all group relative overflow-hidden md:col-span-2 lg:col-span-1"
+                        className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 group relative overflow-hidden flex flex-col"
                     >
-                        <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform">
-                            <Lock className="w-32 h-32 text-slate-600" />
+                        <div className="absolute top-0 right-0 p-10 opacity-[0.03] group-hover:scale-110 transition-transform duration-700">
+                            <Lock className="w-48 h-48 text-slate-600" />
                         </div>
 
                         <div className="relative z-10 flex flex-col h-full">
-                            <div className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-600 mb-6">
-                                <Lock className="w-6 h-6" />
+                            <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-600 mb-8 ring-8 ring-slate-50/20 group-hover:scale-110 transition-transform duration-500">
+                                <Lock className="w-8 h-8" />
                             </div>
 
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Politique de Confidentialité (RGPD)</h3>
-                            <p className="text-sm text-gray-500 mb-8 flex-1">
-                                Document officiel détaillant nos engagements sur la protection de vos données personnelles et vos droits.
+                            <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase leading-none">Vie Privée</h3>
+                            <p className="text-base font-medium text-slate-500 mb-10 flex-1 leading-relaxed">
+                                Document détaillant la protection de vos données personnelles et vos droits RGPD.
                             </p>
 
                             <button
                                 onClick={handleDownloadPrivacy}
-                                className="w-full py-4 bg-slate-800 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-900 active:scale-95 transition-all shadow-lg shadow-slate-500/20"
+                                className="w-full py-5 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-slate-900/20"
                             >
                                 <Download className="w-5 h-5" />
-                                Télécharger le document
+                                Télécharger PDF
                             </button>
                         </div>
                     </motion.div>
@@ -224,13 +236,17 @@ export default function DocumentsPage() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="md:col-span-2 bg-slate-50 p-6 rounded-3xl border border-slate-100 flex items-start gap-4"
+                        className="md:col-span-2 lg:col-span-2 xl:col-span-3 bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 flex flex-col md:flex-row items-center gap-6 relative overflow-hidden group/info"
                     >
-                        <Lock className="w-6 h-6 text-slate-400 mt-1" />
-                        <div>
-                            <h4 className="font-bold text-slate-700 text-sm">Documents Certifiés</h4>
-                            <p className="text-xs text-slate-500 mt-1">
-                                Tous les documents générés depuis cet espace sont protégés électroniquement et certifiés conformes par AGM INVEST. Ils ont valeur légale pour vos démarches administratives.
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/50 rounded-full blur-3xl group-hover/info:scale-150 transition-transform duration-700" />
+
+                        <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-slate-400 shadow-sm border border-slate-100 shrink-0">
+                            <Lock className="w-7 h-7" />
+                        </div>
+                        <div className="text-center md:text-left">
+                            <h4 className="font-black text-slate-900 text-sm uppercase tracking-wider mb-1">Documents Certifiés & Sécurisés</h4>
+                            <p className="text-sm text-slate-500 italic font-medium">
+                                "Tous les documents générés depuis cet espace sont protégés électroniquement et certifiés conformes par AGM INVEST. Ils ont valeur légale pour vos démarches."
                             </p>
                         </div>
                     </motion.div>

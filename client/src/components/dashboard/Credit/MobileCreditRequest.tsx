@@ -73,7 +73,7 @@ export default function MobileCreditRequest({
             <div className="absolute bottom-[10%] left-[-20%] w-[70%] h-[35%] bg-ely-mint/5 rounded-full blur-[100px] pointer-events-none" />
 
             {/* Mobile Header & Progress Bar */}
-            <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-2xl border-b border-slate-200/50 px-6 py-5">
+            <div className="sticky top-0 z-20 bg-white border-b border-slate-200/50 px-6 py-5">
                 <div className="flex flex-col gap-4">
                     <div className="flex items-center justify-between">
                         <div>

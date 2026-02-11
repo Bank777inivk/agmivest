@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { User, Mail, Phone, MapPin, Calendar, Globe, Shield, Edit2, Edit3, Save, X, Briefcase, Euro, Home, Heart, Baby } from "lucide-react";
+import { User, Mail, Phone, MapPin, Calendar, Globe, Edit2, Edit3, Save, X, Briefcase, Euro, Home, Heart, Baby, CheckCircle, ArrowLeft } from "lucide-react";
 import { collection, query, where, orderBy, limit, getDocs, doc, getDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "@/lib/firebase";
@@ -174,25 +174,33 @@ export default function ProfilePage() {
     };
 
     return (
-        <div className="space-y-8 max-w-5xl pb-12">
-            <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="space-y-10 pb-20 relative overflow-hidden">
+            {/* Mobile Decorative Orbs */}
+            <div className="absolute top-[-5%] right-[-15%] w-[70%] h-[30%] bg-ely-blue/10 rounded-full blur-[100px] pointer-events-none md:hidden" />
+            <div className="absolute bottom-[10%] left-[-10%] w-[60%] h-[25%] bg-ely-mint/5 rounded-full blur-[80px] pointer-events-none md:hidden" />
+
+            <header className="relative z-10 px-2 flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-900">Mon Profil</h1>
-                    <p className="text-slate-500">Gérez vos informations personnelles et votre sécurité.</p>
+                    <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
+                        Mon Profil
+                    </h1>
+                    <p className="text-slate-500 font-medium text-lg mt-2 leading-tight">
+                        Gérez vos informations personnelles et votre sécurité.
+                    </p>
                 </div>
                 {!isEditing ? (
                     <button
                         onClick={() => setIsEditing(true)}
-                        className="flex items-center gap-2 px-6 py-3 bg-ely-blue text-white rounded-2xl font-bold hover:shadow-lg hover:shadow-ely-blue/20 transition-all active:scale-95"
+                        className="flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-900/10"
                     >
-                        <Edit2 className="w-4 h-4" />
-                        Modifier le profil
+                        <Edit2 className="w-5 h-5" />
+                        Modifier Profil
                     </button>
                 ) : (
                     <div className="flex items-center gap-3">
                         <button
                             onClick={() => setIsEditing(false)}
-                            className="flex items-center gap-2 px-6 py-3 bg-slate-100 text-slate-600 rounded-2xl font-bold hover:bg-slate-200 transition-all active:scale-95"
+                            className="flex items-center justify-center gap-2 px-6 py-4 bg-white text-slate-400 rounded-2xl font-black text-xs uppercase tracking-widest border border-slate-100 hover:bg-slate-50 transition-all active:scale-95"
                         >
                             <X className="w-4 h-4" />
                             Annuler
@@ -200,7 +208,7 @@ export default function ProfilePage() {
                         <button
                             onClick={handleSave}
                             disabled={isSaving}
-                            className="flex items-center gap-2 px-6 py-3 bg-ely-mint text-white rounded-2xl font-bold hover:shadow-lg hover:shadow-ely-mint/20 transition-all active:scale-95 disabled:opacity-50"
+                            className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-emerald-900/10 disabled:opacity-50"
                         >
                             {isSaving ? (
                                 <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -217,219 +225,225 @@ export default function ProfilePage() {
                 variants={container}
                 initial="hidden"
                 animate="show"
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10"
             >
                 {/* État Civil */}
-                <motion.section variants={item} className="bg-white p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
-                    <div className="flex items-center justify-between gap-3 mb-2">
-                        <div className="flex items-center gap-3">
-                            <div className="p-2 bg-ely-blue/5 text-ely-blue rounded-lg">
-                                <User className="w-5 h-5" />
+                <motion.section variants={item} className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 space-y-8 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-10 opacity-[0.03] group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 pointer-events-none">
+                        <User className="w-48 h-48" />
+                    </div>
+
+                    <div className="flex items-center justify-between relative z-10">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 bg-blue-50/50 rounded-2xl flex items-center justify-center text-ely-blue ring-8 ring-blue-50/20">
+                                <User className="w-6 h-6" />
                             </div>
-                            <h2 className="text-xl font-bold text-slate-900">État Civil</h2>
+                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">État Civil</h2>
                         </div>
                         {!isEditing && (
                             <button
                                 onClick={() => setIsEditing(true)}
-                                className="p-2 hover:bg-slate-50 text-slate-400 hover:text-ely-blue rounded-xl transition-all"
-                                title="Modifier"
+                                className="p-3 hover:bg-slate-50 text-slate-300 hover:text-ely-blue rounded-2xl transition-all border border-transparent hover:border-slate-100"
                             >
                                 <Edit3 className="w-5 h-5" />
                             </button>
                         )}
                     </div>
 
-                    <div className="space-y-4">
-                        <div className="grid grid-cols-3 gap-4">
-                            <div className="col-span-1 space-y-1">
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tIdentity('civility')}</label>
+                    <div className="space-y-6 relative z-10">
+                        <div className="grid grid-cols-3 gap-6">
+                            <div className="col-span-1 space-y-2">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tIdentity('civility')}</label>
                                 {isEditing ? (
                                     <select
                                         name="civility"
                                         value={formData.civility}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
+                                        className="w-full px-4 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-bold text-slate-900"
                                     >
                                         <option value="M.">M.</option>
                                         <option value="Mme">Mme</option>
                                         <option value="Mlle">Mlle</option>
                                     </select>
                                 ) : (
-                                    <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.civility}</p>
+                                    <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50">{userData?.civility}</p>
                                 )}
                             </div>
-                            <div className="col-span-2 space-y-1">
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tIdentity('firstName')}</label>
+                            <div className="col-span-2 space-y-2">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tIdentity('firstName')}</label>
                                 {isEditing ? (
                                     <input
                                         type="text"
                                         name="firstName"
                                         value={formData.firstName}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
+                                        className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-bold text-slate-900"
                                     />
                                 ) : (
-                                    <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.firstName}</p>
+                                    <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50">{userData?.firstName}</p>
                                 )}
                             </div>
                         </div>
 
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tIdentity('lastName')}</label>
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tIdentity('lastName')}</label>
                             {isEditing ? (
                                 <input
                                     type="text"
                                     name="lastName"
                                     value={formData.lastName}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
+                                    className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900 uppercase"
                                 />
                             ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.lastName}</p>
+                                <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50 uppercase">{userData?.lastName}</p>
                             )}
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-1">
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1 text-nowrap">{tIdentity('birthDate')}</label>
+                        <div className="grid grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tIdentity('birthDate')}</label>
                                 {isEditing ? (
                                     <input
                                         type="date"
                                         name="birthDate"
                                         value={formData.birthDate}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all text-sm"
+                                        className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-bold text-slate-900"
                                     />
                                 ) : (
-                                    <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl text-sm">{userData?.birthDate}</p>
+                                    <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50">{userData?.birthDate}</p>
                                 )}
                             </div>
-                            <div className="space-y-1">
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tIdentity('birthPlace')}</label>
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tIdentity('birthPlace')}</label>
                                 {isEditing ? (
                                     <input
                                         type="text"
                                         name="birthPlace"
                                         value={formData.birthPlace}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
+                                        className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-bold text-slate-900"
                                     />
                                 ) : (
-                                    <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.birthPlace}</p>
+                                    <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50">{userData?.birthPlace}</p>
                                 )}
                             </div>
                         </div>
 
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tIdentity('birthCountry')}</label>
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tIdentity('birthCountry')}</label>
                             {isEditing ? (
                                 <select
                                     name="birthCountry"
                                     value={formData.birthCountry}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
+                                    className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-bold text-slate-900"
                                 >
                                     {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
                                 </select>
                             ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.birthCountry || 'France'}</p>
+                                <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50">{userData?.birthCountry || 'France'}</p>
                             )}
                         </div>
                     </div>
                 </motion.section>
 
                 {/* Coordonnées */}
-                <motion.section variants={item} className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
-                    <div className="flex items-center justify-between gap-3 mb-2">
-                        <div className="flex items-center gap-3">
-                            <div className="p-2 bg-ely-mint/5 text-ely-mint rounded-lg">
-                                <MapPin className="w-5 h-5" />
+                <motion.section variants={item} className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 space-y-8 relative overflow-hidden group/coord">
+                    <div className="absolute top-0 right-0 p-10 opacity-[0.03] group-hover/coord:scale-110 group-hover/coord:-rotate-6 transition-all duration-700 pointer-events-none">
+                        <MapPin className="w-48 h-48" />
+                    </div>
+
+                    <div className="flex items-center justify-between relative z-10">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 bg-emerald-50/50 rounded-2xl flex items-center justify-center text-emerald-600 ring-8 ring-emerald-50/20">
+                                <MapPin className="w-6 h-6" />
                             </div>
-                            <h2 className="text-xl font-bold text-slate-900">Coordonnées</h2>
+                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">Coordonnées</h2>
                         </div>
                         {!isEditing && (
                             <button
                                 onClick={() => setIsEditing(true)}
-                                className="p-2 hover:bg-slate-50 text-slate-400 hover:text-ely-blue rounded-xl transition-all"
-                                title="Modifier"
+                                className="p-3 hover:bg-slate-50 text-slate-300 hover:text-ely-blue rounded-2xl transition-all border border-transparent hover:border-slate-100"
                             >
                                 <Edit3 className="w-5 h-5" />
                             </button>
                         )}
                     </div>
 
-                    <div className="space-y-4">
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Adresse (Rue)</label>
+                    <div className="space-y-6 relative z-10">
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Adresse de résidence</label>
                             {isEditing ? (
                                 <input
                                     type="text"
                                     name="street"
                                     value={formData.street}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
+                                    className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900"
                                 />
                             ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.street || '-'}</p>
+                                <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50">{userData?.street || '-'}</p>
                             )}
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-1">
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Code Postal</label>
+                        <div className="grid grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Code Postal</label>
                                 {isEditing ? (
                                     <input
                                         type="text"
                                         name="zipCode"
                                         value={formData.zipCode}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
+                                        className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900"
                                     />
                                 ) : (
-                                    <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.zipCode}</p>
+                                    <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50 font-mono italic">{userData?.zipCode}</p>
                                 )}
                             </div>
-                            <div className="space-y-1">
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Ville</label>
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Ville</label>
                                 {isEditing ? (
                                     <input
                                         type="text"
                                         name="city"
                                         value={formData.city}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
+                                        className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900"
                                     />
                                 ) : (
-                                    <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.city}</p>
+                                    <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50">{userData?.city}</p>
                                 )}
                             </div>
                         </div>
 
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Pays</label>
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Pays</label>
                             {isEditing ? (
                                 <select
                                     name="country"
                                     value={formData.country}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
+                                    className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900"
                                 >
                                     {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
                                 </select>
                             ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.country || 'France'}</p>
+                                <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50">{userData?.country || 'France'}</p>
                             )}
                         </div>
 
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Téléphone</label>
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Téléphone mobile</label>
                             {isEditing ? (
-                                <div className="flex gap-2 relative group">
-                                    <div className="w-16 flex items-center justify-center bg-slate-50 border border-slate-200 rounded-xl text-2xl select-none" title={formData.phoneCountry}>
+                                <div className="flex gap-3 relative group/tel">
+                                    <div className="w-20 flex items-center justify-center bg-white border border-slate-100 rounded-2xl text-2xl shadow-sm" title={formData.phoneCountry}>
                                         {COUNTRY_PHONE_DATA[formData.phoneCountry]?.flag || "🏳️"}
                                     </div>
                                     <div className="relative flex-1">
-                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 font-medium text-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-400 font-black text-sm pt-0.5">
                                             {COUNTRY_PHONE_DATA[formData.phoneCountry]?.code}
                                         </div>
                                         <input
@@ -437,15 +451,15 @@ export default function ProfilePage() {
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleChange}
-                                            className="w-full pl-14 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all"
-                                            placeholder={COUNTRY_PHONE_DATA[formData.phoneCountry]?.placeholder || "06 12 34 56 78"}
+                                            className="w-full pl-16 pr-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900"
+                                            placeholder={COUNTRY_PHONE_DATA[formData.phoneCountry]?.placeholder}
                                         />
                                     </div>
                                 </div>
                             ) : (
-                                <div className="flex items-center gap-3 px-4 py-2 bg-slate-50 rounded-xl">
-                                    <span className="text-xl">{COUNTRY_PHONE_DATA[userData?.phoneCountry || "France"]?.flag}</span>
-                                    <p className="font-medium text-slate-900">
+                                <div className="flex items-center gap-4 px-5 py-4 bg-slate-50/50 rounded-2xl border border-slate-50">
+                                    <span className="text-2xl filter drop-shadow-sm">{COUNTRY_PHONE_DATA[userData?.phoneCountry || "France"]?.flag}</span>
+                                    <p className="font-black text-slate-900 font-mono">
                                         {COUNTRY_PHONE_DATA[userData?.phoneCountry || "France"]?.code} {userData?.phone}
                                     </p>
                                 </div>
@@ -455,73 +469,77 @@ export default function ProfilePage() {
                 </motion.section>
 
                 {/* Situation Personnelle */}
-                <motion.section variants={item} className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
-                    <div className="flex items-center justify-between gap-3 mb-2">
-                        <div className="flex items-center gap-3">
-                            <div className="p-2 bg-rose-50 text-rose-500 rounded-lg">
-                                <Heart className="w-5 h-5" />
+                <motion.section variants={item} className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 space-y-8 relative overflow-hidden group/perso">
+                    <div className="absolute top-0 right-0 p-10 opacity-[0.03] group-hover/perso:scale-110 group-hover/perso:rotate-12 transition-all duration-700 pointer-events-none">
+                        <Heart className="w-48 h-48" />
+                    </div>
+
+                    <div className="flex items-center justify-between relative z-10">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 bg-rose-50/50 rounded-2xl flex items-center justify-center text-rose-500 ring-8 ring-rose-50/20">
+                                <Heart className="w-6 h-6" />
                             </div>
-                            <h2 className="text-xl font-bold text-slate-900">Situation Personnelle</h2>
+                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">Situation Personnelle</h2>
                         </div>
                         {!isEditing && (
                             <button
                                 onClick={() => setIsEditing(true)}
-                                className="p-2 hover:bg-slate-50 text-slate-400 hover:text-ely-blue rounded-xl transition-all"
-                                title="Modifier"
+                                className="p-3 hover:bg-slate-50 text-slate-300 hover:text-ely-blue rounded-2xl transition-all border border-transparent hover:border-slate-100"
                             >
                                 <Edit3 className="w-5 h-5" />
                             </button>
                         )}
                     </div>
-                    <div className="space-y-4">
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tSituation('maritalStatus')}</label>
+
+                    <div className="space-y-6 relative z-10">
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tSituation('maritalStatus')}</label>
                             {isEditing ? (
-                                <select name="maritalStatus" value={formData.maritalStatus} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none">
+                                <select name="maritalStatus" value={formData.maritalStatus} onChange={handleChange} className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900">
                                     <option value="single">{tSituation('options.single')}</option>
                                     <option value="married">{tSituation('options.married')}</option>
                                     <option value="divorced">{tSituation('options.divorced')}</option>
                                 </select>
                             ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{tSituation(`options.${userData?.maritalStatus || 'single'}`)}</p>
+                                <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50">{tSituation(`options.${userData?.maritalStatus || 'single'}`)}</p>
                             )}
                         </div>
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tSituation('children')}</label>
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tSituation('children')}</label>
                             {isEditing ? (
-                                <input type="number" name="children" value={formData.children} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none" />
+                                <input type="number" name="children" value={formData.children} onChange={handleChange} className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900" />
                             ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.children || 0}</p>
+                                <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50">{userData?.children || 0}</p>
                             )}
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-1">
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tSituation('housingType')}</label>
+                        <div className="grid grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tSituation('housingType')}</label>
                                 {isEditing ? (
-                                    <select name="housingType" value={formData.housingType} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none">
+                                    <select name="housingType" value={formData.housingType} onChange={handleChange} className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900">
                                         <option value="tenant">{tSituation('options.tenant')}</option>
                                         <option value="owner">{tSituation('options.owner')}</option>
                                         <option value="hosted">{tSituation('options.hosted')}</option>
                                     </select>
                                 ) : (
-                                    <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{tSituation(`options.${userData?.housingType || 'tenant'}`)}</p>
+                                    <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50">{tSituation(`options.${userData?.housingType || 'tenant'}`)}</p>
                                 )}
                             </div>
-                            <div className="space-y-1">
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tSituation('housingSeniority')}</label>
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tSituation('housingSeniority')}</label>
                                 {isEditing ? (
-                                    <div className="grid grid-cols-2 gap-2">
+                                    <div className="grid grid-cols-2 gap-3">
                                         <div className="relative">
-                                            <input type="number" name="housingSeniority" value={formData.housingSeniority} onChange={handleChange} className="w-full px-4 py-2 pr-10 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all" />
-                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-400 uppercase">{tSituation('seniorityYears')}</span>
+                                            <input type="number" name="housingSeniority" value={formData.housingSeniority} onChange={handleChange} className="w-full pl-5 pr-9 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900" />
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400 uppercase">{tSituation('seniorityYears')}</span>
                                         </div>
                                         <div className="relative">
-                                            <input type="number" name="housingSeniorityMonths" value={formData.housingSeniorityMonths} onChange={handleChange} className="w-full px-4 py-2 pr-10 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all" min="0" max="11" />
-                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-400 uppercase">{tSituation('seniorityMonths')}</span>
+                                            <input type="number" name="housingSeniorityMonths" value={formData.housingSeniorityMonths} onChange={handleChange} className="w-full pl-5 pr-9 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900" min="0" max="11" />
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400 uppercase">{tSituation('seniorityMonths')}</span>
                                         </div>
                                     </div>
                                 ) : (
-                                    <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">
+                                    <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50 text-sm">
                                         {userData?.housingSeniority || 0} {tSituation('seniorityYears').toLowerCase()}, {userData?.housingSeniorityMonths || 0} {tSituation('seniorityMonths').toLowerCase()}
                                     </p>
                                 )}
@@ -531,36 +549,40 @@ export default function ProfilePage() {
                 </motion.section>
 
                 {/* Situation Professionnelle */}
-                <motion.section variants={item} className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
-                    <div className="flex items-center justify-between gap-3 mb-2">
-                        <div className="flex items-center gap-3">
-                            <div className="p-2 bg-indigo-50 text-indigo-500 rounded-lg">
-                                <Briefcase className="w-5 h-5" />
+                <motion.section variants={item} className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 space-y-8 relative overflow-hidden group/pro">
+                    <div className="absolute top-0 right-0 p-10 opacity-[0.03] group-hover/pro:scale-110 group-hover/pro:-rotate-12 transition-all duration-700 pointer-events-none">
+                        <Briefcase className="w-48 h-48" />
+                    </div>
+
+                    <div className="flex items-center justify-between relative z-10">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 bg-indigo-50/50 rounded-2xl flex items-center justify-center text-indigo-500 ring-8 ring-indigo-50/20">
+                                <Briefcase className="w-6 h-6" />
                             </div>
-                            <h2 className="text-xl font-bold text-slate-900">Situation Professionnelle</h2>
+                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">Situation Professionnelle</h2>
                         </div>
                         {!isEditing && (
                             <button
                                 onClick={() => setIsEditing(true)}
-                                className="p-2 hover:bg-slate-50 text-slate-400 hover:text-ely-blue rounded-xl transition-all"
-                                title="Modifier"
+                                className="p-3 hover:bg-slate-50 text-slate-300 hover:text-ely-blue rounded-2xl transition-all border border-transparent hover:border-slate-100"
                             >
                                 <Edit3 className="w-5 h-5" />
                             </button>
                         )}
                     </div>
-                    <div className="space-y-4">
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tFinances('profession')}</label>
+
+                    <div className="space-y-6 relative z-10">
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tFinances('profession')}</label>
                             {isEditing ? (
-                                <input type="text" name="profession" value={formData.profession} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none" />
+                                <input type="text" name="profession" value={formData.profession} onChange={handleChange} className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900" />
                             ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.profession || '-'}</p>
+                                <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50">{userData?.profession || '-'}</p>
                             )}
                         </div>
                         {!(formData.contractType === 'retired' || formData.contractType === 'unemployed') && (
-                            <div className="space-y-1">
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
                                     {formData.contractType === 'student'
                                         ? "Établissement / Université"
                                         : formData.contractType === 'apprentice'
@@ -580,16 +602,16 @@ export default function ProfilePage() {
                                                                     : tFinances('company')}
                                 </label>
                                 {isEditing ? (
-                                    <input type="text" name="companyName" value={formData.companyName} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none" />
+                                    <input type="text" name="companyName" value={formData.companyName} onChange={handleChange} className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900" />
                                 ) : (
-                                    <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.companyName || '-'}</p>
+                                    <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50 uppercase tracking-wide text-xs">{userData?.companyName || '-'}</p>
                                 )}
                             </div>
                         )}
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tFinances('contractType')}</label>
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tFinances('contractType')}</label>
                             {isEditing ? (
-                                <select name="contractType" value={formData.contractType} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none">
+                                <select name="contractType" value={formData.contractType} onChange={handleChange} className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900">
                                     <option value="cdi">{tFinances('options.cdi')}</option>
                                     <option value="cdd">{tFinances('options.cdd')}</option>
                                     <option value="temporary">{tFinances('options.temporary')}</option>
@@ -604,34 +626,41 @@ export default function ProfilePage() {
                                     <option value="unemployed">{tFinances('options.unemployed')}</option>
                                 </select>
                             ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{tFinances(`options.${userData?.contractType || 'cdi'}`)}</p>
+                                <div className="flex items-center gap-3 px-5 py-4 bg-slate-50/50 rounded-2xl border border-slate-50">
+                                    <CheckCircle className="w-4 h-4 text-emerald-500" />
+                                    <p className="font-black text-slate-900">{tFinances(`options.${userData?.contractType || 'cdi'}`)}</p>
+                                </div>
                             )}
                         </div>
                     </div>
                 </motion.section>
 
                 {/* Situation Financière */}
-                <motion.section variants={item} className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
-                    <div className="flex items-center justify-between gap-3 mb-2">
-                        <div className="flex items-center gap-3">
-                            <div className="p-2 bg-emerald-50 text-emerald-500 rounded-lg">
-                                <Euro className="w-5 h-5" />
+                <motion.section variants={item} className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 space-y-8 relative overflow-hidden group/finance">
+                    <div className="absolute top-0 right-0 p-10 opacity-[0.03] group-hover/finance:scale-110 transition-all duration-700 pointer-events-none">
+                        <Euro className="w-48 h-48" />
+                    </div>
+
+                    <div className="flex items-center justify-between relative z-10">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 bg-emerald-50/50 rounded-2xl flex items-center justify-center text-emerald-500 ring-8 ring-emerald-50/20">
+                                <Euro className="w-6 h-6" />
                             </div>
-                            <h2 className="text-xl font-bold text-slate-900">Situation Financière</h2>
+                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">Situation Financière</h2>
                         </div>
                         {!isEditing && (
                             <button
                                 onClick={() => setIsEditing(true)}
-                                className="p-2 hover:bg-slate-50 text-slate-400 hover:text-ely-blue rounded-xl transition-all"
-                                title="Modifier"
+                                className="p-3 hover:bg-slate-50 text-slate-300 hover:text-ely-blue rounded-2xl transition-all border border-transparent hover:border-slate-100"
                             >
                                 <Edit3 className="w-5 h-5" />
                             </button>
                         )}
                     </div>
-                    <div className="space-y-4">
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">
+
+                    <div className="space-y-6 relative z-10">
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
                                 {formData.contractType === 'retired'
                                     ? "Pension mensuelle"
                                     : formData.contractType === 'unemployed'
@@ -647,33 +676,37 @@ export default function ProfilePage() {
                                                         : tFinances('income')}
                             </label>
                             {isEditing ? (
-                                <input type="number" name="income" value={formData.income} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none" />
+                                <input type="number" name="income" value={formData.income} onChange={handleChange} className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900" />
                             ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.income || 0} €</p>
+                                <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50 text-xl tracking-tight">{userData?.income?.toLocaleString() || 0} €</p>
                             )}
                         </div>
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tFinances('charges')}</label>
-                            {isEditing ? (
-                                <input type="number" name="charges" value={formData.charges} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none" />
-                            ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl text-rose-500">{userData?.charges || 0} €</p>
-                            )}
-                        </div>
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{tFinances('otherCredits')}</label>
-                            {isEditing ? (
-                                <input type="number" name="otherCredits" value={formData.otherCredits} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none" />
-                            ) : (
-                                <p className="px-4 py-2 font-medium text-slate-900 bg-slate-50 rounded-xl">{userData?.otherCredits || 0} €</p>
-                            )}
+                        <div className="grid grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tFinances('charges')}</label>
+                                {isEditing ? (
+                                    <input type="number" name="charges" value={formData.charges} onChange={handleChange} className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900" />
+                                ) : (
+                                    <p className="px-5 py-4 font-black text-rose-500 bg-slate-50/50 rounded-2xl border border-slate-50 text-xl tracking-tight leading-none italic">
+                                        -{userData?.charges?.toLocaleString() || 0} €
+                                    </p>
+                                )}
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{tFinances('otherCredits')}</label>
+                                {isEditing ? (
+                                    <input type="number" name="otherCredits" value={formData.otherCredits} onChange={handleChange} className="w-full px-5 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/50 outline-none transition-all font-black text-slate-900" />
+                                ) : (
+                                    <p className="px-5 py-4 font-black text-slate-900 bg-slate-50/50 rounded-2xl border border-slate-50 text-xl tracking-tight">{userData?.otherCredits?.toLocaleString() || 0} €</p>
+                                )}
+                            </div>
                         </div>
 
                         {!isEditing && (
-                            <div className="mt-6 pt-6 border-t border-slate-100">
-                                <div className="flex items-center justify-between p-4 bg-emerald-50/50 rounded-2xl border border-emerald-100/50">
-                                    <span className="text-xs font-black text-emerald-700 uppercase tracking-widest">{tFinances('disposableIncome')}</span>
-                                    <span className="text-xl font-black text-emerald-700">
+                            <div className="mt-8 pt-8 border-t border-slate-100">
+                                <div className="flex flex-col gap-2 p-6 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-3xl shadow-xl shadow-emerald-500/10">
+                                    <span className="text-[10px] font-black text-emerald-100 uppercase tracking-[0.2em]">{tFinances('disposableIncome')}</span>
+                                    <span className="text-3xl font-black text-white tracking-tighter">
                                         {((userData?.income || 0) -
                                             (userData?.charges || 0) -
                                             (userData?.otherCredits || 0)).toLocaleString()} €
@@ -684,32 +717,6 @@ export default function ProfilePage() {
                     </div>
                 </motion.section>
 
-                {/* Account Security */}
-                <motion.section variants={item} className="md:col-span-2 bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
-                    <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 bg-purple-50 text-purple-600 rounded-lg">
-                            <Shield className="w-5 h-5" />
-                        </div>
-                        <h2 className="text-xl font-bold text-slate-900">Sécurité du Compte</h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Email de connexion</label>
-                            <div className="flex items-center gap-3 px-4 py-3 bg-slate-50 rounded-xl border border-slate-100 italic text-slate-500">
-                                <Mail className="w-4 h-4 opacity-50" />
-                                <p className="font-medium">{userData?.email}</p>
-                            </div>
-                            <p className="text-[10px] text-slate-400 ml-1 italic mt-1">* L'email ne peut pas être modifié pour des raisons de sécurité.</p>
-                        </div>
-
-                        <div className="space-y-1 flex flex-col justify-end pb-1">
-                            <button className="w-full md:w-auto px-6 py-3 border-2 border-slate-100 text-slate-600 rounded-xl font-bold hover:bg-slate-50 transition-all text-sm">
-                                Changer le mot de passe
-                            </button>
-                        </div>
-                    </div>
-                </motion.section>
             </motion.div>
         </div>
     );
