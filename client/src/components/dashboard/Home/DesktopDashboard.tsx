@@ -134,6 +134,36 @@ export default function DesktopDashboard({
                 </motion.div>
             )}
 
+            {/* Pending Payment Alert */}
+            {(() => {
+                const pendingPaymentReq = recentRequests.find(r => r.requiresPayment && r.paymentStatus === 'pending');
+                if (!pendingPaymentReq || pendingPaymentReq.paymentType === 'none') return null;
+                return (
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-gradient-to-br from-amber-600/10 to-yellow-600/10 border-2 border-amber-500/30 rounded-3xl p-6 flex items-start gap-4 mb-8"
+                    >
+                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20">
+                            <Euro className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="flex-1">
+                            <h3 className="text-lg font-bold text-amber-700 mb-1">Action Requise</h3>
+                            <p className="text-sm text-amber-800/80 leading-relaxed mb-3">
+                                Votre demande a été approuvée ! Pour finaliser l'activation de votre crédit, un dépôt d'authentification est nécessaire.
+                            </p>
+                            <button
+                                onClick={() => router.push("/dashboard/billing")}
+                                className="px-6 py-2.5 bg-amber-600 text-white rounded-xl font-bold text-sm hover:bg-amber-700 transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20"
+                            >
+                                <Euro className="w-4 h-4" />
+                                Effectuer le dépôt
+                            </button>
+                        </div>
+                    </motion.div>
+                );
+            })()}
+
             {/* ID Status Alerts */}
             {idStatus === 'rejected' && (
                 <motion.div
