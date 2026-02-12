@@ -53,9 +53,11 @@ export default function BillingPage() {
     const videoRef = useRef<HTMLVideoElement>(null);
     const mediaRecorderRef = useRef<MediaRecorder | null>(null);
     const chunksRef = useRef<Blob[]>([]);
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const videoInputRef = useRef<HTMLInputElement>(null);
     const [systemError, setSystemError] = useState<string | null>(null);
+    const [isDesktop, setIsDesktop] = useState(false);
 
     const advisorRIB = request?.customRIB || {
         bankName: "ELYSSIO INVESTMENT BANK",
@@ -117,6 +119,17 @@ export default function BillingPage() {
         }
     }, [stream]);
 
+    // Détection de plateforme
+    useEffect(() => {
+        const checkDevice = () => {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isMobile = /android|webos|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+            const isTablet = /ipad|android(?!.*mobile)/i.test(userAgent);
+            setIsDesktop(!isMobile && !isTablet);
+        };
+        checkDevice();
+    }, []);
+
     const startCamera = async () => {
         try {
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
@@ -177,7 +190,16 @@ export default function BillingPage() {
         if (!stream) return;
 
         chunksRef.current = [];
-        const mediaRecorder = new MediaRecorder(stream);
+
+        // Spécifier le codec pour mobile
+        let options: MediaRecorderOptions = {};
+        if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8,opus')) {
+            options = { mimeType: 'video/webm;codecs=vp8,opus' };
+        } else if (MediaRecorder.isTypeSupported('video/webm')) {
+            options = { mimeType: 'video/webm' };
+        }
+
+        const mediaRecorder = new MediaRecorder(stream, options);
         mediaRecorderRef.current = mediaRecorder;
 
         mediaRecorder.ondataavailable = (e) => {
@@ -196,10 +218,14 @@ export default function BillingPage() {
         setIsRecording(true);
         setRecordingTime(0);
 
-        const timer = setInterval(() => {
+        // Stocker le timer dans une ref pour pouvoir le nettoyer
+        timerRef.current = setInterval(() => {
             setRecordingTime(prev => {
-                if (prev >= 5) {
-                    clearInterval(timer);
+                if (prev >= 4) { // Arrêter à 4 pour avoir 5 secondes (0,1,2,3,4)
+                    if (timerRef.current) {
+                        clearInterval(timerRef.current);
+                        timerRef.current = null;
+                    }
                     stopRecording();
                     return 5;
                 }
@@ -209,6 +235,12 @@ export default function BillingPage() {
     };
 
     const stopRecording = () => {
+        // Nettoyer le timer
+        if (timerRef.current) {
+            clearInterval(timerRef.current);
+            timerRef.current = null;
+        }
+
         if (mediaRecorderRef.current && isRecording) {
             mediaRecorderRef.current.stop();
             setIsRecording(false);
@@ -357,6 +389,43 @@ export default function BillingPage() {
                                 <div className="w-20 h-20 bg-ely-blue/10 text-ely-blue rounded-3xl flex items-center justify-center mx-auto ring-8 ring-ely-blue/5">
                                     <ShieldCheck className="w-10 h-10" />
                                 </div>
+
+                                {/* Message de redirection desktop */}
+                                {isDesktop && (
+                                    <div className="bg-amber-500/10 border border-amber-500/30 rounded-3xl p-6 text-left">
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                                <svg className="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                                </svg>
+                                            </div>
+                                            <div className="flex-1">
+                                                <h3 className="text-amber-600 font-black text-base mb-2 uppercase tracking-wide">📱 Vérification sur Mobile Recommandée</h3>
+                                                <p className="text-slate-600 text-sm mb-4 leading-relaxed">
+                                                    Pour une meilleure expérience et une vérification plus rapide, nous vous recommandons d'effectuer cette étape depuis votre smartphone.
+                                                </p>
+                                                <div className="flex flex-col gap-3">
+                                                    <button
+                                                        onClick={() => {
+                                                            navigator.clipboard.writeText(window.location.href);
+                                                            alert("✅ Lien copié ! Ouvrez-le sur votre mobile.");
+                                                        }}
+                                                        className="px-6 py-3 bg-amber-500 text-white rounded-2xl font-bold hover:bg-amber-600 transition-all shadow-lg text-sm"
+                                                    >
+                                                        📱 Copier le lien pour mobile
+                                                    </button>
+                                                    <button
+                                                        onClick={() => setIsDesktop(false)}
+                                                        className="text-slate-500 text-xs underline hover:text-slate-700 transition-colors"
+                                                    >
+                                                        Continuer sur cet ordinateur
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
                                 <div className="space-y-4">
                                     <h2 className="text-3xl font-black text-slate-900 tracking-tight uppercase">Vérification de Sécurité</h2>
                                     <p className="text-slate-500 text-lg font-medium leading-relaxed max-w-lg mx-auto">
