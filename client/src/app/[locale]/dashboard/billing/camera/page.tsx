@@ -176,13 +176,13 @@ export default function CameraPage() {
 
         timerRef.current = setInterval(() => {
             setRecordingTime(prev => {
-                if (prev >= 30) { // Augmenté à 30s
+                if (prev >= 15) { // Limite 15s
                     if (timerRef.current) {
                         clearInterval(timerRef.current);
                         timerRef.current = null;
                     }
                     stopRecording();
-                    return 30;
+                    return 15;
                 }
                 return prev + 1;
             });
@@ -221,7 +221,7 @@ export default function CameraPage() {
                             setIsVideoValidated(true);
                         } catch (error) {
                             console.error("Storage error:", error);
-                            alert("❌ Erreur : La vidéo est trop volumineuse pour être sauvegardée. Veuillez réessayer avec une durée plus courte.");
+                            alert("❌ Erreur : La vidéo est trop volumineuse. Durée limitée à 15s.");
                         }
                     };
                     reader.readAsDataURL(blob);
