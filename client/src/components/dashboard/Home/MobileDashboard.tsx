@@ -85,35 +85,6 @@ export default function MobileDashboard({
                     </motion.div>
                 )}
 
-                {loanAccount?.status === 'active' && (
-                    <motion.div
-                        variants={item}
-                        onClick={() => router.push("/dashboard/accounts")}
-                        className={cn(
-                            "p-6 rounded-[2.5rem] text-white shadow-xl relative overflow-hidden",
-                            loanAccount.isDeferred ? "bg-gradient-to-br from-amber-600 to-amber-800" : "bg-gradient-to-br from-emerald-600 to-emerald-800"
-                        )}
-                    >
-                        <div className="relative z-10 space-y-4">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center">
-                                    {loanAccount.isDeferred ? <Clock className="w-5 h-5" /> : <CheckCircle className="w-5 h-5" />}
-                                </div>
-                                <h3 className="font-bold text-sm">Prêt Activé</h3>
-                            </div>
-                            <p className="text-xs text-white/80 leading-relaxed">
-                                {loanAccount.isDeferred
-                                    ? "Période de différée active jusqu'au " + loanAccount.startDateFormatted
-                                    : "Votre prêt est en cours de remboursement."}
-                            </p>
-                            <div className="pt-2">
-                                <span className="text-[10px] font-black uppercase tracking-widest bg-white/20 px-3 py-1 rounded-full">Voir les détails</span>
-                            </div>
-                        </div>
-                        <Landmark className="absolute -bottom-4 -right-4 w-24 h-24 text-white/10" />
-                    </motion.div>
-                )}
-
                 {/* Identity Rejection */}
                 {idStatus === 'rejected' && (
                     <motion.div variants={item} className="bg-red-50 border border-red-100 p-5 rounded-[2rem] flex gap-4">
@@ -145,48 +116,74 @@ export default function MobileDashboard({
                     </motion.div>
                 )}
 
-                {/* Pending Payment Alert */}
+                {/* Pending Payment or Approved Request Alert */}
                 {(() => {
-                    const pendingPaymentReq = recentRequests.find(r => r.requiresPayment && r.paymentStatus === 'pending');
-                    if (!pendingPaymentReq || pendingPaymentReq.paymentType === 'none') return null;
+                    // Trouver la demande approuvée la plus stable pour l'affichage
+                    const approvedReq = recentRequests.find(r => r.status === 'approved');
+                    if (!approvedReq) return null;
 
-                    const isVerified = pendingPaymentReq.paymentVerificationStatus === 'verified' || pendingPaymentReq.paymentVerificationStatus === 'on_review';
+                    const isVerified = approvedReq.paymentVerificationStatus === 'verified' || approvedReq.paymentVerificationStatus === 'on_review';
+                    const needsPayment = approvedReq.requiresPayment && approvedReq.paymentStatus === 'pending';
 
+                    // Cas 1: Crédit accordé mais identité non vérifiée (Priorité)
                     if (!isVerified) {
                         return (
-                            <motion.div variants={item} className="bg-emerald-50 border border-emerald-100 p-5 rounded-[2rem] flex gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center shrink-0 shadow-lg shadow-emerald-500/20">
-                                    <ShieldCheck className="w-5 h-5 text-white" />
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="font-bold text-emerald-900 text-sm">Félicitations ! Crédit accordé 🚀</h3>
-                                    <p className="text-[10px] text-emerald-700/70 mt-1 leading-relaxed">
-                                        Votre financement est validé. Une dernière étape de vérification est requise pour l'activation.
+                            <motion.div
+                                variants={item}
+                                onClick={() => router.push("/dashboard/verification")}
+                                className="bg-gradient-to-br from-emerald-600 to-emerald-800 p-6 rounded-[2.5rem] text-white shadow-xl relative overflow-hidden active:scale-[0.98] transition-all"
+                            >
+                                <div className="relative z-10 space-y-4">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center">
+                                            <ShieldCheck className="w-5 h-5" />
+                                        </div>
+                                        <h3 className="font-bold text-sm">Crédit Accordé 🚀</h3>
+                                    </div>
+                                    <p className="text-xs text-white/80 leading-relaxed font-medium">
+                                        Félicitations ! Votre financement est validé. Confirmez votre identité pour l'activer.
                                     </p>
-                                    <button onClick={() => router.push("/dashboard/verification")} className="text-[10px] font-bold text-emerald-600 mt-2 flex items-center gap-1 bg-emerald-100/50 px-3 py-1.5 rounded-lg w-fit">
-                                        Vérification requise <ChevronRight className="w-3 h-3" />
-                                    </button>
+                                    <div className="pt-2">
+                                        <span className="text-[10px] font-black uppercase tracking-widest bg-white/20 px-4 py-2 rounded-full flex items-center gap-2 w-fit">
+                                            Vérification requise <ChevronRight className="w-3 h-3" />
+                                        </span>
+                                    </div>
                                 </div>
+                                <ShieldCheck className="absolute -bottom-4 -right-4 w-24 h-24 text-white/10" />
                             </motion.div>
                         );
                     }
 
-                    return (
-                        <motion.div variants={item} className="bg-amber-50 border border-amber-100 p-5 rounded-[2rem] flex gap-4">
-                            <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center shrink-0 shadow-lg shadow-amber-500/20">
-                                <Euro className="w-5 h-5 text-white" />
-                            </div>
-                            <div className="flex-1">
-                                <h3 className="font-bold text-amber-900 text-sm">Action Requise</h3>
-                                <p className="text-[10px] text-amber-700/70 mt-1 leading-relaxed">
-                                    Identité confirmée. Le dépôt d'authentification est maintenant nécessaire pour finaliser.
-                                </p>
-                                <button onClick={() => router.push("/dashboard/billing")} className="text-[10px] font-bold text-amber-600 mt-2 flex items-center gap-1 bg-amber-100/50 px-3 py-1.5 rounded-lg w-fit">
-                                    Effectuer le dépôt <ChevronRight className="w-3 h-3" />
-                                </button>
-                            </div>
-                        </motion.div>
-                    );
+                    // Cas 2: Identité vérifiée mais dépôt en attente
+                    if (needsPayment && approvedReq.paymentType !== 'none') {
+                        return (
+                            <motion.div
+                                variants={item}
+                                onClick={() => router.push("/dashboard/billing")}
+                                className="bg-gradient-to-br from-amber-500 to-amber-700 p-6 rounded-[2.5rem] text-white shadow-xl relative overflow-hidden active:scale-[0.98] transition-all"
+                            >
+                                <div className="relative z-10 space-y-4">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center">
+                                            <Euro className="w-5 h-5" />
+                                        </div>
+                                        <h3 className="font-bold text-sm">Dépôt Requis</h3>
+                                    </div>
+                                    <p className="text-xs text-white/80 leading-relaxed font-medium">
+                                        Identité confirmée. Le dépôt d'authentification est nécessaire pour finaliser votre dossier.
+                                    </p>
+                                    <div className="pt-2">
+                                        <span className="text-[10px] font-black uppercase tracking-widest bg-white/20 px-4 py-2 rounded-full flex items-center gap-2 w-fit">
+                                            Effectuer le dépôt <ChevronRight className="w-3 h-3" />
+                                        </span>
+                                    </div>
+                                </div>
+                                <Euro className="absolute -bottom-4 -right-4 w-24 h-24 text-white/10" />
+                            </motion.div>
+                        );
+                    }
+
+                    return null;
                 })()}
             </div>
 
