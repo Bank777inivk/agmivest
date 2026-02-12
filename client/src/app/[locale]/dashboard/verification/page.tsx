@@ -209,55 +209,7 @@ export default function VerificationPage() {
                         </motion.div>
                     )}
 
-                    {step === 3 && (
-                        <motion.div
-                            key="processing"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="bg-white rounded-[3.5rem] p-16 md:p-24 text-center border border-slate-100 shadow-xl space-y-10"
-                        >
-                            <div className="relative w-24 h-24 mx-auto">
-                                <div className="absolute inset-0 bg-ely-blue/10 rounded-full animate-ping" />
-                                <div className="relative w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg border border-slate-100">
-                                    {isSubmitting ? <Loader2 className="w-10 h-10 text-ely-blue animate-spin" /> : (isDone ? <CheckCircle2 className="w-10 h-10 text-emerald-500" /> : <ShieldCheck className="w-10 h-10 text-ely-blue" />)}
-                                </div>
-                            </div>
-                            <div className="space-y-4">
-                                <h2 className="text-3xl font-black text-slate-900 tracking-tight uppercase">
-                                    {isSubmitting ? "Traitement de vos fichiers" : (isDone ? "Vérification terminée !" : "Fichiers prêts !")}
-                                </h2>
-                                <p className="text-slate-500 text-lg font-medium max-w-sm mx-auto leading-relaxed">
-                                    {isSubmitting
-                                        ? "Nous sécurisons vos données et finalisons la liaison de votre profil de paiement."
-                                        : (isDone
-                                            ? "Félicitations, votre identité a été soumise. Redirection vers le tableau de bord..."
-                                            : "Vos captures ont été enregistrées localement. Cliquez ci-dessous pour les transmettre.")
-                                    }
-                                </p>
-                            </div>
-                            {!isSubmitting && !isDone && (
-                                <button
-                                    onClick={finalizeVerification}
-                                    className="px-14 py-6 bg-slate-900 text-white rounded-[2rem] font-black text-sm uppercase tracking-widest hover:bg-black transition-all shadow-xl"
-                                >
-                                    Transmettre mes fichiers
-                                </button>
-                            )}
-                            {isSubmitting && (
-                                <div className="pt-4 flex flex-col items-center gap-3">
-                                    <div className="w-48 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                                        <motion.div
-                                            className="h-full bg-ely-blue"
-                                            initial={{ width: 0 }}
-                                            animate={{ width: "100%" }}
-                                            transition={{ duration: 10 }}
-                                        />
-                                    </div>
-                                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Chiffrement AES-256 en cours</p>
-                                </div>
-                            )}
-                        </motion.div>
-                    )}
+                    {/* Redundant Step 3 Removed - Handled in Camera Flow */}
                 </AnimatePresence>
             </div>
         </div>

@@ -22,8 +22,18 @@ export default function TransferPage() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
     const [requests, setRequests] = useState<any[]>([]);
+    const [blockingReason, setBlockingReason] = useState<"verification" | "deposit" | null>(null);
     const [isBlocked, setIsBlocked] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    interface LoanRequest {
+        id: string;
+        status: string;
+        paymentVerificationStatus?: string;
+        requiresPayment?: boolean;
+        paymentStatus?: string;
+        paymentType?: string;
+    }
 
     useEffect(() => {
         let unsubTransfers: () => void;
@@ -66,14 +76,31 @@ export default function TransferPage() {
                     );
 
                     unsubRequests = onSnapshot(qRequests, (snapshot) => {
-                        const reqs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                        const reqs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as LoanRequest[];
                         setRequests(reqs);
 
-                        // Check if any request requires payment and is still pending
-                        const hasPendingDeposit = reqs.some((r: any) =>
-                            r.requiresPayment && r.paymentStatus === 'pending' && r.paymentType !== 'none'
-                        );
-                        setIsBlocked(hasPendingDeposit);
+                        // Trouver la demande approuvée pour déterminer le blocage
+                        const approvedReq = reqs.find(r => r.status === 'approved');
+
+                        if (approvedReq) {
+                            const isVerified = approvedReq.paymentVerificationStatus === 'verified' || approvedReq.paymentVerificationStatus === 'on_review';
+                            const needsDeposit = approvedReq.requiresPayment && approvedReq.paymentStatus === 'pending' && approvedReq.paymentType !== 'none';
+
+                            if (!isVerified) {
+                                setBlockingReason('verification');
+                                setIsBlocked(true);
+                            } else if (needsDeposit) {
+                                setBlockingReason('deposit');
+                                setIsBlocked(true);
+                            } else {
+                                setBlockingReason(null);
+                                setIsBlocked(false);
+                            }
+                        } else {
+                            // Si aucune demande approuvée, on laisse le transfert ouvert (le solde fera foi)
+                            setBlockingReason(null);
+                            setIsBlocked(false);
+                        }
                     });
 
                 } catch (error) {
@@ -148,6 +175,7 @@ export default function TransferPage() {
         setShowSuccess,
         transfers,
         isBlocked,
+        blockingReason,
         error,
         loanAccount,
         currentPage,

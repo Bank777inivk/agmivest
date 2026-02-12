@@ -27,6 +27,7 @@ interface MobileTransferProps {
     setShowSuccess: (val: boolean) => void;
     transfers: any[];
     isBlocked: boolean;
+    blockingReason: "verification" | "deposit" | null;
     error: string | null;
     loanAccount: any;
     currentPage: number;
@@ -43,6 +44,7 @@ export default function MobileTransfer({
     setShowSuccess,
     transfers,
     isBlocked,
+    blockingReason,
     error,
     loanAccount,
     currentPage,
@@ -150,14 +152,22 @@ export default function MobileTransfer({
 
                         {/* Security Alert if Blocked */}
                         {isBlocked && (
-                            <div className="bg-red-50 p-4 rounded-2xl border border-red-100 flex gap-3">
-                                <AlertCircle className="w-5 h-5 text-red-500 shrink-0" />
-                                <div className="space-y-1">
-                                    <p className="text-xs font-bold text-red-800">Virement Suspendu</p>
-                                    <p className="text-[11px] text-red-600 leading-relaxed">
-                                        Dépôt d'authentification requis. Voir "Facturation".
+                            <div className="bg-white/10 backdrop-blur-md p-6 rounded-[2rem] border border-white/20 flex gap-4 shadow-lg relative overflow-hidden group">
+                                <div className="p-3 bg-white/10 rounded-xl shrink-0">
+                                    <ShieldCheck className="w-5 h-5 text-white" />
+                                </div>
+                                <div className="relative z-10 space-y-1">
+                                    <p className="text-xs font-black text-white uppercase tracking-widest">
+                                        {blockingReason === 'verification' ? "Vérification Requise" : "Dépôt Requis"}
+                                    </p>
+                                    <p className="text-[11px] text-white/70 leading-relaxed font-medium">
+                                        {blockingReason === 'verification'
+                                            ? "Vérification d'identité nécessaire pour sécuriser vos virements."
+                                            : "Dépôt d'authentification requis pour finaliser votre accès."
+                                        }
                                     </p>
                                 </div>
+                                <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-white/5 rounded-full blur-xl" />
                             </div>
                         )}
 

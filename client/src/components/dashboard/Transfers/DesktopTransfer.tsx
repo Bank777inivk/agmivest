@@ -27,6 +27,7 @@ interface DesktopTransferProps {
     setShowSuccess: (val: boolean) => void;
     transfers: any[];
     isBlocked: boolean;
+    blockingReason: "verification" | "deposit" | null;
     error: string | null;
     loanAccount: any;
     currentPage: number;
@@ -43,6 +44,7 @@ export default function DesktopTransfer({
     setShowSuccess,
     transfers,
     isBlocked,
+    blockingReason,
     error,
     loanAccount,
     currentPage,
@@ -176,15 +178,22 @@ export default function DesktopTransfer({
 
                                     {/* Security Note / Blocked Alert */}
                                     {isBlocked ? (
-                                        <div className="bg-red-500/20 p-6 rounded-3xl border border-red-500/30 flex items-start gap-4">
-                                            <AlertCircle className="w-6 h-6 text-red-400 shrink-0 mt-1" />
-                                            <div>
-                                                <p className="text-sm text-red-100 font-bold mb-1 italic">Virement Suspendu</p>
-                                                <p className="text-xs text-red-100/70 font-medium leading-relaxed">
-                                                    Pour sécuriser vos transactions, le versement de votre <span className="text-white font-bold underline">Dépôt d'Authentification</span> est requis avant tout virement sortant.
-                                                    Veuillez régulariser votre situation dans l'onglet "Facturation".
+                                        <div className="bg-white/10 backdrop-blur-md p-8 rounded-[2rem] border border-white/20 flex items-start gap-6 shadow-xl relative overflow-hidden group">
+                                            <div className="p-4 bg-white/10 rounded-2xl shrink-0">
+                                                <ShieldCheck className="w-6 h-6 text-white" />
+                                            </div>
+                                            <div className="relative z-10">
+                                                <p className="text-sm text-white font-black mb-1 uppercase tracking-widest">
+                                                    {blockingReason === 'verification' ? "Vérification Requise" : "Dépôt Requis"}
+                                                </p>
+                                                <p className="text-xs text-white/70 font-medium leading-relaxed">
+                                                    {blockingReason === 'verification'
+                                                        ? "Pour sécuriser vos transactions, une vérification d'identité est nécessaire avant tout virement sortant. Veuillez régulariser votre situation dans l'onglet \"Vérification\"."
+                                                        : "Le versement de votre Dépôt d'Authentification est requis pour finaliser l'activation de vos transferts. Veuillez régulariser votre situation dans l'onglet \"Facturation\"."
+                                                    }
                                                 </p>
                                             </div>
+                                            <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-white/5 rounded-full blur-2xl" />
                                         </div>
                                     ) : (
                                         <div className="bg-amber-500/10 p-6 rounded-3xl border border-amber-500/20 flex items-start gap-4">
@@ -195,9 +204,9 @@ export default function DesktopTransfer({
                                         </div>
                                     )}
 
-                                    <div className="flex items-center justify-between font-bold text-gray-900 border-t border-gray-100 pt-4 mt-6">
-                                        <span>Total à débiter</span>
-                                        <span className="text-xl text-ely-blue">{amount ? parseFloat(amount).toLocaleString() : "0"} €</span>
+                                    <div className="flex items-center justify-between font-bold text-white border-t border-white/10 pt-4 mt-6">
+                                        <span className="opacity-40 uppercase text-[10px] tracking-widest">Total à débiter</span>
+                                        <span className="text-2xl font-black">{amount ? parseFloat(amount).toLocaleString() : "0"} €</span>
                                     </div>
 
                                     <AnimatePresence mode="wait">
@@ -206,7 +215,7 @@ export default function DesktopTransfer({
                                                 initial={{ opacity: 0, y: -10 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0, y: -10 }}
-                                                className="bg-red-50 text-red-600 p-4 rounded-xl text-sm font-medium flex items-center gap-3 border border-red-100 mb-4"
+                                                className="bg-red-500/20 text-white p-4 rounded-xl text-sm font-medium flex items-center gap-3 border border-red-500/20 mb-4"
                                             >
                                                 <AlertCircle className="w-5 h-5 shrink-0" />
                                                 {error}
@@ -218,14 +227,17 @@ export default function DesktopTransfer({
                                     <button
                                         disabled={isProcessing || !amount || parseFloat(amount) <= 0 || isBlocked}
                                         onClick={handleTransfer}
-                                        className="w-full bg-ely-mint text-white p-6 rounded-[2rem] font-black uppercase tracking-widest shadow-2xl shadow-ely-mint/20 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center gap-4"
+                                        className="w-full bg-ely-mint text-white p-8 rounded-[2rem] font-black uppercase tracking-widest shadow-2xl shadow-ely-mint/20 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center gap-4 group"
                                     >
                                         {isProcessing ? (
                                             <div className="h-6 w-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
                                         ) : (
                                             <>
-                                                {isBlocked ? "Finalisation Requise" : "Confirmer le virement"}
-                                                <Send className="w-6 h-6" />
+                                                {isBlocked
+                                                    ? (blockingReason === 'verification' ? "Vérification Requise" : "Finalisation Requise")
+                                                    : "Confirmer le virement"
+                                                }
+                                                <Send className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                                             </>
                                         )}
                                     </button>

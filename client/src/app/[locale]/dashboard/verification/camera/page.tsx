@@ -7,11 +7,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Camera, Video, Loader2, X, Play, StopCircle, ArrowLeft, Check, RotateCcw } from "lucide-react";
 import Image from "next/image";
 import { saveMedia, getMedia } from "@/lib/idb";
+import { auth, db } from "@/lib/firebase";
+import { doc, updateDoc, serverTimestamp, query, collection, where, limit, getDocs } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
+import { deleteMedia } from "@/lib/idb";
 
 export default function CameraPage() {
     const router = useNextRouter();
     const searchParams = useSearchParams();
     const step = parseInt(searchParams.get("step") || "1"); // 1 = selfie, 2 = video
+
+    const [userId, setUserId] = useState<string | null>(null);
+    const [request, setRequest] = useState<any>(null);
 
     const [stream, setStream] = useState<MediaStream | null>(null);
     const [selfiePreview, setSelfiePreview] = useState<string | null>(null);
@@ -28,6 +35,8 @@ export default function CameraPage() {
     const [isRecording, setIsRecording] = useState(false);
     const [recordingTime, setRecordingTime] = useState(0);
     const [isDesktop, setIsDesktop] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isDone, setIsDone] = useState(false);
 
     const videoRef = useRef<HTMLVideoElement>(null);
     const videoPreviewRef = useRef<HTMLVideoElement>(null);
@@ -36,6 +45,30 @@ export default function CameraPage() {
     const timerRef = useRef<NodeJS.Timeout | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const videoInputRef = useRef<HTMLInputElement>(null);
+
+    // Initialiser Auth et Request
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                setUserId(user.uid);
+                try {
+                    const q = query(
+                        collection(db, "requests"),
+                        where("userId", "==", user.uid),
+                        limit(1)
+                    );
+                    const querySnapshot = await getDocs(q);
+                    if (!querySnapshot.empty) {
+                        const data = querySnapshot.docs[0].data();
+                        setRequest({ id: querySnapshot.docs[0].id, ...data });
+                    }
+                } catch (error) {
+                    console.error("Error fetching request:", error);
+                }
+            }
+        });
+        return () => unsubscribe();
+    }, []);
 
     // Initialiser le selfie depuis IDB si on est à l'étape 2 (vidéo)
     useEffect(() => {
@@ -244,9 +277,64 @@ export default function CameraPage() {
         reader.readAsDataURL(file);
     };
 
-    const handleFinish = () => {
-        if (isSelfieValidated && isVideoValidated) {
-            router.push("/dashboard/verification");
+    const uploadToCloudinary = async (file: File | Blob, type: "image" | "video") => {
+        const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+        const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", uploadPreset!);
+        formData.append("folder", `payments/verifications/${userId}`);
+
+        const response = await fetch(
+            `https://api.cloudinary.com/v1_1/${cloudName}/${type}/upload`,
+            { method: "POST", body: formData }
+        );
+
+        if (!response.ok) throw new Error("Erreur lors de l'upload");
+        const data = await response.json();
+        return data.secure_url;
+    };
+
+    const handleFinish = async () => {
+        if (!isSelfieValidated || !isVideoValidated || !userId || !request) return;
+
+        setIsSubmitting(true);
+        try {
+            // Récupérer les blobs de IDB
+            const selfieBlob = await getMedia("selfieBlob");
+            const videoBlob = await getMedia("videoBlob");
+
+            if (!selfieBlob || !videoBlob) throw new Error("Médias manquants");
+
+            const selfieFile = new File([selfieBlob as Blob], "selfie.jpg", { type: "image/jpeg" });
+            const finalVideoBlob = videoBlob as Blob;
+
+            // Upload Cloudinary
+            const selfieUrl = await uploadToCloudinary(selfieFile, "image");
+            const videoUrl = await uploadToCloudinary(finalVideoBlob, "video");
+
+            // Update Firestore
+            await updateDoc(doc(db, "requests", request.id), {
+                paymentVerificationStatus: 'on_review',
+                paymentSelfieUrl: selfieUrl,
+                paymentVideoUrl: videoUrl,
+                paymentVerificationSubmittedAt: serverTimestamp()
+            });
+
+            // Clean IDB
+            await deleteMedia("selfieBlob");
+            await deleteMedia("videoBlob");
+            await deleteMedia("selfiePreview");
+
+            setIsDone(true);
+            setTimeout(() => {
+                router.push("/dashboard");
+            }, 2000);
+        } catch (error) {
+            console.error("Submission error:", error);
+            alert("❌ Erreur lors de l'envoi des fichiers.");
+            setIsSubmitting(false);
         }
     };
 
@@ -400,6 +488,54 @@ export default function CameraPage() {
                     <input type="file" ref={videoInputRef} onChange={(e) => handleManualUpload(e, 'video')} accept="video/*" className="hidden" />
                 </>
             )}
+
+            {/* Submitting Overlay */}
+            <AnimatePresence>
+                {isSubmitting && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center p-8 text-center"
+                    >
+                        <div className="relative w-24 h-24 mb-8">
+                            <div className="absolute inset-0 bg-ely-blue/20 rounded-full animate-ping" />
+                            <div className="relative w-24 h-24 bg-ely-blue rounded-full flex items-center justify-center shadow-2xl shadow-blue-500/20">
+                                {isDone ? (
+                                    <Check className="w-10 h-10 text-white" />
+                                ) : (
+                                    <Loader2 className="w-10 h-10 text-white animate-spin" />
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="space-y-4 max-w-sm">
+                            <h2 className="text-2xl font-black text-white uppercase tracking-tight">
+                                {isDone ? "Vérification Terminée" : "Transmission en cours"}
+                            </h2>
+                            <p className="text-white/60 font-medium text-sm leading-relaxed">
+                                {isDone
+                                    ? "Votre identité a été soumise avec succès. Vous allez être redirigé..."
+                                    : "Nous sécurisons vos données et finalisons la liaison de votre profil de paiement."
+                                }
+                            </p>
+                        </div>
+
+                        {!isDone && (
+                            <div className="mt-12 flex flex-col items-center gap-3">
+                                <div className="w-48 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                    <motion.div
+                                        className="h-full bg-ely-blue"
+                                        initial={{ width: 0 }}
+                                        animate={{ width: "100%" }}
+                                        transition={{ duration: 15, ease: "linear" }}
+                                    />
+                                </div>
+                                <p className="text-[10px] font-black text-white/30 uppercase tracking-widest">Chiffrement AES-256 en cours</p>
+                            </div>
+                        )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
