@@ -424,20 +424,22 @@ export default function CameraPage() {
                             <div className="w-full h-full relative">
                                 <video ref={videoRef} autoPlay playsInline muted className="w-full h-full object-cover scale-x-[-1]" />
 
-                                {/* Oval Mask Overlay */}
-                                <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-                                    <div className="w-full h-full bg-black/40" style={{
-                                        clipPath: 'path("M 0 0 h 3840 v 2160 h -3840 Z M 1920 1080 m -300 0 a 300 450 0 1 0 600 0 a 300 450 0 1 0 -600 0")',
-                                        fillRule: 'evenodd'
-                                    }} />
-                                    <div className="absolute w-[300px] h-[450px] border-4 border-white/50 rounded-[150px/225px] flex flex-col items-center justify-center">
-                                        <div className="mt-auto mb-10 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full border border-white/20">
-                                            <p className="text-white text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
-                                                {step === 1 ? "Placez votre visage" : "Veuillez tourner la tête"}
-                                            </p>
+                                {/* Oval Mask Overlay - Video Section Only & Head Sized */}
+                                {step === 2 && (
+                                    <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+                                        <div className="w-full h-full bg-black/40" style={{
+                                            clipPath: 'path("M 0 0 h 3840 v 2160 h -3840 Z M 1920 1080 m -140 0 a 140 200 0 1 0 280 0 a 140 200 0 1 0 -280 0")',
+                                            fillRule: 'evenodd'
+                                        }} />
+                                        <div className="absolute w-[280px] h-[400px] border-4 border-white/50 rounded-[140px/200px] flex flex-col items-center justify-center">
+                                            <div className="mt-auto mb-10 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full border border-white/20">
+                                                <p className="text-white text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
+                                                    Veuillez tourner la tête
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                )}
                             </div>
                         ) : (
                             <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
