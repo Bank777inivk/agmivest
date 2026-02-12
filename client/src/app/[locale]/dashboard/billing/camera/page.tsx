@@ -17,6 +17,7 @@ export default function CameraPage() {
     const [isRecording, setIsRecording] = useState(false);
     const [recordingTime, setRecordingTime] = useState(0);
     const [isDesktop, setIsDesktop] = useState(false);
+    const [isReviewing, setIsReviewing] = useState(false);
 
     const videoRef = useRef<HTMLVideoElement>(null);
     const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -24,6 +25,14 @@ export default function CameraPage() {
     const timerRef = useRef<NodeJS.Timeout | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const videoInputRef = useRef<HTMLInputElement>(null);
+
+    // Initialiser le selfie depuis localStorage si on est à l'étape 2 (vidéo)
+    useEffect(() => {
+        if (step === 2) {
+            const storedSelfie = localStorage.getItem("selfiePreview");
+            if (storedSelfie) setSelfiePreview(storedSelfie);
+        }
+    }, [step]);
 
     // Détection de plateforme
     useEffect(() => {
@@ -49,11 +58,11 @@ export default function CameraPage() {
 
     // Démarrer caméra automatiquement
     useEffect(() => {
-        if (!isDesktop) {
+        if (!isDesktop && !isReviewing) {
             startCamera();
         }
         return () => stopCamera();
-    }, [isDesktop, step]);
+    }, [isDesktop, step, isReviewing]);
 
     const startCamera = async () => {
         if (isDesktop) return;
@@ -88,15 +97,30 @@ export default function CameraPage() {
             canvas.width = videoRef.current.videoWidth;
             canvas.height = videoRef.current.videoHeight;
             const ctx = canvas.getContext("2d");
+
+            // Miroir horizontal pour correspondre à la prévisualisation
+            ctx?.translate(canvas.width, 0);
+            ctx?.scale(-1, 1);
+
             ctx?.drawImage(videoRef.current, 0, 0);
 
             const dataUrl = canvas.toDataURL("image/jpeg");
             setSelfiePreview(dataUrl);
+            setIsReviewing(true);
+            stopCamera();
+        }
+    };
 
-            // Sauvegarder dans localStorage
-            localStorage.setItem("selfiePreview", dataUrl);
+    const retakePhoto = () => {
+        setSelfiePreview(null);
+        setIsReviewing(false);
+        // startCamera sera appelé par le useEffect car isReviewing devient false
+    };
 
-            // Passer à l'étape vidéo
+    const validatePhoto = () => {
+        if (selfiePreview) {
+            localStorage.setItem("selfiePreview", selfiePreview);
+            setIsReviewing(false);
             router.push("/dashboard/billing/camera?step=2");
         }
     };
@@ -174,8 +198,7 @@ export default function CameraPage() {
             const dataUrl = reader.result as string;
             if (type === 'selfie') {
                 setSelfiePreview(dataUrl);
-                localStorage.setItem("selfiePreview", dataUrl);
-                router.push("/dashboard/billing/camera?step=2");
+                setIsReviewing(true); // Passer en mode review pour valider l'upload
             } else {
                 setVideoPreview(dataUrl);
                 localStorage.setItem("videoPreview", dataUrl);
@@ -190,7 +213,9 @@ export default function CameraPage() {
 
     const handleBack = () => {
         // stopCamera is called by effect cleanup
-        if (step === 2) {
+        if (isReviewing) {
+            retakePhoto();
+        } else if (step === 2) {
             router.push("/dashboard/billing/camera?step=1");
         } else {
             router.push("/dashboard/billing");
@@ -236,10 +261,22 @@ export default function CameraPage() {
                     </div>
                 </div>
             ) : (
-                // Interface caméra mobile - Design immersif
+                // Interface mobile
                 <>
                     <div className="relative flex-1 bg-black overflow-hidden">
-                        {stream ? (
+                        {isReviewing && selfiePreview ? (
+                            // Mode Review : Affichage de la photo capturée
+                            <div className="w-full h-full relative">
+                                <Image
+                                    src={selfiePreview}
+                                    alt="Selfie Preview"
+                                    fill
+                                    className="object-cover scale-x-[-1]"
+                                />
+                                <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+                            </div>
+                        ) : stream ? (
+                            // Mode Caméra
                             <video
                                 ref={videoRef}
                                 autoPlay
@@ -248,6 +285,7 @@ export default function CameraPage() {
                                 className="w-full h-full object-cover scale-x-[-1]"
                             />
                         ) : (
+                            // Chargement
                             <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
                                 <Loader2 className="w-12 h-12 text-ely-blue animate-spin" />
                                 <p className="text-white/40 font-black uppercase tracking-widest text-xs">Accès caméra en cours...</p>
@@ -269,14 +307,26 @@ export default function CameraPage() {
                             <div className="px-5 py-2 bg-black/40 backdrop-blur-md rounded-full border border-white/10">
                                 <p className="text-white font-bold text-xs uppercase tracking-wide flex items-center gap-2">
                                     {step === 1 ? (
-                                        <><Camera className="w-3 h-3" /> Selfie Photo</>
+                                        isReviewing ? "Valider la photo" : <><Camera className="w-3 h-3" /> Selfie Photo</>
                                     ) : (
                                         <><Video className="w-3 h-3" /> Selfie Vidéo</>
                                     )}
                                 </p>
                             </div>
 
-                            <div className="w-10" /> {/* Spacer */}
+                            {/* Selfie Thumbnail in Video Mode */}
+                            {step === 2 && selfiePreview ? (
+                                <div className="w-12 h-12 rounded-xl overflow-hidden border-2 border-white/30 shadow-lg relative ml-2">
+                                    <Image
+                                        src={selfiePreview}
+                                        alt="Selfie"
+                                        fill
+                                        className="object-cover scale-x-[-1]"
+                                    />
+                                </div>
+                            ) : (
+                                <div className="w-10" />
+                            )}
                         </div>
 
                         {/* Timer Overlay */}
@@ -290,59 +340,82 @@ export default function CameraPage() {
                         )}
 
                         {/* Guide Text */}
-                        <div className="absolute bottom-40 left-0 right-0 text-center px-6 pointer-events-none">
-                            <p className="text-white/80 text-sm font-medium drop-shadow-md">
-                                {step === 1
-                                    ? "Placez votre visage dans le cadre"
-                                    : isRecording
-                                        ? "Enregistrement en cours..."
-                                        : "Dites : \"Je confirme mon identité\""
-                                }
-                            </p>
-                        </div>
+                        {!isReviewing && (
+                            <div className="absolute bottom-40 left-0 right-0 text-center px-6 pointer-events-none">
+                                <p className="text-white/80 text-sm font-medium drop-shadow-md">
+                                    {step === 1
+                                        ? "Placez votre visage dans le cadre"
+                                        : isRecording
+                                            ? "Enregistrement en cours..."
+                                            : "Dites : \"Je confirme mon identité\""
+                                    }
+                                </p>
+                            </div>
+                        )}
                     </div>
 
                     {/* Bottom Controls Area */}
                     <div className="bg-black p-6 pb-10 pt-4 rounded-t-[2rem] -mt-6 relative z-20 border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.8)]">
                         <div className="flex flex-col items-center gap-6">
 
-                            {/* Main Action Button */}
-                            <div className="flex items-center justify-center w-full">
-                                {step === 1 ? (
-                                    <button
-                                        onClick={capturePhoto}
-                                        disabled={!stream}
-                                        className="relative group disabled:opacity-50 disabled:cursor-not-allowed"
-                                    >
-                                        <div className="w-20 h-20 rounded-full border-4 border-white flex items-center justify-center">
-                                            <div className="w-16 h-16 bg-white rounded-full group-hover:scale-95 transition-all duration-200" />
-                                        </div>
-                                    </button>
+                            {/* Main Action Buttons */}
+                            <div className="flex items-center justify-center w-full gap-6">
+                                {isReviewing ? (
+                                    // Review Controls
+                                    <>
+                                        <button
+                                            onClick={retakePhoto}
+                                            className="px-8 py-4 bg-white/10 text-white rounded-full font-bold text-sm uppercase tracking-wide hover:bg-white/20 transition-all border border-white/10"
+                                        >
+                                            Reprendre
+                                        </button>
+                                        <button
+                                            onClick={validatePhoto}
+                                            className="px-8 py-4 bg-ely-blue text-white rounded-full font-bold text-sm uppercase tracking-wide hover:bg-blue-600 transition-all shadow-lg shadow-blue-500/20"
+                                        >
+                                            Valider
+                                        </button>
+                                    </>
                                 ) : (
-                                    <button
-                                        onClick={isRecording ? stopRecording : startRecording}
-                                        disabled={!stream || videoPreview !== null}
-                                        className="relative group disabled:opacity-50 disabled:cursor-not-allowed"
-                                    >
-                                        <div className={`w-20 h-20 rounded-full border-4 ${isRecording ? 'border-red-500' : 'border-white'} flex items-center justify-center transition-colors duration-300`}>
-                                            <div className={`w-16 h-16 ${isRecording ? 'bg-red-500 scale-50 rounded-md' : 'bg-red-500 rounded-full'} group-hover:scale-95 transition-all duration-300`} />
-                                        </div>
-                                    </button>
+                                    // Capture Controls
+                                    step === 1 ? (
+                                        <button
+                                            onClick={capturePhoto}
+                                            disabled={!stream}
+                                            className="relative group disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            <div className="w-20 h-20 rounded-full border-4 border-white flex items-center justify-center">
+                                                <div className="w-16 h-16 bg-white rounded-full group-hover:scale-95 transition-all duration-200" />
+                                            </div>
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={isRecording ? stopRecording : startRecording}
+                                            disabled={!stream || videoPreview !== null}
+                                            className="relative group disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            <div className={`w-20 h-20 rounded-full border-4 ${isRecording ? 'border-red-500' : 'border-white'} flex items-center justify-center transition-colors duration-300`}>
+                                                <div className={`w-16 h-16 ${isRecording ? 'bg-red-500 scale-50 rounded-md' : 'bg-red-500 rounded-full'} group-hover:scale-95 transition-all duration-300`} />
+                                            </div>
+                                        </button>
+                                    )
                                 )}
                             </div>
 
-                            {/* Secondary Actions */}
-                            <div className="flex items-center gap-6">
-                                <button
-                                    onClick={() => step === 1 ? fileInputRef.current?.click() : videoInputRef.current?.click()}
-                                    className="text-white/40 text-xs font-medium hover:text-white transition-colors flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/5"
-                                >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                                    </svg>
-                                    Uploader
-                                </button>
-                            </div>
+                            {/* Secondary Actions (Hidden during review) */}
+                            {!isReviewing && (
+                                <div className="flex items-center gap-6">
+                                    <button
+                                        onClick={() => step === 1 ? fileInputRef.current?.click() : videoInputRef.current?.click()}
+                                        className="text-white/40 text-xs font-medium hover:text-white transition-colors flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/5"
+                                    >
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                        </svg>
+                                        Uploader
+                                    </button>
+                                </div>
+                            )}
 
                             {/* Finish Button */}
                             <AnimatePresence>
