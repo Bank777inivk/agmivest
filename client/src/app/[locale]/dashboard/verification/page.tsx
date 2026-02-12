@@ -209,7 +209,45 @@ export default function VerificationPage() {
                         </motion.div>
                     )}
 
-                    {/* Redundant Step 3 Removed - Handled in Camera Flow */}
+                    {step === 3 && (
+                        <motion.div
+                            key="processing"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="bg-white rounded-[3.5rem] p-10 md:p-16 border border-slate-100 shadow-xl overflow-hidden text-center space-y-8"
+                        >
+                            <div className="w-20 h-20 bg-emerald-500/10 text-emerald-500 rounded-3xl flex items-center justify-center mx-auto ring-8 ring-emerald-500/5">
+                                <CheckCircle2 className="w-10 h-10" />
+                            </div>
+
+                            <div className="space-y-4">
+                                <h2 className="text-3xl font-black text-slate-900 tracking-tight uppercase">Session en cours</h2>
+                                <p className="text-slate-500 text-lg font-medium leading-relaxed max-w-lg mx-auto">
+                                    Nous avons détecté des captures en attente sur cet appareil. Voulez-vous finaliser la transmission ou recommencer ?
+                                </p>
+                            </div>
+
+                            <div className="flex flex-col gap-4">
+                                <button
+                                    onClick={() => router.push("/dashboard/verification/camera?step=2")}
+                                    className="w-full py-6 bg-ely-blue text-white rounded-[2rem] font-black text-sm uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20 active:scale-95"
+                                >
+                                    Continuer vers l'envoi
+                                </button>
+                                <button
+                                    onClick={async () => {
+                                        await deleteMedia("selfieBlob");
+                                        await deleteMedia("videoBlob");
+                                        await deleteMedia("selfiePreview");
+                                        setStep(0);
+                                    }}
+                                    className="text-slate-400 text-xs font-bold uppercase tracking-widest hover:text-slate-600 transition-colors"
+                                >
+                                    Effacer et recommencer
+                                </button>
+                            </div>
+                        </motion.div>
+                    )}
                 </AnimatePresence>
             </div>
         </div>
