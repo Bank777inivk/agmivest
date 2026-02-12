@@ -130,6 +130,13 @@ export default function BillingPage() {
         checkDevice();
     }, []);
 
+    // Redémarrer la caméra automatiquement à l'étape vidéo
+    useEffect(() => {
+        if (verificationStep === 2 && !stream && !videoPreview) {
+            startCamera();
+        }
+    }, [verificationStep]);
+
     const startCamera = async () => {
         try {
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
