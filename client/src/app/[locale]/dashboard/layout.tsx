@@ -68,6 +68,12 @@ export default function DashboardLayout({
     // On ne bloque plus le rendu global par un spinner
     // Le contenu (children) sera géré par loading.tsx si nécessaire
 
+    // Si on est sur la page caméra, on n'affiche pas le layout dashboard
+    // On utilise endsWith pour gérer les locales (/fr/..., /en/...)
+    if (pathname?.endsWith('/billing/camera')) {
+        return <>{children}</>;
+    }
+
     return (
         <div className="h-screen bg-[#F8FAFC] overflow-hidden flex">
             {/* Sidebar for Desktop */}
