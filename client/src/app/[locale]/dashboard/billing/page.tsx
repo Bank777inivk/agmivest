@@ -463,7 +463,7 @@ export default function BillingPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
-                                className="bg-slate-900 rounded-[3.5rem] p-6 md:p-10 shadow-2xl overflow-hidden relative"
+                                className="fixed inset-0 md:relative md:bg-slate-900 md:rounded-[3.5rem] md:p-6 md:shadow-2xl bg-black z-50"
                             >
                                 {/* Message de redirection desktop à l'étape 1 */}
                                 {isDesktop ? (
@@ -505,7 +505,7 @@ export default function BillingPage() {
                                     </div>
                                 ) : (
                                     <>
-                                        <div className="relative aspect-square md:aspect-video rounded-[2.5rem] overflow-hidden bg-black border border-white/10 shadow-inner">
+                                        <div className="relative w-full h-screen md:h-auto md:aspect-video md:rounded-[2.5rem] overflow-hidden bg-black md:border md:border-white/10 md:shadow-inner">
                                             {stream ? (
                                                 <video
                                                     ref={videoRef}
