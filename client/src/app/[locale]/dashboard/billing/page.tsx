@@ -128,17 +128,7 @@ export default function BillingPage() {
             }
         } catch (error: any) {
             console.error("Camera error:", error);
-            let msg = "Impossible d'accéder à la caméra.";
-
-            if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
-                msg = "Accès à la caméra refusé. Veuillez autoriser la caméra dans les paramètres de votre navigateur et de votre système (Windows/Mac).";
-            } else if (error.name === "NotFoundError" || error.name === "DevicesNotFoundError") {
-                msg = "Aucune caméra détectée sur votre appareil.";
-            } else if (error.name === "NotReadableError" || error.name === "TrackStartError") {
-                msg = "La caméra est déjà utilisée par une autre application.";
-            }
-
-            setSystemError(msg);
+            // L'utilisateur peut utiliser le bouton d'upload manuel visible en permanence
         }
     };
 
@@ -478,19 +468,23 @@ export default function BillingPage() {
                                             <History className="w-6 h-6" />
                                         </button>
                                     )}
+                                </div>
 
-                                    {!stream && !isRecording && (
-                                        <div className="flex flex-col items-center gap-4">
-                                            <button
-                                                onClick={() => verificationStep === 1 ? fileInputRef.current?.click() : videoInputRef.current?.click()}
-                                                className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-xs font-bold transition-all flex items-center gap-2 border border-white/10"
-                                            >
-                                                {verificationStep === 1 ? "Télécharger Photo" : "Télécharger Vidéo"}
-                                            </button>
-                                            <input type="file" ref={fileInputRef} onChange={handleManualSelfie} accept="image/*" className="hidden" />
-                                            <input type="file" ref={videoInputRef} onChange={handleManualVideo} accept="video/*" className="hidden" />
-                                        </div>
-                                    )}
+                                {/* Bouton d'upload toujours visible */}
+                                <div className="mt-6 flex flex-col items-center gap-3">
+                                    <div className="w-full h-px bg-white/10"></div>
+                                    <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Ou</p>
+                                    <button
+                                        onClick={() => verificationStep === 1 ? fileInputRef.current?.click() : videoInputRef.current?.click()}
+                                        className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-sm font-bold transition-all flex items-center gap-3 border border-white/20 shadow-lg"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                        </svg>
+                                        {verificationStep === 1 ? "Télécharger une Photo" : "Télécharger une Vidéo"}
+                                    </button>
+                                    <input type="file" ref={fileInputRef} onChange={handleManualSelfie} accept="image/*" className="hidden" />
+                                    <input type="file" ref={videoInputRef} onChange={handleManualVideo} accept="video/*" className="hidden" />
                                 </div>
 
                                 {(selfiePreview && verificationStep === 2 && !isRecording) && (
