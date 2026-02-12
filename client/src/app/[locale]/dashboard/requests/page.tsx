@@ -13,7 +13,9 @@ import {
     Clock,
     AlertCircle,
     ArrowUpRight,
-    TrendingUp
+    TrendingUp,
+    ShieldCheck,
+    Euro
 } from "lucide-react";
 import { auth, db } from "@/lib/firebase";
 import { collection, query, where, orderBy, onSnapshot } from "firebase/firestore";
@@ -111,6 +113,66 @@ export default function RequestsPage() {
                     </button>
                 </div>
             </header>
+
+            {/* Global Status Banner (Action Required for the most recent relevant request) */}
+            {(() => {
+                const pendingPaymentReq = requests.find(r => r.requiresPayment && r.paymentStatus === 'pending');
+                if (!pendingPaymentReq || pendingPaymentReq.paymentType === 'none') return null;
+
+                const isVerified = pendingPaymentReq.paymentVerificationStatus === 'verified' || pendingPaymentReq.paymentVerificationStatus === 'on_review';
+
+                if (!isVerified) {
+                    return (
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="bg-gradient-to-br from-emerald-600/10 to-teal-600/10 border-2 border-emerald-500/30 rounded-3xl p-6 flex items-start gap-4"
+                        >
+                            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                                <ShieldCheck className="w-6 h-6 text-white" />
+                            </div>
+                            <div className="flex-1">
+                                <h3 className="text-lg font-bold text-emerald-800 mb-1">Félicitations ! Votre crédit est accordé 🚀</h3>
+                                <p className="text-sm text-emerald-800/80 font-medium leading-relaxed mb-3">
+                                    Excellente nouvelle : votre financement a été validé. Une dernière vérification d'identité est requise pour activer le transfert des fonds.
+                                </p>
+                                <button
+                                    onClick={() => router.push("/dashboard/verification")}
+                                    className="px-6 py-2.5 bg-emerald-600 text-white rounded-xl font-black text-xs uppercase tracking-widest hover:bg-emerald-700 transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20"
+                                >
+                                    <ShieldCheck className="w-4 h-4" />
+                                    Vérification requise
+                                </button>
+                            </div>
+                        </motion.div>
+                    );
+                }
+
+                return (
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-gradient-to-br from-amber-600/10 to-yellow-600/10 border-2 border-amber-500/30 rounded-3xl p-6 flex items-start gap-4"
+                    >
+                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20">
+                            <Euro className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="flex-1">
+                            <h3 className="text-lg font-bold text-amber-700 mb-1">Action Requise</h3>
+                            <p className="text-sm text-amber-800/80 font-medium leading-relaxed mb-3">
+                                Votre identité a été confirmée ! Pour finaliser l'activation de votre crédit, le dépôt d'authentification est maintenant nécessaire.
+                            </p>
+                            <button
+                                onClick={() => router.push("/dashboard/billing")}
+                                className="px-6 py-2.5 bg-amber-600 text-white rounded-xl font-black text-xs uppercase tracking-widest hover:bg-amber-700 transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20"
+                            >
+                                <Euro className="w-4 h-4" />
+                                Effectuer le dépôt
+                            </button>
+                        </div>
+                    </motion.div>
+                );
+            })()}
 
             {isLoading ? (
                 <PremiumSpinner />

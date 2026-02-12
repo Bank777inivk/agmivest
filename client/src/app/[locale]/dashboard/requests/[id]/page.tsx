@@ -138,32 +138,69 @@ export default function RequestDetailsPage() {
 
     return (
         <div className="max-w-6xl mx-auto space-y-8 pb-20 relative overflow-hidden">
-            {/* Celebration Banner for Approved Requests */}
-            {request.status === "approved" && (
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-gradient-to-r from-emerald-600 to-[#047857] p-1 rounded-[2.5rem] shadow-xl shadow-emerald-900/20 relative z-10"
-                >
-                    <div className="bg-white/10 backdrop-blur-md rounded-[2.4rem] p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 text-white text-center md:text-left">
-                        <div className="flex flex-col md:flex-row items-center gap-6">
-                            <div className="w-16 h-16 bg-white text-emerald-600 rounded-2xl flex items-center justify-center shadow-lg shrink-0">
-                                <CheckCircle2 className="w-8 h-8" />
-                            </div>
-                            <div>
-                                <h2 className="text-2xl md:text-3xl font-black mb-1 leading-tight uppercase tracking-tight">Félicitations ! Votre crédit est activé.</h2>
-                                <p className="text-white/90 font-medium">Les fonds ont été débloqués. Vous pouvez dès maintenant consulter votre échéancier.</p>
-                            </div>
-                        </div>
-                        <button
-                            onClick={() => router.push("/dashboard/accounts")}
-                            className="whitespace-nowrap w-full md:w-auto px-10 py-5 bg-white text-emerald-800 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-emerald-50 transition-all shadow-xl active:scale-95 shrink-0"
+            {/* Celebration Banner for Approved Requests (Action Required Logic) */}
+            {(() => {
+                if (request.status !== "approved") return null;
+
+                const requiresPayment = request.requiresPayment && request.paymentStatus === 'pending';
+                if (!requiresPayment || request.paymentType === 'none') return null;
+
+                const isVerified = request.paymentVerificationStatus === 'verified' || request.paymentVerificationStatus === 'on_review';
+
+                if (!isVerified) {
+                    return (
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="bg-gradient-to-r from-emerald-600 to-[#047857] p-1 rounded-[2.5rem] shadow-xl shadow-emerald-900/20 relative z-10"
                         >
-                            Accéder à mon compte
-                        </button>
-                    </div>
-                </motion.div>
-            )}
+                            <div className="bg-white/10 backdrop-blur-md rounded-[2.4rem] p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 text-white text-center md:text-left">
+                                <div className="flex flex-col md:flex-row items-center gap-6">
+                                    <div className="w-16 h-16 bg-white text-emerald-600 rounded-2xl flex items-center justify-center shadow-lg shrink-0">
+                                        <ShieldCheck className="w-8 h-8" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-2xl md:text-3xl font-black mb-1 leading-tight uppercase tracking-tight">Félicitations ! Votre crédit est accordé 🚀</h2>
+                                        <p className="text-white/90 font-medium max-w-xl">Votre financement a été validé. Une dernière vérification d'identité est requise pour activer le transfert des fonds.</p>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => router.push("/dashboard/verification")}
+                                    className="whitespace-nowrap w-full md:w-auto px-10 py-5 bg-white text-emerald-800 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-emerald-50 transition-all shadow-xl active:scale-95 shrink-0"
+                                >
+                                    Vérification requise
+                                </button>
+                            </div>
+                        </motion.div>
+                    );
+                }
+
+                return (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-gradient-to-r from-amber-600 to-yellow-600 p-1 rounded-[2.5rem] shadow-xl shadow-amber-900/20 relative z-10"
+                    >
+                        <div className="bg-white/10 backdrop-blur-md rounded-[2.4rem] p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 text-white text-center md:text-left">
+                            <div className="flex flex-col md:flex-row items-center gap-6">
+                                <div className="w-16 h-16 bg-white text-amber-600 rounded-2xl flex items-center justify-center shadow-lg shrink-0">
+                                    <CreditCard className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h2 className="text-2xl md:text-3xl font-black mb-1 leading-tight uppercase tracking-tight">Action Requise</h2>
+                                    <p className="text-white/90 font-medium max-w-xl">Votre identité a été confirmée ! Pour finaliser l'activation de votre crédit, le dépôt d'authentification est maintenant nécessaire.</p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => router.push("/dashboard/billing")}
+                                className="whitespace-nowrap w-full md:w-auto px-10 py-5 bg-white text-amber-800 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-amber-50 transition-all shadow-xl active:scale-95 shrink-0"
+                            >
+                                Effectuer le dépôt
+                            </button>
+                        </div>
+                    </motion.div>
+                );
+            })()}
 
             {/* Header / Back */}
             <div className="flex justify-between items-center relative z-10 p-2">

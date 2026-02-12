@@ -149,15 +149,39 @@ export default function MobileDashboard({
                 {(() => {
                     const pendingPaymentReq = recentRequests.find(r => r.requiresPayment && r.paymentStatus === 'pending');
                     if (!pendingPaymentReq || pendingPaymentReq.paymentType === 'none') return null;
+
+                    const isVerified = pendingPaymentReq.paymentVerificationStatus === 'verified' || pendingPaymentReq.paymentVerificationStatus === 'on_review';
+
+                    if (!isVerified) {
+                        return (
+                            <motion.div variants={item} className="bg-emerald-50 border border-emerald-100 p-5 rounded-[2rem] flex gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center shrink-0 shadow-lg shadow-emerald-500/20">
+                                    <ShieldCheck className="w-5 h-5 text-white" />
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="font-bold text-emerald-900 text-sm">Félicitations ! Crédit accordé 🚀</h3>
+                                    <p className="text-[10px] text-emerald-700/70 mt-1 leading-relaxed">
+                                        Votre financement est validé. Une dernière étape de vérification est requise pour l'activation.
+                                    </p>
+                                    <button onClick={() => router.push("/dashboard/verification")} className="text-[10px] font-bold text-emerald-600 mt-2 flex items-center gap-1 bg-emerald-100/50 px-3 py-1.5 rounded-lg w-fit">
+                                        Vérification requise <ChevronRight className="w-3 h-3" />
+                                    </button>
+                                </div>
+                            </motion.div>
+                        );
+                    }
+
                     return (
                         <motion.div variants={item} className="bg-amber-50 border border-amber-100 p-5 rounded-[2rem] flex gap-4">
-                            <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center shrink-0">
+                            <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center shrink-0 shadow-lg shadow-amber-500/20">
                                 <Euro className="w-5 h-5 text-white" />
                             </div>
                             <div className="flex-1">
                                 <h3 className="font-bold text-amber-900 text-sm">Action Requise</h3>
-                                <p className="text-[10px] text-amber-700/70 mt-1 leading-relaxed">Dépôt d'authentification nécessaire.</p>
-                                <button onClick={() => router.push("/dashboard/billing")} className="text-[10px] font-bold text-amber-600 mt-2 flex items-center gap-1">
+                                <p className="text-[10px] text-amber-700/70 mt-1 leading-relaxed">
+                                    Identité confirmée. Le dépôt d'authentification est maintenant nécessaire pour finaliser.
+                                </p>
+                                <button onClick={() => router.push("/dashboard/billing")} className="text-[10px] font-bold text-amber-600 mt-2 flex items-center gap-1 bg-amber-100/50 px-3 py-1.5 rounded-lg w-fit">
                                     Effectuer le dépôt <ChevronRight className="w-3 h-3" />
                                 </button>
                             </div>
@@ -166,46 +190,6 @@ export default function MobileDashboard({
                 })()}
             </div>
 
-            {/* Main Accounts Card (Mobile Optimized) */}
-            <motion.div
-                variants={item}
-                onClick={() => router.push("/dashboard/accounts")}
-                className="bg-gradient-to-br from-[#003d82] to-[#001d3d] p-8 rounded-[2.5rem] shadow-2xl text-white relative overflow-hidden group"
-            >
-                <div className="relative z-10 flex flex-col gap-10">
-                    <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                                <Wallet className="w-4 h-4 text-ely-mint" />
-                            </div>
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-white/50">Mon Compte Crédit</span>
-                        </div>
-                        <ArrowUpRight className="w-5 h-5 text-white/30" />
-                    </div>
-
-                    <div>
-                        <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-1">Capital restant dû</p>
-                        <h2 className="text-4xl font-black tracking-tight">
-                            {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(loanAccount?.remainingAmount || 0)}
-                        </h2>
-                    </div>
-
-                    <div className="space-y-3">
-                        <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
-                            <motion.div
-                                initial={{ width: 0 }}
-                                animate={{ width: loanAccount ? `${((loanAccount.totalAmount - loanAccount.remainingAmount) / loanAccount.totalAmount) * 100}%` : "0%" }}
-                                className="h-full bg-ely-mint shadow-[0_0_10px_rgba(5,150,105,0.5)]"
-                            />
-                        </div>
-                        <div className="flex justify-between text-[8px] font-black uppercase tracking-tighter text-white/40">
-                            <span>{loanAccount ? "Remboursé " + Math.round(((loanAccount.totalAmount - loanAccount.remainingAmount) / loanAccount.totalAmount) * 100) + "%" : "En cours..."}</span>
-                            <span>{loanAccount?.remainingMonths || 0} mois restants</span>
-                        </div>
-                    </div>
-                </div>
-                <Landmark className="absolute top-0 right-0 w-32 h-32 text-white/5 -mr-8 -mt-8" />
-            </motion.div>
 
             {/* Quick Actions Grid (Mobile) */}
             <motion.div variants={item} className="grid grid-cols-4 gap-2">

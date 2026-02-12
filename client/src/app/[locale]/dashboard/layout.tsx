@@ -69,8 +69,8 @@ export default function DashboardLayout({
     // Le contenu (children) sera géré par loading.tsx si nécessaire
 
     // Si on est sur la page caméra, on n'affiche pas le layout dashboard
-    // On utilise endsWith pour gérer les locales (/fr/..., /en/...)
-    if (pathname?.endsWith('/billing/camera')) {
+    // On utilise includes pour gérer les différents chemins de caméra (/billing/camera, /verification/camera, etc.)
+    if (pathname?.includes('/camera')) {
         return <>{children}</>;
     }
 

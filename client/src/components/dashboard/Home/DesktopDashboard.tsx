@@ -89,55 +89,44 @@ export default function DesktopDashboard({
                 </motion.div>
             )}
 
-            {/* Active Loan Success Alert */}
-            {loanAccount?.status === 'active' && (
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className={`rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 text-white shadow-2xl relative overflow-hidden group mb-8 border border-white/10 ${loanAccount.isDeferred ? "bg-gradient-to-br from-amber-600 to-amber-800 shadow-amber-900/20" : "bg-gradient-to-br from-[#064e3b] to-[#059669] shadow-emerald-900/20"}`}
-                >
-                    <div className="absolute top-0 right-0 p-6 md:p-10 opacity-10 group-hover:scale-110 transition-transform">
-                        {loanAccount.isDeferred ? (
-                            <Clock className="w-24 h-24 md:w-32 md:h-32 text-white" />
-                        ) : (
-                            <CheckCircle className="w-24 h-24 md:w-32 md:h-32 text-white" />
-                        )}
-                    </div>
-                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div className="flex items-center gap-4 md:gap-6 w-full md:w-auto">
-                            <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shrink-0">
-                                {loanAccount.isDeferred ? (
-                                    <Clock className="w-6 h-6 md:w-8 md:h-8 text-white" />
-                                ) : (
-                                    <CheckCircle className="w-6 h-6 md:w-8 md:h-8 text-white" />
-                                )}
-                            </div>
-                            <div>
-                                <h2 className="text-2xl font-black tracking-tight mb-1">
-                                    {loanAccount.isDeferred ? "Période de Différé Active" : "Félicitations ! Votre crédit est activé."}
-                                </h2>
-                                <p className="text-white/80 text-sm font-medium">
-                                    {loanAccount.isDeferred
-                                        ? `Le remboursement de votre prêt débutera le ${loanAccount.startDateFormatted}.`
-                                        : "Les fonds ont été débloqués. Vous pouvez dès maintenant consulter votre échéancier."
-                                    }
-                                </p>
-                            </div>
-                        </div>
-                        <button
-                            onClick={() => router.push("/dashboard/accounts")}
-                            className="px-8 py-4 bg-white text-emerald-800 rounded-2xl font-bold text-sm hover:bg-emerald-50 transition-all shadow-xl shadow-black/5 whitespace-nowrap"
-                        >
-                            Accéder à mon compte
-                        </button>
-                    </div>
-                </motion.div>
-            )}
+
 
             {/* Pending Payment Alert */}
             {(() => {
                 const pendingPaymentReq = recentRequests.find(r => r.requiresPayment && r.paymentStatus === 'pending');
                 if (!pendingPaymentReq || pendingPaymentReq.paymentType === 'none') return null;
+
+                const isVerified = pendingPaymentReq.paymentVerificationStatus === 'verified' || pendingPaymentReq.paymentVerificationStatus === 'on_review';
+
+                if (!isVerified) {
+                    // Bannière Félicitations / Vérification Requise
+                    return (
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="bg-gradient-to-br from-emerald-600/10 to-teal-600/10 border-2 border-emerald-500/30 rounded-3xl p-6 flex items-start gap-4 mb-8"
+                        >
+                            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                                <ShieldCheck className="w-6 h-6 text-white" />
+                            </div>
+                            <div className="flex-1">
+                                <h3 className="text-lg font-bold text-emerald-800 mb-1">Félicitations ! Votre crédit est accordé 🚀</h3>
+                                <p className="text-sm text-emerald-800/80 leading-relaxed mb-3">
+                                    Excellente nouvelle : votre financement a été validé et votre solde est prêt à être crédité. Une dernière vérification d'identité est requise pour activer le transfert des fonds.
+                                </p>
+                                <button
+                                    onClick={() => router.push("/dashboard/verification")}
+                                    className="px-6 py-2.5 bg-emerald-600 text-white rounded-xl font-bold text-sm hover:bg-emerald-700 transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20"
+                                >
+                                    <ShieldCheck className="w-4 h-4" />
+                                    Vérification requise
+                                </button>
+                            </div>
+                        </motion.div>
+                    );
+                }
+
+                // Bannière Dépôt (Après Vérification)
                 return (
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}
@@ -150,7 +139,7 @@ export default function DesktopDashboard({
                         <div className="flex-1">
                             <h3 className="text-lg font-bold text-amber-700 mb-1">Action Requise</h3>
                             <p className="text-sm text-amber-800/80 leading-relaxed mb-3">
-                                Votre demande a été approuvée ! Pour finaliser l'activation de votre crédit, un dépôt d'authentification est nécessaire.
+                                Votre identité a été confirmée ! Pour finaliser l'activation de votre crédit, le dépôt d'authentification est maintenant nécessaire.
                             </p>
                             <button
                                 onClick={() => router.push("/dashboard/billing")}
