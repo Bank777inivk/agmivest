@@ -53,7 +53,7 @@ export default function CameraPage() {
             startCamera();
         }
         return () => stopCamera();
-    }, [isDesktop]);
+    }, [isDesktop, step]);
 
     const startCamera = async () => {
         if (isDesktop) return;
@@ -95,8 +95,6 @@ export default function CameraPage() {
 
             // Sauvegarder dans localStorage
             localStorage.setItem("selfiePreview", dataUrl);
-
-            stopCamera();
 
             // Passer à l'étape vidéo
             router.push("/dashboard/billing/camera?step=2");
@@ -142,7 +140,7 @@ export default function CameraPage() {
 
         timerRef.current = setInterval(() => {
             setRecordingTime(prev => {
-                if (prev >= 4) {
+                if (prev >= 4) { // 0, 1, 2, 3, 4 -> 5s total
                     if (timerRef.current) {
                         clearInterval(timerRef.current);
                         timerRef.current = null;
@@ -191,7 +189,7 @@ export default function CameraPage() {
     };
 
     const handleBack = () => {
-        stopCamera();
+        // stopCamera is called by effect cleanup
         if (step === 2) {
             router.push("/dashboard/billing/camera?step=1");
         } else {
@@ -200,169 +198,188 @@ export default function CameraPage() {
     };
 
     return (
-        <div className="fixed inset-0 bg-slate-900 flex items-center justify-center p-6">
-            <div className="w-full max-w-3xl h-full flex flex-col">
-                {isDesktop ? (
-                    // Message desktop
-                    <div className="flex-1 flex items-center justify-center">
-                        <div className="bg-amber-500/10 border border-amber-500/30 rounded-3xl p-8 max-w-lg">
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
-                                    <svg className="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="text-amber-400 font-black text-lg mb-2 uppercase tracking-wide">📱 Vérification Mobile Uniquement</h3>
-                                    <p className="text-white/80 text-sm mb-4 leading-relaxed">
-                                        Cette vérification doit être effectuée depuis un smartphone pour des raisons de sécurité.
-                                    </p>
-                                    <div className="flex flex-col gap-3">
-                                        <button
-                                            onClick={() => {
-                                                navigator.clipboard.writeText(window.location.href);
-                                                alert("✅ Lien copié !");
-                                            }}
-                                            className="px-6 py-3 bg-amber-500 text-white rounded-2xl font-bold hover:bg-amber-600 transition-all"
-                                        >
-                                            📱 Copier le lien
-                                        </button>
-                                        <button
-                                            onClick={handleBack}
-                                            className="text-white/50 text-xs underline hover:text-white/70"
-                                        >
-                                            ← Retour
-                                        </button>
-                                    </div>
+        <div className="fixed inset-0 bg-black flex flex-col">
+            {isDesktop ? (
+                // Message desktop - Inchangé
+                <div className="flex-1 flex items-center justify-center p-6 bg-slate-900">
+                    <div className="bg-amber-500/10 border border-amber-500/30 rounded-3xl p-8 max-w-lg">
+                        <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                <svg className="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </div>
+                            <div className="flex-1">
+                                <h3 className="text-amber-400 font-black text-lg mb-2 uppercase tracking-wide">📱 Vérification Mobile Uniquement</h3>
+                                <p className="text-white/80 text-sm mb-4 leading-relaxed">
+                                    Cette vérification doit être effectuée depuis un smartphone pour des raisons de sécurité.
+                                </p>
+                                <div className="flex flex-col gap-3">
+                                    <button
+                                        onClick={() => {
+                                            navigator.clipboard.writeText(window.location.href);
+                                            alert("✅ Lien copié !");
+                                        }}
+                                        className="px-6 py-3 bg-amber-500 text-white rounded-2xl font-bold hover:bg-amber-600 transition-all"
+                                    >
+                                        📱 Copier le lien
+                                    </button>
+                                    <button
+                                        onClick={handleBack}
+                                        className="text-white/50 text-xs underline hover:text-white/70"
+                                    >
+                                        ← Retour
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                ) : (
-                    // Interface caméra mobile
-                    <>
-                        <div className="relative flex-1 rounded-[2.5rem] overflow-hidden bg-black border border-white/10 shadow-inner">
-                            {stream ? (
-                                <video
-                                    ref={videoRef}
-                                    autoPlay
-                                    playsInline
-                                    muted
-                                    className="w-full h-full object-cover scale-x-[-1]"
-                                />
-                            ) : (
-                                <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
-                                    <Loader2 className="w-12 h-12 text-ely-blue animate-spin" />
-                                    <p className="text-white/40 font-black uppercase tracking-widest text-xs">Accès caméra en cours...</p>
-                                </div>
-                            )}
+                </div>
+            ) : (
+                // Interface caméra mobile - Design immersif
+                <>
+                    <div className="relative flex-1 bg-black overflow-hidden">
+                        {stream ? (
+                            <video
+                                ref={videoRef}
+                                autoPlay
+                                playsInline
+                                muted
+                                className="w-full h-full object-cover scale-x-[-1]"
+                            />
+                        ) : (
+                            <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
+                                <Loader2 className="w-12 h-12 text-ely-blue animate-spin" />
+                                <p className="text-white/40 font-black uppercase tracking-widest text-xs">Accès caméra en cours...</p>
+                            </div>
+                        )}
 
-                            {/* Header */}
-                            <div className="absolute top-0 left-0 right-0 p-6 bg-gradient-to-b from-black/60 to-transparent">
-                                <div className="flex items-center justify-between">
-                                    <button
-                                        onClick={handleBack}
-                                        className="w-12 h-12 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center hover:bg-white/20 transition-all"
-                                    >
-                                        <ArrowLeft className="w-5 h-5 text-white" />
-                                    </button>
-                                    <div className="px-6 py-3 bg-black/40 backdrop-blur-xl rounded-full">
-                                        <p className="text-white font-black uppercase tracking-widest text-xs">
-                                            {step === 1 ? "Capturez votre Selfie" : "Prêt pour la Vidéo"}
-                                        </p>
-                                    </div>
-                                    <div className="w-12" />
-                                </div>
+                        {/* Top Overlay Gradient */}
+                        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
+
+                        {/* Header Content */}
+                        <div className="absolute top-0 left-0 right-0 p-6 flex items-center justify-between z-10">
+                            <button
+                                onClick={handleBack}
+                                className="w-10 h-10 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-black/40 transition-all border border-white/10"
+                            >
+                                <ArrowLeft className="w-5 h-5 text-white" />
+                            </button>
+
+                            <div className="px-5 py-2 bg-black/40 backdrop-blur-md rounded-full border border-white/10">
+                                <p className="text-white font-bold text-xs uppercase tracking-wide flex items-center gap-2">
+                                    {step === 1 ? (
+                                        <><Camera className="w-3 h-3" /> Selfie Photo</>
+                                    ) : (
+                                        <><Video className="w-3 h-3" /> Selfie Vidéo</>
+                                    )}
+                                </p>
                             </div>
 
-                            {/* Timer pour vidéo */}
-                            {step === 2 && isRecording && (
-                                <div className="absolute top-24 left-0 right-0 flex justify-center">
-                                    <div className="px-8 py-4 bg-red-500 rounded-full flex items-center gap-3">
-                                        <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
-                                        <span className="text-white font-black text-2xl">{recordingTime}s</span>
-                                    </div>
-                                </div>
-                            )}
+                            <div className="w-10" /> {/* Spacer */}
                         </div>
 
-                        {/* Contrôles */}
-                        <div className="mt-8 space-y-6">
-                            {/* Boutons principaux */}
-                            <div className="flex items-center justify-center gap-8">
-                                <button
-                                    onClick={handleBack}
-                                    className="w-16 h-16 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center hover:bg-white/20 transition-all"
-                                >
-                                    <X className="w-6 h-6 text-white" />
-                                </button>
+                        {/* Timer Overlay */}
+                        {step === 2 && isRecording && (
+                            <div className="absolute top-20 left-0 right-0 flex justify-center z-10">
+                                <div className="px-6 py-2 bg-red-500/90 backdrop-blur-sm rounded-full flex items-center gap-2 shadow-lg animate-pulse">
+                                    <div className="w-2 h-2 bg-white rounded-full" />
+                                    <span className="text-white font-black text-lg font-mono">{recordingTime}s</span>
+                                </div>
+                            </div>
+                        )}
 
+                        {/* Guide Text */}
+                        <div className="absolute bottom-40 left-0 right-0 text-center px-6 pointer-events-none">
+                            <p className="text-white/80 text-sm font-medium drop-shadow-md">
+                                {step === 1
+                                    ? "Placez votre visage dans le cadre"
+                                    : isRecording
+                                        ? "Enregistrement en cours..."
+                                        : "Dites : \"Je confirme mon identité\""
+                                }
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Bottom Controls Area */}
+                    <div className="bg-black p-6 pb-10 pt-4 rounded-t-[2rem] -mt-6 relative z-20 border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.8)]">
+                        <div className="flex flex-col items-center gap-6">
+
+                            {/* Main Action Button */}
+                            <div className="flex items-center justify-center w-full">
                                 {step === 1 ? (
                                     <button
                                         onClick={capturePhoto}
                                         disabled={!stream}
-                                        className="w-24 h-24 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl"
+                                        className="relative group disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        <Camera className="w-10 h-10 text-slate-900" />
+                                        <div className="w-20 h-20 rounded-full border-4 border-white flex items-center justify-center">
+                                            <div className="w-16 h-16 bg-white rounded-full group-hover:scale-95 transition-all duration-200" />
+                                        </div>
                                     </button>
                                 ) : (
                                     <button
                                         onClick={isRecording ? stopRecording : startRecording}
                                         disabled={!stream || videoPreview !== null}
-                                        className="w-24 h-24 bg-red-500 rounded-full flex items-center justify-center hover:scale-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl"
+                                        className="relative group disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        {isRecording ? (
-                                            <StopCircle className="w-10 h-10 text-white" />
-                                        ) : (
-                                            <Play className="w-10 h-10 text-white ml-1" />
-                                        )}
+                                        <div className={`w-20 h-20 rounded-full border-4 ${isRecording ? 'border-red-500' : 'border-white'} flex items-center justify-center transition-colors duration-300`}>
+                                            <div className={`w-16 h-16 ${isRecording ? 'bg-red-500 scale-50 rounded-md' : 'bg-red-500 rounded-full'} group-hover:scale-95 transition-all duration-300`} />
+                                        </div>
                                     </button>
                                 )}
                             </div>
 
-                            {/* Upload manuel */}
-                            <div className="text-center">
-                                <p className="text-white/40 text-xs uppercase tracking-widest mb-3">ou</p>
+                            {/* Secondary Actions */}
+                            <div className="flex items-center gap-6">
                                 <button
                                     onClick={() => step === 1 ? fileInputRef.current?.click() : videoInputRef.current?.click()}
-                                    className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-sm font-bold transition-all flex items-center gap-3 mx-auto border border-white/20"
+                                    className="text-white/40 text-xs font-medium hover:text-white transition-colors flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/5"
                                 >
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                                     </svg>
-                                    {step === 1 ? "Télécharger une Photo" : "Télécharger une Vidéo"}
+                                    Uploader
                                 </button>
-                                <input
-                                    type="file"
-                                    ref={fileInputRef}
-                                    onChange={(e) => handleManualUpload(e, 'selfie')}
-                                    accept="image/*"
-                                    className="hidden"
-                                />
-                                <input
-                                    type="file"
-                                    ref={videoInputRef}
-                                    onChange={(e) => handleManualUpload(e, 'video')}
-                                    accept="video/*"
-                                    className="hidden"
-                                />
                             </div>
 
-                            {/* Prévisualisation et bouton finaliser */}
-                            {step === 2 && videoPreview && (
-                                <div className="pt-6 border-t border-white/5">
-                                    <button
-                                        onClick={handleFinish}
-                                        className="w-full px-10 py-5 bg-ely-mint text-slate-900 rounded-3xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-xl"
+                            {/* Finish Button */}
+                            <AnimatePresence>
+                                {step === 2 && videoPreview && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="w-full"
                                     >
-                                        Finaliser
-                                    </button>
-                                </div>
-                            )}
+                                        <button
+                                            onClick={handleFinish}
+                                            className="w-full py-4 bg-ely-blue text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-blue-600 transition-all shadow-lg shadow-blue-500/20"
+                                        >
+                                            Finaliser la vérification
+                                        </button>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
-                    </>
-                )}
-            </div>
+                    </div>
+
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        onChange={(e) => handleManualUpload(e, 'selfie')}
+                        accept="image/*"
+                        className="hidden"
+                    />
+                    <input
+                        type="file"
+                        ref={videoInputRef}
+                        onChange={(e) => handleManualUpload(e, 'video')}
+                        accept="video/*"
+                        className="hidden"
+                    />
+                </>
+            )}
         </div>
     );
 }
