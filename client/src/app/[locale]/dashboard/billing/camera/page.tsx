@@ -5,6 +5,7 @@ import { useRouter as useNextRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Camera, Video, Loader2, X, Play, StopCircle, ArrowLeft, Check, RotateCcw } from "lucide-react";
 import Image from "next/image";
+import { saveMedia, getMedia } from "@/lib/idb";
 
 export default function CameraPage() {
     const router = useNextRouter();
@@ -35,14 +36,23 @@ export default function CameraPage() {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const videoInputRef = useRef<HTMLInputElement>(null);
 
-    // Initialiser le selfie depuis localStorage si on est à l'étape 2 (vidéo)
+    // Initialiser le selfie depuis localStorage/IDB si on est à l'étape 2 (vidéo)
     useEffect(() => {
         if (step === 2) {
-            const storedSelfie = localStorage.getItem("selfiePreview");
-            if (storedSelfie) {
-                setSelfiePreview(storedSelfie);
-                setIsSelfieValidated(true); // Si on est à l'étape 2, le selfie est forcément validé
-            }
+            // Essayer de charger depuis IDB d'abord
+            getMedia("selfiePreview").then((data) => {
+                if (data && typeof data === 'string') {
+                    setSelfiePreview(data);
+                    setIsSelfieValidated(true);
+                } else {
+                    // Fallback localStorage si non trouvé (anciens users)
+                    const storedSelfie = localStorage.getItem("selfiePreview");
+                    if (storedSelfie) {
+                        setSelfiePreview(storedSelfie);
+                        setIsSelfieValidated(true);
+                    }
+                }
+            });
         }
     }, [step]);
 
@@ -132,12 +142,22 @@ export default function CameraPage() {
         setIsSelfieValidated(false);
     };
 
-    const validatePhoto = () => {
+    const validatePhoto = async () => {
         if (selfiePreview) {
-            localStorage.setItem("selfiePreview", selfiePreview);
-            setIsSelfieValidated(true);
-            setIsReviewing(false);
-            router.push("/dashboard/billing/camera?step=2");
+            try {
+                // Convertir base64 en blob pour stockage efficace
+                const res = await fetch(selfiePreview);
+                const blob = await res.blob();
+                await saveMedia("selfieBlob", blob);
+                await saveMedia("selfiePreview", selfiePreview); // Garder preview pour affichage rapide si besoin
+
+                setIsSelfieValidated(true);
+                setIsReviewing(false);
+                router.push("/dashboard/billing/camera?step=2");
+            } catch (error) {
+                console.error("Error saving selfie:", error);
+                alert("❌ Erreur de sauvegarde du selfie.");
+            }
         }
     };
 
@@ -210,21 +230,18 @@ export default function CameraPage() {
 
     const validateVideo = () => {
         if (videoPreview) {
-            // Convertir le blob URL en base64 pour localStorage
             fetch(videoPreview)
                 .then(r => r.blob())
-                .then(blob => {
-                    const reader = new FileReader();
-                    reader.onloadend = () => {
-                        try {
-                            localStorage.setItem("videoPreview", reader.result as string);
-                            setIsVideoValidated(true);
-                        } catch (error) {
-                            console.error("Storage error:", error);
-                            alert("❌ Erreur : La vidéo est trop volumineuse. Durée limitée à 10s.");
-                        }
-                    };
-                    reader.readAsDataURL(blob);
+                .then(async (blob) => {
+                    try {
+                        await saveMedia("videoBlob", blob);
+                        // On garde aussi une preview légère si possible, ou on la régénérera
+                        // Pour l'instant on stocke juste le blob
+                        setIsVideoValidated(true);
+                    } catch (error) {
+                        console.error("Storage error:", error);
+                        alert("❌ Erreur de sauvegarde vidéo.");
+                    }
                 })
                 .catch(err => {
                     console.error("Video validation error:", err);
@@ -240,14 +257,16 @@ export default function CameraPage() {
         if (!file) return;
 
         const reader = new FileReader();
-        reader.onloadend = () => {
+        reader.onloadend = async () => {
             const dataUrl = reader.result as string;
             if (type === 'selfie') {
                 setSelfiePreview(dataUrl);
                 setIsReviewing(true);
             } else {
                 setVideoPreview(dataUrl);
-                setIsVideoReviewing(true); // Review vidéo aussi pour upload
+                // Sauvegarder direct pour éviter perte si refresh ? Non, attendons validation
+                // Mais pour preview de gros fichier, FileReader ok
+                setIsVideoReviewing(true);
             }
         };
         reader.readAsDataURL(file);

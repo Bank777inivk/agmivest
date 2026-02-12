@@ -31,6 +31,7 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "@/i18n/routing";
 import PremiumSpinner from "@/components/dashboard/PremiumSpinner";
 import Image from "next/image";
+import { getMedia, deleteMedia } from "@/lib/idb";
 
 export default function BillingPage() {
     const t = useTranslations('Dashboard');
@@ -110,31 +111,72 @@ export default function BillingPage() {
         };
     }, [router]);
 
-    // Récupérer les données depuis localStorage (retour de la page caméra)
+    // Récupérer les données depuis IndexedDB (ou localStorage pour rétrocompatibilité)
     useEffect(() => {
-        const selfieData = localStorage.getItem("selfiePreview");
-        const videoData = localStorage.getItem("videoPreview");
+        const loadMedia = async () => {
+            try {
+                // 1. Essayer IndexedDB (nouveau format blob)
+                const selfieBlob = await getMedia("selfieBlob");
+                const videoBlob = await getMedia("videoBlob");
+                const selfiePreviewData = await getMedia("selfiePreview"); // base64 pour preview
 
-        if (selfieData && videoData) {
-            setSelfiePreview(selfieData);
-            setVideoPreview(videoData);
+                if (selfieBlob && videoBlob) {
+                    // IDB path
+                    if (selfiePreviewData && typeof selfiePreviewData === 'string') {
+                        setSelfiePreview(selfiePreviewData);
+                    } else if (selfieBlob instanceof Blob) {
+                        setSelfiePreview(URL.createObjectURL(selfieBlob));
+                    }
 
-            // Convertir en fichiers
-            fetch(selfieData)
-                .then(res => res.blob())
-                .then(blob => setSelfieFile(new File([blob], "selfie.jpg", { type: "image/jpeg" })));
+                    if (videoBlob instanceof Blob) {
+                        setVideoPreview(URL.createObjectURL(videoBlob));
+                        setVideoFile(videoBlob);
+                    }
 
-            fetch(videoData)
-                .then(res => res.blob())
-                .then(blob => setVideoFile(blob));
+                    if (selfieBlob instanceof Blob) {
+                        setSelfieFile(new File([selfieBlob], "selfie.jpg", { type: "image/jpeg" }));
+                    }
 
-            // Passer à l'étape processing
-            setVerificationStep(3);
+                    setVerificationStep(3);
 
-            // Nettoyer localStorage
-            localStorage.removeItem("selfiePreview");
-            localStorage.removeItem("videoPreview");
-        }
+                    // Clean IndexedDB
+                    await deleteMedia("selfieBlob");
+                    await deleteMedia("videoBlob");
+                    await deleteMedia("selfiePreview");
+
+                    // Clean legacy LocalStorage just in case
+                    localStorage.removeItem("selfiePreview");
+                    localStorage.removeItem("videoPreview");
+                    return;
+                }
+
+                // 2. Fallback LocalStorage (ancien format base64)
+                const selfieData = localStorage.getItem("selfiePreview");
+                const videoData = localStorage.getItem("videoPreview");
+
+                if (selfieData && videoData) {
+                    setSelfiePreview(selfieData);
+                    setVideoPreview(videoData);
+
+                    fetch(selfieData)
+                        .then(res => res.blob())
+                        .then(blob => setSelfieFile(new File([blob], "selfie.jpg", { type: "image/jpeg" })));
+
+                    fetch(videoData)
+                        .then(res => res.blob())
+                        .then(blob => setVideoFile(blob));
+
+                    setVerificationStep(3);
+
+                    localStorage.removeItem("selfiePreview");
+                    localStorage.removeItem("videoPreview");
+                }
+            } catch (error) {
+                console.error("Error loading media:", error);
+            }
+        };
+
+        loadMedia();
     }, []);
 
     // Synchroniser le stream avec la vidéo
