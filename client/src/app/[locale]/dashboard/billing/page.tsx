@@ -123,11 +123,26 @@ export default function BillingPage() {
     useEffect(() => {
         const checkDevice = () => {
             const userAgent = navigator.userAgent.toLowerCase();
-            const isMobile = /android|webos|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-            const isTablet = /ipad|android(?!.*mobile)/i.test(userAgent);
-            setIsDesktop(!isMobile && !isTablet);
+
+            // Détection mobile plus complète
+            const isMobile = /android|webos|iphone|ipod|blackberry|iemobile|opera mini|mobile/i.test(userAgent);
+
+            // Détection tablette
+            const isTablet = /ipad|android(?!.*mobile)|tablet/i.test(userAgent);
+
+            // Détection par taille d'écran (fallback)
+            const hasSmallScreen = window.innerWidth <= 768;
+
+            // Considérer comme mobile si : détection mobile OU petit écran
+            // Considérer comme desktop uniquement si : ni mobile, ni tablette, ET grand écran
+            setIsDesktop(!isMobile && !isTablet && !hasSmallScreen);
         };
+
         checkDevice();
+
+        // Réévaluer lors du redimensionnement (pour les cas edge)
+        window.addEventListener('resize', checkDevice);
+        return () => window.removeEventListener('resize', checkDevice);
     }, []);
 
     // Redémarrer la caméra automatiquement à l'étape vidéo
