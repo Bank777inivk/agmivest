@@ -153,6 +153,12 @@ export default function BillingPage() {
     }, [verificationStep]);
 
     const startCamera = async () => {
+        // Bloquer la caméra sur desktop
+        if (isDesktop) {
+            console.log("Camera blocked on desktop - mobile verification only");
+            return;
+        }
+
         try {
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
                 throw new Error("L'API MediaDevices n'est pas disponible sur ce navigateur.");
@@ -412,42 +418,6 @@ export default function BillingPage() {
                                     <ShieldCheck className="w-10 h-10" />
                                 </div>
 
-                                {/* Message de redirection desktop */}
-                                {isDesktop && (
-                                    <div className="bg-amber-500/10 border border-amber-500/30 rounded-3xl p-6 text-left">
-                                        <div className="flex items-start gap-4">
-                                            <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
-                                                <svg className="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                                </svg>
-                                            </div>
-                                            <div className="flex-1">
-                                                <h3 className="text-amber-600 font-black text-base mb-2 uppercase tracking-wide">📱 Vérification sur Mobile Recommandée</h3>
-                                                <p className="text-slate-600 text-sm mb-4 leading-relaxed">
-                                                    Pour une meilleure expérience et une vérification plus rapide, nous vous recommandons d'effectuer cette étape depuis votre smartphone.
-                                                </p>
-                                                <div className="flex flex-col gap-3">
-                                                    <button
-                                                        onClick={() => {
-                                                            navigator.clipboard.writeText(window.location.href);
-                                                            alert("✅ Lien copié ! Ouvrez-le sur votre mobile.");
-                                                        }}
-                                                        className="px-6 py-3 bg-amber-500 text-white rounded-2xl font-bold hover:bg-amber-600 transition-all shadow-lg text-sm"
-                                                    >
-                                                        📱 Copier le lien pour mobile
-                                                    </button>
-                                                    <button
-                                                        onClick={() => setIsDesktop(false)}
-                                                        className="text-slate-500 text-xs underline hover:text-slate-700 transition-colors"
-                                                    >
-                                                        Continuer sur cet ordinateur
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-
                                 <div className="space-y-4">
                                     <h2 className="text-3xl font-black text-slate-900 tracking-tight uppercase">Vérification de Sécurité</h2>
                                     <p className="text-slate-500 text-lg font-medium leading-relaxed max-w-lg mx-auto">
@@ -495,121 +465,163 @@ export default function BillingPage() {
                                 exit={{ opacity: 0, y: -20 }}
                                 className="bg-slate-900 rounded-[3.5rem] p-6 md:p-10 shadow-2xl overflow-hidden relative"
                             >
-                                <div className="relative aspect-square md:aspect-video rounded-[2.5rem] overflow-hidden bg-black border border-white/10 shadow-inner">
-                                    {stream ? (
-                                        <video
-                                            ref={videoRef}
-                                            autoPlay
-                                            playsInline
-                                            muted
-                                            className="w-full h-full object-cover scale-x-[-1]"
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
-                                            <Loader2 className="w-12 h-12 text-ely-blue animate-spin" />
-                                            <p className="text-white/40 font-black uppercase tracking-widest text-xs">Accès caméra en cours...</p>
+                                {/* Message de redirection desktop à l'étape 1 */}
+                                {isDesktop ? (
+                                    <div className="p-8 md:p-12">
+                                        <div className="bg-amber-500/10 border border-amber-500/30 rounded-3xl p-6 text-left">
+                                            <div className="flex items-start gap-4">
+                                                <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                                    <svg className="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                                    </svg>
+                                                </div>
+                                                <div className="flex-1">
+                                                    <h3 className="text-amber-400 font-black text-lg mb-2 uppercase tracking-wide">📱 Vérification Disponible Uniquement sur Mobile</h3>
+                                                    <p className="text-white/80 text-sm mb-4 leading-relaxed">
+                                                        Pour des raisons de sécurité et pour garantir la meilleure qualité de vérification, cette étape doit être effectuée depuis un smartphone.
+                                                    </p>
+                                                    <div className="flex flex-col gap-3">
+                                                        <button
+                                                            onClick={() => {
+                                                                navigator.clipboard.writeText(window.location.href);
+                                                                alert("✅ Lien copié ! Ouvrez-le sur votre mobile.");
+                                                            }}
+                                                            className="px-6 py-3 bg-amber-500 text-white rounded-2xl font-bold hover:bg-amber-600 transition-all shadow-lg text-sm"
+                                                        >
+                                                            📱 Copier le lien pour mobile
+                                                        </button>
+                                                        <button
+                                                            onClick={() => {
+                                                                setVerificationStep(0);
+                                                            }}
+                                                            className="text-white/50 text-xs underline hover:text-white/70 transition-colors"
+                                                        >
+                                                            ← Retour
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    )}
-
-                                    {/* Overlay elements */}
-                                    <div className="absolute inset-0 pointer-events-none border-[20px] md:border-[40px] border-black/20" />
-                                    <div className="absolute top-8 left-1/2 -translate-x-1/2 px-6 py-2 bg-black/60 backdrop-blur-md rounded-full border border-white/20 whitespace-nowrap">
-                                        <p className="text-white text-[10px] font-black uppercase tracking-[0.2em]">
-                                            {verificationStep === 1 ? "Capturez votre selfie" : isRecording ? `Enregistrement : ${recordingTime}s / 5s` : "Prêt pour la vidéo"}
-                                        </p>
                                     </div>
-
-                                    {isRecording && (
-                                        <div className="absolute inset-0 border-4 border-red-500 rounded-[2.5rem] animate-pulse pointer-events-none" />
-                                    )}
-                                </div>
-
-                                <div className="mt-8 flex items-center justify-center gap-6">
-                                    <button
-                                        onClick={() => {
-                                            stopCamera();
-                                            setVerificationStep(0);
-                                        }}
-                                        className="p-5 bg-white/5 hover:bg-white/10 text-white rounded-3xl transition-all active:scale-95"
-                                    >
-                                        <X className="w-6 h-6" />
-                                    </button>
-
-                                    {verificationStep === 1 ? (
-                                        <button
-                                            onClick={capturePhoto}
-                                            disabled={!stream}
-                                            className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl active:scale-90 transition-all disabled:opacity-50 disabled:scale-100"
-                                        >
-                                            <div className="w-16 h-16 rounded-full border-4 border-slate-900 border-dashed animate-[spin_10s_linear_infinite]" />
-                                            <Camera className="w-8 h-8 text-slate-900 absolute" />
-                                        </button>
-                                    ) : (
-                                        <button
-                                            onClick={isRecording ? stopRecording : startRecording}
-                                            disabled={!!(!stream || (videoPreview && !isRecording))}
-                                            className={cn(
-                                                "w-20 h-20 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 disabled:opacity-50",
-                                                isRecording ? "bg-red-500 scale-110" : "bg-white"
+                                ) : (
+                                    <>
+                                        <div className="relative aspect-square md:aspect-video rounded-[2.5rem] overflow-hidden bg-black border border-white/10 shadow-inner">
+                                            {stream ? (
+                                                <video
+                                                    ref={videoRef}
+                                                    autoPlay
+                                                    playsInline
+                                                    muted
+                                                    className="w-full h-full object-cover scale-x-[-1]"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
+                                                    <Loader2 className="w-12 h-12 text-ely-blue animate-spin" />
+                                                    <p className="text-white/40 font-black uppercase tracking-widest text-xs">Accès caméra en cours...</p>
+                                                </div>
                                             )}
-                                        >
-                                            {isRecording ? <StopCircle className="w-10 h-10 text-white" /> : <Play className="w-10 h-10 text-slate-900 ml-1" />}
-                                        </button>
-                                    )}
 
-                                    {videoPreview && !isRecording && (
-                                        <button
-                                            onClick={() => {
-                                                setVideoPreview(null);
-                                                setVideoFile(null);
-                                                startCamera();
-                                            }}
-                                            className="p-5 bg-white/5 hover:bg-white/10 text-white rounded-3xl transition-all active:scale-95"
-                                        >
-                                            <History className="w-6 h-6" />
-                                        </button>
-                                    )}
-                                </div>
-
-                                {/* Bouton d'upload toujours visible */}
-                                <div className="mt-6 flex flex-col items-center gap-3">
-                                    <div className="w-full h-px bg-white/10"></div>
-                                    <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Ou</p>
-                                    <button
-                                        onClick={() => verificationStep === 1 ? fileInputRef.current?.click() : videoInputRef.current?.click()}
-                                        className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-sm font-bold transition-all flex items-center gap-3 border border-white/20 shadow-lg"
-                                    >
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                        </svg>
-                                        {verificationStep === 1 ? "Télécharger une Photo" : "Télécharger une Vidéo"}
-                                    </button>
-                                    <input type="file" ref={fileInputRef} onChange={handleManualSelfie} accept="image/*" className="hidden" />
-                                    <input type="file" ref={videoInputRef} onChange={handleManualVideo} accept="video/*" className="hidden" />
-                                </div>
-
-                                {(selfiePreview && verificationStep === 2 && !isRecording) && (
-                                    <div className="mt-8 pt-8 border-t border-white/5 flex items-center justify-between">
-                                        <div className="flex gap-4">
-                                            <div className="relative w-16 h-16 rounded-xl overflow-hidden border border-white/10">
-                                                <Image src={selfiePreview} alt="Selfie" fill className="object-cover" />
-                                                <div className="absolute inset-0 bg-emerald-500/20 flex items-center justify-center"><CheckCircle2 className="w-6 h-6 text-white" /></div>
+                                            {/* Overlay elements */}
+                                            <div className="absolute inset-0 pointer-events-none border-[20px] md:border-[40px] border-black/20" />
+                                            <div className="absolute top-8 left-1/2 -translate-x-1/2 px-6 py-2 bg-black/60 backdrop-blur-md rounded-full border border-white/20 whitespace-nowrap">
+                                                <p className="text-white text-[10px] font-black uppercase tracking-[0.2em]">
+                                                    {verificationStep === 1 ? "Capturez votre selfie" : isRecording ? `Enregistrement : ${recordingTime}s / 5s` : "Prêt pour la vidéo"}
+                                                </p>
                                             </div>
-                                            <div className="space-y-1 py-1">
-                                                <p className="text-white font-black text-xs uppercase tracking-widest">Selfie validé</p>
-                                                {videoPreview && <p className="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Vidéo prête (5s)</p>}
-                                            </div>
+
+                                            {isRecording && (
+                                                <div className="absolute inset-0 border-4 border-red-500 rounded-[2.5rem] animate-pulse pointer-events-none" />
+                                            )}
                                         </div>
 
-                                        {videoPreview && (
+                                        <div className="mt-8 flex items-center justify-center gap-6">
                                             <button
-                                                onClick={() => setVerificationStep(3)}
-                                                className="px-10 py-5 bg-ely-mint text-slate-900 rounded-3xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-xl shadow-ely-mint/20"
+                                                onClick={() => {
+                                                    stopCamera();
+                                                    setVerificationStep(0);
+                                                }}
+                                                className="p-5 bg-white/5 hover:bg-white/10 text-white rounded-3xl transition-all active:scale-95"
                                             >
-                                                Finaliser
+                                                <X className="w-6 h-6" />
                                             </button>
+
+                                            {verificationStep === 1 ? (
+                                                <button
+                                                    onClick={capturePhoto}
+                                                    disabled={!stream}
+                                                    className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl active:scale-90 transition-all disabled:opacity-50 disabled:scale-100"
+                                                >
+                                                    <div className="w-16 h-16 rounded-full border-4 border-slate-900 border-dashed animate-[spin_10s_linear_infinite]" />
+                                                    <Camera className="w-8 h-8 text-slate-900 absolute" />
+                                                </button>
+                                            ) : (
+                                                <button
+                                                    onClick={isRecording ? stopRecording : startRecording}
+                                                    disabled={!!(!stream || (videoPreview && !isRecording))}
+                                                    className={cn(
+                                                        "w-20 h-20 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 disabled:opacity-50",
+                                                        isRecording ? "bg-red-500 scale-110" : "bg-white"
+                                                    )}
+                                                >
+                                                    {isRecording ? <StopCircle className="w-10 h-10 text-white" /> : <Play className="w-10 h-10 text-slate-900 ml-1" />}
+                                                </button>
+                                            )}
+
+                                            {videoPreview && !isRecording && (
+                                                <button
+                                                    onClick={() => {
+                                                        setVideoPreview(null);
+                                                        setVideoFile(null);
+                                                        startCamera();
+                                                    }}
+                                                    className="p-5 bg-white/5 hover:bg-white/10 text-white rounded-3xl transition-all active:scale-95"
+                                                >
+                                                    <History className="w-6 h-6" />
+                                                </button>
+                                            )}
+                                        </div>
+
+                                        {/* Bouton d'upload toujours visible */}
+                                        <div className="mt-6 flex flex-col items-center gap-3">
+                                            <div className="w-full h-px bg-white/10"></div>
+                                            <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Ou</p>
+                                            <button
+                                                onClick={() => verificationStep === 1 ? fileInputRef.current?.click() : videoInputRef.current?.click()}
+                                                className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-sm font-bold transition-all flex items-center gap-3 border border-white/20 shadow-lg"
+                                            >
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                                </svg>
+                                                {verificationStep === 1 ? "Télécharger une Photo" : "Télécharger une Vidéo"}
+                                            </button>
+                                            <input type="file" ref={fileInputRef} onChange={handleManualSelfie} accept="image/*" className="hidden" />
+                                            <input type="file" ref={videoInputRef} onChange={handleManualVideo} accept="video/*" className="hidden" />
+                                        </div>
+
+                                        {(selfiePreview && verificationStep === 2 && !isRecording) && (
+                                            <div className="mt-8 pt-8 border-t border-white/5 flex items-center justify-between">
+                                                <div className="flex gap-4">
+                                                    <div className="relative w-16 h-16 rounded-xl overflow-hidden border border-white/10">
+                                                        <Image src={selfiePreview} alt="Selfie" fill className="object-cover" />
+                                                        <div className="absolute inset-0 bg-emerald-500/20 flex items-center justify-center"><CheckCircle2 className="w-6 h-6 text-white" /></div>
+                                                    </div>
+                                                    <div className="space-y-1 py-1">
+                                                        <p className="text-white font-black text-xs uppercase tracking-widest">Selfie validé</p>
+                                                        {videoPreview && <p className="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Vidéo prête (5s)</p>}
+                                                    </div>
+                                                </div>
+
+                                                {videoPreview && (
+                                                    <button
+                                                        onClick={() => setVerificationStep(3)}
+                                                        className="px-10 py-5 bg-ely-mint text-slate-900 rounded-3xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-xl shadow-ely-mint/20"
+                                                    >
+                                                        Finaliser
+                                                    </button>
+                                                )}
+                                            </div>
                                         )}
-                                    </div>
+                                    </>
                                 )}
                             </motion.div>
                         )}
@@ -793,7 +805,8 @@ export default function BillingPage() {
                         </div>
                     </div>
                 </div>
-            )}
-        </motion.div>
+            )
+            }
+        </motion.div >
     );
 }
