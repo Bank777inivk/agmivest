@@ -108,24 +108,34 @@ export default function BillingPage() {
         };
     }, [router]);
 
+    // Synchroniser le stream avec la vidéo
+    useEffect(() => {
+        if (stream && videoRef.current) {
+            videoRef.current.srcObject = stream;
+            // Force le démarrage de la vidéo (important pour mobile)
+            videoRef.current.play().catch(err => console.error("Video play error:", err));
+        }
+    }, [stream]);
+
     const startCamera = async () => {
         try {
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
                 throw new Error("L'API MediaDevices n'est pas disponible sur ce navigateur.");
             }
 
-            const mediaStream = await navigator.mediaDevices.getUserMedia({
+            // Contraintes optimisées pour mobile et desktop
+            const constraints = {
                 video: {
                     facingMode: "user",
-                    width: { ideal: 1280 },
-                    height: { ideal: 720 }
+                    width: { ideal: 1280, max: 1920 },
+                    height: { ideal: 720, max: 1080 }
                 },
                 audio: false
-            });
+            };
+
+            const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
             setStream(mediaStream);
-            if (videoRef.current) {
-                videoRef.current.srcObject = mediaStream;
-            }
+            // L'assignation à videoRef se fait dans le useEffect
         } catch (error: any) {
             console.error("Camera error:", error);
             // L'utilisateur peut utiliser le bouton d'upload manuel visible en permanence
