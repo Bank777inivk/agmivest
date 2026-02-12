@@ -110,6 +110,33 @@ export default function BillingPage() {
         };
     }, [router]);
 
+    // Récupérer les données depuis localStorage (retour de la page caméra)
+    useEffect(() => {
+        const selfieData = localStorage.getItem("selfiePreview");
+        const videoData = localStorage.getItem("videoPreview");
+
+        if (selfieData && videoData) {
+            setSelfiePreview(selfieData);
+            setVideoPreview(videoData);
+
+            // Convertir en fichiers
+            fetch(selfieData)
+                .then(res => res.blob())
+                .then(blob => setSelfieFile(new File([blob], "selfie.jpg", { type: "image/jpeg" })));
+
+            fetch(videoData)
+                .then(res => res.blob())
+                .then(blob => setVideoFile(blob));
+
+            // Passer à l'étape processing
+            setVerificationStep(3);
+
+            // Nettoyer localStorage
+            localStorage.removeItem("selfiePreview");
+            localStorage.removeItem("videoPreview");
+        }
+    }, []);
+
     // Synchroniser le stream avec la vidéo
     useEffect(() => {
         if (stream && videoRef.current) {
@@ -445,10 +472,7 @@ export default function BillingPage() {
                                     </div>
                                 </div>
                                 <button
-                                    onClick={() => {
-                                        setVerificationStep(1);
-                                        startCamera();
-                                    }}
+                                    onClick={() => router.push("/dashboard/billing/camera?step=1")}
                                     className="w-full py-6 bg-ely-blue text-white rounded-[2rem] font-black text-sm uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20 active:scale-95"
                                 >
                                     Démarrer la vérification
@@ -463,7 +487,7 @@ export default function BillingPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
-                                className="fixed inset-0 bg-slate-900 p-6 md:p-10 z-50 flex items-center justify-center"
+                                className="fixed inset-0 bg-slate-900 p-6 md:p-10 z-[99999] flex items-center justify-center"
                             >
                                 <div className="w-full max-w-3xl h-full flex flex-col">
                                     {/* Message de redirection desktop à l'étape 1 */}
