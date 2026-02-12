@@ -210,20 +210,25 @@ export default function CameraPage() {
 
     const validateVideo = () => {
         if (videoPreview) {
-            // Convertir le blob URL en base64 pour localStorage (ou garder blob si upload direct plus tard)
-            // Ici, pour simplifier, on stocke la validation
-
-            // Pour l'instant on garde l'URL blob dans l'état, mais pour le localStorage on devrait convertir
+            // Convertir le blob URL en base64 pour localStorage
             fetch(videoPreview)
                 .then(r => r.blob())
                 .then(blob => {
                     const reader = new FileReader();
                     reader.onloadend = () => {
-                        localStorage.setItem("videoPreview", reader.result as string);
-                        setIsVideoValidated(true);
-                        // Ne PAS rediriger tout de suite, afficher bouton finaliser ou overlay succès
+                        try {
+                            localStorage.setItem("videoPreview", reader.result as string);
+                            setIsVideoValidated(true);
+                        } catch (error) {
+                            console.error("Storage error:", error);
+                            alert("❌ Erreur : La vidéo est trop volumineuse pour être sauvegardée. Veuillez réessayer avec une durée plus courte.");
+                        }
                     };
                     reader.readAsDataURL(blob);
+                })
+                .catch(err => {
+                    console.error("Video validation error:", err);
+                    alert("❌ Une erreur est survenue lors de la validation.");
                 });
         }
     };
