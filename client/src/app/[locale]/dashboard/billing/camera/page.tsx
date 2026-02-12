@@ -176,13 +176,13 @@ export default function CameraPage() {
 
         timerRef.current = setInterval(() => {
             setRecordingTime(prev => {
-                if (prev >= 15) { // Limite 15s
+                if (prev >= 10) { // Limite 10s
                     if (timerRef.current) {
                         clearInterval(timerRef.current);
                         timerRef.current = null;
                     }
                     stopRecording();
-                    return 15;
+                    return 10;
                 }
                 return prev + 1;
             });
@@ -221,7 +221,7 @@ export default function CameraPage() {
                             setIsVideoValidated(true);
                         } catch (error) {
                             console.error("Storage error:", error);
-                            alert("❌ Erreur : La vidéo est trop volumineuse. Durée limitée à 15s.");
+                            alert("❌ Erreur : La vidéo est trop volumineuse. Durée limitée à 10s.");
                         }
                     };
                     reader.readAsDataURL(blob);
@@ -417,7 +417,7 @@ export default function CameraPage() {
                             <div className="absolute top-20 left-0 right-0 flex justify-center z-10">
                                 <div className="px-6 py-2 bg-red-500/90 backdrop-blur-sm rounded-full flex items-center gap-2 shadow-lg animate-pulse">
                                     <div className="w-2 h-2 bg-white rounded-full" />
-                                    <span className="text-white font-black text-lg font-mono">{recordingTime}s / 30s</span>
+                                    <span className="text-white font-black text-lg font-mono">{recordingTime}s / 10s</span>
                                 </div>
                             </div>
                         )}
