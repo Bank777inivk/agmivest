@@ -210,13 +210,13 @@ export default function CameraPage() {
 
         timerRef.current = setInterval(() => {
             setRecordingTime(prev => {
-                if (prev >= 10) {
+                if (prev >= 15) {
                     if (timerRef.current) {
                         clearInterval(timerRef.current);
                         timerRef.current = null;
                     }
                     stopRecording();
-                    return 10;
+                    return 15;
                 }
                 return prev + 1;
             });
@@ -424,17 +424,26 @@ export default function CameraPage() {
                             <div className="w-full h-full relative">
                                 <video ref={videoRef} autoPlay playsInline muted className="w-full h-full object-cover scale-x-[-1]" />
 
+
                                 {/* Oval Mask Overlay - Video Section Only & Head Sized */}
                                 {step === 2 && (
                                     <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-                                        <div className="w-full h-full bg-black/40" style={{
+                                        <div className="w-full h-full bg-black/40 backdrop-blur-sm" style={{
                                             clipPath: 'path("M 0 0 h 3840 v 2160 h -3840 Z M 1920 1080 m -140 0 a 140 200 0 1 0 280 0 a 140 200 0 1 0 -280 0")',
                                             fillRule: 'evenodd'
                                         }} />
-                                        <div className="absolute w-[280px] h-[400px] border-4 border-white/50 rounded-[140px/200px] flex flex-col items-center justify-center">
-                                            <div className="mt-auto mb-10 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full border border-white/20">
-                                                <p className="text-white text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
-                                                    Veuillez tourner la tête
+
+                                        {/* Dynamic Border Color based on time */}
+                                        <div className={`absolute w-[280px] h-[400px] border-4 rounded-[140px/200px] flex flex-col items-center justify-center transition-colors duration-500 ${recordingTime >= 12 ? "border-green-500 shadow-[0_0_50px_rgba(34,197,94,0.5)]" :
+                                                recordingTime >= 4 ? "border-white/50" : "border-white/50"
+                                            }`}>
+                                            <div className="mt-auto mb-10 px-6 py-3 bg-black/60 backdrop-blur-md rounded-full border border-white/20 transition-all duration-300">
+                                                <p className={`text-white text-xs font-black uppercase tracking-widest whitespace-nowrap ${recordingTime >= 12 ? "text-green-400" : ""}`}>
+                                                    {!isRecording ? "Appuyez pour lancer" :
+                                                        recordingTime < 4 ? "Tournez la tête à GAUCHE" :
+                                                            recordingTime < 8 ? "Tournez la tête à DROITE" :
+                                                                recordingTime < 12 ? "Soulevez la tête" :
+                                                                    "Parfait !"}
                                                 </p>
                                             </div>
                                         </div>
