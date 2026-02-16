@@ -145,7 +145,7 @@ export default function BillingPage() {
                 </div>
             </header>
 
-            {(!request || request.status !== 'approved' || (request.requiresPayment && request.paymentStatus === 'paid') || request.paymentType === 'none' || (request.paymentVerificationStatus !== 'verified' && request.paymentVerificationStatus !== 'on_review')) ? (
+            {(!request || request.status !== 'approved' || request.paymentStatus === 'paid' || request.paymentType === 'none' || (request.paymentVerificationStatus !== 'verified' && request.paymentVerificationStatus !== 'on_review')) ? (
                 <div className="bg-white rounded-[3.5rem] p-16 md:p-24 text-center border border-slate-100 shadow-sm relative z-10 overflow-hidden group">
                     <div className="absolute top-0 right-0 w-64 h-64 -mr-32 -mt-32 bg-slate-50 opacity-50 rounded-full group-hover:scale-110 transition-transform duration-700" />
 
