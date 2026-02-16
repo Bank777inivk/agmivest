@@ -435,10 +435,10 @@ export default function CameraPage() {
 
                                         {/* Dynamic Border Color based on time with Directional Animations */}
                                         <div className={`absolute w-[280px] h-[400px] border-4 rounded-[140px/200px] flex flex-col items-center justify-center transition-all duration-300 ${!isRecording ? "border-white/50" :
-                                                recordingTime < 4 ? "border-l-green-500 border-y-white/10 border-r-white/10 shadow-[-15px_0_30px_rgba(34,197,94,0.4)] animate-pulse" : // Left
-                                                    recordingTime < 8 ? "border-r-green-500 border-y-white/10 border-l-white/10 shadow-[15px_0_30px_rgba(34,197,94,0.4)] animate-pulse" : // Right
-                                                        recordingTime < 12 ? "border-t-green-500 border-x-white/10 border-b-white/10 shadow-[0_-15px_30px_rgba(34,197,94,0.4)] animate-pulse" : // Top
-                                                            "border-green-500 shadow-[0_0_50px_rgba(34,197,94,0.8)]" // Perfect
+                                            recordingTime < 4 ? "border-l-green-500 border-y-white/10 border-r-white/10 shadow-[-15px_0_30px_rgba(34,197,94,0.4)] animate-pulse" : // Left
+                                                recordingTime < 8 ? "border-r-green-500 border-y-white/10 border-l-white/10 shadow-[15px_0_30px_rgba(34,197,94,0.4)] animate-pulse" : // Right
+                                                    recordingTime < 12 ? "border-t-green-500 border-x-white/10 border-b-white/10 shadow-[0_-15px_30px_rgba(34,197,94,0.4)] animate-pulse" : // Top
+                                                        "border-green-500 shadow-[0_0_50px_rgba(34,197,94,0.8)]" // Perfect
                                             }`}>
                                             <div className="mt-auto mb-10 px-6 py-3 bg-black/60 backdrop-blur-md rounded-full border border-white/20 transition-all duration-300">
                                                 <p className={`text-white text-xs font-black uppercase tracking-widest whitespace-nowrap ${recordingTime >= 12 ? "text-green-400" : ""}`}>
@@ -491,7 +491,7 @@ export default function CameraPage() {
                             <div className="absolute top-20 left-0 right-0 flex justify-center z-10">
                                 <div className="px-6 py-2 bg-red-500/90 backdrop-blur-sm rounded-full flex items-center gap-2 shadow-lg animate-pulse">
                                     <div className="w-2 h-2 bg-white rounded-full" />
-                                    <span className="text-white font-black text-lg font-mono">{recordingTime}s / 10s</span>
+                                    <span className="text-white font-black text-lg font-mono">{recordingTime}s / 15s</span>
                                 </div>
                             </div>
                         )}
