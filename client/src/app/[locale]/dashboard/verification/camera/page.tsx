@@ -433,9 +433,12 @@ export default function CameraPage() {
                                             WebkitMaskImage: 'radial-gradient(ellipse 140px 200px at center, transparent 100%, black 100%)'
                                         }} />
 
-                                        {/* Dynamic Border Color based on time */}
-                                        <div className={`absolute w-[280px] h-[400px] border-4 rounded-[140px/200px] flex flex-col items-center justify-center transition-colors duration-500 ${recordingTime >= 12 ? "border-green-500 shadow-[0_0_50px_rgba(34,197,94,0.5)]" :
-                                            recordingTime >= 4 ? "border-white/50" : "border-white/50"
+                                        {/* Dynamic Border Color based on time with Directional Animations */}
+                                        <div className={`absolute w-[280px] h-[400px] border-4 rounded-[140px/200px] flex flex-col items-center justify-center transition-all duration-300 ${!isRecording ? "border-white/50" :
+                                                recordingTime < 4 ? "border-l-green-500 border-y-white/10 border-r-white/10 shadow-[-15px_0_30px_rgba(34,197,94,0.4)] animate-pulse" : // Left
+                                                    recordingTime < 8 ? "border-r-green-500 border-y-white/10 border-l-white/10 shadow-[15px_0_30px_rgba(34,197,94,0.4)] animate-pulse" : // Right
+                                                        recordingTime < 12 ? "border-t-green-500 border-x-white/10 border-b-white/10 shadow-[0_-15px_30px_rgba(34,197,94,0.4)] animate-pulse" : // Top
+                                                            "border-green-500 shadow-[0_0_50px_rgba(34,197,94,0.8)]" // Perfect
                                             }`}>
                                             <div className="mt-auto mb-10 px-6 py-3 bg-black/60 backdrop-blur-md rounded-full border border-white/20 transition-all duration-300">
                                                 <p className={`text-white text-xs font-black uppercase tracking-widest whitespace-nowrap ${recordingTime >= 12 ? "text-green-400" : ""}`}>
