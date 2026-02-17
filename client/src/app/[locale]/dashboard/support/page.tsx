@@ -144,7 +144,18 @@ export default function SupportPage() {
                                     {method.desc}
                                 </div>
                             </div>
-                            <button className="w-full py-3.5 bg-white text-[#002B70] rounded-xl font-bold text-[10px] uppercase tracking-[0.2em] transition-all hover:bg-blue-50 flex items-center justify-center gap-2 shadow-lg shadow-blue-900/40">
+                            <button
+                                onClick={() => {
+                                    if (method.title === "Chat en direct") {
+                                        window.dispatchEvent(new CustomEvent('open-chat'));
+                                    } else if (method.title === "Ligne Téléphonique") {
+                                        window.location.href = `tel:${method.value.replace(/\s/g, '')}`;
+                                    } else if (method.title === "Assistance Email") {
+                                        window.location.href = `mailto:${method.value}`;
+                                    }
+                                }}
+                                className="w-full py-3.5 bg-white text-[#002B70] rounded-xl font-bold text-[10px] uppercase tracking-[0.2em] transition-all hover:bg-blue-50 flex items-center justify-center gap-2 shadow-lg shadow-blue-900/40"
+                            >
                                 Contacter
                                 <ArrowRight className="w-3.5 h-3.5" />
                             </button>

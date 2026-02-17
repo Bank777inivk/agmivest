@@ -12,6 +12,7 @@ import MobileCreditRequest from "@/components/dashboard/Credit/MobileCreditReque
 import PremiumSpinner from "@/components/dashboard/PremiumSpinner";
 import { TrendingUp, Lock, ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { createNotification } from "@/hooks/useNotifications";
 import { COUNTRIES, COUNTRY_TO_NATIONALITY, COUNTRY_PHONE_DATA } from "@/lib/constants";
 
 // Validation logic and score calculation (Mock)
@@ -306,6 +307,14 @@ export default function CreditRequestPage() {
             };
 
             await addDoc(collection(db, "requests"), requestData);
+
+            // Create notification for user
+            await createNotification(auth.currentUser.uid, {
+                title: "Demande soumise 📄",
+                message: `Votre demande de prêt de ${amount.toLocaleString()} € a été enregistrée.`,
+                type: 'success',
+                link: '/dashboard/requests'
+            });
 
             // Also update user profile with latest info
             await setDoc(doc(db, "users", auth.currentUser.uid), {

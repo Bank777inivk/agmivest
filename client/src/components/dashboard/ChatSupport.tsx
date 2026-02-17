@@ -50,6 +50,13 @@ export default function ChatSupport() {
     const [uploading, setUploading] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
+    // Listen for custom open-chat event
+    useEffect(() => {
+        const handleOpenChat = () => setIsOpen(true);
+        window.addEventListener('open-chat', handleOpenChat);
+        return () => window.removeEventListener('open-chat', handleOpenChat);
+    }, []);
+
     // Fetch user data for his name
     useEffect(() => {
         if (!user) return;

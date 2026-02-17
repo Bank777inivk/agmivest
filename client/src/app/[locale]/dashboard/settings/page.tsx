@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
     Settings,
     Bell,
@@ -16,12 +16,34 @@ import {
     ShieldCheck,
     Check,
     ArrowRight,
-    Shield
+    Shield,
+    X,
+    Loader2
 } from "lucide-react";
 import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
-import { onAuthStateChanged } from "firebase/auth";
+import { useRouter, usePathname } from "@/i18n/routing";
+import {
+    onAuthStateChanged,
+    sendPasswordResetEmail,
+    updatePassword,
+    reauthenticateWithCredential,
+    EmailAuthProvider
+} from "firebase/auth";
 import { auth } from "@/lib/firebase";
+import { createNotification } from "@/hooks/useNotifications";
+
+const languages = [
+    { code: 'fr', name: 'Français', flag: '🇫🇷' },
+    { code: 'en', name: 'English', flag: '🇬🇧' },
+    { code: 'es', name: 'Español', flag: '🇪🇸' },
+    { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+    { code: 'pt', name: 'Português', flag: '🇵🇹' },
+    { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
+    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+    { code: 'pl', name: 'Polski', flag: '🇵🇱' },
+    { code: 'ro', name: 'Română', flag: '🇷🇴' },
+    { code: 'sv', name: 'Svenska', flag: '🇸🇪' }
+];
 
 export default function SettingsPage() {
     const t = useTranslations('Dashboard.settings');
@@ -36,15 +58,129 @@ export default function SettingsPage() {
     });
 
     const [userEmail, setUserEmail] = useState<string | null>(null);
+    const [lastLogin, setLastLogin] = useState<string | null>(null);
+    const [inactivityTimeout, setInactivityTimeout] = useState('never');
+    const [isMounted, setIsMounted] = useState(false);
+    const [isLangOpen, setIsLangOpen] = useState(false);
+    const [isTimeoutOpen, setIsTimeoutOpen] = useState(false);
+    const [showPasswordModal, setShowPasswordModal] = useState(false);
+
+    // Password Form State
+    const [currentPassword, setCurrentPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
+    const [passwordError, setPasswordError] = useState<string | null>(null);
+
+    const langRef = useRef<HTMLDivElement>(null);
+    const timeoutRef = useRef<HTMLDivElement>(null);
+
+    // Click outside logic
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (langRef.current && !langRef.current.contains(event.target as Node)) {
+                setIsLangOpen(false);
+            }
+            if (timeoutRef.current && !timeoutRef.current.contains(event.target as Node)) {
+                setIsTimeoutOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     useEffect(() => {
+        setIsMounted(true);
+        const storedTimeout = localStorage.getItem('inactivityTimeout');
+        if (storedTimeout) setInactivityTimeout(storedTimeout);
+
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUserEmail(user.email);
+                setLastLogin(user.metadata.lastSignInTime || null);
             }
         });
         return () => unsubscribe();
     }, []);
+
+    // Inactivity Timeout Logic
+    useEffect(() => {
+        if (inactivityTimeout === 'never') return;
+
+        const timeoutMs = parseInt(inactivityTimeout) * 60 * 1000;
+        let timeout: NodeJS.Timeout;
+
+        const resetTimer = () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                auth.signOut().then(() => {
+                    router.push('/login');
+                });
+            }, timeoutMs);
+        };
+
+        const events = ['mousedown', 'keydown', 'touchstart', 'scroll'];
+        events.forEach(event => document.addEventListener(event, resetTimer));
+
+        resetTimer();
+
+        return () => {
+            clearTimeout(timeout);
+            events.forEach(event => document.removeEventListener(event, resetTimer));
+        };
+    }, [inactivityTimeout, router]);
+
+    const handleTimeoutChange = (value: string) => {
+        setInactivityTimeout(value);
+        localStorage.setItem('inactivityTimeout', value);
+    };
+
+    const handlePasswordUpdate = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (newPassword !== confirmPassword) {
+            setPasswordError("Les mots de passe ne correspondent pas.");
+            return;
+        }
+        if (newPassword.length < 6) {
+            setPasswordError("Le mot de passe doit faire au moins 6 caractères.");
+            return;
+        }
+
+        setIsUpdatingPassword(true);
+        setPasswordError(null);
+
+        try {
+            const user = auth.currentUser;
+            if (!user || !user.email) throw new Error("Utilisateur non connecté.");
+
+            const credential = EmailAuthProvider.credential(user.email, currentPassword);
+            await reauthenticateWithCredential(user, credential);
+            await updatePassword(user, newPassword);
+
+            setShowPasswordModal(false);
+            setCurrentPassword("");
+            setNewPassword("");
+            setConfirmPassword("");
+
+            // Create notification
+            await createNotification(user.uid, {
+                title: "Sécurité mise à jour 🔒",
+                message: "Votre mot de passe a été modifié avec succès.",
+                type: 'success'
+            });
+
+            alert("Mot de passe mis à jour avec succès !");
+        } catch (error: any) {
+            console.error(error);
+            if (error.code === 'auth/wrong-password') {
+                setPasswordError("Le mot de passe actuel est incorrect.");
+            } else {
+                setPasswordError("Une erreur est survenue lors de la mise à jour.");
+            }
+        } finally {
+            setIsUpdatingPassword(false);
+        }
+    };
 
     const container = {
         hidden: { opacity: 0 },
@@ -62,9 +198,7 @@ export default function SettingsPage() {
     } as const;
 
     const switchLanguage = (newLocale: string) => {
-        const segments = pathname.split('/');
-        segments[1] = newLocale;
-        router.push(segments.join('/'));
+        router.push(pathname, { locale: newLocale });
     };
 
     return (
@@ -106,30 +240,44 @@ export default function SettingsPage() {
                         </div>
 
                         <div className="space-y-4">
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-xl z-10">
-                                    {[
-                                        { id: 'fr', flag: '🇫🇷' },
-                                        { id: 'en', flag: '🇬🇧' },
-                                        { id: 'de', flag: '🇩🇪' },
-                                        { id: 'it', flag: '🇮🇹' },
-                                        { id: 'es', flag: '🇪🇸' },
-                                        { id: 'pt', flag: '🇵🇹' }
-                                    ].find(l => l.id === locale)?.flag || '🌐'}
-                                </div>
-                                <select
-                                    value={locale}
-                                    onChange={(e) => switchLanguage(e.target.value)}
-                                    className="w-full pl-14 pr-10 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all font-bold text-slate-900 appearance-none cursor-pointer hover:bg-white"
+                            <div className="relative" ref={langRef}>
+                                <button
+                                    onClick={() => setIsLangOpen(!isLangOpen)}
+                                    className="w-full pl-5 pr-10 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all font-bold text-slate-900 flex items-center gap-3 text-left hover:bg-white"
                                 >
-                                    <option value="fr">Français</option>
-                                    <option value="en">English</option>
-                                    <option value="de">Deutsch</option>
-                                    <option value="it">Italiano</option>
-                                    <option value="es">Español</option>
-                                    <option value="pt">Português</option>
-                                </select>
-                                <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 rotate-90 pointer-events-none" />
+                                    <span className="text-xl">
+                                        {languages.find(l => l.code === locale)?.flag || '🌐'}
+                                    </span>
+                                    <span className="flex-1">
+                                        {languages.find(l => l.code === locale)?.name || 'Select Language'}
+                                    </span>
+                                    <ChevronRight className={`w-5 h-5 text-slate-300 transition-transform ${isLangOpen ? 'rotate-90' : ''}`} />
+                                </button>
+
+                                <AnimatePresence>
+                                    {isLangOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 5 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl py-2 z-50 max-h-64 overflow-y-auto custom-scrollbar"
+                                        >
+                                            {languages.map((lang) => (
+                                                <button
+                                                    key={lang.code}
+                                                    onClick={() => {
+                                                        switchLanguage(lang.code);
+                                                        setIsLangOpen(false);
+                                                    }}
+                                                    className={`w-full px-5 py-3 text-left hover:bg-slate-50 transition-colors flex items-center gap-3 ${lang.code === locale ? 'bg-blue-50 text-ely-blue font-bold' : 'text-slate-600'}`}
+                                                >
+                                                    <span className="text-xl">{lang.flag}</span>
+                                                    <span className="text-sm">{lang.name}</span>
+                                                </button>
+                                            ))}
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
                         </div>
                     </motion.section>
@@ -144,11 +292,16 @@ export default function SettingsPage() {
                         </div>
                         <div className="flex items-center gap-3 relative z-10">
                             <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                            <span className="text-[10px] font-black text-blue-100/60 uppercase tracking-[0.2em]">Système en ligne</span>
+                            <span className="text-[10px] font-black text-blue-100/60 uppercase tracking-[0.2em]">Dernière connexion</span>
                         </div>
-                        <p className="text-sm text-white font-medium relative z-10 leading-relaxed">
-                            Votre application est à jour. <br />
-                            <span className="text-blue-100/80 text-xs font-bold uppercase tracking-widest">v3.4.0 stable</span>
+                        <p className="text-sm text-white font-medium relative z-10 leading-relaxed uppercase tracking-wider">
+                            {isMounted && (lastLogin ? new Date(lastLogin).toLocaleString('fr-FR', {
+                                day: '2-digit',
+                                month: 'long',
+                                year: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            }) : 'Session actuelle')}
                         </p>
                     </motion.section>
 
@@ -179,8 +332,9 @@ export default function SettingsPage() {
                                             <notif.icon className="w-4 h-4" />
                                         </div>
                                         <button
+                                            disabled={notif.id === 'email'}
                                             onClick={() => setNotifications({ ...notifications, [notif.id]: !notifications[notif.id as keyof typeof notifications] })}
-                                            className={`relative w-12 h-6.5 rounded-full transition-all duration-300 ${notifications[notif.id as keyof typeof notifications] ? 'bg-ely-blue' : 'bg-slate-200'}`}
+                                            className={`relative w-12 h-6.5 rounded-full transition-all duration-300 ${notifications[notif.id as keyof typeof notifications] ? 'bg-ely-blue' : 'bg-slate-200'} ${notif.id === 'email' ? 'opacity-50 cursor-not-allowed' : ''}`}
                                         >
                                             <div className={`absolute top-1 w-4.5 h-4.5 bg-white rounded-full shadow-sm transition-all duration-300 ${notifications[notif.id as keyof typeof notifications] ? 'left-6.5' : 'left-1'}`} />
                                         </button>
@@ -197,7 +351,7 @@ export default function SettingsPage() {
                     {/* Sécurité */}
                     <motion.section
                         variants={item}
-                        className="bg-slate-900 p-8 md:p-10 rounded-[2.5rem] shadow-xl space-y-8 md:col-span-2 relative overflow-hidden"
+                        className="bg-slate-900 p-8 md:p-10 rounded-[2.5rem] shadow-xl space-y-8 md:col-span-2 relative"
                     >
                         <div className="flex items-center gap-4 relative z-10">
                             <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white border border-white/10">
@@ -207,20 +361,64 @@ export default function SettingsPage() {
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end relative z-10">
-                            <div className="lg:col-span-7 space-y-4">
+                            <div className="lg:col-span-6 space-y-4">
                                 <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">Email de connexion</label>
-                                <div className="flex items-center justify-between px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-slate-300">
+                                <div className="flex items-center justify-between px-6 py-4.5 bg-white/5 border border-white/10 rounded-2xl text-slate-300">
                                     <p className="font-bold text-sm truncate">{userEmail}</p>
                                     <Check className="w-4 h-4 text-blue-400" />
                                 </div>
                             </div>
-                            <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <button className="px-6 py-4 bg-white/10 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-white/20 transition-all border border-white/5">
-                                    Password
-                                </button>
-                                <button className="px-6 py-4 bg-blue-600 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg shadow-blue-900/40">
-                                    2FA Active
-                                </button>
+                            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div className="space-y-4">
+                                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">Sécurité</label>
+                                    <button
+                                        onClick={() => setShowPasswordModal(true)}
+                                        className="w-full px-6 py-4.5 bg-white/10 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-white/20 transition-all border border-white/5 active:scale-95"
+                                    >
+                                        Password
+                                    </button>
+                                </div>
+                                <div className="space-y-4 relative" ref={timeoutRef}>
+                                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">Déconnexion auto</label>
+                                    <button
+                                        onClick={() => setIsTimeoutOpen(!isTimeoutOpen)}
+                                        className="w-full px-6 py-4.5 bg-white/5 border border-white/10 rounded-2xl text-[11px] font-bold text-white uppercase tracking-widest outline-none flex items-center justify-between hover:bg-white/10 transition-all"
+                                    >
+                                        <span>
+                                            {isMounted ? (inactivityTimeout === 'never' ? 'Jamais' : `${inactivityTimeout} Minutes`) : '...'}
+                                        </span>
+                                        <ChevronRight className={`w-3 h-3 text-slate-500 transition-transform ${isTimeoutOpen ? 'rotate-90' : ''}`} />
+                                    </button>
+
+                                    <AnimatePresence>
+                                        {isTimeoutOpen && (
+                                            <motion.div
+                                                initial={{ opacity: 0, scale: 0.95 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                exit={{ opacity: 0, scale: 0.95 }}
+                                                className="absolute bottom-full left-0 right-0 mb-2 bg-slate-800 border border-white/10 rounded-xl shadow-2xl py-2 z-50 overflow-hidden"
+                                            >
+                                                {[
+                                                    { val: 'never', label: 'Jamais' },
+                                                    { val: '5', label: '5 Minutes' },
+                                                    { val: '15', label: '15 Minutes' },
+                                                    { val: '30', label: '30 Minutes' }
+                                                ].map((opt) => (
+                                                    <button
+                                                        key={opt.val}
+                                                        onClick={() => {
+                                                            handleTimeoutChange(opt.val);
+                                                            setIsTimeoutOpen(false);
+                                                        }}
+                                                        className={`w-full px-4 py-2 text-left text-[10px] font-bold uppercase tracking-widest transition-colors ${inactivityTimeout === opt.val ? 'bg-blue-600 text-white' : 'text-slate-400 hover:bg-white/5'}`}
+                                                    >
+                                                        {opt.label}
+                                                    </button>
+                                                ))}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
                             </div>
                         </div>
                     </motion.section>
@@ -234,6 +432,96 @@ export default function SettingsPage() {
                     <span>Dernière mise à jour : Février 2026</span>
                 </footer>
             </div>
+
+            {/* Password Modal */}
+            <AnimatePresence>
+                {showPasswordModal && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setShowPasswordModal(false)}
+                            className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
+                        />
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            className="w-full max-w-md bg-white rounded-[2rem] shadow-2xl relative z-10 overflow-hidden"
+                        >
+                            <div className="p-8 space-y-8">
+                                <div className="flex items-center justify-between">
+                                    <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Changer le mot de passe</h3>
+                                    <button
+                                        onClick={() => setShowPasswordModal(false)}
+                                        className="p-2 hover:bg-slate-100 rounded-xl transition-colors"
+                                    >
+                                        <X className="w-5 h-5 text-slate-400" />
+                                    </button>
+                                </div>
+
+                                <form onSubmit={handlePasswordUpdate} className="space-y-6">
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Mot de passe actuel</label>
+                                        <input
+                                            required
+                                            type="password"
+                                            value={currentPassword}
+                                            onChange={(e) => setCurrentPassword(e.target.value)}
+                                            className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all font-bold"
+                                            placeholder="••••••••"
+                                        />
+                                    </div>
+                                    <div className="space-y-4">
+                                        <div className="space-y-2">
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Nouveau mot de passe</label>
+                                            <input
+                                                required
+                                                type="password"
+                                                value={newPassword}
+                                                onChange={(e) => setNewPassword(e.target.value)}
+                                                className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all font-bold"
+                                                placeholder="••••••••"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Confirmer nouveau mot de passe</label>
+                                            <input
+                                                required
+                                                type="password"
+                                                value={confirmPassword}
+                                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                                className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-ely-blue/10 focus:border-ely-blue outline-none transition-all font-bold"
+                                                placeholder="••••••••"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {passwordError && (
+                                        <div className="p-4 bg-red-50 text-red-500 rounded-2xl text-[10px] font-bold uppercase tracking-widest border border-red-100">
+                                            {passwordError}
+                                        </div>
+                                    )}
+
+                                    <button
+                                        type="submit"
+                                        disabled={isUpdatingPassword}
+                                        className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-[0.2em] hover:bg-ely-blue transition-all shadow-xl shadow-blue-900/10 flex items-center justify-center gap-3 disabled:opacity-50"
+                                    >
+                                        {isUpdatingPassword ? (
+                                            <>
+                                                <Loader2 className="w-5 h-5 animate-spin" />
+                                                Mise à jour...
+                                            </>
+                                        ) : "Mettre à jour"}
+                                    </button>
+                                </form>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

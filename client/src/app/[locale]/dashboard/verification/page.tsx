@@ -11,6 +11,7 @@ import {
     CheckCircle2,
     ArrowLeft
 } from "lucide-react";
+import { createNotification } from "@/hooks/useNotifications";
 import { auth, db } from "@/lib/firebase";
 import { doc, updateDoc, serverTimestamp, query, collection, where, limit, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
@@ -119,6 +120,13 @@ export default function VerificationPage() {
                 paymentSelfieUrl: selfieUrl,
                 paymentVideoUrl: videoUrl,
                 paymentVerificationSubmittedAt: serverTimestamp()
+            });
+
+            // Create Notification
+            await createNotification(userId, {
+                title: "Vérification transmise 📸",
+                message: "Votre selfie et vidéo sont en cours d'analyse. Merci de patienter.",
+                type: 'info'
             });
 
             // Clean IDB

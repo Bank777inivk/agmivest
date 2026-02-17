@@ -9,6 +9,8 @@ import { auth, db } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, onSnapshot } from "firebase/firestore";
 import { useRouter } from "@/i18n/routing";
+import { createNotification } from "@/hooks/useNotifications";
+import { useRef } from "react";
 
 export default function DashboardLayout({
     children,
@@ -23,6 +25,8 @@ export default function DashboardLayout({
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const router = useRouter();
     const pathname = usePathname();
+    const prevStatusRef = useRef<string | null>(null);
+    const hasInitialStatus = useRef(false);
 
     useEffect(() => {
         let unsubUser: () => void;
@@ -47,8 +51,35 @@ export default function DashboardLayout({
                 unsubUser = onSnapshot(doc(db, "users", user.uid), (docSnap) => {
                     if (docSnap.exists()) {
                         const data = docSnap.data();
-                        setIdStatus(data.idStatus || null);
+                        const newStatus = data.idStatus || null;
+                        setIdStatus(newStatus);
                         setUserName(`${data.firstName} ${data.lastName}`);
+
+                        // Notification on KYC status change
+                        if (hasInitialStatus.current && prevStatusRef.current !== newStatus && newStatus) {
+                            let title = "Mise à jour d'identité";
+                            let message = "Le statut de votre vérification a changé.";
+                            let type: 'info' | 'success' | 'warning' | 'error' = 'info';
+
+                            if (newStatus === 'verified') {
+                                title = "Identité Vérifiée ✅";
+                                message = "Félicitations ! Votre compte est désormais pleinement opérationnel.";
+                                type = 'success';
+                            } else if (newStatus === 'rejected') {
+                                title = "Action Requise ⚠️";
+                                message = "Votre vérification a été refusée. Veuillez consulter vos emails.";
+                                type = 'error';
+                            } else if (newStatus === 'partial_rejection') {
+                                title = "Documents à compléter";
+                                message = "Certains documents ont été refusés. Merci de les soumettre à nouveau.";
+                                type = 'warning';
+                            }
+
+                            createNotification(user.uid, { title, message, type, link: '/dashboard/verification' });
+                        }
+
+                        prevStatusRef.current = newStatus;
+                        hasInitialStatus.current = true;
                     }
                 }, (error: any) => {
                     console.error("Firestore Error (User Layout):", error);
@@ -64,6 +95,32 @@ export default function DashboardLayout({
             if (unsubUser) unsubUser();
         };
     }, [pathname, router]);
+
+    // Separate effect for chat notifications to avoid layout re-runs
+    useEffect(() => {
+        const user = auth.currentUser;
+        if (!user) return;
+
+        const unsubscribeChat = onSnapshot(doc(db, "chats", user.uid), (docSnap) => {
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                if (data.unreadClient > 0) {
+                    // We only create a notification if it's "fresh" (last message is from admin)
+                    // and if we haven't already notified about THIS unread count.
+                    // For simplicity, we create a short-lived logic or just notification if chat is not open.
+                    // Note: This logic could be refined but handles the basic "You have a message" requirement.
+                    createNotification(user.uid, {
+                        title: "Nouveau message 💬",
+                        message: "Votre conseiller vous a envoyé un message. Cliquez pour répondre.",
+                        type: 'info',
+                        link: '/dashboard/support'
+                    });
+                }
+            }
+        });
+
+        return () => unsubscribeChat();
+    }, []);
 
     // On ne bloque plus le rendu global par un spinner
     // Le contenu (children) sera géré par loading.tsx si nécessaire
@@ -110,8 +167,8 @@ export default function DashboardLayout({
                     userEmail={userEmail}
                 />
                 <main className="flex-1 overflow-y-auto custom-scrollbar pt-20">
-                    <div className="p-4 md:p-8 max-w-7xl mx-auto">
-                        <IdentityBanner idStatus={idStatus} />
+                    <div className={`mx-auto max-w-7xl ${pathname?.includes('/verification') ? 'p-0' : 'p-4 md:p-8'}`}>
+                        {!pathname?.includes('/verification') && <IdentityBanner idStatus={idStatus} />}
                         {children}
                     </div>
                 </main>

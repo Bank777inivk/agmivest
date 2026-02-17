@@ -352,7 +352,12 @@ export default function DesktopDashboard({
                             <HelpCircle className="w-10 h-10 text-ely-mint mb-6" />
                             <h3 className="text-xl font-bold mb-3">Une question ?</h3>
                             <p className="text-blue-100/80 text-sm leading-relaxed mb-8">Nos experts vous accompagnent sous 24h.</p>
-                            <button className="w-full py-4 bg-white text-ely-blue rounded-2xl font-bold text-sm">Contacter un conseiller</button>
+                            <button
+                                onClick={() => router.push("/dashboard/support")}
+                                className="w-full py-4 bg-white text-ely-blue rounded-2xl font-bold text-sm hover:bg-white/90 transition-all shadow-lg active:scale-95"
+                            >
+                                Contacter un conseiller
+                            </button>
                         </div>
                     </section>
                     <section className="bg-white p-6 rounded-[2.5rem] border border-gray-100 shadow-sm">

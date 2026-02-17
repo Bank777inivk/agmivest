@@ -42,6 +42,12 @@ service cloud.firestore {
       // - Le 'super_admin' peut modifier n'importe quel utilisateur (ex: changer les rôles).
       // - L'admin "simple" peut lire mais pas forcément modifier les rôles des autres (selon besoins).
       allow update: if isSignedIn() && (isOwner(userId) || isSuperAdmin());  
+
+      // Sous-collection notifications
+      match /notifications/{notifId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+        allow read, write: if isAdmin();
+      }
     }
 
     // Collection Demandes (requests)

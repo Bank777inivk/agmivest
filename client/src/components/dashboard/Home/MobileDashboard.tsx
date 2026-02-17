@@ -188,6 +188,39 @@ export default function MobileDashboard({
             </div>
 
 
+            {/* Stats Horizontal Scroll or Tight Grid */}
+            <div className="grid grid-cols-2 gap-4">
+                {stats.map((stat) => (
+                    <motion.div
+                        key={stat.id}
+                        variants={item}
+                        className={cn(
+                            "p-5 rounded-[2rem] border shadow-sm transition-all",
+                            stat.id === 'approved'
+                                ? "bg-gradient-to-br from-ely-blue to-blue-800 border-white/10 text-white shadow-blue-900/20"
+                                : "bg-white border-gray-100"
+                        )}
+                    >
+                        <div className={cn(
+                            "w-10 h-10 rounded-xl flex items-center justify-center mb-3",
+                            stat.id === 'approved'
+                                ? "bg-white/10 text-white"
+                                : `bg-${stat.color}-50 text-${stat.color}-600`
+                        )}>
+                            <stat.icon className="w-5 h-5" />
+                        </div>
+                        <h3 className={cn(
+                            "text-xl font-black tracking-tight",
+                            stat.id === 'approved' ? "text-white" : "text-gray-900"
+                        )}>{stat.value}</h3>
+                        <p className={cn(
+                            "text-[9px] font-bold uppercase tracking-widest mt-1",
+                            stat.id === 'approved' ? "text-white/60" : "text-gray-400"
+                        )}>{stat.label}</p>
+                    </motion.div>
+                ))}
+            </div>
+
             {/* Quick Actions Grid (Mobile) */}
             <motion.div variants={item} className="grid grid-cols-4 gap-2">
                 {[
@@ -208,23 +241,6 @@ export default function MobileDashboard({
                     </button>
                 ))}
             </motion.div>
-
-            {/* Stats Horizontal Scroll or Tight Grid */}
-            <div className="grid grid-cols-2 gap-4">
-                {stats.map((stat) => (
-                    <motion.div
-                        key={stat.id}
-                        variants={item}
-                        className="bg-white p-5 rounded-[2rem] border border-gray-100 shadow-sm"
-                    >
-                        <div className={`w-10 h-10 rounded-xl bg-${stat.color}-50 text-${stat.color}-600 flex items-center justify-center mb-3`}>
-                            <stat.icon className="w-5 h-5" />
-                        </div>
-                        <h3 className="text-xl font-black text-gray-900 tracking-tight">{stat.value}</h3>
-                        <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-1">{stat.label}</p>
-                    </motion.div>
-                ))}
-            </div>
 
             {/* Recent Requests List */}
             <motion.div variants={item} className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
@@ -276,7 +292,12 @@ export default function MobileDashboard({
                         <h3 className="text-lg font-bold">Une question ?</h3>
                         <p className="text-xs text-white/70 mt-2 leading-relaxed">Nos experts vous répondent sous 24h ouvrées par téléphone ou chat.</p>
                     </div>
-                    <button className="w-full py-4 bg-white text-ely-blue rounded-2xl font-bold text-xs">Contacter mon conseiller</button>
+                    <button
+                        onClick={() => router.push("/dashboard/support")}
+                        className="w-full py-4 bg-white text-ely-blue rounded-2xl font-bold text-xs active:scale-95 transition-all shadow-lg"
+                    >
+                        Contacter mon conseiller
+                    </button>
                 </div>
                 <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-ely-mint/10 rounded-full blur-2xl" />
             </motion.div>

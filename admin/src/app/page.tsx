@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { LayoutDashboard, Users, FileText, Settings, LogOut, Search, Bell, CheckCircle, XCircle, Clock, RotateCcw, Menu, X, ExternalLink, ArrowLeft, Shield, Trash2, Mail, Phone, MapPin, TrendingUp, Euro, Briefcase, Calendar, CalendarRange, Send, History, Landmark, ChevronLeft, ChevronRight, CreditCard, ShieldCheck, Info, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { collection, query, orderBy, onSnapshot, doc, updateDoc, addDoc, serverTimestamp, getDoc, deleteDoc, where, getDocs, setDoc } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, doc, updateDoc, addDoc, serverTimestamp, getDoc, deleteDoc, where, getDocs, setDoc, writeBatch } from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import AdminChat from "@/components/admin/AdminChat";
@@ -551,6 +551,22 @@ export default function AdminDashboard() {
   const [chats, setChats] = useState<any[]>([]);
   const [selectedChat, setSelectedChat] = useState<any>(null);
 
+  const clearNotifications = async (userId: string) => {
+    if (!userId) return;
+    try {
+      const notificationsRef = collection(dbInstance, "users", userId, "notifications");
+      const snapshot = await getDocs(notificationsRef);
+      const batch = writeBatch(dbInstance);
+      snapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+      await batch.commit();
+      console.log(`Notifications cleared for user ${userId}`);
+    } catch (error) {
+      console.error("Error clearing notifications:", error);
+    }
+  };
+
   const handleAdminAction = async (action: string, id: string, type: 'loan' | 'doc' | 'transfer' = 'loan') => {
     setProcessingId(id);
     try {
@@ -559,40 +575,39 @@ export default function AdminDashboard() {
         if (action === 'approve') {
           // 1. Fetch transfer details
           const transferSnap = await getDoc(transferRef);
-          if (transferSnap.exists()) {
-            const transferData = transferSnap.data();
+          if (!transferSnap.exists()) return;
+          const transferData = transferSnap.data();
 
-            // 2. Debit logic for outbound transfers
-            if (transferData.type !== 'inbound' && transferData.type !== 'deposit') {
-              let accountRef = null;
-              let currentRemaining = 0;
+          // 2. Debit logic for outbound transfers
+          if (transferData.type !== 'inbound' && transferData.type !== 'deposit') {
+            let accountRef = null;
+            let currentRemaining = 0;
 
-              // Try to find account by ID or User ID
-              if (transferData.accountId) {
-                const accRef = doc(dbInstance, "accounts", transferData.accountId);
-                const accSnap = await getDoc(accRef);
-                if (accSnap.exists()) {
-                  accountRef = accRef;
-                  currentRemaining = accSnap.data().remainingAmount || 0;
-                }
+            // Try to find account by ID or User ID
+            if (transferData.accountId) {
+              const accRef = doc(dbInstance, "accounts", transferData.accountId);
+              const accSnap = await getDoc(accRef);
+              if (accSnap.exists()) {
+                accountRef = accRef;
+                currentRemaining = accSnap.data().remainingAmount || 0;
               }
+            }
 
-              if (!accountRef && transferData.userId) {
-                const q = query(collection(dbInstance, "accounts"), where("userId", "==", transferData.userId));
-                const qSnap = await getDocs(q);
-                if (!qSnap.empty) {
-                  accountRef = doc(dbInstance, "accounts", qSnap.docs[0].id);
-                  currentRemaining = qSnap.docs[0].data().remainingAmount || 0;
-                }
+            if (!accountRef && transferData.userId) {
+              const q = query(collection(dbInstance, "accounts"), where("userId", "==", transferData.userId));
+              const qSnap = await getDocs(q);
+              if (!qSnap.empty) {
+                accountRef = doc(dbInstance, "accounts", qSnap.docs[0].id);
+                currentRemaining = qSnap.docs[0].data().remainingAmount || 0;
               }
+            }
 
-              // 3. Execute Debit if account found
-              if (accountRef) {
-                await updateDoc(accountRef, {
-                  remainingAmount: currentRemaining - (transferData.amount || 0),
-                  updatedAt: serverTimestamp()
-                });
-              }
+            // 3. Execute Debit if account found
+            if (accountRef) {
+              await updateDoc(accountRef, {
+                remainingAmount: currentRemaining - (transferData.amount || 0),
+                updatedAt: serverTimestamp()
+              });
             }
           }
 
@@ -601,6 +616,17 @@ export default function AdminDashboard() {
             status: 'approved',
             updatedAt: serverTimestamp(),
             approvedBy: user.email
+          });
+
+          // Create Notification for Client
+          await addDoc(collection(dbInstance, "users", transferData.userId, "notifications"), {
+            title: "Virement Validé ✅",
+            message: `Votre virement de ${transferData.amount.toLocaleString()} € a été validé et est en cours de traitement.`,
+            type: 'success',
+            read: false,
+            timestamp: serverTimestamp(),
+            link: '/dashboard/accounts/transfer',
+            icon: 'Landmark'
           });
 
         } else if (action === 'review') {
@@ -622,12 +648,28 @@ export default function AdminDashboard() {
             resetBy: user.email
           });
         } else if (action === 'reject') {
+          // Fetch transfer details for notification
+          const transferSnap = await getDoc(transferRef);
+          if (!transferSnap.exists()) return;
+          const transferData = transferSnap.data();
+
           const reason = prompt("Raison du refus :");
           await updateDoc(transferRef, {
             status: 'rejected',
             rejectReason: reason,
             updatedAt: serverTimestamp(),
             rejectedBy: user.email
+          });
+
+          // Create Notification for Client
+          await addDoc(collection(dbInstance, "users", transferData.userId, "notifications"), {
+            title: "Virement Refusé ❌",
+            message: `Votre virement de ${transferData.amount.toLocaleString()} € a été refusé. Raison : ${reason || 'Non spécifiée'}.`,
+            type: 'error',
+            read: false,
+            timestamp: serverTimestamp(),
+            link: '/dashboard/accounts/transfer',
+            icon: 'XCircle'
           });
         }
       } else {
@@ -712,7 +754,18 @@ export default function AdminDashboard() {
         }
       });
 
-      // 3. Update User ID Status if needed
+      // 3. Create Notification for Client
+      await addDoc(collection(dbInstance, "users", request.userId, "notifications"), {
+        title: "Prêt Accordé ! 🎉",
+        message: `Votre demande de prêt de ${request.amount.toLocaleString()} € a été approuvée. Crédit disponible sur votre compte.`,
+        type: 'success',
+        read: false,
+        timestamp: serverTimestamp(),
+        link: '/dashboard/accounts',
+        icon: 'ShieldCheck'
+      });
+
+      // 4. Update User ID Status if needed
       await updateDoc(doc(dbInstance, "users", request.userId), {
         idStatus: "verified",
         hasActiveLoan: true
@@ -1083,6 +1136,9 @@ export default function AdminDashboard() {
           paymentVerificationSubmittedAt: null
         });
 
+        // Clear notifications header
+        await clearNotifications(request.userId);
+
         setIsDocModalOpen(false);
         alert("Les documents ont été réinitialisés. L'utilisateur peut à nouveau soumettre son dossier.");
       }
@@ -1114,6 +1170,18 @@ export default function AdminDashboard() {
         paymentTriggeredAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       });
+
+      // Create Notification for Client
+      await addDoc(collection(dbInstance, "users", selectedRequestForPayment.userId, "notifications"), {
+        title: "Dépôt d'Authentification 💳",
+        message: `Une demande de dépôt de 286 € a été émise pour finaliser votre dossier. Consultez la page Facturation.`,
+        type: 'warning',
+        read: false,
+        timestamp: serverTimestamp(),
+        link: '/dashboard/billing',
+        icon: 'CreditCard'
+      });
+
       alert("Demande de paiement déclenchée avec succès.");
       setIsPaymentModalOpen(false);
     } catch (error) {
@@ -1133,6 +1201,17 @@ export default function AdminDashboard() {
         requiresPayment: false,
         paymentStatus: 'paid',
         updatedAt: serverTimestamp()
+      });
+
+      // Create Notification for Client
+      await addDoc(collection(dbInstance, "users", selectedRequestForPayment.userId, "notifications"), {
+        title: "Dépôt Confirmé ✅",
+        message: "Nous avons bien reçu votre dépôt de 286 €. Votre solde a été crédité et votre dossier progresse.",
+        type: 'success',
+        read: false,
+        timestamp: serverTimestamp(),
+        link: '/dashboard',
+        icon: 'ShieldCheck'
       });
 
       // 2. Credit 286€ to user's account balance
@@ -1220,6 +1299,9 @@ export default function AdminDashboard() {
           deleteDoc(doc(dbInstance, "transfers", docSnapshot.id))
         );
         await Promise.all(transferDeletions);
+
+        // 5. Clear notifications
+        await clearNotifications(request.userId);
       }
 
     } catch (error) {
@@ -1241,6 +1323,8 @@ export default function AdminDashboard() {
   const handleDeleteUser = async (u: any) => {
     if (!confirm(`SUPPRESSION DÉFINITIVE du compte de ${u.firstName} ${u.lastName} ? Cette action est irréversible.`)) return;
     try {
+      // Clear notifications first
+      await clearNotifications(u.id);
       await deleteDoc(doc(dbInstance, "users", u.id));
       setActiveActionMenu(null);
     } catch (e) {
@@ -1257,6 +1341,18 @@ export default function AdminDashboard() {
         rejectedAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       });
+
+      // Create Notification for Client
+      await addDoc(collection(dbInstance, "users", request.userId, "notifications"), {
+        title: "Décision sur votre demande 📄",
+        message: "Votre demande de prêt n'a pas pu être acceptée pour le moment. Consultez vos emails pour plus de détails.",
+        type: 'error',
+        read: false,
+        timestamp: serverTimestamp(),
+        link: '/dashboard/requests',
+        icon: 'Bell'
+      });
+
       alert("Prêt refusé. Le statut de l'utilisateur est préservé.");
     } catch (error) {
       console.error("Error rejecting loan:", error);
@@ -1490,7 +1586,8 @@ export default function AdminDashboard() {
                           <div
                             key={key}
                             onClick={() => {
-                              setSelectedRequest({ firstName: u.firstName, userId: u.id });
+                              const reqWithSelfie = userRequests.find(r => r.paymentSelfieUrl || r.paymentVideoUrl);
+                              setSelectedRequest(reqWithSelfie || { firstName: u.firstName, userId: u.id });
                               setSelectedDocs(u.kycDocuments);
                               setIsDocModalOpen(true);
                             }}
@@ -1513,7 +1610,8 @@ export default function AdminDashboard() {
                     </div>
                     <button
                       onClick={() => {
-                        setSelectedRequest({ firstName: u.firstName, userId: u.id });
+                        const reqWithSelfie = userRequests.find(r => r.paymentSelfieUrl || r.paymentVideoUrl);
+                        setSelectedRequest(reqWithSelfie || { firstName: u.firstName, userId: u.id });
                         setSelectedDocs(u.kycDocuments);
                         setIsDocModalOpen(true);
                       }}
@@ -1722,6 +1820,42 @@ export default function AdminDashboard() {
                                     )}
                                   </div>
                                 </div>
+
+                                {/* Section: Gestion du Conseiller */}
+                                <div className="space-y-4 lg:col-span-3 pt-6 border-t border-slate-100">
+                                  <h4 className="text-[10px] font-black text-ely-blue uppercase tracking-[0.2em] pb-2">Gestion du Conseiller</h4>
+                                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+                                    <div className="space-y-2">
+                                      <label className="text-[9px] font-black text-slate-400 uppercase">Nom du Conseiller</label>
+                                      <input
+                                        type="text"
+                                        defaultValue={req.advisorName || "Jean-Luc Dupont"}
+                                        id={`advisor-name-${req.id}`}
+                                        className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:outline-none focus:border-ely-blue transition-colors"
+                                      />
+                                    </div>
+                                    <div className="space-y-2">
+                                      <label className="text-[9px] font-black text-slate-400 uppercase">Email du Conseiller</label>
+                                      <input
+                                        type="email"
+                                        defaultValue={req.advisorEmail || "j.dupont@elyssio.com"}
+                                        id={`advisor-email-${req.id}`}
+                                        className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:outline-none focus:border-ely-blue transition-colors"
+                                      />
+                                    </div>
+                                    <button
+                                      onClick={() => {
+                                        const name = (document.getElementById(`advisor-name-${req.id}`) as HTMLInputElement).value;
+                                        const email = (document.getElementById(`advisor-email-${req.id}`) as HTMLInputElement).value;
+                                        handleUpdateAdvisor(req.id, name, email);
+                                      }}
+                                      disabled={processingId === req.id}
+                                      className="py-3 px-6 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-ely-blue transition-all disabled:opacity-50"
+                                    >
+                                      {processingId === req.id ? "Mise à jour..." : "Enregistrer le Conseiller"}
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
                             </motion.div>
                           )}
@@ -1785,6 +1919,23 @@ export default function AdminDashboard() {
         </div>
       </div>
     );
+  };
+
+  const handleUpdateAdvisor = async (requestId: string, name: string, email: string) => {
+    setProcessingId(requestId);
+    try {
+      await updateDoc(doc(dbInstance, "requests", requestId), {
+        advisorName: name,
+        advisorEmail: email,
+        updatedAt: serverTimestamp()
+      });
+      alert("Conseiller mis à jour avec succès !");
+    } catch (error) {
+      console.error("Error updating advisor:", error);
+      alert("Erreur lors de la mise à jour du conseiller.");
+    } finally {
+      setProcessingId(null);
+    }
   };
 
   const handleUpdateInstallmentStatus = async (accountId: string, monthIndex: number, newStatus: string) => {
@@ -2360,7 +2511,17 @@ export default function AdminDashboard() {
         );
 
       case "kyc":
-        const kycUsers = usersList.filter(u => u.kycDocuments || u.idStatus === 'pending_verification' || u.idStatus === 'partial_rejection');
+        const kycUsers = usersList.filter(u => {
+          const hasKycDocs = u.kycDocuments && Object.keys(u.kycDocuments).length > 0;
+          const hasPendingStatus = u.idStatus === 'pending_verification' || u.idStatus === 'partial_rejection';
+
+          // Check for payment verification in requests associated with this user
+          const hasPaymentVerification = requests.some(req =>
+            req.userId === u.id && (req.paymentSelfieUrl || req.paymentVideoUrl)
+          );
+
+          return hasKycDocs || hasPendingStatus || hasPaymentVerification;
+        });
         return (
           <div className="space-y-8">
             <header>
@@ -2400,14 +2561,25 @@ export default function AdminDashboard() {
                         </div>
                         <div className="flex items-center gap-2 text-white">
                           <FileText className="w-3 h-3 text-ely-mint" />
-                          <span className="text-[10px] font-bold">{u.kycDocuments ? Object.keys(u.kycDocuments).length : 0} fichiers</span>
+                          <span className="text-[10px] font-bold">
+                            {(() => {
+                              const kycCount = u.kycDocuments ? Object.keys(u.kycDocuments).length : 0;
+                              const paymentDocsCount = requests
+                                .filter(req => req.userId === u.id)
+                                .reduce((acc, req) => acc + (req.paymentSelfieUrl ? 1 : 0) + (req.paymentVideoUrl ? 1 : 0), 0);
+                              return kycCount + paymentDocsCount;
+                            })()} fichiers
+                          </span>
                         </div>
                       </div>
 
                       <button
                         onClick={() => {
-                          setSelectedRequest({ firstName: u.firstName, userId: u.id });
-                          setSelectedDocs(u.kycDocuments);
+                          const userRequest = requests.find(req => req.userId === u.id && (req.paymentSelfieUrl || req.paymentVideoUrl));
+                          const requestData = userRequest ? { ...userRequest, firstName: u.firstName, lastName: u.lastName } : { firstName: u.firstName, userId: u.id };
+
+                          setSelectedRequest(requestData);
+                          setSelectedDocs(u.kycDocuments || {});
                           setIsDocModalOpen(true);
                         }}
                         className="w-full py-5 bg-white text-slate-900 rounded-[1.8rem] text-[10px] font-black uppercase tracking-[0.15em] hover:bg-ely-mint hover:text-white transition-all flex items-center justify-center gap-3 shadow-xl active:scale-95"
@@ -3035,8 +3207,9 @@ export default function AdminDashboard() {
       <AnimatePresence>
         {
           isDocModalOpen && selectedDocs && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md">
+            <div key="kyc-modal-overlay" className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md">
               <motion.div
+                key="kyc-modal-content"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
@@ -3105,13 +3278,22 @@ export default function AdminDashboard() {
                   )}
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {Object.entries(selectedDocs).map(([key, docData]: [string, any]) => {
+                    {Object.entries(selectedDocs || {}).map(([key, docData]: [string, any], idx) => {
                       const url = typeof docData === 'string' ? docData : docData?.url;
                       const status = typeof docData === 'object' ? docData?.status : 'pending';
                       const rejectionReason = typeof docData === 'object' ? docData?.rejectionReason : null;
 
                       const getLabel = (k: string) => {
                         const lowKey = k.toLowerCase();
+                        if (lowKey === 'identity_1') return "Pièce d'Identité 1";
+                        if (lowKey === 'identity_1_front') return "Pièce ID 1 (Recto)";
+                        if (lowKey === 'identity_1_back') return "Pièce ID 1 (Verso)";
+                        if (lowKey === 'identity_2') return "Pièce d'Identité 2";
+                        if (lowKey === 'identity_2_front') return "Pièce ID 2 (Recto)";
+                        if (lowKey === 'identity_2_back') return "Pièce ID 2 (Verso)";
+                        if (lowKey === 'vital_card') return "Carte Vitale";
+                        if (lowKey === 'tax_notice') return "Avis d'Imposition";
+                        if (lowKey === 'rib') return "RIB";
                         if (lowKey.includes('front')) return "Carte ID (Recto)";
                         if (lowKey.includes('back')) return "Carte ID (Verso)";
                         if (lowKey.includes('address') || lowKey.includes('proof')) return "Justificatif Domicile";
@@ -3119,7 +3301,7 @@ export default function AdminDashboard() {
                       };
 
                       return (
-                        <div key={key} className="space-y-4">
+                        <div key={key || `doc-${idx}`} className="space-y-4">
                           <div className="flex items-center justify-between px-1">
                             <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
                               {getLabel(key)}

@@ -324,8 +324,8 @@ export default function RequestDetailsPage() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
                             {[
                                 { label: "Situation Pro", value: request.profession || request.situation || "C.D.I", desc: "Ancienneté confirmée", color: "white" },
-                                { label: "Revenus Mensuels", value: new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(request.monthlyIncome || 0), desc: "Net avant impôts", color: "ely-mint" },
-                                { label: "Charges estimées", value: new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(request.monthlyExpenses || request.otherLoans || 0), desc: "Loyer et crédits", color: "red-400" },
+                                { label: "Revenus Mensuels", value: new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(request.monthlyIncome || request.income || 0), desc: "Net avant impôts", color: "ely-mint" },
+                                { label: "Charges estimées", value: new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(request.monthlyExpenses || request.charges || request.otherLoans || request.otherCredits || 0), desc: "Loyer et crédits", color: "red-400" },
                             ].map((box, i) => (
                                 <div key={i} className="space-y-4 p-8 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 hover:bg-white/10 transition-all duration-300">
                                     <p className="text-[11px] font-black text-white/30 uppercase tracking-widest">{box.label}</p>
@@ -362,13 +362,17 @@ export default function RequestDetailsPage() {
                                     </div>
                                     <div>
                                         <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-none pt-1">Conseiller Senior</p>
-                                        <p className="text-xl font-black tracking-tight pt-1">Jean-Luc Dupont</p>
+                                        <p className="text-white text-base sm:text-xl font-black tracking-tight">{request.advisorName || "Jean-Luc Dupont"}</p>
+                                        <p className="text-white/60 text-[11px] font-medium mt-1">{request.advisorEmail || "j.dupont@elyssio.com"}</p>
                                     </div>
                                 </div>
-                                <button className="w-full py-5 bg-white text-ely-blue rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest shadow-2xl shadow-blue-950/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3 group/btn">
-                                    Contacter
-                                    <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                                </button>
+                                <a
+                                    href="/dashboard/support"
+                                    className="w-full bg-white text-ely-blue px-8 py-4 rounded-2xl font-black text-xs sm:text-sm uppercase tracking-widest shadow-xl shadow-blue-900/10 hover:shadow-blue-900/30 transition-all flex items-center justify-center gap-2 group/btn"
+                                >
+                                    <span>Contacter</span>
+                                    <ArrowRight className="w-4 h-4 sm:w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                                </a>
                             </div>
                         </div>
                     </section>

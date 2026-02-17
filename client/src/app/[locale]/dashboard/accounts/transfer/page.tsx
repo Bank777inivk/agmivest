@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { auth, db } from "@/lib/firebase";
 import { doc, getDoc, getDocs, updateDoc, serverTimestamp, collection, addDoc, query, where, orderBy, onSnapshot } from "firebase/firestore";
+import { createNotification } from "@/hooks/useNotifications";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
 import MobileTransfer from "@/components/dashboard/Transfers/MobileTransfer";
@@ -146,6 +147,14 @@ export default function TransferPage() {
             };
 
             await addDoc(collection(db, "transfers"), transferData);
+
+            // Create Notification
+            await createNotification(auth.currentUser.uid, {
+                title: "Virement initié 💸",
+                message: `Votre demande de virement de ${transferAmount.toLocaleString()} € est en cours de traitement.`,
+                type: 'info'
+            });
+
             setShowSuccess(true);
             setAmount("");
         } catch (error) {

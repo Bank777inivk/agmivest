@@ -118,8 +118,14 @@ export default function MobileTransfer({
                         {/* Main Interaction Card */}
                         <div className="bg-gradient-to-br from-ely-blue to-blue-800 rounded-[2rem] p-6 text-white shadow-xl shadow-blue-900/10 relative overflow-hidden">
                             {/* Input Amount - Simplified */}
-                            <div className="relative z-10 flex flex-col items-center justify-center space-y-2 py-6">
-                                <label className="text-[10px] font-bold text-white/50 uppercase tracking-widest">Montant à transférer</label>
+                            <div className="relative z-10 flex flex-col items-center justify-center space-y-2 py-4">
+                                <div className="bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 mb-2">
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-ely-mint flex items-center gap-2">
+                                        <Wallet className="w-3 h-3" />
+                                        Disponible : {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(loanAccount?.remainingAmount || 0)}
+                                    </p>
+                                </div>
+                                <label className="text-[10px] font-bold text-white/50 uppercase tracking-widest leading-none">Montant à transférer</label>
                                 <div className="flex items-end justify-center gap-1 w-full">
                                     <input
                                         type="number"
@@ -127,24 +133,24 @@ export default function MobileTransfer({
                                         onChange={(e) => setAmount(e.target.value)}
                                         placeholder="0"
                                         className="bg-transparent text-center text-5xl font-black text-white w-full outline-none placeholder:text-white/10 p-0 m-0 leading-none min-w-0"
-                                        style={{ maxWidth: '200px' }} // Limit width to prevent overflow
+                                        style={{ maxWidth: '200px' }}
                                     />
                                     <span className="text-3xl font-bold text-white/30 mb-1">€</span>
                                 </div>
                             </div>
 
                             {/* Destination - Simplified Row */}
-                            <div className="mt-6 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/5 flex items-center gap-4">
+                            <div className="mt-4 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/5 flex items-center gap-4">
                                 <div className="p-3 bg-white/10 rounded-lg text-white/60">
                                     <Landmark className="w-6 h-6" />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className="font-bold text-white text-sm truncate">{loanAccount?.bankName || "Compte"}</p>
-                                    <p className="font-mono text-xs text-white/40 truncate">
-                                        {loanAccount?.iban ? `•••• ${loanAccount.iban.slice(-4)}` : "•••• ••••"}
+                                    <p className="font-bold text-white text-sm truncate">{loanAccount?.bankName || "Compte de référence"}</p>
+                                    <p className="font-mono text-[10px] text-white/40 truncate">
+                                        {loanAccount?.iban ? `${loanAccount.iban.slice(0, 4)} •••• ${loanAccount.iban.slice(-4)}` : "•••• ••••"}
                                     </p>
                                 </div>
-                                <div className="text-[10px] bg-ely-mint/20 text-ely-mint px-2 py-1 rounded-md font-bold border border-ely-mint/20">
+                                <div className="text-[9px] bg-ely-mint/20 text-ely-mint px-2.5 py-1 rounded-md font-black border border-ely-mint/20 uppercase tracking-tighter">
                                     Vérifié
                                 </div>
                             </div>
@@ -152,22 +158,21 @@ export default function MobileTransfer({
 
                         {/* Security Alert if Blocked */}
                         {isBlocked && (
-                            <div className="bg-white/10 backdrop-blur-md p-6 rounded-[2rem] border border-white/20 flex gap-4 shadow-lg relative overflow-hidden group">
-                                <div className="p-3 bg-white/10 rounded-xl shrink-0">
-                                    <ShieldCheck className="w-5 h-5 text-white" />
+                            <div className="bg-[#0F172A] p-6 rounded-[2rem] border border-white/5 flex gap-4 shadow-xl relative overflow-hidden group">
+                                <div className="p-3 bg-white/5 rounded-xl shrink-0">
+                                    <ShieldCheck className="w-5 h-5 text-ely-mint" />
                                 </div>
                                 <div className="relative z-10 space-y-1">
                                     <p className="text-xs font-black text-white uppercase tracking-widest">
                                         {blockingReason === 'verification' ? "Vérification Requise" : "Dépôt Requis"}
                                     </p>
-                                    <p className="text-[11px] text-white/70 leading-relaxed font-medium">
+                                    <p className="text-[11px] text-slate-400 leading-relaxed font-medium">
                                         {blockingReason === 'verification'
                                             ? "Vérification d'identité nécessaire pour sécuriser vos virements."
                                             : "Dépôt d'authentification requis pour finaliser votre accès."
                                         }
                                     </p>
                                 </div>
-                                <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-white/5 rounded-full blur-xl" />
                             </div>
                         )}
 
@@ -178,7 +183,7 @@ export default function MobileTransfer({
                                     initial={{ opacity: 0, height: 0 }}
                                     animate={{ opacity: 1, height: 'auto' }}
                                     exit={{ opacity: 0, height: 0 }}
-                                    className="bg-red-50 text-red-600 p-4 rounded-xl text-xs font-medium flex items-center gap-3 border border-red-100"
+                                    className="bg-red-500/10 text-red-400 p-4 rounded-xl text-[11px] font-bold flex items-center gap-3 border border-red-500/20"
                                 >
                                     <AlertCircle className="w-4 h-4 shrink-0" />
                                     {error}
@@ -190,68 +195,129 @@ export default function MobileTransfer({
                         <button
                             disabled={isProcessing || !amount || parseFloat(amount) <= 0 || isBlocked}
                             onClick={handleTransfer}
-                            className="w-full bg-ely-mint text-white py-5 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-ely-mint/20 active:scale-95 transition-all disabled:opacity-50 disabled:shadow-none flex items-center justify-center gap-2"
+                            className="w-full bg-ely-mint text-white py-5 rounded-2xl font-black text-sm uppercase tracking-[0.2em] shadow-lg shadow-ely-mint/20 active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center gap-3"
                         >
                             {isProcessing ? (
                                 <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                             ) : (
                                 <>
-                                    {isBlocked ? "Bloqué" : "Confirmer"}
+                                    {isBlocked ? "Transfert Bloqué" : "Confirmer le virement"}
                                     <Send className="w-4 h-4" />
                                 </>
                             )}
                         </button>
 
                         {/* Security Control Card (Mobile) */}
-                        <div className="bg-[#0F172A] rounded-3xl p-6 text-white relative overflow-hidden">
-                            <h4 className="text-base font-bold mb-3 flex items-center gap-2 text-ely-mint">
-                                <Info className="w-4 h-4" />
+                        <div className="bg-gradient-to-br from-ely-blue to-blue-800 rounded-[2rem] p-7 text-white shadow-xl shadow-blue-900/10 relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform">
+                                <ShieldCheck className="w-24 h-24" />
+                            </div>
+
+                            <h4 className="text-sm font-black uppercase tracking-widest mb-4 flex items-center gap-3 relative z-10">
+                                <div className="p-2 bg-white/10 rounded-lg">
+                                    <Info className="w-4 h-4 text-ely-mint" />
+                                </div>
                                 Contrôle de sécurité
                             </h4>
-                            <p className="text-xs text-slate-400 leading-relaxed mb-6">
+                            <p className="text-[11px] text-white/50 leading-relaxed mb-6 font-medium relative z-10">
                                 Par mesure de lutte contre la fraude, chaque virement fait l'objet d'une analyse systématique par nos services de conformité.
                             </p>
-                            <div className="grid grid-cols-2 gap-3">
-                                <div className="p-3 bg-white/5 rounded-xl border border-white/5">
-                                    <p className="text-[9px] font-black text-slate-500 uppercase mb-1 tracking-wider">Délai estimé</p>
+                            <div className="grid grid-cols-2 gap-3 relative z-10">
+                                <div className="p-4 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
+                                    <p className="text-[9px] font-black text-white/30 uppercase mb-1 tracking-wider">Délai estimé</p>
                                     <p className="text-sm font-bold text-white">24h - 48h</p>
                                 </div>
-                                <div className="p-3 bg-white/5 rounded-xl border border-white/5">
-                                    <p className="text-[9px] font-black text-slate-500 uppercase mb-1 tracking-wider">Protection</p>
+                                <div className="p-4 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
+                                    <p className="text-[9px] font-black text-white/30 uppercase mb-1 tracking-wider">Protection</p>
                                     <p className="text-sm font-bold text-white">Cryptage AES</p>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Recent History Mobile (Cards) */}
-                        <div className="pt-6">
-                            <h3 className="text-lg font-bold text-gray-900 mb-4 px-2">Récent</h3>
-                            <div className="space-y-3">
-                                {transfers.slice(0, 5).map((transfer) => {
-                                    const styles = getStatusStyles(transfer.status);
-                                    return (
-                                        <div key={transfer.id} className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
-                                            <div className="flex items-center gap-3">
-                                                <div className={cn("p-2 rounded-lg", styles.bg)}>
-                                                    <styles.icon className="w-4 h-4" />
+                        {/* Recent History Mobile (CARDS RICHES) */}
+                        <div className="pt-4 pb-10">
+                            <div className="flex items-center justify-between mb-6 px-2">
+                                <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Historique complet</h3>
+                                <div className="p-2 bg-ely-blue/5 rounded-lg">
+                                    <History className="w-4 h-4 text-ely-blue" />
+                                </div>
+                            </div>
+
+                            <div className="space-y-4">
+                                {transfers.length > 0 ? (
+                                    transfers.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((transfer) => {
+                                        const styles = getStatusStyles(transfer.status);
+                                        return (
+                                            <div key={transfer.id} className="bg-white p-5 rounded-[2rem] border border-gray-100 shadow-sm space-y-4 active:scale-[0.98] transition-all">
+                                                <div className="flex items-center justify-between">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className={cn("p-2.5 rounded-xl border", styles.bg)}>
+                                                            <styles.icon className="w-4 h-4" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="font-black text-gray-900 text-sm">
+                                                                {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(transfer.amount || 0)}
+                                                            </p>
+                                                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tight">
+                                                                {transfer.createdAt?.seconds ? new Date(transfer.createdAt.seconds * 1000).toLocaleDateString() : "Juste à l'instant"}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <span className={cn("text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest border", styles.bg)}>
+                                                        {styles.label}
+                                                    </span>
                                                 </div>
-                                                <div>
-                                                    <p className="font-bold text-gray-900 text-sm">{transfer.amount?.toLocaleString()} €</p>
-                                                    <p className="text-[10px] text-gray-400">
-                                                        {transfer.createdAt?.seconds ? new Date(transfer.createdAt.seconds * 1000).toLocaleDateString() : "En cours"}
-                                                    </p>
+
+                                                <div className="h-px bg-gray-50 mx-2" />
+
+                                                <div className="grid grid-cols-2 gap-4 px-2">
+                                                    <div>
+                                                        <p className="text-[8px] font-black text-gray-300 uppercase tracking-widest mb-1">Destinataire</p>
+                                                        <p className="text-[11px] font-bold text-gray-600 truncate">{transfer.bankName || "Compte de référence"}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-[8px] font-black text-gray-300 uppercase tracking-widest mb-1">IBAN</p>
+                                                        <p className="text-[11px] font-mono text-gray-400">
+                                                            {transfer.iban?.slice(0, 4)} •••• {transfer.iban?.slice(-4)}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <span className={cn("text-[9px] font-bold px-2 py-1 rounded-md uppercase", styles.bg)}>
-                                                {styles.label}
-                                            </span>
+                                        );
+                                    })
+                                ) : (
+                                    <div className="py-20 text-center space-y-4 bg-white rounded-[2rem] border border-dashed border-gray-200">
+                                        <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto">
+                                            <Search className="w-6 h-6 text-gray-300" />
                                         </div>
-                                    );
-                                })}
-                                {transfers.length === 0 && (
-                                    <p className="text-center text-gray-400 text-xs py-4">Aucun virement récent</p>
+                                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Aucun virement</p>
+                                    </div>
                                 )}
                             </div>
+
+                            {/* Mobile Pagination */}
+                            {transfers.length > itemsPerPage && (
+                                <div className="mt-8 flex items-center justify-between px-2 bg-white/50 p-4 rounded-2xl border border-gray-100">
+                                    <button
+                                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                        disabled={currentPage === 1}
+                                        className="p-3 bg-white border border-gray-100 rounded-xl disabled:opacity-30 active:scale-90 transition-all shadow-sm"
+                                    >
+                                        <ChevronLeft className="w-5 h-5 text-gray-600" />
+                                    </button>
+                                    <div className="text-center">
+                                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Page</p>
+                                        <p className="text-sm font-black text-gray-900">{currentPage} / {Math.ceil(transfers.length / itemsPerPage)}</p>
+                                    </div>
+                                    <button
+                                        onClick={() => setCurrentPage(prev => prev + 1)}
+                                        disabled={currentPage * itemsPerPage >= transfers.length}
+                                        className="p-3 bg-white border border-gray-100 rounded-xl disabled:opacity-30 active:scale-90 transition-all shadow-sm"
+                                    >
+                                        <ChevronRight className="w-5 h-5 text-gray-600" />
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </motion.div>
                 )}
