@@ -26,7 +26,7 @@ const ChecklistItem = ({
     isSubmitting
 }: {
     doc: DocumentUpload;
-    onCamera: () => void;
+    onCamera: (() => void) | null;
     onUpload: () => void;
     onRemove: () => void;
     isSubmitting: boolean;
@@ -77,12 +77,14 @@ const ChecklistItem = ({
                         </div>
                     ) : (
                         <div key="actions" className="flex gap-1.5">
-                            <button
-                                onClick={onCamera}
-                                className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-600 active:bg-slate-100 active:scale-95 transition-all"
-                            >
-                                <Camera className="w-4 h-4" />
-                            </button>
+                            {onCamera && (
+                                <button
+                                    onClick={onCamera}
+                                    className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-600 active:bg-slate-100 active:scale-95 transition-all"
+                                >
+                                    <Camera className="w-4 h-4" />
+                                </button>
+                            )}
                             <button
                                 onClick={onUpload}
                                 className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-900 active:bg-slate-200 active:scale-95 transition-all"
@@ -143,62 +145,111 @@ export default function MobileVerification({
             {/* Spacer for fixed header */}
             <div className="h-[132px] w-full shrink-0" />
 
+            {/* Instructions Section */}
+            <div className="mx-6 mt-6 p-6 bg-gradient-to-br from-slate-50 to-blue-50/30 rounded-3xl border border-blue-100/50 shadow-sm relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-400/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
+
+                <div className="flex items-center gap-2.5 mb-5 relative">
+                    <div className="w-8 h-8 rounded-xl bg-amber-100 flex items-center justify-center">
+                        <AlertCircle className="w-5 h-5 text-amber-600" />
+                    </div>
+                    <span className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-900">Pré-requis obligatoires</span>
+                </div>
+
+                <div className="space-y-4 relative">
+                    <div className="flex gap-3 items-start">
+                        <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
+                            <span className="text-[9px] font-black text-blue-600">01</span>
+                        </div>
+                        <p className="text-[11px] text-slate-600 font-bold leading-relaxed">
+                            Pièces d'identité : <span className="text-slate-900 underline decoration-blue-200 decoration-2 underline-offset-2">Photos couleur nettes</span> uniquement (bordures visibles).
+                        </p>
+                    </div>
+
+                    <div className="flex gap-3 items-start">
+                        <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
+                            <span className="text-[9px] font-black text-blue-600">02</span>
+                        </div>
+                        <p className="text-[11px] text-slate-600 font-bold leading-relaxed">
+                            Justificatifs & Finance : Format <span className="text-slate-900 font-black underline decoration-blue-200 decoration-2 underline-offset-2">PDF original</span> requis (pas de scans).
+                        </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-100">
+                        <div className="flex items-center justify-between">
+                            <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Support direct</p>
+                            <span className="text-xs font-black text-ely-blue">+33 07 56 84 41 45</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {/* Checklist Content */}
             <div className="flex-1 px-6 pb-48">
                 <div className="mt-4 mb-6">
                     <p className="text-xs text-slate-400 font-bold leading-relaxed opacity-80">
-                        Veuillez renseigner tous les documents pour finaliser votre demande.
+                        Cliquez sur une icône pour ajouter votre document.
                     </p>
                 </div>
-                {Object.values(documents).map((doc, index) => (
-                    <div key={doc.type}>
-                        {/* Inline Nature Selectors */}
-                        {(doc.type === 'identity_1' || doc.type === 'identity_1_front') && (
-                            <div className="py-4 overflow-x-auto no-scrollbar border-b border-slate-100">
-                                <div className="flex gap-2 min-w-max">
-                                    {(['cni', 'passport', 'resident_card', 'driver_license'] as const).map(nature => (
-                                        <button
-                                            key={nature}
-                                            onClick={() => setId1Type(nature)}
-                                            className={`px-4 py-2 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all border ${id1Type === nature
-                                                ? 'bg-slate-900 text-white border-slate-900 shadow-lg'
-                                                : 'bg-white text-slate-400 border-slate-100'
-                                                }`}
-                                        >
-                                            {nature === 'cni' ? 'CNI' : nature === 'passport' ? 'Passeport' : nature === 'resident_card' ? 'Titre' : 'Permis'}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                        {(doc.type === 'identity_2' || doc.type === 'identity_2_front') && (
-                            <div className="py-4 overflow-x-auto no-scrollbar border-b border-slate-100">
-                                <div className="flex gap-2 min-w-max">
-                                    {(['cni', 'passport', 'resident_card', 'driver_license'] as const).map(nature => (
-                                        <button
-                                            key={nature}
-                                            onClick={() => setId2Type(nature)}
-                                            className={`px-4 py-2 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all border ${id2Type === nature
-                                                ? 'bg-slate-900 text-white border-slate-900 shadow-lg'
-                                                : 'bg-white text-slate-400 border-slate-100'
-                                                }`}
-                                        >
-                                            {nature === 'cni' ? 'CNI' : nature === 'passport' ? 'Passeport' : nature === 'resident_card' ? 'Titre' : 'Permis'}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
+                {Object.values(documents).map((doc, index) => {
+                    const uploadOnly = ["tax_notice", "pay_slip_1", "pay_slip_2", "pay_slip_3", "address_proof", "rib"].includes(doc.type);
 
-                        <ChecklistItem
-                            doc={doc}
-                            isSubmitting={isSubmitting}
-                            onCamera={() => { setCameraTarget(doc.type); setIsCameraOpen(true); }}
-                            onUpload={() => triggerFileInput(doc.type)}
-                            onRemove={() => removeFile(doc.type)}
-                        />
-                    </div>
-                ))}
+                    return (
+                        <div key={doc.type}>
+                            {/* Inline Nature Selectors */}
+                            {(doc.type === 'identity_1' || doc.type === 'identity_1_front') && (
+                                <div className="py-4 overflow-x-auto no-scrollbar border-b border-slate-100">
+                                    <div className="flex gap-2 min-w-max">
+                                        {(['cni', 'passport', 'resident_card', 'driver_license'] as const).map(nature => (
+                                            <button
+                                                key={nature}
+                                                disabled={id2Type === nature}
+                                                onClick={() => setId1Type(nature)}
+                                                className={`px-4 py-2 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all border ${id1Type === nature
+                                                    ? 'bg-slate-900 text-white border-slate-900 shadow-lg'
+                                                    : id2Type === nature
+                                                        ? 'bg-slate-50 text-slate-200 border-slate-100 cursor-not-allowed grayscale'
+                                                        : 'bg-white text-slate-400 border-slate-100'
+                                                    }`}
+                                            >
+                                                {nature === 'cni' ? 'CNI' : nature === 'passport' ? 'Passeport' : nature === 'resident_card' ? 'Titre' : 'Permis'}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                            {(doc.type === 'identity_2' || doc.type === 'identity_2_front') && (
+                                <div className="py-4 overflow-x-auto no-scrollbar border-b border-slate-100">
+                                    <div className="flex gap-2 min-w-max">
+                                        {(['cni', 'passport', 'resident_card', 'driver_license'] as const).map(nature => (
+                                            <button
+                                                key={nature}
+                                                disabled={id1Type === nature}
+                                                onClick={() => setId2Type(nature)}
+                                                className={`px-4 py-2 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all border ${id2Type === nature
+                                                    ? 'bg-slate-900 text-white border-slate-900 shadow-lg'
+                                                    : id1Type === nature
+                                                        ? 'bg-slate-50 text-slate-200 border-slate-100 cursor-not-allowed grayscale'
+                                                        : 'bg-white text-slate-400 border-slate-100'
+                                                    }`}
+                                            >
+                                                {nature === 'cni' ? 'CNI' : nature === 'passport' ? 'Passeport' : nature === 'resident_card' ? 'Titre' : 'Permis'}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            <ChecklistItem
+                                doc={doc}
+                                isSubmitting={isSubmitting}
+                                onCamera={uploadOnly ? null : () => { setCameraTarget(doc.type); setIsCameraOpen(true); }}
+                                onUpload={() => triggerFileInput(doc.type)}
+                                onRemove={() => removeFile(doc.type)}
+                            />
+                        </div>
+                    );
+                })}
 
                 {/* Secure Badge */}
                 <div className="mt-8 flex items-center justify-center gap-2 grayscale opacity-40">

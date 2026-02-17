@@ -71,38 +71,39 @@ export default function IdentityVerificationPage() {
                         setResidenceCountry(country);
                         const isFrance = country === "France";
 
-                        const isRectoVerso = (nature: IdNature) => nature === "cni" || nature === "resident_card";
+                        const isRectoVerso = (nature: IdNature) => nature === "cni" || nature === "resident_card" || nature === "driver_license";
 
                         const docDefinitions: Record<string, Partial<DocumentUpload>> = {};
 
                         if (isFrance) {
+                            const id1Label = id1Type === 'passport' ? 'Passeport' : id1Type === 'cni' ? 'CNI' : id1Type === 'resident_card' ? 'Titre' : 'Permis';
+                            const id2Label = id2Type === 'passport' ? 'Passeport' : id2Type === 'cni' ? 'CNI' : id2Type === 'resident_card' ? 'Titre' : 'Permis';
+
                             if (isRectoVerso(id1Type)) {
-                                docDefinitions.identity_1_front = { label: "Identité 1 (Recto)", description: `Avant de votre ${id1Type === 'cni' ? 'CNI' : 'Titre'}.`, icon: CreditCard };
-                                docDefinitions.identity_1_back = { label: "Identité 1 (Verso)", description: `Arrière de votre ${id1Type === 'cni' ? 'CNI' : 'Titre'}.`, icon: CreditCard };
+                                docDefinitions.identity_1_front = { label: `Identité 1 (${id1Label} - Recto)`, description: `Face avant de votre ${id1Label.toLowerCase()}. Photos couleur nettes, bordures visibles.`, icon: CreditCard };
+                                docDefinitions.identity_1_back = { label: `Identité 1 (${id1Label} - Verso)`, description: `Face arrière de votre ${id1Label.toLowerCase()}. Photos couleur nettes, bordures visibles.`, icon: CreditCard };
                             } else {
-                                const label = id1Type === 'passport' ? "Passeport" : "Permis";
-                                docDefinitions.identity_1 = { label: `Identité 1 (${label})`, description: `Photo claire de votre ${label.toLowerCase()}.`, icon: CreditCard };
+                                docDefinitions.identity_1 = { label: `Identité 1 (${id1Label})`, description: `Photo claire de votre ${id1Label.toLowerCase()}. Photos couleur nettes, bordures visibles.`, icon: CreditCard };
                             }
 
                             if (isRectoVerso(id2Type)) {
-                                docDefinitions.identity_2_front = { label: "Identité 2 (Recto)", description: `Avant de votre ${id2Type === 'cni' ? 'CNI' : 'Titre'}.`, icon: CreditCard };
-                                docDefinitions.identity_2_back = { label: "Identité 2 (Verso)", description: `Arrière de votre ${id2Type === 'cni' ? 'CNI' : 'Titre'}.`, icon: CreditCard };
+                                docDefinitions.identity_2_front = { label: `Identité 2 (${id2Label} - Recto)`, description: `Face avant de votre ${id2Label.toLowerCase()}. Photos couleur nettes, bordures visibles.`, icon: CreditCard };
+                                docDefinitions.identity_2_back = { label: `Identité 2 (${id2Label} - Verso)`, description: `Face arrière de votre ${id2Label.toLowerCase()}. Photos couleur nettes, bordures visibles.`, icon: CreditCard };
                             } else {
-                                const label = id2Type === 'passport' ? "Passeport" : "Permis";
-                                docDefinitions.identity_2 = { label: `Identité 2 (${label})`, description: `Photo claire de votre ${label.toLowerCase()}.`, icon: CreditCard };
+                                docDefinitions.identity_2 = { label: `Identité 2 (${id2Label})`, description: `Photo claire de votre ${id2Label.toLowerCase()}. Photos couleur nettes, bordures visibles.`, icon: CreditCard };
                             }
 
                             docDefinitions.vital_card = { label: "Carte Vitale", description: "Copie lisible de votre carte vitale.", icon: ShieldCheck };
-                            docDefinitions.tax_notice = { label: "Avis d'imposition", description: "Dernier avis fiscal complet.", icon: FileText };
-                            docDefinitions.pay_slip_1 = { label: "Bulletin de paie n°1", description: "Le plus récent (M).", icon: FileText };
-                            docDefinitions.pay_slip_2 = { label: "Bulletin de paie n°2", description: "Mois précédent (M-1).", icon: FileText };
-                            docDefinitions.pay_slip_3 = { label: "Bulletin de paie n°3", description: "Avant-dernier (M-2).", icon: FileText };
-                            docDefinitions.address_proof = { label: "Justificatif Domicile", description: "Facture récente (-3 mois).", icon: Search };
-                            docDefinitions.rib = { label: "RIB / IBAN", description: "À votre nom et prénom.", icon: CreditCard };
+                            docDefinitions.tax_notice = { label: "Avis d'imposition", description: "Dernier avis fiscal complet (PDF uniquement).", icon: FileText };
+                            docDefinitions.pay_slip_1 = { label: "Bulletin de paie n°1", description: "Le plus récent (M) ou justificatif pension/allocation (PDF uniquement).", icon: FileText };
+                            docDefinitions.pay_slip_2 = { label: "Bulletin de paie n°2", description: "Mois précédent (M-1) ou justificatif pension/allocation (PDF uniquement).", icon: FileText };
+                            docDefinitions.pay_slip_3 = { label: "Bulletin de paie n°3", description: "Avant-dernier (M-2) ou justificatif pension/allocation (PDF uniquement).", icon: FileText };
+                            docDefinitions.address_proof = { label: "Justificatif Domicile", description: "Facture récente -3 mois (EDF, Eau, Internet...) (PDF uniquement).", icon: Search };
+                            docDefinitions.rib = { label: "RIB / IBAN", description: "À votre nom et prénom (PDF uniquement).", icon: CreditCard };
                         } else {
-                            docDefinitions.id_front = { label: "Pièce ID (Recto)", description: "Copie de l'avant de votre pièce.", icon: CreditCard };
-                            docDefinitions.id_back = { label: "Pièce ID (Verso)", description: "Copie de l'arrière de votre pièce.", icon: CreditCard };
-                            docDefinitions.address_proof = { label: "Justificatif Domicile", description: "Facture ou certificat récent.", icon: Search };
+                            docDefinitions.id_front = { label: "Pièce ID (Recto)", description: "Photos couleur nettes, bordures visibles.", icon: CreditCard };
+                            docDefinitions.id_back = { label: "Pièce ID (Verso)", description: "Photos couleur nettes, bordures visibles.", icon: CreditCard };
+                            docDefinitions.address_proof = { label: "Justificatif Domicile", description: "Facture ou certificat récent (PDF uniquement).", icon: Search };
                         }
 
                         setDocuments(prev => {
@@ -147,11 +148,20 @@ export default function IdentityVerificationPage() {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
+
+        // Enforce PDF for specific documents
+        const pdfRequired = ["tax_notice", "pay_slip_1", "pay_slip_2", "pay_slip_3", "address_proof", "rib"];
+        if (pdfRequired.includes(activeDoc) && file.type !== "application/pdf") {
+            alert("Ce document doit être obligatoirement au format PDF.");
+            e.target.value = '';
+            return;
+        }
+
         if (file.size > 8 * 1024 * 1024) {
             alert("Le fichier est trop volumineux (max 8MB)");
             return;
         }
-        const previewUrl = URL.createObjectURL(file);
+        const previewUrl = file.type.startsWith('image/') ? URL.createObjectURL(file) : null;
         setDocuments(prev => ({
             ...prev,
             [activeDoc]: {
