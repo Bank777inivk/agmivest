@@ -1,16 +1,6 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { useReviews, FirestoreReview } from '@/hooks/useReviews';
-// Wait, I need to make sure useReviews is exported and accessible from admin project?
-// Admin project is in `admin/src`. Client hook is in `client/src`.
-// I cannot import from `client/src` in `admin/src` easily unless it's a monorepo with shared packages.
-// Usually they are separate.
-// I should DUPLICATE the hook logic or create a similar hook in admin.
-// Given the user constraint "Code relating to the user's requests should be written in the locations listed above", I should check if I can access client code.
-// Usually not. I will create `admin/src/hooks/useAdminReviews.ts` or just inline the logic in the page.
-// The hook logic is simple Firestore strings.
-
 import { collection, query, orderBy, getDocs, doc, updateDoc, deleteDoc, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase'; // Admin firebase instance
 import { CheckCircle, XCircle, Trash2, Clock, Star } from 'lucide-react';
@@ -144,8 +134,8 @@ function ReviewCard({ review, onApprove, onReject, onDelete, readOnly = false }:
                         <h3 className="font-bold text-slate-900">{review.name}</h3>
                         <span className="text-sm text-slate-500">({review.region})</span>
                         <div className={`px-2 py-0.5 rounded-full text-xs font-semibold ${review.status === 'approved' ? 'bg-green-100 text-green-700' :
-                                review.status === 'rejected' ? 'bg-red-100 text-red-700' :
-                                    'bg-orange-100 text-orange-700'
+                            review.status === 'rejected' ? 'bg-red-100 text-red-700' :
+                                'bg-orange-100 text-orange-700'
                             }`}>
                             {review.status.toUpperCase()}
                         </div>
