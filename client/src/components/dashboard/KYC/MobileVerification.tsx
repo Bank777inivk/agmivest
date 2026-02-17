@@ -146,39 +146,53 @@ export default function MobileVerification({
             <div className="h-[132px] w-full shrink-0" />
 
             {/* Instructions Section */}
-            <div className="mx-6 mt-6 p-6 bg-gradient-to-br from-slate-50 to-blue-50/30 rounded-3xl border border-blue-100/50 shadow-sm relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-400/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
+            <div className="mx-6 mt-6 p-6 bg-gradient-to-br from-[#003d82] to-[#1e40af] rounded-3xl border border-white/10 shadow-xl relative overflow-hidden group">
+                {/* Decorative Elements */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-ely-mint/5 blur-2xl rounded-full translate-y-1/2 -translate-x-1/2" />
 
-                <div className="flex items-center gap-2.5 mb-5 relative">
-                    <div className="w-8 h-8 rounded-xl bg-amber-100 flex items-center justify-center">
-                        <AlertCircle className="w-5 h-5 text-amber-600" />
+                <div className="flex items-center gap-3 mb-6 relative">
+                    <div className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10">
+                        <AlertCircle className="w-5 h-5 text-ely-mint" />
                     </div>
-                    <span className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-900">Pré-requis obligatoires</span>
+                    <div>
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-ely-mint/80 block leading-none mb-1">Conformité</span>
+                        <span className="text-[13px] font-black text-white tracking-tight">Instructions de dépôt</span>
+                    </div>
                 </div>
 
-                <div className="space-y-4 relative">
-                    <div className="flex gap-3 items-start">
-                        <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                            <span className="text-[9px] font-black text-blue-600">01</span>
+                <div className="space-y-5 relative">
+                    <div className="flex gap-4 items-start">
+                        <div className="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center shrink-0 mt-0.5 border border-white/5">
+                            <span className="text-[10px] font-black text-white">01</span>
                         </div>
-                        <p className="text-[11px] text-slate-600 font-bold leading-relaxed">
-                            Pièces d'identité : <span className="text-slate-900 underline decoration-blue-200 decoration-2 underline-offset-2">Photos couleur nettes</span> uniquement (bordures visibles).
-                        </p>
+                        <div className="space-y-1">
+                            <p className="text-[11px] text-white/90 font-bold leading-relaxed">
+                                <span className="text-ely-mint">Pièces d'identité :</span> Photos couleur nettes.
+                            </p>
+                            <p className="text-[10px] text-white/50 font-medium">Les 4 bordures doivent être visibles.</p>
+                        </div>
                     </div>
 
-                    <div className="flex gap-3 items-start">
-                        <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                            <span className="text-[9px] font-black text-blue-600">02</span>
+                    <div className="flex gap-4 items-start">
+                        <div className="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center shrink-0 mt-0.5 border border-white/5">
+                            <span className="text-[10px] font-black text-white">02</span>
                         </div>
-                        <p className="text-[11px] text-slate-600 font-bold leading-relaxed">
-                            Justificatifs & Finance : Format <span className="text-slate-900 font-black underline decoration-blue-200 decoration-2 underline-offset-2">PDF original</span> requis (pas de scans).
-                        </p>
+                        <div className="space-y-1">
+                            <p className="text-[11px] text-white/90 font-bold leading-relaxed">
+                                <span className="text-ely-mint">Justificatifs :</span> Format <span className="underline decoration-ely-mint/30 decoration-2 underline-offset-4">PDF original</span> uniquement.
+                            </p>
+                            <p className="text-[10px] text-white/50 font-medium">Les documents scannés seront refusés.</p>
+                        </div>
                     </div>
 
-                    <div className="pt-4 border-t border-slate-100">
+                    <div className="pt-5 border-t border-white/10">
                         <div className="flex items-center justify-between">
-                            <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Support direct</p>
-                            <span className="text-xs font-black text-ely-blue">+33 07 56 84 41 45</span>
+                            <div className="flex items-center gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-ely-mint animate-pulse" />
+                                <p className="text-[9px] font-black text-white/40 uppercase tracking-widest">Support en ligne</p>
+                            </div>
+                            <span className="text-xs font-black text-white underline decoration-ely-mint/50 underline-offset-4">+33 07 56 84 41 45</span>
                         </div>
                     </div>
                 </div>
