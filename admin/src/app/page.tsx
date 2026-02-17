@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { LayoutDashboard, Users, FileText, Settings, LogOut, Search, Bell, CheckCircle, XCircle, Clock, RotateCcw, Menu, X, ExternalLink, ArrowLeft, Shield, Trash2, Mail, Phone, MapPin, TrendingUp, Euro, Briefcase, Calendar, CalendarRange, Send, History, Landmark, ChevronLeft, ChevronRight, CreditCard, ShieldCheck, Info, MessageCircle } from "lucide-react";
+import { LayoutDashboard, Users, FileText, Settings, LogOut, Search, Bell, CheckCircle, XCircle, Clock, RotateCcw, Menu, X, ExternalLink, ArrowLeft, Shield, Trash2, Mail, Phone, MapPin, TrendingUp, Euro, Briefcase, Calendar, CalendarRange, Send, History, Landmark, ChevronLeft, ChevronRight, CreditCard, ShieldCheck, Info, MessageCircle, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { collection, query, orderBy, onSnapshot, doc, updateDoc, addDoc, serverTimestamp, getDoc, deleteDoc, where, getDocs, setDoc, writeBatch } from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import AdminChat from "@/components/admin/AdminChat";
+import ReviewsManager from "@/components/admin/ReviewsManager";
 
 // Use standard db instance
 const dbInstance = db;
@@ -16,6 +17,7 @@ const navItems = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
   { id: "users", label: "Utilisateurs", icon: Users },
   { id: "requests", label: "Dossiers Prêts", icon: FileText },
+  { id: "reviews", label: "Avis Clients", icon: Star },
   { id: "transfers", label: "Virements", icon: Send },
   { id: "schedules", label: "Échéanciers", icon: CalendarRange },
   { id: "kyc", label: "KYC & Documents", icon: Search },
@@ -2594,6 +2596,9 @@ export default function AdminDashboard() {
             </div>
           </div>
         );
+
+      case "reviews":
+        return <ReviewsManager />;
 
       case "schedules":
         return renderSchedules();

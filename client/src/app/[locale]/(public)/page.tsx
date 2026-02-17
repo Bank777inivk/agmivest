@@ -12,7 +12,6 @@ const ReviewsSection = dynamic(() => import("@/components/ReviewsSection"));
 const PartnersSection = dynamic(() => import("@/components/PartnersSection"));
 const ContactSection = dynamic(() => import("@/components/ContactSection"));
 const LocationSection = dynamic(() => import("@/components/LocationSection"));
-const NotificationPopup = dynamic(() => import("@/components/NotificationPopup"));
 
 export default function Home() {
   const t = useTranslations('Home');
@@ -73,7 +72,6 @@ export default function Home() {
         <PartnersSection />
       </div>
 
-      <NotificationPopup />
 
       {/* Contact & Location (Two Columns) */}
       <div id="contact" className="py-16 md:py-24 bg-white">

@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Star, Filter, TrendingUp, Users, Award } from "lucide-react";
-import { reviews, getReviewStats, getRecentReviews, filterByRating } from "@/data/reviewsData";
+import { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Star, ChevronDown, CheckCircle, Filter, Quote, Users, TrendingUp, Award } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { reviews, Review, getReviewStats, getRecentReviews, filterByRating } from '@/data/reviewsData';
 
 export default function ReviewsSection() {
     const [selectedRating, setSelectedRating] = useState<number | null>(null);
@@ -23,8 +25,8 @@ export default function ReviewsSection() {
                     <Star
                         key={star}
                         className={`w-4 h-4 ${star <= rating
-                                ? "fill-yellow-400 text-yellow-400"
-                                : "text-gray-300"
+                            ? "fill-yellow-400 text-yellow-400"
+                            : "text-gray-300"
                             }`}
                     />
                 ))}
@@ -122,8 +124,8 @@ export default function ReviewsSection() {
                     <button
                         onClick={() => setSelectedRating(null)}
                         className={`px-6 py-2.5 rounded-xl font-semibold transition-all ${selectedRating === null
-                                ? "bg-gradient-to-r from-ely-blue to-ely-mint text-white shadow-lg"
-                                : "bg-white text-slate-700 hover:bg-slate-50 border border-slate-200"
+                            ? "bg-gradient-to-r from-ely-blue to-ely-mint text-white shadow-lg"
+                            : "bg-white text-slate-700 hover:bg-slate-50 border border-slate-200"
                             }`}
                     >
                         Tous les avis
@@ -133,8 +135,8 @@ export default function ReviewsSection() {
                             key={rating}
                             onClick={() => setSelectedRating(rating)}
                             className={`px-6 py-2.5 rounded-xl font-semibold transition-all flex items-center gap-2 ${selectedRating === rating
-                                    ? "bg-gradient-to-r from-ely-blue to-ely-mint text-white shadow-lg"
-                                    : "bg-white text-slate-700 hover:bg-slate-50 border border-slate-200"
+                                ? "bg-gradient-to-r from-ely-blue to-ely-mint text-white shadow-lg"
+                                : "bg-white text-slate-700 hover:bg-slate-50 border border-slate-200"
                                 }`}
                         >
                             <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -145,7 +147,7 @@ export default function ReviewsSection() {
 
                 {/* Reviews Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                    {displayedReviews.map((review, index) => (
+                    {displayedReviews.map((review: Review, index: number) => (
                         <motion.div
                             key={review.id}
                             initial={{ opacity: 0, y: 20 }}
@@ -189,12 +191,12 @@ export default function ReviewsSection() {
                 {/* Show More Button */}
                 {!selectedRating && !showAll && (
                     <div className="text-center">
-                        <button
-                            onClick={() => setShowAll(true)}
-                            className="px-8 py-4 bg-gradient-to-r from-ely-blue to-ely-mint text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                        <Link
+                            href="/reviews"
+                            className="px-8 py-4 bg-gradient-to-r from-ely-blue to-ely-mint text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 inline-block"
                         >
                             Voir tous les avis ({stats.totalReviews})
-                        </button>
+                        </Link>
                     </div>
                 )}
             </div>

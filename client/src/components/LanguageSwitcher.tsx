@@ -7,16 +7,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Globe, ChevronDown } from "lucide-react";
 
 const languages = [
-    { code: 'fr', name: 'Français', flag: '🇫🇷' },
-    { code: 'en', name: 'English', flag: '🇬🇧' },
-    { code: 'es', name: 'Español', flag: '🇪🇸' },
-    { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-    { code: 'pt', name: 'Português', flag: '🇵🇹' },
-    { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
-    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-    { code: 'pl', name: 'Polski', flag: '🇵🇱' },
-    { code: 'ro', name: 'Română', flag: '🇷🇴' },
-    { code: 'sv', name: 'Svenska', flag: '🇸🇪' }
+    { code: 'fr', name: 'Français', country: 'fr' },
+    { code: 'en', name: 'English', country: 'gb' },
+    { code: 'es', name: 'Español', country: 'es' },
+    { code: 'it', name: 'Italiano', country: 'it' },
+    { code: 'pt', name: 'Português', country: 'pt' },
+    { code: 'nl', name: 'Nederlands', country: 'nl' },
+    { code: 'de', name: 'Deutsch', country: 'de' },
+    { code: 'pl', name: 'Polski', country: 'pl' },
+    { code: 'ro', name: 'Română', country: 'ro' },
+    { code: 'sv', name: 'Svenska', country: 'se' }
 ];
 
 export default function LanguageSwitcher() {
@@ -45,6 +45,16 @@ export default function LanguageSwitcher() {
         router.push(pathname, { locale: langCode });
     };
 
+    const renderFlag = (countryCode: string) => (
+        <img
+            src={`https://flagcdn.com/w40/${countryCode}.png`}
+            srcSet={`https://flagcdn.com/w80/${countryCode}.png 2x`}
+            width="20"
+            alt=""
+            className="rounded-sm shadow-sm object-cover aspect-[3/2]"
+        />
+    );
+
     return (
         <div className="relative" ref={dropdownRef}>
             <button
@@ -52,11 +62,14 @@ export default function LanguageSwitcher() {
                 className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
                 aria-label="Select language"
             >
-                <Globe className="w-5 h-5 text-ely-blue" />
-                <span className="hidden md:inline text-sm font-semibold text-gray-700">
-                    {currentLanguage.flag} {currentLanguage.code.toUpperCase()}
-                </span>
-                <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                <div className="flex items-center gap-1.5">
+                    <Globe className="w-4 h-4 text-ely-blue" />
+                    <span className="hidden md:inline text-xs font-bold text-gray-700 uppercase tracking-tight">
+                        {currentLanguage.code}
+                    </span>
+                </div>
+                {renderFlag(currentLanguage.country)}
+                <ChevronDown className={`w-3.5 h-3.5 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
             </button>
 
             <AnimatePresence>
@@ -75,10 +88,10 @@ export default function LanguageSwitcher() {
                                 className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors flex items-center gap-3 ${lang.code === currentLocale ? 'bg-ely-mint/10 text-ely-blue font-semibold' : 'text-gray-700'
                                     }`}
                             >
-                                <span className="text-2xl">{lang.flag}</span>
-                                <span className="flex-1">{lang.name}</span>
+                                {renderFlag(lang.country)}
+                                <span className="flex-1 text-sm">{lang.name}</span>
                                 {lang.code === currentLocale && (
-                                    <span className="w-2 h-2 bg-ely-mint rounded-full"></span>
+                                    <span className="w-1.5 h-1.5 bg-ely-mint rounded-full"></span>
                                 )}
                             </button>
                         ))}

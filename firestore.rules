@@ -126,6 +126,18 @@ service cloud.firestore {
       }
     }
     
+    // Collection Avis (reviews)
+    match /reviews/{reviewId} {
+      // Tout le monde peut lire les avis approuvés
+      allow read: if resource.data.status == 'approved' || isAdmin();
+      
+      // Tout le monde peut laisser un avis (forcé en 'pending')
+      allow create: if request.resource.data.status == 'pending';
+      
+      // Seul l'admin peut modérer (approuver/rejeter) ou supprimer
+      allow update, delete: if isAdmin();
+    }
+    
     // Refuser tout accès par défaut pour les autres collections non définies
     match /{document=**} {
       allow read, write: if false;
