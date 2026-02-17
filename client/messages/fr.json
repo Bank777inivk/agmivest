@@ -178,8 +178,8 @@
     "email": "Email",
     "hours": {
       "title": "Horaires",
-      "week": "Lundi - Vendredi : 9h00 - 18h00",
-      "saturday": "Samedi : 9h00 - 12h00",
+      "week": "Lundi - Vendredi : 9h00 - 17h00",
+      "saturday": "Samedi : 9h00 - 11h00",
       "sunday": "Dimanche : Fermé"
     }
   },
@@ -275,21 +275,21 @@
     "title": "Une équipe à votre service",
     "subtitle": "Des experts passionnés et dédiés à la réussite de votre projet.",
     "Members": {
-      "marc": {
+      "meyer": {
         "role": "Directeur Général",
-        "bio": "Expert en financement immobilier depuis 15 ans."
+        "bio": "Expert Financement Pro et immobilier depuis 15 ans."
       },
-      "sophie": {
+      "cyrille": {
         "role": "Responsable Crédit Particuliers",
         "bio": "Spécialiste des dossiers complexes et rachat de crédit."
       },
-      "thomas": {
-        "role": "Expert Financement Pro",
+      "emilie": {
+        "role": "Expert Financement PME",
         "bio": "Accompagne les entrepreneurs dans leur développement."
       },
-      "laura": {
-        "role": "Chargée de Clientèle",
-        "bio": "Votre interlocutrice privilégiée pour le suivi de dossier."
+      "christophe": {
+        "role": "Chargé de Clientèle",
+        "bio": "Votre interlocuteur privilégié pour le suivi de dossier."
       }
     }
   },

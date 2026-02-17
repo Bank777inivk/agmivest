@@ -26,7 +26,7 @@ const calculateScore = (data: any) => {
     const duration = parseFloat(data.duration) || 12;
 
     // Monthly payment calculation with integrated 3% insurance
-    const annualRate = parseFloat(data.rate) || 4.95;
+    const annualRate = parseFloat(data.rate) || 2.6;
     const monthlyRate = annualRate / 100 / 12;
     const loanMonthly = (requestedAmount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -duration));
 
@@ -74,7 +74,7 @@ export default function CreditRequestPage() {
         creditType: "personal",
         amount: "",
         duration: "",
-        rate: "",
+        rate: "2.6",
         purpose: "",
         // Identity
         civility: "M.",
@@ -431,11 +431,11 @@ export default function CreditRequestPage() {
                         formData.creditType === "pro" ? "Crédit Professionnel" : "Autre",
                 amount: parseFloat(formData.amount) || 0,
                 duration: parseInt(formData.duration) || 12,
-                rate: parseFloat(formData.rate) || 4.95,
+                rate: parseFloat(formData.rate) || 2.6,
                 monthlyPayment: (() => {
                     const amt = parseFloat(formData.amount) || 0;
                     const dur = parseInt(formData.duration) || 12;
-                    const r = parseFloat(formData.rate) || 4.95;
+                    const r = parseFloat(formData.rate) || 2.6;
                     const mRate = r / 100 / 12;
                     const loanM = (amt * mRate) / (1 - Math.pow(1 + mRate, -dur));
                     const insuranceM = (amt * 0.03) / dur;
@@ -722,20 +722,18 @@ export default function CreditRequestPage() {
                                                 <div className="space-y-2">
                                                     <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">{t('Step1.rate')}</label>
                                                     <div className="relative group">
-                                                        <Percent className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-ely-mint transition-colors" />
+                                                        <Percent className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                                                         <input
                                                             type="number"
                                                             name="rate"
-                                                            required
-                                                            min="0.5"
-                                                            max="15"
-                                                            step="0.01"
-                                                            value={formData.rate}
-                                                            onChange={(e) => setFormData({ ...formData, rate: e.target.value })}
-                                                            onBlur={handleBlur}
-                                                            className="w-full pl-12 pr-4 py-4 bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-ely-mint focus:ring-0 focus:bg-white transition-all font-bold text-gray-900 placeholder:text-gray-300"
-                                                            placeholder="2.95"
+                                                            value="2.6"
+                                                            readOnly
+                                                            disabled
+                                                            className="w-full pl-12 pr-4 py-4 bg-gray-100 border-2 border-gray-200 rounded-xl font-bold text-gray-700 cursor-not-allowed"
                                                         />
+                                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-500 font-medium italic">
+                                                            Taux fixe
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

@@ -48,12 +48,12 @@ export default function LocationSection({ isMinimal = false }: LocationSectionPr
                         <iframe
                             width="100%"
                             height="100%"
-                            title="Agence AGM Invest Nantes"
+                            title="Agence AGM Invest Mulhouse"
                             frameBorder="0"
                             scrolling="no"
                             marginHeight={0}
                             marginWidth={0}
-                            src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=fr&amp;q=123%20Rue%20de%20la%20R%C3%A9publique%2C%2044000%20Nantes+(AGM%20Invest)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                            src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=fr&amp;q=40%20Rue%20Jean%20Monnet%2C%2068200%20Mulhouse+(AGM%20Invest)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                             className="w-full h-full filter grayscale-[0.2] hover:grayscale-0 transition-all duration-500"
                         >
                         </iframe>
@@ -75,8 +75,8 @@ export default function LocationSection({ isMinimal = false }: LocationSectionPr
                                 <div>
                                     <h3 className="font-bold text-ely-blue text-lg mb-2">{t('address')}</h3>
                                     <p className="text-gray-600 leading-relaxed">
-                                        123 Rue de la République<br />
-                                        44000 Nantes<br />
+                                        MELPARK, 40 Rue Jean Monnet<br />
+                                        68200 Mulhouse<br />
                                         France
                                     </p>
                                 </div>
@@ -91,8 +91,8 @@ export default function LocationSection({ isMinimal = false }: LocationSectionPr
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-ely-blue text-lg mb-2">{t('phone')}</h3>
-                                    <a href="tel:0240561911" className="text-gray-600 hover:text-ely-mint transition-colors text-lg font-semibold">
-                                        02 40 56 19 11
+                                    <a href="tel:+33756844145" className="text-gray-600 hover:text-ely-mint transition-colors text-lg font-semibold">
+                                        AGM INVEST +33 7 56 84 41 45
                                     </a>
                                 </div>
                             </div>
@@ -106,8 +106,8 @@ export default function LocationSection({ isMinimal = false }: LocationSectionPr
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-ely-blue text-lg mb-2">{t('email')}</h3>
-                                    <a href="mailto:contact@elyssio.fr" className="text-gray-600 hover:text-ely-mint transition-colors">
-                                        contact@elyssio.fr
+                                    <a href="mailto:contact@agm-negoce.com" className="text-gray-600 hover:text-ely-mint transition-colors">
+                                        contact@agm-negoce.com
                                     </a>
                                 </div>
                             </div>

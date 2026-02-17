@@ -263,7 +263,7 @@ export default function RequestDetailsPage() {
                             {[
                                 { label: "Durée", value: `${request.duration} mois` },
                                 { label: "Mensualité", value: `${new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(request.monthlyPayment || 0)}/m` },
-                                { label: "Taux (TAEG)", value: `${request.rate || "4.95"}%` },
+                                { label: "Taux (TAEG)", value: `${request.rate || "2.6"}%` },
                                 { label: "Création", value: request.createdAt?.toDate().toLocaleDateString('fr-FR') },
                             ].map((item, i) => (
                                 <div key={i} className="space-y-1.5 group/item">
@@ -363,7 +363,7 @@ export default function RequestDetailsPage() {
                                     <div>
                                         <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-none pt-1">Conseiller Senior</p>
                                         <p className="text-white text-base sm:text-xl font-black tracking-tight">{request.advisorName || "Jean-Luc Dupont"}</p>
-                                        <p className="text-white/60 text-[11px] font-medium mt-1">{request.advisorEmail || "j.dupont@elyssio.com"}</p>
+                                        <p className="text-white/60 text-[11px] font-medium mt-1">{request.advisorEmail || "contact@agm-negoce.com"}</p>
                                     </div>
                                 </div>
                                 <a

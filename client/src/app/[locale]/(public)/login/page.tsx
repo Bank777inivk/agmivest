@@ -85,6 +85,20 @@ export default function LoginPage() {
                 <div className="bg-white py-10 px-8 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] rounded-3xl border border-white relative overflow-hidden">
                     {/* Subtle interior glow */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-ely-blue/5 -z-10" />
+
+                    {/* Create Account Section - Moved to Top */}
+                    <div className="mb-8 pb-8 border-b border-gray-100/50 text-center">
+                        <p className="text-sm text-gray-500 mb-4">
+                            {t('newHere')}
+                        </p>
+                        <Link
+                            href="/register"
+                            className="w-full flex justify-center items-center py-3 px-4 border-2 border-ely-mint text-ely-mint rounded-2xl font-bold text-base hover:bg-ely-mint hover:text-white transition-all"
+                        >
+                            {t('createAccount')}
+                        </Link>
+                    </div>
+
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div className="space-y-4">
                             {error && (
@@ -196,18 +210,6 @@ export default function LoginPage() {
                             )}
                         </motion.button>
                     </form>
-
-                    <div className="mt-8 pt-6 border-t border-gray-100/50 text-center">
-                        <p className="text-sm text-gray-500 mb-4">
-                            {t('newHere')}
-                        </p>
-                        <Link
-                            href="/register"
-                            className="w-full flex justify-center items-center py-3 px-4 border-2 border-ely-mint text-ely-mint rounded-2xl font-bold text-base hover:bg-ely-mint hover:text-white transition-all"
-                        >
-                            {t('createAccount')}
-                        </Link>
-                    </div>
                 </div>
             </motion.div>
         </div>

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "update-reviews": "node scripts/updateReviews.js"
   },
   "dependencies": {
     "@types/nprogress": "^0.2.3",

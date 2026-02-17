@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import AnimatedAdBanner from "./AnimatedAdBanner";
 import { useTranslations } from "next-intl";
@@ -43,9 +44,9 @@ export default function Hero() {
                                     {t('tagline')}
                                 </p>
 
-                                <button className="block w-full sm:w-fit bg-ely-blue text-white px-6 sm:px-7 py-3 rounded-md font-bold text-sm sm:text-base hover:scale-105 transition-transform shadow-lg">
+                                <Link href="/register" className="block w-full sm:w-fit bg-ely-blue text-white px-6 sm:px-7 py-3 rounded-md font-bold text-sm sm:text-base hover:scale-105 transition-transform shadow-lg">
                                     {t('cta')}
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </motion.div>

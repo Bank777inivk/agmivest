@@ -179,8 +179,8 @@ export default function ContactSection({ isMinimal = false }: ContactSectionProp
                                         bold: (chunks) => <span className="font-bold text-ely-blue">{chunks}</span>
                                     })}
                                     {" "}
-                                    <a href="tel:0240561911" className="font-bold text-ely-mint hover:underline">
-                                        02 40 56 19 11
+                                    <a href="tel:+33756844145" className="font-bold text-ely-mint hover:underline">
+                                        AGM INVEST +33 7 56 84 41 45
                                     </a>
                                 </p>
                             </div>

@@ -61,17 +61,17 @@ export default function Footer() {
                         <ul className="space-y-3 md:space-y-4">
                             <li className="flex items-center gap-3 text-gray-300 group">
                                 <Phone className="w-4 h-4 md:w-5 md:h-5 text-ely-mint" />
-                                <a href="tel:0240561911" className="hover:text-ely-mint transition-colors text-xs md:text-base">02 40 56 19 11</a>
+                                <a href="tel:+33756844145" className="hover:text-ely-mint transition-colors text-xs md:text-base">AGM INVEST +33 7 56 84 41 45</a>
                             </li>
                             <li className="flex items-center gap-3 text-gray-300 group">
                                 <Mail className="w-4 h-4 md:w-5 md:h-5 text-ely-mint" />
-                                <a href="mailto:contact@agminvest.fr" className="hover:text-ely-mint transition-colors text-xs md:text-base">contact@agminvest.fr</a>
+                                <a href="mailto:contact@agm-negoce.com" className="hover:text-ely-mint transition-colors text-xs md:text-base">contact@agm-negoce.com</a>
                             </li>
                             <li className="flex items-start gap-3 text-gray-300">
                                 <MapPin className="w-4 h-4 md:w-5 md:h-5 text-ely-mint shrink-0 mt-1" />
                                 <span className="text-xs md:text-base leading-relaxed">
-                                    123 Rue de la République<br />
-                                    44000 Nantes, France
+                                    MELPARK, 40 Rue Jean Monnet<br />
+                                    68200 Mulhouse, France
                                 </span>
                             </li>
                         </ul>
@@ -82,14 +82,19 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] md:text-xs text-gray-400">
-                    <p>
-                        &copy; {new Date().getFullYear()} {t('copyright')}
+                <div className="pt-8 border-t border-white/10 text-[10px] md:text-xs text-gray-400">
+                    <p className="text-center mb-4">
+                        &copy; 2026 {t('copyright')}
                     </p>
-                    <div className="flex gap-4 md:gap-8">
+                    <div className="flex flex-wrap justify-center gap-3 md:gap-6">
                         <Link href="/mentions-legales" className="hover:text-white transition-colors">{t('legal.mentions')}</Link>
                         <Link href="/politique-confidentialite" className="hover:text-white transition-colors">{t('legal.privacy')}</Link>
                         <Link href="/cookies" className="hover:text-white transition-colors">{t('legal.cookies')}</Link>
+                        <Link href="/cgu" className="hover:text-white transition-colors">CGU</Link>
+                        <Link href="/conditions-remboursement" className="hover:text-white transition-colors">Conditions de Remboursement</Link>
+                        <Link href="/disclaimer-financier" className="hover:text-white transition-colors">Disclaimer Financier</Link>
+                        <Link href="/confiance-securite" className="hover:text-white transition-colors">Confiance & Sécurité</Link>
+                        <Link href="/mentions-publicitaires" className="hover:text-white transition-colors">Mentions Publicitaires</Link>
                     </div>
                 </div>
             </div>

@@ -88,9 +88,6 @@ export default function MentionsLegalesPage() {
                                     <li>Courtier en Opérations Bancaires et Services de Paiement</li>
                                     <li>Courtier en Assurance</li>
                                 </ul>
-                                <p className="text-sm text-slate-500 italic">
-                                    (Statuts radiés depuis le 21/04/2023 – informations publiques à titre historique)
-                                </p>
                                 <p className="mt-4 pt-4 border-t border-blue-200/50">
                                     L'activité d'Intermédiaire en Opérations de Banque et en Services de Paiement (IOBSP) est régie par le Code Monétaire et Financier. AGM INVEST est soumise au contrôle de l'Autorité de Contrôle Prudentiel et de Résolution (ACPR), 4 Place de Budapest CS 92459, 75436 Paris Cedex 09.
                                 </p>
@@ -107,14 +104,14 @@ export default function MentionsLegalesPage() {
                                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                                     <h3 className="font-bold text-slate-900 mb-2">Service Client</h3>
                                     <p className="text-slate-600">Pour toute question ou réclamation :</p>
-                                    <a href="mailto:contact@agm-invest.fr" className="text-ely-blue font-medium hover:underline block mt-2">contact@agm-invest.fr</a>
+                                    <a href="mailto:contact@agm-negoce.com" className="text-ely-blue font-medium hover:underline block mt-2">contact@agm-negoce.com</a>
                                     <p className="text-slate-600 mt-2">40 rue Jean Monnet, 68200 Mulhouse</p>
                                 </div>
                                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                                     <h3 className="font-bold text-slate-900 mb-2">Hébergement Web</h3>
                                     <p className="text-slate-600">Ce site est hébergé par :</p>
-                                    <p className="font-medium text-slate-900 mt-1">Vercel Inc.</p>
-                                    <p className="text-slate-600 text-sm">340 S Lemon Ave #4133<br />Walnut, CA 91789<br />USA</p>
+                                    <p className="font-medium text-slate-900 mt-1">Hostinger</p>
+                                    <p className="text-slate-600 text-sm">61 Lordou Vironos Street<br />6023 Larnaca<br />Chypre</p>
                                 </div>
                             </div>
                         </section>

@@ -9,8 +9,8 @@ const COMPANY_DATA = {
     siret: "389 858 630 00046",
     orias: "14001635",
     capital: "7 622 €",
-    email: "contact@agm-invest.fr",
-    phone: "+33 (0)3 89 00 00 00"
+    email: "contact@agm-negoce.com",
+    phone: "AGM INVEST +33 7 56 84 41 45"
 };
 
 // --- Helper: Header & Footer ---
@@ -268,7 +268,7 @@ export const generatePrivacyPolicy = (client: any) => {
         },
         {
             title: "4. Vos Droits",
-            content: "Vous disposez d'un droit d'accès, de rectification, d'effacement et de portabilité de vos données. Pour exercer ces droits, vous pouvez contacter notre Délégué à la Protection des Données (DPO) à l'adresse : dpo@agm-invest.fr."
+            content: "Vous disposez d'un droit d'accès, de rectification, d'effacement et de portabilité de vos données. Pour exercer ces droits, vous pouvez contacter notre Délégué à la Protection des Données (DPO) à l'adresse : contact@agm-negoce.com."
         }
     ];
 

@@ -9,28 +9,32 @@ export default function TeamSection() {
 
     const team = [
         {
-            name: "Marc Dupont",
-            role: t('Members.marc.role'),
-            image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            bio: t('Members.marc.bio'),
+            name: "Meyer Alain",
+            role: t('Members.meyer.role'),
+            image: "/team/meyer.png",
+            bio: t('Members.meyer.bio'),
+            email: "directeurmeyer@agm-negoce.com"
         },
         {
-            name: "Sophie Martin",
-            role: t('Members.sophie.role'),
-            image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            bio: t('Members.sophie.bio'),
+            name: "Cyrille KLING",
+            role: t('Members.cyrille.role'),
+            image: "/team/cyrille.jpeg",
+            bio: t('Members.cyrille.bio'),
+            email: "klingcyrille@agm-negoce.com"
         },
         {
-            name: "Thomas Leroy",
-            role: t('Members.thomas.role'),
-            image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            bio: t('Members.thomas.bio'),
+            name: "ROUSSEL EMILIE",
+            role: t('Members.emilie.role'),
+            image: "/team/emilie.jpeg", // Note the extension is .jpeg
+            bio: t('Members.emilie.bio'),
+            email: "emilieroussel@agm-negoce.com"
         },
         {
-            name: "Laura Bernard",
-            role: t('Members.laura.role'),
-            image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            bio: t('Members.laura.bio'),
+            name: "M. CHAINTEREAU CHRISTOPHE JEAN-PIERRE",
+            role: t('Members.christophe.role'),
+            image: "/team/christophe.jpeg", // Note the extension is .jpeg
+            bio: t('Members.christophe.bio'),
+            email: "conseillerchristophe@agm-negoce.com"
         },
     ];
 
@@ -75,12 +79,9 @@ export default function TeamSection() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-ely-blue/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
                                     <div className="flex gap-4">
-                                        <button className="bg-white p-2 rounded-full text-ely-blue hover:text-ely-mint transition-colors">
-                                            <Linkedin className="w-5 h-5" />
-                                        </button>
-                                        <button className="bg-white p-2 rounded-full text-ely-blue hover:text-ely-mint transition-colors">
+                                        <a href={`mailto:${member.email}`} className="bg-white p-2 rounded-full text-ely-blue hover:text-ely-mint transition-colors">
                                             <Mail className="w-5 h-5" />
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

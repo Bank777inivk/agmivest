@@ -55,13 +55,13 @@ export default function Navbar() {
                     {/* Phone */}
                     <div className="flex items-center gap-2 border border-ely-blue rounded-md px-3 xl:px-4 py-2">
                         <Phone className="w-4 h-4 text-ely-blue" />
-                        <span className="text-base xl:text-lg font-bold text-ely-blue">02 40 56 19 11</span>
+                        <span className="text-base xl:text-lg font-bold text-ely-blue">AGM INVEST +33 7 56 84 41 45</span>
                     </div>
 
                     {/* CTA */}
-                    <button className="bg-ely-blue text-white px-5 xl:px-6 py-2.5 rounded-md font-bold text-sm hover:bg-ely-blue/90 transition-colors whitespace-nowrap">
+                    <Link href="/register" className="bg-ely-blue text-white px-5 xl:px-6 py-2.5 rounded-md font-bold text-sm hover:bg-ely-blue/90 transition-colors whitespace-nowrap">
                         {t('appointment')}
-                    </button>
+                    </Link>
                 </div>
 
                 {/* Mobile Language Switcher */}
@@ -143,9 +143,9 @@ export default function Navbar() {
                             >
                                 {t('becomeClient')}
                             </Link>
-                            <a href="tel:0240561911" className="flex items-center justify-center gap-2 py-2">
+                            <a href="tel:+33756844145" className="flex items-center justify-center gap-2 py-2">
                                 <Phone className="w-5 h-5 text-ely-mint" />
-                                <span className="font-bold">02 40 56 19 11</span>
+                                <span className="font-bold">AGM INVEST +33 7 56 84 41 45</span>
                             </a>
                         </div>
                     </nav>

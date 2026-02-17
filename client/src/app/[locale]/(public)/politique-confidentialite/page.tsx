@@ -127,7 +127,7 @@ export default function PolitiqueConfidentialitePage() {
                                 </ul>
                                 <p className="pt-4 border-t border-blue-200">
                                     Pour exercer ces droits, contactez notre Délégué à la Protection des Données (DPO) :<br />
-                                    <a href="mailto:dpo@agm-invest.fr" className="text-ely-blue font-bold hover:underline">dpo@agm-invest.fr</a> ou par courrier postal au siège social.
+                                    <a href="mailto:contact@agm-negoce.com" className="text-ely-blue font-bold hover:underline">contact@agm-negoce.com</a> ou par courrier postal au siège social.
                                 </p>
                             </div>
                         </section>

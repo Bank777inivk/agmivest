@@ -19,7 +19,7 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
     const t = useTranslations('Simulator');
     const [amount, setAmount] = useState(200000);
     const [duration, setDuration] = useState(20);
-    const [rate, setRate] = useState(2.95);
+    const [rate, setRate] = useState(2.6);
     const [monthly, setMonthly] = useState(0);
     const [hasMounted, setHasMounted] = useState(false);
     const router = useRouter();
@@ -180,38 +180,27 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                         </div>
                     </div>
 
-                    {/* Rate */}
+                    {/* Rate - Locked at 2.6% */}
                     <div className={`space-y-${embedded ? '3' : '3 md:space-y-4'}`}>
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                             <label className={`${embedded ? 'text-sm font-bold text-gray-700 tracking-tight' : 'text-base md:text-lg font-semibold text-ely-blue'}`}>{t('rateLabel')}</label>
                             <div className={cn(
                                 "flex items-center gap-1",
-                                embedded ? "text-lg font-black text-ely-blue bg-white shadow-sm border border-gray-100 px-3 py-1.5 rounded-lg" : "text-xl md:text-2xl font-bold text-ely-blue bg-gray-50 px-4 py-1 rounded-lg"
+                                embedded ? "text-lg font-black text-ely-blue bg-gray-100 shadow-sm border border-gray-200 px-3 py-1.5 rounded-lg" : "text-xl md:text-2xl font-bold text-ely-blue bg-gray-100 px-4 py-1 rounded-lg"
                             )}>
                                 <input
                                     type="number"
                                     name="rate"
-                                    value={rate}
-                                    step="0.05"
-                                    onChange={(e) => handleRateChange(Number(e.target.value))}
-                                    onBlur={handleBlur}
-                                    className="bg-transparent border-none outline-none text-right w-16 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:ring-0"
+                                    value={2.6}
+                                    readOnly
+                                    disabled
+                                    className="bg-transparent border-none outline-none text-right w-16 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:ring-0 cursor-not-allowed opacity-70"
                                 />
                                 <span className="ml-1">%</span>
                             </div>
                         </div>
-                        <input
-                            type="range"
-                            min="0.5"
-                            max="15"
-                            step="0.05"
-                            value={rate}
-                            onChange={(e) => handleRateChange(Number(e.target.value))}
-                            className={`w-full ${embedded ? 'h-1.5' : 'h-2'} bg-gray-100 rounded-lg appearance-none cursor-pointer accent-ely-mint hover:accent-ely-mint/80 transition-all focus:outline-none focus:ring-2 focus:ring-ely-mint/20`}
-                        />
-                        <div className="flex justify-between text-xs text-gray-400 font-medium px-1">
-                            <span>0.5 %</span>
-                            <span>15 %</span>
+                        <div className="text-xs text-gray-500 font-medium px-1 text-center italic">
+                            Taux fixe garanti
                         </div>
                     </div>
                 </div>

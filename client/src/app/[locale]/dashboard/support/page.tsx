@@ -29,7 +29,7 @@ export default function SupportPage() {
         {
             icon: Phone,
             title: "Ligne Téléphonique",
-            value: "+33 1 89 20 40 00",
+            value: "AGM INVEST +33 7 56 84 41 45",
             desc: "9h - 18h (Lun-Ven)",
             color: "text-blue-400",
             bg: "bg-slate-800/50"
@@ -37,7 +37,7 @@ export default function SupportPage() {
         {
             icon: Mail,
             title: "Assistance Email",
-            value: "contact@elyssio.com",
+            value: "contact@agm-negoce.com",
             desc: "Sous 24 heures",
             color: "text-blue-400",
             bg: "bg-slate-800/50"

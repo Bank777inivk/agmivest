@@ -192,7 +192,7 @@ export default function MobileVerification({
                                 <div className="w-1.5 h-1.5 rounded-full bg-ely-mint animate-pulse" />
                                 <p className="text-[9px] font-black text-white/40 uppercase tracking-widest">Support en ligne</p>
                             </div>
-                            <span className="text-xs font-black text-white underline decoration-ely-mint/50 underline-offset-4">+33 07 56 84 41 45</span>
+                            <span className="text-xs font-black text-white underline decoration-ely-mint/50 underline-offset-4">AGM INVEST +33 7 56 84 41 45</span>
                         </div>
                     </div>
                 </div>

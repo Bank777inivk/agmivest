@@ -8,10 +8,11 @@ import { ArrowRight } from "lucide-react";
 const Simulator = dynamic(() => import("@/components/Simulator"));
 const AboutSection = dynamic(() => import("@/components/AboutSection"));
 const ServicesSection = dynamic(() => import("@/components/ServicesSection"));
-const TestimonialsSection = dynamic(() => import("@/components/TestimonialsSection"));
+const ReviewsSection = dynamic(() => import("@/components/ReviewsSection"));
 const PartnersSection = dynamic(() => import("@/components/PartnersSection"));
 const ContactSection = dynamic(() => import("@/components/ContactSection"));
 const LocationSection = dynamic(() => import("@/components/LocationSection"));
+const NotificationPopup = dynamic(() => import("@/components/NotificationPopup"));
 
 export default function Home() {
   const t = useTranslations('Home');
@@ -65,15 +66,14 @@ export default function Home() {
       {/* About Section */}
       <AboutSection />
 
-      {/* Social Proof (Two Columns) */}
-      <div className="bg-gray-50 py-16 md:py-24 border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <TestimonialsSection isMinimal />
-            <PartnersSection isMinimal />
-          </div>
-        </div>
+      {/* Social Proof & Partners */}
+      <ReviewsSection />
+
+      <div className="bg-gray-50 border-t border-gray-200">
+        <PartnersSection />
       </div>
+
+      <NotificationPopup />
 
       {/* Contact & Location (Two Columns) */}
       <div id="contact" className="py-16 md:py-24 bg-white">

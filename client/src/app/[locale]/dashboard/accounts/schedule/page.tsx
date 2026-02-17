@@ -81,7 +81,7 @@ export default function SchedulePage() {
 
         const duration = account.duration || 12;
         const amount = account.totalAmount || 0;
-        const annualRate = account.rate || 4.95;
+        const annualRate = account.rate || 2.6;
         const monthlyRate = annualRate / 100 / 12;
         const loanMonthly = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -duration));
         const insuranceMonthly = (amount * 0.03) / duration;

@@ -8,7 +8,8 @@ import {
     Upload,
     Loader2,
     ChevronRight,
-    Info
+    Info,
+    AlertCircle
 } from "lucide-react";
 import Image from "next/image";
 import { VerificationProps } from "./types";
@@ -33,37 +34,66 @@ export default function DesktopVerification({
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-6">
                 {/* Intro Card */}
-                <div className="bg-white p-8 rounded-[2.5rem] border-2 border-slate-50 shadow-sm space-y-6">
-                    <div className="space-y-2">
-                        <div className="flex items-center gap-2 mb-2">
-                            <div className="w-1 h-5 bg-ely-blue rounded-full" />
-                            <p className="text-[10px] font-black text-ely-blue uppercase tracking-[0.3em]">Instructions de conformité</p>
-                        </div>
-                        <h2 className="text-3xl font-black text-slate-900 tracking-tight leading-tight">
-                            Finalisez votre dossier de vérification
-                        </h2>
-                    </div>
+                <div className="bg-gradient-to-br from-[#003d82] to-[#1e40af] p-10 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden group">
+                    {/* Decorative Background Elements */}
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" />
+                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-ely-mint/5 blur-[80px] rounded-full translate-y-1/2 -translate-x-1/2" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-50">
+                    <div className="relative space-y-8">
                         <div className="space-y-3">
-                            <h4 className="text-xs font-black uppercase text-slate-400 tracking-widest">Documents d'identité</h4>
-                            <p className="text-sm text-slate-600 font-medium leading-relaxed">
-                                Photos <span className="text-slate-900 font-bold underline decoration-ely-mint">couleur nettes</span> uniquement. Assurez-vous que les 4 bordures du document sont bien visibles.
-                            </p>
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10">
+                                    <AlertCircle className="w-6 h-6 text-ely-mint" />
+                                </div>
+                                <div>
+                                    <p className="text-[10px] font-black text-ely-mint/80 uppercase tracking-[0.4em] leading-none mb-1.5">Conformité</p>
+                                    <h2 className="text-3xl font-black text-white tracking-tight leading-tight">
+                                        Finalisation de votre dossier
+                                    </h2>
+                                </div>
+                            </div>
                         </div>
-                        <div className="space-y-3">
-                            <h4 className="text-xs font-black uppercase text-slate-400 tracking-widest">Justificatifs & Finance</h4>
-                            <p className="text-sm text-slate-600 font-medium leading-relaxed">
-                                Tous les autres documents doivent être fournis au format <span className="text-slate-900 font-bold underline decoration-ely-mint">PDF natif</span> (non scannés).
-                            </p>
-                        </div>
-                    </div>
 
-                    <div className="bg-slate-50 p-4 rounded-2xl flex items-center justify-between">
-                        <p className="text-xs font-bold text-slate-500">Un problème lors du téléchargement ?</p>
-                        <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-slate-100 shadow-sm">
-                            <span className="text-[10px] font-black text-slate-400 uppercase">Support</span>
-                            <span className="text-sm font-black text-ely-blue">+33 07 56 84 41 45</span>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-white/10">
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center border border-white/5">
+                                        <span className="text-[10px] font-black text-white">01</span>
+                                    </div>
+                                    <h4 className="text-xs font-black uppercase text-ely-mint tracking-widest">Identité</h4>
+                                </div>
+                                <div className="space-y-2">
+                                    <p className="text-[13px] text-white font-bold leading-relaxed">
+                                        Photos couleur nettes uniquement.
+                                    </p>
+                                    <p className="text-xs text-white/50 font-medium">Les 4 bordures du document doivent impérativement être visibles.</p>
+                                </div>
+                            </div>
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center border border-white/5">
+                                        <span className="text-[10px] font-black text-white">02</span>
+                                    </div>
+                                    <h4 className="text-xs font-black uppercase text-ely-mint tracking-widest">Finance & Domicile</h4>
+                                </div>
+                                <div className="space-y-2">
+                                    <p className="text-[13px] text-white font-bold leading-relaxed">
+                                        Format PDF original (non scanné).
+                                    </p>
+                                    <p className="text-xs text-white/50 font-medium">Les captures d'écran ou scans seront rejetés par la conformité.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-black/20 backdrop-blur-sm p-5 rounded-[1.5rem] border border-white/5 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="w-2 h-2 rounded-full bg-ely-mint animate-pulse" />
+                                <p className="text-[11px] font-bold text-white/70">Support technique disponible en cas de besoin</p>
+                            </div>
+                            <div className="flex items-center gap-2 px-5 py-2.5 bg-white/10 rounded-xl border border-white/10">
+                                <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">Contact</span>
+                                <span className="text-md font-black text-white">AGM INVEST +33 7 56 84 41 45</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -178,8 +208,8 @@ export default function DesktopVerification({
                                                 <button
                                                     onClick={() => triggerFileInput(doc.type)}
                                                     className={`h-14 px-6 rounded-2xl transition-all flex items-center gap-3 font-bold text-sm shadow-xl shadow-slate-200 ${uploadOnly
-                                                            ? 'bg-ely-blue text-white hover:bg-blue-600'
-                                                            : 'bg-slate-900 text-white hover:bg-black'
+                                                        ? 'bg-ely-blue text-white hover:bg-blue-600'
+                                                        : 'bg-slate-900 text-white hover:bg-black'
                                                         }`}
                                                 >
                                                     <Upload className="w-5 h-5" />
