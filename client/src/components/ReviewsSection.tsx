@@ -3,11 +3,12 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronDown, CheckCircle, Filter, Quote, Users, TrendingUp, Award } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+import { useTranslations, useFormatter } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import { reviews, Review, getReviewStats, getRecentReviews, filterByRating } from '@/data/reviewsData';
 
 export default function ReviewsSection() {
+    const t = useTranslations('Reviews');
     const [selectedRating, setSelectedRating] = useState<number | null>(null);
     const [showAll, setShowAll] = useState(false);
 
@@ -34,13 +35,18 @@ export default function ReviewsSection() {
         );
     };
 
+    const format = useFormatter();
     const formatDate = (dateString: string) => {
-        const date = new Date(dateString);
-        return new Intl.DateTimeFormat('fr-FR', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        }).format(date);
+        try {
+            const date = new Date(dateString);
+            return format.dateTime(date, {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        } catch (e) {
+            return dateString;
+        }
     };
 
     return (
@@ -55,10 +61,12 @@ export default function ReviewsSection() {
                     className="text-center mb-12"
                 >
                     <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
-                        Avis de nos <span className="text-ely-blue">Clients</span>
+                        {t.rich('title', {
+                            highlight: (chunks) => <span className="text-ely-blue">{chunks}</span>
+                        })}
                     </h2>
                     <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                        Découvrez ce que nos clients pensent de nos services
+                        {t('subtitle')}
                     </p>
                 </motion.div>
 
@@ -77,7 +85,7 @@ export default function ReviewsSection() {
                             </div>
                             <div>
                                 <p className="text-3xl font-bold text-slate-900">{stats.averageRating}/5</p>
-                                <p className="text-sm text-slate-600">Note moyenne</p>
+                                <p className="text-sm text-slate-600">{t('Stats.averageRating')}</p>
                             </div>
                         </div>
                     </motion.div>
@@ -95,7 +103,7 @@ export default function ReviewsSection() {
                             </div>
                             <div>
                                 <p className="text-3xl font-bold text-slate-900">{stats.totalReviews}+</p>
-                                <p className="text-sm text-slate-600">Avis clients</p>
+                                <p className="text-sm text-slate-600">{t('Stats.totalReviews')}</p>
                             </div>
                         </div>
                     </motion.div>
@@ -113,7 +121,7 @@ export default function ReviewsSection() {
                             </div>
                             <div>
                                 <p className="text-3xl font-bold text-slate-900">{Math.round((stats.ratingDistribution[5] / stats.totalReviews) * 100)}%</p>
-                                <p className="text-sm text-slate-600">Avis 5 étoiles</p>
+                                <p className="text-sm text-slate-600">{t('Stats.fiveStars')}</p>
                             </div>
                         </div>
                     </motion.div>
@@ -128,7 +136,7 @@ export default function ReviewsSection() {
                             : "bg-white text-slate-700 hover:bg-slate-50 border border-slate-200"
                             }`}
                     >
-                        Tous les avis
+                        {t('allReviews')}
                     </button>
                     {[5, 4].map((rating) => (
                         <button
@@ -140,7 +148,7 @@ export default function ReviewsSection() {
                                 }`}
                         >
                             <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                            {rating} étoiles
+                            {rating} {t('stars')}
                         </button>
                     ))}
                 </div>
@@ -160,12 +168,16 @@ export default function ReviewsSection() {
                             <div className="flex items-start justify-between mb-4">
                                 <div className="flex-1">
                                     <h3 className="font-bold text-slate-900 mb-1">{review.name}</h3>
-                                    <p className="text-sm text-slate-500">{review.region}</p>
+                                    <p className="text-sm text-slate-500">
+                                        {t.has(`Items.r${review.id}.region`)
+                                            ? t(`Items.r${review.id}.region`)
+                                            : review.region}
+                                    </p>
                                 </div>
                                 {review.verified && (
                                     <div className="flex items-center gap-1 bg-green-50 text-green-700 px-2 py-1 rounded-lg text-xs font-semibold">
                                         <Star className="w-3 h-3 fill-green-700" />
-                                        Vérifié
+                                        {t('verified')}
                                     </div>
                                 )}
                             </div>
@@ -176,8 +188,10 @@ export default function ReviewsSection() {
                             </div>
 
                             {/* Comment */}
-                            <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                                "{review.comment}"
+                            <p className="text-slate-600 text-sm leading-relaxed mb-4 min-h-[60px]">
+                                "{t.has(`Items.r${review.id}.comment`)
+                                    ? t(`Items.r${review.id}.comment`)
+                                    : review.comment}"
                             </p>
 
                             {/* Date */}
@@ -195,7 +209,7 @@ export default function ReviewsSection() {
                             href="/reviews"
                             className="px-8 py-4 bg-gradient-to-r from-ely-blue to-ely-mint text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 inline-block"
                         >
-                            Voir tous les avis ({stats.totalReviews})
+                            {t('seeAll')} ({stats.totalReviews})
                         </Link>
                     </div>
                 )}

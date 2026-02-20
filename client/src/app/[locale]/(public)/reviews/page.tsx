@@ -1,37 +1,16 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useFormatter } from "next-intl";
 import { motion } from "framer-motion";
 import { Star, ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import { Link } from '@/i18n/routing';
 import ReviewForm from "@/components/ReviewForm";
-// Use the new hook for fetching combined data
-// Wait, I need to create the hook file first. I did in previous step 698.
-// I need to import it.
-// Actually, I am writing this file NOW.
-// I will assume `ReviewsList` component or just render logically here.
-// Reusing logic from ReviewsSection but adapted for full list.
-
 import { useEffect, useState } from 'react';
-import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
-import { reviews as staticReviews } from '@/data/reviewsData';
-
-// Let's define the interface locally or import it
-interface Review {
-    id: number | string;
-    name: string;
-    region: string;
-    rating: number;
-    comment: string;
-    date: string;
-    verified: boolean;
-}
-
 import { useReviews } from '@/hooks/useReviews';
 
 export default function ReviewsPage() {
     const t = useTranslations('Reviews');
+    const format = useFormatter();
     const { reviews, loading } = useReviews(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [isMobile, setIsMobile] = useState(false);
@@ -70,11 +49,11 @@ export default function ReviewsPage() {
     const formatDate = (dateString: string) => {
         try {
             const date = new Date(dateString);
-            return new Intl.DateTimeFormat('fr-FR', {
+            return format.dateTime(date, {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
-            }).format(date);
+            });
         } catch (e) {
             return dateString;
         }
@@ -88,14 +67,16 @@ export default function ReviewsPage() {
                 <div className="mb-12">
                     <Link href="/" className="inline-flex items-center gap-2 text-ely-blue hover:text-ely-mint font-semibold mb-6 transition-colors">
                         <ArrowLeft className="w-5 h-5" />
-                        Retour à l'accueil
+                        {t('backToHome')}
                     </Link>
                     <div className="text-center max-w-3xl mx-auto">
                         <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-                            L'avis de nos <span className="text-ely-blue">Clients</span>
+                            {t.rich('title', {
+                                highlight: (chunks) => <span className="text-ely-blue">{chunks}</span>
+                            })}
                         </h1>
                         <p className="text-lg text-slate-600">
-                            La transparence est au cœur de notre démarche. Découvrez les retours d'expérience de ceux qui nous ont fait confiance.
+                            {t('description')}
                         </p>
                     </div>
                 </div>
@@ -110,11 +91,11 @@ export default function ReviewsPage() {
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                         <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
                             <Star className="w-6 h-6 fill-ely-blue text-ely-blue" />
-                            Tous les avis ({reviews.length})
+                            {t('allReviews')} ({reviews.length})
                         </h2>
                         {totalPages > 1 && (
                             <div className="text-sm font-medium text-slate-500">
-                                Page {currentPage} sur {totalPages}
+                                {t('page')} {currentPage} {t('of')} {totalPages}
                             </div>
                         )}
                     </div>
@@ -140,12 +121,16 @@ export default function ReviewsPage() {
                                         <div className="flex items-start justify-between mb-4">
                                             <div className="flex-1">
                                                 <h3 className="font-bold text-slate-900 mb-1">{review.name}</h3>
-                                                <p className="text-sm text-slate-500">{review.region}</p>
+                                                <p className="text-sm text-slate-500">
+                                                    {typeof review.id === 'string'
+                                                        ? review.region
+                                                        : t(`Items.r${review.id}.region`)}
+                                                </p>
                                             </div>
                                             {(review as any).verified && (
                                                 <div className="flex items-center gap-1 bg-green-50 text-green-700 px-2 py-1 rounded-lg text-xs font-semibold">
                                                     <Star className="w-3 h-3 fill-green-700" />
-                                                    Vérifié
+                                                    {t('verified')}
                                                 </div>
                                             )}
                                         </div>
@@ -155,7 +140,9 @@ export default function ReviewsPage() {
                                         </div>
 
                                         <p className="text-slate-600 text-sm leading-relaxed mb-4 min-h-[60px]">
-                                            "{review.comment}"
+                                            "{typeof review.id === 'string'
+                                                ? review.comment
+                                                : t(`Items.r${review.id}.comment`)}"
                                         </p>
 
                                         <p className="text-xs text-slate-400">
@@ -176,7 +163,7 @@ export default function ReviewsPage() {
                                         disabled={currentPage === 1}
                                         className="p-3 bg-white border border-slate-200 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:border-ely-blue transition-colors text-ely-blue"
                                     >
-                                        Précédent
+                                        {t('previous')}
                                     </button>
 
                                     <div className="hidden sm:flex gap-2">
@@ -195,8 +182,8 @@ export default function ReviewsPage() {
                                                             window.scrollTo({ top: 0, behavior: 'smooth' });
                                                         }}
                                                         className={`w-12 h-12 rounded-xl border transition-all font-bold ${currentPage === page
-                                                                ? "bg-ely-blue text-white border-ely-blue"
-                                                                : "bg-white text-slate-600 border-slate-200 hover:border-ely-blue"
+                                                            ? "bg-ely-blue text-white border-ely-blue"
+                                                            : "bg-white text-slate-600 border-slate-200 hover:border-ely-blue"
                                                             }`}
                                                     >
                                                         {page}
@@ -220,7 +207,7 @@ export default function ReviewsPage() {
                                         disabled={currentPage === totalPages}
                                         className="p-3 bg-white border border-slate-200 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:border-ely-blue transition-colors text-ely-blue"
                                     >
-                                        Suivant
+                                        {t('next')}
                                     </button>
                                 </div>
                             )}
