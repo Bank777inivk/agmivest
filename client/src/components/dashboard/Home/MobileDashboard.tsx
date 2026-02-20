@@ -54,7 +54,9 @@ export default function MobileDashboard({
     idStatus
 }: MobileDashboardProps) {
     const router = useRouter();
-    const t = useTranslations('CreditRequest.Project.labels');
+    const t = useTranslations('Dashboard.Home');
+    const tLayout = useTranslations('Dashboard.Layout');
+    const tProjects = useTranslations('CreditRequest.Project.labels');
 
     return (
         <motion.div
@@ -66,9 +68,12 @@ export default function MobileDashboard({
             {/* Header Mobile */}
             <header className="flex flex-col gap-1 px-1">
                 <h1 className="text-2xl font-black text-gray-900 tracking-tight">
-                    Bonjour, <span className="text-ely-blue">{firstName || "Utilisateur"}</span> 👋
+                    {t.rich('welcome', {
+                        name: firstName || tLayout('Header.user'),
+                        bold: (chunks) => <span className="text-ely-blue">{chunks}</span>
+                    })}
                 </h1>
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Aperçu de vos activités</p>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t('subtitle')}</p>
             </header>
 
             {/* Notifications / Alerts Stack */}
@@ -79,8 +84,8 @@ export default function MobileDashboard({
                             <AlertCircle className="w-5 h-5 text-white" />
                         </div>
                         <div className="flex-1">
-                            <h3 className="font-bold text-red-900 text-sm">Financement Refusé</h3>
-                            <p className="text-[10px] text-red-700/70 mt-1 leading-relaxed">Contactez le support pour plus de détails.</p>
+                            <h3 className="font-bold text-red-900 text-sm">{t('alerts.rejected.title')}</h3>
+                            <p className="text-[10px] text-red-700/70 mt-1 leading-relaxed">{t('alerts.rejected.message')}</p>
                         </div>
                     </motion.div>
                 )}
@@ -92,9 +97,9 @@ export default function MobileDashboard({
                             <AlertCircle className="w-5 h-5 text-white" />
                         </div>
                         <div className="flex-1">
-                            <h3 className="font-bold text-red-900 text-sm">Identité Refusée</h3>
+                            <h3 className="font-bold text-red-900 text-sm">{t('alerts.idRejected.title')}</h3>
                             <button onClick={() => router.push("/dashboard/support")} className="text-[10px] font-bold text-red-600 mt-2 flex items-center gap-1">
-                                Contacter le support <ChevronRight className="w-3 h-3" />
+                                {t('support.action')} <ChevronRight className="w-3 h-3" />
                             </button>
                         </div>
                     </motion.div>
@@ -107,10 +112,10 @@ export default function MobileDashboard({
                             <FileText className="w-5 h-5 text-white" />
                         </div>
                         <div className="flex-1">
-                            <h3 className="font-bold text-orange-900 text-sm">Dossier Incomplet</h3>
-                            <p className="text-[10px] text-orange-700/70 mt-1 leading-relaxed">Certains documents sont à corriger.</p>
+                            <h3 className="font-bold text-orange-900 text-sm">{t('alerts.partialRejection.title')}</h3>
+                            <p className="text-[10px] text-orange-700/70 mt-1 leading-relaxed">{t('alerts.partialRejection.message')}</p>
                             <button onClick={() => router.push("/dashboard/profile/verification")} className="text-[10px] font-bold text-orange-600 mt-2 flex items-center gap-1">
-                                Voir mes documents <ChevronRight className="w-3 h-3" />
+                                {t('alerts.partialRejection.action')} <ChevronRight className="w-3 h-3" />
                             </button>
                         </div>
                     </motion.div>
@@ -138,14 +143,14 @@ export default function MobileDashboard({
                                         <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center">
                                             <ShieldCheck className="w-5 h-5" />
                                         </div>
-                                        <h3 className="font-bold text-sm">Crédit Accordé 🚀</h3>
+                                        <h3 className="font-bold text-sm">{t('alerts.approvedIdentityNeeded.title')}</h3>
                                     </div>
                                     <p className="text-xs text-white/80 leading-relaxed font-medium">
-                                        Félicitations ! Votre financement est validé. Confirmez votre identité pour l'activer.
+                                        {t('alerts.approvedIdentityNeeded.message')}
                                     </p>
                                     <div className="pt-2">
                                         <span className="text-[10px] font-black uppercase tracking-widest bg-white/20 px-4 py-2 rounded-full flex items-center gap-2 w-fit">
-                                            Vérification requise <ChevronRight className="w-3 h-3" />
+                                            {t('alerts.approvedIdentityNeeded.action')} <ChevronRight className="w-3 h-3" />
                                         </span>
                                     </div>
                                 </div>
@@ -167,14 +172,14 @@ export default function MobileDashboard({
                                         <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center">
                                             <Euro className="w-5 h-5" />
                                         </div>
-                                        <h3 className="font-bold text-sm">Dépôt Requis</h3>
+                                        <h3 className="font-bold text-sm">{t('alerts.approvedDepositNeeded.title')}</h3>
                                     </div>
                                     <p className="text-xs text-white/80 leading-relaxed font-medium">
-                                        Identité confirmée. Le dépôt d'authentification est nécessaire pour finaliser votre dossier.
+                                        {t('alerts.approvedDepositNeeded.message')}
                                     </p>
                                     <div className="pt-2">
                                         <span className="text-[10px] font-black uppercase tracking-widest bg-white/20 px-4 py-2 rounded-full flex items-center gap-2 w-fit">
-                                            Effectuer le dépôt <ChevronRight className="w-3 h-3" />
+                                            {t('alerts.approvedDepositNeeded.action')} <ChevronRight className="w-3 h-3" />
                                         </span>
                                     </div>
                                 </div>
@@ -216,7 +221,7 @@ export default function MobileDashboard({
                         <p className={cn(
                             "text-[9px] font-bold uppercase tracking-widest mt-1",
                             stat.id === 'approved' ? "text-white/60" : "text-gray-400"
-                        )}>{stat.label}</p>
+                        )}>{t(`stats.${stat.id}`)}</p>
                     </motion.div>
                 ))}
             </div>
@@ -224,10 +229,10 @@ export default function MobileDashboard({
             {/* Quick Actions Grid (Mobile) */}
             <motion.div variants={item} className="grid grid-cols-4 gap-2">
                 {[
-                    { label: "Docs", icon: FileText, color: "orange", route: "/dashboard/documents" },
-                    { label: "Virement", icon: ArrowUpRight, color: "emerald", route: "/dashboard/accounts/transfer" },
-                    { label: "Echéancier", icon: Clock, color: "blue", route: "/dashboard/accounts/schedule" },
-                    { label: "RIB", icon: Landmark, color: "purple", route: "/dashboard/accounts" },
+                    { label: t('quickActions.docs'), icon: FileText, color: "orange", route: "/dashboard/documents" },
+                    { label: t('quickActions.transfer'), icon: ArrowUpRight, color: "emerald", route: "/dashboard/accounts/transfer" },
+                    { label: t('quickActions.schedule'), icon: Clock, color: "blue", route: "/dashboard/accounts/schedule" },
+                    { label: t('quickActions.ribRef'), icon: Landmark, color: "purple", route: "/dashboard/accounts" },
                 ].map((action, idx) => (
                     <button
                         key={idx}
@@ -245,8 +250,8 @@ export default function MobileDashboard({
             {/* Recent Requests List */}
             <motion.div variants={item} className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
                 <div className="p-6 border-b border-gray-50 flex justify-between items-center">
-                    <h3 className="font-black text-gray-900 uppercase tracking-widest text-[10px]">Demandes Récentes</h3>
-                    <button onClick={() => router.push("/dashboard/requests")} className="text-[10px] font-bold text-ely-blue">Voir tout</button>
+                    <h3 className="font-black text-gray-900 uppercase tracking-widest text-[10px]">{t('requests.title')}</h3>
+                    <button onClick={() => router.push("/dashboard/requests")} className="text-[10px] font-bold text-ely-blue">{t('requests.viewAll')}</button>
                 </div>
                 <div className="divide-y divide-gray-50">
                     {recentRequests.length > 0 ? (
@@ -258,7 +263,7 @@ export default function MobileDashboard({
                                     </div>
                                     <div>
                                         <p className="text-xs font-bold text-gray-900">
-                                            {req.projectType ? t(req.projectType.toLowerCase()) : "Projet Personnel"}
+                                            {req.projectType ? tProjects(req.projectType.toLowerCase()) : t('requests.project')}
                                         </p>
                                         <p className="text-[9px] text-gray-400 font-medium">#{req.id.slice(0, 8)}</p>
                                     </div>
@@ -269,14 +274,14 @@ export default function MobileDashboard({
                                         "text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full inline-block mt-1",
                                         req.status === 'approved' ? "bg-emerald-50 text-emerald-600" : "bg-ely-blue/5 text-ely-blue"
                                     )}>
-                                        {req.status === 'approved' ? 'Accordé' : 'En étude'}
+                                        {req.status === 'approved' ? t('requests.statusApproved') : t('requests.statusProcessing')}
                                     </div>
                                 </div>
                             </div>
                         ))
                     ) : (
                         <div className="p-10 text-center">
-                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Aucune demande</p>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{t('requests.empty')}</p>
                         </div>
                     )}
                 </div>
@@ -289,14 +294,14 @@ export default function MobileDashboard({
                         <HelpCircle className="w-5 h-5 text-ely-mint" />
                     </div>
                     <div>
-                        <h3 className="text-lg font-bold">Une question ?</h3>
-                        <p className="text-xs text-white/70 mt-2 leading-relaxed">Nos experts vous répondent sous 24h ouvrées par téléphone ou chat.</p>
+                        <h3 className="text-lg font-bold">{t('support.title')}</h3>
+                        <p className="text-xs text-white/70 mt-2 leading-relaxed">{t('support.subtitle')}</p>
                     </div>
                     <button
                         onClick={() => router.push("/dashboard/support")}
                         className="w-full py-4 bg-white text-ely-blue rounded-2xl font-bold text-xs active:scale-95 transition-all shadow-lg"
                     >
-                        Contacter mon conseiller
+                        {t('support.action')}
                     </button>
                 </div>
                 <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-ely-mint/10 rounded-full blur-2xl" />

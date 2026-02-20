@@ -36,18 +36,18 @@ import { signOut } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
 
 const menuItems = [
-    { icon: LayoutDashboard, label: "Mon Espace Client", href: "/dashboard" },
-    { icon: Landmark, label: "Mon solde crédit AGM", href: "/dashboard/accounts" },
-    { icon: Plus, label: "Faire une demande", href: "/dashboard/credit" },
-    { icon: FileText, label: "Mes Demandes", href: "/dashboard/requests" },
-    { icon: FolderOpen, label: "Mes Documents", href: "/dashboard/documents" },
-    { icon: CreditCard, label: "Facturation", href: "/dashboard/billing" },
-    { icon: User, label: "Mon Profil", href: "/dashboard/profile" },
+    { icon: LayoutDashboard, label: "Dashboard.Layout.Sidebar.clientSpace", href: "/dashboard" },
+    { icon: Landmark, label: "Dashboard.Layout.Sidebar.balance", href: "/dashboard/accounts" },
+    { icon: Plus, label: "Dashboard.Layout.Sidebar.makeRequest", href: "/dashboard/credit" },
+    { icon: FileText, label: "Dashboard.Layout.Sidebar.myRequests", href: "/dashboard/requests" },
+    { icon: FolderOpen, label: "Dashboard.Layout.Sidebar.myDocuments", href: "/dashboard/documents" },
+    { icon: CreditCard, label: "Dashboard.Layout.Sidebar.billing", href: "/dashboard/billing" },
+    { icon: User, label: "Dashboard.Layout.Sidebar.myProfile", href: "/dashboard/profile" },
 ];
 
 const secondaryItems = [
-    { icon: Settings, label: "Paramètres", href: "/dashboard/settings" },
-    { icon: HelpCircle, label: "Aide & Support", href: "/dashboard/support" },
+    { icon: Settings, label: "Dashboard.Layout.Sidebar.settings", href: "/dashboard/settings" },
+    { icon: HelpCircle, label: "Dashboard.Layout.Sidebar.support", href: "/dashboard/support" },
 ];
 
 export default function Sidebar({
@@ -67,6 +67,7 @@ export default function Sidebar({
 }) {
     const pathname = usePathname();
     const router = useRouter();
+    const t = useTranslations();
 
     const handleSignOut = async () => {
         await signOut(auth);
@@ -96,7 +97,7 @@ export default function Sidebar({
                 <div>
                     {!isCollapsed && (
                         <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] px-5 mb-4 drop-shadow-sm">
-                            Menu Principal
+                            {t('Dashboard.Layout.Sidebar.menuTitle')}
                         </p>
                     )}
                     <nav className="space-y-0.5">
@@ -114,7 +115,7 @@ export default function Sidebar({
                                     <item.icon className={`w-4 h-4 flex-shrink-0 transition-transform duration-300 ${isActive ? 'scale-110 text-ely-mint' : 'group-hover:scale-110 text-white translate-z-0'}`} />
                                     {(!isCollapsed || isMobile) && (
                                         <span className={`text-xs font-semibold tracking-wide transition-all duration-300 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
-                                            {item.label}
+                                            {t(item.label)}
                                         </span>
                                     )}
                                     {isActive && (!isCollapsed || isMobile) && (
@@ -134,7 +135,7 @@ export default function Sidebar({
                 <div>
                     {!isCollapsed && (
                         <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] px-5 mb-4 drop-shadow-sm">
-                            Préférences
+                            {t('Dashboard.Layout.Sidebar.preferencesTitle')}
                         </p>
                     )}
                     <nav className="space-y-0.5">
@@ -152,7 +153,7 @@ export default function Sidebar({
                                     <item.icon className={`w-4 h-4 flex-shrink-0 transition-transform duration-300 ${isActive ? 'scale-110 text-ely-mint' : 'group-hover:scale-110 text-white'}`} />
                                     {(!isCollapsed || isMobile) && (
                                         <span className={`text-xs font-semibold tracking-wide transition-all duration-300 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
-                                            {item.label}
+                                            {t(item.label)}
                                         </span>
                                     )}
                                     {/* Hover glow effect */}
@@ -178,8 +179,8 @@ export default function Sidebar({
                         </div>
                         {(!isCollapsed || isMobile) && (
                             <div className="flex flex-col">
-                                <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest leading-none mb-1">Status Premium</span>
-                                <span className="text-sm font-bold text-white leading-none">Client Vérifié</span>
+                                <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest leading-none mb-1">{t('Dashboard.Layout.Sidebar.premiumStatus')}</span>
+                                <span className="text-sm font-bold text-white leading-none">{t('Dashboard.Layout.Sidebar.verifiedClient')}</span>
                             </div>
                         )}
                     </motion.div>
@@ -201,11 +202,11 @@ export default function Sidebar({
                         {(!isCollapsed || isMobile) && (
                             <div className="flex flex-col gap-1">
                                 <div>
-                                    <span className="text-[10px] font-black text-orange-400 uppercase tracking-widest leading-none">Action Requise</span>
-                                    <p className="text-sm font-bold text-white leading-none mt-1">Documents à compléter</p>
+                                    <span className="text-[10px] font-black text-orange-400 uppercase tracking-widest leading-none">{t('Dashboard.Layout.Sidebar.actionRequired')}</span>
+                                    <p className="text-sm font-bold text-white leading-none mt-1">{t('Dashboard.Layout.Sidebar.docsToComplete')}</p>
                                 </div>
                                 <p className="text-[10px] text-white/70 leading-tight">
-                                    Certains documents nécessitent votre attention
+                                    {t('Dashboard.Layout.Sidebar.docsAttention')}
                                 </p>
                             </div>
                         )}
@@ -228,11 +229,11 @@ export default function Sidebar({
                         {(!isCollapsed || isMobile) && (
                             <div className="flex flex-col gap-1">
                                 <div>
-                                    <span className="text-[10px] font-black text-red-400 uppercase tracking-widest leading-none">Action Requise</span>
-                                    <p className="text-sm font-bold text-white leading-none mt-1">Identité Refusée</p>
+                                    <span className="text-[10px] font-black text-red-400 uppercase tracking-widest leading-none">{t('Dashboard.Layout.Sidebar.actionRequired')}</span>
+                                    <p className="text-sm font-bold text-white leading-none mt-1">{t('Dashboard.Layout.Sidebar.identityRejected')}</p>
                                 </div>
                                 <p className="text-[10px] text-white/70 leading-tight">
-                                    Contactez le support pour plus d'informations
+                                    {t('Dashboard.Layout.Sidebar.contactSupport')}
                                 </p>
                             </div>
                         )}
@@ -247,7 +248,7 @@ export default function Sidebar({
                     className="flex items-center gap-3 w-full px-4 py-3 text-red-400 hover:bg-white/[0.03] rounded-2xl transition-all font-medium group"
                 >
                     <LogOut className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                    {(!isCollapsed || isMobile) && <span>Déconnexion</span>}
+                    {(!isCollapsed || isMobile) && <span>{t('Dashboard.Layout.Sidebar.logout')}</span>}
                 </button>
             </div>
 

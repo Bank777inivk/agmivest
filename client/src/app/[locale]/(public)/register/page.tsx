@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl";
 
 type Step = 1 | 2 | 3;
 
-import { auth, db } from "@/lib/firebase";
+import { auth, db, getFirebaseAuthErrorMessage } from "@/lib/firebase";
 import { COUNTRY_PHONE_DATA, COUNTRIES, COUNTRY_TO_NATIONALITY } from "@/lib/constants";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -168,15 +168,15 @@ export default function RegisterPage() {
         if (step === 1) {
             const status = getDateStatus(formData.birthDate);
             if (formData.birthDate.length > 0 && formData.birthDate.length < 14) {
-                setError("Veuillez saisir une date de naissance complète.");
+                setError(t('Errors.incompleteDate') || "Veuillez saisir une date de naissance complète.");
                 return;
             }
             if (status === "invalid") {
-                setError("La date de naissance saisie est invalide.");
+                setError(t('Errors.invalidDate') || "La date de naissance saisie est invalide.");
                 return;
             }
             if (status === "underage") {
-                setError("Vous devez avoir au moins 18 ans pour vous inscrire.");
+                setError(t('Errors.underage') || "Vous devez avoir au moins 18 ans pour vous inscrire.");
                 return;
             }
         }
@@ -228,11 +228,8 @@ export default function RegisterPage() {
             router.push("/dashboard");
         } catch (err: any) {
             console.error("Registration error:", err);
-            let message = "Une erreur est survenue lors de l'inscription.";
-            if (err.code === 'auth/email-already-in-use') {
-                message = t('errorEmailAlreadyInUse') || "Cet email est déjà utilisé.";
-            }
-            setError(message);
+            const errorKey = getFirebaseAuthErrorMessage(err.code);
+            setError(t(errorKey));
         } finally {
             setIsLoading(false);
         }
@@ -418,7 +415,7 @@ export default function RegisterPage() {
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-1">
-                                            <label className="block text-sm font-semibold text-gray-700 ml-1">Pays de naissance</label>
+                                            <label className="block text-sm font-semibold text-gray-700 ml-1">{t('Fields.birthCountry') || "Pays de naissance"}</label>
                                             <div className="relative group">
                                                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                                     <Globe className="h-5 w-5 text-gray-400 group-focus-within:text-ely-mint transition-colors" />
@@ -446,7 +443,7 @@ export default function RegisterPage() {
                                                     value={formData.nationality}
                                                     onChange={handleChange}
                                                     className="block w-full pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ely-mint/20 focus:border-ely-mint transition-all"
-                                                    placeholder="Française"
+                                                    placeholder={t('Fields.nationality')}
                                                 />
                                             </div>
                                         </div>
@@ -514,7 +511,7 @@ export default function RegisterPage() {
                                     </div>
 
                                     <div className="space-y-1">
-                                        <label className="block text-sm font-semibold text-gray-700 ml-1">Pays de résidence</label>
+                                        <label className="block text-sm font-semibold text-gray-700 ml-1">{t('Fields.residenceCountry') || "Pays de résidence"}</label>
                                         <select
                                             name="residenceCountry"
                                             value={formData.residenceCountry}

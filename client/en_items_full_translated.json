@@ -1,0 +1,662 @@
+{
+  "r1": {
+    "name": "Thomas Dubois",
+    "region": "Paris",
+    "comment": "Impeccable service! I got my financing in less than 2 weeks. The team is very professional.",
+    "date": "2026-02-15"
+  },
+  "r2": {
+    "name": "Marie Laurent",
+    "region": "Lyon",
+    "comment": "Excellent experience. The advisor accompanied me at every step. I highly recommend AGM INVEST.",
+    "date": "2026-02-14"
+  },
+  "r3": {
+    "name": "Pierre Martin",
+    "region": "Marseille",
+    "comment": "Very satisfied with the service. Quick and transparent process. A few documents to provide but that's normal.",
+    "date": "2026-02-13"
+  },
+  "r4": {
+    "name": "Sophie Bernard",
+    "region": "Toulouse",
+    "comment": "I am delighted! My file was processed quickly and I was able to buy my car without stress.",
+    "date": "2026-02-11"
+  },
+  "r5": {
+    "name": "Julien Petit",
+    "region": "Nice",
+    "comment": "Top service! The team is reactive and listening. My credit was validated in 10 days.",
+    "date": "2026-02-11"
+  },
+  "r6": {
+    "name": "Camille Durand",
+    "region": "Nantes",
+    "comment": "Good overall experience. The follow-up is excellent and the advisors are competent.",
+    "date": "2026-02-10"
+  },
+  "r7": {
+    "name": "Alexandre Roux",
+    "region": "Strasbourg",
+    "comment": "Perfect! Simple and efficient process. I had my car financing without problem.",
+    "date": "2026-02-09"
+  },
+  "r8": {
+    "name": "Léa Moreau",
+    "region": "Montpellier",
+    "comment": "I recommend 100%! Professional service, fast and transparent. Thanks to the whole team.",
+    "date": "2026-02-08"
+  },
+  "r9": {
+    "name": "Nicolas Simon",
+    "region": "Bordeaux",
+    "comment": "Very good service. The deadlines were respected and the advisor was available to answer my questions.",
+    "date": "2026-02-07"
+  },
+  "r10": {
+    "name": "Emma Leroy",
+    "region": "Lille",
+    "comment": "Exceptional experience! File processed quickly, professional team. I am very satisfied.",
+    "date": "2026-02-06"
+  },
+  "r11": {
+    "name": "Lucas Blanc",
+    "region": "Rennes",
+    "comment": "Irreproachable service. My advisor guided me throughout the process. Funding obtained in 12 days.",
+    "date": "2026-02-05"
+  },
+  "r12": {
+    "name": "Chloé Garnier",
+    "region": "Reims",
+    "comment": "Good service. The process is well explained and the team is available.",
+    "date": "2026-02-04"
+  },
+  "r13": {
+    "name": "Hugo Chevalier",
+    "region": "Le Havre",
+    "comment": "Excellent! I was able to finance my vehicle quickly. Top-notch customer service.",
+    "date": "2026-02-03"
+  },
+  "r14": {
+    "name": "Manon Girard",
+    "region": "Saint-Étienne",
+    "comment": "Very professional and efficient. My folder was accepted quickly. I recommend.",
+    "date": "2026-02-02"
+  },
+  "r15": {
+    "name": "Antoine Bonnet",
+    "region": "Toulon",
+    "comment": "Quality service. Good communication and regular follow-up of the file.",
+    "date": "2026-02-01"
+  },
+  "r16": {
+    "name": "Sarah Dupont",
+    "region": "Grenoble",
+    "comment": "Perfect from start to finish! Reactive and professional team. My credit validated in 8 days.",
+    "date": "2026-01-31"
+  },
+  "r17": {
+    "name": "Maxime Rousseau",
+    "region": "Dijon",
+    "comment": "I am very satisfied. Simple, fast and transparent process. Thank you AGM INVEST!",
+    "date": "2026-01-30"
+  },
+  "r18": {
+    "name": "Laura Vincent",
+    "region": "Angers",
+    "comment": "Good experience. The advisors are competent and the follow-up is regular.",
+    "date": "2026-01-29"
+  },
+  "r19": {
+    "name": "Théo Lambert",
+    "region": "Nîmes",
+    "comment": "Excellent service! My folder was processed quickly and efficiently.",
+    "date": "2026-02-17"
+  },
+  "r20": {
+    "name": "Inès Fontaine",
+    "region": "Villeurbanne",
+    "comment": "Very good experience. The team is professional and attentive.",
+    "date": "2026-01-27"
+  },
+  "r21": {
+    "name": "Raphaël Morel",
+    "region": "Le Mans",
+    "comment": "Satisfied with the service. Good support throughout the process.",
+    "date": "2026-01-26"
+  },
+  "r22": {
+    "name": "Jade Fournier",
+    "region": "Aix-en-Provence",
+    "comment": "Impeccable! Financing obtained quickly. I highly recommend.",
+    "date": "2026-01-25"
+  },
+  "r23": {
+    "name": "Nathan Mercier",
+    "region": "Clermont-Ferrand",
+    "comment": "Excellent service. Responsive and professional team. File validated in 10 days.",
+    "date": "2026-01-24"
+  },
+  "r24": {
+    "name": "Lola Bertrand",
+    "region": "Brest",
+    "comment": "Good overall performance. The advisor was available and competent.",
+    "date": "2026-01-23"
+  },
+  "r25": {
+    "name": "Gabriel Lefebvre",
+    "region": "Tours",
+    "comment": "Top service! Fast and transparent process. Very satisfied.",
+    "date": "2026-02-11"
+  },
+  "r26": {
+    "name": "Zoé Renard",
+    "region": "Amiens",
+    "comment": "Perfect! My car credit was validated quickly. Professional team.",
+    "date": "2026-01-21"
+  },
+  "r27": {
+    "name": "Louis Dumas",
+    "region": "Limoges",
+    "comment": "Very good service. Clear communication and regular updates.",
+    "date": "2026-01-20"
+  },
+  "r28": {
+    "name": "Alice Perrin",
+    "region": "Annecy",
+    "comment": "Excellent experience! Attentive advisor and efficient process.",
+    "date": "2026-01-19"
+  },
+  "r29": {
+    "name": "Arthur Roussel",
+    "region": "Perpignan",
+    "comment": "I recommend! Fast and professional service. My file processed in 2 weeks.",
+    "date": "2026-01-18"
+  },
+  "r30": {
+    "name": "Rose Giraud",
+    "region": "Boulogne-Billancourt",
+    "comment": "Good experience. The team is competent and responsive.",
+    "date": "2026-01-17"
+  },
+  "r31": {
+    "name": "Enzo Faure",
+    "region": "Metz",
+    "comment": "Impeccable service! Financing obtained quickly. Very satisfied.",
+    "date": "2026-01-16"
+  },
+  "r32": {
+    "name": "Léna André",
+    "region": "Besançon",
+    "comment": "Excellent performance. Simple process and professional team.",
+    "date": "2026-01-15"
+  },
+  "r33": {
+    "name": "Paul Marchand",
+    "region": "Orléans",
+    "comment": "Very good service. My advisor supported me well.",
+    "date": "2026-01-14"
+  },
+  "r34": {
+    "name": "Amélie Blanchard",
+    "region": "Saint-Denis",
+    "comment": "Perfect! File processed quickly and efficiently. I recommend.",
+    "date": "2026-02-12"
+  },
+  "r35": {
+    "name": "Dylan Muller",
+    "region": "Argenteuil",
+    "comment": "Top service! Responsive and professional team.",
+    "date": "2026-01-12"
+  },
+  "r36": {
+    "name": "Clara Barbier",
+    "region": "Rouen",
+    "comment": "Good overall experience. Transparent and well-explained process.",
+    "date": "2026-01-11"
+  },
+  "r37": {
+    "name": "Mathis Brun",
+    "region": "Mulhouse",
+    "comment": "Excellent! My credit validated in 9 days. Professional service.",
+    "date": "2026-01-10"
+  },
+  "r38": {
+    "name": "Océane Meyer",
+    "region": "Montreuil",
+    "comment": "Very satisfied! The team is listening and efficient.",
+    "date": "2026-01-09"
+  },
+  "r39": {
+    "name": "Clément Denis",
+    "region": "Caen",
+    "comment": "Good service. Competent and available advisor.",
+    "date": "2026-02-13"
+  },
+  "r40": {
+    "name": "Anaïs Legrand",
+    "region": "Nancy",
+    "comment": "Impeccable! Fast and transparent process. I highly recommend.",
+    "date": "2026-01-07"
+  },
+  "r41": {
+    "name": "Baptiste Gauthier",
+    "region": "Versailles",
+    "comment": "Excellent service! My file was processed with professionalism.",
+    "date": "2026-01-06"
+  },
+  "r42": {
+    "name": "Margaux Perrot",
+    "region": "Nanterre",
+    "comment": "Very good performance. Responsive and attentive team.",
+    "date": "2026-01-05"
+  },
+  "r43": {
+    "name": "Valentin Roy",
+    "region": "Créteil",
+    "comment": "Perfect! Financing obtained quickly. Professional service.",
+    "date": "2026-01-04"
+  },
+  "r44": {
+    "name": "Lucie Clement",
+    "region": "Vitry-sur-Seine",
+    "comment": "Excellent experience! Competent advisor and efficient process.",
+    "date": "2026-01-03"
+  },
+  "r45": {
+    "name": "Romain Leclerc",
+    "region": "Avignon",
+    "comment": "Good service. Clear communication and regular file follow-up.",
+    "date": "2026-02-15"
+  },
+  "r46": {
+    "name": "Charlotte Vidal",
+    "region": "Poitiers",
+    "comment": "I recommend! Fast and transparent service. Very satisfied.",
+    "date": "2026-01-01"
+  },
+  "r47": {
+    "name": "Adrien Benoit",
+    "region": "Aubervilliers",
+    "comment": "Top service! My credit validated in 11 days.",
+    "date": "2026-02-12"
+  },
+  "r48": {
+    "name": "Justine Olivier",
+    "region": "Aulnay-sous-Bois",
+    "comment": "Good experience. The team is professional and responsive.",
+    "date": "2025-12-30"
+  },
+  "r49": {
+    "name": "Florian Picard",
+    "region": "Asnières-sur-Seine",
+    "comment": "Excellent! Simple and fast process. I recommend.",
+    "date": "2025-12-29"
+  },
+  "r50": {
+    "name": "Marine Jacquet",
+    "region": "Colombes",
+    "comment": "Very satisfied! Attentive and efficient team.",
+    "date": "2025-12-28"
+  },
+  "r51": {
+    "name": "Kévin Renaud",
+    "region": "La Rochelle",
+    "comment": "Good service. My advisor was available and competent.",
+    "date": "2025-12-27"
+  },
+  "r52": {
+    "name": "Émilie Caron",
+    "region": "Calais",
+    "comment": "Impeccable! File processed quickly. Professional service.",
+    "date": "2026-02-11"
+  },
+  "r53": {
+    "name": "Quentin Guillot",
+    "region": "Rueil-Malmaison",
+    "comment": "Perfect! Financing obtained in less than 2 weeks.",
+    "date": "2025-12-25"
+  },
+  "r54": {
+    "name": "Pauline Bourgeois",
+    "region": "Antibes",
+    "comment": "Very good performance. Transparent and well-explained process.",
+    "date": "2025-12-24"
+  },
+  "r55": {
+    "name": "Benjamin Gaillard",
+    "region": "Saint-Maur-des-Fossés",
+    "comment": "Excellent service! Responsive and professional team.",
+    "date": "2025-12-23"
+  },
+  "r56": {
+    "name": "Mathilde Meunier",
+    "region": "Champigny-sur-Marne",
+    "comment": "I highly recommend! Fast and efficient service.",
+    "date": "2025-12-22"
+  },
+  "r57": {
+    "name": "Alexis Lemoine",
+    "region": "Dunkerque",
+    "comment": "Good overall experience. Competent advisor.",
+    "date": "2025-12-21"
+  },
+  "r58": {
+    "name": "Julie Hubert",
+    "region": "Bourges",
+    "comment": "Top service! My file validated quickly.",
+    "date": "2025-12-20"
+  },
+  "r59": {
+    "name": "Sébastien Renault",
+    "region": "Cannes",
+    "comment": "Perfect! Simple and transparent process. Very satisfied.",
+    "date": "2025-12-19"
+  },
+  "r60": {
+    "name": "Audrey Girard",
+    "region": "Pau",
+    "comment": "Very good service. The team is attentive and responsive.",
+    "date": "2025-12-18"
+  },
+  "r61": {
+    "name": "Jérôme Dupuis",
+    "region": "Colmar",
+    "comment": "Excellent! My car credit validated in 10 days.",
+    "date": "2025-12-17"
+  },
+  "r62": {
+    "name": "Céline Lemaire",
+    "region": "Quimper",
+    "comment": "Impeccable service! Professional and efficient team.",
+    "date": "2025-12-16"
+  },
+  "r63": {
+    "name": "Grégory Masson",
+    "region": "Valence",
+    "comment": "Good performance. Clear communication and regular updates.",
+    "date": "2025-12-15"
+  },
+  "r64": {
+    "name": "Stéphanie Morin",
+    "region": "Troyes",
+    "comment": "I recommend! Fast and professional service.",
+    "date": "2025-12-14"
+  },
+  "r65": {
+    "name": "Olivier Sanchez",
+    "region": "Ajaccio",
+    "comment": "Perfect! Financing obtained quickly. Very satisfied.",
+    "date": "2025-12-13"
+  },
+  "r66": {
+    "name": "Nathalie Garnier",
+    "region": "Chambéry",
+    "comment": "Very good experience. The team is competent.",
+    "date": "2025-12-12"
+  },
+  "r67": {
+    "name": "Damien Rousseau",
+    "region": "Lorient",
+    "comment": "Excellent service! Efficient and transparent process.",
+    "date": "2025-12-11"
+  },
+  "r68": {
+    "name": "Laetitia Giraud",
+    "region": "Niort",
+    "comment": "Impeccable! My file was processed with professionalism.",
+    "date": "2025-12-10"
+  },
+  "r69": {
+    "name": "Fabien Martinez",
+    "region": "Sarcelles",
+    "comment": "Good service. Advisor available and listening.",
+    "date": "2025-12-09"
+  },
+  "r70": {
+    "name": "Sandrine Lopez",
+    "region": "Beauvais",
+    "comment": "Excellent! I highly recommend AGM INVEST.",
+    "date": "2026-02-12"
+  },
+  "r71": {
+    "name": "Christophe Garcia",
+    "region": "Vannes",
+    "comment": "Top service! My credit validated in 9 days.",
+    "date": "2025-12-07"
+  },
+  "r72": {
+    "name": "Valérie Rodriguez",
+    "region": "Ivry-sur-Seine",
+    "comment": "Very good performance. Responsive and professional team.",
+    "date": "2025-12-06"
+  },
+  "r73": {
+    "name": "Laurent Fernandez",
+    "region": "Cergy",
+    "comment": "Perfect! Fast and transparent process.",
+    "date": "2025-12-05"
+  },
+  "r74": {
+    "name": "Isabelle Gonzalez",
+    "region": "Levallois-Perret",
+    "comment": "Excellent experience! Professional service.",
+    "date": "2025-12-04"
+  },
+  "r75": {
+    "name": "Michaël Perez",
+    "region": "Pessac",
+    "comment": "Good service. My advisor was competent.",
+    "date": "2025-12-03"
+  },
+  "r76": {
+    "name": "Corinne Sanchez",
+    "region": "Clichy",
+    "comment": "I recommend! File processed quickly.",
+    "date": "2025-12-02"
+  },
+  "r77": {
+    "name": "Franck Moreau",
+    "region": "Arles",
+    "comment": "Impeccable service! Attentive and efficient team.",
+    "date": "2025-12-01"
+  },
+  "r78": {
+    "name": "Sylvie Blanc",
+    "region": "Vénissieux",
+    "comment": "Very good experience. Well-explained process.",
+    "date": "2025-11-30"
+  },
+  "r79": {
+    "name": "Thierry Roux",
+    "region": "Antony",
+    "comment": "Excellent! My financing obtained in 12 days.",
+    "date": "2026-02-14"
+  },
+  "r80": {
+    "name": "Monique Durand",
+    "region": "La Seyne-sur-Mer",
+    "comment": "Perfect! Fast and professional service.",
+    "date": "2025-11-28"
+  },
+  "r81": {
+    "name": "Patrick Simon",
+    "region": "Neuilly-sur-Seine",
+    "comment": "Good service. The team is responsive.",
+    "date": "2025-11-27"
+  },
+  "r82": {
+    "name": "Brigitte Leroy",
+    "region": "Montauban",
+    "comment": "I highly recommend! Excellent service.",
+    "date": "2025-11-26"
+  },
+  "r83": {
+    "name": "Yves Chevalier",
+    "region": "Pantin",
+    "comment": "Top service! File validated quickly.",
+    "date": "2025-11-25"
+  },
+  "r84": {
+    "name": "Martine Bonnet",
+    "region": "Noisy-le-Grand",
+    "comment": "Very good performance. Competent advisor.",
+    "date": "2025-11-24"
+  },
+  "r85": {
+    "name": "Alain Roussel",
+    "region": "Évry",
+    "comment": "Excellent service! Efficient process.",
+    "date": "2025-11-23"
+  },
+  "r86": {
+    "name": "Nicole Giraud",
+    "region": "Villeneuve-d'Ascq",
+    "comment": "Impeccable! My vehicle credit was validated.",
+    "date": "2025-11-22"
+  },
+  "r87": {
+    "name": "Daniel Faure",
+    "region": "Meaux",
+    "comment": "Good service. Clear communication.",
+    "date": "2026-02-13"
+  },
+  "r88": {
+    "name": "Jacqueline André",
+    "region": "Cholet",
+    "comment": "Perfect! Professional and responsive team.",
+    "date": "2025-11-20"
+  },
+  "r89": {
+    "name": "Jean-Pierre Blanc",
+    "region": "Marseille",
+    "comment": "Excellent experience with AGM INVEST. Very satisfied.",
+    "date": "2025-11-19"
+  },
+  "r90": {
+    "name": "Danielle Moreau",
+    "region": "Lyon",
+    "comment": "Professional and fast team. I recommend.",
+    "date": "2025-11-18"
+  },
+  "r91": {
+    "name": "Michel Robin",
+    "region": "Toulouse",
+    "comment": "Fast financing and transparent process. Top!",
+    "date": "2025-11-17"
+  },
+  "r92": {
+    "name": "Françoise Masson",
+    "region": "Nice",
+    "comment": "Very satisfied with the service and support.",
+    "date": "2025-11-16"
+  },
+  "r93": {
+    "name": "Georges Petit",
+    "region": "Strasbourg",
+    "comment": "Excellent service, very reactive team.",
+    "date": "2025-11-15"
+  },
+  "r94": {
+    "name": "Yvonne Meunier",
+    "region": "Nantes",
+    "comment": "I obtained my credit easily. Thank you!",
+    "date": "2025-11-14"
+  },
+  "r95": {
+    "name": "Marcel Barbier",
+    "region": "Montpellier",
+    "comment": "Perfect service, very reliable company.",
+    "date": "2025-11-13"
+  },
+  "r96": {
+    "name": "Simone Gauthier",
+    "region": "Bordeaux",
+    "comment": "Very satisfied, I recommend AGM INVEST.",
+    "date": "2025-11-12"
+  },
+  "r97": {
+    "name": "René Vidal",
+    "region": "Lille",
+    "comment": "Fast and efficient service. Very professional.",
+    "date": "2025-11-11"
+  },
+  "r98": {
+    "name": "Andrée Leclerc",
+    "region": "Rennes",
+    "comment": "Good overall experience, I am satisfied.",
+    "date": "2025-11-10"
+  },
+  "r99": {
+    "name": "Christian Roy",
+    "region": "Reims",
+    "comment": "Quality support and fast financing.",
+    "date": "2026-02-10"
+  },
+  "r100": {
+    "name": "Janine Laurent",
+    "region": "Saint-Étienne",
+    "comment": "Professional team and reactive service. Top!",
+    "date": "2025-11-08"
+  },
+  "r101": {
+    "name": "Paul Dubois",
+    "region": "Toulon",
+    "comment": "Service impeccable. I recommend at 100%.",
+    "date": "2026-02-09"
+  },
+  "r102": {
+    "name": "Colette Girard",
+    "region": "Grenoble",
+    "comment": "Very satisfied with my car financing.",
+    "date": "2025-11-06"
+  },
+  "r103": {
+    "name": "Jacques Bonnet",
+    "region": "Dijon",
+    "comment": "Excellent support from start to finish.",
+    "date": "2025-11-05"
+  },
+  "r104": {
+    "name": "Suzanne Vincent",
+    "region": "Angers",
+    "comment": "Fast and efficient. Very good experience.",
+    "date": "2025-11-04"
+  },
+  "r105": {
+    "name": "Gérard Lambert",
+    "region": "Nîmes",
+    "comment": "Professional team, I recommend.",
+    "date": "2025-11-03"
+  },
+  "r106": {
+    "name": "Denise Fontaine",
+    "region": "Villeurbanne",
+    "comment": "Very good service. Satisfied with the results.",
+    "date": "2026-02-16"
+  },
+  "r107": {
+    "name": "Robert Morel",
+    "region": "Le Mans",
+    "comment": "Fast financing, professional team. Perfect.",
+    "date": "2025-11-01"
+  },
+  "r108": {
+    "name": "Cécile Fournier",
+    "region": "Aix-en-Provence",
+    "comment": "Excellent experience with AGM INVEST.",
+    "date": "2025-10-31"
+  },
+  "r109": {
+    "name": "Albert Mercier",
+    "region": "Clermont-Ferrand",
+    "comment": "Good support and fast process.",
+    "date": "2025-10-30"
+  },
+  "r110": {
+    "name": "Marcelle Bertrand",
+    "region": "Marseille",
+    "comment": "Very satisfied with the service. Top!",
+    "date": "2025-10-29"
+  }
+}

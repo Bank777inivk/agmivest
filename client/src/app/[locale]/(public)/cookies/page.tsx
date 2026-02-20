@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { Cookie, Settings, CheckCircle, Smartphone, Server } from "lucide-react";
 
 export default function CookiesPage() {
+    const t = useTranslations('Legal.Cookies');
+
     return (
         <main className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
@@ -20,9 +22,9 @@ export default function CookiesPage() {
                             <Cookie className="w-40 h-40" />
                         </div>
                         <div className="relative z-10">
-                            <h1 className="text-3xl sm:text-4xl font-bold mb-4">Gestion des Cookies</h1>
+                            <h1 className="text-3xl sm:text-4xl font-bold mb-4">{t('title')}</h1>
                             <p className="text-amber-100 text-lg max-w-2xl">
-                                Comprendre comment et pourquoi nous utilisons des cookies pour améliorer votre expérience sur AGM INVEST.
+                                {t('subtitle')}
                             </p>
                         </div>
                     </div>
@@ -32,7 +34,7 @@ export default function CookiesPage() {
 
                         <section className="space-y-4">
                             <p className="text-slate-600 leading-relaxed text-lg">
-                                Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) lors de la visite de notre site. Il permet à AGM INVEST de mémoriser vos actions et préférences sur une période donnée.
+                                {t('intro')}
                             </p>
                         </section>
 
@@ -40,34 +42,34 @@ export default function CookiesPage() {
                         <section className="space-y-6">
                             <div className="flex items-center gap-4 text-slate-800">
                                 <Server className="w-8 h-8 text-amber-600" />
-                                <h2 className="text-2xl font-bold">1. Les Cookies que nous utilisons</h2>
+                                <h2 className="text-2xl font-bold">{t('Section1.title')}</h2>
                             </div>
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                                     <div className="flex items-center gap-3 mb-3 text-ely-blue">
                                         <CheckCircle className="w-6 h-6" />
-                                        <h3 className="font-bold">Cookies Essentiels</h3>
+                                        <h3 className="font-bold">{t('Section1.Essential.title')}</h3>
                                     </div>
                                     <p className="text-sm text-slate-600">
-                                        Indispensables au bon fonctionnement du site. Ils vous permettent de naviguer, d'accéder à votre espace sécurisé et d'assurer la sécurité des transactions. Ils ne peuvent pas être désactivés.
+                                        {t('Section1.Essential.desc')}
                                     </p>
                                 </div>
                                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                                     <div className="flex items-center gap-3 mb-3 text-ely-mint">
                                         <Settings className="w-6 h-6" />
-                                        <h3 className="font-bold">Cookies Fonctionnels</h3>
+                                        <h3 className="font-bold">{t('Section1.Functional.title')}</h3>
                                     </div>
                                     <p className="text-sm text-slate-600">
-                                        Permettent de mémoriser vos choix (langue, nom d'utilisateur) pour vous offrir une expérience personnalisée et plus fluide.
+                                        {t('Section1.Functional.desc')}
                                     </p>
                                 </div>
                                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                                     <div className="flex items-center gap-3 mb-3 text-amber-500">
                                         <Smartphone className="w-6 h-6" />
-                                        <h3 className="font-bold">Cookies Analytiques</h3>
+                                        <h3 className="font-bold">{t('Section1.Analytics.title')}</h3>
                                     </div>
                                     <p className="text-sm text-slate-600">
-                                        Nous aident à comprendre comment les visiteurs interagissent avec le site (pages visitées, temps passé) afin d'améliorer nos services. Données anonymisées.
+                                        {t('Section1.Analytics.desc')}
                                     </p>
                                 </div>
                             </div>
@@ -77,27 +79,27 @@ export default function CookiesPage() {
                         <section className="space-y-6">
                             <div className="flex items-center gap-4 text-slate-800">
                                 <Settings className="w-8 h-8 text-amber-600" />
-                                <h2 className="text-2xl font-bold">2. Gérer vos préférences</h2>
+                                <h2 className="text-2xl font-bold">{t('Section2.title')}</h2>
                             </div>
                             <div className="bg-amber-50/50 rounded-2xl p-6 border border-amber-100 text-slate-700">
                                 <p className="mb-4">
-                                    Vous pouvez à tout moment modifier vos préférences en matière de cookies via les paramètres de votre navigateur web.
+                                    {t('Section2.intro')}
                                 </p>
                                 <ul className="list-disc pl-5 space-y-2 text-sm">
-                                    <li><strong>Google Chrome :</strong> Paramètres {'>'} Confidentialité et sécurité {'>'} Cookies</li>
-                                    <li><strong>Firefox :</strong> Options {'>'} Vie privée et sécurité {'>'} Cookies</li>
-                                    <li><strong>Safari :</strong> Préférences {'>'} Confidentialité</li>
-                                    <li><strong>Edge :</strong> Paramètres {'>'} Cookies et autorisations de site</li>
+                                    <li><strong>{t('Section2.Chrome')}</strong> {t('Section2.ChromePath')}</li>
+                                    <li><strong>{t('Section2.Firefox')}</strong> {t('Section2.FirefoxPath')}</li>
+                                    <li><strong>{t('Section2.Safari')}</strong> {t('Section2.SafariPath')}</li>
+                                    <li><strong>{t('Section2.Edge')}</strong> {t('Section2.EdgePath')}</li>
                                 </ul>
                                 <p className="mt-4 text-xs text-slate-500">
-                                    Note : Le refus des cookies essentiels peut empêcher l'accès à certaines fonctionnalités critiques comme la connexion à votre compte client.
+                                    {t('Section2.note')}
                                 </p>
                             </div>
                         </section>
 
                         {/* Footer */}
                         <div className="pt-8 border-t border-slate-100 text-center text-slate-500 text-sm">
-                            <p>© AGM INVEST - Politique de Cookies</p>
+                            <p>{t('Footer.copyright')}</p>
                         </div>
                     </div>
                 </motion.div>

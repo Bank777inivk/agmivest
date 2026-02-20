@@ -1,9 +1,12 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Shield, CheckCircle2, Lock, Users, FileCheck, Headphones } from "lucide-react";
 
 export default function ConfianceSecuritePage() {
+    const t = useTranslations('Legal.Trust');
+
     return (
         <main className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
@@ -19,9 +22,9 @@ export default function ConfianceSecuritePage() {
                             <Shield className="w-40 h-40" />
                         </div>
                         <div className="relative z-10">
-                            <h1 className="text-3xl sm:text-4xl font-bold mb-4">Confiance & Sécurité</h1>
+                            <h1 className="text-3xl sm:text-4xl font-bold mb-4">{t('title')}</h1>
                             <p className="text-blue-100 text-lg max-w-2xl">
-                                Chez AGM INVEST, la sécurité des dossiers clients est une priorité absolue.
+                                {t('subtitle')}
                             </p>
                         </div>
                     </div>
@@ -32,13 +35,13 @@ export default function ConfianceSecuritePage() {
                         {/* Introduction */}
                         <div className="text-center max-w-2xl mx-auto">
                             <p className="text-lg text-slate-600 leading-relaxed">
-                                Nous mettons en œuvre des processus rigoureux et transparents pour garantir la sécurité et la confidentialité de vos informations.
+                                {t('intro')}
                             </p>
                         </div>
 
                         {/* Nos Engagements */}
                         <section className="space-y-6">
-                            <h2 className="text-2xl font-bold text-center text-ely-blue mb-8">Nos Engagements Sécurité</h2>
+                            <h2 className="text-2xl font-bold text-center text-ely-blue mb-8">{t('engagements.title')}</h2>
 
                             <div className="grid md:grid-cols-2 gap-6">
                                 {/* Vérification administrative */}
@@ -48,9 +51,9 @@ export default function ConfianceSecuritePage() {
                                             <CheckCircle2 className="w-6 h-6 text-ely-blue" />
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-slate-900 mb-2">Vérification Administrative</h3>
+                                            <h3 className="font-bold text-slate-900 mb-2">{t('engagements.admin.title')}</h3>
                                             <p className="text-sm text-slate-600">
-                                                Chaque dossier est vérifié minutieusement par notre équipe administrative.
+                                                {t('engagements.admin.desc')}
                                             </p>
                                         </div>
                                     </div>
@@ -63,9 +66,9 @@ export default function ConfianceSecuritePage() {
                                             <FileCheck className="w-6 h-6 text-ely-mint" />
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-slate-900 mb-2">Validation Multi-Étapes</h3>
+                                            <h3 className="font-bold text-slate-900 mb-2">{t('engagements.multi.title')}</h3>
                                             <p className="text-sm text-slate-600">
-                                                Processus de vérification en plusieurs étapes pour garantir la conformité.
+                                                {t('engagements.multi.desc')}
                                             </p>
                                         </div>
                                     </div>
@@ -78,9 +81,9 @@ export default function ConfianceSecuritePage() {
                                             <FileCheck className="w-6 h-6 text-purple-600" />
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-slate-900 mb-2">Encadrement Contractuel Clair</h3>
+                                            <h3 className="font-bold text-slate-900 mb-2">{t('engagements.contract.title')}</h3>
                                             <p className="text-sm text-slate-600">
-                                                Tous nos services sont encadrés par des contrats transparents et détaillés.
+                                                {t('engagements.contract.desc')}
                                             </p>
                                         </div>
                                     </div>
@@ -93,9 +96,9 @@ export default function ConfianceSecuritePage() {
                                             <CheckCircle2 className="w-6 h-6 text-amber-600" />
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-slate-900 mb-2">Traçabilité des Paiements</h3>
+                                            <h3 className="font-bold text-slate-900 mb-2">{t('engagements.trace.title')}</h3>
                                             <p className="text-sm text-slate-600">
-                                                Tous les paiements sont tracés et sécurisés via des systèmes certifiés.
+                                                {t('engagements.trace.desc')}
                                             </p>
                                         </div>
                                     </div>
@@ -108,9 +111,9 @@ export default function ConfianceSecuritePage() {
                                             <Lock className="w-6 h-6 text-slate-600" />
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-slate-900 mb-2">Protection des Données</h3>
+                                            <h3 className="font-bold text-slate-900 mb-2">{t('engagements.data.title')}</h3>
                                             <p className="text-sm text-slate-600">
-                                                Conformité RGPD et chiffrement de toutes vos données personnelles.
+                                                {t('engagements.data.desc')}
                                             </p>
                                         </div>
                                     </div>
@@ -123,9 +126,9 @@ export default function ConfianceSecuritePage() {
                                             <Headphones className="w-6 h-6 text-pink-600" />
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-slate-900 mb-2">Support Client Dédié</h3>
+                                            <h3 className="font-bold text-slate-900 mb-2">{t('engagements.support.title')}</h3>
                                             <p className="text-sm text-slate-600">
-                                                Une équipe à votre écoute pour répondre à toutes vos questions.
+                                                {t('engagements.support.desc')}
                                             </p>
                                         </div>
                                     </div>
@@ -138,9 +141,9 @@ export default function ConfianceSecuritePage() {
                             <div className="flex items-start gap-4">
                                 <Users className="w-10 h-10 text-ely-blue flex-shrink-0" />
                                 <div>
-                                    <h3 className="text-xl font-bold text-slate-900 mb-3">Traitement Individuel</h3>
+                                    <h3 className="text-xl font-bold text-slate-900 mb-3">{t('individual.title')}</h3>
                                     <p className="text-slate-700 leading-relaxed">
-                                        Chaque dossier est traité de manière individuelle par notre équipe. Nous prenons le temps d'analyser votre situation spécifique pour vous proposer un accompagnement personnalisé.
+                                        {t('individual.content')}
                                     </p>
                                 </div>
                             </div>
@@ -150,17 +153,19 @@ export default function ConfianceSecuritePage() {
                         <section className="bg-white rounded-2xl p-8 border-2 border-ely-mint shadow-lg">
                             <div className="text-center">
                                 <Shield className="w-16 h-16 text-ely-mint mx-auto mb-4" />
-                                <h3 className="text-2xl font-bold text-slate-900 mb-3">Notre Engagement</h3>
+                                <h3 className="text-2xl font-bold text-slate-900 mb-3">{t('promise.title')}</h3>
                                 <p className="text-lg text-slate-700 max-w-2xl mx-auto">
-                                    AGM INVEST s'engage à la <strong className="text-ely-blue">transparence</strong> dans ses processus et ses communications. Votre confiance est notre priorité.
+                                    {t.rich('promise.content', {
+                                        bold: (chunks) => <strong className="text-ely-blue">{chunks}</strong>
+                                    })}
                                 </p>
                             </div>
                         </section>
 
                         {/* Footer */}
                         <div className="pt-8 border-t border-slate-100 text-center text-slate-500 text-sm">
-                            <p>Dernière mise à jour : Février 2026</p>
-                            <p className="mt-2">© 2026 AGM INVEST - Tous droits réservés</p>
+                            <p>{t('Footer.updated')}</p>
+                            <p className="mt-2">{t('Footer.copyright')}</p>
                         </div>
                     </div>
                 </motion.div>

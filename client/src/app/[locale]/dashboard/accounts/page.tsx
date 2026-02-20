@@ -210,7 +210,7 @@ export default function AccountsPage() {
             setTimeout(() => setShowSuccess(false), 3000);
         } catch (error) {
             console.error("Error updating RIB:", error);
-            alert("Erreur lors de la mise à jour du RIB.");
+            alert(t('messages.error'));
         } finally {
             setIsProcessing(false);
         }
@@ -232,8 +232,8 @@ export default function AccountsPage() {
     return (
         <div className="space-y-8">
             <header>
-                <h1 className="text-2xl font-bold text-gray-900">Mon solde crédit AGM</h1>
-                <p className="text-gray-500">Gérez vos crédits actifs et suivez vos remboursements.</p>
+                <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
+                <p className="text-gray-500">{t('subtitle')}</p>
             </header>
 
             {isLoading ? (
@@ -278,12 +278,12 @@ export default function AccountsPage() {
                         <Info className="w-8 h-8 text-ely-mint" />
                     </div>
                     <div>
-                        <h4 className="text-xl font-bold">Besoin d'aide sur vos comptes ?</h4>
-                        <p className="text-white/60">Nos conseillers sont disponibles pour répondre à vos questions sur vos remboursements.</p>
+                        <h4 className="text-xl font-bold">{t('support.title')}</h4>
+                        <p className="text-white/60">{t('support.message')}</p>
                     </div>
                 </div>
                 <button className="relative z-10 px-8 py-3 bg-white text-gray-900 rounded-2xl font-bold hover:bg-ely-mint hover:text-white transition-all">
-                    Contacter un conseiller
+                    {t('support.action')}
                 </button>
             </div>
 
@@ -307,50 +307,50 @@ export default function AccountsPage() {
                                     <Landmark className="w-8 h-8" />
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-black text-gray-900">Coordonnées Bancaires</h3>
-                                    <p className="text-gray-500 font-medium">Mettez à jour votre RIB de référence.</p>
+                                    <h3 className="text-2xl font-black text-gray-900">{t('modal.title')}</h3>
+                                    <p className="text-gray-500 font-medium">{t('modal.subtitle')}</p>
                                 </div>
                             </div>
 
                             <div className="space-y-6">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">Nom de la banque</label>
+                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">{t('modal.bankLabel')}</label>
                                     <input
                                         type="text"
                                         value={newBank}
                                         onChange={(e) => setNewBank(e.target.value)}
-                                        placeholder="EX: CIC, BNP PARIBAS..."
+                                        placeholder={t('modal.bankPlaceholder')}
                                         className="w-full p-6 bg-gray-50 border border-gray-100 rounded-[2rem] font-bold text-gray-900 outline-none focus:border-ely-blue transition-all"
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">Identifiant IBAN</label>
+                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">{t('modal.ibanLabel')}</label>
                                     <input
                                         type="text"
                                         value={newIBAN}
                                         onChange={(e) => setNewIBAN(e.target.value.toUpperCase())}
-                                        placeholder="FR76 ..."
+                                        placeholder={t('modal.ibanPlaceholder')}
                                         className="w-full p-6 bg-gray-50 border border-gray-100 rounded-[2rem] font-mono font-bold text-gray-900 outline-none focus:border-ely-blue transition-all"
                                     />
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">Identifiant BIC / SWIFT</label>
+                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">{t('modal.bicLabel')}</label>
                                         <input
                                             type="text"
                                             value={newBIC}
                                             onChange={(e) => setNewBIC(e.target.value.toUpperCase())}
-                                            placeholder="AGMINV75XXX"
+                                            placeholder={t('modal.bicPlaceholder')}
                                             className="w-full p-6 bg-gray-50 border border-gray-100 rounded-[2rem] font-mono font-bold text-gray-900 outline-none focus:border-ely-blue transition-all"
                                         />
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">Email pour les virements</label>
+                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">{t('modal.emailLabel')}</label>
                                         <input
                                             type="email"
                                             value={newEmail}
                                             onChange={(e) => setNewEmail(e.target.value)}
-                                            placeholder="votre@email.com"
+                                            placeholder={t('modal.emailPlaceholder')}
                                             className="w-full p-6 bg-gray-50 border border-gray-100 rounded-[2rem] font-bold text-gray-900 outline-none focus:border-ely-blue transition-all"
                                         />
                                     </div>
@@ -359,7 +359,7 @@ export default function AccountsPage() {
                                 <div className="bg-blue-50/50 p-6 rounded-[2rem] border border-blue-100 flex items-start gap-4">
                                     <Info className="w-5 h-5 text-ely-blue shrink-0 mt-1" />
                                     <p className="text-xs text-ely-blue/70 font-medium leading-relaxed">
-                                        Ces informations seront utilisées pour vos prochains versements et prélèvements automatiques.
+                                        {t('modal.info')}
                                     </p>
                                 </div>
 
@@ -370,7 +370,7 @@ export default function AccountsPage() {
                                 >
                                     {isProcessing ? (
                                         <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto" />
-                                    ) : "Enregistrer les modifications"}
+                                    ) : t('modal.save')}
                                 </button>
                             </div>
                         </div>
@@ -389,7 +389,7 @@ export default function AccountsPage() {
                         <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
                             <CheckCircle2 className="w-5 h-5 text-white" />
                         </div>
-                        <p className="font-bold text-sm">Opération effectuée avec succès</p>
+                        <p className="font-bold text-sm">{t('messages.success')}</p>
                     </motion.div>
                 </div>
             )}

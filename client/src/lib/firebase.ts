@@ -18,4 +18,19 @@ const db = initializeFirestore(app, {
     localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
 });
 
-export { app, auth, db };
+// Helper to map Firebase Auth error codes to translation keys
+const getFirebaseAuthErrorMessage = (code: string): string => {
+    const errorMap: Record<string, string> = {
+        'auth/invalid-email': 'Errors.auth/invalid-email',
+        'auth/user-disabled': 'Errors.auth/user-disabled',
+        'auth/user-not-found': 'Errors.auth/user-not-found',
+        'auth/wrong-password': 'Errors.auth/wrong-password',
+        'auth/too-many-requests': 'Errors.auth/too-many-requests',
+        'auth/email-already-in-use': 'Errors.auth/email-already-in-use',
+        'auth/weak-password': 'Errors.auth/weak-password',
+        'auth/invalid-credential': 'Errors.auth/wrong-password', // Map new Firebase error to old one for translation
+    };
+    return errorMap[code] || 'Errors.default';
+};
+
+export { app, auth, db, getFirebaseAuthErrorMessage };

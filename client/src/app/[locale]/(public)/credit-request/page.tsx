@@ -426,9 +426,9 @@ export default function CreditRequestPage() {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
                 email: formData.email,
-                projectType: formData.creditType === "personal" ? "Prêt Personnel" :
-                    formData.creditType === "auto" ? "Crédit Auto" :
-                        formData.creditType === "pro" ? "Crédit Professionnel" : "Autre",
+                projectType: formData.creditType === "personal" ? "Personal Loan" :
+                    formData.creditType === "auto" ? "Auto Loan" :
+                        formData.creditType === "pro" ? "Business Loan" : "Other",
                 amount: parseFloat(formData.amount) || 0,
                 duration: parseInt(formData.duration) || 12,
                 rate: parseFloat(formData.rate) || 2.6,
@@ -555,7 +555,7 @@ export default function CreditRequestPage() {
                                     <div className="bg-ely-mint/10 p-2 rounded-lg">
                                         <Lightbulb className="w-5 h-5 text-ely-mint" />
                                     </div>
-                                    <h3 className="text-sm font-bold text-gray-700 uppercase tracking-wider">Simulateur</h3>
+                                    <h3 className="text-sm font-bold text-gray-700 uppercase tracking-wider">{t('Simulator.title')}</h3>
                                 </div>
                                 <Simulator
                                     embedded={true}
@@ -565,7 +565,7 @@ export default function CreditRequestPage() {
                                     syncRate={parseFloat(formData.rate) || 0}
                                 />
                                 <p className="text-xs text-gray-500 text-center">
-                                    Ajustez les valeurs ci-dessus pour pré-remplir le formulaire
+                                    {t('Simulator.disclaimer')}
                                 </p>
                             </div>
                         )}
@@ -732,7 +732,7 @@ export default function CreditRequestPage() {
                                                             className="w-full pl-12 pr-4 py-4 bg-gray-100 border-2 border-gray-200 rounded-xl font-bold text-gray-700 cursor-not-allowed"
                                                         />
                                                         <div className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-500 font-medium italic">
-                                                            Taux fixe
+                                                            {t('Simulator.rateLabel')}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -753,9 +753,9 @@ export default function CreditRequestPage() {
                                                 <div className="space-y-3">
                                                     <label className="text-sm font-semibold text-gray-700">{t('Identity.civility')}</label>
                                                     <select name="civility" value={formData.civility} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none focus:border-ely-mint focus:ring-2 focus:ring-ely-mint/20">
-                                                        <option>M.</option>
-                                                        <option>Mme</option>
-                                                        <option>Mlle</option>
+                                                        <option value="M.">{t('Identity.Options.mr')}</option>
+                                                        <option value="Mme">{t('Identity.Options.mrs')}</option>
+                                                        <option value="Mlle">{t('Identity.Options.ms')}</option>
                                                     </select>
                                                 </div>
                                                 <div className="md:col-span-2 space-y-3">
@@ -865,7 +865,7 @@ export default function CreditRequestPage() {
                                             </div>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                 <div className="space-y-3">
-                                                    <label className="text-sm font-semibold text-gray-700">Pays de résidence</label>
+                                                    <label className="text-sm font-semibold text-gray-700">{t('Situation.residenceCountry')}</label>
                                                     <select
                                                         name="residenceCountry"
                                                         value={formData.residenceCountry}
@@ -876,7 +876,7 @@ export default function CreditRequestPage() {
                                                     </select>
                                                 </div>
                                                 <div className="space-y-3">
-                                                    <label className="text-sm font-semibold text-gray-700">Numéro de Téléphone</label>
+                                                    <label className="text-sm font-semibold text-gray-700">{t('Situation.phone')}</label>
                                                     <div className="flex gap-2 h-[58px]">
                                                         <div className="w-20 flex items-center justify-center bg-gray-50 border border-gray-200 rounded-xl text-2xl select-none" title={formData.phoneCountry}>
                                                             {COUNTRY_PHONE_DATA[formData.phoneCountry]?.flag || "🏳️"}
@@ -905,18 +905,18 @@ export default function CreditRequestPage() {
                                                     onChange={(val) => setFormData(prev => ({ ...prev, street: val }))}
                                                     onSelect={handleAddressSelect}
                                                     country={formData.residenceCountry}
-                                                    placeholder="123 rue de la Paix"
+                                                    placeholder={t('Situation.Placeholders.street')}
                                                     className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none focus:border-ely-mint"
                                                 />
                                             </div>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                 <div className="space-y-3">
                                                     <label className="text-sm font-semibold text-gray-700">{t('Situation.zipCode')}</label>
-                                                    <input type="text" name="zipCode" required value={formData.zipCode} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder="75000" />
+                                                    <input type="text" name="zipCode" required value={formData.zipCode} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder={t('Situation.Placeholders.zipCode')} />
                                                 </div>
                                                 <div className="space-y-3">
                                                     <label className="text-sm font-semibold text-gray-700">{t('Situation.city')}</label>
-                                                    <input type="text" name="city" required value={formData.city} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder="Paris" />
+                                                    <input type="text" name="city" required value={formData.city} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder={t('Situation.Placeholders.city')} />
                                                 </div>
                                             </div>
                                             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4">
@@ -954,27 +954,11 @@ export default function CreditRequestPage() {
                                                 {!(formData.contractType === 'retired' || formData.contractType === 'unemployed') && (
                                                     <div className="space-y-3">
                                                         <label className="text-sm font-semibold text-gray-700">
-                                                            {formData.contractType === 'student'
-                                                                ? "Établissement / Université"
-                                                                : formData.contractType === 'apprentice'
-                                                                    ? "Entreprise d'accueil / CFA"
-                                                                    : formData.contractType === 'independent'
-                                                                        ? "Nom de votre activité"
-                                                                        : formData.contractType === 'artisan'
-                                                                            ? "Enseigne / Nom de l'Entreprise"
-                                                                            : formData.contractType === 'civil_servant'
-                                                                                ? "Ministère / Administration"
-                                                                                : formData.contractType === 'temporary'
-                                                                                    ? "Société d'intérim / Employeur"
-                                                                                    : formData.contractType === 'liberal'
-                                                                                        ? "Cabinet / Raison sociale"
-                                                                                        : formData.contractType === 'business_owner'
-                                                                                            ? "Nom de la société / Enseigne"
-                                                                                            : "Nom de l'Employeur"}
+                                                            {t(`Finances.Labels.${formData.contractType}` as any) || t('Finances.Labels.default')}
                                                         </label>
                                                         <div className="relative">
                                                             <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                                                            <input type="text" name="companyName" required value={formData.companyName} onChange={handleChange} className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder={formData.contractType === 'student' ? "Ex: Sorbonne" : formData.contractType === 'independent' ? "Ex: Freelance IT" : formData.contractType === 'civil_servant' ? "Ex: Préfecture" : "Ex: AGM INVEST"} />
+                                                            <input type="text" name="companyName" required value={formData.companyName} onChange={handleChange} className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder={t(`Finances.Placeholders.company_${formData.contractType}` as any) || t('Finances.Placeholders.company_default')} />
                                                         </div>
                                                     </div>
                                                 )}
@@ -983,15 +967,7 @@ export default function CreditRequestPage() {
                                             {formData.contractType !== 'unemployed' && (
                                                 <div className="space-y-3">
                                                     <label className="text-sm font-semibold text-gray-700">
-                                                        {formData.contractType === 'civil_servant'
-                                                            ? "Fonction / Grade"
-                                                            : formData.contractType === 'student'
-                                                                ? "Domaine / Filière d'études"
-                                                                : formData.contractType === 'retired'
-                                                                    ? "Ancienne profession"
-                                                                    : formData.contractType === 'apprentice'
-                                                                        ? "Métier préparé"
-                                                                        : "Profession / Métier"}
+                                                        {t(`Finances.Labels.profession_${formData.contractType}` as any) || t('Finances.Labels.profession_default')}
                                                     </label>
                                                     <div className="relative">
                                                         <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -1002,7 +978,7 @@ export default function CreditRequestPage() {
                                                             value={formData.profession}
                                                             onChange={handleChange}
                                                             className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none focus:border-ely-mint transition-colors"
-                                                            placeholder={formData.contractType === 'civil_servant' ? "Ex: Adjoint Administratif" : formData.contractType === 'student' ? "Ex: Management / Finance" : "Ex: Chef de projet"}
+                                                            placeholder={t(`Finances.Placeholders.profession_${formData.contractType}` as any) || t('Finances.Placeholders.profession_default')}
                                                         />
                                                     </div>
                                                 </div>
@@ -1010,29 +986,17 @@ export default function CreditRequestPage() {
                                             <div className="space-y-4">
                                                 <div className="space-y-3">
                                                     <label className="text-sm font-semibold text-gray-700">
-                                                        {formData.contractType === 'retired'
-                                                            ? "Pension mensuelle (€)"
-                                                            : formData.contractType === 'unemployed'
-                                                                ? "Allocations / Revenus (€)"
-                                                                : formData.contractType === 'student'
-                                                                    ? "Bourses / Revenus mensuels (€)"
-                                                                    : formData.contractType === 'apprentice'
-                                                                        ? "Rémunération mensuelle (€)"
-                                                                        : formData.contractType === 'civil_servant'
-                                                                            ? "Traitement mensuel net (€)"
-                                                                            : ['independent', 'artisan', 'liberal', 'business_owner'].includes(formData.contractType)
-                                                                                ? "Revenu mensuel moyen (€)"
-                                                                                : t('Finances.income')}
+                                                        {t(`Finances.Labels.income_${formData.contractType}` as any) || t('Finances.income')}
                                                     </label>
                                                     <div className="relative">
                                                         <Euro className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                                                        <input type="number" name="income" required value={formData.income} onChange={handleChange} className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none font-bold text-ely-blue" placeholder="3 000" />
+                                                        <input type="number" name="income" required value={formData.income} onChange={handleChange} className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none font-bold text-ely-blue" placeholder="3000" />
                                                     </div>
                                                 </div>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                     <div className="space-y-3">
                                                         <label className="text-sm font-semibold text-gray-700">{t('Finances.charges')}</label>
-                                                        <input type="number" name="charges" required value={formData.charges} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder="Loyer, etc." />
+                                                        <input type="number" name="charges" required value={formData.charges} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder={t('Finances.Placeholders.charges')} />
                                                     </div>
                                                     <div className="space-y-3">
                                                         <label className="text-sm font-semibold text-gray-700">{t('Finances.otherCredits')}</label>
@@ -1051,23 +1015,23 @@ export default function CreditRequestPage() {
                                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                                     <div className="space-y-3">
                                                         <label className="text-sm font-semibold text-gray-700">{t('Finances.bankName')}</label>
-                                                        <input type="text" name="bankName" required value={formData.bankName} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none focus:border-ely-mint" placeholder="Nom de votre banque" />
+                                                        <input type="text" name="bankName" required value={formData.bankName} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none focus:border-ely-mint" placeholder={t('Finances.Placeholders.bankName')} />
                                                     </div>
                                                     <div className="md:col-span-2 space-y-3">
                                                         <label className="text-sm font-semibold text-gray-700">{t('Finances.iban')}</label>
-                                                        <input type="text" name="iban" required value={formData.iban} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none focus:border-ely-mint font-mono" placeholder="FR76 ..." />
+                                                        <input type="text" name="iban" required value={formData.iban} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none focus:border-ely-mint font-mono" placeholder={t('Finances.Placeholders.iban')} />
                                                     </div>
                                                 </div>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                     <div className="space-y-3">
                                                         <label className="text-sm font-semibold text-gray-700">{t('Finances.bic')}</label>
-                                                        <input type="text" name="bic" required value={formData.bic} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none focus:border-ely-mint font-mono uppercase" placeholder="XXXXXXXX" />
+                                                        <input type="text" name="bic" required value={formData.bic} onChange={handleChange} className="w-full p-4 bg-white border border-gray-200 rounded-xl outline-none focus:border-ely-mint font-mono uppercase" placeholder={t('Finances.Placeholders.bic')} />
                                                     </div>
                                                     <div className="space-y-3">
                                                         <label className="text-sm font-semibold text-gray-700">{t('Finances.ribEmail')}</label>
                                                         <div className="relative">
                                                             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                                                            <input type="email" name="ribEmail" required value={formData.ribEmail} onChange={handleChange} className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none focus:border-ely-mint" placeholder="jean@exemple.com" />
+                                                            <input type="email" name="ribEmail" required value={formData.ribEmail} onChange={handleChange} className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none focus:border-ely-mint" placeholder={t('Finances.Placeholders.ribEmail')} />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1091,7 +1055,7 @@ export default function CreditRequestPage() {
                                                     <label className="text-sm font-semibold text-gray-700">{t('Account.email')}</label>
                                                     <div className="relative">
                                                         <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                                                        <input type="email" name="email" required value={formData.email} onChange={handleChange} className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder="jean@exemple.com" />
+                                                        <input type="email" name="email" required value={formData.email} onChange={handleChange} className="w-full pl-12 p-4 bg-white border border-gray-200 rounded-xl outline-none" placeholder={t('Account.Placeholders.email')} />
                                                     </div>
                                                 </div>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { VerificationProps } from "./types";
+import { useState } from "react";
+import MobileRedirectModal from "./MobileRedirectModal";
 
 export default function DesktopVerification({
     documents,
@@ -30,8 +32,14 @@ export default function DesktopVerification({
     setCameraTarget,
     setIsCameraOpen
 }: VerificationProps) {
+    const [isMobileRedirectOpen, setIsMobileRedirectOpen] = useState(false);
+
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <MobileRedirectModal
+                isOpen={isMobileRedirectOpen}
+                onClose={() => setIsMobileRedirectOpen(false)}
+            />
             <div className="lg:col-span-2 space-y-6">
                 {/* Intro Card */}
                 <div className="bg-gradient-to-br from-[#003d82] to-[#1e40af] p-10 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden group">
@@ -90,9 +98,9 @@ export default function DesktopVerification({
                                 <div className="w-2 h-2 rounded-full bg-ely-mint animate-pulse" />
                                 <p className="text-[11px] font-bold text-white/70">Support technique disponible en cas de besoin</p>
                             </div>
-                            <div className="flex items-center gap-2 px-5 py-2.5 bg-white/10 rounded-xl border border-white/10">
+                            <div className="flex items-center gap-2 px-5 py-2.5 bg-white/10 rounded-xl border border-white/10 shrink-0">
                                 <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">Contact</span>
-                                <span className="text-md font-black text-white">AGM INVEST +33 7 56 84 41 45</span>
+                                <span className="text-md font-black text-white whitespace-nowrap">AGM INVEST +33 7 56 84 41 45</span>
                             </div>
                         </div>
                     </div>
@@ -198,7 +206,7 @@ export default function DesktopVerification({
                                             <div className="flex gap-3">
                                                 {!uploadOnly && (
                                                     <button
-                                                        onClick={() => { setCameraTarget(doc.type); setIsCameraOpen(true); }}
+                                                        onClick={() => setIsMobileRedirectOpen(true)}
                                                         className="h-14 px-6 rounded-2xl bg-white border border-slate-100 text-slate-900 hover:bg-slate-50 hover:border-slate-200 transition-all flex items-center gap-3 font-bold text-sm shadow-sm"
                                                     >
                                                         <Camera className="w-5 h-5" />
@@ -226,84 +234,82 @@ export default function DesktopVerification({
             </div>
 
             {/* Sidebar with Progress & Submit */}
-            <div className="space-y-6">
-                <div className="sticky top-24 space-y-6">
-                    {/* Progress Card */}
-                    <div className="bg-white p-8 rounded-[2.5rem] border-2 border-slate-50 shadow-sm space-y-6">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Global Status</p>
-                                <p className="text-xl font-black text-slate-900">{completedCount} / {docCount}</p>
-                            </div>
-                            <div className="relative w-16 h-16">
-                                <svg className="w-full h-full -rotate-90">
-                                    <circle cx="32" cy="32" r="28" fill="transparent" stroke="#f1f5f9" strokeWidth="6" />
-                                    <motion.circle
-                                        cx="32" cy="32" r="28" fill="transparent" stroke="#1d4ed8" strokeWidth="6"
-                                        strokeDasharray="175.93"
-                                        initial={{ strokeDashoffset: 175.93 }}
-                                        animate={{ strokeDashoffset: 175.93 - (175.93 * (completedCount / (docCount || 1))) }}
-                                    />
-                                </svg>
-                                <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-slate-900">
-                                    {Math.round((completedCount / (docCount || 1)) * 100)}%
-                                </span>
-                            </div>
+            <div className="sticky top-24 space-y-6">
+                {/* Progress Card */}
+                <div className="bg-white p-8 rounded-[2.5rem] border-2 border-slate-50 shadow-sm space-y-6">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Global Status</p>
+                            <p className="text-xl font-black text-slate-900">{completedCount} / {docCount}</p>
                         </div>
-
-                        <div className="space-y-3">
-                            {Object.values(documents).map((doc) => (
-                                <div key={doc.type} className="flex items-center justify-between text-[11px] font-bold">
-                                    <span className="text-slate-400 truncate max-w-[120px]">{doc.label}</span>
-                                    {doc.status === 'success' ? (
-                                        <span className="text-emerald-500 flex items-center gap-1"><CheckCircle className="w-3 h-3" /> OK</span>
-                                    ) : (
-                                        <span className="text-slate-300">Manquant</span>
-                                    )}
-                                </div>
-                            ))}
+                        <div className="relative w-16 h-16">
+                            <svg className="w-full h-full -rotate-90">
+                                <circle cx="32" cy="32" r="28" fill="transparent" stroke="#f1f5f9" strokeWidth="6" />
+                                <motion.circle
+                                    cx="32" cy="32" r="28" fill="transparent" stroke="#1d4ed8" strokeWidth="6"
+                                    strokeDasharray="175.93"
+                                    initial={{ strokeDashoffset: 175.93 }}
+                                    animate={{ strokeDashoffset: 175.93 - (175.93 * (completedCount / (docCount || 1))) }}
+                                />
+                            </svg>
+                            <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-slate-900">
+                                {Math.round((completedCount / (docCount || 1)) * 100)}%
+                            </span>
                         </div>
                     </div>
 
-                    {/* Submit Card */}
-                    <div className="bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-2xl shadow-slate-200 space-y-8">
-                        <div className="space-y-1">
-                            <h3 className="font-black text-xl">Transmission</h3>
-                            <p className="text-xs text-slate-400 font-medium">Envoyez vos documents pour examen.</p>
-                        </div>
-
-                        <button
-                            onClick={handleSubmit}
-                            disabled={isSubmitting || isAllSuccess}
-                            className={`group relative w-full h-16 rounded-[1.5rem] font-black text-xs uppercase tracking-[0.2em] transition-all overflow-hidden ${isSubmitting || isAllSuccess
-                                ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
-                                : 'bg-ely-blue text-white hover:bg-blue-600 active:scale-95'
-                                }`}
-                        >
-                            <div className="relative z-10 flex items-center justify-center gap-3">
-                                {isSubmitting ? (
-                                    <>
-                                        <Loader2 className="w-5 h-5 animate-spin" />
-                                        En cours...
-                                    </>
-                                ) : isAllSuccess ? (
-                                    <>
-                                        <CheckCircle className="w-5 h-5" />
-                                        Transmis
-                                    </>
+                    <div className="space-y-3">
+                        {Object.values(documents).map((doc) => (
+                            <div key={doc.type} className="flex items-center justify-between text-[11px] font-bold">
+                                <span className="text-slate-400 truncate max-w-[120px]">{doc.label}</span>
+                                {doc.status === 'success' ? (
+                                    <span className="text-emerald-500 flex items-center gap-1"><CheckCircle className="w-3 h-3" /> OK</span>
                                 ) : (
-                                    <>
-                                        Envoyer le dossier
-                                        <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                    </>
+                                    <span className="text-slate-300">Manquant</span>
                                 )}
                             </div>
-                        </button>
+                        ))}
+                    </div>
+                </div>
 
-                        <div className="pt-2 border-t border-white/5 flex items-center justify-center gap-2 text-[9px] font-black text-slate-500 uppercase tracking-widest">
-                            <Info className="w-3 h-3" />
-                            Validation securisée AES-256
+                {/* Submit Card */}
+                <div className="bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-2xl shadow-slate-200 space-y-8">
+                    <div className="space-y-1">
+                        <h3 className="font-black text-xl">Transmission</h3>
+                        <p className="text-xs text-slate-400 font-medium">Envoyez vos documents pour examen.</p>
+                    </div>
+
+                    <button
+                        onClick={handleSubmit}
+                        disabled={isSubmitting || isAllSuccess}
+                        className={`group relative w-full h-16 rounded-[1.5rem] font-black text-xs uppercase tracking-[0.2em] transition-all overflow-hidden ${isSubmitting || isAllSuccess
+                            ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
+                            : 'bg-ely-blue text-white hover:bg-blue-600 active:scale-95'
+                            }`}
+                    >
+                        <div className="relative z-10 flex items-center justify-center gap-3">
+                            {isSubmitting ? (
+                                <>
+                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                    En cours...
+                                </>
+                            ) : isAllSuccess ? (
+                                <>
+                                    <CheckCircle className="w-5 h-5" />
+                                    Transmis
+                                </>
+                            ) : (
+                                <>
+                                    Envoyer le dossier
+                                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                </>
+                            )}
                         </div>
+                    </button>
+
+                    <div className="pt-2 border-t border-white/5 flex items-center justify-center gap-2 text-[9px] font-black text-slate-500 uppercase tracking-widest">
+                        <Info className="w-3 h-3" />
+                        Validation securisée AES-256
                     </div>
                 </div>
             </div>

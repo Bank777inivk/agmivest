@@ -2,8 +2,12 @@
 
 import { motion } from "framer-motion";
 import { FileText, Shield, AlertCircle, CheckCircle2, Users, Lock } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 export default function CGUPage() {
+    const t = useTranslations('Legal.CGU');
+
     return (
         <main className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
@@ -19,9 +23,9 @@ export default function CGUPage() {
                             <FileText className="w-40 h-40" />
                         </div>
                         <div className="relative z-10">
-                            <h1 className="text-3xl sm:text-4xl font-bold mb-4">Conditions Générales d'Utilisation</h1>
+                            <h1 className="text-3xl sm:text-4xl font-bold mb-4">{t('title')}</h1>
                             <p className="text-blue-100 text-lg max-w-2xl">
-                                Conditions d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne.
+                                {t('subtitle')}
                             </p>
                         </div>
                     </div>
@@ -33,10 +37,10 @@ export default function CGUPage() {
                         <section className="space-y-4">
                             <div className="flex items-center gap-4 text-ely-blue">
                                 <FileText className="w-8 h-8" />
-                                <h2 className="text-2xl font-bold">1. Objet</h2>
+                                <h2 className="text-2xl font-bold">{t('Section1.title')}</h2>
                             </div>
                             <p className="text-slate-600 leading-relaxed">
-                                Les présentes Conditions Générales d'Utilisation (CGU) définissent les conditions d'accès et d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne.
+                                {t('Section1.content')}
                             </p>
                         </section>
 
@@ -44,11 +48,11 @@ export default function CGUPage() {
                         <section className="space-y-4">
                             <div className="flex items-center gap-4 text-ely-blue">
                                 <Lock className="w-8 h-8" />
-                                <h2 className="text-2xl font-bold">2. Accès au Service</h2>
+                                <h2 className="text-2xl font-bold">{t('Section2.title')}</h2>
                             </div>
                             <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 space-y-3 text-slate-700">
-                                <p>L'accès à la plateforme est réservé aux utilisateurs disposant d'un compte validé.</p>
-                                <p>AGM INVEST se réserve le droit de refuser ou suspendre un compte en cas de non-respect des présentes conditions.</p>
+                                <p>{t('Section2.p1')}</p>
+                                <p>{t('Section2.p2')}</p>
                             </div>
                         </section>
 
@@ -56,18 +60,18 @@ export default function CGUPage() {
                         <section className="space-y-4">
                             <div className="flex items-center gap-4 text-ely-blue">
                                 <Users className="w-8 h-8" />
-                                <h2 className="text-2xl font-bold">3. Nature des Services</h2>
+                                <h2 className="text-2xl font-bold">{t('Section3.title')}</h2>
                             </div>
                             <div className="space-y-4 text-slate-600">
-                                <p>AGM INVEST propose :</p>
+                                <p>{t('Section3.intro')}</p>
                                 <ul className="list-disc pl-6 space-y-2">
-                                    <li>Un accompagnement administratif</li>
-                                    <li>Une assistance liée à l'acquisition de véhicules</li>
-                                    <li>Un service de gestion de dossiers clients</li>
+                                    <li>{t('Section3.list.li1')}</li>
+                                    <li>{t('Section3.list.li2')}</li>
+                                    <li>{t('Section3.list.li3')}</li>
                                 </ul>
                                 <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl">
                                     <p className="font-semibold text-amber-900">
-                                        ⚠️ AGM INVEST n'est pas un organisme bancaire, ni un établissement de crédit, mais un intermédiaire financier réglementé.
+                                        {t('Section3.warning')}
                                     </p>
                                 </div>
                             </div>
@@ -77,10 +81,10 @@ export default function CGUPage() {
                         <section className="space-y-4">
                             <div className="flex items-center gap-4 text-ely-blue">
                                 <CheckCircle2 className="w-8 h-8" />
-                                <h2 className="text-2xl font-bold">4. Processus de Vérification</h2>
+                                <h2 className="text-2xl font-bold">{t('Section4.title')}</h2>
                             </div>
                             <p className="text-slate-600 leading-relaxed">
-                                L'accès complet aux services nécessite une procédure de vérification en plusieurs étapes définies par AGM INVEST.
+                                {t('Section4.content')}
                             </p>
                         </section>
 
@@ -88,11 +92,11 @@ export default function CGUPage() {
                         <section className="space-y-4">
                             <div className="flex items-center gap-4 text-ely-blue">
                                 <Shield className="w-8 h-8" />
-                                <h2 className="text-2xl font-bold">5. Paiements</h2>
+                                <h2 className="text-2xl font-bold">{t('Section5.title')}</h2>
                             </div>
                             <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 space-y-3 text-slate-700">
-                                <p>Certains services peuvent nécessiter le versement de dépôts de sécurité.</p>
-                                <p className="font-medium">Ces montants sont communiqués clairement au client avant toute validation.</p>
+                                <p>{t('Section5.p1')}</p>
+                                <p className="font-medium">{t('Section5.p2')}</p>
                             </div>
                         </section>
 
@@ -100,10 +104,10 @@ export default function CGUPage() {
                         <section className="space-y-4">
                             <div className="flex items-center gap-4 text-ely-blue">
                                 <AlertCircle className="w-8 h-8" />
-                                <h2 className="text-2xl font-bold">6. Responsabilité</h2>
+                                <h2 className="text-2xl font-bold">{t('Section6.title')}</h2>
                             </div>
                             <p className="text-slate-600 leading-relaxed">
-                                AGM INVEST agit en tant qu'intermédiaire administratif et ne garantit pas l'acceptation d'un dossier par des tiers (administrations, partenaires, prestataires).
+                                {t('Section6.content')}
                             </p>
                         </section>
 
@@ -111,13 +115,13 @@ export default function CGUPage() {
                         <section className="space-y-4">
                             <div className="flex items-center gap-4 text-ely-blue">
                                 <Lock className="w-8 h-8" />
-                                <h2 className="text-2xl font-bold">7. Données Personnelles</h2>
+                                <h2 className="text-2xl font-bold">{t('Section7.title')}</h2>
                             </div>
                             <p className="text-slate-600 leading-relaxed">
-                                Les données sont traitées conformément à la réglementation en vigueur. Consultez notre{" "}
-                                <a href="/politique-confidentialite" className="text-ely-mint font-semibold hover:underline">
-                                    Politique de Confidentialité
-                                </a>.
+                                {t('Section7.content')}{" "}
+                                <Link href="/politique-confidentialite" className="text-ely-mint font-semibold hover:underline">
+                                    {t('Section7.link')}
+                                </Link>.
                             </p>
                         </section>
 
@@ -125,10 +129,10 @@ export default function CGUPage() {
                         <section className="space-y-4">
                             <div className="flex items-center gap-4 text-ely-blue">
                                 <AlertCircle className="w-8 h-8" />
-                                <h2 className="text-2xl font-bold">8. Résiliation</h2>
+                                <h2 className="text-2xl font-bold">{t('Section8.title')}</h2>
                             </div>
                             <p className="text-slate-600 leading-relaxed">
-                                AGM INVEST se réserve le droit de suspendre un compte en cas de fraude, fausse déclaration ou utilisation abusive du service.
+                                {t('Section8.content')}
                             </p>
                         </section>
 
@@ -136,18 +140,18 @@ export default function CGUPage() {
                         <section className="space-y-4">
                             <div className="flex items-center gap-4 text-ely-blue">
                                 <FileText className="w-8 h-8" />
-                                <h2 className="text-2xl font-bold">9. Droit Applicable</h2>
+                                <h2 className="text-2xl font-bold">{t('Section9.title')}</h2>
                             </div>
                             <div className="bg-blue-50/50 rounded-2xl p-6 border border-blue-100 text-slate-700">
-                                <p>Les présentes CGU sont soumises au droit français.</p>
-                                <p className="mt-2">Tout litige relève de la compétence des tribunaux français.</p>
+                                <p>{t('Section9.p1')}</p>
+                                <p className="mt-2">{t('Section9.p2')}</p>
                             </div>
                         </section>
 
                         {/* Footer */}
                         <div className="pt-8 border-t border-slate-100 text-center text-slate-500 text-sm">
-                            <p>Dernière mise à jour : Février 2026</p>
-                            <p className="mt-2">© 2026 AGM INVEST - Tous droits réservés</p>
+                            <p>{t('Footer.updated')}</p>
+                            <p className="mt-2">{t('Footer.copyright')}</p>
                         </div>
                     </div>
                 </motion.div>

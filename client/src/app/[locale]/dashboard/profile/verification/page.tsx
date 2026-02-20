@@ -294,7 +294,7 @@ export default function IdentityVerificationPage() {
     };
 
     return (
-        <div className="bg-[#F8FAFC] min-h-screen relative overflow-hidden">
+        <div className="bg-[#F8FAFC] min-h-screen relative">
             {/* Ambient Background Glows */}
             <div className={`absolute -top-24 -left-24 w-96 h-96 blur-[120px] opacity-10 rounded-full bg-blue-400 pointer-events-none`} />
             <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] blur-[150px] opacity-[0.03] rounded-full bg-blue-600 pointer-events-none`} />

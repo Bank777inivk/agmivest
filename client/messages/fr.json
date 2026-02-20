@@ -1,233 +1,377 @@
 {
-  "Navigation": {
-    "brandSubtitle": "Crédits & Assurances",
-    "reviews": "Avis Clients",
-    "appointment": "Prendre rendez-vous",
-    "home": "Accueil",
-    "services": "Nos Services",
-    "documents": "Préparer vos documents",
-    "about": "Qui sommes-nous ?",
-    "contact": "Contact",
-    "creditRequest": "Faire une demande",
-    "becomeClient": "Devenir Client",
-    "clientArea": "Espace Client"
-  },
-  "Hero": {
-    "titleLine1": "Votre crédit",
-    "titleLine2": "immobilier, bien",
-    "titleLine3": "accompagné",
-    "description1": "Votre prêt immobilier ou assurance emprunteur aux meilleures conditions :",
-    "descriptionHighlight": "c'est l'expertise AGM INVEST !",
-    "description2": "Depuis 20 ans, notre équipe vous accompagne de la préparation de votre projet jusqu'à la remise de vos clés.",
-    "tagline": "Simulation Gratuite & Rapide",
-    "cta": "Démarrer mon projet"
-  },
-  "Stats": {
-    "stat1": {
-      "value": "20",
-      "label": "ans d'expérience"
+  "Home": {
+    "Services": {
+      "title": "Nos solutions de financement",
+      "subtitle": "Une expertise complète pour tous vos besoins financiers.",
+      "cta": "Voir tous nos services"
     },
-    "stat2": {
-      "value": "1500",
-      "label": "projets réalisés"
+    "Simulator": {
+      "title": "Simulateur de prêt",
+      "subtitle": "Calculez vos mensualités en quelques clics."
     },
-    "stat3": {
-      "value": "98%",
-      "label": "clients satisfaits"
+    "Contact": {
+      "title": "Contact & Accès",
+      "subtitle": "Une question ? Venez nous rencontrer ou envoyez-nous un message."
     }
   },
+  "Navigation": {
+    "home": "Accueil",
+    "services": "Nos services",
+    "documents": "Documents",
+    "about": "À Propos",
+    "contact": "Contact",
+    "appointment": "Prendre RDV",
+    "creditRequest": "Demander un prêt",
+    "becomeClient": "Devenir Client",
+    "brandSubtitle": "Crédit & Assurance",
+    "reviews": "Avis"
+  },
+  "Hero": {
+    "titleLine1": "Votre projet",
+    "titleLine2": "immobilier, bien",
+    "titleLine3": "accompagné",
+    "description1": "Votre crédit immobilier ou votre assurance emprunteur aux meilleures conditions :",
+    "descriptionHighlight": "c'est l'expertise AGM INVEST !",
+    "description2": "Notre équipe vous guide à chaque étape pour obtenir le meilleur financement.",
+    "tagline": "Tout simplement !",
+    "cta": "Prendre rendez-vous"
+  },
   "AdBanner": {
-    "title": "Votre prêt immobilier au meilleur taux",
-    "button": "Rejoignez-nous sur les réseaux",
-    "tag": "Facebook",
-    "msg1": "Étude gratuite & sans engagement",
-    "msg2": "Réponse de principe immédiate",
-    "msg3": "Accompagnement personnalisé",
-    "msg4": "Taux négociés en direct",
-    "msg5": "Expertise certifiée ORIAS"
+    "msg1": "Besoin d'un prêt ? Je suis là pour vous aider !",
+    "msg2": "Obtenez votre simulation en 2 minutes !",
+    "msg3": "Nos clients nous font confiance depuis 20 ans",
+    "msg4": "Taux compétitifs garantis !",
+    "msg5": "Accompagnement personnalisé à chaque étape"
   },
   "Services": {
-    "badge": "NOS SERVICES",
-    "title": "Une offre complète pour votre financement",
-    "subtitle": "Nous mettons notre expertise à votre service pour vous garantir les meilleures conditions.",
+    "title": "Nos Services",
+    "subtitle": "Une expertise complète pour tous vos besoins de financement.",
     "Items": {
       "realEstate": {
-        "title": "Crédit Immobilier",
-        "description": "Bénéficiez des meilleurs taux du marché pour votre résidence principale, secondaire ou investissement locatif."
+        "title": "Prêt Immobilier",
+        "description": "Négociation des meilleurs taux pour votre résidence principale, secondaire ou locative."
       },
       "insurance": {
         "title": "Assurance Emprunteur",
-        "description": "Optimisez votre assurance et gagnez jusqu'à 50% sur vos mensualités grâce à la délégation."
+        "description": "Économisez jusqu'à 50% sur votre assurance de prêt avec les mêmes garanties."
       },
       "creditConsolidation": {
-        "title": "Rachat de Crédits",
-        "description": "Renégociez vos crédits en cours pour réduire vos mensualités ou votre coût total."
+        "title": "Regroupement de Crédits",
+        "description": "Regroupez vos crédits pour réduire vos mensualités et simplifier votre budget."
       },
       "professionalLoan": {
-        "title": "Financement Pro",
-        "description": "Accompagnement pour vos besoins en équipement, locaux ou trésorerie."
+        "title": "Prêt Professionnel",
+        "description": "Financement de vos murs, fonds de commerce ou équipements professionnels."
       },
       "renegotiation": {
         "title": "Renégociation de Taux",
-        "description": "Nous analysons vos contrats actuels pour obtenir des conditions plus avantageuses."
+        "description": "Profitez des taux bas actuels pour réduire le coût de votre crédit en cours."
       },
       "support": {
         "title": "Accompagnement",
-        "description": "Un conseiller unique vous suit de A à Z dans vos démarches administratives."
+        "description": "Un conseiller dédié vous suit de la simulation à la signature chez le notaire."
       }
-    },
-    "p1": "AGM INVEST agit en tant qu'intermédiaire administratif et ne garantit pas l'acceptation d'un dossier par des tiers (administrations, partenaires, prestataires).",
-    "p2": "Nous proposons un support administratif, une assistance liée à l'acquisition de véhicules et un service de gestion de dossiers clients.",
-    "warning": "⚠️ AGM INVEST n'est pas un organisme bancaire, ni un établissement de crédit, mais un intermédiaire financier réglementé."
+    }
   },
   "About": {
-    "title": "AGM INVEST, votre partenaire depuis 2004",
-    "subtitle": "Découvrez notre histoire, nos valeurs et l'équipe qui vous accompagne au quotidien.",
+    "title": "À Propos de Nous",
+    "subtitle": "Votre partenaire de confiance en crédit et assurance depuis plus de 20 ans.",
     "Stats": {
       "experience": {
         "value": "20+",
-        "label": "Ans d'expertise"
+        "label": "Ans d'expérience"
       },
       "clients": {
-        "value": "5k+",
-        "label": "Clients satisfaits"
+        "value": "Satisfaits",
+        "label": "Clients"
       },
       "acceptance": {
-        "value": "95%",
+        "value": "98%",
         "label": "Taux d'acceptation"
       },
       "secure": {
         "value": "100%",
-        "label": "Données sécurisées"
+        "label": "Sécurisé"
       }
     },
     "Mission": {
       "title": "Notre Mission",
-      "p1": "Depuis sa création, la mission d'AGM INVEST est de <highlight>démocratiser l'accès au crédit</highlight> en offrant une transparence totale et un accompagnement humain.",
-      "p2": "Nous croyons que chaque projet mérite une solution sur mesure, loin des standards bancaires classiques."
+      "p1": "Depuis plus de 20 ans, <highlight>AGM INVEST</highlight> accompagne les particuliers dans la réalisation de leurs projets immobiliers. Notre équipe d'experts vous guide à chaque étape pour obtenir le meilleur financement.",
+      "p2": "Nous négocions pour vous auprès de nos partenaires bancaires et vous garantissons un accompagnement personnalisé, de la simulation à la signature chez le notaire."
     },
     "Values": {
       "title": "Nos Valeurs",
-      "v1": "Transparence totale sur les frais et conditions.",
-      "v2": "Réactivité garantie sous 24h ouvrées.",
-      "v3": "Éthique et respect de la confidentialité.",
-      "v4": "Innovation constante dans nos outils de simulation."
+      "v1": "Transparence totale sur les taux et les frais",
+      "v2": "Accompagnement personnalisé et humain",
+      "v3": "Réactivité et disponibilité de nos conseillers",
+      "v4": "Expertise reconnue sur le marché immobilier"
     }
   },
-  "Testimonials": {
-    "title": "Ce que disent nos clients",
-    "rating": "4.9/5 sur Google",
-    "Items": {
-      "t1": {
-        "name": "Sophie Martin",
-        "role": "Premier achat immobilier",
-        "region": "Île-de-France",
-        "content": "Un accompagnement exceptionnel de A à Z. Notre conseiller a su nous rassurer et trouver un taux que nous n'aurions jamais eu seuls."
+  "Process": {
+    "title": "Votre financement en 4 étapes",
+    "subtitle": "Un processus clair et transparent pour réaliser votre projet en toute sérénité.",
+    "Steps": {
+      "s1": {
+        "title": "1. Étude de faisabilité",
+        "description": "Analyse gratuite de votre dossier et définition de votre budget de financement."
       },
-      "t2": {
-        "name": "Thomas Dubois",
-        "role": "Investissement locatif",
-        "region": "Lyon",
-        "content": "Rapidité, efficacité et professionnalisme. AGM INVEST m'a permis de réaliser mon projet d'investissement en un temps record."
+      "s2": {
+        "title": "2. Recherche & Négociation",
+        "description": "Nous interrogeons nos partenaires pour obtenir les meilleures conditions du marché."
       },
-      "t3": {
-        "name": "Marie & Pierre L.",
-        "role": "Rachat de crédit",
-        "region": "Bordeaux",
-        "content": "Grâce à la renégociation de notre prêt, nous économisons plus de 150€ par mois. Merci à toute l'équipe pour leur écoute."
+      "s3": {
+        "title": "3. Accord de prêt",
+        "description": "Présentation des offres et sélection de la meilleure proposition bancaire."
+      },
+      "s4": {
+        "title": "4. Signature",
+        "description": "Accompagnement jusqu'aux signatures de l'offre et de l'acte notarié."
       }
     }
   },
+  "WhyChooseUs": {
+    "title": "Pourquoi passer par <highlight>AGM INVEST</highlight> ?",
+    "subtitle": "Dans un marché complexe, avoir un allié expert à vos côtés fait toute la différence.",
+    "Items": {
+      "time": {
+        "title": "Gain de Temps",
+        "description": "Un seul interlocuteur pour interroger toutes les banques. On s'occupe de toute la paperasse."
+      },
+      "conditions": {
+        "title": "Conditions Préférentielles",
+        "description": "Grâce à notre volume d'affaires, nous négocions des taux et conditions d'assurance privilégiés."
+      },
+      "expert": {
+        "title": "Conseil d'Expert",
+        "description": "Montage financier optimisé, choix de l'assurance, lissage de crédits... Nous optimisons chaque détail."
+      },
+      "support": {
+        "title": "Accompagnement Complet",
+        "description": "Nous sommes à vos côtés de la première simulation jusqu'au déblocage des fonds."
+      }
+    },
+    "Simulation": {
+      "title": "Vos Économies",
+      "marketRate": "Taux moyen marché",
+      "ourRate": "Taux Négocié AGM",
+      "savings": "Économie Potentielle",
+      "disclaimer": "*Sur un prêt de 200 000€ sur 20 ans."
+    }
+  },
+  "Team": {
+    "title": "Une équipe à votre service",
+    "subtitle": "Des experts passionnés dédiés à la réussite de votre projet.",
+    "Members": {
+      "meyer": {
+        "role": "Directeur Général",
+        "bio": "Expert en Financement Pro et Immobilier depuis 15 ans."
+      },
+      "cyrille": {
+        "role": "Responsable Crédit",
+        "bio": "Spécialiste des dossiers complexes et des relations bancaires."
+      },
+      "emilie": {
+        "role": "Experte Financement TPE/PME",
+        "bio": "Accompagne les entrepreneurs dans leur développement."
+      },
+      "christophe": {
+        "role": "Chargé d'Affaires",
+        "bio": "Votre interlocuteur privilégié pour le suivi de votre dossier."
+      }
+    }
+  },
+  "History": {
+    "title": "Notre Histoire",
+    "subtitle": "Près de 20 ans d'expertise et d'innovation au service de vos projets.",
+    "Milestones": {
+      "m2006": {
+        "title": "Création d'AGM Invest",
+        "description": "Fondation du cabinet à Nantes avec une vision : simplifier l'accès au crédit pour les particuliers."
+      },
+      "m2012": {
+        "title": "Expansion Régionale",
+        "description": "Ouverture de 3 nouvelles agences dans le Grand Ouest et recrutement de 10 experts."
+      },
+      "m2018": {
+        "title": "Pôle Professionnel",
+        "description": "Lancement de l'offre dédiée aux entreprises et aux promoteurs immobiliers."
+      },
+      "m2024": {
+        "title": "Digitalisation 100%",
+        "description": "Mise en place de notre plateforme en ligne permettant un suivi des dossiers en temps réel."
+      }
+    }
+  },
+  "Documents": {
+    "title": "Préparez vos documents",
+    "subtitle": "Pour accélérer votre prêt, préparez ces pièces à l'avance.",
+    "cta": "Tous les documents peuvent être envoyés en ligne de manière sécurisée",
+    "Items": {
+      "identity": {
+        "title": "Pièce d'identité",
+        "description": "Carte d'identité ou passeport en cours de validité"
+      },
+      "income": {
+        "title": "Justificatifs de revenus",
+        "description": "3 derniers bulletins de salaire et avis d'imposition"
+      },
+      "bank": {
+        "title": "Relevés bancaires",
+        "description": "3 derniers mois de vos comptes courants"
+      },
+      "home": {
+        "title": "Justificatif de domicile",
+        "description": "Facture de moins de 3 mois (électricité, eau, téléphone)"
+      },
+      "sales": {
+        "title": "Compromis de vente",
+        "description": "Si vous avez déjà trouvé votre bien immobilier"
+      },
+      "amortization": {
+        "title": "Tableau d'amortissement",
+        "description": "Pour un rachat de crédit ou une renégociation de taux"
+      }
+    }
+  },
+  "Testimonials": {
+    "title": "Ils ont réalisé leur projet",
+    "rating": "4.9/5 sur plus de 500 avis",
+    "Items": {
+      "t1": {
+        "name": "Marc & Sophie",
+        "role": "Premier Achat",
+        "content": "AGM INVEST a réussi à nous obtenir un taux inespéré. Un accompagnement humain et rassurant pour notre premier achat."
+      },
+      "t2": {
+        "name": "Jean-Pierre",
+        "role": "Investissement Locatif",
+        "content": "Expertise technique parfaite sur le montage financier. Gain de temps précieux sur la négociation avec les banques."
+      },
+      "t3": {
+        "name": "Linda",
+        "role": "Renégociation",
+        "content": "Simplicité et efficacité. Ma mensualité a baissé de 150€ par mois sans rallonger la durée de mon crédit."
+      }
+    }
+  },
+  "Auth": {
+    "Login": {
+      "backToHome": "Retour au site",
+      "title": "Bon retour parmi nous",
+      "subtitle": "Accédez à votre espace client sécurisé",
+      "newHere": "Nouveau sur AGM INVEST ?",
+      "createAccount": "Créer un compte",
+      "email": "Adresse Email",
+      "password": "Mot de passe",
+      "rememberMe": "Se souvenir de moi",
+      "forgotPassword": "Mot de passe oublié ?",
+      "submit": "Se connecter",
+      "resetPasswordSuccess": "Email de réinitialisation envoyé ! Vérifiez votre boîte de réception.",
+      "auth/user-not-found": "Aucun compte correspondant à cet email.",
+      "auth/wrong-password": "Mot de passe incorrect.",
+      "auth/invalid-email": "Format d'email invalide.",
+      "auth/too-many-requests": "Compte temporairement bloqué. Réessayez plus tard."
+    },
+    "Register": {
+      "backToHome": "Retour au site",
+      "title": "Rejoignez AGM INVEST",
+      "stepIndicator": "Étape {current} sur {total} : {stepName}",
+      "step1": "État Civil",
+      "step2": "Coordonnées",
+      "step3": "Sécurité",
+      "Fields": {
+        "civility": "Civilité",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "birthDate": "Date de naissance",
+        "birthPlace": "Ville de naissance",
+        "birthCountry": "Pays de naissance",
+        "nationality": "Nationalité",
+        "address": "Adresse de résidence",
+        "zipCode": "Code Postal",
+        "city": "Ville",
+        "residenceCountry": "Pays de résidence",
+        "phone": "Téléphone mobile",
+        "email": "Adresse Email",
+        "password": "Mot de passe",
+        "confirmPassword": "Confirmation",
+        "terms": "Je certifie l'exactitude des informations et j'accepte les <bold>Conditions Générales</bold> d'AGM INVEST."
+      },
+      "back": "Retour",
+      "submit": {
+        "next": "Continuer",
+        "finish": "Créer mon compte"
+      },
+      "alreadyClient": "Déjà client ?",
+      "login": "Se connecter",
+      "Errors": {
+        "incompleteDate": "Veuillez saisir une date de naissance complète.",
+        "invalidDate": "La date de naissance saisie est invalide.",
+        "underage": "Vous devez avoir au moins 18 ans pour vous inscrire.",
+        "errorPasswordsDoNotMatch": "Les mots de passe ne correspondent pas."
+      }
+    }
+  },
+  "Partners": {
+    "title": "Nos partenaires bancaires",
+    "subtitle": "Et bien d'autres partenaires assureurs et banques spécialisées...",
+    "list": [
+      "Boursorama Banque",
+      "BNP Paribas",
+      "Crédit Agricole",
+      "Société Générale",
+      "LCL",
+      "HSBC",
+      "Banque Populaire",
+      "Caisse d'Épargne",
+      "Fortuneo",
+      "Mutuelle Générale"
+    ],
+    "Network": {
+      "title": "Notre force ? Un réseau solide.",
+      "description": "En tant que courtier spécialisé, nous entretenons des relations étroites avec les plus grands établissements bancaires nationaux. Cela nous permet de défendre votre dossier au plus haut niveau et d'obtenir des conditions dérogatoires que vous ne pourriez obtenir seul en agence."
+    },
+    "stats": {
+      "banks": "Banques Partenaires",
+      "support": "Accompagnement Courtier"
+    }
+  },
   "Contact": {
-    "title": "Contactez-nous",
-    "subtitle": "Une question ? Un projet ? Notre équipe vous répond sous 24h",
+    "title": "Contact & Accès",
+    "subtitle": "Une question ? Venez nous rencontrer ou envoyez-nous un message.",
     "minimalTitle": "Envoyez-nous un message",
     "form": {
       "name": "Nom complet *",
-      "namePlaceholder": "Jean Dupont",
-      "email": "Email *",
-      "emailPlaceholder": "jean.dupont@email.com",
-      "phone": "Téléphone *",
-      "phonePlaceholder": "06 12 34 56 78",
-      "subject": "Objet *",
-      "subjectPlaceholder": "Crédit Immobilier",
-      "message": "Votre message *",
-      "messagePlaceholder": "Décrivez-nous votre projet...",
-      "send": "Envoyer le message",
-      "sending": "Envoi en cours...",
-      "success": "Message envoyé ! Nous vous recontacterons très prochainement.",
-      "error": "Erreur lors de l'envoi. Veuillez réessayer.",
-      "submit": "Démarrer mon projet"
-    },
-    "info": {
-      "title": "Coordonnées",
-      "address": "Adresse",
-      "addressValue": "123 Avenue des Champs-Élysées, 75008 Paris",
+      "namePlaceholder": "Votre nom",
+      "email": "Adresse email *",
+      "emailPlaceholder": "votre@email.com",
       "phone": "Téléphone",
-      "phoneValue": "+33 (0)1 23 45 67 89",
-      "email": "Email",
-      "emailValue": "contact@agminvest.com",
-      "hours": "Horaires",
-      "hoursValue": "Lun-Ven: 9h-18h"
+      "phonePlaceholder": "06 12 34 56 78",
+      "subject": "Sujet",
+      "message": "Message",
+      "messagePlaceholder": "Comment pouvons-nous vous aider ?",
+      "submit": "Envoyer le message",
+      "success": "Votre message a été envoyé avec succès !"
     },
     "Why": {
       "title": "Pourquoi nous contacter ?",
       "reasons": {
-        "r1": "Étude gratuite et sans engagement de votre dossier.",
-        "r2": "Accès à plus de 50 partenaires bancaires.",
-        "r3": "Conseils d'experts certifiés par l'ORIAS.",
-        "r4": "Gain de temps précieux sur vos démarches."
+        "r1": "Obtenir une simulation personnalisée gratuite",
+        "r2": "Poser vos questions à nos experts",
+        "r3": "Prendre rendez-vous avec un conseiller",
+        "r4": "Découvrir nos offres du moment"
       }
-    }
-  },
-  "Simulator": {
-    "title": "Votre Simulation",
-    "amountLabel": "Montant souhaité",
-    "durationLabel": "Durée du prêt",
-    "durationSuffix": "ans",
-    "months": "mois",
-    "rateLabel": "Taux d'intérêt",
-    "guaranteedRate": "Taux fixe à 2.6% pour tous nos clients",
-    "monthlyEstimate": "Votre mensualité",
-    "perMonth": "/ mois",
-    "excludedInsurance": "Hors assurance emprunteur",
-    "borrowerInsurance": "Assurance emprunteur",
-    "totalInsuranceCost": "Coût total assurance (3% fixe)",
-    "disclaimer": "Simulation à titre indicatif, sous réserve d'acceptation du dossier.",
-    "startRequest": "Démarrer ma demande",
-    "amount": "Montant",
-    "duration": "Durée",
-    "rate": "Taux",
-    "monthly": "Mensualité",
-    "total": "Total",
-    "button": "Simuler"
-  },
-  "Partners": {
-    "title": "NOS PARTENAIRES",
-    "subtitle": "Nous négocions pour vous auprès des plus grandes institutions bancaires et assureurs.",
-    "list": [
-      "BNP Paribas",
-      "Société Générale",
-      "Crédit Agricole",
-      "Caisse d'Épargne",
-      "LCL",
-      "CIC",
-      "Boursorama",
-      "Hello Bank"
-    ],
-    "Network": {
-      "title": "Un réseau solide à votre service",
-      "description": "Indépendant depuis 20 ans, notre réseau s'appuie sur des relations privilégiées avec plus de 50 partenaires nationaux."
     },
-    "stats": {
-      "banks": "Banques partenaires",
-      "support": "Taux d'accompagnement"
+    "QuickResponse": {
+      "title": "Réponse rapide garantie",
+      "text": "Notre équipe s'engage à vous répondre sous <bold>24 heures</bold>. Pour une réponse immédiate, n'hésitez pas à nous appeler au",
+      "phone": "+33 7 56 84 41 45"
     }
   },
   "Location": {
     "title": "Où nous trouver",
-    "subtitle": "Une équipe d'experts à votre service au cœur de Mulhouse.",
-    "address": "Adresse",
+    "subtitle": "Nos bureaux sont situés au coeur de Paris pour vous accueillir.",
+    "address": "Siège Social",
     "phone": "Téléphone",
     "email": "Email",
     "details": {
@@ -237,183 +381,44 @@
     },
     "hours": {
       "title": "Horaires d'ouverture",
-      "week": "Lundi - Vendredi : 09:00 - 18:00",
-      "saturday": "Samedi : Sur rendez-vous uniquement",
+      "week": "Lundi - Vendredi : 09h00 - 19h00",
+      "saturday": "Samedi : 10h00 - 16h00",
       "sunday": "Dimanche : Fermé"
     }
   },
-  "HomePage": {
-    "title": "Prêt Immobilier & Financement | AGM INVEST",
-    "description": "AGM INVEST vous accompagne pour vos prêts immobiliers, assurance emprunteur et rachat de crédits. Bénéficiez des meilleurs taux et d'un suivi personnalisé."
-  },
-  "Home": {
-    "Services": {
-      "title": "Une offre complète pour votre financement",
-      "subtitle": "Nous mettons notre expertise à votre service pour vous garantir les meilleures conditions.",
-      "cta": "Voir tous nos services"
-    },
-    "Simulator": {
-      "title": "Simulez votre projet",
-      "subtitle": "Obtenez une première estimation de vos mensualités en quelques clics."
-    },
-    "Contact": {
-      "title": "Contactez-nous",
-      "subtitle": "Une question ? Un projet ? Notre équipe vous répond sous 24h"
-    }
-  },
-  "WhyChooseUs": {
-    "title": "Pourquoi choisir <highlight>AGM INVEST</highlight> ?",
-    "subtitle": "Nous mettons notre expertise et notre réseau à votre service pour réaliser vos projets aux meilleures conditions.",
-    "Items": {
-      "time": {
-        "title": "Gain de Temps",
-        "description": "Nous gérons pour vous l'ensemble des démarches administratives et la négociation."
-      },
-      "conditions": {
-        "title": "Meilleures Conditions",
-        "description": "Accès à des taux préférentiels négociés directement avec nos partenaires."
-      },
-      "expert": {
-        "title": "Expertise Certifiée",
-        "description": "Conseillers spécialisés et certifiés ORIAS pour un conseil impartial."
-      },
-      "support": {
-        "title": "Suivi de A à Z",
-        "description": "Accompagnement personnalisé de la simulation jusqu'à la signature finale."
-      }
-    },
-    "Simulation": {
-      "title": "Exemple d'économies réalisées",
-      "marketRate": "Taux moyen du marché",
-      "ourRate": "Taux négocié AGM",
-      "savings": "Économie totale réalisée",
-      "disclaimer": "*Sur la base d'un prêt de 200 000€ sur 20 ans."
-    }
-  },
-  "History": {
-    "title": "Notre Histoire",
-    "subtitle": "20 ans d'expertise à votre service",
-    "Milestones": {
-      "m2006": {
-        "title": "Création de l'agence",
-        "description": "Ouverture de notre premier bureau à Mulhouse par Meyer Alain."
-      },
-      "m2012": {
-        "title": "Expansion Régionale",
-        "description": "AGM INVEST devient un acteur incontourable du crédit dans le Grand Est."
-      },
-      "m2018": {
-        "title": "Appui d'un Groupe",
-        "description": "Adossement à un groupe d'investissement international pour plus de solidité."
-      },
-      "m2024": {
-        "title": "Transformation Digitale",
-        "description": "Lancement de notre nouvelle plateforme en ligne pour simplifier vos démarches."
-      }
-    }
-  },
-  "Process": {
-    "title": "Notre Processus",
-    "subtitle": "Un parcours simple et transparent pour votre financement.",
-    "Steps": {
-      "s1": {
-        "title": "Simulation & Étude",
-        "description": "Simulez votre projet en ligne et obtenez une réponse de principe immédiate."
-      },
-      "s2": {
-        "title": "Montage du Dossier",
-        "description": "Nous vous aidons à préparer les pièces nécessaires pour un dossier solide."
-      },
-      "s3": {
-        "title": "Négociation Bancaire",
-        "description": "Nos experts présentent votre dossier et négocient les meilleures conditions."
-      },
-      "s4": {
-        "title": "Validation & Signature",
-        "description": "À la réception de l'offre, nous vous accompagnons jusqu'à la signature finale."
-      }
-    }
-  },
-  "Team": {
-    "title": "Notre Équipe",
-    "subtitle": "Des experts à vos côtés pour vous garantir les meilleures conditions.",
-    "Members": {
-      "meyer": {
-        "role": "Fondateur & Directeur",
-        "bio": "Expert en finance depuis plus de 25 ans, Alain a fondé AGM INVEST avec une vision du crédit plus accessible."
-      },
-      "cyrille": {
-        "role": "Responsable Opérations",
-        "bio": "Cyrille supervise l'ensemble des dossiers et assure la liaison avec nos 50 partenaires bancaires."
-      },
-      "emilie": {
-        "role": "Expert Crédit Immo",
-        "bio": "Spécialiste du marché Alsacien, Emilie vous accompagne dans le montage de vos dossiers complexes."
-      },
-      "christophe": {
-        "role": "Conseiller Financement Pro",
-        "bio": "Christophe accompagne les entrepreneurs dans leurs projets de croissance et locaux professionnels."
-      }
-    }
-  },
-  "Documents": {
-    "title": "Préparez vos documents",
-    "subtitle": "Les pièces justificatives nécessaires pour la rapidité de votre dossier",
-    "Items": {
-      "identity": {
-        "title": "Pièces d'identité",
-        "description": "CNI ou Passeport en cours de validité (recto/verso) ainsi que le livret de famille."
-      },
-      "income": {
-        "title": "Justificatifs de revenus",
-        "description": "Vos 3 derniers bulletins de salaire et vos 2 derniers avis d'imposition complets."
-      },
-      "bank": {
-        "title": "Relevés bancaires",
-        "description": "L'ensemble de vos relevés de comptes bancaires des 3 derniers mois."
-      },
-      "home": {
-        "title": "Justificatif de domicile",
-        "description": "Facture EDF, Gaz, téléphone fixe de moins de 3 mois ou quittance de loyer."
-      },
-      "sales": {
-        "title": "Compromis de vente",
-        "description": "Pour un prêt immo, le compromis ou la promesse de vente signé."
-      },
-      "amortization": {
-        "title": "Crédits en cours",
-        "description": "Tableaux d'amortissement de tous vos crédits en cours (conso, auto, etc.)."
-      }
-    },
-    "cta": "Dossier complet = Réponse sous 24h"
+  "Simulator": {
+    "amountLabel": "Montant souhaité (€)",
+    "durationLabel": "Durée (ans)",
+    "durationSuffix": "ans",
+    "months": "mois",
+    "rateLabel": "Taux d'intérêt (%)",
+    "guaranteedRate": "Taux fixe et garanti.",
+    "monthlyEstimate": "Votre mensualité",
+    "perMonth": "/ mois",
+    "excludedInsurance": "Hors assurance",
+    "borrowerInsurance": "Assurance emprunteur",
+    "totalInsuranceCost": "Coût total assurance",
+    "disclaimer": "Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.",
+    "startRequest": "Obtenir mon étude"
   },
   "Footer": {
-    "description": "AGM INVEST, votre partenaire de confiance en courtage de crédit depuis 2004. Nous vous accompagnons dans tous vos projets de financement.",
-    "linksTitle": "Liens Rapides",
-    "legalTitle": "Légal",
-    "contactTitle": "Contact",
-    "copyright": "2026 Tous droits réservés.",
-    "mentions": "Mentions Légales",
-    "privacy": "Confidentialité",
-    "cookies": "Cookies",
-    "cgu": "CGU",
-    "refund": "Remboursement",
-    "disclaimer": "Disclaimer",
-    "trust": "Sécurité",
-    "ads": "Publicité",
+    "description": "Votre partenaire de confiance pour tous vos projets de financement immobilier et d'assurance depuis 20 ans.",
+    "linksTitle": "Liens rapides",
     "Links": {
-      "services": "Nos Services",
+      "services": "Nos services",
       "simulator": "Simulateur",
       "documents": "Documents",
       "about": "À propos",
       "contact": "Contact",
       "clientArea": "Espace Client"
     },
+    "contactTitle": "Contact",
     "details": {
       "phone": "+33 7 56 84 41 45",
       "email": "contact@agm-negoce.com",
-      "address": "123 Avenue des Champs-Élysées, 75008 Paris"
+      "address": "40 Rue Jean Monnet,\n68200 Mulhouse"
     },
+    "copyright": "AGM INVEST Crédit & Assurance. Tous droits réservés.",
     "legal": {
       "mentions": "Mentions Légales",
       "privacy": "Confidentialité",
@@ -426,825 +431,27 @@
     }
   },
   "ServicesPage": {
-    "title": "Nos Solutions de Financement",
-    "subtitle": "Des solutions sur mesure pour tous vos projets.",
     "CTA": {
-      "title": "Prêt à démarrer ?",
-      "text": "Simulez votre projet dès maintenant et obtenez une réponse de principe.",
-      "button": "Faire ma demande"
-    }
-  },
-  "Reviews": {
-    "backToHome": "Retour à l'accueil",
-    "title": "Les <highlight>avis</highlight> de nos clients",
-    "subtitle": "Découvrez les témoignages de ceux qui nous ont fait confiance pour leurs projets de financement et d'assurance.",
-    "description": "Découvrez les témoignages de ceux qui nous ont fait confiance pour leurs projets de financement et d'assurance.",
-    "Stats": {
-      "averageRating": "Note Moyenne",
-      "totalReviews": "Avis Vérifiés",
-      "fiveStars": "Avis 5 Étoiles",
-      "ratingLabel": "{rating} étoiles"
-    },
-    "allReviews": "Tous les avis",
-    "page": "Page",
-    "of": "sur",
-    "stars": "Étoiles",
-    "verified": "Vérifié",
-    "previous": "Précédent",
-    "next": "Suivant",
-    "seeAll": "Voir tous les avis",
-    "Items": {
-      "r1": {
-        "name": "Thomas Dubois",
-        "region": "Paris",
-        "comment": "Service impeccable ! J'ai obtenu mon financement en moins de 2 semaines. L'équipe est très professionnelle.",
-        "date": "2026-02-15"
-      },
-      "r2": {
-        "name": "Marie Laurent",
-        "region": "Lyon",
-        "comment": "Excellente expérience. Le conseiller m'a accompagné à chaque étape. Je recommande vivement AGM INVEST.",
-        "date": "2026-02-14"
-      },
-      "r3": {
-        "name": "Pierre Martin",
-        "region": "Marseille",
-        "comment": "Très satisfait du service. Processus rapide et transparent. Quelques documents à fournir mais c'est normal.",
-        "date": "2026-02-13"
-      },
-      "r4": {
-        "name": "Sophie Bernard",
-        "region": "Toulouse",
-        "comment": "Je suis ravie ! Mon dossier a été traité rapidement et j'ai pu acheter ma voiture sans stress.",
-        "date": "2026-02-11"
-      },
-      "r5": {
-        "name": "Julien Petit",
-        "region": "Nice",
-        "comment": "Service au top ! L'équipe est réactive et à l'écoute. Mon crédit a été validé en 10 jours.",
-        "date": "2026-02-11"
-      },
-      "r6": {
-        "name": "Camille Durand",
-        "region": "Nantes",
-        "comment": "Bonne expérience globale. Le suivi est excellent et les conseillers sont compétents.",
-        "date": "2026-02-10"
-      },
-      "r7": {
-        "name": "Alexandre Roux",
-        "region": "Strasbourg",
-        "comment": "Parfait ! Processus simple et efficace. J'ai eu mon financement automobile sans problème.",
-        "date": "2026-02-09"
-      },
-      "r8": {
-        "name": "Léa Moreau",
-        "region": "Montpellier",
-        "comment": "Je recommande à 100% ! Service professionnel, rapide et transparent. Merci à toute l'équipe.",
-        "date": "2026-02-08"
-      },
-      "r9": {
-        "name": "Nicolas Simon",
-        "region": "Bordeaux",
-        "comment": "Très bon service. Les délais ont été respectés et le conseiller était disponible pour répondre à mes questions.",
-        "date": "2026-02-07"
-      },
-      "r10": {
-        "name": "Emma Leroy",
-        "region": "Lille",
-        "comment": "Expérience exceptionnelle ! Dossier traité rapidement, équipe professionnelle. Je suis très satisfaite.",
-        "date": "2026-02-06"
-      },
-      "r11": {
-        "name": "Lucas Blanc",
-        "region": "Rennes",
-        "comment": "Service irréprochable. Mon conseiller m'a guidé tout au long du processus. Financement obtenu en 12 jours.",
-        "date": "2026-02-05"
-      },
-      "r12": {
-        "name": "Chloé Garnier",
-        "region": "Reims",
-        "comment": "Bonne prestation. Le processus est bien expliqué et l'équipe est disponible.",
-        "date": "2026-02-04"
-      },
-      "r13": {
-        "name": "Hugo Chevalier",
-        "region": "Le Havre",
-        "comment": "Excellent ! J'ai pu financer mon véhicule rapidement. Service client au top.",
-        "date": "2026-02-03"
-      },
-      "r14": {
-        "name": "Manon Girard",
-        "region": "Saint-Étienne",
-        "comment": "Très professionnels et efficaces. Mon dossier a été accepté rapidement. Je recommande.",
-        "date": "2026-02-02"
-      },
-      "r15": {
-        "name": "Antoine Bonnet",
-        "region": "Toulon",
-        "comment": "Service de qualité. Bonne communication et suivi régulier du dossier.",
-        "date": "2026-02-01"
-      },
-      "r16": {
-        "name": "Sarah Dupont",
-        "region": "Grenoble",
-        "comment": "Parfait du début à la fin ! Équipe réactive et professionnelle. Mon crédit validé en 8 jours.",
-        "date": "2026-01-31"
-      },
-      "r17": {
-        "name": "Maxime Rousseau",
-        "region": "Dijon",
-        "comment": "Je suis très satisfait. Processus simple, rapide et transparent. Merci AGM INVEST !",
-        "date": "2026-01-30"
-      },
-      "r18": {
-        "name": "Laura Vincent",
-        "region": "Angers",
-        "comment": "Bonne expérience. Les conseillers sont compétents et le suivi est régulier.",
-        "date": "2026-01-29"
-      },
-      "r19": {
-        "name": "Théo Lambert",
-        "region": "Nîmes",
-        "comment": "Service excellent ! Mon dossier a été traité rapidement et efficacement.",
-        "date": "2026-02-17"
-      },
-      "r20": {
-        "name": "Inès Fontaine",
-        "region": "Villeurbanne",
-        "comment": "Très bonne expérience. L'équipe est professionnelle et à l'écoute.",
-        "date": "2026-01-27"
-      },
-      "r21": {
-        "name": "Raphaël Morel",
-        "region": "Le Mans",
-        "comment": "Satisfait du service. Bon accompagnement tout au long du processus.",
-        "date": "2026-01-26"
-      },
-      "r22": {
-        "name": "Jade Fournier",
-        "region": "Aix-en-Provence",
-        "comment": "Impeccable ! Financement obtenu rapidement. Je recommande vivement.",
-        "date": "2026-01-25"
-      },
-      "r23": {
-        "name": "Nathan Mercier",
-        "region": "Clermont-Ferrand",
-        "comment": "Excellent service. Équipe réactive et professionnelle. Dossier validé en 10 jours.",
-        "date": "2026-01-24"
-      },
-      "r24": {
-        "name": "Lola Bertrand",
-        "region": "Brest",
-        "comment": "Bonne prestation globale. Le conseiller était disponible et compétent.",
-        "date": "2026-01-23"
-      },
-      "r25": {
-        "name": "Gabriel Lefebvre",
-        "region": "Tours",
-        "comment": "Service au top ! Processus rapide et transparent. Très satisfait.",
-        "date": "2026-02-11"
-      },
-      "r26": {
-        "name": "Zoé Renard",
-        "region": "Amiens",
-        "comment": "Parfait ! Mon crédit automobile a été validé rapidement. Équipe professionnelle.",
-        "date": "2026-01-21"
-      },
-      "r27": {
-        "name": "Louis Dumas",
-        "region": "Limoges",
-        "comment": "Très bon service. Communication claire et suivi régulier.",
-        "date": "2026-01-20"
-      },
-      "r28": {
-        "name": "Alice Perrin",
-        "region": "Annecy",
-        "comment": "Excellente expérience ! Conseiller à l'écoute et processus efficace.",
-        "date": "2026-01-19"
-      },
-      "r29": {
-        "name": "Arthur Roussel",
-        "region": "Perpignan",
-        "comment": "Je recommande ! Service rapide et professionnel. Mon dossier traité en 2 semaines.",
-        "date": "2026-01-18"
-      },
-      "r30": {
-        "name": "Rose Giraud",
-        "region": "Boulogne-Billancourt",
-        "comment": "Bonne expérience. L'équipe est compétente et réactive.",
-        "date": "2026-01-17"
-      },
-      "r31": {
-        "name": "Enzo Faure",
-        "region": "Metz",
-        "comment": "Service impeccable ! Financement obtenu rapidement. Très satisfait.",
-        "date": "2026-01-16"
-      },
-      "r32": {
-        "name": "Léna André",
-        "region": "Besançon",
-        "comment": "Excellente prestation. Processus simple et équipe professionnelle.",
-        "date": "2026-01-15"
-      },
-      "r33": {
-        "name": "Paul Marchand",
-        "region": "Orléans",
-        "comment": "Très bon service. Mon conseiller m'a bien accompagné.",
-        "date": "2026-01-14"
-      },
-      "r34": {
-        "name": "Amélie Blanchard",
-        "region": "Saint-Denis",
-        "comment": "Parfait ! Dossier traité rapidement et efficacement. Je recommande.",
-        "date": "2026-02-12"
-      },
-      "r35": {
-        "name": "Dylan Muller",
-        "region": "Argenteuil",
-        "comment": "Service au top ! Équipe réactive et professionnelle.",
-        "date": "2026-01-12"
-      },
-      "r36": {
-        "name": "Clara Barbier",
-        "region": "Rouen",
-        "comment": "Bonne expérience globale. Processus transparent et bien expliqué.",
-        "date": "2026-01-11"
-      },
-      "r37": {
-        "name": "Mathis Brun",
-        "region": "Mulhouse",
-        "comment": "Excellent ! Mon crédit validé en 9 jours. Service professionnel.",
-        "date": "2026-01-10"
-      },
-      "r38": {
-        "name": "Océane Meyer",
-        "region": "Montreuil",
-        "comment": "Très satisfaite ! L'équipe est à l'écoute et efficace.",
-        "date": "2026-01-09"
-      },
-      "r39": {
-        "name": "Clément Denis",
-        "region": "Caen",
-        "comment": "Bon service. Conseiller compétent et disponible.",
-        "date": "2026-02-13"
-      },
-      "r40": {
-        "name": "Anaïs Legrand",
-        "region": "Nancy",
-        "comment": "Impeccable ! Processus rapide et transparent. Je recommande vivement.",
-        "date": "2026-01-07"
-      },
-      "r41": {
-        "name": "Baptiste Gauthier",
-        "region": "Versailles",
-        "comment": "Service excellent ! Mon dossier a été traité avec professionnalisme.",
-        "date": "2026-01-06"
-      },
-      "r42": {
-        "name": "Margaux Perrot",
-        "region": "Nanterre",
-        "comment": "Très bonne prestation. Équipe réactive et à l'écoute.",
-        "date": "2026-01-05"
-      },
-      "r43": {
-        "name": "Valentin Roy",
-        "region": "Créteil",
-        "comment": "Parfait ! Financement obtenu rapidement. Service professionnel.",
-        "date": "2026-01-04"
-      },
-      "r44": {
-        "name": "Lucie Clement",
-        "region": "Vitry-sur-Seine",
-        "comment": "Excellente expérience ! Conseiller compétent et processus efficace.",
-        "date": "2026-01-03"
-      },
-      "r45": {
-        "name": "Romain Leclerc",
-        "region": "Avignon",
-        "comment": "Bon service. Communication claire et suivi régulier du dossier.",
-        "date": "2026-02-15"
-      },
-      "r46": {
-        "name": "Charlotte Vidal",
-        "region": "Poitiers",
-        "comment": "Je recommande ! Service rapide et transparent. Très satisfaite.",
-        "date": "2026-01-01"
-      },
-      "r47": {
-        "name": "Adrien Benoit",
-        "region": "Aubervilliers",
-        "comment": "Service au top ! Mon crédit validé en 11 jours.",
-        "date": "2026-02-12"
-      },
-      "r48": {
-        "name": "Justine Olivier",
-        "region": "Aulnay-sous-Bois",
-        "comment": "Bonne expérience. L'équipe est professionnelle et réactive.",
-        "date": "2025-12-30"
-      },
-      "r49": {
-        "name": "Florian Picard",
-        "region": "Asnières-sur-Seine",
-        "comment": "Excellent ! Processus simple et rapide. Je recommande.",
-        "date": "2025-12-29"
-      },
-      "r50": {
-        "name": "Marine Jacquet",
-        "region": "Colombes",
-        "comment": "Très satisfaite ! Équipe à l'écoute et efficace.",
-        "date": "2025-12-28"
-      },
-      "r51": {
-        "name": "Kévin Renaud",
-        "region": "La Rochelle",
-        "comment": "Bon service. Mon conseiller était disponible et compétent.",
-        "date": "2025-12-27"
-      },
-      "r52": {
-        "name": "Émilie Caron",
-        "region": "Calais",
-        "comment": "Impeccable ! Dossier traité rapidement. Service professionnel.",
-        "date": "2026-02-11"
-      },
-      "r53": {
-        "name": "Quentin Guillot",
-        "region": "Rueil-Malmaison",
-        "comment": "Parfait ! Financement obtenu en moins de 2 semaines.",
-        "date": "2025-12-25"
-      },
-      "r54": {
-        "name": "Pauline Bourgeois",
-        "region": "Antibes",
-        "comment": "Très bonne prestation. Processus transparent et bien expliqué.",
-        "date": "2025-12-24"
-      },
-      "r55": {
-        "name": "Benjamin Gaillard",
-        "region": "Saint-Maur-des-Fossés",
-        "comment": "Excellent service ! Équipe réactive et professionnelle.",
-        "date": "2025-12-23"
-      },
-      "r56": {
-        "name": "Mathilde Meunier",
-        "region": "Champigny-sur-Marne",
-        "comment": "Je recommande vivement ! Service rapide et efficace.",
-        "date": "2025-12-22"
-      },
-      "r57": {
-        "name": "Alexis Lemoine",
-        "region": "Dunkerque",
-        "comment": "Bonne expérience globale. Conseiller compétent.",
-        "date": "2025-12-21"
-      },
-      "r58": {
-        "name": "Julie Hubert",
-        "region": "Bourges",
-        "comment": "Service au top ! Mon dossier validé rapidement.",
-        "date": "2025-12-20"
-      },
-      "r59": {
-        "name": "Sébastien Renault",
-        "region": "Cannes",
-        "comment": "Parfait ! Processus simple et transparent. Très satisfait.",
-        "date": "2025-12-19"
-      },
-      "r60": {
-        "name": "Audrey Girard",
-        "region": "Pau",
-        "comment": "Très bon service. L'équipe est à l'écoute et réactive.",
-        "date": "2025-12-18"
-      },
-      "r61": {
-        "name": "Jérôme Dupuis",
-        "region": "Colmar",
-        "comment": "Excellent ! Mon crédit automobile validé en 10 jours.",
-        "date": "2025-12-17"
-      },
-      "r62": {
-        "name": "Céline Lemaire",
-        "region": "Quimper",
-        "comment": "Service impeccable ! Équipe professionnelle et efficace.",
-        "date": "2025-12-16"
-      },
-      "r63": {
-        "name": "Grégory Masson",
-        "region": "Valence",
-        "comment": "Bonne prestation. Communication claire et suivi régulier.",
-        "date": "2025-12-15"
-      },
-      "r64": {
-        "name": "Stéphanie Morin",
-        "region": "Troyes",
-        "comment": "Je recommande ! Service rapide et professionnel.",
-        "date": "2025-12-14"
-      },
-      "r65": {
-        "name": "Olivier Sanchez",
-        "region": "Ajaccio",
-        "comment": "Parfait ! Financement obtenu rapidement. Très satisfait.",
-        "date": "2025-12-13"
-      },
-      "r66": {
-        "name": "Nathalie Garnier",
-        "region": "Chambéry",
-        "comment": "Très bonne expérience. L'équipe est compétente.",
-        "date": "2025-12-12"
-      },
-      "r67": {
-        "name": "Damien Rousseau",
-        "region": "Lorient",
-        "comment": "Service excellent ! Processus efficace et transparent.",
-        "date": "2025-12-11"
-      },
-      "r68": {
-        "name": "Laetitia Giraud",
-        "region": "Niort",
-        "comment": "Impeccable ! Mon dossier traité avec professionnalisme.",
-        "date": "2025-12-10"
-      },
-      "r69": {
-        "name": "Fabien Martinez",
-        "region": "Sarcelles",
-        "comment": "Bon service. Conseiller disponible et à l'écoute.",
-        "date": "2025-12-09"
-      },
-      "r70": {
-        "name": "Sandrine Lopez",
-        "region": "Beauvais",
-        "comment": "Excellent ! Je recommande vivement AGM INVEST.",
-        "date": "2026-02-12"
-      },
-      "r71": {
-        "name": "Christophe Garcia",
-        "region": "Vannes",
-        "comment": "Service au top ! Mon crédit validé en 9 jours.",
-        "date": "2025-12-07"
-      },
-      "r72": {
-        "name": "Valérie Rodriguez",
-        "region": "Ivry-sur-Seine",
-        "comment": "Très bonne prestation. Équipe réactive et professionnelle.",
-        "date": "2025-12-06"
-      },
-      "r73": {
-        "name": "Laurent Fernandez",
-        "region": "Cergy",
-        "comment": "Parfait ! Processus rapide et transparent.",
-        "date": "2025-12-05"
-      },
-      "r74": {
-        "name": "Isabelle Gonzalez",
-        "region": "Levallois-Perret",
-        "comment": "Excellente expérience ! Service professionnel.",
-        "date": "2025-12-04"
-      },
-      "r75": {
-        "name": "Michaël Perez",
-        "region": "Pessac",
-        "comment": "Bon service. Mon conseiller était compétent.",
-        "date": "2025-12-03"
-      },
-      "r76": {
-        "name": "Corinne Sanchez",
-        "region": "Clichy",
-        "comment": "Je recommande ! Dossier traité rapidement.",
-        "date": "2025-12-02"
-      },
-      "r77": {
-        "name": "Franck Moreau",
-        "region": "Arles",
-        "comment": "Service impeccable ! Équipe à l'écoute et efficace.",
-        "date": "2025-12-01"
-      },
-      "r78": {
-        "name": "Sylvie Blanc",
-        "region": "Vénissieux",
-        "comment": "Très bonne expérience. Processus bien expliqué.",
-        "date": "2025-11-30"
-      },
-      "r79": {
-        "name": "Thierry Roux",
-        "region": "Antony",
-        "comment": "Excellent ! Mon financement obtenu en 12 jours.",
-        "date": "2026-02-14"
-      },
-      "r80": {
-        "name": "Monique Durand",
-        "region": "La Seyne-sur-Mer",
-        "comment": "Parfait ! Service rapide et professionnel.",
-        "date": "2025-11-28"
-      },
-      "r81": {
-        "name": "Patrick Simon",
-        "region": "Neuilly-sur-Seine",
-        "comment": "Bon service. L'équipe est réactive.",
-        "date": "2025-11-27"
-      },
-      "r82": {
-        "name": "Brigitte Leroy",
-        "region": "Montauban",
-        "comment": "Je recommande vivement ! Service excellent.",
-        "date": "2025-11-26"
-      },
-      "r83": {
-        "name": "Yves Chevalier",
-        "region": "Pantin",
-        "comment": "Service au top ! Dossier validé rapidement.",
-        "date": "2025-11-25"
-      },
-      "r84": {
-        "name": "Martine Bonnet",
-        "region": "Noisy-le-Grand",
-        "comment": "Très bonne prestation. Conseiller compétent.",
-        "date": "2025-11-24"
-      },
-      "r85": {
-        "name": "Alain Roussel",
-        "region": "Évry",
-        "comment": "Excellent service ! Processus efficace.",
-        "date": "2025-11-23"
-      },
-      "r86": {
-        "name": "Nicole Giraud",
-        "region": "Villeneuve-d'Ascq",
-        "comment": "Impeccable ! Mon crédit automobile validé.",
-        "date": "2025-11-22"
-      },
-      "r87": {
-        "name": "Daniel Faure",
-        "region": "Meaux",
-        "comment": "Bon service. Communication claire.",
-        "date": "2026-02-13"
-      },
-      "r88": {
-        "name": "Jacqueline André",
-        "region": "Cholet",
-        "comment": "Parfait ! Équipe professionnelle et réactive.",
-        "date": "2025-11-20"
-      },
-      "r89": {
-        "name": "Michel Marchand",
-        "region": "Belfort",
-        "comment": "Service excellent ! Je recommande.",
-        "date": "2025-11-19"
-      },
-      "r90": {
-        "name": "Christine Blanchard",
-        "region": "Bayonne",
-        "comment": "Très bonne expérience. Processus transparent.",
-        "date": "2025-11-18"
-      },
-      "r91": {
-        "name": "Jean Muller",
-        "region": "Chartres",
-        "comment": "Impeccable ! Financement obtenu rapidement.",
-        "date": "2025-11-17"
-      },
-      "r92": {
-        "name": "Françoise Barbier",
-        "region": "Drancy",
-        "comment": "Excellent ! Service professionnel et efficace.",
-        "date": "2025-11-16"
-      },
-      "r93": {
-        "name": "Bernard Brun",
-        "region": "Sartrouville",
-        "comment": "Bon service. Mon conseiller était disponible.",
-        "date": "2025-11-15"
-      },
-      "r94": {
-        "name": "Annie Meyer",
-        "region": "Saint-Quentin",
-        "comment": "Je recommande ! Dossier traité avec soin.",
-        "date": "2025-11-14"
-      },
-      "r95": {
-        "name": "René Denis",
-        "region": "Île-de-France",
-        "comment": "Service au top ! Très satisfait du résultat.",
-        "date": "2026-02-16"
-      },
-      "r96": {
-        "name": "Denise Legrand",
-        "region": "Auvergne-Rhône-Alpes",
-        "comment": "Très bonne prestation. Équipe compétente.",
-        "date": "2025-11-12"
-      },
-      "r97": {
-        "name": "Jacques Gauthier",
-        "region": "Nouvelle-Aquitaine",
-        "comment": "Parfait ! Processus simple et rapide.",
-        "date": "2025-11-11"
-      },
-      "r98": {
-        "name": "Marie-Claire Perrot",
-        "region": "Occitanie",
-        "comment": "Excellent service ! Mon crédit validé en 10 jours.",
-        "date": "2025-11-10"
-      },
-      "r99": {
-        "name": "André Roy",
-        "region": "Hauts-de-France",
-        "comment": "Bon service. Communication efficace.",
-        "date": "2026-02-13"
-      },
-      "r100": {
-        "name": "Yvette Clement",
-        "region": "Provence-Alpes-Côte d'Azur",
-        "comment": "Je recommande vivement ! Service professionnel.",
-        "date": "2025-11-08"
-      },
-      "r101": {
-        "name": "Robert Leclerc",
-        "region": "Grand Est",
-        "comment": "Impeccable ! Équipe réactive et à l'écoute.",
-        "date": "2025-11-07"
-      },
-      "r102": {
-        "name": "Geneviève Vidal",
-        "region": "Pays de la Loire",
-        "comment": "Très bonne expérience. Processus transparent.",
-        "date": "2025-11-06"
-      },
-      "r103": {
-        "name": "Claude Benoit",
-        "region": "Bretagne",
-        "comment": "Service excellent ! Mon dossier validé rapidement.",
-        "date": "2025-11-05"
-      },
-      "r104": {
-        "name": "Odile Olivier",
-        "region": "Normandie",
-        "comment": "Parfait ! Je recommande AGM INVEST.",
-        "date": "2025-11-04"
-      },
-      "r105": {
-        "name": "Gérard Picard",
-        "region": "Bourgogne-Franche-Comté",
-        "comment": "Bon service. Conseiller compétent et disponible.",
-        "date": "2025-11-03"
-      },
-      "r106": {
-        "name": "Éliane Jacquet",
-        "region": "Centre-Val de Loire",
-        "comment": "Excellent ! Financement obtenu en 11 jours.",
-        "date": "2025-11-02"
-      },
-      "r107": {
-        "name": "Serge Renaud",
-        "region": "Corse",
-        "comment": "Service impeccable ! Équipe professionnelle.",
-        "date": "2025-11-01"
-      },
-      "r108": {
-        "name": "Lydie Caron",
-        "region": "Paris",
-        "comment": "Très bonne prestation. Processus efficace.",
-        "date": "2025-10-31"
-      },
-      "r109": {
-        "name": "Francis Guillot",
-        "region": "Lyon",
-        "comment": "Je recommande ! Service rapide et transparent.",
-        "date": "2026-02-13"
-      },
-      "r110": {
-        "name": "Viviane Bourgeois",
-        "region": "Marseille",
-        "comment": "Parfait ! Mon crédit automobile validé rapidement.",
-        "date": "2026-02-11"
-      }
-    }
-  },
-  "ReviewForm": {
-    "brandName": "AGM INVEST",
-    "certifiedReviews": "Avis clients certifiés",
-    "verifiedEstablishment": "Établissement vérifié",
-    "ratingLabel": "Quelle note donneriez-vous à notre service ?",
-    "submit": "Publier mon avis",
-    "disclaimer": "Votre avis sera modéré par nos services avant publication pour garantir l'absence de propos inappropriés.",
-    "Labels": {
-      "name": "Votre Nom",
-      "region": "Votre Région",
-      "comment": "Votre Commentaire"
-    },
-    "Placeholders": {
-      "name": "EX: Jean Dupont",
-      "region": "EX: Paris",
-      "comment": "Racontez-nous votre expérience..."
-    },
-    "Ratings": {
-      "1": "Très Insatisfait",
-      "2": "Insatisfait",
-      "3": "Moyen",
-      "4": "Satisfait",
-      "5": "Excellent"
-    },
-    "Success": {
-      "title": "Merci pour votre avis !",
-      "message": "Votre témoignage a bien été reçu. Il sera publié après vérification par nos modérateurs.",
-      "button": "Écrire un autre avis"
-    },
-    "Errors": {
-      "submission": "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
-      "name": "Le nom est requis",
-      "region": "La région est requise",
-      "commentRequired": "Le commentaire est requis",
-      "commentTooShort": "Le commentaire doit faire au moins 10 caractères"
-    }
-  },
-  "Auth": {
-    "Login": {
-      "backToHome": "Retour à l'accueil",
-      "title": "Connexion",
-      "subtitle": "Accédez à votre espace client",
-      "newHere": "Nouveau chez AGM INVEST ?",
-      "createAccount": "Créer un compte",
-      "email": "Adresse email",
-      "password": "Mot de passe",
-      "rememberMe": "Se souvenir de moi",
-      "forgotPassword": "Mot de passe oublié ?",
-      "submit": "Démarrer mon projet",
-      "resetPasswordSuccess": "Un lien de réinitialisation a été envoyé à votre adresse email.",
-      "error": "Email ou mot de passe invalide",
-      "loading": "Connexion..."
-    },
-    "Register": {
-      "backToHome": "Retour à l'accueil",
-      "title": "Inscription",
-      "stepIndicator": "Étape {current} sur {total} : {stepName}",
-      "step1": "Identité",
-      "step2": "Coordonnées",
-      "step3": "Sécurité",
-      "Fields": {
-        "civility": "Civilité",
-        "firstName": "Prénom",
-        "lastName": "Nom",
-        "birthDate": "Date de naissance",
-        "birthPlace": "Lieu de naissance",
-        "birthCountry": "Pays de naissance",
-        "nationality": "Nationalité",
-        "address": "Adresse postale",
-        "zipCode": "Code postal",
-        "city": "Ville",
-        "residenceCountry": "Pays de résidence",
-        "phone": "Numéro de téléphone",
-        "email": "Adresse email",
-        "password": "Mot de passe",
-        "confirmPassword": "Confirmation",
-        "terms": "J'accepte les <bold>Conditions Générales</bold> et la <bold>Politique de Confidentialité</bold> d'AGM INVEST."
-      },
-      "Errors": {
-        "incompleteDate": "Veuillez entrer une date de naissance complète.",
-        "invalidDate": "La date de naissance saisie est invalide.",
-        "underage": "Vous devez avoir au moins 18 ans pour vous inscrire."
-      },
-      "back": "Retour",
-      "submit": {
-        "next": "Continuer",
-        "finish": "Créer mon compte"
-      },
-      "alreadyClient": "Déjà client ?",
-      "login": "Connectez-vous ici",
-      "error": "Une erreur est survenue lors de l'inscription",
-      "loading": "Création du compte...",
-      "errorPasswordsDoNotMatch": "Les mots de passe ne correspondent pas."
-    },
-    "passwordReset": {
-      "title": "Réinitialisation",
-      "subtitle": "Entrez votre email pour recevoir un lien",
-      "submit": "Envoyer le lien",
-      "backToLogin": "Retour à la connexion",
-      "success": "Un lien a été envoyé à votre adresse email",
-      "error": "Email non trouvé"
-    },
-    "Errors": {
-      "user-not-found": "Utilisateur non trouvé.",
-      "wrong-password": "Mot de passe incorrect.",
-      "email-already-in-use": "Cette adresse email est déjà utilisée.",
-      "weak-password": "Le mot de passe est trop faible.",
-      "invalid-email": "Adresse email invalide.",
-      "default": "Une erreur inconnue est survenue. Veuillez réessayer.",
-      "errorPasswordsDoNotMatch": "Les mots de passe ne correspondent pas."
+      "title": "Prêt à concrétiser votre projet ?",
+      "text": "Obtenez une réponse de principe immédiate pour votre financement.",
+      "button": "Démarrer ma demande"
     }
   },
   "CreditRequest": {
+    "Simulator": {
+      "title": "VOTRE SIMULATION",
+      "disclaimer": "*Assurance incluse (3%). Taux fixe selon conditions de l'établissement.",
+      "rateLabel": "Taux nominal"
+    },
     "title": {
-      "step1": "Mon Projet",
-      "step2": "Mon Identité",
-      "step3": "Ma Situation",
-      "step4": "Mes Finances",
-      "step5": "Mon Compte",
+      "step1": "Votre projet de financement",
+      "step2": "Votre identité",
+      "step3": "Votre situation personnelle",
+      "step4": "Vos finances",
+      "step5": "Création de compte",
       "analysis": "Analyse du dossier"
     },
-    "subtitle": "Parlez-nous de votre projet de financement",
-    "Profile": {
-      "individual_badge": "Particulier",
-      "pro_badge": "Professionnel",
-      "label": "Type de profil",
-      "individual": "Je suis un particulier",
-      "professional": "Je suis un professionnel"
-    },
+    "subtitle": "Finalisez votre demande en quelques étapes pour une décision instantanée.",
     "Steps": {
       "project": "Projet",
       "identity": "Identité",
@@ -1252,38 +459,29 @@
       "finances": "Finances",
       "account": "Compte"
     },
-    "Simulator": {
-      "title": "Votre Simulation",
-      "disclaimer": "Simulation à titre indicatif, sous réserve d'acceptation du dossier.",
-      "rateLabel": "Taux fixe"
+    "Profile": {
+      "label": "Type de profil",
+      "individual": "Particulier",
+      "professional": "Professionnel",
+      "pro_badge": "Demande Pro",
+      "individual_badge": "Demande Particulier"
     },
     "Project": {
       "labels": {
         "personal": "Prêt Personnel",
-        "auto": "Véhicule / Auto",
-        "pro": "Immobilier Pro",
+        "auto": "Prêt Auto/Moto",
+        "pro": "Prêt Professionnel",
         "other": "Autre projet"
       },
-      "detailsLabel": "Détails du projet",
-      "detailsPlaceholder": "Décrivez brièvement votre besoin..."
-    },
-    "Step1": {
-      "amount": "Montant souhaité",
-      "duration": "Durée (mois)",
-      "rate": "Taux d'intérêt (est.)"
-    },
-    "Navigation": {
-      "back": "Retour",
-      "next": "Continuer",
-      "submit": "Démarrer mon projet",
-      "analyzing": "Analyse en cours..."
+      "detailsLabel": "Précisez votre projet",
+      "detailsPlaceholder": "Décrivez brièvement votre besoin de financement..."
     },
     "Identity": {
       "civility": "Civilité",
       "firstName": "Prénom",
       "lastName": "Nom",
       "birthDate": "Date de naissance",
-      "birthPlace": "Lieu de naissance",
+      "birthPlace": "Ville de naissance",
       "birthCountry": "Pays de naissance",
       "nationality": "Nationalité",
       "Options": {
@@ -1292,463 +490,502 @@
         "ms": "Mlle"
       }
     },
-    "Errors": {
-      "underage": "Vous devez être majeur pour faire une demande de crédit.",
-      "invalidDate": "La date saisie est invalide ou illogique."
-    },
     "Situation": {
       "maritalStatus": "Situation familiale",
-      "options": {
-        "single": "Célibataire",
-        "married": "Marié(e) / Pacsé(e)",
-        "divorced": "Divorcé(e) / Veuf(ve)",
-        "tenant": "Locataire",
-        "owner": "Propriétaire",
-        "hosted": "Hébergé à titre gratuit"
-      },
-      "children": "Enfants à charge",
+      "children": "Nombre d'enfants à charge",
       "housingType": "Type de logement",
-      "housingSeniority": "Ancienneté",
+      "housingSeniority": "Ancienneté logement",
       "seniorityYears": "ans",
       "seniorityMonths": "mois",
       "residenceCountry": "Pays de résidence",
       "phone": "Téléphone mobile",
-      "street": "Adresse postale",
-      "zipCode": "Code postal",
+      "street": "Adresse (N° et rue)",
+      "zipCode": "Code Postal",
       "city": "Ville",
+      "options": {
+        "single": "Célibataire",
+        "married": "Marié(e) / PACS",
+        "divorced": "Divorcé(e) / Veuf(ve)",
+        "tenant": "Locataire",
+        "owner": "Propriétaire",
+        "hosted": "Logé(e) à titre gratuit"
+      },
       "Placeholders": {
-        "street": "Votre adresse complète",
-        "zipCode": "Ex: 75001",
-        "city": "Ex: Paris"
+        "street": "Ex: 40 Rue Jean Monnet",
+        "zipCode": "Ex: 68200",
+        "city": "Ex: Mulhouse"
       }
     },
     "Finances": {
-      "contractType": "Statut professionnel",
+      "contractType": "Type de contrat",
+      "income": "Revenu net mensuel",
+      "charges": "Loyers / Charges mensuelles",
+      "otherCredits": "Autres crédits en cours",
+      "bankInfo": "Informations Bancaires",
+      "bankName": "Nom de la banque",
+      "iban": "IBAN",
+      "bic": "Code BIC / SWIFT",
+      "ribEmail": "Email pour virements",
+      "disposableIncome": "Reste à vivre mensuel",
       "options": {
         "cdi": "CDI",
         "cdd": "CDD",
         "temporary": "Intérimaire",
         "civil_servant": "Fonctionnaire",
-        "liberal": "Profession Libérale",
+        "liberal": "Libéral / Indépendant",
         "business_owner": "Chef d'entreprise",
         "artisan": "Artisan / Commerçant",
-        "independent": "Indépendant / Freelance",
-        "retired": "Retraité",
-        "student": "Étudiant",
-        "apprentice": "Apprenti / Alternant",
+        "independent": "Freelance",
+        "retired": "Retraité(e)",
+        "student": "Étudiant(e)",
+        "apprentice": "Apprenti(e) / Stagiaire",
         "unemployed": "Sans emploi"
       },
       "Labels": {
-        "default": "Nom de l'employeur / Société",
-        "cdi": "Nom de l'employeur",
-        "cdd": "Nom de l'employeur",
-        "civil_servant": "Ministère / Administration",
-        "retired": "Organisme de retraite",
-        "profession_default": "Votre profession",
-        "income_default": "Revenus nets mensuels",
+        "default": "Nom de l'entreprise",
+        "liberal": "Nom de l'activité",
+        "retired": "Dernier employeur",
+        "profession_default": "Profession actuelle",
+        "profession_retired": "Ancienne profession",
+        "income_retired": "Montant retraite",
+        "income_unemployed": "Allocations mensuelles",
         "income_cdi": "Salaire net mensuel",
-        "income_retired": "Pension mensuelle"
+        "income_cdd": "Salaire net mensuel",
+        "income_temporary": "Revenu net mensuel",
+        "income_civil_servant": "Traitement net mensuel",
+        "income_liberal": "Revenu net mensuel",
+        "income_business_owner": "Rémunération nette mensuelle",
+        "income_artisan": "Bénéfice net mensuel",
+        "income_independent": "CA net mensuel",
+        "income_student": "Bourses / Aide familiale",
+        "income_apprentice": "Gratification mensuelle"
       },
-      "income": "Revenus mensuels nets",
-      "charges": "Charges mensuelles (Loyer, etc.)",
-      "otherCredits": "Autres crédits en cours",
-      "bankInfo": "Informations Bancaires",
-      "bankName": "Nom de votre banque",
-      "iban": "Identifiant IBAN",
-      "bic": "Code BIC / SWIFT",
-      "ribEmail": "Email associé au RIB",
       "Placeholders": {
-        "company_default": "EX: BNP, Ministère, Freelance...",
-        "profession_default": "EX: Cadre, Enseignant, Indépendant...",
-        "charges": "Total de vos charges mensuelles",
-        "bankName": "EX: CIC, LCL, SOCIÉTÉ GÉNÉRALE...",
-        "iban": "FR76 ...",
-        "bic": "AGMINV75XXX",
-        "ribEmail": "votre@email.com"
+        "company_default": "Le nom de votre employeur",
+        "company_cdi": "Ex: Google France",
+        "company_cdd": "Ex: Amazon Logistics",
+        "company_temporary": "Ex: Adecco / Manpower",
+        "company_civil_servant": "Ex: Ministère de l'Éducation",
+        "company_liberal": "Ex: Cabinet Médical Dupont",
+        "company_business_owner": "Ex: SAS AGM INVEST",
+        "company_artisan": "Ex: Boulangerie de la Paix",
+        "company_independent": "Ex: Freelance Web",
+        "company_student": "Ex: Université de Nantes",
+        "company_apprentice": "Ex: Airbus Atlantic",
+        "profession_default": "Ex: Consultant, Chef de projet...",
+        "profession_cdi": "Ex: Comptable",
+        "profession_cdd": "Ex: Chauffeur-livreur",
+        "profession_temporary": "Ex: Manutentionnaire",
+        "profession_civil_servant": "Ex: Professeur",
+        "profession_liberal": "Ex: Médecin",
+        "profession_business_owner": "Ex: Gérant",
+        "profession_artisan": "Ex: Menuisier",
+        "profession_independent": "Ex: Développeur",
+        "profession_student": "Ex: Étudiant Master 2",
+        "profession_apprentice": "Ex: Apprenti Mécanicien",
+        "bankName": "Ex: Boursorama Banque",
+        "iban": "FR76 1234 5...",
+        "bic": "ALPHFR2PXXX",
+        "ribEmail": "votre@email.com",
+        "charges": "Ex: 800"
       }
     },
     "Account": {
-      "email": "Adresse email de connexion",
-      "password": "Créer un mot de passe",
-      "confirmPassword": "Confirmer le mot de passe",
-      "terms": "En validant mon dossier, j'accepte la création d'un compte client et les conditions générales de service.",
+      "email": "Adresse Email",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmation",
+      "terms": "Je certifie l'exactitude des informations et j'accepte les Conditions Générales d'AGM INVEST.",
       "Placeholders": {
-        "email": "jean.dupont@email.com"
+        "email": "votre@email.com"
       }
+    },
+    "Navigation": {
+      "next": "Étape suivante",
+      "back": "Retour",
+      "submit": "Soumettre ma demande",
+      "analyzing": "Analyse en cours..."
     },
     "Result": {
       "analysisTitle": "Analyse de votre dossier",
-      "analysisMessage": "Félicitations ! Votre demande a été enregistrée avec succès. Nos experts vont analyser vos données pour vous proposer les meilleures conditions de financement sous 24h.",
-      "dashboardButton": "Accéder à mon espace"
-    }
-  },
-  "CGU": {
-    "title": "Conditions Générales d'Utilisation",
-    "subtitle": "Conditions d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne.",
-    "Section1": {
-      "title": "1. Objet",
-      "content": "Les présentes Conditions Générales d'Utilisation (CGU) définissent les conditions d'accès et d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne."
+      "analysisMessage": "Nous analysons vos données instantanément grâce à nos partenaires bancaires. Vous allez être redirigé vers votre espace client.",
+      "dashboardButton": "Accéder à mon tableau de bord"
     },
-    "Section2": {
-      "title": "2. Accès au Service",
-      "p1": "L'accès à la plateforme est réservé aux utilisateurs disposant d'un compte validé.",
-      "p2": "AGM INVEST se réserve le droit de refuser ou suspendre un compte en cas de non-respect des présentes conditions."
+    "Errors": {
+      "underage": "Vous devez avoir au moins 18 ans.",
+      "invalidDate": "La date saisie est invalide.",
+      "passwordsDoNotMatch": "Les mots de passe ne correspondent pas."
     },
-    "Section3": {
-      "title": "3. Nature des Services",
-      "intro": "AGM INVEST propose :",
-      "list": {
-        "li1": "Un accompagnement administratif",
-        "li2": "Une assistance liée à l'acquisition de véhicules",
-        "li3": "Un service de gestion de dossiers clients"
-      },
-      "warning": "⚠️ AGM INVEST n'est pas un organisme bancaire, ni un établissement de crédit, mais un intermédiaire financier réglementé."
-    },
-    "Section4": {
-      "title": "4. Processus de Vérification",
-      "content": "L'accès complet aux services nécessite une procédure de vérification en plusieurs étapes définies par AGM INVEST."
-    },
-    "Section5": {
-      "title": "5. Paiements",
-      "p1": "Certains services peuvent nécessiter le versement de dépôts de sécurité.",
-      "p2": "Ces montants sont communiqués clairement au client avant toute validation."
-    },
-    "Section6": {
-      "title": "6. Responsabilité",
-      "content": "Les données sont traitées conformément à la réglementation en vigueur. Consultez notre",
-      "link": "Politique de Confidentialité"
-    },
-    "Section7": {
-      "title": "7. Données Personnelles",
-      "content": "Les données sont traitées conformément à la réglementation en vigueur. Consultez notre",
-      "link": "Politique de Confidentialité"
-    },
-    "Section8": {
-      "title": "8. Résiliation",
-      "content": "AGM INVEST se réserve le droit de suspendre un compte en cas de fraude, fausse déclaration ou utilisation abusive du service."
-    },
-    "Section9": {
-      "title": "9. Droit Applicable",
-      "p1": "Les présentes CGU sont soumises au droit français.",
-      "p2": "Tout litige relève de la compétence des tribunaux français."
-    },
-    "Footer": {
-      "updated": "Dernière mise à jour : Février 2026",
-      "copyright": "© 2026 AGM INVEST - Tous droits réservés."
+    "Step1": {
+      "amount": "Montant du prêt",
+      "duration": "Durée (mois)",
+      "rate": "Taux nominal"
     }
   },
   "Legal": {
     "Mentions": {
       "title": "Mentions Légales",
-      "subtitle": "Informations obligatoires concernant l'éditeur du site et les conditions d'hébergement.",
+      "subtitle": "Informations juridiques et réglementaires concernant AGM INVEST.",
       "Section1": {
-        "title": "1. Identification de l'Éditeur",
+        "title": "Identification de la Société",
         "name": "Dénomination sociale :",
         "form": "Forme juridique :",
         "headquarters": "Siège social :",
-        "siren": "Numéro SIREN :",
-        "siret": "Numéro SIRET :",
+        "siren": "SIREN :",
+        "siret": "SIRET :",
         "rcs": "RCS :",
-        "tva": "Numéro de TVA Intracommunautaire :",
-        "ape": "Code APE :",
-        "manager": "Représentant légal :",
+        "tva": "TVA Intracommunautaire :",
+        "ape": "Code APE / NAF :",
+        "manager": "Dirigeant :",
         "creation": "Date de création :",
         "Values": {
           "name": "AGM INVEST",
-          "form": "Société à Responsabilité Limitée (SARL)",
-          "headquarters": "40 Rue Jean Monnet, 68200 Mulhouse, France",
-          "siren": "477 724 624",
-          "siret": "47772462400030",
-          "rcs": "Mulhouse B 477 724 624",
-          "tva": "FR 48 477724624",
-          "ape": "7022Z",
-          "manager": "M. Meyer Alain",
-          "creation": "01/01/2004"
+          "form": "SARL au capital de 7 622 €",
+          "headquarters": "MELPARK – 40 rue Jean Monnet, 68200 Mulhouse",
+          "siren": "389 858 630",
+          "siret": "389 858 630 00046",
+          "rcs": "389 858 630 R.C.S. Mulhouse",
+          "tva": "FR51 389858630",
+          "ape": "64.92Z – Autre distribution de crédit",
+          "manager": "Alain Meyer",
+          "creation": "16 janvier 1993"
         }
       },
       "Section2": {
-        "title": "2. Activités",
-        "p1": "AGM INVEST est une société spécialisée dans le conseil en gestion et l'accompagnement administratif. Ses domaines d'intervention incluent notamment :",
+        "title": "Activités & Expertise",
+        "p1": "AGM INVEST est une société française spécialisée dans le conseil financier, le courtage en financements et l’accompagnement stratégique des particuliers et des professionnels. Forte de plus de 50 ans d’expérience cumulée dans les services financiers, AGM INVEST met son expertise au service de projets patrimoniaux, immobiliers et financiers, en toute indépendance.",
         "list": {
-          "li1": "Le courtage en opérations de banque et services de paiement",
-          "li2": "Le conseil pour les affaires et autres conseils de gestion",
-          "li3": "L'assistance administrative aux particuliers et professionnels",
-          "li4": "L'intermédiation en assurances",
-          "li5": "La gestion de dossiers de financement",
-          "li6": "L'accompagnement dans l'acquisition de véhicules"
+          "li1": "Conseil financier et stratégique",
+          "li2": "Courtage en financements",
+          "li3": "Intermédiation en opérations de banque et services de paiement",
+          "li4": "Accompagnement en négociation et structuration financière",
+          "li5": "Conseil et commercialisation de projets immobiliers",
+          "li6": "Analyse et optimisation de solutions de financement"
         }
       },
       "Section3": {
-        "title": "3. Réglementation - ORIAS",
-        "p1": "La société est immatriculée au Registre Unique des Intermédiaires en Assurance, Banque et Finance (ORIAS) sous le numéro 13000958, consultable sur le site",
+        "title": "Conformité & Réglementation",
+        "p1": "AGM INVEST a été immatriculée à l’ORIAS sous le numéro 14001635 en qualité de :",
         "oriasLink": "www.orias.fr",
-        "role": ", en qualité de :",
+        "role": "",
         "list": {
-          "li1": "Courtier en Opérations de Banque et Services de Paiement (COBSP)",
-          "li2": "Mandataire d'Assurance",
-          "li3": "Intermédiaire en Opérations de Banque (IOB)"
+          "li1": "Mandataire d’Intermédiaire en Opérations Bancaires et Services de Paiement",
+          "li2": "Courtier en Opérations Bancaires et Services de Paiement",
+          "li3": "Courtier en Assurance"
         },
-        "p2": "L'activité de courtage est soumise au contrôle de l'Autorité de Contrôle Prudentiel et de Résolution (ACPR) située au 4 Place de Budapest, CS 92459, 75436 Paris Cedex 09."
+        "p2": "L'activité d'Intermédiaire en Opérations de Banque et en Services de Paiement (IOBSP) est régie par le Code Monétaire et Financier. AGM INVEST est soumise au contrôle de l'Autorité de Contrôle Prudentiel et de Résolution (ACPR), 4 Place de Budapest CS 92459, 75436 Paris Cedex 09."
       },
       "Section4": {
-        "title": "4. Contact & Hébergement",
+        "title": "Contact & Hébergement",
         "Service": {
           "title": "Service Client",
-          "text": "Pour toute question, vous pouvez nous contacter par email :",
-          "address": "Ou par courrier à notre siège de Mulhouse."
+          "text": "Pour toute question ou réclamation, vous pouvez nous contacter par email :",
+          "address": "40 rue Jean Monnet, 68200 Mulhouse"
         },
         "Hosting": {
-          "title": "Hébergement",
-          "text": "Le site est hébergé par :",
-          "name": "Vercel Inc.",
-          "address": "440 N Barranca Ave #4133\nCovina, CA 91723\nÉtats-Unis"
+          "title": "Hébergement Web",
+          "text": "Ce site est hébergé par :",
+          "name": "Hostinger",
+          "address": "61 Lordou Vironos Street\n6023 Larnaca\nChypre"
         }
       },
       "Footer": {
-        "copyright": "© 2026 AGM INVEST. Tous droits réservés.",
-        "desc": "Site édité par AGM INVEST - Mulhouse.",
-        "disclaimer": "Tout projet de crédit doit être étudié avec soin. Un crédit vous engage et doit être remboursé.",
-        "updated": "Dernière mise à jour : Février 2026"
+        "copyright": "© 1993 – 2026 AGM INVEST – Tous droits réservés",
+        "desc": "Société de conseil financier – Interventions sans maniement de fonds",
+        "disclaimer": "Les informations présentes sur ce site ne constituent pas une offre contractuelle."
       }
     },
     "Privacy": {
       "title": "Politique de Confidentialité",
-      "subtitle": "Nous accordons une importance majeure à la protection de vos données personnelles et au respect de votre vie privée.",
-      "intro": "La présente Politique de Confidentialité décrit comment <bold>AGM INVEST</bold> collecte, utilise et protège les informations que vous nous transmettez lors de l'utilisation de nos services.",
+      "subtitle": "Engagement de AGM INVEST sur la protection de vos données personnelles et le respect de votre vie privée (RGPD).",
+      "intro": "Chez AGM INVEST, we accordons une importance capitale à la confidentialité et à la sécurité de vos informations. Cette politique détaille comment nous collectons, utilisons et protégeons vos données dans le cadre de nos activités de conseil financier et de courtage.",
       "Section1": {
         "title": "1. Données Collectées",
-        "description": "Dans le cadre de votre demande de financement, nous collectons les types de données suivants :",
+        "description": "Pour traiter vos demandes de financement et vous fournir nos services, nous sommes amenés à collecter les informations suivantes :",
         "list": {
-          "li1": "<bold>Identité :</bold> Nom, prénom, date et lieu de naissance, nationalité.",
+          "li1": "<bold>Identité :</bold> Nom, prénom, date de naissance, nationalité, documents d'identité.",
           "li2": "<bold>Coordonnées :</bold> Adresse postale, email, numéro de téléphone.",
-          "li3": "<bold>Situation :</bold> État civil, composition du foyer, type de logement.",
-          "li4": "<bold>Vie professionnelle :</bold> Type de contrat, revenus, ancienneté.",
-          "li5": "<bold>Finances :</bold> Charges mensuelles, crédits en cours.",
-          "li6": "<bold>Documents :</bold> Pièces d'identité, justificatifs de revenus et de domicile."
+          "li3": "<bold>Situation Familiale :</bold> Statut marital, nombre d'enfants à charge.",
+          "li4": "<bold>Situation Professionnelle :</bold> Employeur, type de contrat, ancienneté, revenus.",
+          "li5": "<bold>Situation Financière :</bold> Relevés bancaires, avis d'imposition, emprunts en cours, patrimoine.",
+          "li6": "<bold>Données de Connexion :</bold> Adresse IP, logs de connexion (pour la sécurité)."
         }
       },
       "Section2": {
         "title": "2. Finalités du Traitement",
-        "description": "Vos données sont traitées pour des finalités précises :",
+        "description": "Vos données sont traitées pour des finalités déterminées, explicites et légitimes :",
         "Cards": {
           "c1": {
-            "title": "Analyse de Dossier",
-            "desc": "Étudier la faisabilité de votre projet de financement."
+            "title": "Étude de solvabilité",
+            "desc": "Analyse de votre capacité de remboursement pour l'octroi de crédits."
           },
           "c2": {
-            "title": "Gestion du Compte",
-            "desc": "Administrer votre espace client et vos demandes."
+            "title": "Gestion de dossier",
+            "desc": "Suivi administratif, constitution des contrats et gestion de la relation client."
           },
           "c3": {
-            "title": "Conformité Légale",
-            "desc": "Répondre à nos obligations réglementaires (KYC, lutte contre la fraude)."
+            "title": "Obligations Légales",
+            "desc": "Lutte contre le blanchiment d'argent et le financement du terrorisme (LCB-FT)."
           },
           "c4": {
-            "title": "Communication",
-            "desc": "Échanger avec vous sur l'avancement de votre dossier."
+            "title": "Sécurité",
+            "desc": "Protection contre la fraude et sécurisation de vos accès en ligne."
           }
         }
       },
       "Section3": {
-        "title": "3. Partage des Données",
-        "p1": "Vos informations ne sont jamais vendues à des tiers. Elles sont partagées uniquement avec :",
+        "title": "3. Partage et Destinataires",
+        "p1": "Vos données sont strictement confidentielles. Elles ne sont transmises qu'aux destinataires habilités lorsque cela est nécessaire :",
         "list": {
-          "li1": "Nos partenaires bancaires et assureurs pour l'étude de votre financement.",
-          "li2": "Nos sous-traitants techniques (hébergement, stockage sécurisé).",
-          "li3": "Les autorités légales en cas d'obligation réglementaire."
+          "li1": "Nos partenaires bancaires et assureurs (pour l'étude et la validation de votre financement).",
+          "li2": "Les organismes publics et régulateurs (sur réquisition légale).",
+          "li3": "Nos prestataires techniques sécurisés (hébergement, signature électronique)."
         },
-        "p2": "Tout transfert de données est protégé par des protocoles sécurisés."
+        "p2": "AGM INVEST ne vendra jamais vos données personnelles à des tiers à des fins commerciales."
       },
       "Section4": {
         "title": "4. Vos Droits",
-        "p1": "Conformément au RGPD, vous disposez de droits sur vos données personnelles :",
+        "p1": "Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :",
         "list": {
-          "li1": "Droit d'accès et de rectification",
-          "li2": "Droit à l'effacement (droit à l'oubli)",
-          "li3": "Droit à la limitation du traitement",
-          "li4": "Droit à la portabilité des données",
-          "li5": "Droit d'opposition",
-          "li6": "Droit de définir des directives post-mortem"
+          "li1": "Droit d'accès à vos données",
+          "li2": "Droit de rectification",
+          "li3": "Droit à l'effacement (\"droit à l'oubli\")",
+          "li4": "Droit à la limitation du traitement",
+          "li5": "Droit au portabilité des données",
+          "li6": "Droit d'opposition"
         },
-        "contact": "Pour exercer vos droits, contactez-nous par email à :",
-        "postal": "ou par voie postale."
+        "contact": "Pour exercer ces droits, contactez notre Délégué à la Protection des Données (DPO) :",
+        "postal": "ou par courrier postal au siège social."
       },
       "Footer": {
-        "updated": "Dernière mise à jour : 15 février 2026"
+        "updated": "Dernière mise à jour : Février 2026"
       }
     },
     "Cookies": {
-      "title": "Politique des Cookies",
-      "subtitle": "Transparence sur l'utilisation des traceurs sur notre plateforme.",
-      "intro": "AGM INVEST utilise des cookies pour améliorer votre expérience, assurer la sécurité de notre site et analyser son trafic.",
+      "title": "Gestion des Cookies",
+      "subtitle": "Comprendre comment et pourquoi nous utilisons des cookies pour améliorer votre expérience sur AGM INVEST.",
+      "intro": "Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) lors de la visite de notre site. Il permet à AGM INVEST de mémoriser vos actions et préférences sur une période donnée.",
       "Section1": {
-        "title": "1. Types de cookies utilisés",
+        "title": "1. Les Cookies que nous utilisons",
         "Essential": {
           "title": "Cookies Essentiels",
-          "desc": "Nécessaires au fonctionnement du site. Ils permettent la navigation et l'accès aux zones sécurisées (comme votre espace client)."
+          "desc": "Indispensables au bon fonctionnement du site. Ils vous permettent de naviguer, d'accéder à votre espace sécurisé et d'assurer la sécurité des transactions. Ils ne peuvent pas être désactivés."
         },
         "Functional": {
-          "title": "Cookies de Fonctionnalité",
-          "desc": "Permettent de mémoriser vos préférences (choix de langue, informations de formulaire) pour simplifier votre navigation."
+          "title": "Cookies Fonctionnels",
+          "desc": "Permettent de mémoriser vos choix (langue, nom d'utilisateur) pour vous offrir une expérience personnalisée et plus fluide."
         },
         "Analytics": {
           "title": "Cookies Analytiques",
-          "desc": "Nous aident à comprendre comment les visiteurs utilisent le site pour améliorer nos services de manière anonyme."
+          "desc": "Nous aident à comprendre comment les visiteurs interagissent avec le site (pages visitées, temps passé) afin d'améliorer nos services. Données anonymisées."
         }
       },
       "Section2": {
-        "title": "2. Gestion de vos choix",
-        "intro": "Vous pouvez configurer votre navigateur pour bloquer les cookies ou être alerté de leur présence :",
+        "title": "2. Gérer vos préférences",
+        "intro": "Vous pouvez à tout moment modifier vos préférences en matière de cookies via les paramètres de votre navigateur web.",
         "Chrome": "Google Chrome :",
         "ChromePath": "Paramètres > Confidentialité et sécurité > Cookies",
-        "Firefox": "Mozilla Firefox :",
+        "Firefox": "Firefox :",
         "FirefoxPath": "Options > Vie privée et sécurité > Cookies",
         "Safari": "Safari :",
-        "SafariPath": "Réglages > Confidentialité > Cookies",
-        "Edge": "Microsoft Edge :",
+        "SafariPath": "Préférences > Confidentialité",
+        "Edge": "Edge :",
         "EdgePath": "Paramètres > Cookies et autorisations de site",
-        "note": "Note : La désactivation de certains cookies peut altérer le bon fonctionnement du site."
+        "note": "Note : Le refus des cookies essentiels peut empêcher l'accès à certaines fonctionnalités critiques comme la connexion à votre compte client."
       },
       "Footer": {
-        "copyright": "© 2026 AGM INVEST - Tous droits réservés."
+        "copyright": "© AGM INVEST - Politique de Cookies 2026"
+      }
+    },
+    "CGU": {
+      "title": "Conditions Générales d'Utilisation",
+      "subtitle": "Conditions d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne.",
+      "Section1": {
+        "title": "1. Objet",
+        "content": "Les présentes Conditions Générales d'Utilisation (CGU) définissent les conditions d'accès et d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne."
+      },
+      "Section2": {
+        "title": "2. Accès au Service",
+        "p1": "L'accès à la plateforme est réservé aux utilisateurs disposant d'un compte validé.",
+        "p2": "AGM INVEST se réserve le droit de refuser ou suspendre un compte en cas de non-respect des présentes conditions."
+      },
+      "Section3": {
+        "title": "3. Nature des Services",
+        "intro": "AGM INVEST propose :",
+        "list": {
+          "li1": "Un accompagnement administratif",
+          "li2": "Une assistance liée à l'acquisition de véhicules",
+          "li3": "Un service de gestion de dossiers clients"
+        },
+        "warning": "AGM INVEST n'est pas un organisme bancaire, ni un établissement de crédit, mais un intermédiaire financier réglementé."
+      },
+      "Section4": {
+        "title": "4. Processus de Vérification",
+        "content": "L'accès complet aux services nécessite une procédure de vérification en plusieurs étapes définies par AGM INVEST."
+      },
+      "Section5": {
+        "title": "5. Paiements",
+        "p1": "Certains services peuvent nécessiter le versement de dépôts de sécurité.",
+        "p2": "Ces montants sont communiqués clairement au client avant toute validation."
+      },
+      "Section6": {
+        "title": "6. Responsabilité",
+        "content": "AGM INVEST agit en tant qu'intermédiaire administratif et ne garantit pas l'acceptation d'un dossier par des tiers (administrations, partenaires, prestataires)."
+      },
+      "Section7": {
+        "title": "7. Données Personnelles",
+        "content": "Les données sont traitées conformément à la réglementation en vigueur. Consultez notre",
+        "link": "Politique de Confidentialité"
+      },
+      "Section8": {
+        "title": "8. Résiliation",
+        "content": "AGM INVEST se réserve le droit de suspendre un compte en cas de fraude, fausse déclaration ou utilisation abusive du service."
+      },
+      "Section9": {
+        "title": "9. Droit Applicable",
+        "p1": "Les présentes CGU sont soumises au droit français.",
+        "p2": "Tout litige relève de la compétence des tribunaux français."
+      },
+      "Footer": {
+        "updated": "Dernière mise à jour : Février 2026",
+        "copyright": "© 2026 AGM INVEST - Tous droits réservés"
       }
     },
     "Refund": {
       "title": "Conditions de Remboursement",
-      "subtitle": "Politique relative aux dépôts de sécurité et frais de dossier.",
+      "subtitle": "Modalités de restitution du dépôt sécuritaire fixe AGM INVEST.",
       "Section1": {
-        "title": "1. Dépôt sécuritaire d'authentification",
-        "p1": "Dans le cadre de la procédure de vérification d'identité et de lutte contre l'usurpation, un dépôt de sécurité peut être demandé.",
-        "p2": "Ce montant sert exclusivement à authentifier la source des fonds et la réalité du compte bancaire associé au dossier.",
-        "p3": "Le dépôt est placé sur un compte de transit sécurisé pendant la durée de l'analyse."
+        "title": "1. Dépôt Sécuritaire Fixe",
+        "p1": "Ce dépôt n'est pas des frais. Il doit provenir du même compte bancaire (RIB) que celui fourni lors de votre demande.",
+        "p2": "Il est intégralement restitué en même temps que le virement du crédit.",
+        "p3": ""
       },
       "Section2": {
-        "title": "2. Modalités de Restitution",
-        "content": "Le dépôt de sécurité est restitué dans son intégralité sans délai au client dès que la procédure de vérification est finalisée, que le crédit soit accordé ou refusé."
+        "title": "2. Restitution",
+        "content": "La restitution du dépôt sécuritaire intervient conformément aux conditions prévues dans le contrat signé entre AGM INVEST et le client."
       },
       "Section3": {
-        "title": "3. Cas de non-restitution",
-        "intro": "La restitution peut être suspendue uniquement dans les cas suivants :",
+        "title": "3. Cas de Non-Restitution",
+        "intro": "Le dépôt sécuritaire peut ne pas être restitué en cas de :",
         "list": {
-          "li1": "Tentative avérée de fraude ou d'usurpation d'identité.",
-          "li2": "Fourniture de documents falsifiés.",
-          "li3": "Utilisation de moyens de paiement volés ou illégitimes."
+          "li1": "Abandon volontaire du dossier par le client",
+          "li2": "Fausse déclaration",
+          "li3": "Non-respect des engagements contractuels"
         }
       },
       "Section4": {
         "title": "4. Délais",
-        "content": "Le virement de restitution est initié sous 24h à 48h ouvrées après la clôture du dossier. Le délai de réception dépend ensuite de votre établissement bancaire."
+        "content": "Les délais de restitution sont indiqués dans le contrat et peuvent varier selon la nature du dossier et les partenaires impliqués."
       },
       "Section5": {
         "title": "5. Litiges",
-        "content": "En cas de contestation, le client peut contacter le service client d'AGM INVEST par email ou courrier recommandé."
+        "content": "En cas de litige, le droit français s'applique."
       },
       "Footer": {
         "updated": "Dernière mise à jour : Février 2026",
-        "copyright": "© AGM INVEST - Service Juridique"
-      }
-    },
-    "Disclaimer": {
-      "title": "Disclaimer Financier",
-      "subtitle": "Avertissements importants concernant l'engagement lié au crédit.",
-      "warning": {
-        "title": "Avertissement Légal",
-        "content": "UN CRÉDIT VOUS ENGAGE ET DOIT ÊTRE REMBOURSÉ. VÉRIFIEZ VOS CAPACITÉS DE REMBOURSEMENT AVANT DE VOUS ENGAGER."
-      },
-      "nature": {
-        "title": "Nature de l'activité",
-        "p1": "AGM INVEST agit en tant que <bold>partenaire intermédiaire administratif</bold> et non en tant qu'établissement prêteur direct.",
-        "p2": "Notre rôle est de faciliter la constitution, l'analyse et la présentation de votre dossier auprès de nos partenaires financiers."
-      },
-      "limitations": {
-        "title": "Limitations de Responsabilité",
-        "list": {
-          "li1": "L'octroi d'un financement dépend de critères d'éligibilité stricts définis par les banques.",
-          "li2": "AGM INVEST ne peut garantir l'acceptation finale d'un dossier par un tiers.",
-          "li3": "Les taux affichés sont indicatifs et dépendent du profil de risque de l'emprunteur."
-        }
-      },
-      "indicative": {
-        "title": "Informations Indicatives",
-        "content": "Les simulations réalisées sur le site n'ont <bold>aucune valeur contractuelle</bold>. Seule l'offre de prêt émise par la banque après étude de dossier complet fait foi."
-      },
-      "Footer": {
-        "updated": "Mis à jour le 10/02/2026",
-        "copyright": "© 2026 AGM INVEST"
+        "copyright": "© 2026 AGM INVEST - Tous droits réservés"
       }
     },
     "Trust": {
       "title": "Confiance & Sécurité",
-      "subtitle": "Votre sécurité est notre priorité absolue. Découvrez comment nous protégeons vos intérêts.",
-      "intro": "Choisir AGM INVEST, c'est opter pour un partenaire qui place la transparence et la protection des données au cœur de son modèle.",
+      "subtitle": "Chez AGM INVEST, la sécurité des dossiers clients est une priorité absolue.",
+      "intro": "Nous mettons en œuvre des processus rigoureux et transparents pour garantir la sécurité et la confidentialité de vos informations.",
       "engagements": {
-        "title": "Nos Engagements",
+        "title": "Nos Engagements Sécurité",
         "admin": {
           "title": "Vérification Administrative",
-          "desc": "Étude rigoureuse de chaque pièce pour garantir la solidité de votre demande."
+          "desc": "Chaque dossier est vérifié minutieusement par notre équipe administrative."
         },
         "multi": {
-          "title": "Procédure Multi-Étapes",
-          "desc": "Un workflow structuré pour minimiser les erreurs et maximiser les chances d'accord."
+          "title": "Validation Multi-Étapes",
+          "desc": "Processus de vérification en plusieurs étapes pour garantir la conformité."
         },
         "contract": {
-          "title": "Cadre Contractuel",
-          "desc": "Toutes nos prestations sont encadrées par des mandats clairs et conformes à la loi."
+          "title": "Encadrement Contractuel Clair",
+          "desc": "Tous nos services sont encadrés par des contrats transparents et détaillés."
         },
         "trace": {
-          "title": "Traçabilité",
-          "desc": "Historique complet de vos demandes accessible à tout moment dans votre espace."
+          "title": "Traçabilité des Paiements",
+          "desc": "Tous les paiements sont tracés et sécurisés via des systèmes certifiés."
         },
         "data": {
           "title": "Protection des Données",
-          "desc": "Chiffrement AES-256 et serveurs sécurisés conformes aux normes bancaires."
+          "desc": "Conformité RGPD et chiffrement de toutes vos données personnelles."
         },
         "support": {
-          "title": "Support Dédié",
-          "desc": "Une équipe d'experts disponible pour répondre à vos questions sur la sécurité."
+          "title": "Support Client Dédié",
+          "desc": "Une équipe à votre écoute pour répondre à toutes vos questions."
         }
       },
       "individual": {
-        "title": "Un Traitement Individuel",
-        "content": "Chaque dossier est traité manuellement par nos analystes. Nous refusons l'automatisation totale des scores de crédit pour privilégier l'étude contextuelle de votre situation."
+        "title": "Traitement Individuel",
+        "content": "Chaque dossier est traité de manière individuelle par notre équipe. Nous prenons le temps d'analyser votre situation spécifique pour vous proposer un accompagnement personnalisé."
       },
       "promise": {
-        "title": "Notre Promesse",
-        "content": "Nous nous engageons à une <bold>transparence totale</bold> : pas de frais cachés, pas de mauvaises surprises. Vous êtes informé en temps réel de chaque étape."
+        "title": "Notre Engagement",
+        "content": "AGM INVEST s'engage à la transparence dans ses processus et ses communications. Votre confiance est notre priorité."
       },
       "Footer": {
         "updated": "Dernière mise à jour : Février 2026",
-        "copyright": "© AGM INVEST - Pôle Qualité & Sécurité"
+        "copyright": "© 2026 AGM INVEST - Tous droits réservés"
+      }
+    },
+    "Disclaimer": {
+      "title": "Disclaimer Financier",
+      "subtitle": "Informations importantes sur la nature des services AGM INVEST.",
+      "warning": {
+        "title": "Avertissement Important",
+        "content": "AGM INVEST n'est ni un établissement bancaire, ni un organisme de crédit, mais un intermédiaire financier réglementé."
+      },
+      "nature": {
+        "title": "Nature de l'Activité",
+        "p1": "AGM INVEST intervient exclusivement en tant qu'intermédiaire administratif et de mise en relation.",
+        "p2": "Nos services consistent en un accompagnement dans vos démarches administratives et la mise en relation avec des partenaires qualifiés."
+      },
+      "limitations": {
+        "title": "Limitations de Garantie",
+        "list": {
+          "li1": "AGM INVEST ne garantit pas l'acceptation d'un dossier par des tiers",
+          "li2": "AGM INVEST ne garantit pas l'obtention effective d'un financement",
+          "li3": "Les délais, montants et décisions finales dépendent des partenaires externes et des organismes concernés"
+        }
+      },
+      "indicative": {
+        "title": "Informations Indicatives",
+        "content": "Toute information communiquée par AGM INVEST est fournie à titre indicatif et ne constitue en aucun cas un engagement contractuel de résultat."
+      },
+      "Footer": {
+        "updated": "Dernière mise à jour : Février 2026",
+        "copyright": "© 2026 AGM INVEST - Tous droits réservés"
       }
     },
     "Ads": {
       "title": "Mentions Publicitaires",
-      "subtitle": "Informations réglementaires concernant nos communications commerciales.",
+      "subtitle": "Clarifications importantes sur les services proposés par AGM INVEST.",
       "warning": {
-        "title": "Prudence Financière",
-        "content": "Aucun versement de quelque nature que ce soit ne peut être exigé d'un particulier avant l'obtention d'un ou plusieurs prêts d'argent."
+        "title": "Information Importante",
+        "content": "AGM INVEST n'est pas une banque ni un organisme de crédit, mais un intermédiaire financier réglementé."
       },
       "nature": {
-        "title": "Nature de nos services",
-        "p1": "Les annonces présentées sur ce site concernent des <bold>services d'accompagnement et de courtage en financement</bold>.",
-        "p2": "AGM INVEST présente des solutions négociées auprès d'un large réseau de partenaires bancaires."
+        "title": "Nature des Services",
+        "p1": "Les services proposés par AGM INVEST relèvent de l'accompagnement administratif et de la mise en relation.",
+        "p2": "Nous intervenons en tant qu'intermédiaire pour faciliter vos démarches et vous mettre en contact avec des partenaires qualifiés."
       },
       "acceptance": {
-        "title": "Acceptation des dossiers",
-        "content": "L'acceptation d'un dossier par AGM INVEST pour étude <bold>ne préjuge pas de l'accord définitif de prêt</bold>."
+        "title": "Acceptation des Dossiers",
+        "content": "L'acceptation des dossiers dépend de partenaires externes. AGM INVEST ne peut garantir l'acceptation systématique de votre demande."
       },
       "results": {
-        "title": "Résultats variables",
-        "content": "Les taux et gains potentiels affichés dans nos publicités sont basés sur les meilleures conditions obtenues récemment pour des profils similaires."
+        "title": "Résultats Variables",
+        "content": "Les résultats peuvent varier selon la situation du client, les critères des partenaires et les conditions du marché."
       },
       "links": {
-        "title": "Consultez également nos conditions complètes :",
-        "cgu": "Consulter les CGU",
+        "title": "Pour plus d'informations, consultez nos :",
+        "cgu": "Conditions Générales",
         "mentions": "Mentions Légales"
       },
       "Footer": {
-        "updated": "Dernière mise à jour : 2026",
-        "copyright": "© AGM INVEST"
+        "updated": "Dernière mise à jour : Février 2026",
+        "copyright": "© 2026 AGM INVEST - Tous droits réservés"
       }
     }
   },
@@ -1757,206 +994,577 @@
       "Sidebar": {
         "clientSpace": "Espace Client",
         "balance": "Mon Solde",
-        "makeRequest": "Faire une demande",
+        "makeRequest": "Demander un Prêt",
         "myRequests": "Mes Demandes",
         "myDocuments": "Mes Documents",
-        "billing": "Paiements",
+        "billing": "Facturation",
         "myProfile": "Mon Profil",
         "settings": "Paramètres",
         "support": "Aide & Support",
-        "premiumStatus": "Statut Premium",
-        "verifiedClient": "Client Vérifié",
-        "actionRequired": "Action Requise",
-        "identityRejected": "Identité Refusée",
-        "menuTitle": "NAVIGATION",
-        "preferencesTitle": "CONFIGURATION",
-        "logout": "Déconnexion",
-        "docsToComplete": "Documents à compléter",
-        "docsAttention": "Certains documents requièrent votre attention.",
-        "contactSupport": "Veuillez contacter le support client."
-      },
-      "Header": {
-        "verifiedClient": "Client Vérifié",
-        "verificationInProgress": "Vérification en cours",
-        "actionRequired": "Action Requise",
-        "identityRejected": "Identité Refusée",
-        "docsToComplete": "Documents à compléter",
-        "accountToVerify": "Compte à vérifier",
-        "searchPlaceholder": "Rechercher...",
-        "notifications": "Notifications",
-        "userProfile": "Profil Utilisateur",
-        "logout": "Déconnexion",
-        "myVerification": "Ma Vérification",
-        "user": "Utilisateur",
-        "markAllAsRead": "Tout marquer comme lu",
-        "noNotifications": "Aucune notification",
-        "managePreferences": "Gérer les préférences"
-      },
-      "Notifications": {
-        "statusUpdate": {
-          "title": "Mise à jour d'identité",
-          "message": "Le statut de votre vérification a changé."
-        },
-        "verified": {
-          "title": "Identité Vérifiée ✅",
-          "message": "Félicitations ! Votre compte est désormais pleinement opérationnel."
-        },
-        "rejected": {
-          "title": "Action Requise ⚠️",
-          "message": "Votre vérification a été refusée. Veuillez consulter vos emails."
-        },
-        "partialRejection": {
-          "title": "Documents à compléter",
-          "message": "Certains documents ont été refusés. Merci de les soumettre à nouveau."
-        },
-        "newMessage": {
-          "title": "Nouveau message 💬",
-          "message": "Votre conseiller vous a envoyé un message. Cliquez pour répondre."
-        }
+        "logout": "Déconnexion"
       }
     },
     "Home": {
-      "welcome": "Bonjour, <bold>{name}</bold> 👋",
-      "subtitle": "Voici un aperçu de vos activités de financement.",
+      "welcome": "Bonjour, {name} !",
+      "subtitle": "Bienvenue sur votre tableau de bord.",
+      "status": {
+        "verified": "Compte Vérifié",
+        "premium": "Client Premium"
+      },
       "stats": {
         "total": "Total Demandes",
-        "approved": "Prêts accordés",
+        "approved": "Approuvées",
         "pending": "En attente",
         "projects": "Projets"
-      },
-      "alerts": {
-        "rejected": {
-          "title": "Je vous informe que :",
-          "message": "Votre demande de financement a été refusée par nos services après étude de votre dossier. Pour plus de détails ou pour échanger avec un conseiller, veuillez contacter notre support."
-        },
-        "approvedIdentityNeeded": {
-          "title": "Félicitations ! Votre crédit est accordé 🚀",
-          "message": "Excellente nouvelle : votre financement a été validé et votre solde est prêt à être crédité. Une dernière vérification d'identité est requise pour activer le transfert des fonds.",
-          "action": "Vérification requise"
-        },
-        "approvedDepositNeeded": {
-          "title": "Action Requise",
-          "message": "Votre identité a été confirmée ! Pour finaliser l'activation de votre crédit, le dépôt d'authentification est maintenant nécessaire.",
-          "action": "Effectuer le dépôt"
-        },
-        "idRejected": {
-          "title": "Identité Refusée",
-          "message": "Votre demande de vérification d'identité a été refusée. Pour connaître les raisons et soumettre à nouveau vos documents, veuillez contacter notre service client."
-        },
-        "partialRejection": {
-          "title": "Documents à compléter",
-          "message": "Certains documents de votre dossier nécessitent une correction ou n'ont pas été validés. Veuillez consulter votre espace de vérification pour les mettre à jour.",
-          "action": "Voir mes documents"
-        }
-      },
-      "balance": {
-        "activeTitle": "Compte Crédit Actif",
-        "inactiveTitle": "Mon Compte Crédit",
-        "remainingCapital": "Capital restant dû",
-        "forecastBalance": "Solde prévisionnel",
-        "repaid": "Remboursé : {percent}%",
-        "monthsRemaining": "{count} mois restants"
-      },
-      "requests": {
-        "title": "Demandes récentes",
-        "subtitle": "Suivez l'état de vos dossiers",
-        "viewAll": "Voir tout",
-        "project": "Projet",
-        "statusApproved": "Accordé",
-        "statusProcessing": "En étude",
-        "empty": "Aucune demande."
-      },
-      "support": {
-        "title": "Une question ?",
-        "subtitle": "Nos experts vous répondent sous 24h ouvrées par téléphone ou chat.",
-        "action": "Contacter mon conseiller"
-      },
-      "quickActions": {
-        "title": "Actions Rapides",
-        "docs": "Mes Documents",
-        "transfer": "Virement",
-        "schedule": "Echéancier",
-        "ribRef": "Télécharger RIB"
-      },
-      "security": {
-        "title": "Sécurité",
-        "message": "Données chiffrées AES-256."
       }
     },
     "Accounts": {
-      "title": "Mon solde crédit AGM",
-      "subtitle": "Gérez vos crédits actifs et suivez vos remboursements.",
-      "card": {
-        "totalBalance": "Solde Total Crédit",
-        "deferredPeriod": "Différé",
-        "capitalRemaining": "Capital restant dû",
-        "initialAmount": "Montant Initial",
-        "firstInstallment": "Première Échéance",
-        "nextInstallment": "Prochaine Échéance"
+      "title": "Mon Solde",
+      "subtitle": "Gérez vos comptes et vos informations bancaires."
+    },
+    "Profile": {
+      "title": "Mon Profil",
+      "subtitle": "Gérez vos informations personnelles et votre sécurité.",
+      "editButton": "Modifier Profil",
+      "saveButton": "Enregistrer",
+      "cancelButton": "Annuler",
+      "Identity": {
+        "title": "État Civil"
       },
-      "stats": {
-        "rate": "Taux (TAEG)",
-        "remainingDuration": "Durée Restante",
-        "months": "mois"
+      "Location": {
+        "title": "Coordonnées"
       },
-      "actions": {
-        "transfer": "Effectuer un virement",
-        "schedule": "Consulter l'échéancier"
+      "Situation": {
+        "title": "Situation Personnelle"
       },
-      "operations": {
-        "title": "Dernières Opérations",
-        "transferTo": "Virement vers {bank}",
-        "status": {
-          "paid": "débité",
-          "rejected": "refusé",
-          "review": "en examen",
-          "advanced": "contrôle avancé",
-          "processing": "en cours",
-          "fullStatus": "Virement {status} le {date}"
-        },
-        "labels": {
-          "done": "Terminé",
-          "rejected": "Refusé",
-          "pending": "En attente"
-        },
-        "loanDisbursement": "Versement Prêt AGM INVEST",
-        "receivedOn": "Virement reçu le {date}",
-        "empty": "Aucun mouvement"
+      "Professional": {
+        "title": "Situation Professionnelle"
       },
-      "rib": {
-        "title": "Coordonnées (RIB)",
-        "edit": "Modifier",
-        "bank": "Banque",
-        "iban": "Identifiant IBAN",
-        "bic": "Identifiant BIC / SWIFT",
-        "email": "Email pour les virements",
-        "undefined": "Non défini",
-        "notProvided": "non renseigné",
-        "verifiedFooter": "Compte vérifié actif pour les fonds et prélèvements mensuels."
-      },
-      "support": {
-        "title": "Besoin d'aide sur vos comptes ?",
-        "message": "Nos conseillers sont disponibles pour répondre à vos questions sur vos remboursements.",
-        "action": "Contacter un conseiller"
-      },
-      "modal": {
-        "title": "Coordonnées Bancaires",
-        "subtitle": "Mettez à jour votre RIB de référence.",
-        "bankLabel": "Nom de la banque",
-        "ibanLabel": "Identifiant IBAN",
-        "bicLabel": "Identifiant BIC / SWIFT",
-        "emailLabel": "Email pour les virements",
-        "bankPlaceholder": "EX: CIC, BNP PARIBAS...",
-        "ibanPlaceholder": "FR76 ...",
-        "bicPlaceholder": "AGMINV75XXX",
-        "emailPlaceholder": "votre@email.com",
-        "info": "Ces informations seront utilisées pour vos prochains versements et prélèvements automatiques.",
-        "save": "Enregistrer les modifications"
-      },
-      "messages": {
-        "success": "Opération effectuée avec succès",
-        "error": "Erreur lors de la mise à jour du RIB."
+      "Financial": {
+        "title": "Situation Financière"
       }
+    },
+    "Requests": {
+      "title": "Mes Demandes",
+      "subtitle": "Consultez l'historique et l'avancement de vos dossiers.",
+      "searchPlaceholder": "Rechercher...",
+      "noneFound": "Aucune demande trouvée",
+      "newRequest": "Nouvelle demande"
+    },
+    "settings": {
+      "title": "Paramètres",
+      "subtitle": "Gérez vos préférences de compte, les notifications et la sécurité.",
+      "language": "Langue",
+      "lastLogin": "Dernière connexion",
+      "notifications": "Notifications",
+      "security": "Sécurité du Compte",
+      "autoLogout": "Déconnexion auto",
+      "password": "Mot de passe"
     }
+  },
+  "Reviews": {
+    "title": "Ce que nos clients <highlight>disent de nous</highlight>",
+    "description": "Découvrez les témoignages de ceux qui nous ont fait confiance pour leur projet de financement.",
+    "backToHome": "Retour à l'accueil",
+    "allReviews": "Tous les avis",
+    "page": "Page",
+    "of": "sur",
+    "verified": "Avis Vérifié",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "Items": {
+      "r1": {
+        "region": "Paris",
+        "comment": "Service impeccable ! J'ai obtenu mon financement en moins de 2 semaines. L'équipe est très professionnelle."
+      },
+      "r2": {
+        "region": "Lyon",
+        "comment": "Excellente expérience. Le conseiller m'a accompagné à chaque étape. Je recommande vivement AGM INVEST."
+      },
+      "r3": {
+        "region": "Marseille",
+        "comment": "Très satisfait du service. Processus rapide et transparent. Quelques documents à fournir mais c'est normal."
+      },
+      "r4": {
+        "region": "Toulouse",
+        "comment": "Je suis ravie ! Mon dossier a été traité rapidement et j'ai pu acheter ma voiture sans stress."
+      },
+      "r5": {
+        "region": "Nice",
+        "comment": "Service au top ! L'équipe est réactive et à l'écoute. Mon crédit a été validé en 10 jours."
+      },
+      "r6": {
+        "region": "Nantes",
+        "comment": "Bonne expérience globale. Le suivi est excellent et les conseillers sont compétents."
+      },
+      "r7": {
+        "region": "Strasbourg",
+        "comment": "Parfait ! Processus simple et efficace. J'ai eu mon financement automobile sans problème."
+      },
+      "r8": {
+        "region": "Montpellier",
+        "comment": "Je recommande à 100% ! Service professionnel, rapide et transparent. Merci à toute l'équipe."
+      },
+      "r9": {
+        "region": "Bordeaux",
+        "comment": "Très bon service. Les délais ont été respectés et le conseiller était disponible pour répondre à mes questions."
+      },
+      "r10": {
+        "region": "Lille",
+        "comment": "Expérience exceptionnelle ! Dossier traité rapidement, équipe professionnelle. Je suis très satisfaite."
+      },
+      "r11": {
+        "region": "Rennes",
+        "comment": "Service irréprochable. Mon conseiller m'a guidé tout au long du processus. Financement obtenu en 12 jours."
+      },
+      "r12": {
+        "region": "Reims",
+        "comment": "Bonne prestation. Le processus est bien expliqué et l'équipe est disponible."
+      },
+      "r13": {
+        "region": "Le Havre",
+        "comment": "Excellent ! J'ai pu financer mon véhicule rapidement. Service client au top."
+      },
+      "r14": {
+        "region": "Saint-Étienne",
+        "comment": "Très professionnels et efficaces. Mon dossier a été accepté rapidement. Je recommande."
+      },
+      "r15": {
+        "region": "Toulon",
+        "comment": "Service de qualité. Bonne communication et suivi régulier du dossier."
+      },
+      "r16": {
+        "region": "Grenoble",
+        "comment": "Parfait du début à la fin ! Équipe réactive et professionnelle. Mon crédit validé en 8 jours."
+      },
+      "r17": {
+        "region": "Dijon",
+        "comment": "Je suis très satisfait. Processus simple, rapide et transparent. Merci AGM INVEST !"
+      },
+      "r18": {
+        "region": "Angers",
+        "comment": "Bonne expérience. Les conseillers sont compétents et le suivi est régulier."
+      },
+      "r19": {
+        "region": "Nîmes",
+        "comment": "Service excellent ! Mon dossier a été traité rapidement et efficacement."
+      },
+      "r20": {
+        "region": "Villeurbanne",
+        "comment": "Très bonne expérience. L'équipe est professionnelle et à l'écoute."
+      },
+      "r21": {
+        "region": "Le Mans",
+        "comment": "Satisfait du service. Bon accompagnement tout au long du processus."
+      },
+      "r22": {
+        "region": "Aix-en-Provence",
+        "comment": "Impeccable ! Financement obtenu rapidement. Je recommande vivement."
+      },
+      "r23": {
+        "region": "Clermont-Ferrand",
+        "comment": "Excellent service. Équipe réactive et professionnelle. Dossier validé en 10 jours."
+      },
+      "r24": {
+        "region": "Brest",
+        "comment": "Bonne prestation globale. Le conseiller était disponible et compétent."
+      },
+      "r25": {
+        "region": "Tours",
+        "comment": "Service au top ! Processus rapide et transparent. Très satisfait."
+      },
+      "r26": {
+        "region": "Amiens",
+        "comment": "Parfait ! Mon crédit automobile a été validé rapidement. Équipe professionnelle."
+      },
+      "r27": {
+        "region": "Limoges",
+        "comment": "Très bon service. Communication claire et suivi régulier."
+      },
+      "r28": {
+        "region": "Annecy",
+        "comment": "Excellente expérience ! Conseiller à l'écoute et processus efficace."
+      },
+      "r29": {
+        "region": "Perpignan",
+        "comment": "Je recommande ! Service rapide et professionnel. Mon dossier traité en 2 semaines."
+      },
+      "r30": {
+        "region": "Boulogne-Billancourt",
+        "comment": "Bonne expérience. L'équipe est compétente et réactive."
+      },
+      "r31": {
+        "region": "Metz",
+        "comment": "Service impeccable ! Financement obtenu rapidement. Très satisfait."
+      },
+      "r32": {
+        "region": "Besançon",
+        "comment": "Excellente prestation. Processus simple et équipe professionnelle."
+      },
+      "r33": {
+        "region": "Orléans",
+        "comment": "Très bon service. Mon conseiller m'a bien accompagné."
+      },
+      "r34": {
+        "region": "Saint-Denis",
+        "comment": "Parfait ! Dossier traité rapidement et efficacement. Je recommande."
+      },
+      "r35": {
+        "region": "Argenteuil",
+        "comment": "Service au top ! Équipe réactive et professionnelle."
+      },
+      "r36": {
+        "region": "Rouen",
+        "comment": "Bonne expérience globale. Processus transparent et bien expliqué."
+      },
+      "r37": {
+        "region": "Mulhouse",
+        "comment": "Excellent ! Mon crédit validé en 9 jours. Service professionnel."
+      },
+      "r38": {
+        "region": "Montreuil",
+        "comment": "Très satisfaite ! L'équipe est à l'écoute et efficace."
+      },
+      "r39": {
+        "region": "Caen",
+        "comment": "Bon service. Conseiller compétent et disponible."
+      },
+      "r40": {
+        "region": "Nancy",
+        "comment": "Impeccable ! Processus rapide et transparent. Je recommande vivement."
+      },
+      "r41": {
+        "region": "Versailles",
+        "comment": "Service excellent ! Mon dossier a été traité avec professionnalisme."
+      },
+      "r42": {
+        "region": "Nanterre",
+        "comment": "Très bonne prestation. Équipe réactive et à l'écoute."
+      },
+      "r43": {
+        "region": "Créteil",
+        "comment": "Parfait ! Financement obtenu rapidement. Service professionnel."
+      },
+      "r44": {
+        "region": "Vitry-sur-Seine",
+        "comment": "Excellente expérience ! Conseiller compétent et processus efficace."
+      },
+      "r45": {
+        "region": "Avignon",
+        "comment": "Bon service. Communication claire et suivi régulier du dossier."
+      },
+      "r46": {
+        "region": "Poitiers",
+        "comment": "Je recommande ! Service rapide et transparent. Très satisfaite."
+      },
+      "r47": {
+        "region": "Aubervilliers",
+        "comment": "Service au top ! Mon crédit validé en 11 jours."
+      },
+      "r48": {
+        "region": "Aulnay-sous-Bois",
+        "comment": "Bonne expérience. L'équipe est professionnelle et réactive."
+      },
+      "r49": {
+        "region": "Asnières-sur-Seine",
+        "comment": "Excellent ! Processus simple et rapide. Je recommande."
+      },
+      "r50": {
+        "region": "Colombes",
+        "comment": "Très satisfaite ! Équipe à l'écoute et efficace."
+      },
+      "r51": {
+        "region": "La Rochelle",
+        "comment": "Bon service. Mon conseiller était disponible et compétent."
+      },
+      "r52": {
+        "region": "Calais",
+        "comment": "Impeccable ! Dossier traité rapidement. Service professionnel."
+      },
+      "r53": {
+        "region": "Rueil-Malmaison",
+        "comment": "Parfait ! Financement obtenu en moins de 2 semaines."
+      },
+      "r54": {
+        "region": "Antibes",
+        "comment": "Très bonne prestation. Processus transparent et bien expliqué."
+      },
+      "r55": {
+        "region": "Saint-Maur-des-Fossés",
+        "comment": "Excellent service ! Équipe réactive et professionnelle."
+      },
+      "r56": {
+        "region": "Champigny-sur-Marne",
+        "comment": "Je recommande vivement ! Service rapide et efficace."
+      },
+      "r57": {
+        "region": "Dunkerque",
+        "comment": "Bonne expérience globale. Conseiller compétent."
+      },
+      "r58": {
+        "region": "Bourges",
+        "comment": "Service au top ! Mon dossier validé rapidement."
+      },
+      "r59": {
+        "region": "Cannes",
+        "comment": "Parfait ! Processus simple et transparent. Très satisfait."
+      },
+      "r60": {
+        "region": "Pau",
+        "comment": "Très bon service. L'équipe est à l'écoute et réactive."
+      },
+      "r61": {
+        "region": "Colmar",
+        "comment": "Excellent ! Mon crédit automobile validé en 10 jours."
+      },
+      "r62": {
+        "region": "Quimper",
+        "comment": "Service impeccable ! Équipe professionnelle et efficace."
+      },
+      "r63": {
+        "region": "Valence",
+        "comment": "Bonne prestation. Communication claire et suivi régulier."
+      },
+      "r64": {
+        "region": "Troyes",
+        "comment": "Je recommande ! Service rapide et professionnel."
+      },
+      "r65": {
+        "region": "Ajaccio",
+        "comment": "Parfait ! Financement obtenu rapidement. Très satisfait."
+      },
+      "r66": {
+        "region": "Chambéry",
+        "comment": "Très bonne expérience. L'équipe est compétente."
+      },
+      "r67": {
+        "region": "Lorient",
+        "comment": "Service excellent ! Processus efficace et transparent."
+      },
+      "r68": {
+        "region": "Niort",
+        "comment": "Impeccable ! Mon dossier traité avec professionnalisme."
+      },
+      "r69": {
+        "region": "Sarcelles",
+        "comment": "Bon service. Conseiller disponible et à l'écoute."
+      },
+      "r70": {
+        "region": "Beauvais",
+        "comment": "Excellent ! Je recommande vivement AGM INVEST."
+      },
+      "r71": {
+        "region": "Vannes",
+        "comment": "Service au top ! Mon crédit validé en 9 jours."
+      },
+      "r72": {
+        "region": "Ivry-sur-Seine",
+        "comment": "Très bonne prestation. Équipe réactive et professionnelle."
+      },
+      "r73": {
+        "region": "Cergy",
+        "comment": "Parfait ! Processus rapide et transparent."
+      },
+      "r74": {
+        "region": "Levallois-Perret",
+        "comment": "Excellente expérience ! Service professionnel."
+      },
+      "r75": {
+        "region": "Pessac",
+        "comment": "Bon service. Mon conseiller était compétent."
+      },
+      "r76": {
+        "region": "Clichy",
+        "comment": "Je recommande ! Dossier traité rapidement."
+      },
+      "r77": {
+        "region": "Arles",
+        "comment": "Service impeccable ! Équipe à l'écoute et efficace."
+      },
+      "r78": {
+        "region": "Vénissieux",
+        "comment": "Très bonne expérience. Processus bien expliqué."
+      },
+      "r79": {
+        "region": "Antony",
+        "comment": "Excellent ! Mon financement obtenu en 12 jours."
+      },
+      "r80": {
+        "region": "La Seyne-sur-Mer",
+        "comment": "Parfait ! Service rapide et professionnel."
+      },
+      "r81": {
+        "region": "Neuilly-sur-Seine",
+        "comment": "Bon service. L'équipe est réactive."
+      },
+      "r82": {
+        "region": "Montauban",
+        "comment": "Je recommande vivement ! Service excellent."
+      },
+      "r83": {
+        "region": "Pantin",
+        "comment": "Service au top ! Dossier validé rapidement."
+      },
+      "r84": {
+        "region": "Noisy-le-Grand",
+        "comment": "Très bonne prestation. Conseiller compétent."
+      },
+      "r85": {
+        "region": "Évry",
+        "comment": "Excellent service ! Processus efficace."
+      },
+      "r86": {
+        "region": "Villeneuve-d'Ascq",
+        "comment": "Impeccable ! Mon crédit automobile validé."
+      },
+      "r87": {
+        "region": "Meaux",
+        "comment": "Bon service. Communication claire."
+      },
+      "r88": {
+        "region": "Cholet",
+        "comment": "Parfait ! Équipe professionnelle et réactive."
+      },
+      "r89": {
+        "region": "Belfort",
+        "comment": "Service excellent ! Je recommande."
+      },
+      "r90": {
+        "region": "Bayonne",
+        "comment": "Très bonne expérience. Processus transparent."
+      },
+      "r91": {
+        "region": "Chartres",
+        "comment": "Impeccable ! Financement obtenu rapidement."
+      },
+      "r92": {
+        "region": "Drancy",
+        "comment": "Excellent ! Service professionnel et efficace."
+      },
+      "r93": {
+        "region": "Sartrouville",
+        "comment": "Bon service. Mon conseiller était disponible."
+      },
+      "r94": {
+        "region": "Saint-Quentin",
+        "comment": "Je recommande ! Dossier traité avec soin."
+      },
+      "r95": {
+        "region": "Île-de-France",
+        "comment": "Service au top ! Très satisfait du résultat."
+      },
+      "r96": {
+        "region": "Auvergne-Rhône-Alpes",
+        "comment": "Très bonne prestation. Équipe compétente."
+      },
+      "r97": {
+        "region": "Nouvelle-Aquitaine",
+        "comment": "Parfait ! Processus simple et rapide."
+      },
+      "r98": {
+        "region": "Occitanie",
+        "comment": "Excellent service ! Mon crédit validé en 10 jours."
+      },
+      "r99": {
+        "region": "Hauts-de-France",
+        "comment": "Bon service. Communication efficace."
+      },
+      "r100": {
+        "region": "Provence-Alpes-Côte d'Azur",
+        "comment": "Je recommande vivement ! Service professionnel."
+      },
+      "r101": {
+        "region": "Grand Est",
+        "comment": "Impeccable ! Équipe réactive et à l'écoute."
+      },
+      "r102": {
+        "region": "Pays de la Loire",
+        "comment": "Très bonne expérience. Processus transparent."
+      },
+      "r103": {
+        "region": "Bretagne",
+        "comment": "Service excellent ! Mon dossier validé rapidement."
+      },
+      "r104": {
+        "region": "Normandie",
+        "comment": "Parfait ! Je recommande AGM INVEST."
+      },
+      "r105": {
+        "region": "Bourgogne-Franche-Comté",
+        "comment": "Bon service. Conseiller compétent et disponible."
+      },
+      "r106": {
+        "region": "Centre-Val de Loire",
+        "comment": "Excellent ! Financement obtenu en 11 jours."
+      },
+      "r107": {
+        "region": "Corse",
+        "comment": "Service impeccable ! Équipe professionnelle."
+      },
+      "r108": {
+        "region": "Paris",
+        "comment": "Très bonne prestation. Processus efficace."
+      },
+      "r109": {
+        "region": "Lyon",
+        "comment": "Je recommande ! Service rapide et transparent."
+      },
+      "r110": {
+        "region": "Marseille",
+        "comment": "Parfait ! Mon crédit automobile validé rapidement."
+      }
+    },
+    "subtitle": "Découvrez les témoignages de ceux qui nous ont fait confiance pour leur projet de financement.",
+    "stars": "étoiles",
+    "seeAll": "Voir tous les avis",
+    "allReviewsLabel": "Tous nos avis",
+    "Stats": {
+      "averageRating": "Note Moyenne",
+      "totalReviews": "Avis Vérifiés",
+      "fiveStars": "Avis 5 étoiles"
+    }
+  },
+  "ReviewForm": {
+    "brandName": "AGM INVEST",
+    "certifiedReviews": "Avis Clients Certifiés",
+    "verifiedEstablishment": "Établissement Vérifié",
+    "Success": {
+      "title": "Merci pour votre avis !",
+      "message": "Votre témoignage a bien été reçu. Il sera publié après validation par notre équipe de modération.",
+      "button": "Fermer"
+    },
+    "ratingLabel": "Votre note globale",
+    "Labels": {
+      "name": "Votre nom complet",
+      "region": "Votre ville / région",
+      "comment": "Votre témoignage"
+    },
+    "Placeholders": {
+      "name": "Ex: Jean Dupont",
+      "region": "Ex: Strasbourg, Grand Est",
+      "comment": "Partagez votre expérience avec AGM INVEST..."
+    },
+    "submit": "Publier mon avis",
+    "disclaimer": "En publiant cet avis, vous acceptez nos conditions d'utilisation.",
+    "Errors": {
+      "submission": "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+      "name": "Le nom est obligatoire.",
+      "region": "La région est obligatoire.",
+      "commentRequired": "Le commentaire est obligatoire.",
+      "commentTooShort": "Le commentaire doit faire au moins 10 caractères."
+    },
+    "Ratings": {
+      "1": "Décevant",
+      "2": "Moyen",
+      "3": "Satisfaisant",
+      "4": "Très bien",
+      "5": "Excellent"
+    }
+  },
+  "NotificationPopup": {
+    "title": "Nouvelle demande !",
+    "from": "de",
+    "action": "vient de soumettre une demande",
+    "close": "Fermer"
   }
 }

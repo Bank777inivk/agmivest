@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Eye, EyeOff, Lock, Mail, ArrowRight, ArrowLeft } from "lucide-react";
-import { motion } from "framer-motion";
+import { Eye, EyeOff, Lock, Mail, ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 
-import { auth } from "@/lib/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, getFirebaseAuthErrorMessage } from "@/lib/firebase";
+import { signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
 
 export default function LoginPage() {
@@ -18,21 +18,58 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [isResetLoading, setIsResetLoading] = useState(false);
+
+    // Auto-redirect if already logged in
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                router.push("/dashboard");
+            }
+        });
+        return () => unsubscribe();
+    }, [router]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
+        setSuccess("");
         setIsLoading(true);
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
+            // Redirection logic is handled by onAuthStateChanged but we can force it here
             router.push("/dashboard");
         } catch (err: any) {
             console.error("Login error:", err);
-            setError(t('errorInvalidCredentials') || "Email ou mot de passe incorrect.");
+            const errorKey = getFirebaseAuthErrorMessage(err.code);
+            setError(t(errorKey));
         } finally {
             setIsLoading(false);
+        }
+    };
+
+    const handleForgotPassword = async () => {
+        if (!email) {
+            setError("Veuillez saisir votre adresse email pour réinitialiser votre mot de passe.");
+            return;
+        }
+
+        setError("");
+        setSuccess("");
+        setIsResetLoading(true);
+
+        try {
+            await sendPasswordResetEmail(auth, email);
+            setSuccess(t('resetPasswordSuccess'));
+        } catch (err: any) {
+            console.error("Reset password error:", err);
+            const errorKey = getFirebaseAuthErrorMessage(err.code);
+            setError(t(errorKey));
+        } finally {
+            setIsResetLoading(false);
         }
     };
 
@@ -101,15 +138,31 @@ export default function LoginPage() {
 
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div className="space-y-4">
-                            {error && (
-                                <motion.div
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    className="p-4 bg-red-50 border-l-4 border-red-500 rounded-xl text-red-700 text-sm font-medium"
-                                >
-                                    {error}
-                                </motion.div>
-                            )}
+                            <AnimatePresence mode="wait">
+                                {error && (
+                                    <motion.div
+                                        key="error"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: 10 }}
+                                        className="p-4 bg-red-50 border-l-4 border-red-500 rounded-xl text-red-700 text-sm font-medium"
+                                    >
+                                        {error}
+                                    </motion.div>
+                                )}
+                                {success && (
+                                    <motion.div
+                                        key="success"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: 10 }}
+                                        className="p-4 bg-green-50 border-l-4 border-green-500 rounded-xl text-green-700 text-sm font-medium flex items-center gap-2"
+                                    >
+                                        <CheckCircle className="w-4 h-4" />
+                                        {success}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                             <div>
                                 <label
                                     htmlFor="email"
@@ -188,9 +241,14 @@ export default function LoginPage() {
                                 </label>
                             </div>
 
-                            <a href="#" className="text-sm font-semibold text-ely-blue hover:text-ely-blue/80 transition-colors whitespace-nowrap">
-                                {t('forgotPassword')}
-                            </a>
+                            <button
+                                type="button"
+                                onClick={handleForgotPassword}
+                                disabled={isResetLoading}
+                                className="text-sm font-semibold text-ely-blue hover:text-ely-blue/80 transition-colors whitespace-nowrap disabled:opacity-50"
+                            >
+                                {isResetLoading ? "Envoi..." : t('forgotPassword')}
+                            </button>
                         </div>
 
                         <motion.button

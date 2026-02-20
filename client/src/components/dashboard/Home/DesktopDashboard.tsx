@@ -39,7 +39,9 @@ export default function DesktopDashboard({
     idStatus
 }: DesktopDashboardProps) {
     const router = useRouter();
-    const t = useTranslations('CreditRequest.Project.labels');
+    const t = useTranslations('Dashboard.Home');
+    const tLayout = useTranslations('Dashboard.Layout');
+    const tProjects = useTranslations('CreditRequest.Project.labels');
 
     const container = {
         hidden: { opacity: 0 },
@@ -58,9 +60,12 @@ export default function DesktopDashboard({
         <div className="space-y-8">
             <header className="flex flex-col gap-1">
                 <h1 className="text-2xl font-bold text-gray-900">
-                    Bonjour, <span className="text-ely-blue">{firstName || "Utilisateur"}</span> 👋
+                    {t.rich('welcome', {
+                        name: firstName || tLayout('Header.user'),
+                        bold: (chunks) => <span className="text-ely-blue">{chunks}</span>
+                    })}
                 </h1>
-                <p className="text-gray-500">Voici un aperçu de vos activités de financement.</p>
+                <p className="text-gray-500">{t('subtitle')}</p>
             </header>
 
             {/* Active Loan Success Alert */}
@@ -74,16 +79,16 @@ export default function DesktopDashboard({
                         <AlertCircle className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                        <h3 className="text-lg font-bold text-red-700 mb-1">Je vous informe que :</h3>
+                        <h3 className="text-lg font-bold text-red-700 mb-1">{t('alerts.rejected.title')}</h3>
                         <p className="text-sm text-red-600/80 leading-relaxed mb-3">
-                            Votre demande de financement a été refusée par nos services après étude de votre dossier. Pour plus de détails ou pour échanger avec un conseiller, veuillez contacter notre support.
+                            {t('alerts.rejected.message')}
                         </p>
                         <button
                             onClick={() => router.push("/dashboard/support")}
                             className="px-6 py-2.5 bg-red-600 text-white rounded-xl font-bold text-sm hover:bg-red-700 transition-all flex items-center gap-2 shadow-lg shadow-red-500/20"
                         >
                             <HelpCircle className="w-4 h-4" />
-                            Contacter le Support
+                            {t('support.action')}
                         </button>
                     </div>
                 </motion.div>
@@ -110,16 +115,16 @@ export default function DesktopDashboard({
                                 <ShieldCheck className="w-6 h-6 text-white" />
                             </div>
                             <div className="flex-1">
-                                <h3 className="text-lg font-bold text-emerald-800 mb-1">Félicitations ! Votre crédit est accordé 🚀</h3>
+                                <h3 className="text-lg font-bold text-emerald-800 mb-1">{t('alerts.approvedIdentityNeeded.title')}</h3>
                                 <p className="text-sm text-emerald-800/80 leading-relaxed mb-3">
-                                    Excellente nouvelle : votre financement a été validé et votre solde est prêt à être crédité. Une dernière vérification d'identité est requise pour activer le transfert des fonds.
+                                    {t('alerts.approvedIdentityNeeded.message')}
                                 </p>
                                 <button
                                     onClick={() => router.push("/dashboard/verification")}
                                     className="px-6 py-2.5 bg-emerald-600 text-white rounded-xl font-bold text-sm hover:bg-emerald-700 transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20"
                                 >
                                     <ShieldCheck className="w-4 h-4" />
-                                    Vérification requise
+                                    {t('alerts.approvedIdentityNeeded.action')}
                                 </button>
                             </div>
                         </motion.div>
@@ -137,16 +142,16 @@ export default function DesktopDashboard({
                             <Euro className="w-6 h-6 text-white" />
                         </div>
                         <div className="flex-1">
-                            <h3 className="text-lg font-bold text-amber-700 mb-1">Action Requise</h3>
+                            <h3 className="text-lg font-bold text-amber-700 mb-1">{t('alerts.approvedDepositNeeded.title')}</h3>
                             <p className="text-sm text-amber-800/80 leading-relaxed mb-3">
-                                Votre identité a été confirmée ! Pour finaliser l'activation de votre crédit, le dépôt d'authentification est maintenant nécessaire.
+                                {t('alerts.approvedDepositNeeded.message')}
                             </p>
                             <button
                                 onClick={() => router.push("/dashboard/billing")}
                                 className="px-6 py-2.5 bg-amber-600 text-white rounded-xl font-bold text-sm hover:bg-amber-700 transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20"
                             >
                                 <Euro className="w-4 h-4" />
-                                Effectuer le dépôt
+                                {t('alerts.approvedDepositNeeded.action')}
                             </button>
                         </div>
                     </motion.div>
@@ -164,16 +169,16 @@ export default function DesktopDashboard({
                         <AlertCircle className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                        <h3 className="text-lg font-bold text-red-700 mb-1">Identité Refusée</h3>
+                        <h3 className="text-lg font-bold text-red-700 mb-1">{t('alerts.idRejected.title')}</h3>
                         <p className="text-sm text-red-600/80 leading-relaxed mb-3">
-                            Votre demande de vérification d'identité a été refusée. Pour connaître les raisons et soumettre à nouveau vos documents, veuillez contacter notre service client.
+                            {t('alerts.idRejected.message')}
                         </p>
                         <button
                             onClick={() => router.push("/dashboard/support")}
                             className="px-6 py-2.5 bg-red-600 text-white rounded-xl font-bold text-sm hover:bg-red-700 transition-all flex items-center gap-2 shadow-lg shadow-red-500/20"
                         >
                             <HelpCircle className="w-4 h-4" />
-                            Contacter le Support
+                            {t('support.action')}
                         </button>
                     </div>
                 </motion.div>
@@ -189,16 +194,16 @@ export default function DesktopDashboard({
                         <FileText className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                        <h3 className="text-lg font-bold text-orange-700 mb-1">Documents à compléter</h3>
+                        <h3 className="text-lg font-bold text-orange-700 mb-1">{t('alerts.partialRejection.title')}</h3>
                         <p className="text-sm text-orange-800/80 leading-relaxed mb-3">
-                            Certains documents de votre dossier nécessitent une correction ou n'ont pas été validés. Veuillez consulter votre espace de vérification pour les mettre à jour.
+                            {t('alerts.partialRejection.message')}
                         </p>
                         <button
                             onClick={() => router.push("/dashboard/profile/verification")}
                             className="px-6 py-2.5 bg-orange-600 text-white rounded-xl font-bold text-sm hover:bg-orange-700 transition-all flex items-center gap-2 shadow-lg shadow-orange-500/20"
                         >
                             <ArrowUpRight className="w-4 h-4" />
-                            Voir mes documents
+                            {t('alerts.partialRejection.action')}
                         </button>
                     </div>
                 </motion.div>
@@ -225,7 +230,7 @@ export default function DesktopDashboard({
                                         <Wallet className="w-5 h-5 text-ely-mint" />
                                     </div>
                                     <span className="text-xs font-black uppercase tracking-[0.2em] text-white/60">
-                                        {loanAccount ? "Compte Crédit Actif" : "Mon Compte Crédit"}
+                                        {loanAccount ? t('balance.activeTitle') : t('balance.inactiveTitle')}
                                     </span>
                                 </div>
                                 <ArrowUpRight className="w-6 h-6 transition-all text-white/40 group-hover:text-ely-mint group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -234,7 +239,7 @@ export default function DesktopDashboard({
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
                                 <div>
                                     <p className="text-sm mb-2 font-medium text-white/40">
-                                        {loanAccount ? "Capital restant dû" : "Solde prévisionnel"}
+                                        {loanAccount ? t('balance.remainingCapital') : t('balance.forecastBalance')}
                                     </p>
                                     <h2 className="text-5xl font-black tracking-tighter">
                                         {new Intl.NumberFormat('fr-FR', {
@@ -260,11 +265,11 @@ export default function DesktopDashboard({
                                     <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-white/40">
                                         <span>
                                             {loanAccount
-                                                ? `Remboursé : ${Math.round(((loanAccount.totalAmount - loanAccount.remainingAmount) / loanAccount.totalAmount) * 100)}%`
-                                                : "Action requise"
+                                                ? t('balance.repaid', { percent: Math.round(((loanAccount.totalAmount - loanAccount.remainingAmount) / loanAccount.totalAmount) * 100) })
+                                                : t('alerts.approvedIdentityNeeded.action')
                                             }
                                         </span>
-                                        <span>{loanAccount ? `${loanAccount.remainingMonths} mois restants` : ""}</span>
+                                        <span>{loanAccount ? t('balance.monthsRemaining', { count: loanAccount.remainingMonths }) : ""}</span>
                                     </div>
                                 </div>
                             </div>
@@ -295,7 +300,9 @@ export default function DesktopDashboard({
                                 </div>
                                 <div className="space-y-1">
                                     <h3 className="text-3xl font-bold text-gray-900 tracking-tight">{stat.value}</h3>
-                                    <p className="text-sm font-medium text-gray-500">{stat.label}</p>
+                                    <p className="text-sm font-medium text-gray-500">
+                                        {t(`stats.${stat.id}`)}
+                                    </p>
                                 </div>
                             </motion.div>
                         ))}
@@ -308,10 +315,10 @@ export default function DesktopDashboard({
                         </div>
                         <div className="flex justify-between items-center mb-8 relative z-10">
                             <div>
-                                <h2 className="text-xl font-bold text-gray-900">Demandes récentes</h2>
-                                <p className="text-sm text-gray-500 mt-1">Suivez l'état de vos dossiers</p>
+                                <h2 className="text-xl font-bold text-gray-900">{t('requests.title')}</h2>
+                                <p className="text-sm text-gray-500 mt-1">{t('requests.subtitle')}</p>
                             </div>
-                            <button onClick={() => router.push("/dashboard/requests")} className="text-sm font-bold text-ely-blue hover:underline">Voir tout</button>
+                            <button onClick={() => router.push("/dashboard/requests")} className="text-sm font-bold text-ely-blue hover:underline">{t('requests.viewAll')}</button>
                         </div>
                         {recentRequests.length > 0 ? (
                             <div className="space-y-4 relative z-10">
@@ -322,7 +329,7 @@ export default function DesktopDashboard({
                                             <div>
                                                 <div className="flex items-center gap-2">
                                                     <span className="font-bold text-gray-900">
-                                                        {request.projectType ? t(request.projectType.toLowerCase()) : "Projet"}
+                                                        {request.projectType ? tProjects(request.projectType.toLowerCase()) : t('requests.project')}
                                                     </span>
                                                     <span className="text-[10px] text-gray-400">#{request.id.slice(0, 8)}</span>
                                                 </div>
@@ -331,7 +338,7 @@ export default function DesktopDashboard({
                                         </div>
                                         <div className="flex items-center gap-4">
                                             <div className={`px-2 py-0.5 rounded-full text-[10px] font-black uppercase ${request.status === 'approved' ? 'bg-emerald-50 text-emerald-600' : 'bg-ely-blue/5 text-ely-blue'}`}>
-                                                {request.status === 'approved' ? 'Accordé' : 'En étude'}
+                                                {request.status === 'approved' ? t('requests.statusApproved') : t('requests.statusProcessing')}
                                             </div>
                                             <ChevronRight className="w-4 h-4 text-gray-300" />
                                         </div>
@@ -340,7 +347,7 @@ export default function DesktopDashboard({
                             </div>
                         ) : (
                             <div className="text-center py-10">
-                                <p className="text-gray-500 text-sm">Aucune demande.</p>
+                                <p className="text-gray-500 text-sm">{t('requests.empty')}</p>
                             </div>
                         )}
                     </section>
@@ -350,24 +357,24 @@ export default function DesktopDashboard({
                     <section className="bg-gradient-to-br from-ely-blue to-blue-800 text-white p-8 rounded-[2.5rem] shadow-xl relative overflow-hidden group">
                         <div className="relative z-10">
                             <HelpCircle className="w-10 h-10 text-ely-mint mb-6" />
-                            <h3 className="text-xl font-bold mb-3">Une question ?</h3>
-                            <p className="text-blue-100/80 text-sm leading-relaxed mb-8">Nos experts vous accompagnent sous 24h.</p>
+                            <h3 className="text-xl font-bold mb-3">{t('support.title')}</h3>
+                            <p className="text-blue-100/80 text-sm leading-relaxed mb-8">{t('support.subtitle')}</p>
                             <button
                                 onClick={() => router.push("/dashboard/support")}
                                 className="w-full py-4 bg-white text-ely-blue rounded-2xl font-bold text-sm hover:bg-white/90 transition-all shadow-lg active:scale-95"
                             >
-                                Contacter un conseiller
+                                {t('support.action')}
                             </button>
                         </div>
                     </section>
                     <section className="bg-white p-6 rounded-[2.5rem] border border-gray-100 shadow-sm">
-                        <h3 className="text-sm font-black uppercase tracking-widest text-gray-400 mb-6 px-2">Actions Rapides</h3>
+                        <h3 className="text-sm font-black uppercase tracking-widest text-gray-400 mb-6 px-2">{t('quickActions.title')}</h3>
                         <div className="grid grid-cols-2 gap-3">
                             {[
-                                { label: "Mes Documents", icon: FileText, color: "orange", route: "/dashboard/documents" },
-                                { label: "Virement", icon: ArrowUpRight, color: "emerald", route: "/dashboard/accounts/transfer" },
-                                { label: "Echéancier", icon: Clock, color: "blue", route: "/dashboard/accounts/schedule" },
-                                { label: "Télécharger RIB", icon: Landmark, color: "purple", route: "/dashboard/accounts" },
+                                { label: t('quickActions.docs'), icon: FileText, color: "orange", route: "/dashboard/documents" },
+                                { label: t('quickActions.transfer'), icon: ArrowUpRight, color: "emerald", route: "/dashboard/accounts/transfer" },
+                                { label: t('quickActions.schedule'), icon: Clock, color: "blue", route: "/dashboard/accounts/schedule" },
+                                { label: t('quickActions.ribRef'), icon: Landmark, color: "purple", route: "/dashboard/accounts" },
                             ].map((action, idx) => (
                                 <button
                                     key={idx}
@@ -386,8 +393,8 @@ export default function DesktopDashboard({
                     <div className="p-6 bg-ely-mint/5 border border-ely-mint/20 rounded-[2rem] flex gap-4">
                         <ShieldCheck className="w-6 h-6 text-ely-mint shrink-0" />
                         <div>
-                            <h4 className="text-sm font-bold">Sécurité</h4>
-                            <p className="text-[10px] text-gray-500">Données chiffrées AES-256.</p>
+                            <h4 className="text-sm font-bold">{t('security.title')}</h4>
+                            <p className="text-[10px] text-gray-500">{t('security.message')}</p>
                         </div>
                     </div>
                 </aside>

@@ -175,7 +175,7 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                             className={`w-full ${embedded ? 'h-1.5' : 'h-2'} bg-gray-100 rounded-lg appearance-none cursor-pointer accent-ely-mint hover:accent-ely-mint/80 transition-all focus:outline-none focus:ring-2 focus:ring-ely-mint/20`}
                         />
                         <div className="flex justify-between text-xs text-gray-400 font-medium px-1">
-                            <span>6 mois</span>
+                            <span>6 {t('months')}</span>
                             <span>30 {t('durationSuffix')}</span>
                         </div>
                     </div>
@@ -200,7 +200,7 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                             </div>
                         </div>
                         <div className="text-xs text-gray-500 font-medium px-1 text-center italic">
-                            Taux fixe garanti
+                            {t('guaranteedRate')}
                         </div>
                     </div>
                 </div>
@@ -224,16 +224,16 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
 
                     <div className="bg-white/10 rounded-lg p-3 my-3 text-left">
                         <div className="flex justify-between items-center text-xs md:text-sm mb-1">
-                            <span className="text-gray-300">Mensualité hors assurance</span>
+                            <span className="text-gray-300">{t('excludedInsurance')}</span>
                             <span className="font-bold">{Math.round((monthly - (amount * 0.03 / (duration * 12)))).toLocaleString()} €</span>
                         </div>
                         <div className="flex justify-between items-center text-xs md:text-sm mb-1">
-                            <span className="text-ely-mint">Assurance emprunteur (3%)</span>
-                            <span className="font-bold text-ely-mint">+{Math.round((amount * 0.03) / (duration * 12)).toLocaleString()} €/mois</span>
+                            <span className="text-ely-mint">{t('borrowerInsurance')}</span>
+                            <span className="font-bold text-ely-mint">+{Math.round((amount * 0.03) / (duration * 12)).toLocaleString()} €{t('perMonth')}</span>
                         </div>
                         <div className="border-t border-white/10 my-2"></div>
                         <div className="flex justify-between items-center text-[10px] text-gray-400">
-                            <span>Coût total assurance</span>
+                            <span>{t('totalInsuranceCost')}</span>
                             <span>{Math.round(amount * 0.03).toLocaleString()} €</span>
                         </div>
                     </div>

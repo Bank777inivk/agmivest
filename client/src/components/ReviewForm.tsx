@@ -5,6 +5,7 @@ import { Star, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { useTranslations } from 'next-intl';
 
 interface ReviewFormData {
     name: string;
@@ -14,6 +15,8 @@ interface ReviewFormData {
 }
 
 export default function ReviewForm() {
+    const t = useTranslations('ReviewForm');
+
     // Form state
     const [formData, setFormData] = useState<ReviewFormData>({
         name: '',
@@ -30,24 +33,17 @@ export default function ReviewForm() {
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     const getRatingLabel = (rating: number) => {
-        const labels: { [key: number]: string } = {
-            1: "Médiocre",
-            2: "Passable",
-            3: "Bien",
-            4: "Très bien",
-            5: "Excellent"
-        };
-        return labels[rating] || "";
+        return t(`Ratings.${rating}`);
     };
 
     const validate = () => {
         const newErrors: { [key: string]: string } = {};
-        if (!formData.name.trim()) newErrors.name = "Le nom est requis";
-        if (!formData.region.trim()) newErrors.region = "La ville ou région est requise";
+        if (!formData.name.trim()) newErrors.name = t('Errors.name');
+        if (!formData.region.trim()) newErrors.region = t('Errors.region');
         if (!formData.comment.trim()) {
-            newErrors.comment = "Merci de partager votre avis";
+            newErrors.comment = t('Errors.commentRequired');
         } else if (formData.comment.trim().length < 10) {
-            newErrors.comment = "Votre avis est un peu trop court (min 10 car.)";
+            newErrors.comment = t('Errors.commentTooShort');
         }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -107,8 +103,8 @@ export default function ReviewForm() {
                         </svg>
                     </div>
                     <div>
-                        <h3 className="text-xl font-black text-slate-900 leading-none mb-1">AGM INVEST</h3>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Avis Clients Certifiés</p>
+                        <h3 className="text-xl font-black text-slate-900 leading-none mb-1">{t('brandName')}</h3>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">{t('certifiedReviews')}</p>
                     </div>
                 </div>
                 <div className="hidden sm:flex flex-col items-end">
@@ -117,7 +113,7 @@ export default function ReviewForm() {
                             <Star key={s} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                         ))}
                     </div>
-                    <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest mt-1">Établissement vérifié</span>
+                    <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest mt-1">{t('verifiedEstablishment')}</span>
                 </div>
             </div>
 
@@ -133,22 +129,22 @@ export default function ReviewForm() {
                             <div className="w-20 h-20 bg-emerald-50 rounded-3xl flex items-center justify-center mx-auto mb-6 text-emerald-500 shadow-lg shadow-emerald-500/10">
                                 <CheckCircle className="w-10 h-10" />
                             </div>
-                            <h4 className="text-2xl font-black text-slate-900 mb-3">Merci pour votre confiance !</h4>
+                            <h4 className="text-2xl font-black text-slate-900 mb-3">{t('Success.title')}</h4>
                             <p className="text-slate-500 font-medium max-w-sm mx-auto mb-8">
-                                Votre avis a bien été reçu. Il sera publié sur notre plateforme après une courte vérification de nos modérateurs.
+                                {t('Success.message')}
                             </p>
                             <button
                                 onClick={() => setSubmitStatus('idle')}
                                 className="px-8 py-3 bg-slate-900 text-white rounded-2xl text-sm font-bold hover:bg-slate-800 transition-all shadow-xl shadow-slate-200"
                             >
-                                Revenir au formulaire
+                                {t('Success.button')}
                             </button>
                         </motion.div>
                     ) : (
                         <form onSubmit={onSubmit} className="space-y-8">
                             {/* Rating Selector */}
                             <div className="bg-slate-50/50 rounded-3xl p-6 border border-slate-100 text-center">
-                                <label className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 block">Votre niveau de satisfaction</label>
+                                <label className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 block">{t('ratingLabel')}</label>
                                 <div className="flex justify-center gap-3">
                                     {[1, 2, 3, 4, 5].map((star) => (
                                         <button
@@ -170,38 +166,38 @@ export default function ReviewForm() {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Prénom / Nom</label>
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Labels.name')}</label>
                                     <input
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
                                         className={`w-full px-5 py-4 rounded-2xl border-2 bg-slate-50/30 font-medium transition-all outline-none focus:bg-white ${errors.name ? 'border-red-200 focus:border-red-400' : 'border-slate-100 focus:border-ely-blue focus:shadow-lg focus:shadow-ely-blue/5'}`}
-                                        placeholder="ex: Jean Dupont"
+                                        placeholder={t('Placeholders.name')}
                                     />
                                     {errors.name && <p className="text-red-500 text-[10px] font-bold uppercase tracking-tight ml-1">{errors.name}</p>}
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Ville / Région</label>
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Labels.region')}</label>
                                     <input
                                         name="region"
                                         value={formData.region}
                                         onChange={handleChange}
                                         className={`w-full px-5 py-4 rounded-2xl border-2 bg-slate-50/30 font-medium transition-all outline-none focus:bg-white ${errors.region ? 'border-red-200 focus:border-red-400' : 'border-slate-100 focus:border-ely-blue focus:shadow-lg focus:shadow-ely-blue/5'}`}
-                                        placeholder="ex: Nice (06)"
+                                        placeholder={t('Placeholders.region')}
                                     />
                                     {errors.region && <p className="text-red-500 text-[10px] font-bold uppercase tracking-tight ml-1">{errors.region}</p>}
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Votre expérience</label>
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Labels.comment')}</label>
                                 <textarea
                                     name="comment"
                                     value={formData.comment}
                                     onChange={handleChange}
                                     rows={4}
                                     className={`w-full px-5 py-4 rounded-2xl border-2 bg-slate-50/30 font-medium transition-all outline-none focus:bg-white resize-none ${errors.comment ? 'border-red-200 focus:border-red-400' : 'border-slate-100 focus:border-ely-blue focus:shadow-lg focus:shadow-ely-blue/5'}`}
-                                    placeholder="Ce que vous avez apprécié lors de notre accompagnement..."
+                                    placeholder={t('Placeholders.comment')}
                                 />
                                 {errors.comment && <p className="text-red-500 text-[10px] font-bold uppercase tracking-tight ml-1">{errors.comment}</p>}
                             </div>
@@ -217,7 +213,7 @@ export default function ReviewForm() {
                                         <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                                     ) : (
                                         <>
-                                            Soumettre l'avis
+                                            {t('submit')}
                                             <Send className="w-4 h-4" />
                                         </>
                                     )}
@@ -225,7 +221,7 @@ export default function ReviewForm() {
                             </div>
 
                             <p className="text-[9px] text-center text-slate-400 font-bold uppercase tracking-widest">
-                                En soumettant, vous certifiez que cet avis reflète votre expérience réelle.
+                                {t('disclaimer')}
                             </p>
 
                             {submitStatus === 'error' && (
@@ -235,7 +231,7 @@ export default function ReviewForm() {
                                     className="flex items-center gap-2 text-red-600 text-[10px] font-black uppercase tracking-widest justify-center bg-red-50 p-4 rounded-2xl"
                                 >
                                     <AlertCircle className="w-4 h-4" />
-                                    Erreur de connexion avec Firestore
+                                    {t('Errors.submission')}
                                 </motion.div>
                             )}
                         </form>

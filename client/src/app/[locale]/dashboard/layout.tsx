@@ -9,6 +9,7 @@ import { auth, db } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, onSnapshot } from "firebase/firestore";
 import { useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import { createNotification } from "@/hooks/useNotifications";
 import { useRef } from "react";
 
@@ -24,6 +25,7 @@ export default function DashboardLayout({
     const [userName, setUserName] = useState<string>("");
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const router = useRouter();
+    const t = useTranslations();
     const pathname = usePathname();
     const prevStatusRef = useRef<string | null>(null);
     const hasInitialStatus = useRef(false);
@@ -57,21 +59,21 @@ export default function DashboardLayout({
 
                         // Notification on KYC status change
                         if (hasInitialStatus.current && prevStatusRef.current !== newStatus && newStatus) {
-                            let title = "Mise à jour d'identité";
-                            let message = "Le statut de votre vérification a changé.";
+                            let title = t('Dashboard.Layout.Notifications.statusUpdate.title');
+                            let message = t('Dashboard.Layout.Notifications.statusUpdate.message');
                             let type: 'info' | 'success' | 'warning' | 'error' = 'info';
 
                             if (newStatus === 'verified') {
-                                title = "Identité Vérifiée ✅";
-                                message = "Félicitations ! Votre compte est désormais pleinement opérationnel.";
+                                title = t('Dashboard.Layout.Notifications.verified.title');
+                                message = t('Dashboard.Layout.Notifications.verified.message');
                                 type = 'success';
                             } else if (newStatus === 'rejected') {
-                                title = "Action Requise ⚠️";
-                                message = "Votre vérification a été refusée. Veuillez consulter vos emails.";
+                                title = t('Dashboard.Layout.Notifications.rejected.title');
+                                message = t('Dashboard.Layout.Notifications.rejected.message');
                                 type = 'error';
                             } else if (newStatus === 'partial_rejection') {
-                                title = "Documents à compléter";
-                                message = "Certains documents ont été refusés. Merci de les soumettre à nouveau.";
+                                title = t('Dashboard.Layout.Notifications.partialRejection.title');
+                                message = t('Dashboard.Layout.Notifications.partialRejection.message');
                                 type = 'warning';
                             }
 
@@ -110,8 +112,8 @@ export default function DashboardLayout({
                     // For simplicity, we create a short-lived logic or just notification if chat is not open.
                     // Note: This logic could be refined but handles the basic "You have a message" requirement.
                     createNotification(user.uid, {
-                        title: "Nouveau message 💬",
-                        message: "Votre conseiller vous a envoyé un message. Cliquez pour répondre.",
+                        title: t('Dashboard.Layout.Notifications.newMessage.title'),
+                        message: t('Dashboard.Layout.Notifications.newMessage.message'),
                         type: 'info',
                         link: '/dashboard/support'
                     });

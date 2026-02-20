@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 interface DesktopAccountsProps {
     loanAccount: any;
@@ -38,6 +39,7 @@ export default function DesktopAccounts({
     setIsEditRIBModalOpen
 }: DesktopAccountsProps) {
     const router = useRouter();
+    const t = useTranslations('Dashboard.Accounts');
 
     const container = {
         hidden: { opacity: 0 },
@@ -70,10 +72,10 @@ export default function DesktopAccounts({
 
                 <div className="relative z-10 flex flex-col h-full justify-between gap-8 md:gap-12">
                     <div className="flex items-center justify-between">
-                        <span className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-white/60">Solde Total Crédit</span>
+                        <span className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-white/60">{t('card.totalBalance')}</span>
                         {loanAccount?.isDeferred && (
                             <span className="px-3 py-1 bg-amber-500/20 border border-amber-500/50 text-amber-300 text-[10px] font-bold uppercase tracking-widest rounded-full backdrop-blur-md">
-                                Période de Différé
+                                {t('card.deferredPeriod')}
                             </span>
                         )}
                         {!loanAccount?.isDeferred && <CreditCard className="w-5 h-5 md:w-6 md:h-6 text-ely-mint" />}
@@ -83,17 +85,17 @@ export default function DesktopAccounts({
                         <h2 className="text-4xl md:text-5xl font-black tracking-tight">
                             {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(loanAccount?.remainingAmount || 0)}
                         </h2>
-                        <p className="text-white/40 mt-2 font-medium">Capital restant dû</p>
+                        <p className="text-white/40 mt-2 font-medium">{t('card.capitalRemaining')}</p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
                         <div>
-                            <p className="text-[10px] uppercase font-black tracking-widest text-white/40 mb-1">Montant Initial</p>
+                            <p className="text-[10px] uppercase font-black tracking-widest text-white/40 mb-1">{t('card.initialAmount')}</p>
                             <p className="text-lg font-bold">{new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(loanAccount?.totalAmount || 0)}</p>
                         </div>
                         <div>
                             <p className="text-[10px] uppercase font-black tracking-widest text-white/40 mb-1">
-                                {loanAccount?.isDeferred ? "Première Échéance" : "Prochaine Échéance"}
+                                {loanAccount?.isDeferred ? t('card.firstInstallment') : t('card.nextInstallment')}
                             </p>
                             <p className="text-lg font-bold text-ely-mint">{loanAccount?.nextPaymentDate || "-- / -- / --"}</p>
                         </div>
@@ -109,7 +111,7 @@ export default function DesktopAccounts({
                             <TrendingUp className="w-6 h-6" />
                         </div>
                         <div>
-                            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Taux (TAEG)</p>
+                            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t('stats.rate')}</p>
                             <p className="text-xl font-black text-gray-900">{loanAccount?.rate || "0.00"}%</p>
                         </div>
                     </div>
@@ -121,8 +123,8 @@ export default function DesktopAccounts({
                             <Calendar className="w-6 h-6" />
                         </div>
                         <div>
-                            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Durée Restante</p>
-                            <p className="text-xl font-black text-gray-900">{loanAccount?.remainingMonths || 0} mois</p>
+                            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t('stats.remainingDuration')}</p>
+                            <p className="text-xl font-black text-gray-900">{loanAccount?.remainingMonths || 0} {t('stats.months')}</p>
                         </div>
                     </div>
                 </div>
@@ -131,7 +133,7 @@ export default function DesktopAccounts({
                     onClick={() => router.push("/dashboard/accounts/transfer")}
                     className="w-full bg-ely-mint text-white p-5 rounded-[2rem] font-bold shadow-xl shadow-ely-mint/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group"
                 >
-                    Effectuer un virement
+                    {t('actions.transfer')}
                     <Send className="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
                 </button>
 
@@ -139,7 +141,7 @@ export default function DesktopAccounts({
                     onClick={() => router.push("/dashboard/accounts/schedule")}
                     className="w-full bg-ely-blue text-white p-5 rounded-[2rem] font-bold shadow-xl shadow-ely-blue/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group"
                 >
-                    Consulter l'échéancier
+                    {t('actions.schedule')}
                     <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
             </motion.div>
@@ -153,7 +155,7 @@ export default function DesktopAccounts({
                             <div className="p-2 bg-white rounded-lg shadow-sm">
                                 <History className="w-5 h-5 text-gray-400" />
                             </div>
-                            <h3 className="font-extrabold text-gray-900 uppercase tracking-widest text-xs">Dernières Opérations</h3>
+                            <h3 className="font-extrabold text-gray-900 uppercase tracking-widest text-xs">{t('operations.title')}</h3>
                         </div>
                     </div>
 
@@ -170,14 +172,12 @@ export default function DesktopAccounts({
                                                 <ArrowUpRight className="w-5 h-5" />
                                             </div>
                                             <div>
-                                                <p className="font-bold text-gray-900 text-sm">Virement vers {tx.bankName}</p>
+                                                <p className="font-bold text-gray-900 text-sm">{t('operations.transferTo', { bank: tx.bankName })}</p>
                                                 <p className="text-[10px] text-gray-400 font-medium whitespace-nowrap">
-                                                    Virement {
-                                                        tx.status === 'approved' ? 'débité' :
-                                                            tx.status === 'rejected' ? 'refusé' :
-                                                                tx.status === 'review' ? 'en examen' :
-                                                                    tx.status === 'advanced' ? 'contrôle avancé' : 'en cours'
-                                                    } le {tx.createdAt?.seconds ? new Date(tx.createdAt.seconds * 1000).toLocaleDateString('fr-FR') : '...'}
+                                                    {t('operations.status.fullStatus', {
+                                                        status: t(`operations.status.${tx.status || 'processing'}`),
+                                                        date: tx.createdAt?.seconds ? new Date(tx.createdAt.seconds * 1000).toLocaleDateString('fr-FR') : '...'
+                                                    })}
                                                 </p>
                                             </div>
                                         </div>
@@ -189,8 +189,8 @@ export default function DesktopAccounts({
                                                 -{new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(tx.amount)}
                                             </p>
                                             <p className="text-[8px] font-black text-gray-300 uppercase tracking-widest leading-none mt-1">
-                                                {tx.status === 'approved' ? 'Terminé' :
-                                                    tx.status === 'rejected' ? 'Refusé' : 'En attente'}
+                                                {tx.status === 'approved' ? t('operations.labels.done') :
+                                                    tx.status === 'rejected' ? t('operations.labels.rejected') : t('operations.labels.pending')}
                                             </p>
                                         </div>
                                     </div>
@@ -202,8 +202,8 @@ export default function DesktopAccounts({
                                             <ArrowDownLeft className="w-5 h-5" />
                                         </div>
                                         <div>
-                                            <p className="font-bold text-gray-900 text-sm">Versement Prêt AGM INVEST</p>
-                                            <p className="text-[10px] text-gray-400 font-medium font-mono lowercase tracking-tighter">Virement reçu le {loanAccount.startDateFormatted}</p>
+                                            <p className="font-bold text-gray-900 text-sm">{t('operations.loanDisbursement')}</p>
+                                            <p className="text-[10px] text-gray-400 font-medium font-mono lowercase tracking-tighter">{t('operations.receivedOn', { date: loanAccount.startDateFormatted })}</p>
                                         </div>
                                     </div>
                                     <div className="text-right">
@@ -230,7 +230,7 @@ export default function DesktopAccounts({
                             <div className="p-2 bg-white rounded-lg shadow-sm">
                                 <Landmark className="w-5 h-5 text-gray-400" />
                             </div>
-                            <h3 className="font-extrabold text-gray-900 uppercase tracking-widest text-xs">Coordonnées (RIB)</h3>
+                            <h3 className="font-extrabold text-gray-900 uppercase tracking-widest text-xs">{t('rib.title')}</h3>
                         </div>
                         <button
                             onClick={() => {
@@ -243,41 +243,41 @@ export default function DesktopAccounts({
                             className="flex items-center gap-2 px-4 py-2 bg-ely-blue/5 text-ely-blue rounded-xl hover:bg-ely-blue hover:text-white transition-all font-black text-[9px] uppercase tracking-widest border border-ely-blue/10 shadow-sm"
                         >
                             <Edit3 className="w-3 h-3" />
-                            <span>Modifier</span>
+                            <span>{t('rib.edit')}</span>
                         </button>
                     </div>
 
                     <div className="p-8 space-y-6 flex-1 flex flex-col justify-center">
                         <div className="space-y-6">
                             <div className="flex items-center justify-between pb-4 border-b border-gray-50">
-                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Banque</span>
+                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('rib.bank')}</span>
                                 <span className="font-bold text-gray-900">{loanAccount?.bankName || "AGM INVEST"}</span>
                             </div>
 
                             <div className="flex items-center justify-between pb-4 border-b border-gray-50">
-                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Identifiant IBAN</span>
+                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('rib.iban')}</span>
                                 <div className="text-right">
                                     <p className="font-mono text-xs font-bold text-gray-900 tracking-tighter">
-                                        {loanAccount?.iban || "Non défini"}
+                                        {loanAccount?.iban || t('rib.undefined')}
                                     </p>
                                 </div>
                             </div>
 
                             <div className="flex items-center justify-between pb-4 border-b border-gray-50">
-                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Identifiant BIC / SWIFT</span>
+                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('rib.bic')}</span>
                                 <span className="font-mono text-xs font-bold text-gray-900 uppercase">{loanAccount?.bic || "AGMINV75XXX"}</span>
                             </div>
 
                             <div className="flex items-center justify-between">
-                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Email pour les virements</span>
-                                <span className="font-bold text-gray-900 text-sm lowercase">{loanAccount?.ribEmail || loanAccount?.email || "non renseigné"}</span>
+                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('rib.email')}</span>
+                                <span className="font-bold text-gray-900 text-sm lowercase">{loanAccount?.ribEmail || loanAccount?.email || t('rib.notProvided')}</span>
                             </div>
                         </div>
 
                         <div className="mt-4 p-4 bg-gray-50 rounded-2xl flex items-start gap-3">
                             <div className="w-2 h-2 rounded-full bg-green-500 mt-1 shrink-0 animate-pulse" />
                             <p className="text-[10px] text-gray-400 font-medium leading-relaxed">
-                                Compte vérifié actif pour les fonds et prélèvements mensuels.
+                                {t('rib.verifiedFooter')}
                             </p>
                         </div>
                     </div>

@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, CheckCircle2 } from "lucide-react";
 import { getRandomNotification } from "@/data/notificationData";
+import { useTranslations } from "next-intl";
 
 export default function NotificationPopup() {
+    const t = useTranslations('NotificationPopup');
     const [notification, setNotification] = useState<{ name: string; region: string } | null>(null);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -64,11 +66,13 @@ export default function NotificationPopup() {
                                 </div>
                                 <div className="flex-1">
                                     <p className="text-white font-bold text-sm mb-1">
-                                        Nouvelle demande !
+                                        {t('title')}
                                     </p>
                                     <p className="text-white/90 text-xs leading-relaxed">
-                                        <span className="font-semibold">{notification.name}</span> de{" "}
-                                        <span className="font-semibold">{notification.region}</span> vient de soumettre une demande
+                                        <span className="font-semibold">{notification.name}</span>{" "}
+                                        {t('from')}{" "}
+                                        <span className="font-semibold">{notification.region}</span>{" "}
+                                        {t('action')}
                                     </p>
                                 </div>
                             </div>
@@ -78,7 +82,7 @@ export default function NotificationPopup() {
                         <button
                             onClick={handleDismiss}
                             className="absolute top-3 right-3 w-6 h-6 rounded-full bg-white/20 hover:bg-white/30 transition-colors flex items-center justify-center group"
-                            aria-label="Fermer"
+                            aria-label={t('close')}
                         >
                             <X className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
                         </button>

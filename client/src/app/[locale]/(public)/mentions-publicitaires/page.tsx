@@ -1,9 +1,13 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { AlertCircle, Info, Building2 } from "lucide-react";
 
 export default function MentionsPublicitairesPage() {
+    const t = useTranslations('Legal.Ads');
+
     return (
         <main className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
@@ -19,9 +23,9 @@ export default function MentionsPublicitairesPage() {
                             <Info className="w-40 h-40" />
                         </div>
                         <div className="relative z-10">
-                            <h1 className="text-3xl sm:text-4xl font-bold mb-4">Mentions Publicitaires</h1>
+                            <h1 className="text-3xl sm:text-4xl font-bold mb-4">{t('title')}</h1>
                             <p className="text-slate-300 text-lg max-w-2xl">
-                                Clarifications importantes sur les services proposés par AGM INVEST.
+                                {t('subtitle')}
                             </p>
                         </div>
                     </div>
@@ -34,9 +38,9 @@ export default function MentionsPublicitairesPage() {
                             <div className="flex items-start gap-4">
                                 <AlertCircle className="w-8 h-8 text-amber-600 flex-shrink-0 mt-1" />
                                 <div className="space-y-2">
-                                    <h2 className="text-xl font-bold text-amber-900">Information Importante</h2>
+                                    <h2 className="text-xl font-bold text-amber-900">{t('warning.title')}</h2>
                                     <p className="text-amber-800 font-semibold">
-                                        AGM INVEST n'est pas une banque ni un organisme de crédit, mais un intermédiaire financier réglementé.
+                                        {t('warning.content')}
                                     </p>
                                 </div>
                             </div>
@@ -46,14 +50,16 @@ export default function MentionsPublicitairesPage() {
                         <section className="space-y-4">
                             <div className="flex items-center gap-4 text-slate-800">
                                 <Building2 className="w-8 h-8 text-ely-blue" />
-                                <h2 className="text-2xl font-bold">Nature des Services</h2>
+                                <h2 className="text-2xl font-bold">{t('nature.title')}</h2>
                             </div>
                             <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 space-y-4 text-slate-700">
                                 <p>
-                                    Les services proposés par AGM INVEST relèvent de <strong>l'accompagnement administratif et de la mise en relation</strong>.
+                                    {t.rich('nature.p1', {
+                                        bold: (chunks) => <strong>{chunks}</strong>
+                                    })}
                                 </p>
                                 <p>
-                                    Nous intervenons en tant qu'intermédiaire pour faciliter vos démarches et vous mettre en contact avec des partenaires qualifiés.
+                                    {t('nature.p2')}
                                 </p>
                             </div>
                         </section>
@@ -62,11 +68,13 @@ export default function MentionsPublicitairesPage() {
                         <section className="space-y-4">
                             <div className="flex items-center gap-4 text-slate-800">
                                 <Info className="w-8 h-8 text-blue-600" />
-                                <h2 className="text-2xl font-bold">Acceptation des Dossiers</h2>
+                                <h2 className="text-2xl font-bold">{t('acceptance.title')}</h2>
                             </div>
                             <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100">
                                 <p className="text-slate-700">
-                                    L'acceptation des dossiers dépend de <strong>partenaires externes</strong>. AGM INVEST ne peut garantir l'acceptation systématique de votre demande.
+                                    {t.rich('acceptance.content', {
+                                        bold: (chunks) => <strong>{chunks}</strong>
+                                    })}
                                 </p>
                             </div>
                         </section>
@@ -75,11 +83,11 @@ export default function MentionsPublicitairesPage() {
                         <section className="space-y-4">
                             <div className="flex items-center gap-4 text-slate-800">
                                 <AlertCircle className="w-8 h-8 text-amber-600" />
-                                <h2 className="text-2xl font-bold">Résultats Variables</h2>
+                                <h2 className="text-2xl font-bold">{t('results.title')}</h2>
                             </div>
                             <div className="bg-amber-50 rounded-2xl p-6 border border-amber-100">
                                 <p className="text-slate-700">
-                                    Les résultats peuvent varier selon la situation du client, les critères des partenaires et les conditions du marché.
+                                    {t('results.content')}
                                 </p>
                             </div>
                         </section>
@@ -88,29 +96,29 @@ export default function MentionsPublicitairesPage() {
                         <section className="bg-gradient-to-br from-ely-blue/5 to-ely-mint/5 rounded-2xl p-8 border border-ely-mint/20">
                             <div className="text-center">
                                 <p className="text-slate-700 text-lg mb-4">
-                                    Pour consulter l'ensemble de nos conditions et modalités :
+                                    {t('links.title')}
                                 </p>
                                 <div className="flex flex-wrap justify-center gap-4">
-                                    <a
+                                    <Link
                                         href="/cgu"
                                         className="inline-block bg-ely-blue text-white px-6 py-3 rounded-xl font-bold hover:bg-ely-blue/90 transition-colors"
                                     >
-                                        Conditions Générales
-                                    </a>
-                                    <a
+                                        {t('links.cgu')}
+                                    </Link>
+                                    <Link
                                         href="/mentions-legales"
                                         className="inline-block bg-ely-mint text-white px-6 py-3 rounded-xl font-bold hover:bg-ely-mint/90 transition-colors"
                                     >
-                                        Mentions Légales
-                                    </a>
+                                        {t('links.mentions')}
+                                    </Link>
                                 </div>
                             </div>
                         </section>
 
                         {/* Footer */}
                         <div className="pt-8 border-t border-slate-100 text-center text-slate-500 text-sm">
-                            <p>Dernière mise à jour : Février 2026</p>
-                            <p className="mt-2">© 2026 AGM INVEST - Tous droits réservés</p>
+                            <p>{t('Footer.updated')}</p>
+                            <p className="mt-2">{t('Footer.copyright')}</p>
                         </div>
                     </div>
                 </motion.div>

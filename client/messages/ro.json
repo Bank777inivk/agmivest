@@ -1,22 +1,1570 @@
 {
-    "Navigation": {
-        "home": "Acasă",
-        "services": "Serviciile Noastre",
-        "about": "Despre Noi",
-        "contact": "Contact",
-        "clientArea": "Zona Clienți"
+  "Home": {
+    "Services": {
+      "title": "[FIXME] Nos solutions de financement",
+      "subtitle": "[FIXME] Une expertise complète pour tous vos besoins financiers.",
+      "cta": "[FIXME] Voir tous nos services"
     },
-    "Hero": {
-        "title": "Realizează-ți proiectele cu",
-        "subtitle": "AGM INVEST Credit & Asigurări",
-        "description": "Partenerul tău de încredere pentru finanțare imobiliară, consolidare de credite și asigurări de împrumut.",
-        "cta": "Simulează proiectul meu",
-        "secondaryCta": "Descoperă serviciile noastre"
+    "Simulator": {
+      "title": "[FIXME] Simulateur de prêt",
+      "subtitle": "[FIXME] Calculez vos mensualités en quelques clics."
     },
-    "Stats": {
-        "clients": "Clienți Mulțumiți",
-        "volume": "Volum Finanțat",
-        "partners": "Parteneri Bancari",
-        "experts": "Experți la dispoziția ta"
+    "Contact": {
+      "title": "[FIXME] Contact & Accès",
+      "subtitle": "[FIXME] Une question ? Venez nous rencontrer ou envoyez-nous un message."
     }
+  },
+  "Navigation": {
+    "home": "Acasă",
+    "services": "Serviciile Noastre",
+    "documents": "[FIXME] Documents",
+    "about": "Despre Noi",
+    "contact": "Contact",
+    "appointment": "[FIXME] Prendre RDV",
+    "creditRequest": "[FIXME] Demander un prêt",
+    "becomeClient": "[FIXME] Devenir Client",
+    "brandSubtitle": "[FIXME] Crédit & Assurance",
+    "reviews": "[FIXME] Avis"
+  },
+  "Hero": {
+    "titleLine1": "[FIXME] Votre projet",
+    "titleLine2": "[FIXME] immobilier, bien",
+    "titleLine3": "[FIXME] accompagné",
+    "description1": "[FIXME] Votre crédit immobilier ou votre assurance emprunteur aux meilleures conditions :",
+    "descriptionHighlight": "[FIXME] c'est l'expertise AGM INVEST !",
+    "description2": "[FIXME] Notre équipe vous guide à chaque étape pour obtenir le meilleur financement.",
+    "tagline": "[FIXME] Tout simplement !",
+    "cta": "Simulează proiectul meu"
+  },
+  "AdBanner": {
+    "msg1": "[FIXME] Besoin d'un prêt ? Je suis là pour vous aider !",
+    "msg2": "[FIXME] Obtenez votre simulation en 2 minutes !",
+    "msg3": "[FIXME] Nos clients nous font confiance depuis 20 ans",
+    "msg4": "[FIXME] Taux compétitifs garantis !",
+    "msg5": "[FIXME] Accompagnement personnalisé à chaque étape"
+  },
+  "Services": {
+    "title": "[FIXME] Nos Services",
+    "subtitle": "[FIXME] Une expertise complète pour tous vos besoins de financement.",
+    "Items": {
+      "realEstate": {
+        "title": "[FIXME] Prêt Immobilier",
+        "description": "[FIXME] Négociation des meilleurs taux pour votre résidence principale, secondaire ou locative."
+      },
+      "insurance": {
+        "title": "[FIXME] Assurance Emprunteur",
+        "description": "[FIXME] Économisez jusqu'à 50% sur votre assurance de prêt avec les mêmes garanties."
+      },
+      "creditConsolidation": {
+        "title": "[FIXME] Regroupement de Crédits",
+        "description": "[FIXME] Regroupez vos crédits pour réduire vos mensualités et simplifier votre budget."
+      },
+      "professionalLoan": {
+        "title": "[FIXME] Prêt Professionnel",
+        "description": "[FIXME] Financement de vos murs, fonds de commerce ou équipements professionnels."
+      },
+      "renegotiation": {
+        "title": "[FIXME] Renégociation de Taux",
+        "description": "[FIXME] Profitez des taux bas actuels pour réduire le coût de votre crédit en cours."
+      },
+      "support": {
+        "title": "[FIXME] Accompagnement",
+        "description": "[FIXME] Un conseiller dédié vous suit de la simulation à la signature chez le notaire."
+      }
+    }
+  },
+  "About": {
+    "title": "[FIXME] À Propos de Nous",
+    "subtitle": "[FIXME] Votre partenaire de confiance en crédit et assurance depuis plus de 20 ans.",
+    "Stats": {
+      "experience": {
+        "value": "[FIXME] 20+",
+        "label": "[FIXME] Ans d'expérience"
+      },
+      "clients": {
+        "value": "[FIXME] Satisfaits",
+        "label": "[FIXME] Clients"
+      },
+      "acceptance": {
+        "value": "[FIXME] 98%",
+        "label": "[FIXME] Taux d'acceptation"
+      },
+      "secure": {
+        "value": "[FIXME] 100%",
+        "label": "[FIXME] Sécurisé"
+      }
+    },
+    "Mission": {
+      "title": "[FIXME] Notre Mission",
+      "p1": "[FIXME] Depuis plus de 20 ans, <highlight>AGM INVEST</highlight> accompagne les particuliers dans la réalisation de leurs projets immobiliers. Notre équipe d'experts vous guide à chaque étape pour obtenir le meilleur financement.",
+      "p2": "[FIXME] Nous négocions pour vous auprès de nos partenaires bancaires et vous garantissons un accompagnement personnalisé, de la simulation à la signature chez le notaire."
+    },
+    "Values": {
+      "title": "[FIXME] Nos Valeurs",
+      "v1": "[FIXME] Transparence totale sur les taux et les frais",
+      "v2": "[FIXME] Accompagnement personnalisé et humain",
+      "v3": "[FIXME] Réactivité et disponibilité de nos conseillers",
+      "v4": "[FIXME] Expertise reconnue sur le marché immobilier"
+    }
+  },
+  "Process": {
+    "title": "[FIXME] Votre financement en 4 étapes",
+    "subtitle": "[FIXME] Un processus clair et transparent pour réaliser votre projet en toute sérénité.",
+    "Steps": {
+      "s1": {
+        "title": "[FIXME] 1. Étude de faisabilité",
+        "description": "[FIXME] Analyse gratuite de votre dossier et définition de votre budget de financement."
+      },
+      "s2": {
+        "title": "[FIXME] 2. Recherche & Négociation",
+        "description": "[FIXME] Nous interrogeons nos partenaires pour obtenir les meilleures conditions du marché."
+      },
+      "s3": {
+        "title": "[FIXME] 3. Accord de prêt",
+        "description": "[FIXME] Présentation des offres et sélection de la meilleure proposition bancaire."
+      },
+      "s4": {
+        "title": "[FIXME] 4. Signature",
+        "description": "[FIXME] Accompagnement jusqu'aux signatures de l'offre et de l'acte notarié."
+      }
+    }
+  },
+  "WhyChooseUs": {
+    "title": "[FIXME] Pourquoi passer par <highlight>AGM INVEST</highlight> ?",
+    "subtitle": "[FIXME] Dans un marché complexe, avoir un allié expert à vos côtés fait toute la différence.",
+    "Items": {
+      "time": {
+        "title": "[FIXME] Gain de Temps",
+        "description": "[FIXME] Un seul interlocuteur pour interroger toutes les banques. On s'occupe de toute la paperasse."
+      },
+      "conditions": {
+        "title": "[FIXME] Conditions Préférentielles",
+        "description": "[FIXME] Grâce à notre volume d'affaires, nous négocions des taux et conditions d'assurance privilégiés."
+      },
+      "expert": {
+        "title": "[FIXME] Conseil d'Expert",
+        "description": "[FIXME] Montage financier optimisé, choix de l'assurance, lissage de crédits... Nous optimisons chaque détail."
+      },
+      "support": {
+        "title": "[FIXME] Accompagnement Complet",
+        "description": "[FIXME] Nous sommes à vos côtés de la première simulation jusqu'au déblocage des fonds."
+      }
+    },
+    "Simulation": {
+      "title": "[FIXME] Vos Économies",
+      "marketRate": "[FIXME] Taux moyen marché",
+      "ourRate": "[FIXME] Taux Négocié AGM",
+      "savings": "[FIXME] Économie Potentielle",
+      "disclaimer": "[FIXME] *Sur un prêt de 200 000€ sur 20 ans."
+    }
+  },
+  "Team": {
+    "title": "[FIXME] Une équipe à votre service",
+    "subtitle": "[FIXME] Des experts passionnés dédiés à la réussite de votre projet.",
+    "Members": {
+      "meyer": {
+        "role": "[FIXME] Directeur Général",
+        "bio": "[FIXME] Expert en Financement Pro et Immobilier depuis 15 ans."
+      },
+      "cyrille": {
+        "role": "[FIXME] Responsable Crédit",
+        "bio": "[FIXME] Spécialiste des dossiers complexes et des relations bancaires."
+      },
+      "emilie": {
+        "role": "[FIXME] Experte Financement TPE/PME",
+        "bio": "[FIXME] Accompagne les entrepreneurs dans leur développement."
+      },
+      "christophe": {
+        "role": "[FIXME] Chargé d'Affaires",
+        "bio": "[FIXME] Votre interlocuteur privilégié pour le suivi de votre dossier."
+      }
+    }
+  },
+  "History": {
+    "title": "[FIXME] Notre Histoire",
+    "subtitle": "[FIXME] Près de 20 ans d'expertise et d'innovation au service de vos projets.",
+    "Milestones": {
+      "m2006": {
+        "title": "[FIXME] Création d'AGM Invest",
+        "description": "[FIXME] Fondation du cabinet à Nantes avec une vision : simplifier l'accès au crédit pour les particuliers."
+      },
+      "m2012": {
+        "title": "[FIXME] Expansion Régionale",
+        "description": "[FIXME] Ouverture de 3 nouvelles agences dans le Grand Ouest et recrutement de 10 experts."
+      },
+      "m2018": {
+        "title": "[FIXME] Pôle Professionnel",
+        "description": "[FIXME] Lancement de l'offre dédiée aux entreprises et aux promoteurs immobiliers."
+      },
+      "m2024": {
+        "title": "[FIXME] Digitalisation 100%",
+        "description": "[FIXME] Mise en place de notre plateforme en ligne permettant un suivi des dossiers en temps réel."
+      }
+    }
+  },
+  "Documents": {
+    "title": "[FIXME] Préparez vos documents",
+    "subtitle": "[FIXME] Pour accélérer votre prêt, préparez ces pièces à l'avance.",
+    "cta": "[FIXME] Tous les documents peuvent être envoyés en ligne de manière sécurisée",
+    "Items": {
+      "identity": {
+        "title": "[FIXME] Pièce d'identité",
+        "description": "[FIXME] Carte d'identité ou passeport en cours de validité"
+      },
+      "income": {
+        "title": "[FIXME] Justificatifs de revenus",
+        "description": "[FIXME] 3 derniers bulletins de salaire et avis d'imposition"
+      },
+      "bank": {
+        "title": "[FIXME] Relevés bancaires",
+        "description": "[FIXME] 3 derniers mois de vos comptes courants"
+      },
+      "home": {
+        "title": "[FIXME] Justificatif de domicile",
+        "description": "[FIXME] Facture de moins de 3 mois (électricité, eau, téléphone)"
+      },
+      "sales": {
+        "title": "[FIXME] Compromis de vente",
+        "description": "[FIXME] Si vous avez déjà trouvé votre bien immobilier"
+      },
+      "amortization": {
+        "title": "[FIXME] Tableau d'amortissement",
+        "description": "[FIXME] Pour un rachat de crédit ou une renégociation de taux"
+      }
+    }
+  },
+  "Testimonials": {
+    "title": "[FIXME] Ils ont réalisé leur projet",
+    "rating": "[FIXME] 4.9/5 sur plus de 500 avis",
+    "Items": {
+      "t1": {
+        "name": "[FIXME] Marc & Sophie",
+        "role": "[FIXME] Premier Achat",
+        "content": "[FIXME] AGM INVEST a réussi à nous obtenir un taux inespéré. Un accompagnement humain et rassurant pour notre premier achat."
+      },
+      "t2": {
+        "name": "[FIXME] Jean-Pierre",
+        "role": "[FIXME] Investissement Locatif",
+        "content": "[FIXME] Expertise technique parfaite sur le montage financier. Gain de temps précieux sur la négociation avec les banques."
+      },
+      "t3": {
+        "name": "[FIXME] Linda",
+        "role": "[FIXME] Renégociation",
+        "content": "[FIXME] Simplicité et efficacité. Ma mensualité a baissé de 150€ par mois sans rallonger la durée de mon crédit."
+      }
+    }
+  },
+  "Auth": {
+    "Login": {
+      "backToHome": "[FIXME] Retour au site",
+      "title": "[FIXME] Bon retour parmi nous",
+      "subtitle": "[FIXME] Accédez à votre espace client sécurisé",
+      "newHere": "[FIXME] Nouveau sur AGM INVEST ?",
+      "createAccount": "[FIXME] Créer un compte",
+      "email": "[FIXME] Adresse Email",
+      "password": "[FIXME] Mot de passe",
+      "rememberMe": "[FIXME] Se souvenir de moi",
+      "forgotPassword": "[FIXME] Mot de passe oublié ?",
+      "submit": "[FIXME] Se connecter",
+      "resetPasswordSuccess": "[FIXME] Email de réinitialisation envoyé ! Vérifiez votre boîte de réception.",
+      "auth/user-not-found": "[FIXME] Aucun compte correspondant à cet email.",
+      "auth/wrong-password": "[FIXME] Mot de passe incorrect.",
+      "auth/invalid-email": "[FIXME] Format d'email invalide.",
+      "auth/too-many-requests": "[FIXME] Compte temporairement bloqué. Réessayez plus tard."
+    },
+    "Register": {
+      "backToHome": "[FIXME] Retour au site",
+      "title": "[FIXME] Rejoignez AGM INVEST",
+      "stepIndicator": "[FIXME] Étape {current} sur {total} : {stepName}",
+      "step1": "[FIXME] État Civil",
+      "step2": "[FIXME] Coordonnées",
+      "step3": "[FIXME] Sécurité",
+      "Fields": {
+        "civility": "[FIXME] Civilité",
+        "firstName": "[FIXME] Prénom",
+        "lastName": "[FIXME] Nom",
+        "birthDate": "[FIXME] Date de naissance",
+        "birthPlace": "[FIXME] Ville de naissance",
+        "birthCountry": "[FIXME] Pays de naissance",
+        "nationality": "[FIXME] Nationalité",
+        "address": "[FIXME] Adresse de résidence",
+        "zipCode": "[FIXME] Code Postal",
+        "city": "[FIXME] Ville",
+        "residenceCountry": "[FIXME] Pays de résidence",
+        "phone": "[FIXME] Téléphone mobile",
+        "email": "[FIXME] Adresse Email",
+        "password": "[FIXME] Mot de passe",
+        "confirmPassword": "[FIXME] Confirmation",
+        "terms": "[FIXME] Je certifie l'exactitude des informations et j'accepte les <bold>Conditions Générales</bold> d'AGM INVEST."
+      },
+      "back": "[FIXME] Retour",
+      "submit": {
+        "next": "[FIXME] Continuer",
+        "finish": "[FIXME] Créer mon compte"
+      },
+      "alreadyClient": "[FIXME] Déjà client ?",
+      "login": "[FIXME] Se connecter",
+      "Errors": {
+        "incompleteDate": "[FIXME] Veuillez saisir une date de naissance complète.",
+        "invalidDate": "[FIXME] La date de naissance saisie est invalide.",
+        "underage": "[FIXME] Vous devez avoir au moins 18 ans pour vous inscrire.",
+        "errorPasswordsDoNotMatch": "[FIXME] Les mots de passe ne correspondent pas."
+      }
+    }
+  },
+  "Partners": {
+    "title": "[FIXME] Nos partenaires bancaires",
+    "subtitle": "[FIXME] Et bien d'autres partenaires assureurs et banques spécialisées...",
+    "list": [
+      "[FIXME] Boursorama Banque",
+      "[FIXME] BNP Paribas",
+      "[FIXME] Crédit Agricole",
+      "[FIXME] Société Générale",
+      "[FIXME] LCL",
+      "[FIXME] HSBC",
+      "[FIXME] Banque Populaire",
+      "[FIXME] Caisse d'Épargne",
+      "[FIXME] Fortuneo",
+      "[FIXME] Mutuelle Générale"
+    ],
+    "Network": {
+      "title": "[FIXME] Notre force ? Un réseau solide.",
+      "description": "[FIXME] En tant que courtier spécialisé, nous entretenons des relations étroites avec les plus grands établissements bancaires nationaux. Cela nous permet de défendre votre dossier au plus haut niveau et d'obtenir des conditions dérogatoires que vous ne pourriez obtenir seul en agence."
+    },
+    "stats": {
+      "banks": "[FIXME] Banques Partenaires",
+      "support": "[FIXME] Accompagnement Courtier"
+    }
+  },
+  "Contact": {
+    "title": "[FIXME] Contact & Accès",
+    "subtitle": "[FIXME] Une question ? Venez nous rencontrer ou envoyez-nous un message.",
+    "minimalTitle": "[FIXME] Envoyez-nous un message",
+    "form": {
+      "name": "[FIXME] Nom complet *",
+      "namePlaceholder": "[FIXME] Votre nom",
+      "email": "[FIXME] Adresse email *",
+      "emailPlaceholder": "[FIXME] votre@email.com",
+      "phone": "[FIXME] Téléphone",
+      "phonePlaceholder": "[FIXME] 06 12 34 56 78",
+      "subject": "[FIXME] Sujet",
+      "message": "[FIXME] Message",
+      "messagePlaceholder": "[FIXME] Comment pouvons-nous vous aider ?",
+      "submit": "[FIXME] Envoyer le message",
+      "success": "[FIXME] Votre message a été envoyé avec succès !"
+    },
+    "Why": {
+      "title": "[FIXME] Pourquoi nous contacter ?",
+      "reasons": {
+        "r1": "[FIXME] Obtenir une simulation personnalisée gratuite",
+        "r2": "[FIXME] Poser vos questions à nos experts",
+        "r3": "[FIXME] Prendre rendez-vous avec un conseiller",
+        "r4": "[FIXME] Découvrir nos offres du moment"
+      }
+    },
+    "QuickResponse": {
+      "title": "[FIXME] Réponse rapide garantie",
+      "text": "[FIXME] Notre équipe s'engage à vous répondre sous <bold>24 heures</bold>. Pour une réponse immédiate, n'hésitez pas à nous appeler au",
+      "phone": "[FIXME] +33 7 56 84 41 45"
+    }
+  },
+  "Location": {
+    "title": "[FIXME] Où nous trouver",
+    "subtitle": "[FIXME] Nos bureaux sont situés au coeur de Paris pour vous accueillir.",
+    "address": "[FIXME] Siège Social",
+    "phone": "[FIXME] Téléphone",
+    "email": "[FIXME] Email",
+    "details": {
+      "address": "[FIXME] 40 Rue Jean Monnet,\n68200 Mulhouse",
+      "phone": "[FIXME] +33 7 56 84 41 45",
+      "email": "[FIXME] contact@agm-negoce.com"
+    },
+    "hours": {
+      "title": "[FIXME] Horaires d'ouverture",
+      "week": "[FIXME] Lundi - Vendredi : 09h00 - 19h00",
+      "saturday": "[FIXME] Samedi : 10h00 - 16h00",
+      "sunday": "[FIXME] Dimanche : Fermé"
+    }
+  },
+  "Simulator": {
+    "amountLabel": "[FIXME] Montant souhaité (€)",
+    "durationLabel": "[FIXME] Durée (ans)",
+    "durationSuffix": "[FIXME] ans",
+    "months": "[FIXME] mois",
+    "rateLabel": "[FIXME] Taux d'intérêt (%)",
+    "guaranteedRate": "[FIXME] Taux fixe et garanti.",
+    "monthlyEstimate": "[FIXME] Votre mensualité",
+    "perMonth": "[FIXME] / mois",
+    "excludedInsurance": "[FIXME] Hors assurance",
+    "borrowerInsurance": "[FIXME] Assurance emprunteur",
+    "totalInsuranceCost": "[FIXME] Coût total assurance",
+    "disclaimer": "[FIXME] Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.",
+    "startRequest": "[FIXME] Obtenir mon étude"
+  },
+  "Footer": {
+    "description": "[FIXME] Votre partenaire de confiance pour tous vos projets de financement immobilier et d'assurance depuis 20 ans.",
+    "linksTitle": "[FIXME] Liens rapides",
+    "Links": {
+      "services": "[FIXME] Nos services",
+      "simulator": "[FIXME] Simulateur",
+      "documents": "[FIXME] Documents",
+      "about": "[FIXME] À propos",
+      "contact": "[FIXME] Contact",
+      "clientArea": "[FIXME] Espace Client"
+    },
+    "contactTitle": "[FIXME] Contact",
+    "details": {
+      "phone": "[FIXME] +33 7 56 84 41 45",
+      "email": "[FIXME] contact@agm-negoce.com",
+      "address": "[FIXME] 40 Rue Jean Monnet,\n68200 Mulhouse"
+    },
+    "copyright": "[FIXME] AGM INVEST Crédit & Assurance. Tous droits réservés.",
+    "legal": {
+      "mentions": "[FIXME] Mentions Légales",
+      "privacy": "[FIXME] Confidentialité",
+      "cookies": "[FIXME] Cookies",
+      "cgu": "[FIXME] CGU",
+      "refund": "[FIXME] Remboursement",
+      "disclaimer": "[FIXME] Disclaimer",
+      "trust": "[FIXME] Sécurité",
+      "ads": "[FIXME] Publicité"
+    }
+  },
+  "ServicesPage": {
+    "CTA": {
+      "title": "[FIXME] Prêt à concrétiser votre projet ?",
+      "text": "[FIXME] Obtenez une réponse de principe immédiate pour votre financement.",
+      "button": "[FIXME] Démarrer ma demande"
+    }
+  },
+  "CreditRequest": {
+    "Simulator": {
+      "title": "[FIXME] VOTRE SIMULATION",
+      "disclaimer": "[FIXME] *Assurance incluse (3%). Taux fixe selon conditions de l'établissement.",
+      "rateLabel": "[FIXME] Taux nominal"
+    },
+    "title": {
+      "step1": "[FIXME] Votre projet de financement",
+      "step2": "[FIXME] Votre identité",
+      "step3": "[FIXME] Votre situation personnelle",
+      "step4": "[FIXME] Vos finances",
+      "step5": "[FIXME] Création de compte",
+      "analysis": "[FIXME] Analyse du dossier"
+    },
+    "subtitle": "[FIXME] Finalisez votre demande en quelques étapes pour une décision instantanée.",
+    "Steps": {
+      "project": "[FIXME] Projet",
+      "identity": "[FIXME] Identité",
+      "situation": "[FIXME] Situation",
+      "finances": "[FIXME] Finances",
+      "account": "[FIXME] Compte"
+    },
+    "Profile": {
+      "label": "[FIXME] Type de profil",
+      "individual": "[FIXME] Particulier",
+      "professional": "[FIXME] Professionnel",
+      "pro_badge": "[FIXME] Demande Pro",
+      "individual_badge": "[FIXME] Demande Particulier"
+    },
+    "Project": {
+      "labels": {
+        "personal": "[FIXME] Prêt Personnel",
+        "auto": "[FIXME] Prêt Auto/Moto",
+        "pro": "[FIXME] Prêt Professionnel",
+        "other": "[FIXME] Autre projet"
+      },
+      "detailsLabel": "[FIXME] Précisez votre projet",
+      "detailsPlaceholder": "[FIXME] Décrivez brièvement votre besoin de financement..."
+    },
+    "Identity": {
+      "civility": "[FIXME] Civilité",
+      "firstName": "[FIXME] Prénom",
+      "lastName": "[FIXME] Nom",
+      "birthDate": "[FIXME] Date de naissance",
+      "birthPlace": "[FIXME] Ville de naissance",
+      "birthCountry": "[FIXME] Pays de naissance",
+      "nationality": "[FIXME] Nationalité",
+      "Options": {
+        "mr": "[FIXME] M.",
+        "mrs": "[FIXME] Mme",
+        "ms": "[FIXME] Mlle"
+      }
+    },
+    "Situation": {
+      "maritalStatus": "[FIXME] Situation familiale",
+      "children": "[FIXME] Nombre d'enfants à charge",
+      "housingType": "[FIXME] Type de logement",
+      "housingSeniority": "[FIXME] Ancienneté logement",
+      "seniorityYears": "[FIXME] ans",
+      "seniorityMonths": "[FIXME] mois",
+      "residenceCountry": "[FIXME] Pays de résidence",
+      "phone": "[FIXME] Téléphone mobile",
+      "street": "[FIXME] Adresse (N° et rue)",
+      "zipCode": "[FIXME] Code Postal",
+      "city": "[FIXME] Ville",
+      "options": {
+        "single": "[FIXME] Célibataire",
+        "married": "[FIXME] Marié(e) / PACS",
+        "divorced": "[FIXME] Divorcé(e) / Veuf(ve)",
+        "tenant": "[FIXME] Locataire",
+        "owner": "[FIXME] Propriétaire",
+        "hosted": "[FIXME] Logé(e) à titre gratuit"
+      },
+      "Placeholders": {
+        "street": "[FIXME] Ex: 40 Rue Jean Monnet",
+        "zipCode": "[FIXME] Ex: 68200",
+        "city": "[FIXME] Ex: Mulhouse"
+      }
+    },
+    "Finances": {
+      "contractType": "[FIXME] Type de contrat",
+      "income": "[FIXME] Revenu net mensuel",
+      "charges": "[FIXME] Loyers / Charges mensuelles",
+      "otherCredits": "[FIXME] Autres crédits en cours",
+      "bankInfo": "[FIXME] Informations Bancaires",
+      "bankName": "[FIXME] Nom de la banque",
+      "iban": "[FIXME] IBAN",
+      "bic": "[FIXME] Code BIC / SWIFT",
+      "ribEmail": "[FIXME] Email pour virements",
+      "disposableIncome": "[FIXME] Reste à vivre mensuel",
+      "options": {
+        "cdi": "[FIXME] CDI",
+        "cdd": "[FIXME] CDD",
+        "temporary": "[FIXME] Intérimaire",
+        "civil_servant": "[FIXME] Fonctionnaire",
+        "liberal": "[FIXME] Libéral / Indépendant",
+        "business_owner": "[FIXME] Chef d'entreprise",
+        "artisan": "[FIXME] Artisan / Commerçant",
+        "independent": "[FIXME] Freelance",
+        "retired": "[FIXME] Retraité(e)",
+        "student": "[FIXME] Étudiant(e)",
+        "apprentice": "[FIXME] Apprenti(e) / Stagiaire",
+        "unemployed": "[FIXME] Sans emploi"
+      },
+      "Labels": {
+        "default": "[FIXME] Nom de l'entreprise",
+        "liberal": "[FIXME] Nom de l'activité",
+        "retired": "[FIXME] Dernier employeur",
+        "profession_default": "[FIXME] Profession actuelle",
+        "profession_retired": "[FIXME] Ancienne profession",
+        "income_retired": "[FIXME] Montant retraite",
+        "income_unemployed": "[FIXME] Allocations mensuelles",
+        "income_cdi": "[FIXME] Salaire net mensuel",
+        "income_cdd": "[FIXME] Salaire net mensuel",
+        "income_temporary": "[FIXME] Revenu net mensuel",
+        "income_civil_servant": "[FIXME] Traitement net mensuel",
+        "income_liberal": "[FIXME] Revenu net mensuel",
+        "income_business_owner": "[FIXME] Rémunération nette mensuelle",
+        "income_artisan": "[FIXME] Bénéfice net mensuel",
+        "income_independent": "[FIXME] CA net mensuel",
+        "income_student": "[FIXME] Bourses / Aide familiale",
+        "income_apprentice": "[FIXME] Gratification mensuelle"
+      },
+      "Placeholders": {
+        "company_default": "[FIXME] Le nom de votre employeur",
+        "company_cdi": "[FIXME] Ex: Google France",
+        "company_cdd": "[FIXME] Ex: Amazon Logistics",
+        "company_temporary": "[FIXME] Ex: Adecco / Manpower",
+        "company_civil_servant": "[FIXME] Ex: Ministère de l'Éducation",
+        "company_liberal": "[FIXME] Ex: Cabinet Médical Dupont",
+        "company_business_owner": "[FIXME] Ex: SAS AGM INVEST",
+        "company_artisan": "[FIXME] Ex: Boulangerie de la Paix",
+        "company_independent": "[FIXME] Ex: Freelance Web",
+        "company_student": "[FIXME] Ex: Université de Nantes",
+        "company_apprentice": "[FIXME] Ex: Airbus Atlantic",
+        "profession_default": "[FIXME] Ex: Consultant, Chef de projet...",
+        "profession_cdi": "[FIXME] Ex: Comptable",
+        "profession_cdd": "[FIXME] Ex: Chauffeur-livreur",
+        "profession_temporary": "[FIXME] Ex: Manutentionnaire",
+        "profession_civil_servant": "[FIXME] Ex: Professeur",
+        "profession_liberal": "[FIXME] Ex: Médecin",
+        "profession_business_owner": "[FIXME] Ex: Gérant",
+        "profession_artisan": "[FIXME] Ex: Menuisier",
+        "profession_independent": "[FIXME] Ex: Développeur",
+        "profession_student": "[FIXME] Ex: Étudiant Master 2",
+        "profession_apprentice": "[FIXME] Ex: Apprenti Mécanicien",
+        "bankName": "[FIXME] Ex: Boursorama Banque",
+        "iban": "[FIXME] FR76 1234 5...",
+        "bic": "[FIXME] ALPHFR2PXXX",
+        "ribEmail": "[FIXME] votre@email.com",
+        "charges": "[FIXME] Ex: 800"
+      }
+    },
+    "Account": {
+      "email": "[FIXME] Adresse Email",
+      "password": "[FIXME] Mot de passe",
+      "confirmPassword": "[FIXME] Confirmation",
+      "terms": "[FIXME] Je certifie l'exactitude des informations et j'accepte les Conditions Générales d'AGM INVEST.",
+      "Placeholders": {
+        "email": "[FIXME] votre@email.com"
+      }
+    },
+    "Navigation": {
+      "next": "[FIXME] Étape suivante",
+      "back": "[FIXME] Retour",
+      "submit": "[FIXME] Soumettre ma demande",
+      "analyzing": "[FIXME] Analyse en cours..."
+    },
+    "Result": {
+      "analysisTitle": "[FIXME] Analyse de votre dossier",
+      "analysisMessage": "[FIXME] Nous analysons vos données instantanément grâce à nos partenaires bancaires. Vous allez être redirigé vers votre espace client.",
+      "dashboardButton": "[FIXME] Accéder à mon tableau de bord"
+    },
+    "Errors": {
+      "underage": "[FIXME] Vous devez avoir au moins 18 ans.",
+      "invalidDate": "[FIXME] La date saisie est invalide.",
+      "passwordsDoNotMatch": "[FIXME] Les mots de passe ne correspondent pas."
+    },
+    "Step1": {
+      "amount": "[FIXME] Montant du prêt",
+      "duration": "[FIXME] Durée (mois)",
+      "rate": "[FIXME] Taux nominal"
+    }
+  },
+  "Legal": {
+    "Mentions": {
+      "title": "[FIXME] Mentions Légales",
+      "subtitle": "[FIXME] Informations juridiques et réglementaires concernant AGM INVEST.",
+      "Section1": {
+        "title": "[FIXME] Identification de la Société",
+        "name": "[FIXME] Dénomination sociale :",
+        "form": "[FIXME] Forme juridique :",
+        "headquarters": "[FIXME] Siège social :",
+        "siren": "[FIXME] SIREN :",
+        "siret": "[FIXME] SIRET :",
+        "rcs": "[FIXME] RCS :",
+        "tva": "[FIXME] TVA Intracommunautaire :",
+        "ape": "[FIXME] Code APE / NAF :",
+        "manager": "[FIXME] Dirigeant :",
+        "creation": "[FIXME] Date de création :",
+        "Values": {
+          "name": "[FIXME] AGM INVEST",
+          "form": "[FIXME] SARL au capital de 7 622 €",
+          "headquarters": "[FIXME] MELPARK – 40 rue Jean Monnet, 68200 Mulhouse",
+          "siren": "[FIXME] 389 858 630",
+          "siret": "[FIXME] 389 858 630 00046",
+          "rcs": "[FIXME] 389 858 630 R.C.S. Mulhouse",
+          "tva": "[FIXME] FR51 389858630",
+          "ape": "[FIXME] 64.92Z – Autre distribution de crédit",
+          "manager": "[FIXME] Alain Meyer",
+          "creation": "[FIXME] 16 janvier 1993"
+        }
+      },
+      "Section2": {
+        "title": "[FIXME] Activités & Expertise",
+        "p1": "[FIXME] AGM INVEST est une société française spécialisée dans le conseil financier, le courtage en financements et l’accompagnement stratégique des particuliers et des professionnels. Forte de plus de 50 ans d’expérience cumulée dans les services financiers, AGM INVEST met son expertise au service de projets patrimoniaux, immobiliers et financiers, en toute indépendance.",
+        "list": {
+          "li1": "[FIXME] Conseil financier et stratégique",
+          "li2": "[FIXME] Courtage en financements",
+          "li3": "[FIXME] Intermédiation en opérations de banque et services de paiement",
+          "li4": "[FIXME] Accompagnement en négociation et structuration financière",
+          "li5": "[FIXME] Conseil et commercialisation de projets immobiliers",
+          "li6": "[FIXME] Analyse et optimisation de solutions de financement"
+        }
+      },
+      "Section3": {
+        "title": "[FIXME] Conformité & Réglementation",
+        "p1": "[FIXME] AGM INVEST a été immatriculée à l’ORIAS sous le numéro 14001635 en qualité de :",
+        "oriasLink": "[FIXME] www.orias.fr",
+        "role": "[FIXME] ",
+        "list": {
+          "li1": "[FIXME] Mandataire d’Intermédiaire en Opérations Bancaires et Services de Paiement",
+          "li2": "[FIXME] Courtier en Opérations Bancaires et Services de Paiement",
+          "li3": "[FIXME] Courtier en Assurance"
+        },
+        "p2": "[FIXME] L'activité d'Intermédiaire en Opérations de Banque et en Services de Paiement (IOBSP) est régie par le Code Monétaire et Financier. AGM INVEST est soumise au contrôle de l'Autorité de Contrôle Prudentiel et de Résolution (ACPR), 4 Place de Budapest CS 92459, 75436 Paris Cedex 09."
+      },
+      "Section4": {
+        "title": "[FIXME] Contact & Hébergement",
+        "Service": {
+          "title": "[FIXME] Service Client",
+          "text": "[FIXME] Pour toute question ou réclamation, vous pouvez nous contacter par email :",
+          "address": "[FIXME] 40 rue Jean Monnet, 68200 Mulhouse"
+        },
+        "Hosting": {
+          "title": "[FIXME] Hébergement Web",
+          "text": "[FIXME] Ce site est hébergé par :",
+          "name": "[FIXME] Hostinger",
+          "address": "[FIXME] 61 Lordou Vironos Street\n6023 Larnaca\nChypre"
+        }
+      },
+      "Footer": {
+        "copyright": "[FIXME] © 1993 – 2026 AGM INVEST – Tous droits réservés",
+        "desc": "[FIXME] Société de conseil financier – Interventions sans maniement de fonds",
+        "disclaimer": "[FIXME] Les informations présentes sur ce site ne constituent pas une offre contractuelle."
+      }
+    },
+    "Privacy": {
+      "title": "[FIXME] Politique de Confidentialité",
+      "subtitle": "[FIXME] Engagement de AGM INVEST sur la protection de vos données personnelles et le respect de votre vie privée (RGPD).",
+      "intro": "[FIXME] Chez AGM INVEST, we accordons une importance capitale à la confidentialité et à la sécurité de vos informations. Cette politique détaille comment nous collectons, utilisons et protégeons vos données dans le cadre de nos activités de conseil financier et de courtage.",
+      "Section1": {
+        "title": "[FIXME] 1. Données Collectées",
+        "description": "[FIXME] Pour traiter vos demandes de financement et vous fournir nos services, nous sommes amenés à collecter les informations suivantes :",
+        "list": {
+          "li1": "[FIXME] <bold>Identité :</bold> Nom, prénom, date de naissance, nationalité, documents d'identité.",
+          "li2": "[FIXME] <bold>Coordonnées :</bold> Adresse postale, email, numéro de téléphone.",
+          "li3": "[FIXME] <bold>Situation Familiale :</bold> Statut marital, nombre d'enfants à charge.",
+          "li4": "[FIXME] <bold>Situation Professionnelle :</bold> Employeur, type de contrat, ancienneté, revenus.",
+          "li5": "[FIXME] <bold>Situation Financière :</bold> Relevés bancaires, avis d'imposition, emprunts en cours, patrimoine.",
+          "li6": "[FIXME] <bold>Données de Connexion :</bold> Adresse IP, logs de connexion (pour la sécurité)."
+        }
+      },
+      "Section2": {
+        "title": "[FIXME] 2. Finalités du Traitement",
+        "description": "[FIXME] Vos données sont traitées pour des finalités déterminées, explicites et légitimes :",
+        "Cards": {
+          "c1": {
+            "title": "[FIXME] Étude de solvabilité",
+            "desc": "[FIXME] Analyse de votre capacité de remboursement pour l'octroi de crédits."
+          },
+          "c2": {
+            "title": "[FIXME] Gestion de dossier",
+            "desc": "[FIXME] Suivi administratif, constitution des contrats et gestion de la relation client."
+          },
+          "c3": {
+            "title": "[FIXME] Obligations Légales",
+            "desc": "[FIXME] Lutte contre le blanchiment d'argent et le financement du terrorisme (LCB-FT)."
+          },
+          "c4": {
+            "title": "[FIXME] Sécurité",
+            "desc": "[FIXME] Protection contre la fraude et sécurisation de vos accès en ligne."
+          }
+        }
+      },
+      "Section3": {
+        "title": "[FIXME] 3. Partage et Destinataires",
+        "p1": "[FIXME] Vos données sont strictement confidentielles. Elles ne sont transmises qu'aux destinataires habilités lorsque cela est nécessaire :",
+        "list": {
+          "li1": "[FIXME] Nos partenaires bancaires et assureurs (pour l'étude et la validation de votre financement).",
+          "li2": "[FIXME] Les organismes publics et régulateurs (sur réquisition légale).",
+          "li3": "[FIXME] Nos prestataires techniques sécurisés (hébergement, signature électronique)."
+        },
+        "p2": "[FIXME] AGM INVEST ne vendra jamais vos données personnelles à des tiers à des fins commerciales."
+      },
+      "Section4": {
+        "title": "[FIXME] 4. Vos Droits",
+        "p1": "[FIXME] Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :",
+        "list": {
+          "li1": "[FIXME] Droit d'accès à vos données",
+          "li2": "[FIXME] Droit de rectification",
+          "li3": "[FIXME] Droit à l'effacement (\"droit à l'oubli\")",
+          "li4": "[FIXME] Droit à la limitation du traitement",
+          "li5": "[FIXME] Droit au portabilité des données",
+          "li6": "[FIXME] Droit d'opposition"
+        },
+        "contact": "[FIXME] Pour exercer ces droits, contactez notre Délégué à la Protection des Données (DPO) :",
+        "postal": "[FIXME] ou par courrier postal au siège social."
+      },
+      "Footer": {
+        "updated": "[FIXME] Dernière mise à jour : Février 2026"
+      }
+    },
+    "Cookies": {
+      "title": "[FIXME] Gestion des Cookies",
+      "subtitle": "[FIXME] Comprendre comment et pourquoi nous utilisons des cookies pour améliorer votre expérience sur AGM INVEST.",
+      "intro": "[FIXME] Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) lors de la visite de notre site. Il permet à AGM INVEST de mémoriser vos actions et préférences sur une période donnée.",
+      "Section1": {
+        "title": "[FIXME] 1. Les Cookies que nous utilisons",
+        "Essential": {
+          "title": "[FIXME] Cookies Essentiels",
+          "desc": "[FIXME] Indispensables au bon fonctionnement du site. Ils vous permettent de naviguer, d'accéder à votre espace sécurisé et d'assurer la sécurité des transactions. Ils ne peuvent pas être désactivés."
+        },
+        "Functional": {
+          "title": "[FIXME] Cookies Fonctionnels",
+          "desc": "[FIXME] Permettent de mémoriser vos choix (langue, nom d'utilisateur) pour vous offrir une expérience personnalisée et plus fluide."
+        },
+        "Analytics": {
+          "title": "[FIXME] Cookies Analytiques",
+          "desc": "[FIXME] Nous aident à comprendre comment les visiteurs interagissent avec le site (pages visitées, temps passé) afin d'améliorer nos services. Données anonymisées."
+        }
+      },
+      "Section2": {
+        "title": "[FIXME] 2. Gérer vos préférences",
+        "intro": "[FIXME] Vous pouvez à tout moment modifier vos préférences en matière de cookies via les paramètres de votre navigateur web.",
+        "Chrome": "[FIXME] Google Chrome :",
+        "ChromePath": "[FIXME] Paramètres > Confidentialité et sécurité > Cookies",
+        "Firefox": "[FIXME] Firefox :",
+        "FirefoxPath": "[FIXME] Options > Vie privée et sécurité > Cookies",
+        "Safari": "[FIXME] Safari :",
+        "SafariPath": "[FIXME] Préférences > Confidentialité",
+        "Edge": "[FIXME] Edge :",
+        "EdgePath": "[FIXME] Paramètres > Cookies et autorisations de site",
+        "note": "[FIXME] Note : Le refus des cookies essentiels peut empêcher l'accès à certaines fonctionnalités critiques comme la connexion à votre compte client."
+      },
+      "Footer": {
+        "copyright": "[FIXME] © AGM INVEST - Politique de Cookies 2026"
+      }
+    },
+    "CGU": {
+      "title": "[FIXME] Conditions Générales d'Utilisation",
+      "subtitle": "[FIXME] Conditions d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne.",
+      "Section1": {
+        "title": "[FIXME] 1. Objet",
+        "content": "[FIXME] Les présentes Conditions Générales d'Utilisation (CGU) définissent les conditions d'accès et d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne."
+      },
+      "Section2": {
+        "title": "[FIXME] 2. Accès au Service",
+        "p1": "[FIXME] L'accès à la plateforme est réservé aux utilisateurs disposant d'un compte validé.",
+        "p2": "[FIXME] AGM INVEST se réserve le droit de refuser ou suspendre un compte en cas de non-respect des présentes conditions."
+      },
+      "Section3": {
+        "title": "[FIXME] 3. Nature des Services",
+        "intro": "[FIXME] AGM INVEST propose :",
+        "list": {
+          "li1": "[FIXME] Un accompagnement administratif",
+          "li2": "[FIXME] Une assistance liée à l'acquisition de véhicules",
+          "li3": "[FIXME] Un service de gestion de dossiers clients"
+        },
+        "warning": "[FIXME] AGM INVEST n'est pas un organisme bancaire, ni un établissement de crédit, mais un intermédiaire financier réglementé."
+      },
+      "Section4": {
+        "title": "[FIXME] 4. Processus de Vérification",
+        "content": "[FIXME] L'accès complet aux services nécessite une procédure de vérification en plusieurs étapes définies par AGM INVEST."
+      },
+      "Section5": {
+        "title": "[FIXME] 5. Paiements",
+        "p1": "[FIXME] Certains services peuvent nécessiter le versement de dépôts de sécurité.",
+        "p2": "[FIXME] Ces montants sont communiqués clairement au client avant toute validation."
+      },
+      "Section6": {
+        "title": "[FIXME] 6. Responsabilité",
+        "content": "[FIXME] AGM INVEST agit en tant qu'intermédiaire administratif et ne garantit pas l'acceptation d'un dossier par des tiers (administrations, partenaires, prestataires)."
+      },
+      "Section7": {
+        "title": "[FIXME] 7. Données Personnelles",
+        "content": "[FIXME] Les données sont traitées conformément à la réglementation en vigueur. Consultez notre",
+        "link": "[FIXME] Politique de Confidentialité"
+      },
+      "Section8": {
+        "title": "[FIXME] 8. Résiliation",
+        "content": "[FIXME] AGM INVEST se réserve le droit de suspendre un compte en cas de fraude, fausse déclaration ou utilisation abusive du service."
+      },
+      "Section9": {
+        "title": "[FIXME] 9. Droit Applicable",
+        "p1": "[FIXME] Les présentes CGU sont soumises au droit français.",
+        "p2": "[FIXME] Tout litige relève de la compétence des tribunaux français."
+      },
+      "Footer": {
+        "updated": "[FIXME] Dernière mise à jour : Février 2026",
+        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+      }
+    },
+    "Refund": {
+      "title": "[FIXME] Conditions de Remboursement",
+      "subtitle": "[FIXME] Modalités de restitution du dépôt sécuritaire fixe AGM INVEST.",
+      "Section1": {
+        "title": "[FIXME] 1. Dépôt Sécuritaire Fixe",
+        "p1": "[FIXME] Ce dépôt n'est pas des frais. Il doit provenir du même compte bancaire (RIB) que celui fourni lors de votre demande.",
+        "p2": "[FIXME] Il est intégralement restitué en même temps que le virement du crédit.",
+        "p3": "[FIXME] "
+      },
+      "Section2": {
+        "title": "[FIXME] 2. Restitution",
+        "content": "[FIXME] La restitution du dépôt sécuritaire intervient conformément aux conditions prévues dans le contrat signé entre AGM INVEST et le client."
+      },
+      "Section3": {
+        "title": "[FIXME] 3. Cas de Non-Restitution",
+        "intro": "[FIXME] Le dépôt sécuritaire peut ne pas être restitué en cas de :",
+        "list": {
+          "li1": "[FIXME] Abandon volontaire du dossier par le client",
+          "li2": "[FIXME] Fausse déclaration",
+          "li3": "[FIXME] Non-respect des engagements contractuels"
+        }
+      },
+      "Section4": {
+        "title": "[FIXME] 4. Délais",
+        "content": "[FIXME] Les délais de restitution sont indiqués dans le contrat et peuvent varier selon la nature du dossier et les partenaires impliqués."
+      },
+      "Section5": {
+        "title": "[FIXME] 5. Litiges",
+        "content": "[FIXME] En cas de litige, le droit français s'applique."
+      },
+      "Footer": {
+        "updated": "[FIXME] Dernière mise à jour : Février 2026",
+        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+      }
+    },
+    "Trust": {
+      "title": "[FIXME] Confiance & Sécurité",
+      "subtitle": "[FIXME] Chez AGM INVEST, la sécurité des dossiers clients est une priorité absolue.",
+      "intro": "[FIXME] Nous mettons en œuvre des processus rigoureux et transparents pour garantir la sécurité et la confidentialité de vos informations.",
+      "engagements": {
+        "title": "[FIXME] Nos Engagements Sécurité",
+        "admin": {
+          "title": "[FIXME] Vérification Administrative",
+          "desc": "[FIXME] Chaque dossier est vérifié minutieusement par notre équipe administrative."
+        },
+        "multi": {
+          "title": "[FIXME] Validation Multi-Étapes",
+          "desc": "[FIXME] Processus de vérification en plusieurs étapes pour garantir la conformité."
+        },
+        "contract": {
+          "title": "[FIXME] Encadrement Contractuel Clair",
+          "desc": "[FIXME] Tous nos services sont encadrés par des contrats transparents et détaillés."
+        },
+        "trace": {
+          "title": "[FIXME] Traçabilité des Paiements",
+          "desc": "[FIXME] Tous les paiements sont tracés et sécurisés via des systèmes certifiés."
+        },
+        "data": {
+          "title": "[FIXME] Protection des Données",
+          "desc": "[FIXME] Conformité RGPD et chiffrement de toutes vos données personnelles."
+        },
+        "support": {
+          "title": "[FIXME] Support Client Dédié",
+          "desc": "[FIXME] Une équipe à votre écoute pour répondre à toutes vos questions."
+        }
+      },
+      "individual": {
+        "title": "[FIXME] Traitement Individuel",
+        "content": "[FIXME] Chaque dossier est traité de manière individuelle par notre équipe. Nous prenons le temps d'analyser votre situation spécifique pour vous proposer un accompagnement personnalisé."
+      },
+      "promise": {
+        "title": "[FIXME] Notre Engagement",
+        "content": "[FIXME] AGM INVEST s'engage à la transparence dans ses processus et ses communications. Votre confiance est notre priorité."
+      },
+      "Footer": {
+        "updated": "[FIXME] Dernière mise à jour : Février 2026",
+        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+      }
+    },
+    "Disclaimer": {
+      "title": "[FIXME] Disclaimer Financier",
+      "subtitle": "[FIXME] Informations importantes sur la nature des services AGM INVEST.",
+      "warning": {
+        "title": "[FIXME] Avertissement Important",
+        "content": "[FIXME] AGM INVEST n'est ni un établissement bancaire, ni un organisme de crédit, mais un intermédiaire financier réglementé."
+      },
+      "nature": {
+        "title": "[FIXME] Nature de l'Activité",
+        "p1": "[FIXME] AGM INVEST intervient exclusivement en tant qu'intermédiaire administratif et de mise en relation.",
+        "p2": "[FIXME] Nos services consistent en un accompagnement dans vos démarches administratives et la mise en relation avec des partenaires qualifiés."
+      },
+      "limitations": {
+        "title": "[FIXME] Limitations de Garantie",
+        "list": {
+          "li1": "[FIXME] AGM INVEST ne garantit pas l'acceptation d'un dossier par des tiers",
+          "li2": "[FIXME] AGM INVEST ne garantit pas l'obtention effective d'un financement",
+          "li3": "[FIXME] Les délais, montants et décisions finales dépendent des partenaires externes et des organismes concernés"
+        }
+      },
+      "indicative": {
+        "title": "[FIXME] Informations Indicatives",
+        "content": "[FIXME] Toute information communiquée par AGM INVEST est fournie à titre indicatif et ne constitue en aucun cas un engagement contractuel de résultat."
+      },
+      "Footer": {
+        "updated": "[FIXME] Dernière mise à jour : Février 2026",
+        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+      }
+    },
+    "Ads": {
+      "title": "[FIXME] Mentions Publicitaires",
+      "subtitle": "[FIXME] Clarifications importantes sur les services proposés par AGM INVEST.",
+      "warning": {
+        "title": "[FIXME] Information Importante",
+        "content": "[FIXME] AGM INVEST n'est pas une banque ni un organisme de crédit, mais un intermédiaire financier réglementé."
+      },
+      "nature": {
+        "title": "[FIXME] Nature des Services",
+        "p1": "[FIXME] Les services proposés par AGM INVEST relèvent de l'accompagnement administratif et de la mise en relation.",
+        "p2": "[FIXME] Nous intervenons en tant qu'intermédiaire pour faciliter vos démarches et vous mettre en contact avec des partenaires qualifiés."
+      },
+      "acceptance": {
+        "title": "[FIXME] Acceptation des Dossiers",
+        "content": "[FIXME] L'acceptation des dossiers dépend de partenaires externes. AGM INVEST ne peut garantir l'acceptation systématique de votre demande."
+      },
+      "results": {
+        "title": "[FIXME] Résultats Variables",
+        "content": "[FIXME] Les résultats peuvent varier selon la situation du client, les critères des partenaires et les conditions du marché."
+      },
+      "links": {
+        "title": "[FIXME] Pour plus d'informations, consultez nos :",
+        "cgu": "[FIXME] Conditions Générales",
+        "mentions": "[FIXME] Mentions Légales"
+      },
+      "Footer": {
+        "updated": "[FIXME] Dernière mise à jour : Février 2026",
+        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+      }
+    }
+  },
+  "Dashboard": {
+    "Layout": {
+      "Sidebar": {
+        "clientSpace": "[FIXME] Espace Client",
+        "balance": "[FIXME] Mon Solde",
+        "makeRequest": "[FIXME] Demander un Prêt",
+        "myRequests": "[FIXME] Mes Demandes",
+        "myDocuments": "[FIXME] Mes Documents",
+        "billing": "[FIXME] Facturation",
+        "myProfile": "[FIXME] Mon Profil",
+        "settings": "[FIXME] Paramètres",
+        "support": "[FIXME] Aide & Support",
+        "logout": "[FIXME] Déconnexion"
+      }
+    },
+    "Home": {
+      "welcome": "[FIXME] Bonjour, {name} !",
+      "subtitle": "[FIXME] Bienvenue sur votre tableau de bord.",
+      "status": {
+        "verified": "[FIXME] Compte Vérifié",
+        "premium": "[FIXME] Client Premium"
+      },
+      "stats": {
+        "total": "[FIXME] Total Demandes",
+        "approved": "[FIXME] Approuvées",
+        "pending": "[FIXME] En attente",
+        "projects": "[FIXME] Projets"
+      }
+    },
+    "Accounts": {
+      "title": "[FIXME] Mon Solde",
+      "subtitle": "[FIXME] Gérez vos comptes et vos informations bancaires."
+    },
+    "Profile": {
+      "title": "[FIXME] Mon Profil",
+      "subtitle": "[FIXME] Gérez vos informations personnelles et votre sécurité.",
+      "editButton": "[FIXME] Modifier Profil",
+      "saveButton": "[FIXME] Enregistrer",
+      "cancelButton": "[FIXME] Annuler",
+      "Identity": {
+        "title": "[FIXME] État Civil"
+      },
+      "Location": {
+        "title": "[FIXME] Coordonnées"
+      },
+      "Situation": {
+        "title": "[FIXME] Situation Personnelle"
+      },
+      "Professional": {
+        "title": "[FIXME] Situation Professionnelle"
+      },
+      "Financial": {
+        "title": "[FIXME] Situation Financière"
+      }
+    },
+    "Requests": {
+      "title": "[FIXME] Mes Demandes",
+      "subtitle": "[FIXME] Consultez l'historique et l'avancement de vos dossiers.",
+      "searchPlaceholder": "[FIXME] Rechercher...",
+      "noneFound": "[FIXME] Aucune demande trouvée",
+      "newRequest": "[FIXME] Nouvelle demande"
+    },
+    "settings": {
+      "title": "[FIXME] Paramètres",
+      "subtitle": "[FIXME] Gérez vos préférences de compte, les notifications et la sécurité.",
+      "language": "[FIXME] Langue",
+      "lastLogin": "[FIXME] Dernière connexion",
+      "notifications": "[FIXME] Notifications",
+      "security": "[FIXME] Sécurité du Compte",
+      "autoLogout": "[FIXME] Déconnexion auto",
+      "password": "[FIXME] Mot de passe"
+    }
+  },
+  "Reviews": {
+    "title": "[FIXME] Ce que nos clients <highlight>disent de nous</highlight>",
+    "description": "[FIXME] Découvrez les témoignages de ceux qui nous ont fait confiance pour leur projet de financement.",
+    "backToHome": "[FIXME] Retour à l'accueil",
+    "allReviews": "[FIXME] Tous les avis",
+    "page": "[FIXME] Page",
+    "of": "[FIXME] sur",
+    "verified": "[FIXME] Avis Vérifié",
+    "previous": "[FIXME] Précédent",
+    "next": "[FIXME] Suivant",
+    "Items": {
+      "r1": {
+        "region": "[FIXME] Paris",
+        "comment": "[FIXME] Service impeccable ! J'ai obtenu mon financement en moins de 2 semaines. L'équipe est très professionnelle."
+      },
+      "r2": {
+        "region": "[FIXME] Lyon",
+        "comment": "[FIXME] Excellente expérience. Le conseiller m'a accompagné à chaque étape. Je recommande vivement AGM INVEST."
+      },
+      "r3": {
+        "region": "[FIXME] Marseille",
+        "comment": "[FIXME] Très satisfait du service. Processus rapide et transparent. Quelques documents à fournir mais c'est normal."
+      },
+      "r4": {
+        "region": "[FIXME] Toulouse",
+        "comment": "[FIXME] Je suis ravie ! Mon dossier a été traité rapidement et j'ai pu acheter ma voiture sans stress."
+      },
+      "r5": {
+        "region": "[FIXME] Nice",
+        "comment": "[FIXME] Service au top ! L'équipe est réactive et à l'écoute. Mon crédit a été validé en 10 jours."
+      },
+      "r6": {
+        "region": "[FIXME] Nantes",
+        "comment": "[FIXME] Bonne expérience globale. Le suivi est excellent et les conseillers sont compétents."
+      },
+      "r7": {
+        "region": "[FIXME] Strasbourg",
+        "comment": "[FIXME] Parfait ! Processus simple et efficace. J'ai eu mon financement automobile sans problème."
+      },
+      "r8": {
+        "region": "[FIXME] Montpellier",
+        "comment": "[FIXME] Je recommande à 100% ! Service professionnel, rapide et transparent. Merci à toute l'équipe."
+      },
+      "r9": {
+        "region": "[FIXME] Bordeaux",
+        "comment": "[FIXME] Très bon service. Les délais ont été respectés et le conseiller était disponible pour répondre à mes questions."
+      },
+      "r10": {
+        "region": "[FIXME] Lille",
+        "comment": "[FIXME] Expérience exceptionnelle ! Dossier traité rapidement, équipe professionnelle. Je suis très satisfaite."
+      },
+      "r11": {
+        "region": "[FIXME] Rennes",
+        "comment": "[FIXME] Service irréprochable. Mon conseiller m'a guidé tout au long du processus. Financement obtenu en 12 jours."
+      },
+      "r12": {
+        "region": "[FIXME] Reims",
+        "comment": "[FIXME] Bonne prestation. Le processus est bien expliqué et l'équipe est disponible."
+      },
+      "r13": {
+        "region": "[FIXME] Le Havre",
+        "comment": "[FIXME] Excellent ! J'ai pu financer mon véhicule rapidement. Service client au top."
+      },
+      "r14": {
+        "region": "[FIXME] Saint-Étienne",
+        "comment": "[FIXME] Très professionnels et efficaces. Mon dossier a été accepté rapidement. Je recommande."
+      },
+      "r15": {
+        "region": "[FIXME] Toulon",
+        "comment": "[FIXME] Service de qualité. Bonne communication et suivi régulier du dossier."
+      },
+      "r16": {
+        "region": "[FIXME] Grenoble",
+        "comment": "[FIXME] Parfait du début à la fin ! Équipe réactive et professionnelle. Mon crédit validé en 8 jours."
+      },
+      "r17": {
+        "region": "[FIXME] Dijon",
+        "comment": "[FIXME] Je suis très satisfait. Processus simple, rapide et transparent. Merci AGM INVEST !"
+      },
+      "r18": {
+        "region": "[FIXME] Angers",
+        "comment": "[FIXME] Bonne expérience. Les conseillers sont compétents et le suivi est régulier."
+      },
+      "r19": {
+        "region": "[FIXME] Nîmes",
+        "comment": "[FIXME] Service excellent ! Mon dossier a été traité rapidement et efficacement."
+      },
+      "r20": {
+        "region": "[FIXME] Villeurbanne",
+        "comment": "[FIXME] Très bonne expérience. L'équipe est professionnelle et à l'écoute."
+      },
+      "r21": {
+        "region": "[FIXME] Le Mans",
+        "comment": "[FIXME] Satisfait du service. Bon accompagnement tout au long du processus."
+      },
+      "r22": {
+        "region": "[FIXME] Aix-en-Provence",
+        "comment": "[FIXME] Impeccable ! Financement obtenu rapidement. Je recommande vivement."
+      },
+      "r23": {
+        "region": "[FIXME] Clermont-Ferrand",
+        "comment": "[FIXME] Excellent service. Équipe réactive et professionnelle. Dossier validé en 10 jours."
+      },
+      "r24": {
+        "region": "[FIXME] Brest",
+        "comment": "[FIXME] Bonne prestation globale. Le conseiller était disponible et compétent."
+      },
+      "r25": {
+        "region": "[FIXME] Tours",
+        "comment": "[FIXME] Service au top ! Processus rapide et transparent. Très satisfait."
+      },
+      "r26": {
+        "region": "[FIXME] Amiens",
+        "comment": "[FIXME] Parfait ! Mon crédit automobile a été validé rapidement. Équipe professionnelle."
+      },
+      "r27": {
+        "region": "[FIXME] Limoges",
+        "comment": "[FIXME] Très bon service. Communication claire et suivi régulier."
+      },
+      "r28": {
+        "region": "[FIXME] Annecy",
+        "comment": "[FIXME] Excellente expérience ! Conseiller à l'écoute et processus efficace."
+      },
+      "r29": {
+        "region": "[FIXME] Perpignan",
+        "comment": "[FIXME] Je recommande ! Service rapide et professionnel. Mon dossier traité en 2 semaines."
+      },
+      "r30": {
+        "region": "[FIXME] Boulogne-Billancourt",
+        "comment": "[FIXME] Bonne expérience. L'équipe est compétente et réactive."
+      },
+      "r31": {
+        "region": "[FIXME] Metz",
+        "comment": "[FIXME] Service impeccable ! Financement obtenu rapidement. Très satisfait."
+      },
+      "r32": {
+        "region": "[FIXME] Besançon",
+        "comment": "[FIXME] Excellente prestation. Processus simple et équipe professionnelle."
+      },
+      "r33": {
+        "region": "[FIXME] Orléans",
+        "comment": "[FIXME] Très bon service. Mon conseiller m'a bien accompagné."
+      },
+      "r34": {
+        "region": "[FIXME] Saint-Denis",
+        "comment": "[FIXME] Parfait ! Dossier traité rapidement et efficacement. Je recommande."
+      },
+      "r35": {
+        "region": "[FIXME] Argenteuil",
+        "comment": "[FIXME] Service au top ! Équipe réactive et professionnelle."
+      },
+      "r36": {
+        "region": "[FIXME] Rouen",
+        "comment": "[FIXME] Bonne expérience globale. Processus transparent et bien expliqué."
+      },
+      "r37": {
+        "region": "[FIXME] Mulhouse",
+        "comment": "[FIXME] Excellent ! Mon crédit validé en 9 jours. Service professionnel."
+      },
+      "r38": {
+        "region": "[FIXME] Montreuil",
+        "comment": "[FIXME] Très satisfaite ! L'équipe est à l'écoute et efficace."
+      },
+      "r39": {
+        "region": "[FIXME] Caen",
+        "comment": "[FIXME] Bon service. Conseiller compétent et disponible."
+      },
+      "r40": {
+        "region": "[FIXME] Nancy",
+        "comment": "[FIXME] Impeccable ! Processus rapide et transparent. Je recommande vivement."
+      },
+      "r41": {
+        "region": "[FIXME] Versailles",
+        "comment": "[FIXME] Service excellent ! Mon dossier a été traité avec professionnalisme."
+      },
+      "r42": {
+        "region": "[FIXME] Nanterre",
+        "comment": "[FIXME] Très bonne prestation. Équipe réactive et à l'écoute."
+      },
+      "r43": {
+        "region": "[FIXME] Créteil",
+        "comment": "[FIXME] Parfait ! Financement obtenu rapidement. Service professionnel."
+      },
+      "r44": {
+        "region": "[FIXME] Vitry-sur-Seine",
+        "comment": "[FIXME] Excellente expérience ! Conseiller compétent et processus efficace."
+      },
+      "r45": {
+        "region": "[FIXME] Avignon",
+        "comment": "[FIXME] Bon service. Communication claire et suivi régulier du dossier."
+      },
+      "r46": {
+        "region": "[FIXME] Poitiers",
+        "comment": "[FIXME] Je recommande ! Service rapide et transparent. Très satisfaite."
+      },
+      "r47": {
+        "region": "[FIXME] Aubervilliers",
+        "comment": "[FIXME] Service au top ! Mon crédit validé en 11 jours."
+      },
+      "r48": {
+        "region": "[FIXME] Aulnay-sous-Bois",
+        "comment": "[FIXME] Bonne expérience. L'équipe est professionnelle et réactive."
+      },
+      "r49": {
+        "region": "[FIXME] Asnières-sur-Seine",
+        "comment": "[FIXME] Excellent ! Processus simple et rapide. Je recommande."
+      },
+      "r50": {
+        "region": "[FIXME] Colombes",
+        "comment": "[FIXME] Très satisfaite ! Équipe à l'écoute et efficace."
+      },
+      "r51": {
+        "region": "[FIXME] La Rochelle",
+        "comment": "[FIXME] Bon service. Mon conseiller était disponible et compétent."
+      },
+      "r52": {
+        "region": "[FIXME] Calais",
+        "comment": "[FIXME] Impeccable ! Dossier traité rapidement. Service professionnel."
+      },
+      "r53": {
+        "region": "[FIXME] Rueil-Malmaison",
+        "comment": "[FIXME] Parfait ! Financement obtenu en moins de 2 semaines."
+      },
+      "r54": {
+        "region": "[FIXME] Antibes",
+        "comment": "[FIXME] Très bonne prestation. Processus transparent et bien expliqué."
+      },
+      "r55": {
+        "region": "[FIXME] Saint-Maur-des-Fossés",
+        "comment": "[FIXME] Excellent service ! Équipe réactive et professionnelle."
+      },
+      "r56": {
+        "region": "[FIXME] Champigny-sur-Marne",
+        "comment": "[FIXME] Je recommande vivement ! Service rapide et efficace."
+      },
+      "r57": {
+        "region": "[FIXME] Dunkerque",
+        "comment": "[FIXME] Bonne expérience globale. Conseiller compétent."
+      },
+      "r58": {
+        "region": "[FIXME] Bourges",
+        "comment": "[FIXME] Service au top ! Mon dossier validé rapidement."
+      },
+      "r59": {
+        "region": "[FIXME] Cannes",
+        "comment": "[FIXME] Parfait ! Processus simple et transparent. Très satisfait."
+      },
+      "r60": {
+        "region": "[FIXME] Pau",
+        "comment": "[FIXME] Très bon service. L'équipe est à l'écoute et réactive."
+      },
+      "r61": {
+        "region": "[FIXME] Colmar",
+        "comment": "[FIXME] Excellent ! Mon crédit automobile validé en 10 jours."
+      },
+      "r62": {
+        "region": "[FIXME] Quimper",
+        "comment": "[FIXME] Service impeccable ! Équipe professionnelle et efficace."
+      },
+      "r63": {
+        "region": "[FIXME] Valence",
+        "comment": "[FIXME] Bonne prestation. Communication claire et suivi régulier."
+      },
+      "r64": {
+        "region": "[FIXME] Troyes",
+        "comment": "[FIXME] Je recommande ! Service rapide et professionnel."
+      },
+      "r65": {
+        "region": "[FIXME] Ajaccio",
+        "comment": "[FIXME] Parfait ! Financement obtenu rapidement. Très satisfait."
+      },
+      "r66": {
+        "region": "[FIXME] Chambéry",
+        "comment": "[FIXME] Très bonne expérience. L'équipe est compétente."
+      },
+      "r67": {
+        "region": "[FIXME] Lorient",
+        "comment": "[FIXME] Service excellent ! Processus efficace et transparent."
+      },
+      "r68": {
+        "region": "[FIXME] Niort",
+        "comment": "[FIXME] Impeccable ! Mon dossier traité avec professionnalisme."
+      },
+      "r69": {
+        "region": "[FIXME] Sarcelles",
+        "comment": "[FIXME] Bon service. Conseiller disponible et à l'écoute."
+      },
+      "r70": {
+        "region": "[FIXME] Beauvais",
+        "comment": "[FIXME] Excellent ! Je recommande vivement AGM INVEST."
+      },
+      "r71": {
+        "region": "[FIXME] Vannes",
+        "comment": "[FIXME] Service au top ! Mon crédit validé en 9 jours."
+      },
+      "r72": {
+        "region": "[FIXME] Ivry-sur-Seine",
+        "comment": "[FIXME] Très bonne prestation. Équipe réactive et professionnelle."
+      },
+      "r73": {
+        "region": "[FIXME] Cergy",
+        "comment": "[FIXME] Parfait ! Processus rapide et transparent."
+      },
+      "r74": {
+        "region": "[FIXME] Levallois-Perret",
+        "comment": "[FIXME] Excellente expérience ! Service professionnel."
+      },
+      "r75": {
+        "region": "[FIXME] Pessac",
+        "comment": "[FIXME] Bon service. Mon conseiller était compétent."
+      },
+      "r76": {
+        "region": "[FIXME] Clichy",
+        "comment": "[FIXME] Je recommande ! Dossier traité rapidement."
+      },
+      "r77": {
+        "region": "[FIXME] Arles",
+        "comment": "[FIXME] Service impeccable ! Équipe à l'écoute et efficace."
+      },
+      "r78": {
+        "region": "[FIXME] Vénissieux",
+        "comment": "[FIXME] Très bonne expérience. Processus bien expliqué."
+      },
+      "r79": {
+        "region": "[FIXME] Antony",
+        "comment": "[FIXME] Excellent ! Mon financement obtenu en 12 jours."
+      },
+      "r80": {
+        "region": "[FIXME] La Seyne-sur-Mer",
+        "comment": "[FIXME] Parfait ! Service rapide et professionnel."
+      },
+      "r81": {
+        "region": "[FIXME] Neuilly-sur-Seine",
+        "comment": "[FIXME] Bon service. L'équipe est réactive."
+      },
+      "r82": {
+        "region": "[FIXME] Montauban",
+        "comment": "[FIXME] Je recommande vivement ! Service excellent."
+      },
+      "r83": {
+        "region": "[FIXME] Pantin",
+        "comment": "[FIXME] Service au top ! Dossier validé rapidement."
+      },
+      "r84": {
+        "region": "[FIXME] Noisy-le-Grand",
+        "comment": "[FIXME] Très bonne prestation. Conseiller compétent."
+      },
+      "r85": {
+        "region": "[FIXME] Évry",
+        "comment": "[FIXME] Excellent service ! Processus efficace."
+      },
+      "r86": {
+        "region": "[FIXME] Villeneuve-d'Ascq",
+        "comment": "[FIXME] Impeccable ! Mon crédit automobile validé."
+      },
+      "r87": {
+        "region": "[FIXME] Meaux",
+        "comment": "[FIXME] Bon service. Communication claire."
+      },
+      "r88": {
+        "region": "[FIXME] Cholet",
+        "comment": "[FIXME] Parfait ! Équipe professionnelle et réactive."
+      },
+      "r89": {
+        "region": "[FIXME] Belfort",
+        "comment": "[FIXME] Service excellent ! Je recommande."
+      },
+      "r90": {
+        "region": "[FIXME] Bayonne",
+        "comment": "[FIXME] Très bonne expérience. Processus transparent."
+      },
+      "r91": {
+        "region": "[FIXME] Chartres",
+        "comment": "[FIXME] Impeccable ! Financement obtenu rapidement."
+      },
+      "r92": {
+        "region": "[FIXME] Drancy",
+        "comment": "[FIXME] Excellent ! Service professionnel et efficace."
+      },
+      "r93": {
+        "region": "[FIXME] Sartrouville",
+        "comment": "[FIXME] Bon service. Mon conseiller était disponible."
+      },
+      "r94": {
+        "region": "[FIXME] Saint-Quentin",
+        "comment": "[FIXME] Je recommande ! Dossier traité avec soin."
+      },
+      "r95": {
+        "region": "[FIXME] Île-de-France",
+        "comment": "[FIXME] Service au top ! Très satisfait du résultat."
+      },
+      "r96": {
+        "region": "[FIXME] Auvergne-Rhône-Alpes",
+        "comment": "[FIXME] Très bonne prestation. Équipe compétente."
+      },
+      "r97": {
+        "region": "[FIXME] Nouvelle-Aquitaine",
+        "comment": "[FIXME] Parfait ! Processus simple et rapide."
+      },
+      "r98": {
+        "region": "[FIXME] Occitanie",
+        "comment": "[FIXME] Excellent service ! Mon crédit validé en 10 jours."
+      },
+      "r99": {
+        "region": "[FIXME] Hauts-de-France",
+        "comment": "[FIXME] Bon service. Communication efficace."
+      },
+      "r100": {
+        "region": "[FIXME] Provence-Alpes-Côte d'Azur",
+        "comment": "[FIXME] Je recommande vivement ! Service professionnel."
+      },
+      "r101": {
+        "region": "[FIXME] Grand Est",
+        "comment": "[FIXME] Impeccable ! Équipe réactive et à l'écoute."
+      },
+      "r102": {
+        "region": "[FIXME] Pays de la Loire",
+        "comment": "[FIXME] Très bonne expérience. Processus transparent."
+      },
+      "r103": {
+        "region": "[FIXME] Bretagne",
+        "comment": "[FIXME] Service excellent ! Mon dossier validé rapidement."
+      },
+      "r104": {
+        "region": "[FIXME] Normandie",
+        "comment": "[FIXME] Parfait ! Je recommande AGM INVEST."
+      },
+      "r105": {
+        "region": "[FIXME] Bourgogne-Franche-Comté",
+        "comment": "[FIXME] Bon service. Conseiller compétent et disponible."
+      },
+      "r106": {
+        "region": "[FIXME] Centre-Val de Loire",
+        "comment": "[FIXME] Excellent ! Financement obtenu en 11 jours."
+      },
+      "r107": {
+        "region": "[FIXME] Corse",
+        "comment": "[FIXME] Service impeccable ! Équipe professionnelle."
+      },
+      "r108": {
+        "region": "[FIXME] Paris",
+        "comment": "[FIXME] Très bonne prestation. Processus efficace."
+      },
+      "r109": {
+        "region": "[FIXME] Lyon",
+        "comment": "[FIXME] Je recommande ! Service rapide et transparent."
+      },
+      "r110": {
+        "region": "[FIXME] Marseille",
+        "comment": "[FIXME] Parfait ! Mon crédit automobile validé rapidement."
+      }
+    },
+    "subtitle": "[FIXME] Découvrez les témoignages de ceux qui nous ont fait confiance pour leur projet de financement.",
+    "stars": "[FIXME] étoiles",
+    "seeAll": "[FIXME] Voir tous les avis",
+    "allReviewsLabel": "[FIXME] Tous nos avis",
+    "Stats": {
+      "averageRating": "[FIXME] Note Moyenne",
+      "totalReviews": "[FIXME] Avis Vérifiés",
+      "fiveStars": "[FIXME] Avis 5 étoiles"
+    }
+  },
+  "ReviewForm": {
+    "brandName": "[FIXME] AGM INVEST",
+    "certifiedReviews": "[FIXME] Avis Clients Certifiés",
+    "verifiedEstablishment": "[FIXME] Établissement Vérifié",
+    "Success": {
+      "title": "[FIXME] Merci pour votre avis !",
+      "message": "[FIXME] Votre témoignage a bien été reçu. Il sera publié après validation par notre équipe de modération.",
+      "button": "[FIXME] Fermer"
+    },
+    "ratingLabel": "[FIXME] Votre note globale",
+    "Labels": {
+      "name": "[FIXME] Votre nom complet",
+      "region": "[FIXME] Votre ville / région",
+      "comment": "[FIXME] Votre témoignage"
+    },
+    "Placeholders": {
+      "name": "[FIXME] Ex: Jean Dupont",
+      "region": "[FIXME] Ex: Strasbourg, Grand Est",
+      "comment": "[FIXME] Partagez votre expérience avec AGM INVEST..."
+    },
+    "submit": "[FIXME] Publier mon avis",
+    "disclaimer": "[FIXME] En publiant cet avis, vous acceptez nos conditions d'utilisation.",
+    "Errors": {
+      "submission": "[FIXME] Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+      "name": "[FIXME] Le nom est obligatoire.",
+      "region": "[FIXME] La région est obligatoire.",
+      "commentRequired": "[FIXME] Le commentaire est obligatoire.",
+      "commentTooShort": "[FIXME] Le commentaire doit faire au moins 10 caractères."
+    },
+    "Ratings": {
+      "1": "[FIXME] Décevant",
+      "2": "[FIXME] Moyen",
+      "3": "[FIXME] Satisfaisant",
+      "4": "[FIXME] Très bien",
+      "5": "[FIXME] Excellent"
+    }
+  },
+  "NotificationPopup": {
+    "title": "[FIXME] Nouvelle demande !",
+    "from": "[FIXME] de",
+    "action": "[FIXME] vient de soumettre une demande",
+    "close": "[FIXME] Fermer"
+  }
 }

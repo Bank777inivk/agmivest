@@ -74,10 +74,8 @@ export default function LocationSection({ isMinimal = false }: LocationSectionPr
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-ely-blue text-lg mb-2">{t('address')}</h3>
-                                    <p className="text-gray-600 leading-relaxed">
-                                        MELPARK, 40 Rue Jean Monnet<br />
-                                        68200 Mulhouse<br />
-                                        France
+                                    <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+                                        {t('details.address')}
                                     </p>
                                 </div>
                             </div>
@@ -92,7 +90,7 @@ export default function LocationSection({ isMinimal = false }: LocationSectionPr
                                 <div>
                                     <h3 className="font-bold text-ely-blue text-lg mb-2">{t('phone')}</h3>
                                     <a href="tel:+33756844145" className="text-gray-600 hover:text-ely-mint transition-colors text-lg font-semibold">
-                                        AGM INVEST +33 7 56 84 41 45
+                                        {t('details.phone')}
                                     </a>
                                 </div>
                             </div>
@@ -107,7 +105,7 @@ export default function LocationSection({ isMinimal = false }: LocationSectionPr
                                 <div>
                                     <h3 className="font-bold text-ely-blue text-lg mb-2">{t('email')}</h3>
                                     <a href="mailto:contact@agm-negoce.com" className="text-gray-600 hover:text-ely-mint transition-colors">
-                                        contact@agm-negoce.com
+                                        {t('details.email')}
                                     </a>
                                 </div>
                             </div>

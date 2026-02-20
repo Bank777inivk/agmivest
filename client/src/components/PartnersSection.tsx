@@ -6,11 +6,6 @@ import { useTranslations } from "next-intl";
 
 // Placeholder data since we don't have actual partner logos yet
 // Ideally, these would be Image components with actual logos
-const partners = [
-    "Crédit Agricole", "BNP Paribas", "Société Générale",
-    "Caisse d'Épargne", "Banque Populaire", "Crédit Mutuel",
-    "LCL", "La Banque Postale", "AXA", "Generali"
-];
 
 interface PartnersSectionProps {
     isMinimal?: boolean;
@@ -18,6 +13,7 @@ interface PartnersSectionProps {
 
 export default function PartnersSection({ isMinimal = false }: PartnersSectionProps) {
     const t = useTranslations('Partners');
+    const partners = t.raw('list') as string[];
 
     return (
         <section id="partners" className={`${isMinimal ? 'py-0 border-0 bg-transparent' : 'py-12 md:py-16 bg-gray-50 border-y border-gray-200'}`}>

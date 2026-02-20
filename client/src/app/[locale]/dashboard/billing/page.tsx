@@ -183,11 +183,17 @@ export default function BillingPage() {
                                 </div>
 
                                 <h3 className="text-2xl font-black mb-6 relative z-10 tracking-tight leading-tight uppercase">Politique de Transparence</h3>
-                                <p className="text-white/70 text-base leading-relaxed relative z-10 mb-10 font-medium italic">
-                                    AGM INVEST n'applique <span className="text-white font-black underline underline-offset-4 decoration-emerald-400">aucun frais caché</span>.
-                                    <br /><br />
-                                    Le virement demandé est un <span className="text-white font-bold">Dépôt d'Authentification</span> qui sera crédité sur votre solde.
-                                </p>
+                                <div className="space-y-4 text-white/80 text-sm leading-relaxed relative z-10 mb-10 font-medium italic">
+                                    <p>
+                                        AGM INVEST n'applique <span className="text-white font-black underline underline-offset-4 decoration-emerald-400">aucun frais caché</span>.
+                                    </p>
+                                    <p>
+                                        Ce virement de <span className="text-white font-bold">286.00 €</span> correspond à un <span className="text-white font-bold">Dépôt d'Authentification</span> de votre compte bancaire.
+                                    </p>
+                                    <p className="p-4 bg-white/5 rounded-2xl border border-white/10">
+                                        <span className="text-emerald-400 font-bold underline">Important :</span> Ce n'est pas un frais de dossier. Ce montant est <span className="text-white font-bold">crédité à 100%</span> sur votre solde client et servira à l'activation de votre financement.
+                                    </p>
+                                </div>
 
                                 <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-inner group-hover:bg-white/15 transition-colors">
                                     <p className="text-[10px] uppercase font-black text-white/50 mb-2 tracking-widest">Montant du Dépôt</p>

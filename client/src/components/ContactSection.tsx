@@ -180,7 +180,7 @@ export default function ContactSection({ isMinimal = false }: ContactSectionProp
                                     })}
                                     {" "}
                                     <a href="tel:+33756844145" className="font-bold text-ely-mint hover:underline">
-                                        AGM INVEST +33 7 56 84 41 45
+                                        {t('QuickResponse.phone')}
                                     </a>
                                 </p>
                             </div>

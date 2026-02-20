@@ -23,6 +23,7 @@ import {
     Euro
 } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import PremiumSpinner from "@/components/dashboard/PremiumSpinner";
 import DesktopDashboard from "@/components/dashboard/Home/DesktopDashboard";
 import MobileDashboard from "@/components/dashboard/Home/MobileDashboard";
@@ -50,6 +51,7 @@ interface LoanRequest {
 
 export default function DashboardPage() {
     const router = useRouter();
+    const t = useTranslations();
     const [user, setUser] = useState<User | null>(null);
     const [firstName, setFirstName] = useState("");
     const [loanAccount, setLoanAccount] = useState<any>(null);
@@ -58,10 +60,10 @@ export default function DashboardPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [idStatus, setIdStatus] = useState<string | null>(null);
     const [stats, setStats] = useState([
-        { id: 'total', label: "Total Demandes", value: "0", icon: Clock, color: "blue", trend: "0%" },
-        { id: 'approved', label: "Prêts accordés", value: "0", icon: CheckCircle, color: "green", trend: "0%" },
-        { id: 'pending', label: "En attente", value: "0", icon: AlertCircle, color: "orange", trend: "0" },
-        { id: 'projects', label: "Projets", value: "0", icon: FileCheck, color: "purple", trend: "0%" },
+        { id: 'total', label: "Dashboard.Home.stats.total", value: "0", icon: Clock, color: "blue", trend: "0%" },
+        { id: 'approved', label: "Dashboard.Home.stats.approved", value: "0", icon: CheckCircle, color: "green", trend: "0%" },
+        { id: 'pending', label: "Dashboard.Home.stats.pending", value: "0", icon: AlertCircle, color: "orange", trend: "0" },
+        { id: 'projects', label: "Dashboard.Home.stats.projects", value: "0", icon: FileCheck, color: "purple", trend: "0%" },
     ]);
 
     useEffect(() => {
@@ -142,10 +144,10 @@ export default function DashboardPage() {
                     setHasActiveRequest(active);
 
                     setStats([
-                        { id: 'total', label: "Total Demandes", value: allData.length.toString(), icon: Clock, color: "blue", trend: "Live" },
-                        { id: 'approved', label: "Prêts accordés", value: allData.filter(r => r.status === "approved").length.toString(), icon: CheckCircle, color: "green", trend: `${Math.round((allData.filter(r => r.status === "approved").length / (allData.length || 1)) * 100)}%` },
-                        { id: 'pending', label: "En attente", value: allData.filter(r => r.status === "pending" || r.status === "processing").length.toString(), icon: AlertCircle, color: "orange", trend: "0" },
-                        { id: 'projects', label: "Projets", value: new Set(allData.map(r => r.projectType)).size.toString(), icon: FileCheck, color: "purple", trend: "85%" },
+                        { id: 'total', label: "Dashboard.Home.stats.total", value: allData.length.toString(), icon: Clock, color: "blue", trend: "Live" },
+                        { id: 'approved', label: "Dashboard.Home.stats.approved", value: allData.filter(r => r.status === "approved").length.toString(), icon: CheckCircle, color: "green", trend: `${Math.round((allData.filter(r => r.status === "approved").length / (allData.length || 1)) * 100)}%` },
+                        { id: 'pending', label: "Dashboard.Home.stats.pending", value: allData.filter(r => r.status === "pending" || r.status === "processing").length.toString(), icon: AlertCircle, color: "orange", trend: "0" },
+                        { id: 'projects', label: "Dashboard.Home.stats.projects", value: new Set(allData.map(r => r.projectType)).size.toString(), icon: FileCheck, color: "purple", trend: "85%" },
                     ]);
 
                     setIsLoading(false);

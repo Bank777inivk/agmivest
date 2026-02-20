@@ -61,17 +61,20 @@ export default function Footer() {
                         <ul className="space-y-3 md:space-y-4">
                             <li className="flex items-center gap-3 text-gray-300 group">
                                 <Phone className="w-4 h-4 md:w-5 md:h-5 text-ely-mint" />
-                                <a href="tel:+33756844145" className="hover:text-ely-mint transition-colors text-xs md:text-base">AGM INVEST +33 7 56 84 41 45</a>
+                                <a href="tel:+33756844145" className="hover:text-ely-mint transition-colors text-sm md:text-base">
+                                    {t('details.phone')}
+                                </a>
                             </li>
                             <li className="flex items-center gap-3 text-gray-300 group">
                                 <Mail className="w-4 h-4 md:w-5 md:h-5 text-ely-mint" />
-                                <a href="mailto:contact@agm-negoce.com" className="hover:text-ely-mint transition-colors text-xs md:text-base">contact@agm-negoce.com</a>
+                                <a href="mailto:contact@agm-negoce.com" className="hover:text-ely-mint transition-colors text-sm md:text-base">
+                                    {t('details.email')}
+                                </a>
                             </li>
                             <li className="flex items-start gap-3 text-gray-300">
                                 <MapPin className="w-4 h-4 md:w-5 md:h-5 text-ely-mint shrink-0 mt-1" />
-                                <span className="text-xs md:text-base leading-relaxed">
-                                    MELPARK, 40 Rue Jean Monnet<br />
-                                    68200 Mulhouse, France
+                                <span className="text-sm md:text-base leading-relaxed whitespace-pre-line">
+                                    {t('details.address')}
                                 </span>
                             </li>
                         </ul>
@@ -90,11 +93,11 @@ export default function Footer() {
                         <Link href="/mentions-legales" className="hover:text-white transition-colors">{t('legal.mentions')}</Link>
                         <Link href="/politique-confidentialite" className="hover:text-white transition-colors">{t('legal.privacy')}</Link>
                         <Link href="/cookies" className="hover:text-white transition-colors">{t('legal.cookies')}</Link>
-                        <Link href="/cgu" className="hover:text-white transition-colors">CGU</Link>
-                        <Link href="/conditions-remboursement" className="hover:text-white transition-colors">Conditions de Remboursement</Link>
-                        <Link href="/disclaimer-financier" className="hover:text-white transition-colors">Disclaimer Financier</Link>
-                        <Link href="/confiance-securite" className="hover:text-white transition-colors">Confiance & Sécurité</Link>
-                        <Link href="/mentions-publicitaires" className="hover:text-white transition-colors">Mentions Publicitaires</Link>
+                        <Link href="/cgu" className="hover:text-white transition-colors">{t('legal.cgu')}</Link>
+                        <Link href="/conditions-remboursement" className="hover:text-white transition-colors">{t('legal.refund')}</Link>
+                        <Link href="/disclaimer-financier" className="hover:text-white transition-colors">{t('legal.disclaimer')}</Link>
+                        <Link href="/confiance-securite" className="hover:text-white transition-colors">{t('legal.trust')}</Link>
+                        <Link href="/mentions-publicitaires" className="hover:text-white transition-colors">{t('legal.ads')}</Link>
                     </div>
                 </div>
             </div>
