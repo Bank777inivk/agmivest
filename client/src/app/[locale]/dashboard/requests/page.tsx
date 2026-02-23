@@ -23,13 +23,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
 import PremiumSpinner from "@/components/dashboard/PremiumSpinner";
 
-const statusStyles: any = {
-    pending: { label: "En attente", color: "amber", icon: Clock },
-    approved: { label: "Accordé", color: "ely-mint", icon: CheckCircle2 },
-    rejected: { label: "Refusé", color: "red", icon: AlertCircle },
-    processing: { label: "En cours", color: "ely-blue", icon: TrendingUp },
-};
-
 export default function RequestsPage() {
     const t = useTranslations('Dashboard.Requests');
     const tProject = useTranslations('CreditRequest.Project.labels');
@@ -37,6 +30,13 @@ export default function RequestsPage() {
     const [requests, setRequests] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
+
+    const statusStyles: any = {
+        pending: { label: t('status.pending'), color: "amber", icon: Clock },
+        approved: { label: t('status.approved'), color: "ely-mint", icon: CheckCircle2 },
+        rejected: { label: t('status.rejected'), color: "red", icon: AlertCircle },
+        processing: { label: t('status.processing'), color: "ely-blue", icon: TrendingUp },
+    };
 
     useEffect(() => {
         let unsubRequests: () => void;
@@ -93,8 +93,8 @@ export default function RequestsPage() {
             {/* Mobile/Desktop Header Section */}
             <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
-                    <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Mes Demandes</h1>
-                    <p className="text-slate-500 font-medium">Consultez l'historique et l'avancement de vos dossiers.</p>
+                    <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">{t('title')}</h1>
+                    <p className="text-slate-500 font-medium">{t('subtitle')}</p>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -102,7 +102,7 @@ export default function RequestsPage() {
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-ely-blue transition-colors" />
                         <input
                             type="text"
-                            placeholder="Rechercher..."
+                            placeholder={t('searchPlaceholder')}
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="w-full md:w-72 pl-12 pr-4 py-3 bg-white border border-slate-100 rounded-2xl shadow-sm outline-none focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue/40 transition-all placeholder:text-slate-400 font-medium"
@@ -132,16 +132,16 @@ export default function RequestsPage() {
                                 <ShieldCheck className="w-6 h-6 text-white" />
                             </div>
                             <div className="flex-1">
-                                <h3 className="text-lg font-bold text-emerald-800 mb-1">Félicitations ! Votre crédit est accordé 🚀</h3>
+                                <h3 className="text-lg font-bold text-emerald-800 mb-1">{t('banners.approved.title')}</h3>
                                 <p className="text-sm text-emerald-800/80 font-medium leading-relaxed mb-3">
-                                    Excellente nouvelle : votre financement a été validé. Une dernière vérification d'identité est requise pour activer le transfert des fonds.
+                                    {t('banners.approved.message')}
                                 </p>
                                 <button
                                     onClick={() => router.push("/dashboard/verification")}
                                     className="px-6 py-2.5 bg-emerald-600 text-white rounded-xl font-black text-xs uppercase tracking-widest hover:bg-emerald-700 transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20"
                                 >
                                     <ShieldCheck className="w-4 h-4" />
-                                    Vérification requise
+                                    {t('banners.approved.action')}
                                 </button>
                             </div>
                         </motion.div>
@@ -158,16 +158,16 @@ export default function RequestsPage() {
                             <Euro className="w-6 h-6 text-white" />
                         </div>
                         <div className="flex-1">
-                            <h3 className="text-lg font-bold text-amber-700 mb-1">Action Requise</h3>
+                            <h3 className="text-lg font-bold text-amber-700 mb-1">{t('banners.actionRequired.title')}</h3>
                             <p className="text-sm text-amber-800/80 font-medium leading-relaxed mb-3">
-                                Votre identité a été confirmée ! Pour finaliser l'activation de votre crédit, le dépôt d'authentification est maintenant nécessaire.
+                                {t('banners.actionRequired.message')}
                             </p>
                             <button
                                 onClick={() => router.push("/dashboard/billing")}
                                 className="px-6 py-2.5 bg-amber-600 text-white rounded-xl font-black text-xs uppercase tracking-widest hover:bg-amber-700 transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20"
                             >
                                 <Euro className="w-4 h-4" />
-                                Effectuer le dépôt
+                                {t('banners.actionRequired.action')}
                             </button>
                         </div>
                     </motion.div>
@@ -205,7 +205,7 @@ export default function RequestsPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-black text-slate-900 group-hover:text-ely-blue transition-colors text-base md:text-xl tracking-tight leading-tight">
-                                            {req.projectType ? tProject(req.projectType.toLowerCase()) : "Demande de Crédit"}
+                                            {req.projectType ? tProject(req.projectType.toLowerCase()) : t('defaultType')}
                                         </h3>
                                         <div className="flex flex-wrap items-center gap-3 mt-2">
                                             <span className="text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 px-2 py-0.5 rounded-md">
@@ -229,14 +229,14 @@ export default function RequestsPage() {
 
                                 <div className="flex items-center justify-between md:justify-end gap-8 border-t border-slate-50 md:border-t-0 pt-5 md:pt-0">
                                     <div className="text-left md:text-right">
-                                        <p className="text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Montant demandé</p>
+                                        <p className="text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-1.5">{t('requestedAmount')}</p>
                                         <p className="text-xl md:text-3xl font-black text-slate-900 leading-none tracking-tighter">
                                             {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(req.amount || 0)}
                                         </p>
                                     </div>
 
                                     <div className="flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest shadow-xl shadow-blue-900/10 hover:shadow-blue-900/30 transition-all duration-300 active:scale-95 group/btn">
-                                        <span>Suivre</span>
+                                        <span>{t('follow')}</span>
                                         <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                                     </div>
                                 </div>
@@ -250,14 +250,14 @@ export default function RequestsPage() {
                         <FileText className="w-12 h-12 text-slate-200" />
                     </div>
                     <div className="space-y-2">
-                        <h3 className="text-2xl font-black text-slate-900 tracking-tight">Aucune demande trouvée</h3>
-                        <p className="text-slate-500 max-w-sm mx-auto font-medium">Vous n'avez pas encore effectué de demande de financement. Commencez par simuler votre projet.</p>
+                        <h3 className="text-2xl font-black text-slate-900 tracking-tight">{t('noneFound')}</h3>
+                        <p className="text-slate-500 max-w-sm mx-auto font-medium">{t('noneDescription')}</p>
                     </div>
                     <button
                         onClick={() => router.push("/dashboard/credit")}
                         className="mt-6 px-10 py-5 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-sm uppercase tracking-widest shadow-2xl shadow-blue-900/20 hover:scale-[1.02] active:scale-95 transition-all"
                     >
-                        Nouvelle demande
+                        {t('newRequest')}
                     </button>
                 </div>
             )}

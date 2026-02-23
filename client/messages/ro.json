@@ -1,1570 +1,2673 @@
 {
   "Home": {
     "Services": {
-      "title": "[FIXME] Nos solutions de financement",
-      "subtitle": "[FIXME] Une expertise complète pour tous vos besoins financiers.",
-      "cta": "[FIXME] Voir tous nos services"
+      "title": "Soluțiile noastre de finanțare",
+      "subtitle": "Expertiză completă pentru toate nevoile dumneavoastră financiare.",
+      "cta": "Vezi toate serviciile noastre"
     },
     "Simulator": {
-      "title": "[FIXME] Simulateur de prêt",
-      "subtitle": "[FIXME] Calculez vos mensualités en quelques clics."
+      "title": "Simulator de împrumut",
+      "subtitle": "Calculați-vă ratele lunare în câteva clicuri."
     },
     "Contact": {
-      "title": "[FIXME] Contact & Accès",
-      "subtitle": "[FIXME] Une question ? Venez nous rencontrer ou envoyez-nous un message."
+      "title": "Contact & Acces",
+      "subtitle": "O întrebare? Veniți să ne cunoașteți sau trimiteți-ne un mesaj."
     }
   },
   "Navigation": {
     "home": "Acasă",
     "services": "Serviciile Noastre",
-    "documents": "[FIXME] Documents",
+    "documents": "Documente",
     "about": "Despre Noi",
     "contact": "Contact",
-    "appointment": "[FIXME] Prendre RDV",
-    "creditRequest": "[FIXME] Demander un prêt",
-    "becomeClient": "[FIXME] Devenir Client",
-    "brandSubtitle": "[FIXME] Crédit & Assurance",
-    "reviews": "[FIXME] Avis"
+    "appointment": "Programare",
+    "creditRequest": "Cere un împrumut",
+    "becomeClient": "Deveniți Client",
+    "brandSubtitle": "Credit & Asigurări",
+    "reviews": "Recenzii"
   },
   "Hero": {
-    "titleLine1": "[FIXME] Votre projet",
-    "titleLine2": "[FIXME] immobilier, bien",
-    "titleLine3": "[FIXME] accompagné",
-    "description1": "[FIXME] Votre crédit immobilier ou votre assurance emprunteur aux meilleures conditions :",
-    "descriptionHighlight": "[FIXME] c'est l'expertise AGM INVEST !",
-    "description2": "[FIXME] Notre équipe vous guide à chaque étape pour obtenir le meilleur financement.",
-    "tagline": "[FIXME] Tout simplement !",
+    "titleLine1": "Proiectul tău",
+    "titleLine2": "imobiliar, bine",
+    "titleLine3": "însoțit",
+    "description1": "Creditul tău imobiliar sau asigurarea de împrumut în cele mai bune condiții:",
+    "descriptionHighlight": "aceasta este expertiza AGM INVEST!",
+    "description2": "Echipa noastră vă ghidează la fiecare pas pour a obține cea mai bună finanțare.",
+    "tagline": "Pur și simplu!",
     "cta": "Simulează proiectul meu"
   },
   "AdBanner": {
-    "msg1": "[FIXME] Besoin d'un prêt ? Je suis là pour vous aider !",
-    "msg2": "[FIXME] Obtenez votre simulation en 2 minutes !",
-    "msg3": "[FIXME] Nos clients nous font confiance depuis 20 ans",
-    "msg4": "[FIXME] Taux compétitifs garantis !",
-    "msg5": "[FIXME] Accompagnement personnalisé à chaque étape"
+    "msg1": "Aveți nevoie de un împrumut? Sunt aici să vă ajut!",
+    "msg2": "Obțineți simularea în 2 minute!",
+    "msg3": "Clienții noștri au încredere în noi de 20 de ani",
+    "msg4": "Rate competitive garantate!",
+    "msg5": "Acompaniament personalizat la fiecare pas"
   },
   "Services": {
-    "title": "[FIXME] Nos Services",
-    "subtitle": "[FIXME] Une expertise complète pour tous vos besoins de financement.",
+    "title": "Serviciile Noastre",
+    "subtitle": "Expertiză completă pentru toate nevoile dumneavoastră de finanțare.",
     "Items": {
       "realEstate": {
-        "title": "[FIXME] Prêt Immobilier",
-        "description": "[FIXME] Négociation des meilleurs taux pour votre résidence principale, secondaire ou locative."
+        "title": "Împrumut Imobiliar",
+        "description": "Negocierea celor mai bune rate pentru locuința dumneavoastră principală, secundară sau investiții locative."
       },
       "insurance": {
-        "title": "[FIXME] Assurance Emprunteur",
-        "description": "[FIXME] Économisez jusqu'à 50% sur votre assurance de prêt avec les mêmes garanties."
+        "title": "Asigurare Împrumutat",
+        "description": "Economisiți până la 50% la asigurarea de credit cu aceleași garanții."
       },
       "creditConsolidation": {
-        "title": "[FIXME] Regroupement de Crédits",
-        "description": "[FIXME] Regroupez vos crédits pour réduire vos mensualités et simplifier votre budget."
+        "title": "Regruparea Creditelor",
+        "description": "Regrupați-vă creditele pentru a vă reduce ratele lunare și a vă simplifica bugetul."
       },
       "professionalLoan": {
-        "title": "[FIXME] Prêt Professionnel",
-        "description": "[FIXME] Financement de vos murs, fonds de commerce ou équipements professionnels."
+        "title": "Împrumut Profesional",
+        "description": "Finanțarea pereților, a fondurilor de comerț sau a echipamentelor profesionale."
       },
       "renegotiation": {
-        "title": "[FIXME] Renégociation de Taux",
-        "description": "[FIXME] Profitez des taux bas actuels pour réduire le coût de votre crédit en cours."
+        "title": "Renegocierea Ratei",
+        "description": "Profitați de ratele scăzute actuale pentru a reduce costul creditului în curs."
       },
       "support": {
-        "title": "[FIXME] Accompagnement",
-        "description": "[FIXME] Un conseiller dédié vous suit de la simulation à la signature chez le notaire."
+        "title": "Acompaniament",
+        "description": "Un consilier dedicat vă urmărește de la simulare până la semnarea la notar."
       }
     }
   },
   "About": {
-    "title": "[FIXME] À Propos de Nous",
-    "subtitle": "[FIXME] Votre partenaire de confiance en crédit et assurance depuis plus de 20 ans.",
+    "title": "Despre Noi",
+    "subtitle": "Partenerul dumneavoastră de încredere în credit și asigurări de peste 20 de ani.",
     "Stats": {
       "experience": {
-        "value": "[FIXME] 20+",
-        "label": "[FIXME] Ans d'expérience"
+        "value": "20+",
+        "label": "Experiență"
       },
       "clients": {
-        "value": "[FIXME] Satisfaits",
-        "label": "[FIXME] Clients"
+        "value": "Clienți",
+        "label": "Satisfăcuți"
       },
       "acceptance": {
-        "value": "[FIXME] 98%",
-        "label": "[FIXME] Taux d'acceptation"
+        "value": "98%",
+        "label": "Acceptare"
       },
       "secure": {
-        "value": "[FIXME] 100%",
-        "label": "[FIXME] Sécurisé"
+        "value": "100%",
+        "label": "Securizat"
       }
     },
     "Mission": {
-      "title": "[FIXME] Notre Mission",
-      "p1": "[FIXME] Depuis plus de 20 ans, <highlight>AGM INVEST</highlight> accompagne les particuliers dans la réalisation de leurs projets immobiliers. Notre équipe d'experts vous guide à chaque étape pour obtenir le meilleur financement.",
-      "p2": "[FIXME] Nous négocions pour vous auprès de nos partenaires bancaires et vous garantissons un accompagnement personnalisé, de la simulation à la signature chez le notaire."
+      "title": "Misiunea Noastră",
+      "p1": "De peste 20 de ani, <highlight>AGM INVEST</highlight> însoțește persoanele fizice în realizarea proiectelor lor imobiliare. Echipa noastră de experți vă ghidează la fiecare pas pentru a obține cea mai bună finanțare.",
+      "p2": "Negociem pentru dumneavoastră cu partenerii noștri bancari și vă garantăm un acompaniament personalizat, de la simulare până la semnarea la notar."
     },
     "Values": {
-      "title": "[FIXME] Nos Valeurs",
-      "v1": "[FIXME] Transparence totale sur les taux et les frais",
-      "v2": "[FIXME] Accompagnement personnalisé et humain",
-      "v3": "[FIXME] Réactivité et disponibilité de nos conseillers",
-      "v4": "[FIXME] Expertise reconnue sur le marché immobilier"
+      "title": "Valorile Noastre",
+      "v1": "Transparență totală asupra ratelor și comisioanelor",
+      "v2": "Acompaniament personalizat și uman",
+      "v3": "Reactivitate și disponibilitatea consilierilor noștri",
+      "v4": "Expertiză recunoscută pe piața imobiliară"
     }
   },
   "Process": {
-    "title": "[FIXME] Votre financement en 4 étapes",
-    "subtitle": "[FIXME] Un processus clair et transparent pour réaliser votre projet en toute sérénité.",
+    "title": "Finanțarea dumneavoastră în 4 pași",
+    "subtitle": "Un proces clar și transparent pentru a vă realiza proiectul cu toată liniștea.",
     "Steps": {
       "s1": {
-        "title": "[FIXME] 1. Étude de faisabilité",
-        "description": "[FIXME] Analyse gratuite de votre dossier et définition de votre budget de financement."
+        "title": "1. Studiu de fezabilitate",
+        "description": "Analiză gratuită a dosarului dumneavoastră și definirea bugetului de finanțare."
       },
       "s2": {
-        "title": "[FIXME] 2. Recherche & Négociation",
-        "description": "[FIXME] Nous interrogeons nos partenaires pour obtenir les meilleures conditions du marché."
+        "title": "2. Cercetare & Negociere",
+        "description": "Interogăm partenerii noștri pentru a obține cele mai bune condiții de pe piață."
       },
       "s3": {
-        "title": "[FIXME] 3. Accord de prêt",
-        "description": "[FIXME] Présentation des offres et sélection de la meilleure proposition bancaire."
+        "title": "3. Acord de împrumut",
+        "description": "Prezentarea ofertelor și selectarea celei mai bune propuneri bancare."
       },
       "s4": {
-        "title": "[FIXME] 4. Signature",
-        "description": "[FIXME] Accompagnement jusqu'aux signatures de l'offre et de l'acte notarié."
+        "title": "4. Semnare",
+        "description": "Acompaniament până la semnarea ofertei și a actului notarial."
       }
     }
   },
   "WhyChooseUs": {
-    "title": "[FIXME] Pourquoi passer par <highlight>AGM INVEST</highlight> ?",
-    "subtitle": "[FIXME] Dans un marché complexe, avoir un allié expert à vos côtés fait toute la différence.",
+    "title": "De ce să alegeți <highlight>AGM INVEST</highlight>?",
+    "subtitle": "Într-o piață complexă, a avea un aliat expert alături de dumneavoastră face toată diferența.",
     "Items": {
       "time": {
-        "title": "[FIXME] Gain de Temps",
-        "description": "[FIXME] Un seul interlocuteur pour interroger toutes les banques. On s'occupe de toute la paperasse."
+        "title": "Economie de Timp",
+        "description": "Un singur interlocutor pentru a interoga toate băncile. Ne ocupăm de toate actele."
       },
       "conditions": {
-        "title": "[FIXME] Conditions Préférentielles",
-        "description": "[FIXME] Grâce à notre volume d'affaires, nous négocions des taux et conditions d'assurance privilégiés."
+        "title": "Condiții Preferențiale",
+        "description": "Datorită volumului nostru de afaceri, negociem rate și condiții de asigurare privilegiate."
       },
       "expert": {
-        "title": "[FIXME] Conseil d'Expert",
-        "description": "[FIXME] Montage financier optimisé, choix de l'assurance, lissage de crédits... Nous optimisons chaque détail."
+        "title": "Consiliere de Expert",
+        "description": "Montaj financiar optimizat, alegerea asigurării, netezirea creditelor... Optimizăm fiecare detaliu."
       },
       "support": {
-        "title": "[FIXME] Accompagnement Complet",
-        "description": "[FIXME] Nous sommes à vos côtés de la première simulation jusqu'au déblocage des fonds."
+        "title": "Acompaniament Complet",
+        "description": "Suntem alături de dumneavoastră de la prima simulare până la deblocarea fondurilor."
       }
     },
     "Simulation": {
-      "title": "[FIXME] Vos Économies",
-      "marketRate": "[FIXME] Taux moyen marché",
-      "ourRate": "[FIXME] Taux Négocié AGM",
-      "savings": "[FIXME] Économie Potentielle",
-      "disclaimer": "[FIXME] *Sur un prêt de 200 000€ sur 20 ans."
+      "title": "Economiile Dumneavoastră",
+      "marketRate": "Rata medie a pieței",
+      "ourRate": "Rata Negociată AGM",
+      "savings": "Economie Potențială",
+      "disclaimer": "*La un împrumut de 200 000€ pe 20 de ani."
     }
   },
   "Team": {
-    "title": "[FIXME] Une équipe à votre service",
-    "subtitle": "[FIXME] Des experts passionnés dédiés à la réussite de votre projet.",
+    "title": "O echipă la serviciul dumneavoastră",
+    "subtitle": "Experți pasionați dedicați reușitei proiectului dumneavoastră.",
     "Members": {
       "meyer": {
-        "role": "[FIXME] Directeur Général",
-        "bio": "[FIXME] Expert en Financement Pro et Immobilier depuis 15 ans."
+        "role": "Director General",
+        "bio": "Expert în Finanțare Pro și Imobiliară de 15 ani."
       },
       "cyrille": {
-        "role": "[FIXME] Responsable Crédit",
-        "bio": "[FIXME] Spécialiste des dossiers complexes et des relations bancaires."
+        "role": "Responsabil Credit",
+        "bio": "Specialist în dosare complexe și relații bancare."
       },
       "emilie": {
-        "role": "[FIXME] Experte Financement TPE/PME",
-        "bio": "[FIXME] Accompagne les entrepreneurs dans leur développement."
+        "role": "Expertă Finanțare IMM",
+        "bio": "Însoțește antreprenorii în dezvoltarea lor."
       },
       "christophe": {
-        "role": "[FIXME] Chargé d'Affaires",
-        "bio": "[FIXME] Votre interlocuteur privilégié pour le suivi de votre dossier."
+        "role": "Responsabil de Afaceri",
+        "bio": "Interlocutorul dumneavoastră privilegiat pentru urmărirea dosarului."
       }
     }
   },
   "History": {
-    "title": "[FIXME] Notre Histoire",
-    "subtitle": "[FIXME] Près de 20 ans d'expertise et d'innovation au service de vos projets.",
+    "title": "Istoria Noastră",
+    "subtitle": "Aproape 20 de ani de expertiză și inovație în serviciul proiectelor dumneavoastră.",
     "Milestones": {
       "m2006": {
-        "title": "[FIXME] Création d'AGM Invest",
-        "description": "[FIXME] Fondation du cabinet à Nantes avec une vision : simplifier l'accès au crédit pour les particuliers."
+        "title": "Crearea AGM Invest",
+        "description": "Fondarea cabinetului la Nantes cu o viziune: simplificarea accesului la credit pentru persoanele fizice."
       },
       "m2012": {
-        "title": "[FIXME] Expansion Régionale",
-        "description": "[FIXME] Ouverture de 3 nouvelles agences dans le Grand Ouest et recrutement de 10 experts."
+        "title": "Expansiune Regională",
+        "description": "Deschiderea a 3 agenții noi în Grand Ouest și recrutarea a 10 experți."
       },
       "m2018": {
-        "title": "[FIXME] Pôle Professionnel",
-        "description": "[FIXME] Lancement de l'offre dédiée aux entreprises et aux promoteurs immobiliers."
+        "title": "Pol Profesional",
+        "description": "Lansarea ofertei dedicate companiilor și dezvoltatorilor imobiliari."
       },
       "m2024": {
-        "title": "[FIXME] Digitalisation 100%",
-        "description": "[FIXME] Mise en place de notre plateforme en ligne permettant un suivi des dossiers en temps réel."
+        "title": "Digitalizare 100%",
+        "description": "Implementarea platformei noastre online care permite urmărirea dosarelor în timp real."
       }
     }
   },
   "Documents": {
-    "title": "[FIXME] Préparez vos documents",
-    "subtitle": "[FIXME] Pour accélérer votre prêt, préparez ces pièces à l'avance.",
-    "cta": "[FIXME] Tous les documents peuvent être envoyés en ligne de manière sécurisée",
+    "title": "Pregătiți-vă documentele",
+    "subtitle": "Pentru a vă accelera împrumutul, pregătiți aceste piese din timp.",
+    "cta": "Toate documentele pot fi trimise online în mod securizat",
     "Items": {
       "identity": {
-        "title": "[FIXME] Pièce d'identité",
-        "description": "[FIXME] Carte d'identité ou passeport en cours de validité"
+        "title": "Act de identitate",
+        "description": "Carte de identitate sau pașaport valabil"
       },
       "income": {
-        "title": "[FIXME] Justificatifs de revenus",
-        "description": "[FIXME] 3 derniers bulletins de salaire et avis d'imposition"
+        "title": "Dovada veniturilor",
+        "description": "Ultimele 3 fluturași de salariu și avizul de impunere"
       },
       "bank": {
-        "title": "[FIXME] Relevés bancaires",
-        "description": "[FIXME] 3 derniers mois de vos comptes courants"
+        "title": "Extrase bancare",
+        "description": "Ultimele 3 luni ale conturilor dumneavoastră curente"
       },
       "home": {
-        "title": "[FIXME] Justificatif de domicile",
-        "description": "[FIXME] Facture de moins de 3 mois (électricité, eau, téléphone)"
+        "title": "Dovada adresei",
+        "description": "Factură mai veche de 3 luni (electricitate, apă, telefon)"
       },
       "sales": {
-        "title": "[FIXME] Compromis de vente",
-        "description": "[FIXME] Si vous avez déjà trouvé votre bien immobilier"
+        "title": "Compromis de vânzare",
+        "description": "Dacă ați găsit deja proprietatea imobiliară"
       },
       "amortization": {
-        "title": "[FIXME] Tableau d'amortissement",
-        "description": "[FIXME] Pour un rachat de crédit ou une renégociation de taux"
+        "title": "Tablou de amortizare",
+        "description": "Pentru o răscumpărare de credit sau o renegociere a ratei"
       }
     }
   },
   "Testimonials": {
-    "title": "[FIXME] Ils ont réalisé leur projet",
-    "rating": "[FIXME] 4.9/5 sur plus de 500 avis",
+    "title": "Ei și-au realizat proiectul",
+    "rating": "4.9/5 din peste 500 de recenzii",
     "Items": {
       "t1": {
-        "name": "[FIXME] Marc & Sophie",
-        "role": "[FIXME] Premier Achat",
-        "content": "[FIXME] AGM INVEST a réussi à nous obtenir un taux inespéré. Un accompagnement humain et rassurant pour notre premier achat."
+        "name": "Marc & Sophie",
+        "role": "Prima Achiziție",
+        "content": "AGM INVEST a reușit să ne obțină o rată nesperată. Un acompaniament uman și liniștitor pentru prima noastră achiziție."
       },
       "t2": {
-        "name": "[FIXME] Jean-Pierre",
-        "role": "[FIXME] Investissement Locatif",
-        "content": "[FIXME] Expertise technique parfaite sur le montage financier. Gain de temps précieux sur la négociation avec les banques."
+        "name": "Jean-Pierre",
+        "role": "Investiție Locativă",
+        "content": "Expertiză tehnică perfectă pe montajul financiar. Economie de timp prețioasă la negocierea cu băncile."
       },
       "t3": {
-        "name": "[FIXME] Linda",
-        "role": "[FIXME] Renégociation",
-        "content": "[FIXME] Simplicité et efficacité. Ma mensualité a baissé de 150€ par mois sans rallonger la durée de mon crédit."
+        "name": "Linda",
+        "role": "Renegociere",
+        "content": "Simplitate și eficiență. Rata mea lunară a scăzut cu 150€ pe lună fără a prelungi durata creditului meu."
       }
     }
   },
   "Auth": {
     "Login": {
-      "backToHome": "[FIXME] Retour au site",
-      "title": "[FIXME] Bon retour parmi nous",
-      "subtitle": "[FIXME] Accédez à votre espace client sécurisé",
-      "newHere": "[FIXME] Nouveau sur AGM INVEST ?",
-      "createAccount": "[FIXME] Créer un compte",
-      "email": "[FIXME] Adresse Email",
-      "password": "[FIXME] Mot de passe",
-      "rememberMe": "[FIXME] Se souvenir de moi",
-      "forgotPassword": "[FIXME] Mot de passe oublié ?",
-      "submit": "[FIXME] Se connecter",
-      "resetPasswordSuccess": "[FIXME] Email de réinitialisation envoyé ! Vérifiez votre boîte de réception.",
-      "auth/user-not-found": "[FIXME] Aucun compte correspondant à cet email.",
-      "auth/wrong-password": "[FIXME] Mot de passe incorrect.",
-      "auth/invalid-email": "[FIXME] Format d'email invalide.",
-      "auth/too-many-requests": "[FIXME] Compte temporairement bloqué. Réessayez plus tard."
+      "backToHome": "Înapoi la site",
+      "title": "Bine ați revenit",
+      "subtitle": "Accesați spațiul dumneavoastră client securizat",
+      "newHere": "Nou la AGM INVEST?",
+      "createAccount": "Creați un cont",
+      "email": "Adresa de Email",
+      "password": "Parolă",
+      "rememberMe": "Ține-mă minte",
+      "forgotPassword": "Parolă uitată?",
+      "submit": "Conectare",
+      "resetPasswordSuccess": "Email de resetare trimis! Verificați căsuța de e-mail.",
+      "auth/user-not-found": "Niciun cont corespunzător acestui email.",
+      "auth/wrong-password": "Parolă incorectă.",
+      "auth/invalid-email": "Format de email invalid.",
+      "auth/too-many-requests": "Cont blocat temporar. Reîncercați mai târziu."
     },
     "Register": {
-      "backToHome": "[FIXME] Retour au site",
-      "title": "[FIXME] Rejoignez AGM INVEST",
-      "stepIndicator": "[FIXME] Étape {current} sur {total} : {stepName}",
-      "step1": "[FIXME] État Civil",
-      "step2": "[FIXME] Coordonnées",
-      "step3": "[FIXME] Sécurité",
+      "backToHome": "Înapoi la site",
+      "title": "Alăturați-vă AGM INVEST",
+      "stepIndicator": "Pasul {current} din {total} : {stepName}",
+      "step1": "Stare Civilă",
+      "step2": "Date de Contact",
+      "step3": "Securitate",
       "Fields": {
-        "civility": "[FIXME] Civilité",
-        "firstName": "[FIXME] Prénom",
-        "lastName": "[FIXME] Nom",
-        "birthDate": "[FIXME] Date de naissance",
-        "birthPlace": "[FIXME] Ville de naissance",
-        "birthCountry": "[FIXME] Pays de naissance",
-        "nationality": "[FIXME] Nationalité",
-        "address": "[FIXME] Adresse de résidence",
-        "zipCode": "[FIXME] Code Postal",
-        "city": "[FIXME] Ville",
-        "residenceCountry": "[FIXME] Pays de résidence",
-        "phone": "[FIXME] Téléphone mobile",
-        "email": "[FIXME] Adresse Email",
-        "password": "[FIXME] Mot de passe",
-        "confirmPassword": "[FIXME] Confirmation",
-        "terms": "[FIXME] Je certifie l'exactitude des informations et j'accepte les <bold>Conditions Générales</bold> d'AGM INVEST."
+        "civility": "Civilitate",
+        "firstName": "Prenume",
+        "lastName": "Nume",
+        "birthDate": "Data nașterii",
+        "birthPlace": "Orașul nașterii",
+        "birthCountry": "Țara nașterii",
+        "nationality": "Naționalitate",
+        "address": "Adresa de reședință",
+        "zipCode": "Cod Poștal",
+        "city": "Oraș",
+        "residenceCountry": "Țara de reședință",
+        "phone": "Telefon mobil",
+        "email": "Adresa de Email",
+        "password": "Parolă",
+        "confirmPassword": "Confirmation",
+        "terms": "Certific exactitatea informațiilor și accept <bold>Condițiile Generale</bold> ale AGM INVEST."
       },
-      "back": "[FIXME] Retour",
+      "back": "Înapoi",
       "submit": {
-        "next": "[FIXME] Continuer",
-        "finish": "[FIXME] Créer mon compte"
+        "next": "Continuă",
+        "finish": "Creează-mi contul"
       },
-      "alreadyClient": "[FIXME] Déjà client ?",
-      "login": "[FIXME] Se connecter",
+      "alreadyClient": "Sunteți deja client?",
+      "login": "Conectare",
       "Errors": {
-        "incompleteDate": "[FIXME] Veuillez saisir une date de naissance complète.",
-        "invalidDate": "[FIXME] La date de naissance saisie est invalide.",
-        "underage": "[FIXME] Vous devez avoir au moins 18 ans pour vous inscrire.",
-        "errorPasswordsDoNotMatch": "[FIXME] Les mots de passe ne correspondent pas."
+        "incompleteDate": "Vă rugăm să introduceți o dată de naștere completă.",
+        "invalidDate": "Data nașterii introdusă este invalidă.",
+        "underage": "Trebuie să aveți cel puțin 18 ani pentru a vă înregistra.",
+        "errorPasswordsDoNotMatch": "Parolele nu se potrivesc."
       }
     }
   },
   "Partners": {
-    "title": "[FIXME] Nos partenaires bancaires",
-    "subtitle": "[FIXME] Et bien d'autres partenaires assureurs et banques spécialisées...",
+    "title": "Partenerii noștri bancari",
+    "subtitle": "Și mulți alți parteneri asigurători și bănci specializate...",
     "list": [
-      "[FIXME] Boursorama Banque",
-      "[FIXME] BNP Paribas",
-      "[FIXME] Crédit Agricole",
-      "[FIXME] Société Générale",
-      "[FIXME] LCL",
-      "[FIXME] HSBC",
-      "[FIXME] Banque Populaire",
-      "[FIXME] Caisse d'Épargne",
-      "[FIXME] Fortuneo",
-      "[FIXME] Mutuelle Générale"
+      "Boursorama Banque",
+      "BNP Paribas",
+      "Crédit Agricole",
+      "Société Générale",
+      "LCL",
+      "HSBC",
+      "Banque Populaire",
+      "Caisse d'Épargne",
+      "Fortuneo",
+      "Mutuelle Générale"
     ],
     "Network": {
-      "title": "[FIXME] Notre force ? Un réseau solide.",
-      "description": "[FIXME] En tant que courtier spécialisé, nous entretenons des relations étroites avec les plus grands établissements bancaires nationaux. Cela nous permet de défendre votre dossier au plus haut niveau et d'obtenir des conditions dérogatoires que vous ne pourriez obtenir seul en agence."
+      "title": "Forța noastră? O rețea solidă.",
+      "description": "În calitate de broker specializat, menținem relații strânse cu cele mai mari instituții bancare naționale. Acest lucru ne permite să vă susținem dosarul la cel mai înalt nivel și să obținem condiții derogatorii pe care nu le-ați putea obține singur în agenție."
     },
     "stats": {
-      "banks": "[FIXME] Banques Partenaires",
-      "support": "[FIXME] Accompagnement Courtier"
+      "banks": "Bănci Partnere",
+      "support": "Acompaniament Broker"
     }
   },
   "Contact": {
-    "title": "[FIXME] Contact & Accès",
-    "subtitle": "[FIXME] Une question ? Venez nous rencontrer ou envoyez-nous un message.",
-    "minimalTitle": "[FIXME] Envoyez-nous un message",
+    "title": "Contact & Acces",
+    "subtitle": "O întrebare? Veniți să ne cunoașteți sau trimiteți-ne un mesaj.",
+    "minimalTitle": "Envoyez-nous un message",
     "form": {
-      "name": "[FIXME] Nom complet *",
-      "namePlaceholder": "[FIXME] Votre nom",
-      "email": "[FIXME] Adresse email *",
-      "emailPlaceholder": "[FIXME] votre@email.com",
-      "phone": "[FIXME] Téléphone",
-      "phonePlaceholder": "[FIXME] 06 12 34 56 78",
-      "subject": "[FIXME] Sujet",
-      "message": "[FIXME] Message",
-      "messagePlaceholder": "[FIXME] Comment pouvons-nous vous aider ?",
-      "submit": "[FIXME] Envoyer le message",
-      "success": "[FIXME] Votre message a été envoyé avec succès !"
+      "name": "Nume complet *",
+      "namePlaceholder": "Numele dumneavoastră",
+      "email": "Adresa de email *",
+      "emailPlaceholder": "nume@email.com",
+      "phone": "Telefon",
+      "phonePlaceholder": "0712 345 678",
+      "subject": "Subiect",
+      "message": "Mesaj",
+      "messagePlaceholder": "Cum vă putem ajuta?",
+      "submit": "Trimite mesajul",
+      "success": "Mesajul dumneavoastră a fost trimis cu succes!"
     },
     "Why": {
-      "title": "[FIXME] Pourquoi nous contacter ?",
+      "title": "De ce să ne contactați?",
       "reasons": {
-        "r1": "[FIXME] Obtenir une simulation personnalisée gratuite",
-        "r2": "[FIXME] Poser vos questions à nos experts",
-        "r3": "[FIXME] Prendre rendez-vous avec un conseiller",
-        "r4": "[FIXME] Découvrir nos offres du moment"
+        "r1": "Obțineți o simulare personalizată gratuită",
+        "r2": "Puneți întrebări experților noștri",
+        "r3": "Programați o întâlnire cu un consilier",
+        "r4": "Descoperiți ofertele noastre actuale"
       }
     },
     "QuickResponse": {
-      "title": "[FIXME] Réponse rapide garantie",
-      "text": "[FIXME] Notre équipe s'engage à vous répondre sous <bold>24 heures</bold>. Pour une réponse immédiate, n'hésitez pas à nous appeler au",
-      "phone": "[FIXME] +33 7 56 84 41 45"
+      "title": "Răspuns rapid garantat",
+      "text": "Echipa noastră se angajează să vă răspundă în <bold>24 de ore</bold>. Pentru un răspuns imediat, nu ezitați să ne sunați la",
+      "phone": "+33 7 56 84 41 45"
     }
   },
   "Location": {
-    "title": "[FIXME] Où nous trouver",
-    "subtitle": "[FIXME] Nos bureaux sont situés au coeur de Paris pour vous accueillir.",
-    "address": "[FIXME] Siège Social",
-    "phone": "[FIXME] Téléphone",
-    "email": "[FIXME] Email",
+    "title": "Unde ne găsiți",
+    "subtitle": "Birourile noastre sunt situate în inima orașului Paris pentru a vă primi.",
+    "address": "Sediu Social",
+    "phone": "Telefon",
+    "email": "Email",
     "details": {
-      "address": "[FIXME] 40 Rue Jean Monnet,\n68200 Mulhouse",
-      "phone": "[FIXME] +33 7 56 84 41 45",
-      "email": "[FIXME] contact@agm-negoce.com"
+      "address": "40 Rue Jean Monnet,\n68200 Mulhouse",
+      "phone": "+33 7 56 84 41 45",
+      "email": "contact@agm-negoce.com"
     },
     "hours": {
-      "title": "[FIXME] Horaires d'ouverture",
-      "week": "[FIXME] Lundi - Vendredi : 09h00 - 19h00",
-      "saturday": "[FIXME] Samedi : 10h00 - 16h00",
-      "sunday": "[FIXME] Dimanche : Fermé"
+      "title": "Program de funcționare",
+      "week": "Luni - Vineri : 09h00 - 19h00",
+      "saturday": "Sâmbătă : 10h00 - 16h00",
+      "sunday": "Duminică : Închis"
     }
   },
   "Simulator": {
-    "amountLabel": "[FIXME] Montant souhaité (€)",
-    "durationLabel": "[FIXME] Durée (ans)",
-    "durationSuffix": "[FIXME] ans",
-    "months": "[FIXME] mois",
-    "rateLabel": "[FIXME] Taux d'intérêt (%)",
-    "guaranteedRate": "[FIXME] Taux fixe et garanti.",
-    "monthlyEstimate": "[FIXME] Votre mensualité",
-    "perMonth": "[FIXME] / mois",
-    "excludedInsurance": "[FIXME] Hors assurance",
-    "borrowerInsurance": "[FIXME] Assurance emprunteur",
-    "totalInsuranceCost": "[FIXME] Coût total assurance",
-    "disclaimer": "[FIXME] Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.",
-    "startRequest": "[FIXME] Obtenir mon étude"
+    "amountLabel": "Suma dorită (€)",
+    "durationLabel": "Durată (ani)",
+    "durationSuffix": "ani",
+    "months": "luni",
+    "rateLabel": "Rata dobânzii (%)",
+    "guaranteedRate": "Rata fixă și garantată.",
+    "monthlyEstimate": "Rata ta lunară",
+    "perMonth": "/ lună",
+    "excludedInsurance": "Fără asigurare",
+    "borrowerInsurance": "Asigurare",
+    "totalInsuranceCost": "Cost total asigurare",
+    "disclaimer": "Un credit vă angajează și trebuie rambursat. Verificați capacitatea de rambursare înainte de a vă angaja.",
+    "startRequest": "Obține studiul meu"
   },
   "Footer": {
-    "description": "[FIXME] Votre partenaire de confiance pour tous vos projets de financement immobilier et d'assurance depuis 20 ans.",
-    "linksTitle": "[FIXME] Liens rapides",
+    "description": "Partenerul dumneavoastră de încredere pentru toate proiectele de finanțare imobiliară și asigurări de 20 de ani.",
+    "linksTitle": "Link-uri rapide",
     "Links": {
-      "services": "[FIXME] Nos services",
-      "simulator": "[FIXME] Simulateur",
-      "documents": "[FIXME] Documents",
-      "about": "[FIXME] À propos",
-      "contact": "[FIXME] Contact",
-      "clientArea": "[FIXME] Espace Client"
+      "services": "Serviciile noastre",
+      "simulator": "Simulator",
+      "documents": "Documente",
+      "about": "Despre",
+      "contact": "Contact",
+      "clientArea": "Spațiu Client"
     },
-    "contactTitle": "[FIXME] Contact",
+    "contactTitle": "Contact",
     "details": {
-      "phone": "[FIXME] +33 7 56 84 41 45",
-      "email": "[FIXME] contact@agm-negoce.com",
-      "address": "[FIXME] 40 Rue Jean Monnet,\n68200 Mulhouse"
+      "phone": "+33 7 56 84 41 45",
+      "email": "contact@agm-negoce.com",
+      "address": "40 Rue Jean Monnet,\n68200 Mulhouse"
     },
-    "copyright": "[FIXME] AGM INVEST Crédit & Assurance. Tous droits réservés.",
+    "copyright": "AGM INVEST Credit & Asigurări. Toate drepturile rezervate.",
     "legal": {
-      "mentions": "[FIXME] Mentions Légales",
-      "privacy": "[FIXME] Confidentialité",
-      "cookies": "[FIXME] Cookies",
-      "cgu": "[FIXME] CGU",
-      "refund": "[FIXME] Remboursement",
-      "disclaimer": "[FIXME] Disclaimer",
-      "trust": "[FIXME] Sécurité",
-      "ads": "[FIXME] Publicité"
+      "mentions": "Mențiuni Legale",
+      "privacy": "Confidențialitate",
+      "cookies": "Cookie-uri",
+      "cgu": "CGU",
+      "refund": "Rambursare",
+      "disclaimer": "Disclaimer",
+      "trust": "Securitate",
+      "ads": "Publicitate"
     }
   },
   "ServicesPage": {
     "CTA": {
-      "title": "[FIXME] Prêt à concrétiser votre projet ?",
-      "text": "[FIXME] Obtenez une réponse de principe immédiate pour votre financement.",
-      "button": "[FIXME] Démarrer ma demande"
+      "title": "Sunteți gata să vă concretizați proiectul?",
+      "text": "Obțineți un răspuns de principiu imediat pentru finanțarea dumneavoastră.",
+      "button": "Începe cererea mea"
     }
   },
   "CreditRequest": {
     "Simulator": {
-      "title": "[FIXME] VOTRE SIMULATION",
-      "disclaimer": "[FIXME] *Assurance incluse (3%). Taux fixe selon conditions de l'établissement.",
-      "rateLabel": "[FIXME] Taux nominal"
+      "title": "SIMULAREA TA",
+      "disclaimer": "*Asigurare inclusă (3%). Rată fixă conform condițiilor instituției.",
+      "rateLabel": "Rată nominală",
+      "guaranteedRate": "Rată fixă și garantată.",
+      "months": "luni",
+      "durationSuffix": "ani",
+      "perMonth": "lună",
+      "personalProject": "Împrumut personal",
+      "autoProject": "Împrumut Auto/Moto",
+      "proProject": "Împrumut profesional",
+      "otherProject": "Alt proiect",
+      "otherPrompt": "Specificați proiectul (ex: Lucrări, Nuntă...)",
+      "amountLabel": "Suma dorită",
+      "durationLabel": "Durata împrumutului",
+      "monthlyLabel": "Rata lunară",
+      "personalLabel": "Împrumut personal",
+      "autoLabel": "Împrumut Auto/Moto",
+      "proLabel": "Împrumut profesional",
+      "otherLabel": "Alt proiect",
+      "amountHint": "Ajustați în funcție de nevoile dvs.",
+      "durationHint": "Exprimat în plăți lunare"
     },
     "title": {
-      "step1": "[FIXME] Votre projet de financement",
-      "step2": "[FIXME] Votre identité",
-      "step3": "[FIXME] Votre situation personnelle",
-      "step4": "[FIXME] Vos finances",
-      "step5": "[FIXME] Création de compte",
-      "analysis": "[FIXME] Analyse du dossier"
+      "step1": "Proiectul tău de finanțare",
+      "step2": "Identitatea ta",
+      "step3": "Situația ta personală",
+      "step4": "Finanțele tale",
+      "step5": "Creare cont",
+      "analysis": "Analiza dosarului"
     },
-    "subtitle": "[FIXME] Finalisez votre demande en quelques étapes pour une décision instantanée.",
+    "subtitle": "Finalizați cererea în câțiva pași pentru o decizie instantanee.",
     "Steps": {
-      "project": "[FIXME] Projet",
-      "identity": "[FIXME] Identité",
-      "situation": "[FIXME] Situation",
-      "finances": "[FIXME] Finances",
-      "account": "[FIXME] Compte"
+      "project": "Proiect",
+      "identity": "Identitate",
+      "situation": "Situație",
+      "finances": "Finanțe",
+      "account": "Cont",
+      "summary": "Rezumat"
     },
     "Profile": {
-      "label": "[FIXME] Type de profil",
-      "individual": "[FIXME] Particulier",
-      "professional": "[FIXME] Professionnel",
-      "pro_badge": "[FIXME] Demande Pro",
-      "individual_badge": "[FIXME] Demande Particulier"
+      "label": "Tip de profil",
+      "individual": "Persoană fizică",
+      "professional": "Profesionist",
+      "pro_badge": "Cerere Pro",
+      "individual_badge": "Cerere Persoană Fizică"
     },
     "Project": {
       "labels": {
-        "personal": "[FIXME] Prêt Personnel",
-        "auto": "[FIXME] Prêt Auto/Moto",
-        "pro": "[FIXME] Prêt Professionnel",
-        "other": "[FIXME] Autre projet"
+        "personal": "Împrumut Personal",
+        "auto": "Împrumut Auto/Moto",
+        "pro": "Împrumut Profesional",
+        "other": "Alt proiect",
+        "personal loan": "Împrumut Personal",
+        "auto loan": "Împrumut Auto/Moto",
+        "business loan": "Împrumut Profesional"
       },
-      "detailsLabel": "[FIXME] Précisez votre projet",
-      "detailsPlaceholder": "[FIXME] Décrivez brièvement votre besoin de financement..."
+      "detailsLabel": "Precizați proiectul",
+      "detailsPlaceholder": "Descrieți pe scurt nevoia de finanțare..."
     },
     "Identity": {
-      "civility": "[FIXME] Civilité",
-      "firstName": "[FIXME] Prénom",
-      "lastName": "[FIXME] Nom",
-      "birthDate": "[FIXME] Date de naissance",
-      "birthPlace": "[FIXME] Ville de naissance",
-      "birthCountry": "[FIXME] Pays de naissance",
-      "nationality": "[FIXME] Nationalité",
+      "civility": "Civilitate",
+      "firstName": "Prenume",
+      "lastName": "Nume",
+      "birthDate": "Data nașterii",
+      "birthPlace": "Orașul nașterii",
+      "birthCountry": "Țara nașterii",
+      "nationality": "Naționalitate",
       "Options": {
-        "mr": "[FIXME] M.",
-        "mrs": "[FIXME] Mme",
-        "ms": "[FIXME] Mlle"
+        "mr": "Dl.",
+        "mrs": "Dna.",
+        "ms": "Dra."
+      },
+      "title": "Identitatea ta",
+      "subtitle": "Aceste informații ne permit să verificăm eligibilitatea ta.",
+      "civilityLabel": "Titlu",
+      "firstNameLabel": "Prenume",
+      "lastNameLabel": "Nume",
+      "birthDateLabel": "Data nașterii",
+      "birthPlaceLabel": "Locul nașterii",
+      "birthCountryLabel": "Țara de naștere",
+      "nationalityLabel": "Naționalitate",
+      "nationalityPlaceholder": "Ex.: Română",
+      "civilityOptions": {
+        "mr": "Domnul",
+        "mrs": "Doamna"
+      },
+      "Placeholders": {
+        "birthDate": "ZZ / LL / AAAA",
+        "birthPlace": "Ex: București",
+        "nationality": "Ex: Română",
+        "firstName": "Ex: Ion",
+        "lastName": "Ex: Popescu"
       }
     },
     "Situation": {
-      "maritalStatus": "[FIXME] Situation familiale",
-      "children": "[FIXME] Nombre d'enfants à charge",
-      "housingType": "[FIXME] Type de logement",
-      "housingSeniority": "[FIXME] Ancienneté logement",
-      "seniorityYears": "[FIXME] ans",
-      "seniorityMonths": "[FIXME] mois",
-      "residenceCountry": "[FIXME] Pays de résidence",
-      "phone": "[FIXME] Téléphone mobile",
-      "street": "[FIXME] Adresse (N° et rue)",
-      "zipCode": "[FIXME] Code Postal",
-      "city": "[FIXME] Ville",
+      "maritalStatus": "Situație familială",
+      "children": "Număr de copii în întreținere",
+      "housingType": "Tip de locuință",
+      "housingSeniority": "Vechime locuință",
+      "seniorityYears": "ani",
+      "seniorityMonths": "luni",
+      "residenceCountry": "Țara de reședință",
+      "phone": "Telefon mobil",
+      "street": "Adresa (Nr. și strada)",
+      "zipCode": "Cod Poștal",
+      "city": "Oraș",
       "options": {
-        "single": "[FIXME] Célibataire",
-        "married": "[FIXME] Marié(e) / PACS",
-        "divorced": "[FIXME] Divorcé(e) / Veuf(ve)",
-        "tenant": "[FIXME] Locataire",
-        "owner": "[FIXME] Propriétaire",
-        "hosted": "[FIXME] Logé(e) à titre gratuit"
+        "single": "Celibatar(ă)",
+        "married": "Căsătorit(ă) / Parteneriat",
+        "divorced": "Divorțat(ă) / Văduv(ă)",
+        "tenant": "Chiriaș",
+        "owner": "Proprietar",
+        "hosted": "Locuiește gratuit",
+        "pacs": "Parteneriat civil",
+        "widow": "Văduv/ă",
+        "owner_mortgage": "Proprietar (cu credit)",
+        "free": "Locuință gratuită"
       },
       "Placeholders": {
-        "street": "[FIXME] Ex: 40 Rue Jean Monnet",
-        "zipCode": "[FIXME] Ex: 68200",
-        "city": "[FIXME] Ex: Mulhouse"
+        "street": "Ex: 40 Rue Jean Monnet",
+        "zipCode": "Ex: 68200",
+        "city": "Ex: Cluj-Napoca",
+        "years": "Ani",
+        "months": "Luni",
+        "address": "Introduceți adresa...",
+        "yearsPlaceholder": "Ani",
+        "monthsPlaceholder": "Luni"
+      },
+      "title": "Situația ta personală",
+      "subtitle": "Să te cunoaștem mai bine pentru a te însoți mai bine.",
+      "maritalStatusLabel": "Stare civilă",
+      "childrenLabel": "Copii în întreținere",
+      "housingTypeLabel": "Tip de locuință",
+      "housingSeniorityLabel": "Vechime la adresă",
+      "residenceCountryLabel": "Țara de reședință",
+      "phoneLabel": "Număr de telefon mobil",
+      "addressLabel": "Adresa de reședință",
+      "addressPlaceholder": "Introduceți adresa dvs....",
+      "zipCodeLabel": "Cod poștal",
+      "zipCodePlaceholder": "Ex.: 010011",
+      "cityLabel": "Oraș",
+      "maritalOptions": {
+        "single": "Celibatar/ă",
+        "married": "Căsătorit/ă",
+        "pacs": "Parteneriat civil",
+        "divorced": "Divorțat/ă",
+        "widow": "Văduv/ă"
+      },
+      "housingOptions": {
+        "tenant": "Chiriaș",
+        "owner": "Proprietar",
+        "owner_mortgage": "Proprietar (cu credit)",
+        "free": "Locuiește gratuit",
+        "hosted": "Găzduit"
       }
     },
     "Finances": {
-      "contractType": "[FIXME] Type de contrat",
-      "income": "[FIXME] Revenu net mensuel",
-      "charges": "[FIXME] Loyers / Charges mensuelles",
-      "otherCredits": "[FIXME] Autres crédits en cours",
-      "bankInfo": "[FIXME] Informations Bancaires",
-      "bankName": "[FIXME] Nom de la banque",
-      "iban": "[FIXME] IBAN",
-      "bic": "[FIXME] Code BIC / SWIFT",
-      "ribEmail": "[FIXME] Email pour virements",
-      "disposableIncome": "[FIXME] Reste à vivre mensuel",
+      "contractType": "Tip de contract",
+      "income": "Venit net lunar",
+      "charges": "Chirii / Cheltuieli lunare",
+      "otherCredits": "Alte credite în curs",
+      "bankInfo": "Informații Bancare",
+      "bankName": "Numele băncii",
+      "iban": "IBAN",
+      "bic": "Cod BIC / SWIFT",
+      "ribEmail": "Email pentru transferuri",
+      "disposableIncome": "Rest de plată lunar",
       "options": {
-        "cdi": "[FIXME] CDI",
-        "cdd": "[FIXME] CDD",
-        "temporary": "[FIXME] Intérimaire",
-        "civil_servant": "[FIXME] Fonctionnaire",
-        "liberal": "[FIXME] Libéral / Indépendant",
-        "business_owner": "[FIXME] Chef d'entreprise",
-        "artisan": "[FIXME] Artisan / Commerçant",
-        "independent": "[FIXME] Freelance",
-        "retired": "[FIXME] Retraité(e)",
-        "student": "[FIXME] Étudiant(e)",
-        "apprentice": "[FIXME] Apprenti(e) / Stagiaire",
-        "unemployed": "[FIXME] Sans emploi"
+        "cdi": "CDI",
+        "cdd": "CDD",
+        "temporary": "Interimar",
+        "civil_servant": "Funcționar public",
+        "liberal": "Liberal / Independent",
+        "business_owner": "Antreprenor",
+        "artisan": "Artizan / Comerciant",
+        "independent": "Freelance",
+        "retired": "Pensionar(ă)",
+        "student": "Student(ă)",
+        "apprentice": "Ucenic / Stagiar",
+        "unemployed": "Fără loc de muncă"
       },
       "Labels": {
-        "default": "[FIXME] Nom de l'entreprise",
-        "liberal": "[FIXME] Nom de l'activité",
-        "retired": "[FIXME] Dernier employeur",
-        "profession_default": "[FIXME] Profession actuelle",
-        "profession_retired": "[FIXME] Ancienne profession",
-        "income_retired": "[FIXME] Montant retraite",
-        "income_unemployed": "[FIXME] Allocations mensuelles",
-        "income_cdi": "[FIXME] Salaire net mensuel",
-        "income_cdd": "[FIXME] Salaire net mensuel",
-        "income_temporary": "[FIXME] Revenu net mensuel",
-        "income_civil_servant": "[FIXME] Traitement net mensuel",
-        "income_liberal": "[FIXME] Revenu net mensuel",
-        "income_business_owner": "[FIXME] Rémunération nette mensuelle",
-        "income_artisan": "[FIXME] Bénéfice net mensuel",
-        "income_independent": "[FIXME] CA net mensuel",
-        "income_student": "[FIXME] Bourses / Aide familiale",
-        "income_apprentice": "[FIXME] Gratification mensuelle"
+        "default": "Numele companiei",
+        "liberal": "Numele activității",
+        "retired": "Ultimul angajator",
+        "profession_default": "Profesia actuală",
+        "profession_retired": "Fosta profesie",
+        "income_retired": "Suma pensiei",
+        "income_unemployed": "Alocații lunare",
+        "income_cdi": "Salariu net lunar",
+        "income_cdd": "Salariu net lunar",
+        "income_temporary": "Venit net lunar",
+        "income_civil_servant": "Salariu net lunar",
+        "income_liberal": "Venit net lunar",
+        "income_business_owner": "Remunerație netă lunară",
+        "income_artisan": "Profit net lunar",
+        "income_independent": "Cifră de afaceri netă lunară",
+        "income_student": "Burse / Ajutor familial",
+        "income_apprentice": "Indemnizație lunară",
+        "artisan": "Firmă / Numele companiei",
+        "civil_servant": "Minister / Administrație",
+        "temporary": "Agenție de interimat / Angajator",
+        "business_owner": "Numele societății / Firmă",
+        "company_student": "Instituție / Universitate",
+        "company_apprentice": "Companie gazdă / CFA"
       },
       "Placeholders": {
-        "company_default": "[FIXME] Le nom de votre employeur",
-        "company_cdi": "[FIXME] Ex: Google France",
-        "company_cdd": "[FIXME] Ex: Amazon Logistics",
-        "company_temporary": "[FIXME] Ex: Adecco / Manpower",
-        "company_civil_servant": "[FIXME] Ex: Ministère de l'Éducation",
-        "company_liberal": "[FIXME] Ex: Cabinet Médical Dupont",
-        "company_business_owner": "[FIXME] Ex: SAS AGM INVEST",
-        "company_artisan": "[FIXME] Ex: Boulangerie de la Paix",
-        "company_independent": "[FIXME] Ex: Freelance Web",
-        "company_student": "[FIXME] Ex: Université de Nantes",
-        "company_apprentice": "[FIXME] Ex: Airbus Atlantic",
-        "profession_default": "[FIXME] Ex: Consultant, Chef de projet...",
-        "profession_cdi": "[FIXME] Ex: Comptable",
-        "profession_cdd": "[FIXME] Ex: Chauffeur-livreur",
-        "profession_temporary": "[FIXME] Ex: Manutentionnaire",
-        "profession_civil_servant": "[FIXME] Ex: Professeur",
-        "profession_liberal": "[FIXME] Ex: Médecin",
-        "profession_business_owner": "[FIXME] Ex: Gérant",
-        "profession_artisan": "[FIXME] Ex: Menuisier",
-        "profession_independent": "[FIXME] Ex: Développeur",
-        "profession_student": "[FIXME] Ex: Étudiant Master 2",
-        "profession_apprentice": "[FIXME] Ex: Apprenti Mécanicien",
-        "bankName": "[FIXME] Ex: Boursorama Banque",
-        "iban": "[FIXME] FR76 1234 5...",
-        "bic": "[FIXME] ALPHFR2PXXX",
-        "ribEmail": "[FIXME] votre@email.com",
-        "charges": "[FIXME] Ex: 800"
-      }
+        "company_default": "Numele angajatorului dumneavoastră",
+        "company_cdi": "Ex: Google România",
+        "company_cdd": "Ex: Amazon Logistics",
+        "company_temporary": "Ex: Adecco / Manpower",
+        "company_civil_servant": "Ex: Ministerul Educației",
+        "company_liberal": "Ex: Cabinet Medical Popescu",
+        "company_business_owner": "Ex: SAS AGM INVEST",
+        "company_artisan": "Ex: Brutăria Speranței",
+        "company_independent": "Ex: Freelance Web",
+        "company_student": "Ex: Universitatea București",
+        "company_apprentice": "Ex: Airbus Atlantic",
+        "profession_default": "Ex: Consultant, Manager de proiect...",
+        "profession_cdi": "Ex: Contabil",
+        "profession_cdd": "Ex: Șofer-livrator",
+        "profession_temporary": "Ex: Manipulant marfă",
+        "profession_civil_servant": "Ex: Profesor",
+        "profession_liberal": "Ex: Medic",
+        "profession_business_owner": "Ex: Manager",
+        "profession_artisan": "Ex: Tâmplar",
+        "profession_independent": "Ex: Dezvoltator",
+        "profession_student": "Ex: Student Master 2",
+        "profession_apprentice": "Ex: Ucenic Mecanic",
+        "bankName": "Ex: Banca Transilvania",
+        "iban": "RO76 1234 5...",
+        "bic": "ALPHRO2PXXX",
+        "ribEmail": "nume@email.com",
+        "charges": "Ex: 800",
+        "otherCredits": "Ex: 200"
+      },
+      "title": "Finanțele tale",
+      "subtitle": "Aceste informații ne ajută să calculăm capacitatea ta de împrumut.",
+      "contractTypeLabel": "Type de contrat",
+      "contractOptions": {
+        "cdi": "CDI",
+        "cdd": "CDD",
+        "temporary": "Intérimaire",
+        "civil_servant": "Fonctionnaire",
+        "liberal": "Libéral / Indépendant",
+        "business_owner": "Chef d'entreprise",
+        "artisan": "Artisan / Commerçant",
+        "independent": "Freelance",
+        "retired": "Retraité(e)",
+        "student": "Étudiant(e)",
+        "apprentice": "Apprenti(e) / Stagiaire",
+        "unemployed": "Sans emploi"
+      },
+      "chargesLabel": "Chirie / Cheltuieli lunare",
+      "otherCreditsLabel": "Alte credite în curs",
+      "profession": "Profesie",
+      "company": "Companie / Angajator"
     },
     "Account": {
-      "email": "[FIXME] Adresse Email",
-      "password": "[FIXME] Mot de passe",
-      "confirmPassword": "[FIXME] Confirmation",
-      "terms": "[FIXME] Je certifie l'exactitude des informations et j'accepte les Conditions Générales d'AGM INVEST.",
+      "email": "Adresa de Email",
+      "password": "Parolă",
+      "confirmPassword": "Confirmare",
+      "terms": "Certific exactitatea informațiilor și accept Condițiile Generale ale AGM INVEST.",
       "Placeholders": {
-        "email": "[FIXME] votre@email.com"
+        "email": "nume@email.com"
       }
     },
     "Navigation": {
-      "next": "[FIXME] Étape suivante",
-      "back": "[FIXME] Retour",
-      "submit": "[FIXME] Soumettre ma demande",
-      "analyzing": "[FIXME] Analyse en cours..."
+      "next": "Pasul următor",
+      "back": "Înapoi",
+      "submit": "Trimite cererea",
+      "analyzing": "Analiză în curs...",
+      "previous": "Anterior",
+      "confirm": "Confirmă cererea",
+      "submitting": "Se trimite...",
+      "modify": "Modifică cererea",
+      "project": "Proiect",
+      "identity": "Identitate",
+      "situation": "Situație",
+      "finances": "Finanțe",
+      "summary": "Rezumat"
+    },
+    "Summary": {
+      "monthlyEstimation": "Estimare Lunară",
+      "capital": "Capital",
+      "duration": "Durată",
+      "totalCost": "Cost total",
+      "insurance": "Asigurare (3%)",
+      "totalDue": "Suma totală datorată",
+      "taeg": "DAE",
+      "secureData": "100% Securizat",
+      "secureDesc": "Criptare AES-256 biți",
+      "expertiseQuote": "\"Expertiza AGM INVEST pentru finanțarea dumneavoastră de până la 1 milion de euro.\"",
+      "rgpdCertified": "Certificat Conformitate GDPR"
+    },
+    "FinalRecap": {
+      "title": "Rezumat Final",
+      "subtitle": "Vă rugăm să verificați informațiile înainte de trimiterea securizată a dosarului.",
+      "projectSection": "Proiectul",
+      "applicantSection": "Solicitant",
+      "amount": "Sumă",
+      "duration": "Durată",
+      "monthly": "Rată lunară",
+      "identity": "Identitate",
+      "city": "Oraș",
+      "modify": "Modifică",
+      "confirm": "Confirmă",
+      "processing": "Se procesează...",
+      "submitting": "Se trimite..."
     },
     "Result": {
-      "analysisTitle": "[FIXME] Analyse de votre dossier",
-      "analysisMessage": "[FIXME] Nous analysons vos données instantanément grâce à nos partenaires bancaires. Vous allez être redirigé vers votre espace client.",
-      "dashboardButton": "[FIXME] Accéder à mon tableau de bord"
+      "analysisTitle": "Analiza dosarului dumneavoastră",
+      "analysisMessage": "Analizăm datele dumneavoastră instantaneu datorită partenerilor noștri bancari. Veți fi redirecționat către spațiul dumneavoastră client.",
+      "dashboardButton": "Accesați tabloul de bord",
+      "summaryTitle": "REZUMATUL TĂU",
+      "checkPrompt": "Verificare finală",
+      "checkMessage": "Asigurați-vă că toate informațiile introduse sunt corecte."
+    },
+    "Banners": {
+      "Rejected": {
+        "title": "Vă informez că:",
+        "message": "Cererea dumneavoastră de finanțare a fost respinsă de serviciile noastre după examinarea dosarului dumneavoastră.",
+        "extra": "Pentru mai multe detalii sau pentru a discuta cu un consilier, vă rugăm să contactați serviciul nostru de asistență."
+      },
+      "Approved": {
+        "title": "Felicitări!",
+        "subtitle": "Este Jackpot-ul.",
+        "message": "Bucurați-vă de împrumutul de {amount} pentru a vă gestiona proiectele.",
+        "warning": "În prezent, nu mai sunteți eligibil pentru a solicita un împrumut, deoarece aveți deja unul în curs de rambursare."
+      },
+      "Pending": {
+        "title": "Vă informez că:",
+        "message": "Aveți deja o cerere de finanțare în curs de procesare.",
+        "warning": "Ca măsură de securitate și pentru calitatea analizei, permitem un singur dosar activ la un moment dat."
+      }
+    },
+    "Notifications": {
+      "submittedTitle": "Cerere trimisă 📄",
+      "submittedMessage": "Cererea dumneavoastră de împrumut de {amount} a fost înregistrată.",
+      "error": "A apărut o eroare în timpul trimiterii. Vă rugăm să vă verificați permisiunile."
+    },
+    "Common": {
+      "trackRecord": "Urmărește cererea",
+      "restart": "Repornește",
+      "previous": "Anterior",
+      "next": "Următorul",
+      "confirm": "Confirmă",
+      "submitting": "Procesare...",
+      "modify": "Modifică",
+      "step": "Pas"
     },
     "Errors": {
-      "underage": "[FIXME] Vous devez avoir au moins 18 ans.",
-      "invalidDate": "[FIXME] La date saisie est invalide.",
-      "passwordsDoNotMatch": "[FIXME] Les mots de passe ne correspondent pas."
+      "underage": "Trebuie să aveți cel puțin 18 ani.",
+      "invalidDate": "Data introdusă este invalidă.",
+      "passwordsDoNotMatch": "Parolele nu se potrivesc.",
+      "passwordTooShort": "Parola trebuie să conțină cel puțin 6 caractere.",
+      "emailUsed": "Această adresă de email este deja utilizată. Vă rugăm să vă autentificați sau să folosiți altă adresă.",
+      "weakPassword": "Parola este prea slabă. Folosiți cel puțin 6 caractere.",
+      "invalidEmail": "Adresa de email nu este validă.",
+      "genericError": "A apărut o eroare la crearea contului. Vă rugăm să încercați din nou."
     },
     "Step1": {
-      "amount": "[FIXME] Montant du prêt",
-      "duration": "[FIXME] Durée (mois)",
-      "rate": "[FIXME] Taux nominal"
+      "amount": "Suma împrumutului",
+      "duration": "Durata (luni)",
+      "rate": "Rata nominală"
+    },
+    "Form": {
+      "lastName": "Nume"
     }
   },
   "Legal": {
     "Mentions": {
-      "title": "[FIXME] Mentions Légales",
-      "subtitle": "[FIXME] Informations juridiques et réglementaires concernant AGM INVEST.",
+      "title": "Mențiuni Legale",
+      "subtitle": "Informații juridice și de reglementare privind AGM INVEST.",
       "Section1": {
-        "title": "[FIXME] Identification de la Société",
-        "name": "[FIXME] Dénomination sociale :",
-        "form": "[FIXME] Forme juridique :",
-        "headquarters": "[FIXME] Siège social :",
-        "siren": "[FIXME] SIREN :",
-        "siret": "[FIXME] SIRET :",
-        "rcs": "[FIXME] RCS :",
-        "tva": "[FIXME] TVA Intracommunautaire :",
-        "ape": "[FIXME] Code APE / NAF :",
-        "manager": "[FIXME] Dirigeant :",
-        "creation": "[FIXME] Date de création :",
+        "title": "Identificarea Societății",
+        "name": "Denumire socială :",
+        "form": "Formă juridică :",
+        "headquarters": "Sediu social :",
+        "siren": "SIREN :",
+        "siret": "SIRET :",
+        "rcs": "RCS :",
+        "tva": "TVA Intracomunitară :",
+        "ape": "Cod APE / NAF :",
+        "manager": "Administrator :",
+        "creation": "Data creării :",
         "Values": {
-          "name": "[FIXME] AGM INVEST",
-          "form": "[FIXME] SARL au capital de 7 622 €",
-          "headquarters": "[FIXME] MELPARK – 40 rue Jean Monnet, 68200 Mulhouse",
-          "siren": "[FIXME] 389 858 630",
-          "siret": "[FIXME] 389 858 630 00046",
-          "rcs": "[FIXME] 389 858 630 R.C.S. Mulhouse",
-          "tva": "[FIXME] FR51 389858630",
-          "ape": "[FIXME] 64.92Z – Autre distribution de crédit",
-          "manager": "[FIXME] Alain Meyer",
-          "creation": "[FIXME] 16 janvier 1993"
+          "name": "AGM INVEST",
+          "form": "SARL cu capital de 7 622 €",
+          "headquarters": "MELPARK – 40 rue Jean Monnet, 68200 Mulhouse",
+          "siren": "389 858 630",
+          "siret": "389 858 630 00046",
+          "rcs": "389 858 630 R.C.S. Mulhouse",
+          "tva": "FR51 389858630",
+          "ape": "64.92Z – Altă distribuție de credit",
+          "manager": "Alain Meyer",
+          "creation": "16 ianuarie 1993"
         }
       },
       "Section2": {
-        "title": "[FIXME] Activités & Expertise",
-        "p1": "[FIXME] AGM INVEST est une société française spécialisée dans le conseil financier, le courtage en financements et l’accompagnement stratégique des particuliers et des professionnels. Forte de plus de 50 ans d’expérience cumulée dans les services financiers, AGM INVEST met son expertise au service de projets patrimoniaux, immobiliers et financiers, en toute indépendance.",
+        "title": "Activități & Expertiză",
+        "p1": "AGM INVEST este o societate franceză specializată în consultanță financiară, brokeraj în finanțări și acompaniament strategic pentru persoane fizice și profesioniști. Cu peste 50 de ani de experiență cumulată în servicii financiare, AGM INVEST își pune expertiza în serviciul proiectelor patrimoniale, imobiliare și financiare, în deplină independență.",
         "list": {
-          "li1": "[FIXME] Conseil financier et stratégique",
-          "li2": "[FIXME] Courtage en financements",
-          "li3": "[FIXME] Intermédiation en opérations de banque et services de paiement",
-          "li4": "[FIXME] Accompagnement en négociation et structuration financière",
-          "li5": "[FIXME] Conseil et commercialisation de projets immobiliers",
-          "li6": "[FIXME] Analyse et optimisation de solutions de financement"
+          "li1": "Consultanță financiară și strategică",
+          "li2": "Brokeraj în finanțări",
+          "li3": "Intermediere în operațiuni bancare și servicii de plată",
+          "li4": "Acompaniament în negociere și structurare financiară",
+          "li5": "Consultanță și comercializare de proiecte imobiliare",
+          "li6": "Analiză și optimizare de soluții de finanțare"
         }
       },
       "Section3": {
-        "title": "[FIXME] Conformité & Réglementation",
-        "p1": "[FIXME] AGM INVEST a été immatriculée à l’ORIAS sous le numéro 14001635 en qualité de :",
-        "oriasLink": "[FIXME] www.orias.fr",
-        "role": "[FIXME] ",
+        "title": "Conformitate & Reglementare",
+        "p1": "AGM INVEST a fost înmatriculată la ORIAS sub numărul 14001635 în calitate de :",
+        "oriasLink": "www.orias.fr",
+        "role": " ",
         "list": {
-          "li1": "[FIXME] Mandataire d’Intermédiaire en Opérations Bancaires et Services de Paiement",
-          "li2": "[FIXME] Courtier en Opérations Bancaires et Services de Paiement",
-          "li3": "[FIXME] Courtier en Assurance"
+          "li1": "Mandatar de Intermediar în Operațiuni Bancare și Servicii de Plată",
+          "li2": "Broker în Operațiuni Bancare și Servicii de Plată",
+          "li3": "Broker în Asigurări"
         },
-        "p2": "[FIXME] L'activité d'Intermédiaire en Opérations de Banque et en Services de Paiement (IOBSP) est régie par le Code Monétaire et Financier. AGM INVEST est soumise au contrôle de l'Autorité de Contrôle Prudentiel et de Résolution (ACPR), 4 Place de Budapest CS 92459, 75436 Paris Cedex 09."
+        "p2": "Activitatea de Intermediar în Operațiuni Bancare și Servicii de Plată (IOBSP) este reglementată de Codul Monetar și Financiar. AGM INVEST este supusă controlului Autorității de Control Prudențial și Rezoluție (ACPR), 4 Place de Budapest CS 92459, 75436 Paris Cedex 09."
       },
       "Section4": {
-        "title": "[FIXME] Contact & Hébergement",
+        "title": "Contact & Găzduire",
         "Service": {
-          "title": "[FIXME] Service Client",
-          "text": "[FIXME] Pour toute question ou réclamation, vous pouvez nous contacter par email :",
-          "address": "[FIXME] 40 rue Jean Monnet, 68200 Mulhouse"
+          "title": "Serviciu Clienți",
+          "text": "Pentru orice întrebare sau reclamație, ne puteți contacta prin email :",
+          "address": "40 rue Jean Monnet, 68200 Mulhouse"
         },
         "Hosting": {
-          "title": "[FIXME] Hébergement Web",
-          "text": "[FIXME] Ce site est hébergé par :",
-          "name": "[FIXME] Hostinger",
-          "address": "[FIXME] 61 Lordou Vironos Street\n6023 Larnaca\nChypre"
+          "title": "Găzduire Web",
+          "text": "Acest site este găzduit de :",
+          "name": "Hostinger",
+          "address": "61 Lordou Vironos Street\n6023 Larnaca\nCipru"
         }
       },
       "Footer": {
-        "copyright": "[FIXME] © 1993 – 2026 AGM INVEST – Tous droits réservés",
-        "desc": "[FIXME] Société de conseil financier – Interventions sans maniement de fonds",
-        "disclaimer": "[FIXME] Les informations présentes sur ce site ne constituent pas une offre contractuelle."
+        "copyright": "© 1993 – 2026 AGM INVEST – Toate drepturile rezervate",
+        "desc": "Societate de consultanță financiară – Intervenții fără manipulare de fonduri",
+        "disclaimer": "Informațiile prezente pe acest site nu constituie o ofertă contractuală."
       }
     },
     "Privacy": {
-      "title": "[FIXME] Politique de Confidentialité",
-      "subtitle": "[FIXME] Engagement de AGM INVEST sur la protection de vos données personnelles et le respect de votre vie privée (RGPD).",
-      "intro": "[FIXME] Chez AGM INVEST, we accordons une importance capitale à la confidentialité et à la sécurité de vos informations. Cette politique détaille comment nous collectons, utilisons et protégeons vos données dans le cadre de nos activités de conseil financier et de courtage.",
+      "title": "Politica de Confidențialitate",
+      "subtitle": "Angajamentul AGM INVEST privind protecția datelor dumneavoastră cu caracter personal și respectarea vieții private (GDPR).",
+      "intro": "La AGM INVEST, acordăm o importanță capitală confidențialității și securității informațiilor dumneavoastră. Această politică detaliază modul în care colectăm, utilizăm și protejăm datele dumneavoastră în cadrul activităților noastre de consultanță financiară și brokeraj.",
       "Section1": {
-        "title": "[FIXME] 1. Données Collectées",
-        "description": "[FIXME] Pour traiter vos demandes de financement et vous fournir nos services, nous sommes amenés à collecter les informations suivantes :",
+        "title": "1. Date Colectate",
+        "description": "Pentru a procesa cererile dumneavoastră de finanțare și a vă furniza serviciile noastre, suntem nevoiți să colectăm următoarele informații :",
         "list": {
-          "li1": "[FIXME] <bold>Identité :</bold> Nom, prénom, date de naissance, nationalité, documents d'identité.",
-          "li2": "[FIXME] <bold>Coordonnées :</bold> Adresse postale, email, numéro de téléphone.",
-          "li3": "[FIXME] <bold>Situation Familiale :</bold> Statut marital, nombre d'enfants à charge.",
-          "li4": "[FIXME] <bold>Situation Professionnelle :</bold> Employeur, type de contrat, ancienneté, revenus.",
-          "li5": "[FIXME] <bold>Situation Financière :</bold> Relevés bancaires, avis d'imposition, emprunts en cours, patrimoine.",
-          "li6": "[FIXME] <bold>Données de Connexion :</bold> Adresse IP, logs de connexion (pour la sécurité)."
+          "li1": "<bold>Identitate :</bold> Nume, prenume, data nașterii, naționalitate, acte de identitate.",
+          "li2": "<bold>Date de contact :</bold> Adresă poștală, email, număr de telefon.",
+          "li3": "<bold>Situație Familială :</bold> Statut marital, număr de copii în întreținere.",
+          "li4": "<bold>Situație Profesională :</bold> Angajator, tip de contract, vechime, venituri.",
+          "li5": "<bold>Situație Financiară :</bold> Extrase bancare, aviz de impunere, împrumuturi în curs, patrimoniu.",
+          "li6": "<bold>Données de Connexion :</bold> Adresă IP, loguri de conectare (pentru securitate)."
         }
       },
       "Section2": {
-        "title": "[FIXME] 2. Finalités du Traitement",
-        "description": "[FIXME] Vos données sont traitées pour des finalités déterminées, explicites et légitimes :",
+        "title": "2. Scopurile Prelucrării",
+        "description": "Datele dumneavoastră sunt prelucrate pentru scopuri determinate, explicite și legitime :",
         "Cards": {
           "c1": {
-            "title": "[FIXME] Étude de solvabilité",
-            "desc": "[FIXME] Analyse de votre capacité de remboursement pour l'octroi de crédits."
+            "title": "Studiu de solvabilitate",
+            "desc": "Analiza capacității dumneavoastră de rambursare pentru acordarea de credite."
           },
           "c2": {
-            "title": "[FIXME] Gestion de dossier",
-            "desc": "[FIXME] Suivi administratif, constitution des contrats et gestion de la relation client."
+            "title": "Gestionare dosar",
+            "desc": "Urmărire administrativă, constituirea contractelor și gestionarea relației cu clienții."
           },
           "c3": {
-            "title": "[FIXME] Obligations Légales",
-            "desc": "[FIXME] Lutte contre le blanchiment d'argent et le financement du terrorisme (LCB-FT)."
+            "title": "Obligații Legale",
+            "desc": "Lupta împotriva spălării banilor și finanțării terorismului (LCB-FT)."
           },
           "c4": {
-            "title": "[FIXME] Sécurité",
-            "desc": "[FIXME] Protection contre la fraude et sécurisation de vos accès en ligne."
+            "title": "Securitate",
+            "desc": "Protecția împotriva fraudei și securizarea accesului dumneavoastră online."
           }
         }
       },
       "Section3": {
-        "title": "[FIXME] 3. Partage et Destinataires",
-        "p1": "[FIXME] Vos données sont strictement confidentielles. Elles ne sont transmises qu'aux destinataires habilités lorsque cela est nécessaire :",
+        "title": "3. Partajare și Destinatari",
+        "p1": "Datele dumneavoastră sunt strict confidențiale. Ele sunt transmise destinatarilor autorizați doar atunci când este necesar :",
         "list": {
-          "li1": "[FIXME] Nos partenaires bancaires et assureurs (pour l'étude et la validation de votre financement).",
-          "li2": "[FIXME] Les organismes publics et régulateurs (sur réquisition légale).",
-          "li3": "[FIXME] Nos prestataires techniques sécurisés (hébergement, signature électronique)."
+          "li1": "Partenerii noștri bancari și asigurători (pentru studiul și validarea finanțării dumneavoastră).",
+          "li2": "Organismele publice și autoritățile de reglementare (la cerere legală).",
+          "li3": "Prestatorii noștri tehnici securizați (găzduire, semnătură electronică)."
         },
-        "p2": "[FIXME] AGM INVEST ne vendra jamais vos données personnelles à des tiers à des fins commerciales."
+        "p2": "AGM INVEST nu va vinde niciodată datele dumneavoastră personale unor terți în scopuri comerciale."
       },
       "Section4": {
-        "title": "[FIXME] 4. Vos Droits",
-        "p1": "[FIXME] Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :",
+        "title": "4. Drepturile Dumneavoastră",
+        "p1": "Conform Regulamentului General privind Protecția Datelor (GDPR), dispuneți de următoarele drepturi :",
         "list": {
-          "li1": "[FIXME] Droit d'accès à vos données",
-          "li2": "[FIXME] Droit de rectification",
-          "li3": "[FIXME] Droit à l'effacement (\"droit à l'oubli\")",
-          "li4": "[FIXME] Droit à la limitation du traitement",
-          "li5": "[FIXME] Droit au portabilité des données",
-          "li6": "[FIXME] Droit d'opposition"
+          "li1": "Dreptul de acces la datele dumneavoastră",
+          "li2": "Dreptul la rectificare",
+          "li3": "Dreptul la ștergere (\"dreptul de a fi uitat\")",
+          "li4": "Dreptul la restricționarea prelucrării",
+          "li5": "Dreptul la portabilitatea datelor",
+          "li6": "Dreptul la opoziție"
         },
-        "contact": "[FIXME] Pour exercer ces droits, contactez notre Délégué à la Protection des Données (DPO) :",
-        "postal": "[FIXME] ou par courrier postal au siège social."
+        "contact": "Pentru a exercita aceste drepturi, contactați Responsabilul cu Protecția Datelor (DPO) :",
+        "postal": "sau prin poștă la sediul social."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026"
+        "updated": "Ultima actualizare : Februarie 2026"
       }
     },
     "Cookies": {
-      "title": "[FIXME] Gestion des Cookies",
-      "subtitle": "[FIXME] Comprendre comment et pourquoi nous utilisons des cookies pour améliorer votre expérience sur AGM INVEST.",
-      "intro": "[FIXME] Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) lors de la visite de notre site. Il permet à AGM INVEST de mémoriser vos actions et préférences sur une période donnée.",
+      "title": "Gestionarea Cookie-urilor",
+      "subtitle": "Înțelegeți cum și de ce folosim cookie-uri pentru a vă îmbunătăți experiența pe AGM INVEST.",
+      "intro": "Un cookie este un mic fișier text stocat pe terminalul dumneavoastră (calculator, tabletă, smartphone) la vizitarea site-ului nostru. Acesta permite AGM INVEST să memoreze acțiunile și preferințele dumneavoastră pe o anumită perioadă.",
       "Section1": {
-        "title": "[FIXME] 1. Les Cookies que nous utilisons",
+        "title": "1. Cookie-urile pe care le folosim",
         "Essential": {
-          "title": "[FIXME] Cookies Essentiels",
-          "desc": "[FIXME] Indispensables au bon fonctionnement du site. Ils vous permettent de naviguer, d'accéder à votre espace sécurisé et d'assurer la sécurité des transactions. Ils ne peuvent pas être désactivés."
+          "title": "Cookie-uri Esențiale",
+          "desc": "Indispensabile pentru buna funcționare a site-ului. Vă permit să navigați, să accesați spațiul securizat și să asigurați securitatea tranzacțiilor. Acestea nu pot fi dezactivate."
         },
         "Functional": {
-          "title": "[FIXME] Cookies Fonctionnels",
-          "desc": "[FIXME] Permettent de mémoriser vos choix (langue, nom d'utilisateur) pour vous offrir une expérience personnalisée et plus fluide."
+          "title": "Cookie-uri Funcționale",
+          "desc": "Permit memorarea alegerilor dumneavoastră (limbă, nume de utilizator) pentru a vă oferi o experiență personalizată și mai fluidă."
         },
         "Analytics": {
-          "title": "[FIXME] Cookies Analytiques",
-          "desc": "[FIXME] Nous aident à comprendre comment les visiteurs interagissent avec le site (pages visitées, temps passé) afin d'améliorer nos services. Données anonymisées."
+          "title": "Cookie-uri Analitice",
+          "desc": "Ne ajută să înțelegem cum interacționează vizitatorii cu site-ul (pagini vizitate, timp petrecut) pentru a ne îmbunătăți serviciile. Date anonimizate."
         }
       },
       "Section2": {
-        "title": "[FIXME] 2. Gérer vos préférences",
-        "intro": "[FIXME] Vous pouvez à tout moment modifier vos préférences en matière de cookies via les paramètres de votre navigateur web.",
-        "Chrome": "[FIXME] Google Chrome :",
-        "ChromePath": "[FIXME] Paramètres > Confidentialité et sécurité > Cookies",
-        "Firefox": "[FIXME] Firefox :",
-        "FirefoxPath": "[FIXME] Options > Vie privée et sécurité > Cookies",
-        "Safari": "[FIXME] Safari :",
-        "SafariPath": "[FIXME] Préférences > Confidentialité",
-        "Edge": "[FIXME] Edge :",
-        "EdgePath": "[FIXME] Paramètres > Cookies et autorisations de site",
-        "note": "[FIXME] Note : Le refus des cookies essentiels peut empêcher l'accès à certaines fonctionnalités critiques comme la connexion à votre compte client."
+        "title": "2. Gestionați-vă preferințele",
+        "intro": "Puteți modifica oricând preferințele privind cookie-urile prin setările browserului dumneavoastră web.",
+        "Chrome": "Google Chrome :",
+        "ChromePath": "Setări > Confidențialitate și securitate > Cookie-uri",
+        "Firefox": "Firefox :",
+        "FirefoxPath": "Opțiuni > Confidențialitate și securitate > Cookie-uri",
+        "Safari": "Safari :",
+        "SafariPath": "Preferințe > Confidențialitate",
+        "Edge": "Edge :",
+        "EdgePath": "Setări > Cookie-uri și permisiuni site",
+        "note": "Notă : Refuzul cookie-urilor esențiale poate împiedica accesul la anumite funcționalități critice, cum ar conetarea la contul dumneavoastră de client."
       },
       "Footer": {
-        "copyright": "[FIXME] © AGM INVEST - Politique de Cookies 2026"
+        "copyright": "© AGM INVEST - Politica de Cookie-uri 2026"
       }
     },
     "CGU": {
-      "title": "[FIXME] Conditions Générales d'Utilisation",
-      "subtitle": "[FIXME] Conditions d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne.",
+      "title": "Condiții Generale de Utilizare",
+      "subtitle": "Condiții de utilizare a serviciilor oferite de AGM INVEST prin platforma sa online.",
       "Section1": {
-        "title": "[FIXME] 1. Objet",
-        "content": "[FIXME] Les présentes Conditions Générales d'Utilisation (CGU) définissent les conditions d'accès et d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne."
+        "title": "1. Obiect",
+        "content": "Prezentele Condiții Generale de Utilizare (CGU) definesc condițiile de acces și utilizare a serviciilor oferite de AGM INVEST prin platforma sa online."
       },
       "Section2": {
-        "title": "[FIXME] 2. Accès au Service",
-        "p1": "[FIXME] L'accès à la plateforme est réservé aux utilisateurs disposant d'un compte validé.",
-        "p2": "[FIXME] AGM INVEST se réserve le droit de refuser ou suspendre un compte en cas de non-respect des présentes conditions."
+        "title": "2. Acces la Serviciu",
+        "p1": "Accesul la platformă este rezervat utilizatorilor care dețin un cont validat.",
+        "p2": "AGM INVEST își rezervă dreptul de a refuza sau suspenda un cont în caz de nerespectare a prezentelor condiții."
       },
       "Section3": {
-        "title": "[FIXME] 3. Nature des Services",
-        "intro": "[FIXME] AGM INVEST propose :",
+        "title": "3. Natura Serviciilor",
+        "intro": "AGM INVEST oferă :",
         "list": {
-          "li1": "[FIXME] Un accompagnement administratif",
-          "li2": "[FIXME] Une assistance liée à l'acquisition de véhicules",
-          "li3": "[FIXME] Un service de gestion de dossiers clients"
+          "li1": "Un acompaniament administrativ",
+          "li2": "Asistență legată de achiziția de vehicule",
+          "li3": "Un serviciu de gestionare a dosarelor clienților"
         },
-        "warning": "[FIXME] AGM INVEST n'est pas un organisme bancaire, ni un établissement de crédit, mais un intermédiaire financier réglementé."
+        "warning": "AGM INVEST nu este o instituție bancară, nici o instituție de credit, ci un intermediar financiar reglementat."
       },
       "Section4": {
-        "title": "[FIXME] 4. Processus de Vérification",
-        "content": "[FIXME] L'accès complet aux services nécessite une procédure de vérification en plusieurs étapes définies par AGM INVEST."
+        "title": "4. Proces de Verificare",
+        "content": "Accesul complet la servicii necesită o procedură de verificare în mai mulți pași definiți de AGM INVEST."
       },
       "Section5": {
-        "title": "[FIXME] 5. Paiements",
-        "p1": "[FIXME] Certains services peuvent nécessiter le versement de dépôts de sécurité.",
-        "p2": "[FIXME] Ces montants sont communiqués clairement au client avant toute validation."
+        "title": "5. Plăți",
+        "p1": "Anumite servicii pot necesita plata unor depozite de securitate.",
+        "p2": "Aceste sume sunt comunicate clar clientului înainte de orice validare."
       },
       "Section6": {
-        "title": "[FIXME] 6. Responsabilité",
-        "content": "[FIXME] AGM INVEST agit en tant qu'intermédiaire administratif et ne garantit pas l'acceptation d'un dossier par des tiers (administrations, partenaires, prestataires)."
+        "title": "6. Responsabilitate",
+        "content": "AGM INVEST acționează ca intermediar administrativ și nu garantează acceptarea unui dosar de către terți (administrații, parteneri, prestatori)."
       },
       "Section7": {
-        "title": "[FIXME] 7. Données Personnelles",
-        "content": "[FIXME] Les données sont traitées conformément à la réglementation en vigueur. Consultez notre",
-        "link": "[FIXME] Politique de Confidentialité"
+        "title": "7. Date Personale",
+        "content": "Datele sunt prelucrate conform reglementărilor în vigoare. Consultați",
+        "link": "Politica noastră de Confidențialitate"
       },
       "Section8": {
-        "title": "[FIXME] 8. Résiliation",
-        "content": "[FIXME] AGM INVEST se réserve le droit de suspendre un compte en cas de fraude, fausse déclaration ou utilisation abusive du service."
+        "title": "8. Reziliere",
+        "content": "AGM INVEST își rezervă dreptul de a suspenda un cont în caz de fraudă, declarație falsă sau utilizare abuzivă a serviciului."
       },
       "Section9": {
-        "title": "[FIXME] 9. Droit Applicable",
-        "p1": "[FIXME] Les présentes CGU sont soumises au droit français.",
-        "p2": "[FIXME] Tout litige relève de la compétence des tribunaux français."
+        "title": "9. Legea Aplicabilă",
+        "p1": "Prezentele CGU sont supuse legii franceze.",
+        "p2": "Orice litigiu intră în competența instanțelor franceze."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Ultima actualizare : Februarie 2026",
+        "copyright": "© 2026 AGM INVEST - Toate drepturile rezervate"
       }
     },
     "Refund": {
-      "title": "[FIXME] Conditions de Remboursement",
-      "subtitle": "[FIXME] Modalités de restitution du dépôt sécuritaire fixe AGM INVEST.",
+      "title": "Condiții de Rambursare",
+      "subtitle": "Modalități de restituire a depozitului de securitate fix AGM INVEST.",
       "Section1": {
-        "title": "[FIXME] 1. Dépôt Sécuritaire Fixe",
-        "p1": "[FIXME] Ce dépôt n'est pas des frais. Il doit provenir du même compte bancaire (RIB) que celui fourni lors de votre demande.",
-        "p2": "[FIXME] Il est intégralement restitué en même temps que le virement du crédit.",
-        "p3": "[FIXME] "
+        "title": "1. Depozit de Securitate Fix",
+        "p1": "Acest depozit nu reprezintă taxe. Acesta trebuie să provină din același cont bancar (IBAN) ca cel furnizat în cererea dumneavoastră.",
+        "p2": "Este restituit integral odată cu virarea creditului.",
+        "p3": " "
       },
       "Section2": {
-        "title": "[FIXME] 2. Restitution",
-        "content": "[FIXME] La restitution du dépôt sécuritaire intervient conformément aux conditions prévues dans le contrat signé entre AGM INVEST et le client."
+        "title": "2. Restituire",
+        "content": "Restituirea depozitului de securitate are loc conform condițiilor prevăzute în contractul semnat între AGM INVEST și client."
       },
       "Section3": {
-        "title": "[FIXME] 3. Cas de Non-Restitution",
-        "intro": "[FIXME] Le dépôt sécuritaire peut ne pas être restitué en cas de :",
+        "title": "3. Cazuri de Ne-Restituire",
+        "intro": "Depozitul de securitate poate să nu fie restituit în caz de :",
         "list": {
-          "li1": "[FIXME] Abandon volontaire du dossier par le client",
-          "li2": "[FIXME] Fausse déclaration",
-          "li3": "[FIXME] Non-respect des engagements contractuels"
+          "li1": "Abandon voluntar al dosarului de către client",
+          "li2": "Declarație falsă",
+          "li3": "Nerespectarea angajamentelor contractuale"
         }
       },
       "Section4": {
-        "title": "[FIXME] 4. Délais",
-        "content": "[FIXME] Les délais de restitution sont indiqués dans le contrat et peuvent varier selon la nature du dossier et les partenaires impliqués."
+        "title": "4. Termene",
+        "content": "Termenele de restituire sunt indicate în contract și pot varia în funcție de natura dosarului și de partenerii implicați."
       },
       "Section5": {
-        "title": "[FIXME] 5. Litiges",
-        "content": "[FIXME] En cas de litige, le droit français s'applique."
+        "title": "5. Litigii",
+        "content": "În caz de litigiu, se aplică legea franceză."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Ultima actualizare : Februarie 2026",
+        "copyright": "© 2026 AGM INVEST - Toate drepturile rezervate"
       }
     },
     "Trust": {
-      "title": "[FIXME] Confiance & Sécurité",
-      "subtitle": "[FIXME] Chez AGM INVEST, la sécurité des dossiers clients est une priorité absolue.",
-      "intro": "[FIXME] Nous mettons en œuvre des processus rigoureux et transparents pour garantir la sécurité et la confidentialité de vos informations.",
+      "title": "Încredere & Securitate",
+      "subtitle": "La AGM INVEST, securitatea dosarelor clienților este o prioritate absolută.",
+      "intro": "Implementăm procese riguroase și transparente pentru a garanta securitatea și confidențialitatea informațiilor dumneavoastră.",
       "engagements": {
-        "title": "[FIXME] Nos Engagements Sécurité",
+        "title": "Angajamentele Noastre de Securitate",
         "admin": {
-          "title": "[FIXME] Vérification Administrative",
-          "desc": "[FIXME] Chaque dossier est vérifié minutieusement par notre équipe administrative."
+          "title": "Verificare Administrativă",
+          "desc": "Fiecare dosar este verificat cu atenție de echipa noastră administrativă."
         },
         "multi": {
-          "title": "[FIXME] Validation Multi-Étapes",
-          "desc": "[FIXME] Processus de vérification en plusieurs étapes pour garantir la conformité."
+          "title": "Validare Multi-Pași",
+          "desc": "Proces de verificare în mai mulți pași pentru a garanta conformitatea."
         },
         "contract": {
-          "title": "[FIXME] Encadrement Contractuel Clair",
-          "desc": "[FIXME] Tous nos services sont encadrés par des contrats transparents et détaillés."
+          "title": "Cadrul Contractual Clar",
+          "desc": "Toate serviciile noastre sunt încadrate de contracte transparente și detaliate."
         },
         "trace": {
-          "title": "[FIXME] Traçabilité des Paiements",
-          "desc": "[FIXME] Tous les paiements sont tracés et sécurisés via des systèmes certifiés."
+          "title": "Trasabilitatea Plăților",
+          "desc": "Toate plățile sunt trasabile și securizate prin sisteme certificate."
         },
         "data": {
-          "title": "[FIXME] Protection des Données",
-          "desc": "[FIXME] Conformité RGPD et chiffrement de toutes vos données personnelles."
+          "title": "Protecția Datelor",
+          "desc": "Conformitate GDPR și criptarea tuturor datelor dumneavoastră personale."
         },
         "support": {
-          "title": "[FIXME] Support Client Dédié",
-          "desc": "[FIXME] Une équipe à votre écoute pour répondre à toutes vos questions."
+          "title": "Suport Clienți Dedicat",
+          "desc": "O echipă pregătită să vă răspundă la toate întrebările."
         }
       },
       "individual": {
-        "title": "[FIXME] Traitement Individuel",
-        "content": "[FIXME] Chaque dossier est traité de manière individuelle par notre équipe. Nous prenons le temps d'analyser votre situation spécifique pour vous proposer un accompagnement personnalisé."
+        "title": "Tratament Individual",
+        "content": "Fiecare dosar este tratat individual de echipa noastră. Ne luăm timpul necesar pentru a analiza situația dumneavoastră specifică pentru a vă oferi un acompaniament personalizat."
       },
       "promise": {
-        "title": "[FIXME] Notre Engagement",
-        "content": "[FIXME] AGM INVEST s'engage à la transparence dans ses processus et ses communications. Votre confiance est notre priorité."
+        "title": "Angajamentul Nostru",
+        "content": "AGM INVEST se angajează la transparență în procesele și comunicările sale. Încrederea dumneavoastră este prioritatea noastră."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Ultima actualizare : Februarie 2026",
+        "copyright": "© 2026 AGM INVEST - Toate drepturile rezervate"
       }
     },
     "Disclaimer": {
-      "title": "[FIXME] Disclaimer Financier",
-      "subtitle": "[FIXME] Informations importantes sur la nature des services AGM INVEST.",
+      "title": "Disclaimer Financiar",
+      "subtitle": "Informații importante privind natura serviciilor AGM INVEST.",
       "warning": {
-        "title": "[FIXME] Avertissement Important",
-        "content": "[FIXME] AGM INVEST n'est ni un établissement bancaire, ni un organisme de crédit, mais un intermédiaire financier réglementé."
+        "title": "Avertisment Important",
+        "content": "AGM INVEST nu este nici o instituție bancară, nici un organism de credit, ci un intermediar financiar reglementat."
       },
       "nature": {
-        "title": "[FIXME] Nature de l'Activité",
-        "p1": "[FIXME] AGM INVEST intervient exclusivement en tant qu'intermédiaire administratif et de mise en relation.",
-        "p2": "[FIXME] Nos services consistent en un accompagnement dans vos démarches administratives et la mise en relation avec des partenaires qualifiés."
+        "title": "Natura Activității",
+        "p1": "AGM INVEST intervine exclusiv ca intermediar administrativ și de punere în legătură.",
+        "p2": "Serviciile noastre constau într-un acompaniament în demersurile dumneavoastră administrative și punerea în legătură cu parteneri calificați."
       },
       "limitations": {
-        "title": "[FIXME] Limitations de Garantie",
+        "title": "Limitări de Garanție",
         "list": {
-          "li1": "[FIXME] AGM INVEST ne garantit pas l'acceptation d'un dossier par des tiers",
-          "li2": "[FIXME] AGM INVEST ne garantit pas l'obtention effective d'un financement",
-          "li3": "[FIXME] Les délais, montants et décisions finales dépendent des partenaires externes et des organismes concernés"
+          "li1": "AGM INVEST nu garantează acceptarea unui dosar de către terți",
+          "li2": "AGM INVEST nu garantează obținerea efectivă a unei finanțări",
+          "li3": "Termenele, sumele și deciziile finale depind de partenerii externi și de organismele vizate"
         }
       },
       "indicative": {
-        "title": "[FIXME] Informations Indicatives",
-        "content": "[FIXME] Toute information communiquée par AGM INVEST est fournie à titre indicatif et ne constitue en aucun cas un engagement contractuel de résultat."
+        "title": "Informații Orientative",
+        "content": "Orice informație comunicată de AGM INVEST este furnizată cu titlu informativ și nu constituie în niciun caz un angajament contractual de rezultat."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Ultima actualizare : Februarie 2026",
+        "copyright": "© 2026 AGM INVEST - Toate drepturile rezervate"
       }
     },
     "Ads": {
-      "title": "[FIXME] Mentions Publicitaires",
-      "subtitle": "[FIXME] Clarifications importantes sur les services proposés par AGM INVEST.",
+      "title": "Mențiuni Publicitare",
+      "subtitle": "Clarificări importante privind serviciile oferite de AGM INVEST.",
       "warning": {
-        "title": "[FIXME] Information Importante",
-        "content": "[FIXME] AGM INVEST n'est pas une banque ni un organisme de crédit, mais un intermédiaire financier réglementé."
+        "title": "Informație Importante",
+        "content": "AGM INVEST nu este o bancă sau un organism de credit, ci un intermediar financiar reglementat."
       },
       "nature": {
-        "title": "[FIXME] Nature des Services",
-        "p1": "[FIXME] Les services proposés par AGM INVEST relèvent de l'accompagnement administratif et de la mise en relation.",
-        "p2": "[FIXME] Nous intervenons en tant qu'intermédiaire pour faciliter vos démarches et vous mettre en contact avec des partenaires qualifiés."
+        "title": "Natura Serviciilor",
+        "p1": "Serviciile oferite de AGM INVEST țin de acompaniamentul administrativ și de punerea în legătură.",
+        "p2": "Intervenim ca intermediar pentru a vă facilita demersurile și a vă pune în contact cu parteneri calificați."
       },
       "acceptance": {
-        "title": "[FIXME] Acceptation des Dossiers",
-        "content": "[FIXME] L'acceptation des dossiers dépend de partenaires externes. AGM INVEST ne peut garantir l'acceptation systématique de votre demande."
+        "title": "Acceptarea Dosarelor",
+        "content": "Acceptarea dosarelor depinde de parteneri externi. AGM INVEST nu poate garanta acceptarea sistematică a cererii dumneavoastră."
       },
       "results": {
-        "title": "[FIXME] Résultats Variables",
-        "content": "[FIXME] Les résultats peuvent varier selon la situation du client, les critères des partenaires et les conditions du marché."
+        "title": "Rezultate Variabile",
+        "content": "Rezultatele pot varia în funcție de situația clientului, criteriile partenerilor și condițiile pieței."
       },
       "links": {
-        "title": "[FIXME] Pour plus d'informations, consultez nos :",
-        "cgu": "[FIXME] Conditions Générales",
-        "mentions": "[FIXME] Mentions Légales"
+        "title": "Pentru mai multe informații, consultați :",
+        "cgu": "Condiții Generale",
+        "mentions": "Mențiuni Legale"
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Ultima actualizare : Februarie 2026",
+        "copyright": "© 2026 AGM INVEST - Toate drepturile rezervate"
       }
     }
   },
   "Dashboard": {
+    "Notifications": {
+      "requestSubmitted": {
+        "title": "Cerere de împrumut trimisă 📄",
+        "message": "Cererea dumneavoastră de împrumut pentru {amount} a fost înregistrată cu succes."
+      },
+      "transferInitiated": {
+        "title": "Transfer inițiat 🚀",
+        "message": "Transferul dumneavoastră de {amount} este în curs de procesare."
+      },
+      "newMessage": {
+        "title": "Mesaj nou 💬",
+        "message": "Ați primit un mesaj nou de la consilierul dumneavoastră."
+      },
+      "statusUpdate": {
+        "title": "Starea dosarului actualizată 🔔",
+        "message": "Starea dosarului dumneavoastră a fost actualizată."
+      },
+      "verified": {
+        "title": "Identitate verificată ✅",
+        "message": "Felicitări! Identitatea dumneavoastră a fost validată cu succes."
+      },
+      "rejected": {
+        "title": "Identitate respinsă ❌",
+        "message": "Verificarea identității dumneavoastră a fost respinsă. Vă rugăm să verificați documentele."
+      },
+      "partialRejection": {
+        "title": "Documente incomplete ⚠️",
+        "message": "Unele documente din dosarul dumneavoastră trebuie completate."
+      },
+      "verificationSubmitted": {
+        "title": "Verificare trimisă 🛡️",
+        "message": "Documentele dumneavoastră de identitate sunt în curs de examinare."
+      },
+      "securityUpdate": {
+        "title": "Securitate actualizată 🔒",
+        "message": "Parola dumneavoastră a fost modificată cu succes."
+      }
+    },
     "Layout": {
       "Sidebar": {
-        "clientSpace": "[FIXME] Espace Client",
-        "balance": "[FIXME] Mon Solde",
-        "makeRequest": "[FIXME] Demander un Prêt",
-        "myRequests": "[FIXME] Mes Demandes",
-        "myDocuments": "[FIXME] Mes Documents",
-        "billing": "[FIXME] Facturation",
-        "myProfile": "[FIXME] Mon Profil",
-        "settings": "[FIXME] Paramètres",
-        "support": "[FIXME] Aide & Support",
-        "logout": "[FIXME] Déconnexion"
+        "menuTitle": "Navigație",
+        "preferencesTitle": "Preferințe",
+        "clientSpace": "Tablou de bord",
+        "balance": "Contul meu",
+        "makeRequest": "Cere un împrumut",
+        "myRequests": "Cererile mele",
+        "myDocuments": "Documentele mele",
+        "billing": "Facturare",
+        "myProfile": "Profilul meu",
+        "settings": "Setări",
+        "support": "Suport",
+        "logout": "Deconectare",
+        "premiumStatus": "Statut Premium",
+        "verifiedClient": "Client Verificat",
+        "actionRequired": "Acțiune Necesară",
+        "docsToComplete": "Documente de completat",
+        "docsAttention": "Unele documente necesită atenția dumneavoastră.",
+        "identityRejected": "Identitate Respinsă",
+        "contactSupport": "Vă rugăm să contactați suportul."
+      },
+      "Header": {
+        "searchPlaceholder": "Căutare...",
+        "notifications": "Notificări",
+        "markAllAsRead": "Marchează toate ca citite",
+        "noNotifications": "Nicio notificare",
+        "managePreferences": "Gestionați preferințele",
+        "user": "Utilizator",
+        "verifiedClient": "Client Verificat",
+        "verificationInProgress": "Verificare în curs",
+        "actionRequired": "Acțiune Necesară",
+        "identityRejected": "Identitate Respinsă",
+        "docsToComplete": "Documente de completat",
+        "accountToVerify": "Cont de verificat"
+      },
+      "Notifications": {
+        "statusUpdate": {
+          "title": "Actualizare status",
+          "message": "Starea verificării dvs. de identitate s-a schimbat."
+        },
+        "verified": {
+          "title": "Identitate Verificată ✅",
+          "message": "Identitatea dvs. a fost confirmată. Acum puteți accesa toate funcțiile."
+        },
+        "rejected": {
+          "title": "Identitate Respinsă ❌",
+          "message": "Documentele dvs. nu au fost acceptate. Trimiteți altele noi."
+        },
+        "partialRejection": {
+          "title": "Documente Parțial Respinse ⚠️",
+          "message": "Unele documente necesită corectare. Consultați secțiunea Verificare."
+        },
+        "newMessage": {
+          "title": "Mesaj Nou 💬",
+          "message": "Aveți un mesaj nou de la echipa noastră."
+        }
+      },
+      "IdentityBanner": {
+        "pendingTitle": "Verificare în curs...",
+        "pendingMessage": "Experții noștri vă certifică documentele. Liniștea dumneavoastră este prioritatea noastră, răspuns în 24 de ore.",
+        "requiredTitle": "Acțiune necesară: Identitate",
+        "requiredMessage": "Pentru a vă debloca opțiunile de finanțare, este necesară o scurtă verificare de securitate.",
+        "action": "Verifică acum"
+      },
+      "Requests": {
+        "Details": {
+          "status": {
+            "pending": "În așteptare",
+            "approved": "Aprobat",
+            "rejected": "Respins",
+            "processing": "În procesare"
+          },
+          "timeline": {
+            "step1": {
+              "title": "Dosar primit",
+              "desc": "Cererea dumneavoastră a fost înregistrată cu succes."
+            },
+            "step2": {
+              "title": "Analiză tehnică",
+              "desc": "Experții noștri verifică fezabilitatea proiectului dumneavoastră."
+            },
+            "step3": {
+              "title": "Verificare documente",
+              "desc": "Examinare detaliată a documentelor justificative transmise."
+            },
+            "step4": {
+              "approved": {
+                "title": "Decizie finală: Aprobat",
+                "desc": "Felicitări, finanțarea dumneavoastră a fost validată."
+              },
+              "rejected": {
+                "title": "Decizie finală: Respins",
+                "desc": "Din păcate, nu putem da curs cererii dumneavoastră."
+              },
+              "pending": "În așteptarea comisiei finale."
+            }
+          },
+          "banners": {
+            "approved": {
+              "title": "Felicitări! Creditul dumneavoastră este aprobat 🚀",
+              "message": "Finanțarea dumneavoastră a fost validată. O ultimă verificare a identității este necesară pentru a activa transferul fondurilor.",
+              "action": "Verificare necesară"
+            },
+            "actionRequired": {
+              "title": "Acțiune necesară",
+              "message": "Identitatea dumneavoastră a fost confirmată! Pentru a finaliza activarea creditului, depozitul de autentificare este acum necesar.",
+              "action": "Efectuați depozitul"
+            }
+          },
+          "header": {
+            "back": "Înapoi",
+            "amountLabel": "Suma Proiectului"
+          },
+          "info": {
+            "duration": "Durată",
+            "monthlyPayment": "Rată lunară",
+            "rate": "Rată (DAE)",
+            "creationDate": "Data creării"
+          },
+          "progression": "Progres",
+          "declaration": {
+            "title": "Declarația mea",
+            "situation": "Situație profesională",
+            "income": "Venit lunar",
+            "expenses": "Cheltuieli estimate",
+            "security": "Confidențialitate totală garantată de ELYSIO"
+          },
+          "advisor": {
+            "title": "Consilier Senior",
+            "contact": "Contactați"
+          },
+          "nextStep": {
+            "title": "Pasul următor",
+            "pending": "Analiza inițială va fi finalizată până la sfârșitul zilei. Un expert vă va contacta dacă este necesar.",
+            "processing": "Examinăm documentele dumneavoastră. Momentan nu este necesară nicio acțiune din partea dumneavoastră.",
+            "finished": "Dosarul dumneavoastră este închis. Consultați fila 'Conturi' pentru a activa finanțarea.",
+            "estimateLabel": "Timp estimat",
+            "estimateValue": "Mai puțin de 24h"
+          }
+        }
       }
     },
     "Home": {
-      "welcome": "[FIXME] Bonjour, {name} !",
-      "subtitle": "[FIXME] Bienvenue sur votre tableau de bord.",
-      "status": {
-        "verified": "[FIXME] Compte Vérifié",
-        "premium": "[FIXME] Client Premium"
+      "welcome": "Bună ziua, <bold>{name}</bold> !",
+      "subtitle": "Iată rezumatul spațiului dumneavoastră de client.",
+      "alerts": {
+        "rejected": {
+          "title": "Cerere Respinsă",
+          "message": "Din păcate, cererea dumneavoastră de finanțare a fost respinsă în urma examinării dosarului."
+        },
+        "approvedIdentityNeeded": {
+          "title": "Felicitări! Credit Aprobat",
+          "message": "Cererea dumneavoastră a fost acceptată. Pentru a debloca fondurile, trebuie să finalizăm verificarea identității dumneavoastră.",
+          "action": "Verifică-mi identitatea"
+        },
+        "approvedDepositNeeded": {
+          "title": "Împrumut gata de debursare",
+          "message": "Identitatea dumneavoastră a fost verificată. Vă rugăm să finalizați depunerea inițială pentru a debloca transferul fondurilor.",
+          "action": "Finalizează depunerea"
+        },
+        "idRejected": {
+          "title": "Identitate Respinsă",
+          "message": "Documentele furnizate pentru identitate nu sunt conforme. Vă rugăm să le actualizați."
+        },
+        "partialRejection": {
+          "title": "Acțiune Necesară",
+          "message": "Unele dintre documentele dumneavoastră au fost respinse. Vă rugăm să furnizați noi dovezi.",
+          "action": "Actualizează"
+        }
+      },
+      "loanAccount": {
+        "title": "Cont de Credit",
+        "remainingAmount": "Capital Rămas",
+        "totalAmount": "Suma Împrumutului"
+      },
+      "balance": {
+        "repaid": "Rambursat în proporție de {percent}%",
+        "monthsRemaining": "{count} luni rămase"
       },
       "stats": {
-        "total": "[FIXME] Total Demandes",
-        "approved": "[FIXME] Approuvées",
-        "pending": "[FIXME] En attente",
-        "projects": "[FIXME] Projets"
+        "total": "Total dosare",
+        "approved": "Dosare aprobate",
+        "pending": "În curs de examinare",
+        "projects": "Tipuri de proiecte"
+      },
+      "recentRequests": {
+        "title": "Cereri Recente",
+        "viewAll": "Vezi tot",
+        "type": "Tip de proiect",
+        "status": "Status",
+        "none": "Nicio cerere recentă"
+      },
+      "support": {
+        "title": "Aveți nevoie de ajutor?",
+        "subtitle": "Echipa noastră vă stă la dispoziție pentru a vă însoți în proceduri.",
+        "action": "Contactați suportul"
+      },
+      "quickActions": {
+        "title": "Acțiuni Rapide",
+        "docs": "Documentele mele",
+        "transfer": "Transfer",
+        "history": "Scadențar",
+        "profile": "Profilul meu"
+      },
+      "security": {
+        "title": "Securitate Maximă",
+        "message": "Datele dumneavoastră confidențiale și bancare sunt protejate prin criptare end-to-end."
       }
     },
     "Accounts": {
-      "title": "[FIXME] Mon Solde",
-      "subtitle": "[FIXME] Gérez vos comptes et vos informations bancaires."
+      "title": "Contul meu",
+      "subtitle": "Gestionarea împrumutului dumneavoastră",
+      "card": {
+        "totalBalance": "Capital Rămas",
+        "capitalRemaining": "Capitalul rămas din împrumutul dumneavoastră",
+        "initialAmount": "Suma Inițială",
+        "nextInstallment": "Următoarea Scadență",
+        "firstInstallment": "Prima Scadență",
+        "deferredPeriod": "Perioada de grație"
+      },
+      "stats": {
+        "rate": "Rata dobânzii",
+        "remainingDuration": "Durata Rămasă",
+        "months": "luni"
+      },
+      "actions": {
+        "transfer": "Efectuează un transfer",
+        "schedule": "Grafic de rambursare"
+      },
+      "operations": {
+        "title": "Tranzacții",
+        "none": "Nicio tranzacție",
+        "loanDisbursement": "Debursare împrumut",
+        "externalAccount": "Cont Extern",
+        "transferTo": "Transfer către {bank}",
+        "receivedOn": "Primit la data de {date}",
+        "labels": {
+          "done": "Finalizat",
+          "rejected": "Respins",
+          "pending": "În așteptare"
+        },
+        "status": {
+          "processing": "În curs de procesare..."
+        }
+      },
+      "rib": {
+        "title": "Informații Bancare (RIB)",
+        "edit": "Modifică",
+        "bank": "Bancă",
+        "iban": "IBAN",
+        "bic": "BIC / SWIFT",
+        "email": "Email asociat",
+        "undefined": "Nedefinit",
+        "notProvided": "Nefurnizat",
+        "verifiedFooter": "Aceste date bancare sunt verificate și sigure. Orice modificare va fi supusă validării."
+      },
+      "support": {
+        "title": "Aveți nevoie de ajutor?",
+        "message": "Echipa noastră vă stă la dispoziție pentru a vă asista în procedurile dumneavoastră.",
+        "action": "Contactați suportul"
+      },
+      "modal": {
+        "title": "Editează RIB",
+        "subtitle": "Actualizați datele bancare",
+        "bankLabel": "Numele Băncii",
+        "bankPlaceholder": "Ex: BCR",
+        "ibanLabel": "IBAN",
+        "ibanPlaceholder": "RO00...",
+        "bicLabel": "BIC / SWIFT",
+        "bicPlaceholder": "RNRO...",
+        "emailLabel": "Adresă Email",
+        "emailPlaceholder": "email@exemplu.ro",
+        "info": "Orice modificare a datelor bancare va fi verificată de echipa noastră înainte de a fi validată.",
+        "save": "Salvează modificările"
+      },
+      "messages": {
+        "success": "Informațiile bancare au fost actualizate cu succes",
+        "error": "A apărut o eroare în timpul actualizării. Vă rugăm să încercați din nou mai târziu."
+      }
+    },
+    "Transfers": {
+      "title": "Transfer Bancar",
+      "subtitle": "Transferați fonduri către contul dumneavoastră bancar",
+      "form": {
+        "amountLabel": "Suma de transferat",
+        "destinationLabel": "Contul de destinație",
+        "referenceAccount": "Cont de Referință",
+        "verifiedAccount": "Verificat",
+        "delayNote": "Transferurile sunt procesate în termen de 24 până la 72 de ore lucrătoare. Veți primi o confirmare prin e-mail.",
+        "total": "Total",
+        "confirm": "Confirmă transferul",
+        "blocked": "Transfer blocat",
+        "required": {
+          "verification": "Verificarea identității este necesară",
+          "finalization": "Finalizarea este necesară"
+        }
+      },
+      "errors": {
+        "insufficientBalance": "Sold insuficient. Aveți {balance}€ și încercați să transferați {amount}€."
+      },
+      "messages": {
+        "initiated": "Transfer inițiat 💸",
+        "processing": "Solicitarea dumneavoastră de transfer de {amount} € este în curs de procesare.",
+        "genericError": "A apărut o eroare în timpul transferului. Vă rugăm să vă verificați permisiunile."
+      },
+      "success": {
+        "title": "Transfer inițiat!",
+        "message": "Transferul dumneavoastră este în prezent {status}. Veți primi o notificare imediat ce va fi procesat.",
+        "pending": "ÎN AȘTEPTARE",
+        "newTransfer": "Transfer nou",
+        "myAccounts": "Conturile mele"
+      },
+      "blocking": {
+        "verification": {
+          "title": "Verificarea identității este necesară",
+          "short": "Completați KYC pentru a efectua transferuri.",
+          "long": "Din motive de securitate, identitatea dumneavoastră trebuie verificată înainte de a efectua transferuri. Mergeți la secțiunea Documente pentru a vă completa dosarul."
+        },
+        "deposit": {
+          "title": "Depunerea inițială este necesară",
+          "short": "Finalizați depunerea pentru a debloca transferurile.",
+          "long": "Plata inițială este în așteptare. Vă rugăm să finalizați depunerea pentru a debloca funcția de transfer."
+        }
+      },
+      "security": {
+        "title": "Control de securitate",
+        "message": "Fiecare transfer este supus unui control de securitate pentru a vă proteja fondurile.",
+        "estimatedDelay": "Timp estimat",
+        "delay": "24 - 72h",
+        "protection": "Protecție",
+        "aes": "AES-256"
+      },
+      "status": {
+        "approved": "Aprobat",
+        "rejected": "Respins",
+        "review": "În curs de revizuire",
+        "advanced": "Avansat",
+        "pending": "În așteptare"
+      },
+      "history": {
+        "title": "Istoric recent",
+        "full": "Istoric Complet",
+        "subtitle": "Toate transferurile dumneavoastră efectuate",
+        "none": "Niciun transfer efectuat",
+        "viewAll": "Vezi tot istoricul",
+        "table": {
+          "date": "Dată",
+          "recipient": "Beneficiar",
+          "iban": "IBAN",
+          "amount": "Sumă",
+          "status": "Stare",
+          "justNow": "Chiar acum"
+        },
+        "pagination": {
+          "page": "Pagina",
+          "display": "Afișare {start} - {end} din {total}"
+        }
+      }
+    },
+    "Verification": {
+      "title": "Verificare",
+      "subtitle": "Identitate securizată prin biometrie.",
+      "Intro": {
+        "title": "Verificarea securității",
+        "description": "Pentru a valida depozitul dumneavoastră de autentificare și pentru a asigura accesul la fonduri, trebuie să vă confirmăm identitatea printr-un selfie live și o scurtă secvență video.",
+        "selfieTitle": "Fotografie Selfie",
+        "selfieDesc": "Față clară, iluminare bună.",
+        "videoTitle": "Video Selfie (10s)",
+        "videoDesc": "Rotiți capul ușor.",
+        "startButton": "Începe verificarea",
+        "gdpr": "Acțiune obligatorie • Conform GDPR"
+      },
+      "Processing": {
+        "title": "Sesiune în curs",
+        "description": "Am detectat capturi în așteptare pe acest dispozitiv. Doriți să finalizați trimiterea sau să o luați de la capăt?",
+        "continueButton": "Continuă spre trimitere",
+        "resetButton": "Șterge și reia"
+      },
+      "Notifications": {
+        "submittedTitle": "Verificare transmisă 📸",
+        "submittedMessage": "Selfie-ul și videoclipul dumneavoastră sunt în curs de analiză. Vă rugăm să așteptați.",
+        "error": "A apărut o eroare în timpul trimiterii."
+      },
+      "Camera": {
+        "desktopError": {
+          "title": "Vificare doar pe mobil",
+          "message": "Această verificare trebuie efectuată de pe un smartphone din motive de securitate.",
+          "copyLink": "Copiază link",
+          "linkCopied": "Link copiat!",
+          "back": "Înapoi"
+        },
+        "status": {
+          "accessing": "Accesare cameră...",
+          "validatePhoto": "Validează foto",
+          "validateVideo": "Validează video",
+          "finished": "Verificare finalizată",
+          "selfieTitle": "Foto Selfie",
+          "videoTitle": "Video Selfie"
+        },
+        "instructions": {
+          "tapToStart": "Apasă pentru a începe",
+          "turnLeft": "Întoarce capul la STÂNGA",
+          "turnRight": "Întoarce capul la DREAPTA",
+          "raiseHead": "Ridică capul",
+          "perfect": "Perfect!"
+        },
+        "actions": {
+          "retake": "Reia",
+          "validate": "Validează",
+          "upload": "Încarcă",
+          "finalize": "Finalizează verificarea"
+        },
+        "confirmReset": "Ești sigur că vrei să ștergi toate capturile și să o iei de la capăt?",
+        "submitting": {
+          "title": "Transmitere în curs",
+          "message": "Vă securizăm datele și finalizăm legătura profilului dumneavoastră de plată.",
+          "doneTitle": "Verificare finalizată",
+          "doneMessage": "Identitatea dumneavoastră a fost trimisă cu succes. Veți fi redirecționat...",
+          "encryption": "Criptare AES-256 în curs"
+        },
+        "errors": {
+          "saveSelfie": "Eroare la salvarea selfie-ului.",
+          "saveVideo": "Eroare la salvarea videoclipului.",
+          "generic": "A apărut o eroare în timpul validării.",
+          "missingMedia": "Media lipsă",
+          "uploadFailed": "Eroare la trimiterea fișierelor."
+        }
+      }
     },
     "Profile": {
-      "title": "[FIXME] Mon Profil",
-      "subtitle": "[FIXME] Gérez vos informations personnelles et votre sécurité.",
-      "editButton": "[FIXME] Modifier Profil",
-      "saveButton": "[FIXME] Enregistrer",
-      "cancelButton": "[FIXME] Annuler",
+      "title": "Profilul Meu",
+      "subtitle": "Gestionați informațiile personale și securitatea dvs.",
+      "editButton": "Editare Profil",
+      "saveButton": "Salvare",
+      "cancelButton": "Anulare",
       "Identity": {
-        "title": "[FIXME] État Civil"
+        "title": "Starea Civilă"
       },
       "Location": {
-        "title": "[FIXME] Coordonnées"
+        "title": "Date de Contact"
       },
       "Situation": {
-        "title": "[FIXME] Situation Personnelle"
+        "title": "Situație Personală"
       },
       "Professional": {
-        "title": "[FIXME] Situation Professionnelle"
+        "title": "Situație Profesională"
       },
       "Financial": {
-        "title": "[FIXME] Situation Financière"
+        "title": "Situație Financiară"
+      },
+      "sections": {
+        "identity": "Date Personale",
+        "contact": "Date de Contact",
+        "personal": "Situație Personală",
+        "professional": "Situație Profesională",
+        "financial": "Situație Financiară"
+      },
+      "fields": {
+        "address": "Adresă de reședință",
+        "zipCode": "Cod Poștal",
+        "city": "Oraș",
+        "country": "Țară",
+        "phone": "Telefon mobil"
+      },
+      "companyLabels": {
+        "student": "Instituție / Universitate",
+        "apprentice": "Companie gazdă / Centru de formare",
+        "independent": "Numele activității dvs.",
+        "artisan": "Firmă / Denumire comercială",
+        "civil_servant": "Minister / Administrație",
+        "temporary": "Agenție de muncă temporară / Angajator",
+        "liberal": "Cabinet / Denumire socială",
+        "business_owner": "Numele companiei / Marcă"
+      },
+      "incomeLabels": {
+        "retired": "Pensie lunară",
+        "unemployed": "Alocații / Venituri",
+        "student": "Burse / Venituri lunare",
+        "apprentice": "Remunerație lunară",
+        "civil_servant": "Salariu lunar net",
+        "selfEmployed": "Venit lunar mediu"
       }
     },
     "Requests": {
-      "title": "[FIXME] Mes Demandes",
-      "subtitle": "[FIXME] Consultez l'historique et l'avancement de vos dossiers.",
-      "searchPlaceholder": "[FIXME] Rechercher...",
-      "noneFound": "[FIXME] Aucune demande trouvée",
-      "newRequest": "[FIXME] Nouvelle demande"
+      "title": "Cererile mele",
+      "subtitle": "Urmăriți progresul dosarelor dumneavoastră.",
+      "searchPlaceholder": "Căutare...",
+      "noneFound": "Nicio cerere găsită",
+      "noneDescription": "Nu ați efectuat încă o cerere de finanțare. Începeți prin simularea proiectului dumneavoastră.",
+      "newRequest": "Cerere nouă",
+      "defaultType": "Cerere de Credit",
+      "requestedAmount": "Suma solicitată",
+      "follow": "Urmărește",
+      "status": {
+        "pending": "În așteptare",
+        "approved": "Aprobat",
+        "rejected": "Respins",
+        "processing": "În curs"
+      },
+      "banners": {
+        "approved": {
+          "title": "Felicitări! Creditul dumneavoastră este aprobat 🚀",
+          "message": "Veste excelentă: finanțarea dumneavoastră a fost validată. O ultimă verificare a identității este necesară pentru a activa transferul fondurilor.",
+          "action": "Verificare necesară"
+        },
+        "actionRequired": {
+          "title": "Acțiune Necesară",
+          "message": "Identitatea dumneavoastră a fost confirmată! Pentru a finaliza activarea creditului, depozitul de autentificare este acum necesar.",
+          "action": "Efectuați depunerea"
+        }
+      },
+      "Details": {
+        "header": {
+          "back": "Înapoi",
+          "amountLabel": "Suma solicitată"
+        },
+        "status": {
+          "pending": "În așteptare",
+          "approved": "Aprobat",
+          "rejected": "Respins",
+          "processing": "În analiza"
+        },
+        "progression": "PROGRESUL DOSARULUI",
+        "info": {
+          "duration": "Durată",
+          "monthlyPayment": "Rată lunară",
+          "rate": "Dobândă",
+          "creationDate": "Data creării"
+        },
+        "timeline": {
+          "step1": {
+            "title": "DOSAR PRIMIT",
+            "desc": "Cererea dvs. a fost primită. Echipa noastră o va analiza."
+          },
+          "step2": {
+            "title": "ANALIZĂ ÎN CURS",
+            "desc": "Consilierii noștri experți analizează dosarul dvs. în detaliu."
+          },
+          "step3": {
+            "title": "VERIFICARE FINALĂ",
+            "desc": "Verificarea finală a tuturor elementelor dosarului dvs."
+          },
+          "step4": {
+            "approved": {
+              "title": "DOSAR APROBAT",
+              "desc": "Felicitări! Finanțarea dvs. a fost aprobată."
+            },
+            "rejected": {
+              "title": "DOSAR RESPINS",
+              "desc": "Cererea dvs. nu a fost acceptată. Contactați asistența noastră."
+            },
+            "pending": "Se așteaptă decizia finală..."
+          }
+        },
+        "declaration": {
+          "title": "DECLARAȚIE FINANCIARĂ",
+          "situation": "Situație profesională",
+          "income": "Venituri lunare",
+          "expenses": "Cheltuieli lunare",
+          "security": "Date criptate și securizate - AES-256",
+          "seniorityDesc": "Vechime confirmată",
+          "incomeDesc": "Net înainte de impozite",
+          "expensesDesc": "Chirie și credite"
+        },
+        "advisor": {
+          "title": "Consilierul dvs.",
+          "contact": "Contactați consilierul meu",
+          "quote": "\"Dosarul dvs. este pe mâini bune. Mă ocup personal de el.\""
+        },
+        "nextStep": {
+          "title": "PASUL URMĂTOR",
+          "pending": "Dosarul dvs. este în curs de examinare. Vă vom contacta în 24-48 de ore.",
+          "processing": "Echipa noastră finalizează analiza. Veți fi contactat în curând.",
+          "finished": "Dosarul dvs. a fost procesat. Verificați starea de mai sus.",
+          "estimateLabel": "Timp estimat",
+          "estimateValue": "24 până la 48 de ore"
+        },
+        "banners": {
+          "approved": {
+            "title": "FINANȚAREA DVS. ESTE APROBATĂ",
+            "message": "Trebuie să vă verificăm identitatea înainte de a elibera fondurile.",
+            "action": "Completați verificarea identității"
+          },
+          "actionRequired": {
+            "title": "ACȚIUNE NECESARĂ",
+            "message": "Dosarul dvs. a fost aprobat. Este necesară o acțiune pentru a finaliza finanțarea.",
+            "action": "Efectuați plata mea"
+          }
+        }
+      }
     },
-    "settings": {
-      "title": "[FIXME] Paramètres",
-      "subtitle": "[FIXME] Gérez vos préférences de compte, les notifications et la sécurité.",
-      "language": "[FIXME] Langue",
-      "lastLogin": "[FIXME] Dernière connexion",
-      "notifications": "[FIXME] Notifications",
-      "security": "[FIXME] Sécurité du Compte",
-      "autoLogout": "[FIXME] Déconnexion auto",
-      "password": "[FIXME] Mot de passe"
+    "Settings": {
+      "title": "Setări",
+      "subtitle": "Gestionați preferințele contului, notificările și securitatea.",
+      "language": "Limbă",
+      "lastLogin": "Ultima autentificare",
+      "notifications": "Notificări",
+      "security": "Securitatea Contului",
+      "loginEmail": "Email de autentificare",
+      "autoLogout": "Deconectare automată",
+      "password": "Parolă",
+      "timeouts": {
+        "never": "Niciodată",
+        "5min": "5 Minute",
+        "15min": "15 Minute",
+        "30min": "30 Minute"
+      },
+      "PasswordModal": {
+        "title": "Schimbă parola",
+        "currentLabel": "Parola actuală",
+        "newLabel": "Parola nouă",
+        "confirmLabel": "Confirmă parola nouă",
+        "submit": "Actualizează",
+        "updating": "Actualizare...",
+        "errorMatch": "Parolele nu se potrivesc.",
+        "errorLength": "Parola trebuie să aibă cel puțin 6 caractere.",
+        "errorWrong": "Parola actuală este incorectă.",
+        "errorGeneric": "A apărut o eroare în timpul actualizării.",
+        "successAlert": "Parola a fost actualizată cu succes!"
+      },
+      "Notifications": {
+        "securityTitle": "Securitate actualizată 🔒",
+        "securityMessage": "Parola dumneavoastră a fost modificată cu succes.",
+        "emailLabel": "Email",
+        "emailDesc": "Alerte dosare",
+        "pushLabel": "Push",
+        "pushDesc": "Mobil direct",
+        "offersLabel": "Oferte",
+        "offersDesc": "Parteneri"
+      },
+      "system": {
+        "lastLogin": "Ultima autentificare",
+        "sessionActive": "Sesiune curentă"
+      },
+      "footer": {
+        "aes": "Criptare AES-256",
+        "lastUpdate": "Ultima actualizare",
+        "february": "Februarie"
+      }
+    },
+    "Schedule": {
+      "title": "Graficul meu de Rambursare",
+      "subtitle": "Detalii finanțare",
+      "back": "Înapoi la conturi",
+      "exportPDF": "Exportă în PDF",
+      "stats": {
+        "monthlyPayment": "Plată lunară medie",
+        "insurance": "Inclusiv {amount} asigurare (3%)",
+        "totalInterest": "Dobândă totală",
+        "loanDuration": "Durata împrumutului",
+        "months": "luni"
+      },
+      "table": {
+        "number": "Nr",
+        "date": "Data plății",
+        "amount": "Sumă",
+        "principal": "Capital",
+        "balance": "Sold rămas",
+        "status": "Status"
+      },
+      "status": {
+        "paid": "Plătit",
+        "overdue": "RESTANT",
+        "pending": "În curs",
+        "upcoming": "Viitor"
+      },
+      "pagination": {
+        "page": "Pagina {current} din {total}"
+      },
+      "footer": {
+        "certified": "Document certificat de AGM INVEST • Securitate bancară"
+      },
+      "noActiveLoan": {
+        "title": "Niciun împrumut activ găsit",
+        "message": "Nu aveți încă un grafic de rambursare disponibil pentru vizualizare.",
+        "back": "Înapoi la tabloul de bord"
+      }
+    },
+    "Documents": {
+      "title": "Documentele Mele",
+      "subtitle": "Consultați și descărcați documentele dvs. contractuale, atestele și garanțiile certificate.",
+      "empty": {
+        "title": "Niciun document disponibil",
+        "message": "Documentele dvs. oficiale vor fi generate automat odată ce finanțarea dvs. va fi activată."
+      },
+      "contract": {
+        "title": "Contract de Împrumut",
+        "description": "Contractul dvs. complet incluzând graficul de rambursare, condițiile generale și mențiunile legale.",
+        "button": "Descarcă PDF"
+      },
+      "insurance": {
+        "title": "Asigurare",
+        "description": "Certificat de aderare la asigurarea împrumutătorului AGM INVEST care acoperă proiectul dvs. 100%.",
+        "button": "Descarcă Certificatul"
+      },
+      "privacy": {
+        "title": "Confidențialitate",
+        "description": "Document care detaliază protecția datelor personale și drepturile dvs. RGPD.",
+        "button": "Descarcă PDF"
+      },
+      "security": {
+        "title": "Documente Certificate și Securizate",
+        "message": "\"Toate documentele generate din acest spațiu sunt protejate electronic și certificate conforme de AGM INVEST. Au valoare legală pentru procedurile dvs.\""
+      }
+    },
+    "Billing": {
+      "title": "Facturare",
+      "subtitle": "Gestionați plățile și depozitele dvs. securizate.",
+      "errors": {
+        "accessDenied": "Acces refuzat"
+      },
+      "paymentTypes": {
+        "frais_dossier": "Taxe de Dosar",
+        "assurance": "Asigurare",
+        "frais_notaire": "Taxe Notariale",
+        "authentication_deposit": "Depozit de Autentificare",
+        "none": "Niciunul"
+      },
+      "empty": {
+        "title": "Nicio factură în așteptare",
+        "message": "Contul dvs. este actualizat. Nu este necesară nicio acțiune de plată în acest moment.",
+        "dashboardButton": "Dashboard"
+      },
+      "policy": {
+        "badge": "Carta Zero Taxe",
+        "title": "Politica de Transparență",
+        "noHiddenFees": {
+          "text": "AGM INVEST nu aplică",
+          "highlight": "nicio taxă ascunsă"
+        },
+        "depositExplanation": {
+          "text1": "Acest transfer de",
+          "text2": "corespunde unui",
+          "text3": "din contul dvs. bancar."
+        },
+        "important": {
+          "label": "Important:",
+          "text1": "Aceasta nu este o taxă de dosar. Această sumă este",
+          "highlight": "creditată 100%",
+          "text2": "în soldul dvs. de client și va fi utilizată pentru activarea finanțării."
+        }
+      },
+      "deposit": {
+        "label": "Suma Depozitului",
+        "credited": "Creditată 100%"
+      },
+      "sepa": {
+        "title": "Securitate SEPA",
+        "description": "Transfer instantaneu securizat către partenerul nostru european."
+      },
+      "rib": {
+        "title": "Date Bancare",
+        "subtitle": "Transfer Depozit",
+        "secureTransfer": "Transfer Sigur",
+        "copied": "Copiat!",
+        "confidentialNote": "Acest transfer este strict confidențial. Consilierul dvs. va primi o notificare automată când fondurile sunt primite de banca noastră parteneră.",
+        "fields": {
+          "beneficiary": "Beneficiar",
+          "bank": "Instituție",
+          "iban": "Cod IBAN",
+          "bic": "Cod BIC (SWIFT)"
+        }
+      },
+      "backLater": "Reveniți mai târziu"
+    },
+    "Support": {
+      "title": "Centrul de Asistență",
+      "subtitle": "Suntem aici pentru a vă răspunde la întrebări și pentru a vă însoți.",
+      "badge": "Ajutor și Suport",
+      "searchPlaceholder": "Căutați o soluție...",
+      "contactButton": "Contactați",
+      "faqTitle": "Întrebări Frecvente",
+      "faqAll": "Afișați toate întrebările",
+      "security": {
+        "title": "Suporte Certificat Securizat",
+        "desc": "Protocoluri de criptare active"
+      },
+      "Methods": {
+        "chat": {
+          "title": "Chat live",
+          "value": "Consilier online",
+          "desc": "Răspuns imediat"
+        },
+        "phone": {
+          "title": "Linie Telefonică",
+          "value": "AGM INVEST +33 7 56 84 41 45",
+          "desc": "9:00 - 18:00 (Lun-Vin)"
+        },
+        "email": {
+          "title": "Asistență prin E-mail",
+          "value": "contact@agm-negoce.com",
+          "desc": "În maximum 24 de ore"
+        }
+      },
+      "FAQs": [
+        {
+          "q": "Cum se desfășoară verificarea identității?",
+          "a": "Verificarea se face în întregime online. Trebuie doar să încărcați un act de identitate valabil și să realizați un scurt video selfie pentru a vă confirma identitatea în câteva secunde."
+        },
+        {
+          "q": "Care sunt termenele de aprobare a împrumutului?",
+          "a": "Odată ce dosarul este complet, primiți un răspuns de principiu imediat. Analiza finală și eliberarea fondurilor au loc, de obicei, în 24 până la 48 de ore lucrătoare."
+        },
+        {
+          "q": "Pot modifica cererea după trimitere?",
+          "a": "Atât timp cât cererea este în starea 'În așteptare', puteți contacta serviciul nostru de suport pentru a face modificări. Odată validată, modificările nu mai sunt posibile."
+        },
+        {
+          "q": "Cum pot descărca contractul semnat?",
+          "a": "Contractul dvs. este disponibil în secțiunea 'Documentele mele' din tabloul de bord imediat ce semnătura electronică este confirmată."
+        },
+        {
+          "q": "Care sunt criteriile de eligibilitate?",
+          "a": "Trebuie să fiți major, să locuiți într-o țară eligibilă și să justificați venituri stabile. Fiecare proiect este studiat în mod personalizat de către experții noștri."
+        },
+        {
+          "q": "Cum îmi pot securiza contul?",
+          "a": "Vă recomandăm să activați autentificarea cu doi factori (2FA) în setări și să folosiți o parolă unică și complexă."
+        }
+      ]
+    },
+    "Chat": {
+      "onlineStatus": "CLIENT ONLINE",
+      "welcome": "Bună ziua!",
+      "advisorReady": "Consilierul dumneavoastră este gata să vă ajute.",
+      "askQuestion": "Puneți întrebarea mai jos.",
+      "filePlaceholder": "Fișier",
+      "loadingFile": "Se încarcă fișierul...",
+      "inputPlaceholder": "Răspundeți clientului...",
+      "fileTooLarge": "Fișierul este prea mare (max 10MB)",
+      "uploadError": "Eroare la încărcarea fișierului. Vă rugăm să încercați din nou.",
+      "fileSent": "📎 Fișier trimis"
+    },
+    "KYC": {
+      "title": "Verificarea Identității",
+      "subtitle": "Conformitate și securitate.",
+      "Intro": {
+        "badge": "Conformitate",
+        "title": "Finalizarea dosarului",
+        "step1": {
+          "title": "Identitate",
+          "desc": "Doar fotografii clare.",
+          "note": "Toate cele 4 margini vizibile."
+        },
+        "step2": {
+          "title": "Finanțe și Adresă",
+          "desc": "Format PDF original.",
+          "note": "Scanările vor fi respinse."
+        },
+        "support": "Suport tehnic disponibil",
+        "contact": "Contact",
+        "secure": "Securitate AES-256"
+      },
+      "Documents": {
+        "identity_1": "Identitate 1",
+        "identity_2": "Identitate 2",
+        "id_front": "ID (Față)",
+        "id_back": "ID (Spate)",
+        "front": "Față",
+        "back": "Spate",
+        "cni": "Buletin / CI",
+        "passport": "Pașaport",
+        "resident_card": "Permis Rezidență",
+        "driver_license": "Permis Conducere",
+        "vital_card": "Card Sănătate",
+        "tax_notice": "Declarație fiscală",
+        "pay_slip_1": "Fluturaș 1",
+        "pay_slip_2": "Fluturaș 2",
+        "pay_slip_3": "Fluturaș 3",
+        "address_proof": "Dovadă adresă",
+        "rib": "Date Bancare",
+        "nature_1": "Tip ID 1",
+        "nature_2": "Tip ID 2",
+        "labels": {
+          "cni": "CI",
+          "passport": "Pașaport",
+          "resident_card": "Permis",
+          "driver_license": "Permis"
+        },
+        "descriptions": {
+          "generic_recto": "Fața {label}. Foto clară, margini vizibile.",
+          "generic_verso": "Spatele {label}. Foto clară, margini vizibile.",
+          "generic_simple": "Foto {label}. Foto clară, margini vizibile.",
+          "vital_card": "Copie card sănătate.",
+          "tax_notice": "Document fiscal (PDF).",
+          "pay_slip": "Dovadă venit (PDF).",
+          "pay_slip_detailed": "Luna curentă/anterioară (PDF).",
+          "address_proof": "Factură recentă (PDF).",
+          "rib": "Pe numele dvs. (PDF).",
+          "intl_id": "Foto clară, margini vizibile.",
+          "intl_address": "Certificat recent (PDF)."
+        }
+      },
+      "Status": {
+        "global": "Status Global",
+        "valid": "Validat",
+        "certified": "Certificat",
+        "missing": "Lipsește",
+        "recorded": "Înregistrat",
+        "success": "Succes!",
+        "transmitted": "Transmis",
+        "transmission": "Transmisie",
+        "transmission_desc": "Trimiteți pentru revizuire.",
+        "transmitted_desc": "Transmis cu succes.",
+        "transmitting": "Se transmite...",
+        "submit": "Trimite dosarul",
+        "finalizing": "Finalizează dosarul",
+        "encryption": "Criptare AES-256",
+        "validCount": "{completed} / {total} Validate",
+        "transmitted_short": "Transmis"
+      },
+      "Actions": {
+        "capture": "Captură",
+        "upload": "Încărcare",
+        "home": "Acasă",
+        "instructions": "Click pe o pictogramă.",
+        "takePhoto": "Fă o poză",
+        "selectFile": "Alege fișier",
+        "support_short": "Suport",
+        "retake": "Refă",
+        "validate": "Validează"
+      },
+      "Overlays": {
+        "success": {
+          "title": "Succes!",
+          "message": "Documente transmise. Răspuns în 24h."
+        },
+        "cameraError": "Cameră indisponibilă.",
+        "analyzing": "Analiză..."
+      },
+      "Errors": {
+        "pdfRequired": "Format PDF obligatoriu.",
+        "fileTooLarge": "Max 8MB.",
+        "missingDocs": "Documente lipsă.",
+        "submitError": "Eroare trimitere.",
+        "uploadError": "Eroare încărcare."
+      },
+      "MobileRedirect": {
+        "title": "Folosiți mobilul",
+        "subtitle": "Captură doar pe smartphone.",
+        "method1_label": "Recomandat",
+        "method1_desc": "Scanați codul QR",
+        "method2_label": "Link direct",
+        "method2_desc": "agminvest.com",
+        "button": "Am înțeles"
+      }
     }
   },
   "Reviews": {
-    "title": "[FIXME] Ce que nos clients <highlight>disent de nous</highlight>",
-    "description": "[FIXME] Découvrez les témoignages de ceux qui nous ont fait confiance pour leur projet de financement.",
-    "backToHome": "[FIXME] Retour à l'accueil",
-    "allReviews": "[FIXME] Tous les avis",
-    "page": "[FIXME] Page",
-    "of": "[FIXME] sur",
-    "verified": "[FIXME] Avis Vérifié",
-    "previous": "[FIXME] Précédent",
-    "next": "[FIXME] Suivant",
+    "title": "Ce spun clienții noștri <highlight>despre noi</highlight>",
+    "description": "Descoperiți testimonialele celor care au avut încredere în noi pentru proiectul lor de finanțare.",
+    "backToHome": "Înapoi la prima pagină",
+    "allReviews": "Toate recenziile",
+    "page": "Pagina",
+    "of": "din",
+    "verified": "Recenzie Verificată",
+    "previous": "Precedent",
+    "next": "Următor",
     "Items": {
       "r1": {
-        "region": "[FIXME] Paris",
-        "comment": "[FIXME] Service impeccable ! J'ai obtenu mon financement en moins de 2 semaines. L'équipe est très professionnelle."
+        "region": "Paris",
+        "comment": "Serviciu impecabil ! Am obținut finanțarea în mai puțin de 2 săptămâni. Echipa este foarte profesionistă."
       },
       "r2": {
-        "region": "[FIXME] Lyon",
-        "comment": "[FIXME] Excellente expérience. Le conseiller m'a accompagné à chaque étape. Je recommande vivement AGM INVEST."
+        "region": "Lyon",
+        "comment": "Experiență excelentă. Consilierul m-a acompaniat la fiecare pas. Recomand cu toată încrederea AGM INVEST."
       },
       "r3": {
-        "region": "[FIXME] Marseille",
-        "comment": "[FIXME] Très satisfait du service. Processus rapide et transparent. Quelques documents à fournir mais c'est normal."
+        "region": "Marsilia",
+        "comment": "Foarte mulțumit de serviciu. Proces rapid și transparent. Câteva documente de furnizat, dar este normal."
       },
       "r4": {
-        "region": "[FIXME] Toulouse",
-        "comment": "[FIXME] Je suis ravie ! Mon dossier a été traité rapidement et j'ai pu acheter ma voiture sans stress."
+        "region": "Toulouse",
+        "comment": "Sunt încântată ! Dosarul meu a fost procesat rapid și am putut să-mi cumpăr mașina fără stres."
       },
       "r5": {
-        "region": "[FIXME] Nice",
-        "comment": "[FIXME] Service au top ! L'équipe est réactive et à l'écoute. Mon crédit a été validé en 10 jours."
+        "region": "Nisa",
+        "comment": "Serviciu de top ! Echipa este reactivă și atentă. Creditul meu a fost validat în 10 zile."
       },
       "r6": {
-        "region": "[FIXME] Nantes",
-        "comment": "[FIXME] Bonne expérience globale. Le suivi est excellent et les conseillers sont compétents."
+        "region": "Nantes",
+        "comment": "Experiență globală bună. Monitorizarea este excelentă și consilierii sunt competenți."
       },
       "r7": {
-        "region": "[FIXME] Strasbourg",
-        "comment": "[FIXME] Parfait ! Processus simple et efficace. J'ai eu mon financement automobile sans problème."
+        "region": "Strasbourg",
+        "comment": "Perfect ! Proces simplu și eficient. Am avut finanțarea auto fără probleme."
       },
       "r8": {
-        "region": "[FIXME] Montpellier",
-        "comment": "[FIXME] Je recommande à 100% ! Service professionnel, rapide et transparent. Merci à toute l'équipe."
+        "region": "Montpellier",
+        "comment": "Recomand 100% ! Serviciu profesionist, rapid și transparent. Mulțumim întregii echipe."
       },
       "r9": {
-        "region": "[FIXME] Bordeaux",
-        "comment": "[FIXME] Très bon service. Les délais ont été respectés et le conseiller était disponible pour répondre à mes questions."
+        "region": "Bordeaux",
+        "comment": "Serviciu foarte bun. Termenele au fost respectate și consilierul a fost disponibil pentru a răspunde la întrebările mele."
       },
       "r10": {
-        "region": "[FIXME] Lille",
-        "comment": "[FIXME] Expérience exceptionnelle ! Dossier traité rapidement, équipe professionnelle. Je suis très satisfaite."
+        "region": "Lille",
+        "comment": "Experiență excepțională ! Dosar procesat rapid, echipă profesionistă. Sunt foarte satisfăcută."
       },
       "r11": {
-        "region": "[FIXME] Rennes",
-        "comment": "[FIXME] Service irréprochable. Mon conseiller m'a guidé tout au long du processus. Financement obtenu en 12 jours."
+        "region": "Rennes",
+        "comment": "Serviciu ireproșabil. Consilierul m-a ghidat pe tot parcursul procesului. Finanțare obținută în 12 zile."
       },
       "r12": {
-        "region": "[FIXME] Reims",
-        "comment": "[FIXME] Bonne prestation. Le processus est bien expliqué et l'équipe est disponible."
+        "region": "Reims",
+        "comment": "Bună prestație. Procesul este bine explicat și echipa este disponibilă."
       },
       "r13": {
-        "region": "[FIXME] Le Havre",
-        "comment": "[FIXME] Excellent ! J'ai pu financer mon véhicule rapidement. Service client au top."
+        "region": "Le Havre",
+        "comment": "Excelent ! Am putut să-mi finanțez vehiculul rapid. Serviciu clienți de top."
       },
       "r14": {
-        "region": "[FIXME] Saint-Étienne",
-        "comment": "[FIXME] Très professionnels et efficaces. Mon dossier a été accepté rapidement. Je recommande."
+        "region": "Saint-Étienne",
+        "comment": "Foarte profesioniști și eficienți. Dosarul meu a fost acceptat rapid. Recomand."
       },
       "r15": {
-        "region": "[FIXME] Toulon",
-        "comment": "[FIXME] Service de qualité. Bonne communication et suivi régulier du dossier."
+        "region": "Toulon",
+        "comment": "Serviciu de calitate. Bună comunicare și monitorizare regulată a dosarului."
       },
       "r16": {
-        "region": "[FIXME] Grenoble",
-        "comment": "[FIXME] Parfait du début à la fin ! Équipe réactive et professionnelle. Mon crédit validé en 8 jours."
+        "region": "Grenoble",
+        "comment": "Perfect de la început până la sfârșit ! Echipă reactivă și profesionistă. Creditul meu validat în 8 zile."
       },
       "r17": {
-        "region": "[FIXME] Dijon",
-        "comment": "[FIXME] Je suis très satisfait. Processus simple, rapide et transparent. Merci AGM INVEST !"
+        "region": "Dijon",
+        "comment": "Sunt foarte mulțumit. Proces simplu, rapid și transparent. Mulțumesc AGM INVEST !"
       },
       "r18": {
-        "region": "[FIXME] Angers",
-        "comment": "[FIXME] Bonne expérience. Les conseillers sont compétents et le suivi est régulier."
+        "region": "Angers",
+        "comment": "Bună experiență. Consilierii sunt competenți și monitorizarea este regulată."
       },
       "r19": {
-        "region": "[FIXME] Nîmes",
-        "comment": "[FIXME] Service excellent ! Mon dossier a été traité rapidement et efficacement."
+        "region": "Nîmes",
+        "comment": "Serviciu excelent ! Dosarul meu a fost procesat rapid și eficient."
       },
       "r20": {
-        "region": "[FIXME] Villeurbanne",
-        "comment": "[FIXME] Très bonne expérience. L'équipe est professionnelle et à l'écoute."
+        "region": "Villeurbanne",
+        "comment": "Foarte bună experiență. Echipa este profesionistă și atentă."
       },
       "r21": {
-        "region": "[FIXME] Le Mans",
-        "comment": "[FIXME] Satisfait du service. Bon accompagnement tout au long du processus."
+        "region": "Le Mans",
+        "comment": "Satisfăcut de serviciu. Bun acompaniament pe tot parcursul procesului."
       },
       "r22": {
-        "region": "[FIXME] Aix-en-Provence",
-        "comment": "[FIXME] Impeccable ! Financement obtenu rapidement. Je recommande vivement."
+        "region": "Aix-en-Provence",
+        "comment": "Impecabil ! Finanțare obținută rapid. Recomand cu încredere."
       },
       "r23": {
-        "region": "[FIXME] Clermont-Ferrand",
-        "comment": "[FIXME] Excellent service. Équipe réactive et professionnelle. Dossier validé en 10 jours."
+        "region": "Clermont-Ferrand",
+        "comment": "Excelent serviciu. Echipă reactivă și profesionistă. Dosar validat în 10 zile."
       },
       "r24": {
-        "region": "[FIXME] Brest",
-        "comment": "[FIXME] Bonne prestation globale. Le conseiller était disponible et compétent."
+        "region": "Brest",
+        "comment": "Bună prestație globală. Consilierul a fost disponibil și competent."
       },
       "r25": {
-        "region": "[FIXME] Tours",
-        "comment": "[FIXME] Service au top ! Processus rapide et transparent. Très satisfait."
+        "region": "Tours",
+        "comment": "Serviciu de top ! Proces rapid și transparent. Foarte mulțumit."
       },
       "r26": {
-        "region": "[FIXME] Amiens",
-        "comment": "[FIXME] Parfait ! Mon crédit automobile a été validé rapidement. Équipe professionnelle."
+        "region": "Amiens",
+        "comment": "Perfect ! Creditul meu auto a fost validat rapid. Echipă profesionistă."
       },
       "r27": {
-        "region": "[FIXME] Limoges",
-        "comment": "[FIXME] Très bon service. Communication claire et suivi régulier."
+        "region": "Limoges",
+        "comment": "Serviciu foarte bun. Comunicare clară și monitorizare regulată."
       },
       "r28": {
-        "region": "[FIXME] Annecy",
-        "comment": "[FIXME] Excellente expérience ! Conseiller à l'écoute et processus efficace."
+        "region": "Annecy",
+        "comment": "Experiență excelentă ! Consilier atent și proces eficient."
       },
       "r29": {
-        "region": "[FIXME] Perpignan",
-        "comment": "[FIXME] Je recommande ! Service rapide et professionnel. Mon dossier traité en 2 semaines."
+        "region": "Perpignan",
+        "comment": "Recomand ! Serviciu rapid și profesional. Dosarul meu procesat în 2 săptămâni."
       },
       "r30": {
-        "region": "[FIXME] Boulogne-Billancourt",
-        "comment": "[FIXME] Bonne expérience. L'équipe est compétente et réactive."
+        "region": "Boulogne-Billancourt",
+        "comment": "Bună experiență. Echipa este competentă și reactivă."
       },
       "r31": {
-        "region": "[FIXME] Metz",
-        "comment": "[FIXME] Service impeccable ! Financement obtenu rapidement. Très satisfait."
+        "region": "Metz",
+        "comment": "Serviciu impecabil ! Finanțare obținută rapid. Foarte mulțumit."
       },
       "r32": {
-        "region": "[FIXME] Besançon",
-        "comment": "[FIXME] Excellente prestation. Processus simple et équipe professionnelle."
+        "region": "Besançon",
+        "comment": "Excelentă prestație. Proces simplu și echipă profesionistă."
       },
       "r33": {
-        "region": "[FIXME] Orléans",
-        "comment": "[FIXME] Très bon service. Mon conseiller m'a bien accompagné."
+        "region": "Orléans",
+        "comment": "Serviciu foarte bun. Consilierul m-a acompaniat bine."
       },
       "r34": {
-        "region": "[FIXME] Saint-Denis",
-        "comment": "[FIXME] Parfait ! Dossier traité rapidement et efficacement. Je recommande."
+        "region": "Saint-Denis",
+        "comment": "Perfect ! Dosar procesat rapid și eficient. Recomand."
       },
       "r35": {
-        "region": "[FIXME] Argenteuil",
-        "comment": "[FIXME] Service au top ! Équipe réactive et professionnelle."
+        "region": "Argenteuil",
+        "comment": "Serviciu de top ! Echipă reactivă și profesionistă."
       },
       "r36": {
-        "region": "[FIXME] Rouen",
-        "comment": "[FIXME] Bonne expérience globale. Processus transparent et bien expliqué."
+        "region": "Rouen",
+        "comment": "Experiență globală bună. Proces transparent și bine explicat."
       },
       "r37": {
-        "region": "[FIXME] Mulhouse",
-        "comment": "[FIXME] Excellent ! Mon crédit validé en 9 jours. Service professionnel."
+        "region": "Mulhouse",
+        "comment": "Excelent ! Creditul meu validat în 9 zile. Serviciu profesional."
       },
       "r38": {
-        "region": "[FIXME] Montreuil",
-        "comment": "[FIXME] Très satisfaite ! L'équipe est à l'écoute et efficace."
+        "region": "Montreuil",
+        "comment": "Foarte satisfăcută ! Echipa este atentă și eficientă."
       },
       "r39": {
-        "region": "[FIXME] Caen",
-        "comment": "[FIXME] Bon service. Conseiller compétent et disponible."
+        "region": "Caen",
+        "comment": "Serviciu bun. Consilier competent și disponibil."
       },
       "r40": {
-        "region": "[FIXME] Nancy",
-        "comment": "[FIXME] Impeccable ! Processus rapide et transparent. Je recommande vivement."
+        "region": "Nancy",
+        "comment": "Impecabil ! Proces rapid și transparent. Recomand cu toată încrederea."
       },
       "r41": {
-        "region": "[FIXME] Versailles",
-        "comment": "[FIXME] Service excellent ! Mon dossier a été traité avec professionnalisme."
+        "region": "Versailles",
+        "comment": "Serviciu excelent ! Dosarul meu a fost procesat cu profesionalism."
       },
       "r42": {
-        "region": "[FIXME] Nanterre",
-        "comment": "[FIXME] Très bonne prestation. Équipe réactive et à l'écoute."
+        "region": "Nanterre",
+        "comment": "Bună prestație. Echipă reactivă și atentă."
       },
       "r43": {
-        "region": "[FIXME] Créteil",
-        "comment": "[FIXME] Parfait ! Financement obtenu rapidement. Service professionnel."
+        "region": "Créteil",
+        "comment": "Perfect ! Finanțare obținută rapid. Serviciu profesional."
       },
       "r44": {
-        "region": "[FIXME] Vitry-sur-Seine",
-        "comment": "[FIXME] Excellente expérience ! Conseiller compétent et processus efficace."
+        "region": "Vitry-sur-Seine",
+        "comment": "Experiență excelentă ! Consilier competent și proces eficient."
       },
       "r45": {
-        "region": "[FIXME] Avignon",
-        "comment": "[FIXME] Bon service. Communication claire et suivi régulier du dossier."
+        "region": "Avignon",
+        "comment": "Serviciu bun. Comunicare clară și monitorizare regulată a dosarului."
       },
       "r46": {
-        "region": "[FIXME] Poitiers",
-        "comment": "[FIXME] Je recommande ! Service rapide et transparent. Très satisfaite."
+        "region": "Poitiers",
+        "comment": "Recomand ! Proces rapid și transparent. Foarte satisfăcută."
       },
       "r47": {
-        "region": "[FIXME] Aubervilliers",
-        "comment": "[FIXME] Service au top ! Mon crédit validé en 11 jours."
+        "region": "Aubervilliers",
+        "comment": "Serviciu de top ! Creditul meu validat în 11 zile."
       },
       "r48": {
-        "region": "[FIXME] Aulnay-sous-Bois",
-        "comment": "[FIXME] Bonne expérience. L'équipe est professionnelle et réactive."
+        "region": "Aulnay-sous-Bois",
+        "comment": "Bună experiență. Echipa este profesionistă și reactivă."
       },
       "r49": {
-        "region": "[FIXME] Asnières-sur-Seine",
-        "comment": "[FIXME] Excellent ! Processus simple et rapide. Je recommande."
+        "region": "Asnières-sur-Seine",
+        "comment": "Excelent ! Proces simplu și rapid. Recomand."
       },
       "r50": {
-        "region": "[FIXME] Colombes",
-        "comment": "[FIXME] Très satisfaite ! Équipe à l'écoute et efficace."
+        "region": "Colombes",
+        "comment": "Foarte satisfăcută ! Echipa este atentă și eficientă."
       },
       "r51": {
-        "region": "[FIXME] La Rochelle",
-        "comment": "[FIXME] Bon service. Mon conseiller était disponible et compétent."
+        "region": "La Rochelle",
+        "comment": "Serviciu bun. Consilierul meu a fost disponibil și competent."
       },
       "r52": {
-        "region": "[FIXME] Calais",
-        "comment": "[FIXME] Impeccable ! Dossier traité rapidement. Service professionnel."
+        "region": "Calais",
+        "comment": "Impecabil ! Dosar procesat rapid. Serviciu profesional."
       },
       "r53": {
-        "region": "[FIXME] Rueil-Malmaison",
-        "comment": "[FIXME] Parfait ! Financement obtenu en moins de 2 semaines."
+        "region": "Rueil-Malmaison",
+        "comment": "Perfect ! Finanțare obținută în mai puțin de 2 săptămâni."
       },
       "r54": {
-        "region": "[FIXME] Antibes",
-        "comment": "[FIXME] Très bonne prestation. Processus transparent et bien expliqué."
+        "region": "Antibes",
+        "comment": "Bună prestație. Proces transparent și bine explicat."
       },
       "r55": {
-        "region": "[FIXME] Saint-Maur-des-Fossés",
-        "comment": "[FIXME] Excellent service ! Équipe réactive et professionnelle."
+        "region": "Saint-Maur-des-Fossés",
+        "comment": "Excelent serviciu ! Echipă reactivă și profesionistă."
       },
       "r56": {
-        "region": "[FIXME] Champigny-sur-Marne",
-        "comment": "[FIXME] Je recommande vivement ! Service rapide et efficace."
+        "region": "Champigny-sur-Marne",
+        "comment": "Recomand cu încredere ! Serviciu rapid și eficient."
       },
       "r57": {
-        "region": "[FIXME] Dunkerque",
-        "comment": "[FIXME] Bonne expérience globale. Conseiller compétent."
+        "region": "Dunkerque",
+        "comment": "Experiență globală bună. Consilier competent."
       },
       "r58": {
-        "region": "[FIXME] Bourges",
-        "comment": "[FIXME] Service au top ! Mon dossier validé rapidement."
+        "region": "Bourges",
+        "comment": "Serviciu de top ! Dosarul meu validat rapid."
       },
       "r59": {
-        "region": "[FIXME] Cannes",
-        "comment": "[FIXME] Parfait ! Processus simple et transparent. Très satisfait."
+        "region": "Cannes",
+        "comment": "Perfect ! Proces simplu și transparent. Foarte mulțumit."
       },
       "r60": {
-        "region": "[FIXME] Pau",
-        "comment": "[FIXME] Très bon service. L'équipe est à l'écoute et réactive."
+        "region": "Pau",
+        "comment": "Serviciu foarte bun. Echipa este atentă și reactivă."
       },
       "r61": {
-        "region": "[FIXME] Colmar",
-        "comment": "[FIXME] Excellent ! Mon crédit automobile validé en 10 jours."
+        "region": "Colmar",
+        "comment": "Excelent ! Creditul meu auto validat în 10 zile."
       },
       "r62": {
-        "region": "[FIXME] Quimper",
-        "comment": "[FIXME] Service impeccable ! Équipe professionnelle et efficace."
+        "region": "Quimper",
+        "comment": "Serviciu impecabil ! Echipă profesionistă și eficientă."
       },
       "r63": {
-        "region": "[FIXME] Valence",
-        "comment": "[FIXME] Bonne prestation. Communication claire et suivi régulier."
+        "region": "Valence",
+        "comment": "Bună prestație. Comunicare clară și monitorizare regulată."
       },
       "r64": {
-        "region": "[FIXME] Troyes",
-        "comment": "[FIXME] Je recommande ! Service rapide et professionnel."
+        "region": "Troyes",
+        "comment": "Recomand ! Serviciu rapid și profesional."
       },
       "r65": {
-        "region": "[FIXME] Ajaccio",
-        "comment": "[FIXME] Parfait ! Financement obtenu rapidement. Très satisfait."
+        "region": "Ajaccio",
+        "comment": "Perfect ! Finanțare obținută rapid. Foarte mulțumit."
       },
       "r66": {
-        "region": "[FIXME] Chambéry",
-        "comment": "[FIXME] Très bonne expérience. L'équipe est compétente."
+        "region": "Chambéry",
+        "comment": "Foarte bună experiență. Echipa este competentă."
       },
       "r67": {
-        "region": "[FIXME] Lorient",
-        "comment": "[FIXME] Service excellent ! Processus efficace et transparent."
+        "region": "Lorient",
+        "comment": "Serviciu excelent ! Proces eficient și transparent."
       },
       "r68": {
-        "region": "[FIXME] Niort",
-        "comment": "[FIXME] Impeccable ! Mon dossier traité avec professionnalisme."
+        "region": "Niort",
+        "comment": "Impecabil ! Dosarul meu tratat cu profesionalism."
       },
       "r69": {
-        "region": "[FIXME] Sarcelles",
-        "comment": "[FIXME] Bon service. Conseiller disponible et à l'écoute."
+        "region": "Sarcelles",
+        "comment": "Serviciu bun. Consilier disponibil și atent."
       },
       "r70": {
-        "region": "[FIXME] Beauvais",
-        "comment": "[FIXME] Excellent ! Je recommande vivement AGM INVEST."
+        "region": "Beauvais",
+        "comment": "Excelent ! Recomand cu toată încrederea AGM INVEST."
       },
       "r71": {
-        "region": "[FIXME] Vannes",
-        "comment": "[FIXME] Service au top ! Mon crédit validé en 9 jours."
+        "region": "Vannes",
+        "comment": "Serviciu de top ! Creditul meu validat în 9 zile."
       },
       "r72": {
-        "region": "[FIXME] Ivry-sur-Seine",
-        "comment": "[FIXME] Très bonne prestation. Équipe réactive et professionnelle."
+        "region": "Ivry-sur-Seine",
+        "comment": "Bună prestație. Echipă reactivă și profesionistă."
       },
       "r73": {
-        "region": "[FIXME] Cergy",
-        "comment": "[FIXME] Parfait ! Processus rapide et transparent."
+        "region": "Cergy",
+        "comment": "Perfect ! Proces rapid și transparent."
       },
       "r74": {
-        "region": "[FIXME] Levallois-Perret",
-        "comment": "[FIXME] Excellente expérience ! Service professionnel."
+        "region": "Levallois-Perret",
+        "comment": "Experiență excelentă ! Serviciu profesional."
       },
       "r75": {
-        "region": "[FIXME] Pessac",
-        "comment": "[FIXME] Bon service. Mon conseiller était compétent."
+        "region": "Pessac",
+        "comment": "Serviciu bun. Consilierul meu a fost competent."
       },
       "r76": {
-        "region": "[FIXME] Clichy",
-        "comment": "[FIXME] Je recommande ! Dossier traité rapidement."
+        "region": "Clichy",
+        "comment": "Recomand ! Dosar procesat rapid."
       },
       "r77": {
-        "region": "[FIXME] Arles",
-        "comment": "[FIXME] Service impeccable ! Équipe à l'écoute et efficace."
+        "region": "Arles",
+        "comment": "Serviciu impecabil ! Echipă atentă și eficientă."
       },
       "r78": {
-        "region": "[FIXME] Vénissieux",
-        "comment": "[FIXME] Très bonne expérience. Processus bien expliqué."
+        "region": "Vénissieux",
+        "comment": "Foarte bună experiență. Proces bine explicat."
       },
       "r79": {
-        "region": "[FIXME] Antony",
-        "comment": "[FIXME] Excellent ! Mon financement obtenu en 12 jours."
+        "region": "Antony",
+        "comment": "Excelent ! Finanțarea mea obținută în 12 zile."
       },
       "r80": {
-        "region": "[FIXME] La Seyne-sur-Mer",
-        "comment": "[FIXME] Parfait ! Service rapide et professionnel."
+        "region": "La Seyne-sur-Mer",
+        "comment": "Perfect ! Serviciu rapid și profesional."
       },
       "r81": {
-        "region": "[FIXME] Neuilly-sur-Seine",
-        "comment": "[FIXME] Bon service. L'équipe est réactive."
+        "region": "Neuilly-sur-Seine",
+        "comment": "Serviciu bun. Echipa este reactivă."
       },
       "r82": {
-        "region": "[FIXME] Montauban",
-        "comment": "[FIXME] Je recommande vivement ! Service excellent."
+        "region": "Montauban",
+        "comment": "Recomand cu toată încrederea ! Serviciu excelent."
       },
       "r83": {
-        "region": "[FIXME] Pantin",
-        "comment": "[FIXME] Service au top ! Dossier validé rapidement."
+        "region": "Pantin",
+        "comment": "Serviciu de top ! Dosar validat rapid."
       },
       "r84": {
-        "region": "[FIXME] Noisy-le-Grand",
-        "comment": "[FIXME] Très bonne prestation. Conseiller compétent."
+        "region": "Noisy-le-Grand",
+        "comment": "Bună prestație. Consilier competent."
       },
       "r85": {
-        "region": "[FIXME] Évry",
-        "comment": "[FIXME] Excellent service ! Processus efficace."
+        "region": "Évry",
+        "comment": "Excelent serviciu ! Proces eficient."
       },
       "r86": {
-        "region": "[FIXME] Villeneuve-d'Ascq",
-        "comment": "[FIXME] Impeccable ! Mon crédit automobile validé."
+        "region": "Villeneuve-d'Ascq",
+        "comment": "Impecabil ! Creditul meu auto validat."
       },
       "r87": {
-        "region": "[FIXME] Meaux",
-        "comment": "[FIXME] Bon service. Communication claire."
+        "region": "Meaux",
+        "comment": "Serviciu bun. Comunicare clară."
       },
       "r88": {
-        "region": "[FIXME] Cholet",
-        "comment": "[FIXME] Parfait ! Équipe professionnelle et réactive."
+        "region": "Cholet",
+        "comment": "Perfect ! Echipă profesionistă și reactivă."
       },
       "r89": {
-        "region": "[FIXME] Belfort",
-        "comment": "[FIXME] Service excellent ! Je recommande."
+        "region": "Belfort",
+        "comment": "Serviciu excelent ! Recomand."
       },
       "r90": {
-        "region": "[FIXME] Bayonne",
-        "comment": "[FIXME] Très bonne expérience. Processus transparent."
+        "region": "Bayonne",
+        "comment": "Foarte bună experiență. Proces transparent."
       },
       "r91": {
-        "region": "[FIXME] Chartres",
-        "comment": "[FIXME] Impeccable ! Financement obtenu rapidement."
+        "region": "Chartres",
+        "comment": "Impecabil ! Finanțare obținută rapid."
       },
       "r92": {
-        "region": "[FIXME] Drancy",
-        "comment": "[FIXME] Excellent ! Service professionnel et efficace."
+        "region": "Drancy",
+        "comment": "Excelent ! Serviciu profesional și eficient."
       },
       "r93": {
-        "region": "[FIXME] Sartrouville",
-        "comment": "[FIXME] Bon service. Mon conseiller était disponible."
+        "region": "Sartrouville",
+        "comment": "Serviciu bun. Consilierul meu a fost disponibil."
       },
       "r94": {
-        "region": "[FIXME] Saint-Quentin",
-        "comment": "[FIXME] Je recommande ! Dossier traité avec soin."
+        "region": "Saint-Quentin",
+        "comment": "Recomand ! Dosar tratat cu grijă."
       },
       "r95": {
-        "region": "[FIXME] Île-de-France",
-        "comment": "[FIXME] Service au top ! Très satisfait du résultat."
+        "region": "Île-de-France",
+        "comment": "Serviciu de top ! Foarte mulțumit de rezultat."
       },
       "r96": {
-        "region": "[FIXME] Auvergne-Rhône-Alpes",
-        "comment": "[FIXME] Très bonne prestation. Équipe compétente."
+        "region": "Auvergne-Rhône-Alpes",
+        "comment": "Bună prestație. Echipă competentă."
       },
       "r97": {
-        "region": "[FIXME] Nouvelle-Aquitaine",
-        "comment": "[FIXME] Parfait ! Processus simple et rapide."
+        "region": "Nouvelle-Aquitaine",
+        "comment": "Perfect ! Proces simplu și rapid."
       },
       "r98": {
-        "region": "[FIXME] Occitanie",
-        "comment": "[FIXME] Excellent service ! Mon crédit validé en 10 jours."
+        "region": "Occitanie",
+        "comment": "Excelent serviciu ! Creditul meu validat în 10 zile."
       },
       "r99": {
-        "region": "[FIXME] Hauts-de-France",
-        "comment": "[FIXME] Bon service. Communication efficace."
+        "region": "Hauts-de-France",
+        "comment": "Serviciu bun. Comunicare eficientă."
       },
       "r100": {
-        "region": "[FIXME] Provence-Alpes-Côte d'Azur",
-        "comment": "[FIXME] Je recommande vivement ! Service professionnel."
+        "region": "Provence-Alpes-Côte d'Azur",
+        "comment": "Recomand cu toată încrederea ! Serviciu profesional."
       },
       "r101": {
-        "region": "[FIXME] Grand Est",
-        "comment": "[FIXME] Impeccable ! Équipe réactive et à l'écoute."
+        "region": "Grand Est",
+        "comment": "Impecabil ! Echipă reactivă și atentă."
       },
       "r102": {
-        "region": "[FIXME] Pays de la Loire",
-        "comment": "[FIXME] Très bonne expérience. Processus transparent."
+        "region": "Pays de la Loire",
+        "comment": "Foarte bună experiență. Proces transparent."
       },
       "r103": {
-        "region": "[FIXME] Bretagne",
-        "comment": "[FIXME] Service excellent ! Mon dossier validé rapidement."
+        "region": "Bretagne",
+        "comment": "Serviciu excelent ! Dosar validat rapid."
       },
       "r104": {
-        "region": "[FIXME] Normandie",
-        "comment": "[FIXME] Parfait ! Je recommande AGM INVEST."
+        "region": "Normandie",
+        "comment": "Perfect ! Recomand AGM INVEST."
       },
       "r105": {
-        "region": "[FIXME] Bourgogne-Franche-Comté",
-        "comment": "[FIXME] Bon service. Conseiller compétent et disponible."
+        "region": "Bourgogne-Franche-Comté",
+        "comment": "Serviciu bun. Consilier competent și disponibil."
       },
       "r106": {
-        "region": "[FIXME] Centre-Val de Loire",
-        "comment": "[FIXME] Excellent ! Financement obtenu en 11 jours."
+        "region": "Centre-Val de Loire",
+        "comment": "Excelent ! Finanțare obținută în 11 zile."
       },
       "r107": {
-        "region": "[FIXME] Corse",
-        "comment": "[FIXME] Service impeccable ! Équipe professionnelle."
+        "region": "Corsica",
+        "comment": "Serviciu impecabil ! Echipă profesionistă."
       },
       "r108": {
-        "region": "[FIXME] Paris",
-        "comment": "[FIXME] Très bonne prestation. Processus efficace."
+        "region": "Paris",
+        "comment": "Bună prestație. Proces eficient."
       },
       "r109": {
-        "region": "[FIXME] Lyon",
-        "comment": "[FIXME] Je recommande ! Service rapide et transparent."
+        "region": "Lyon",
+        "comment": "Recomand ! Proces rapid și transparent."
       },
       "r110": {
-        "region": "[FIXME] Marseille",
-        "comment": "[FIXME] Parfait ! Mon crédit automobile validé rapidement."
+        "region": "Marsilia",
+        "comment": "Perfect ! Creditul meu auto validat rapid."
       }
     },
-    "subtitle": "[FIXME] Découvrez les témoignages de ceux qui nous ont fait confiance pour leur projet de financement.",
-    "stars": "[FIXME] étoiles",
-    "seeAll": "[FIXME] Voir tous les avis",
-    "allReviewsLabel": "[FIXME] Tous nos avis",
+    "subtitle": "Descoperiți mărturiile celor care ne-au acordat încrederea lor pentru proiectul lor de finanțare.",
+    "stars": "stele",
+    "seeAll": "Vezi toate recenziile",
+    "allReviewsLabel": "Toate recenziile noastre",
     "Stats": {
-      "averageRating": "[FIXME] Note Moyenne",
-      "totalReviews": "[FIXME] Avis Vérifiés",
-      "fiveStars": "[FIXME] Avis 5 étoiles"
+      "averageRating": "Notă Medie",
+      "totalReviews": "Recenzii Verificate",
+      "fiveStars": "Recenzii 5 stele"
     }
   },
   "ReviewForm": {
-    "brandName": "[FIXME] AGM INVEST",
-    "certifiedReviews": "[FIXME] Avis Clients Certifiés",
-    "verifiedEstablishment": "[FIXME] Établissement Vérifié",
+    "brandName": "AGM INVEST",
+    "certifiedReviews": "Recenzii Clienți Certificate",
+    "verifiedEstablishment": "Unitate Verificată",
     "Success": {
-      "title": "[FIXME] Merci pour votre avis !",
-      "message": "[FIXME] Votre témoignage a bien été reçu. Il sera publié après validation par notre équipe de modération.",
-      "button": "[FIXME] Fermer"
+      "title": "Vă mulțumim pentru recenzie !",
+      "message": "Mărturia dumneavoastră a fost primită. Va fi publicată după validarea de către echipa noastră de moderare.",
+      "button": "Închide"
     },
-    "ratingLabel": "[FIXME] Votre note globale",
+    "ratingLabel": "Nota dumneavoastră generală",
     "Labels": {
-      "name": "[FIXME] Votre nom complet",
-      "region": "[FIXME] Votre ville / région",
-      "comment": "[FIXME] Votre témoignage"
+      "name": "Numele dumneavoastră complet",
+      "region": "Orașul / regiunea dumneavoastră",
+      "comment": "Mărturia dumneavoastră"
     },
     "Placeholders": {
-      "name": "[FIXME] Ex: Jean Dupont",
-      "region": "[FIXME] Ex: Strasbourg, Grand Est",
-      "comment": "[FIXME] Partagez votre expérience avec AGM INVEST..."
+      "name": "Ex: Ion Popescu",
+      "region": "Ex: București",
+      "comment": "Împărtășiți experiența dumneavoastră cu AGM INVEST..."
     },
-    "submit": "[FIXME] Publier mon avis",
-    "disclaimer": "[FIXME] En publiant cet avis, vous acceptez nos conditions d'utilisation.",
+    "submit": "Publică recenzia mea",
+    "disclaimer": "Prin publicarea acestei recenzii, acceptați condițiile noastre de utilizare.",
     "Errors": {
-      "submission": "[FIXME] Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
-      "name": "[FIXME] Le nom est obligatoire.",
-      "region": "[FIXME] La région est obligatoire.",
-      "commentRequired": "[FIXME] Le commentaire est obligatoire.",
-      "commentTooShort": "[FIXME] Le commentaire doit faire au moins 10 caractères."
+      "submission": "A apărut o eroare la trimitere. Vă rugăm să reîncercați.",
+      "name": "Numele este obligatoriu.",
+      "region": "Regiunea este obligatorie.",
+      "commentRequired": "Comentariul este obligatoriu.",
+      "commentTooShort": "Comentariul trebuie să aibă cel puțin 10 caractere."
     },
     "Ratings": {
-      "1": "[FIXME] Décevant",
-      "2": "[FIXME] Moyen",
-      "3": "[FIXME] Satisfaisant",
-      "4": "[FIXME] Très bien",
-      "5": "[FIXME] Excellent"
+      "1": "Dezamăgitor",
+      "2": "Mediocru",
+      "3": "Satisfăcător",
+      "4": "Foarte bine",
+      "5": "Excelent"
     }
   },
   "NotificationPopup": {
-    "title": "[FIXME] Nouvelle demande !",
-    "from": "[FIXME] de",
-    "action": "[FIXME] vient de soumettre une demande",
-    "close": "[FIXME] Fermer"
+    "title": "Cerere nouă !",
+    "from": "de la",
+    "action": "tocmai a trimis o cerere",
+    "close": "Închide"
   }
 }

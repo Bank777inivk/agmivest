@@ -182,10 +182,10 @@ export default function ProfilePage() {
             <header className="relative z-10 px-2 flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
                     <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
-                        Mon Profil
+                        {t('title')}
                     </h1>
                     <p className="text-slate-500 font-medium text-lg mt-2 leading-tight">
-                        Gérez vos informations personnelles et votre sécurité.
+                        {t('subtitle')}
                     </p>
                 </div>
                 {!isEditing ? (
@@ -194,7 +194,7 @@ export default function ProfilePage() {
                         className="flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-900/10"
                     >
                         <Edit2 className="w-5 h-5" />
-                        Modifier Profil
+                        {t('editButton')}
                     </button>
                 ) : (
                     <div className="flex items-center gap-3">
@@ -203,7 +203,7 @@ export default function ProfilePage() {
                             className="flex items-center justify-center gap-2 px-6 py-4 bg-white text-slate-400 rounded-2xl font-black text-xs uppercase tracking-widest border border-slate-100 hover:bg-slate-50 transition-all active:scale-95"
                         >
                             <X className="w-4 h-4" />
-                            Annuler
+                            {t('cancelButton')}
                         </button>
                         <button
                             onClick={handleSave}
@@ -215,7 +215,7 @@ export default function ProfilePage() {
                             ) : (
                                 <Save className="w-4 h-4" />
                             )}
-                            Enregistrer
+                            {t('saveButton')}
                         </button>
                     </div>
                 )}
@@ -238,7 +238,7 @@ export default function ProfilePage() {
                             <div className="w-12 h-12 bg-blue-50/50 rounded-2xl flex items-center justify-center text-ely-blue ring-8 ring-blue-50/20">
                                 <User className="w-6 h-6" />
                             </div>
-                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">État Civil</h2>
+                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">{t('sections.identity')}</h2>
                         </div>
                         {!isEditing && (
                             <button
@@ -360,7 +360,7 @@ export default function ProfilePage() {
                             <div className="w-12 h-12 bg-emerald-50/50 rounded-2xl flex items-center justify-center text-emerald-600 ring-8 ring-emerald-50/20">
                                 <MapPin className="w-6 h-6" />
                             </div>
-                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">Coordonnées</h2>
+                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">{t('sections.contact')}</h2>
                         </div>
                         {!isEditing && (
                             <button
@@ -374,7 +374,7 @@ export default function ProfilePage() {
 
                     <div className="space-y-6 relative z-10">
                         <div className="space-y-2">
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Adresse de résidence</label>
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('fields.address')}</label>
                             {isEditing ? (
                                 <input
                                     type="text"
@@ -390,7 +390,7 @@ export default function ProfilePage() {
 
                         <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Code Postal</label>
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('fields.zipCode')}</label>
                                 {isEditing ? (
                                     <input
                                         type="text"
@@ -404,7 +404,7 @@ export default function ProfilePage() {
                                 )}
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Ville</label>
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('fields.city')}</label>
                                 {isEditing ? (
                                     <input
                                         type="text"
@@ -420,7 +420,7 @@ export default function ProfilePage() {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Pays</label>
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('fields.country')}</label>
                             {isEditing ? (
                                 <select
                                     name="country"
@@ -436,7 +436,7 @@ export default function ProfilePage() {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Téléphone mobile</label>
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('fields.phone')}</label>
                             {isEditing ? (
                                 <div className="flex gap-3 relative group/tel">
                                     <div className="w-20 flex items-center justify-center bg-white border border-slate-100 rounded-2xl text-2xl shadow-sm" title={formData.phoneCountry}>
@@ -479,7 +479,7 @@ export default function ProfilePage() {
                             <div className="w-12 h-12 bg-rose-50/50 rounded-2xl flex items-center justify-center text-rose-500 ring-8 ring-rose-50/20">
                                 <Heart className="w-6 h-6" />
                             </div>
-                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">Situation Personnelle</h2>
+                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">{t('sections.personal')}</h2>
                         </div>
                         {!isEditing && (
                             <button
@@ -559,7 +559,7 @@ export default function ProfilePage() {
                             <div className="w-12 h-12 bg-indigo-50/50 rounded-2xl flex items-center justify-center text-indigo-500 ring-8 ring-indigo-50/20">
                                 <Briefcase className="w-6 h-6" />
                             </div>
-                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">Situation Professionnelle</h2>
+                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">{t('sections.professional')}</h2>
                         </div>
                         {!isEditing && (
                             <button
@@ -584,21 +584,21 @@ export default function ProfilePage() {
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
                                     {formData.contractType === 'student'
-                                        ? "Établissement / Université"
+                                        ? t('companyLabels.student')
                                         : formData.contractType === 'apprentice'
-                                            ? "Entreprise d'accueil / CFA"
+                                            ? t('companyLabels.apprentice')
                                             : formData.contractType === 'independent'
-                                                ? "Nom de votre activité"
+                                                ? t('companyLabels.independent')
                                                 : formData.contractType === 'artisan'
-                                                    ? "Enseigne / Nom de l'Entreprise"
+                                                    ? t('companyLabels.artisan')
                                                     : formData.contractType === 'civil_servant'
-                                                        ? "Ministère / Administration"
+                                                        ? t('companyLabels.civil_servant')
                                                         : formData.contractType === 'temporary'
-                                                            ? "Société d'intérim / Employeur"
+                                                            ? t('companyLabels.temporary')
                                                             : formData.contractType === 'liberal'
-                                                                ? "Cabinet / Raison sociale"
+                                                                ? t('companyLabels.liberal')
                                                                 : formData.contractType === 'business_owner'
-                                                                    ? "Nom de la société / Enseigne"
+                                                                    ? t('companyLabels.business_owner')
                                                                     : tFinances('company')}
                                 </label>
                                 {isEditing ? (
@@ -646,7 +646,7 @@ export default function ProfilePage() {
                             <div className="w-12 h-12 bg-emerald-50/50 rounded-2xl flex items-center justify-center text-emerald-500 ring-8 ring-emerald-50/20">
                                 <Euro className="w-6 h-6" />
                             </div>
-                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">Situation Financière</h2>
+                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">{t('sections.financial')}</h2>
                         </div>
                         {!isEditing && (
                             <button
@@ -662,17 +662,17 @@ export default function ProfilePage() {
                         <div className="space-y-2">
                             <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
                                 {formData.contractType === 'retired'
-                                    ? "Pension mensuelle"
+                                    ? t('incomeLabels.retired')
                                     : formData.contractType === 'unemployed'
-                                        ? "Allocations / Revenus"
+                                        ? t('incomeLabels.unemployed')
                                         : formData.contractType === 'student'
-                                            ? "Bourses / Revenus mensuels"
+                                            ? t('incomeLabels.student')
                                             : formData.contractType === 'apprentice'
-                                                ? "Rémunération mensuelle"
+                                                ? t('incomeLabels.apprentice')
                                                 : formData.contractType === 'civil_servant'
-                                                    ? "Traitement mensuel net"
+                                                    ? t('incomeLabels.civil_servant')
                                                     : ['independent', 'artisan', 'liberal', 'business_owner'].includes(formData.contractType)
-                                                        ? "Revenu mensuel moyen"
+                                                        ? t('incomeLabels.selfEmployed')
                                                         : tFinances('income')}
                             </label>
                             {isEditing ? (

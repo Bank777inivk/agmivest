@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Camera, X, Check, RotateCcw, Loader2 } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 interface CameraModalProps {
     isOpen: boolean;
@@ -13,6 +14,7 @@ interface CameraModalProps {
 }
 
 export default function CameraModal({ isOpen, onClose, onCapture, title }: CameraModalProps) {
+    const t = useTranslations('Dashboard.KYC');
     const [stream, setStream] = useState<MediaStream | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
     const [isReviewing, setIsReviewing] = useState(false);
@@ -65,11 +67,12 @@ export default function CameraModal({ isOpen, onClose, onCapture, title }: Camer
         } catch (error) {
             console.error("Camera error:", error);
             // Fallback to front camera if back fails
+            // Fallback to front camera if back fails
             try {
                 const mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
                 setStream(mediaStream);
             } catch (err) {
-                alert("Impossible d'accéder à la caméra.");
+                alert(t('Overlays.cameraError', { defaultValue: "Impossible d'accéder à la caméra." }));
                 onClose();
             }
         }
@@ -173,7 +176,7 @@ export default function CameraModal({ isOpen, onClose, onCapture, title }: Camer
                                 <Loader2 className="w-12 h-12 text-blue-500 animate-spin" />
                                 <div className="absolute inset-0 blur-xl bg-blue-500/20 animate-pulse" />
                             </div>
-                            <p className="text-white/40 font-black uppercase tracking-[0.3em] text-[9px]">Analyse de l'objectif...</p>
+                            <p className="text-white/40 font-black uppercase tracking-[0.3em] text-[9px]">{t('Overlays.analyzing', { defaultValue: "Analyse de l'objectif..." })}</p>
                         </div>
                     )}
                 </div>
@@ -187,13 +190,13 @@ export default function CameraModal({ isOpen, onClose, onCapture, title }: Camer
                                     onClick={handleRetake}
                                     className="px-10 py-5 bg-white/5 text-white rounded-[2rem] font-black text-[10px] uppercase tracking-[0.2em] border border-white/10 hover:bg-white/10 transition-all active:scale-95"
                                 >
-                                    <RotateCcw className="w-4 h-4 inline-block mr-2" /> Reprendre
+                                    <RotateCcw className="w-4 h-4 inline-block mr-2" /> {t('Actions.retake', { defaultValue: "Reprendre" })}
                                 </button>
                                 <button
                                     onClick={handleValidate}
                                     className="px-12 py-5 bg-white text-black rounded-[2rem] font-black text-[10px] uppercase tracking-[0.2em] shadow-2xl shadow-white/10 hover:bg-white/90 transition-all active:scale-95"
                                 >
-                                    <Check className="w-4 h-4 inline-block mr-2" /> Valider
+                                    <Check className="w-4 h-4 inline-block mr-2" /> {t('Actions.validate', { defaultValue: "Valider" })}
                                 </button>
                             </>
                         ) : (

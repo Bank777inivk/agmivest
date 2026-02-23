@@ -24,19 +24,20 @@ import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
 
-const statusConfig: any = {
-    pending: { label: "En attente", color: "amber", icon: Clock },
-    approved: { label: "Accordé", color: "ely-mint", icon: CheckCircle2 },
-    rejected: { label: "Refusé", color: "red", icon: AlertCircle },
-    processing: { label: "En cours", color: "ely-blue", icon: Activity },
-};
-
 export default function RequestDetailsPage() {
     const params = useParams();
     const router = useRouter();
+    const t = useTranslations('Dashboard.Requests.Details');
     const tProject = useTranslations('CreditRequest.Project.labels');
     const [request, setRequest] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    const statusConfig: any = {
+        pending: { label: t('status.pending'), color: "amber", icon: Clock },
+        approved: { label: t('status.approved'), color: "ely-mint", icon: CheckCircle2 },
+        rejected: { label: t('status.rejected'), color: "red", icon: AlertCircle },
+        processing: { label: t('status.processing'), color: "ely-blue", icon: Activity },
+    };
 
     useEffect(() => {
         let unsubRequest: (() => void) | null = null;
@@ -92,45 +93,35 @@ export default function RequestDetailsPage() {
     const steps = [
         {
             id: 1,
-            title: "Dossier reçu",
-            desc: "Votre demande a été enregistrée avec succès.",
+            title: t('timeline.step1.title'),
+            desc: t('timeline.step1.desc'),
             date: request.createdAt?.toDate().toLocaleDateString('fr-FR'),
             completed: true,
             active: false
         },
         {
             id: 2,
-            title: "Analyse technique",
-            desc: "Nos experts vérifient la faisabilité de votre projet.",
+            title: t('timeline.step2.title'),
+            desc: t('timeline.step2.desc'),
             completed: request.stepAnalysis === true || request.status === "approved" || request.status === "rejected",
             active: !request.stepAnalysis && request.status !== "rejected" && request.status !== "approved"
         },
         {
             id: 3,
-            title: "Vérification documentaire",
-            desc: "Examen détaillé des pièces justificatives transmises.",
+            title: t('timeline.step3.title'),
+            desc: t('timeline.step3.desc'),
             completed: request.stepVerification === true || request.status === "approved" || request.status === "rejected",
             active: request.stepAnalysis && !request.stepVerification && request.status !== "rejected" && request.status !== "approved"
         },
         {
             id: 4,
-            title: request.status === "rejected" ? "Décision finale : Refus" : "Décision finale : Accord",
+            title: request.status === "rejected" ? t('timeline.step4.rejected.title') : t('timeline.step4.approved.title'),
             desc:
-                // 1. Rétablissement de l'affichage du Statut "Refusé"
-                // À la demande de l'utilisateur, le statut "Refusé" est de nouveau pleinement visible pour le client :
-                // - Verrouillage (Lock Screen) : Une demande refusée bloque désormais l'accès au formulaire de demande et affiche le message de refus.
-                // - Tableau de bord : Les dossiers refusés apparaissent dans la section "Ma demande en cours" avec leur statut explicite.
-                // - Détails : La timeline affiche de nouveau "Décision finale : Refus".
-                //
-                // 2. Soumission calibrée (Statut Initial)
-                // Le comportement de soumission reste optimisé :
-                // - Statut Initial : Toute nouvelle demande démarre au statut `pending` (En attente).
-                // - Analyse Admin : Le score automatique est stocké dans `scoringStatus`, permettant à l'admin de voir le résultat du scoring sans impacter la visibilité immédiate du client (qui voit son dossier comme étant "En cours d'étude").
                 request.status === "approved"
-                    ? "Félicitations, votre financement a été validé."
+                    ? t('timeline.step4.approved.desc')
                     : request.status === "rejected"
-                        ? "Malheureusement, nous ne pouvons donner suite."
-                        : "En attente de la commission finale.",
+                        ? t('timeline.step4.rejected.desc')
+                        : t('timeline.step4.pending'),
             completed: ["approved", "rejected"].includes(request.status),
             active: request.stepVerification && request.status !== "approved" && request.status !== "rejected"
         }
@@ -160,15 +151,15 @@ export default function RequestDetailsPage() {
                                         <ShieldCheck className="w-8 h-8" />
                                     </div>
                                     <div>
-                                        <h2 className="text-2xl md:text-3xl font-black mb-1 leading-tight uppercase tracking-tight">Félicitations ! Votre crédit est accordé 🚀</h2>
-                                        <p className="text-white/90 font-medium max-w-xl">Votre financement a été validé. Une dernière vérification d'identité est requise pour activer le transfert des fonds.</p>
+                                        <h2 className="text-2xl md:text-3xl font-black mb-1 leading-tight uppercase tracking-tight">{t('banners.approved.title')}</h2>
+                                        <p className="text-white/90 font-medium max-w-xl">{t('banners.approved.message')}</p>
                                     </div>
                                 </div>
                                 <button
                                     onClick={() => router.push("/dashboard/verification")}
                                     className="whitespace-nowrap w-full md:w-auto px-10 py-5 bg-white text-emerald-800 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-emerald-50 transition-all shadow-xl active:scale-95 shrink-0"
                                 >
-                                    Vérification requise
+                                    {t('banners.approved.action')}
                                 </button>
                             </div>
                         </motion.div>
@@ -187,15 +178,15 @@ export default function RequestDetailsPage() {
                                     <CreditCard className="w-8 h-8" />
                                 </div>
                                 <div>
-                                    <h2 className="text-2xl md:text-3xl font-black mb-1 leading-tight uppercase tracking-tight">Action Requise</h2>
-                                    <p className="text-white/90 font-medium max-w-xl">Votre identité a été confirmée ! Pour finaliser l'activation de votre crédit, le dépôt d'authentification est maintenant nécessaire.</p>
+                                    <h2 className="text-2xl md:text-3xl font-black mb-1 leading-tight uppercase tracking-tight">{t('banners.actionRequired.title')}</h2>
+                                    <p className="text-white/90 font-medium max-w-xl">{t('banners.actionRequired.message')}</p>
                                 </div>
                             </div>
                             <button
                                 onClick={() => router.push("/dashboard/billing")}
                                 className="whitespace-nowrap w-full md:w-auto px-10 py-5 bg-white text-amber-800 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-amber-50 transition-all shadow-xl active:scale-95 shrink-0"
                             >
-                                Effectuer le dépôt
+                                {t('banners.actionRequired.action')}
                             </button>
                         </div>
                     </motion.div>
@@ -209,7 +200,7 @@ export default function RequestDetailsPage() {
                     className="flex items-center gap-2 text-slate-400 hover:text-ely-blue transition-all font-black text-xs uppercase tracking-widest group"
                 >
                     <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                    Retour
+                    {t('header.back')}
                 </button>
             </div>
 
@@ -236,7 +227,7 @@ export default function RequestDetailsPage() {
                                         <span className="text-xs font-black text-slate-400 uppercase tracking-widest leading-none pt-1">ID: {request.id.slice(0, 10).toUpperCase()}</span>
                                     </div>
                                     <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter leading-none">
-                                        {request.projectType ? tProject(request.projectType.toLowerCase()) : "Prêt Personnel"}
+                                        {request.projectType ? tProject(request.projectType.toLowerCase()) : t('status.processing')}
                                     </h1>
                                 </div>
                                 <div className="flex flex-wrap gap-4 items-center justify-center md:justify-start">
@@ -254,17 +245,17 @@ export default function RequestDetailsPage() {
                             </div>
 
                             <div className="bg-gradient-to-br from-slate-50 to-white p-8 rounded-[2.5rem] border border-slate-100 text-center md:text-right md:min-w-[280px] shadow-sm shadow-slate-100">
-                                <p className="text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 opacity-60">Montant du Projet</p>
+                                <p className="text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 opacity-60">{t('header.amountLabel')}</p>
                                 <p className="text-4xl md:text-5xl font-black text-ely-blue tracking-tighter leading-none">{new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(request.amount || 0)}</p>
                             </div>
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 pt-10 border-t border-slate-50">
                             {[
-                                { label: "Durée", value: `${request.duration} mois` },
-                                { label: "Mensualité", value: `${new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(request.monthlyPayment || 0)}/m` },
-                                { label: "Taux (TAEG)", value: `${request.rate || "2.6"}%` },
-                                { label: "Création", value: request.createdAt?.toDate().toLocaleDateString('fr-FR') },
+                                { label: t('info.duration'), value: `${request.duration} mois` },
+                                { label: t('info.monthlyPayment'), value: `${new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(request.monthlyPayment || 0)}/m` },
+                                { label: t('info.rate'), value: `${request.rate || "2.6"}%` },
+                                { label: t('info.creationDate'), value: request.createdAt?.toDate().toLocaleDateString('fr-FR') },
                             ].map((item, i) => (
                                 <div key={i} className="space-y-1.5 group/item">
                                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest opacity-60 group-hover/item:text-ely-blue transition-colors">{item.label}</p>
@@ -280,7 +271,7 @@ export default function RequestDetailsPage() {
 
                         <h2 className="text-2xl font-black text-slate-900 mb-12 flex items-center gap-4 uppercase tracking-tight">
                             <Activity className="w-8 h-8 text-ely-blue" />
-                            Progression
+                            {t('progression')}
                         </h2>
 
                         <div className="relative space-y-14 md:ml-6 ml-4">
@@ -318,14 +309,14 @@ export default function RequestDetailsPage() {
 
                         <h2 className="text-2xl font-black mb-10 flex items-center gap-4 relative z-10 uppercase tracking-tight">
                             <ShieldCheck className="w-8 h-8 text-ely-mint" />
-                            Ma Déclaration
+                            {t('declaration.title')}
                         </h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
                             {[
-                                { label: "Situation Pro", value: request.profession || request.situation || "C.D.I", desc: "Ancienneté confirmée", color: "white" },
-                                { label: "Revenus Mensuels", value: new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(request.monthlyIncome || request.income || 0), desc: "Net avant impôts", color: "ely-mint" },
-                                { label: "Charges estimées", value: new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(request.monthlyExpenses || request.charges || request.otherLoans || request.otherCredits || 0), desc: "Loyer et crédits", color: "red-400" },
+                                { label: t('declaration.situation'), value: request.profession || request.situation || "C.D.I", desc: t('declaration.seniorityDesc'), color: "white" },
+                                { label: t('declaration.income'), value: new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(request.monthlyIncome || request.income || 0), desc: t('declaration.incomeDesc'), color: "ely-mint" },
+                                { label: t('declaration.expenses'), value: new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(request.monthlyExpenses || request.charges || request.otherLoans || request.otherCredits || 0), desc: t('declaration.expensesDesc'), color: "red-400" },
                             ].map((box, i) => (
                                 <div key={i} className="space-y-4 p-8 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 hover:bg-white/10 transition-all duration-300">
                                     <p className="text-[11px] font-black text-white/30 uppercase tracking-widest">{box.label}</p>
@@ -339,7 +330,7 @@ export default function RequestDetailsPage() {
 
                         <div className="mt-10 pt-8 border-t border-white/5 flex items-center gap-3 text-xs text-white/20 font-black uppercase tracking-widest relative z-10">
                             <Lock className="w-4 h-4" />
-                            Confidentialité totale garantie par ELYSIO
+                            {t('declaration.security')}
                         </div>
                     </section>
                 </div>
@@ -353,7 +344,7 @@ export default function RequestDetailsPage() {
                         </div>
 
                         <div className="relative z-10 space-y-8">
-                            <h3 className="text-xl font-bold leading-tight italic opacity-90">"Votre dossier est entre de bonnes mains. Je m'en occupe personnellement."</h3>
+                            <h3 className="text-xl font-bold leading-tight italic opacity-90">{t('advisor.quote')}</h3>
 
                             <div className="space-y-6">
                                 <div className="flex items-center gap-5">
@@ -361,7 +352,7 @@ export default function RequestDetailsPage() {
                                         <ShieldCheck className="w-8 h-8" />
                                     </div>
                                     <div>
-                                        <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-none pt-1">Conseiller Senior</p>
+                                        <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-none pt-1">{t('advisor.title')}</p>
                                         <p className="text-white text-base sm:text-xl font-black tracking-tight">{request.advisorName || "Jean-Luc Dupont"}</p>
                                         <p className="text-white/60 text-[11px] font-medium mt-1">{request.advisorEmail || "contact@agm-negoce.com"}</p>
                                     </div>
@@ -370,7 +361,7 @@ export default function RequestDetailsPage() {
                                     href="/dashboard/support"
                                     className="w-full bg-white text-ely-blue px-8 py-4 rounded-2xl font-black text-xs sm:text-sm uppercase tracking-widest shadow-xl shadow-blue-900/10 hover:shadow-blue-900/30 transition-all flex items-center justify-center gap-2 group/btn"
                                 >
-                                    <span>Contacter</span>
+                                    <span>{t('advisor.contact')}</span>
                                     <ArrowRight className="w-4 h-4 sm:w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                                 </a>
                             </div>
@@ -383,15 +374,15 @@ export default function RequestDetailsPage() {
                             <div className="p-3 bg-blue-50 text-ely-blue rounded-2xl">
                                 <Target className="w-6 h-6" />
                             </div>
-                            <h3 className="font-black text-slate-900 uppercase tracking-tight text-lg leading-none">Prochaine étape</h3>
+                            <h3 className="font-black text-slate-900 uppercase tracking-tight text-lg leading-none">{t('nextStep.title')}</h3>
                         </div>
 
                         <p className="text-base font-medium text-slate-500 leading-relaxed italic">
                             {request.status === "pending"
-                                ? "L'analyse initiale sera terminée d'ici la fin de journée. Un expert vous contactera si nécessaire."
+                                ? t('nextStep.pending')
                                 : request.status === "processing"
-                                    ? "Nous examinons vos documents. Pas d'action requise de votre part pour le moment."
-                                    : "Votre dossier est clôturé. Consultez l'onglet 'Comptes' pour activer votre financement."}
+                                    ? t('nextStep.processing')
+                                    : t('nextStep.finished')}
                         </p>
 
                         <div className="bg-gradient-to-br from-slate-50 to-blue-50/10 p-6 rounded-3xl flex items-center gap-5 border border-slate-100/50">
@@ -399,8 +390,8 @@ export default function RequestDetailsPage() {
                                 <Clock className="w-6 h-6" />
                             </div>
                             <div>
-                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest pt-1 leading-none mb-1">Délai estimé</p>
-                                <p className="text-base font-black text-slate-800 tracking-tight leading-none">Moins de 24h</p>
+                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest pt-1 leading-none mb-1">{t('nextStep.estimateLabel')}</p>
+                                <p className="text-base font-black text-slate-800 tracking-tight leading-none">{t('nextStep.estimateValue')}</p>
                             </div>
                         </div>
                     </section>

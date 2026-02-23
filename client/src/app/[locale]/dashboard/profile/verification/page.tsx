@@ -22,12 +22,14 @@ import { doc, updateDoc, serverTimestamp, onSnapshot } from "firebase/firestore"
 import { onAuthStateChanged } from "firebase/auth";
 import Image from "next/image";
 import CameraModal from "@/components/dashboard/CameraModal";
+import { useTranslations } from "next-intl";
 
 import DesktopVerification from "@/components/dashboard/KYC/DesktopVerification";
 import MobileVerification from "@/components/dashboard/KYC/MobileVerification";
 import { DocumentUpload, IdNature } from "@/components/dashboard/KYC/types";
 
 export default function IdentityVerificationPage() {
+    const t = useTranslations('Dashboard.KYC');
     const router = useRouter();
     const [userId, setUserId] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -76,34 +78,58 @@ export default function IdentityVerificationPage() {
                         const docDefinitions: Record<string, Partial<DocumentUpload>> = {};
 
                         if (isFrance) {
-                            const id1Label = id1Type === 'passport' ? 'Passeport' : id1Type === 'cni' ? 'CNI' : id1Type === 'resident_card' ? 'Titre' : 'Permis';
-                            const id2Label = id2Type === 'passport' ? 'Passeport' : id2Type === 'cni' ? 'CNI' : id2Type === 'resident_card' ? 'Titre' : 'Permis';
+                            const id1Label = t(`Documents.${id1Type}`);
+                            const id2Label = t(`Documents.${id2Type}`);
 
                             if (isRectoVerso(id1Type)) {
-                                docDefinitions.identity_1_front = { label: `Identité 1 (${id1Label} - Recto)`, description: `Face avant de votre ${id1Label.toLowerCase()}. Photos couleur nettes, bordures visibles.`, icon: CreditCard };
-                                docDefinitions.identity_1_back = { label: `Identité 1 (${id1Label} - Verso)`, description: `Face arrière de votre ${id1Label.toLowerCase()}. Photos couleur nettes, bordures visibles.`, icon: CreditCard };
+                                docDefinitions.identity_1_front = {
+                                    label: `${t('Documents.identity_1')} (${id1Label} - ${t('Documents.front')})`,
+                                    description: t('Documents.descriptions.generic_recto', { label: id1Label.toLowerCase() }),
+                                    icon: CreditCard
+                                };
+                                docDefinitions.identity_1_back = {
+                                    label: `${t('Documents.identity_1')} (${id1Label} - ${t('Documents.back')})`,
+                                    description: t('Documents.descriptions.generic_verso', { label: id1Label.toLowerCase() }),
+                                    icon: CreditCard
+                                };
                             } else {
-                                docDefinitions.identity_1 = { label: `Identité 1 (${id1Label})`, description: `Photo claire de votre ${id1Label.toLowerCase()}. Photos couleur nettes, bordures visibles.`, icon: CreditCard };
+                                docDefinitions.identity_1 = {
+                                    label: `${t('Documents.identity_1')} (${id1Label})`,
+                                    description: t('Documents.descriptions.generic_simple', { label: id1Label.toLowerCase() }),
+                                    icon: CreditCard
+                                };
                             }
 
                             if (isRectoVerso(id2Type)) {
-                                docDefinitions.identity_2_front = { label: `Identité 2 (${id2Label} - Recto)`, description: `Face avant de votre ${id2Label.toLowerCase()}. Photos couleur nettes, bordures visibles.`, icon: CreditCard };
-                                docDefinitions.identity_2_back = { label: `Identité 2 (${id2Label} - Verso)`, description: `Face arrière de votre ${id2Label.toLowerCase()}. Photos couleur nettes, bordures visibles.`, icon: CreditCard };
+                                docDefinitions.identity_2_front = {
+                                    label: `${t('Documents.identity_2')} (${id2Label} - ${t('Documents.front')})`,
+                                    description: t('Documents.descriptions.generic_recto', { label: id2Label.toLowerCase() }),
+                                    icon: CreditCard
+                                };
+                                docDefinitions.identity_2_back = {
+                                    label: `${t('Documents.identity_2')} (${id2Label} - ${t('Documents.back')})`,
+                                    description: t('Documents.descriptions.generic_verso', { label: id2Label.toLowerCase() }),
+                                    icon: CreditCard
+                                };
                             } else {
-                                docDefinitions.identity_2 = { label: `Identité 2 (${id2Label})`, description: `Photo claire de votre ${id2Label.toLowerCase()}. Photos couleur nettes, bordures visibles.`, icon: CreditCard };
+                                docDefinitions.identity_2 = {
+                                    label: `${t('Documents.identity_2')} (${id2Label})`,
+                                    description: t('Documents.descriptions.generic_simple', { label: id2Label.toLowerCase() }),
+                                    icon: CreditCard
+                                };
                             }
 
-                            docDefinitions.vital_card = { label: "Carte Vitale", description: "Copie lisible de votre carte vitale.", icon: ShieldCheck };
-                            docDefinitions.tax_notice = { label: "Avis d'imposition", description: "Dernier avis fiscal complet (PDF uniquement).", icon: FileText };
-                            docDefinitions.pay_slip_1 = { label: "Bulletin de paie n°1", description: "Le plus récent (M) ou justificatif pension/allocation (PDF uniquement).", icon: FileText };
-                            docDefinitions.pay_slip_2 = { label: "Bulletin de paie n°2", description: "Mois précédent (M-1) ou justificatif pension/allocation (PDF uniquement).", icon: FileText };
-                            docDefinitions.pay_slip_3 = { label: "Bulletin de paie n°3", description: "Avant-dernier (M-2) ou justificatif pension/allocation (PDF uniquement).", icon: FileText };
-                            docDefinitions.address_proof = { label: "Justificatif Domicile", description: "Facture récente -3 mois (EDF, Eau, Internet...) (PDF uniquement).", icon: Search };
-                            docDefinitions.rib = { label: "RIB / IBAN", description: "À votre nom et prénom (PDF uniquement).", icon: CreditCard };
+                            docDefinitions.vital_card = { label: t('Documents.vital_card'), description: t('Documents.descriptions.vital_card'), icon: ShieldCheck };
+                            docDefinitions.tax_notice = { label: t('Documents.tax_notice'), description: t('Documents.descriptions.tax_notice'), icon: FileText };
+                            docDefinitions.pay_slip_1 = { label: t('Documents.pay_slip_1'), description: t('Documents.descriptions.pay_slip'), icon: FileText };
+                            docDefinitions.pay_slip_2 = { label: t('Documents.pay_slip_2'), description: t('Documents.descriptions.pay_slip'), icon: FileText };
+                            docDefinitions.pay_slip_3 = { label: t('Documents.pay_slip_3'), description: t('Documents.descriptions.pay_slip'), icon: FileText };
+                            docDefinitions.address_proof = { label: t('Documents.address_proof'), description: t('Documents.descriptions.address_proof'), icon: Search };
+                            docDefinitions.rib = { label: t('Documents.rib'), description: t('Documents.descriptions.rib'), icon: CreditCard };
                         } else {
-                            docDefinitions.id_front = { label: "Pièce ID (Recto)", description: "Photos couleur nettes, bordures visibles.", icon: CreditCard };
-                            docDefinitions.id_back = { label: "Pièce ID (Verso)", description: "Photos couleur nettes, bordures visibles.", icon: CreditCard };
-                            docDefinitions.address_proof = { label: "Justificatif Domicile", description: "Facture ou certificat récent (PDF uniquement).", icon: Search };
+                            docDefinitions.id_front = { label: t('Documents.id_front'), description: t('Documents.descriptions.intl_id'), icon: CreditCard };
+                            docDefinitions.id_back = { label: t('Documents.id_back'), description: t('Documents.descriptions.intl_id'), icon: CreditCard };
+                            docDefinitions.address_proof = { label: t('Documents.address_proof'), description: t('Documents.descriptions.intl_address'), icon: Search };
                         }
 
                         setDocuments(prev => {
@@ -152,13 +178,13 @@ export default function IdentityVerificationPage() {
         // Enforce PDF for specific documents
         const pdfRequired = ["tax_notice", "pay_slip_1", "pay_slip_2", "pay_slip_3", "address_proof", "rib"];
         if (pdfRequired.includes(activeDoc) && file.type !== "application/pdf") {
-            alert("Ce document doit être obligatoirement au format PDF.");
+            alert("❌ " + t('Errors.pdfRequired'));
             e.target.value = '';
             return;
         }
 
         if (file.size > 8 * 1024 * 1024) {
-            alert("Le fichier est trop volumineux (max 8MB)");
+            alert("❌ " + t('Errors.fileTooLarge'));
             return;
         }
         const previewUrl = file.type.startsWith('image/') ? URL.createObjectURL(file) : null;
@@ -235,7 +261,7 @@ export default function IdentityVerificationPage() {
         if (!userId) return;
         const allDocsPresent = Object.values(documents).every(doc => doc && (doc.file || doc.url));
         if (!allDocsPresent) {
-            alert("Veuillez fournir tous les documents.");
+            alert("⚠️ " + t('Errors.missingDocs'));
             return;
         }
         setIsSubmitting(true);
@@ -267,7 +293,7 @@ export default function IdentityVerificationPage() {
             setTimeout(() => router.push("/dashboard"), 2000);
         } catch (error) {
             console.error("Submit error:", error);
-            alert("Erreur lors de l'envoi.");
+            alert("❌ " + t('Errors.submitError'));
             setIsSubmitting(false);
         }
     };
@@ -309,7 +335,7 @@ export default function IdentityVerificationPage() {
 
             <CameraModal
                 isOpen={isCameraOpen}
-                title={documents[cameraTarget || ""]?.label || "Capture"}
+                title={documents[cameraTarget || ""]?.label || t('Actions.capture')}
                 onClose={() => setIsCameraOpen(false)}
                 onCapture={handleCameraCapture}
             />
@@ -352,16 +378,16 @@ export default function IdentityVerificationPage() {
                                 />
                             </div>
                             <div className="space-y-4">
-                                <h2 className="text-4xl font-black text-slate-900 tracking-tight">Succès !</h2>
+                                <h1 className="text-4xl font-black text-slate-900 tracking-tight">{t('Overlays.success.title')}</h1>
                                 <p className="text-slate-500 leading-relaxed font-medium">
-                                    Vos documents ont été transmis à notre équipe d'analyse. Nous reviendrons vers vous sous 24h.
+                                    {t('Overlays.success.message')}
                                 </p>
                             </div>
                             <button
                                 onClick={() => router.push("/dashboard")}
                                 className="w-full h-16 bg-slate-900 text-white rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-slate-200"
                             >
-                                Revenir à l'accueil
+                                {t('Actions.home')}
                             </button>
                         </motion.div>
                     </motion.div>

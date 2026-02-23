@@ -18,6 +18,7 @@ export interface Notification {
     id: string;
     title: string;
     message: string;
+    params?: Record<string, any>;
     type: 'info' | 'success' | 'warning' | 'error';
     read: boolean;
     timestamp: Timestamp;
@@ -82,6 +83,7 @@ export const createNotification = async (userId: string, data: Partial<Notificat
         await addDoc(notificationsRef, {
             title: data.title || "Notification",
             message: data.message || "",
+            params: data.params || {},
             type: data.type || "info",
             read: false,
             timestamp: serverTimestamp(),

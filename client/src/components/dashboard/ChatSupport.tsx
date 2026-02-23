@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import {
     Send,
     X,
@@ -39,6 +40,7 @@ interface Message {
 const COMMON_EMOJIS = ["😊", "👍", "👋", "🙌", "❤️", "✨", "🔥", "🤝", "💡", "✅", "🚀", "📱", "🙏", "💪", "🎉", "💯"];
 
 export default function ChatSupport() {
+    const t = useTranslations('Dashboard.Chat');
     const [isOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState<Message[]>([]);
@@ -118,7 +120,7 @@ export default function ChatSupport() {
 
         // Validation de la taille
         if (file.size > 10 * 1024 * 1024) {
-            alert("Le fichier est trop volumineux (max 10MB)");
+            alert(t('fileTooLarge'));
             return;
         }
 
@@ -160,7 +162,7 @@ export default function ChatSupport() {
             });
 
             await setDoc(chatRef, {
-                lastMessage: "📎 Fichier envoyé",
+                lastMessage: t('fileSent'),
                 lastTimestamp: serverTimestamp(),
                 unreadAdmin: 1,
                 updatedAt: serverTimestamp()
@@ -168,7 +170,7 @@ export default function ChatSupport() {
 
         } catch (error) {
             console.error("Error uploading file:", error);
-            alert("Erreur lors de l'envoi du fichier. Veuillez réessayer.");
+            alert(t('uploadError'));
         } finally {
             setUploading(false);
             if (fileInputRef.current) fileInputRef.current.value = "";
@@ -256,7 +258,7 @@ export default function ChatSupport() {
                                 </h3>
                                 <div className="flex items-center gap-1.5">
                                     <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
-                                    <span className="text-xs text-emerald-500 font-semibold">CLIENT EN LIGNE</span>
+                                    <span className="text-xs text-emerald-500 font-semibold">{t('onlineStatus')}</span>
                                 </div>
                             </div>
 
@@ -276,9 +278,9 @@ export default function ChatSupport() {
                                         <MessageCircle className="w-8 h-8" />
                                     </div>
                                     <div className="space-y-1">
-                                        <p className="font-bold text-gray-900">Bonjour !</p>
+                                        <p className="font-bold text-gray-900">{t('welcome')}</p>
                                         <p className="text-sm text-gray-500">
-                                            Votre conseiller est prêt à vous aider.<br />Posez votre question ci-dessous.
+                                            {t('advisorReady')}<br />{t('askQuestion')}
                                         </p>
                                     </div>
                                 </div>
@@ -304,7 +306,7 @@ export default function ChatSupport() {
                                                     ) : (
                                                         <a href={msg.fileUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 underline">
                                                             <Paperclip className="w-4 h-4" />
-                                                            {msg.fileName || "Fichier"}
+                                                            {msg.fileName || t('filePlaceholder')}
                                                         </a>
                                                     )}
                                                 </div>
@@ -378,7 +380,7 @@ export default function ChatSupport() {
                                     type="text"
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
-                                    placeholder={uploading ? "Chargement du fichier..." : "Répondre au client..."}
+                                    placeholder={uploading ? t('loadingFile') : t('inputPlaceholder')}
                                     className="flex-1 h-11 bg-gray-50 border-0 rounded-[25px] px-5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
                                     disabled={uploading}
                                 />

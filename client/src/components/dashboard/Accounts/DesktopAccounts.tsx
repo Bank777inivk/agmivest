@@ -13,7 +13,8 @@ import {
     Landmark,
     TrendingUp,
     Send,
-    Edit3
+    Edit3,
+    Search
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "@/i18n/routing";
@@ -110,9 +111,9 @@ export default function DesktopAccounts({
                         <div className="p-3 bg-ely-mint/10 text-ely-mint rounded-xl">
                             <TrendingUp className="w-6 h-6" />
                         </div>
-                        <div>
-                            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t('stats.rate')}</p>
-                            <p className="text-xl font-black text-gray-900">{loanAccount?.rate || "0.00"}%</p>
+                        <div className="flex flex-col">
+                            <h1 className="text-4xl font-black text-gray-900 tracking-tighter">{t('title')}</h1>
+                            <p className="text-gray-500 font-medium">{t('subtitle')}</p>
                         </div>
                     </div>
                 </div>
@@ -131,10 +132,10 @@ export default function DesktopAccounts({
 
                 <button
                     onClick={() => router.push("/dashboard/accounts/transfer")}
-                    className="w-full bg-ely-mint text-white p-5 rounded-[2rem] font-bold shadow-xl shadow-ely-mint/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group"
+                    className="w-full bg-gray-900 text-white p-5 rounded-[2rem] font-bold shadow-xl shadow-gray-200 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group"
                 >
-                    {t('actions.transfer')}
-                    <Send className="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+                    <span className="text-xs uppercase tracking-widest">{t('actions.transfer')}</span>
+                    <ArrowUpRight className="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
                 </button>
 
                 <button
@@ -171,13 +172,12 @@ export default function DesktopAccounts({
                                             )}>
                                                 <ArrowUpRight className="w-5 h-5" />
                                             </div>
-                                            <div>
-                                                <p className="font-bold text-gray-900 text-sm">{t('operations.transferTo', { bank: tx.bankName })}</p>
-                                                <p className="text-[10px] text-gray-400 font-medium whitespace-nowrap">
-                                                    {t('operations.status.fullStatus', {
-                                                        status: t(`operations.status.${tx.status || 'processing'}`),
-                                                        date: tx.createdAt?.seconds ? new Date(tx.createdAt.seconds * 1000).toLocaleDateString('fr-FR') : '...'
-                                                    })}
+                                            <div className="flex flex-col gap-1">
+                                                <p className="font-bold text-gray-900 group-hover:text-ely-blue transition-colors">
+                                                    {tx.type === 'loan' ? t('operations.loanDisbursement') : t('operations.transferTo', { bank: tx.bankName || t('operations.externalAccount') })}
+                                                </p>
+                                                <p className="text-xs text-gray-400 font-medium">
+                                                    {t('operations.receivedOn', { date: tx.createdAt?.seconds ? new Date(tx.createdAt.seconds * 1000).toLocaleDateString() : "Juste à l'instant" })}
                                                 </p>
                                             </div>
                                         </div>
@@ -210,14 +210,22 @@ export default function DesktopAccounts({
                                         <p className="font-black text-green-600">
                                             +{new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(loanAccount.totalAmount)}
                                         </p>
-                                        <p className="text-[8px] font-black text-gray-300 uppercase tracking-widest leading-none">Terminé</p>
+                                        <p className="text-[8px] font-black text-gray-300 uppercase tracking-widest leading-none">{t('operations.labels.done')}</p>
                                     </div>
                                 </div>
                             </div>
                         ) : (
                             <div className="p-10 text-center space-y-4">
                                 <Wallet className="w-10 h-10 text-gray-100 mx-auto" />
-                                <p className="text-xs text-gray-400 font-medium">Aucun mouvement</p>
+                                <p className="text-xs text-gray-400 font-medium">{t('operations.none')}</p>
+                            </div>
+                        )}
+                        {extraTransactions.length === 0 && (
+                            <div className="text-center py-12 bg-gray-50/50 rounded-3xl border border-dashed border-gray-200">
+                                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 border border-gray-100 shadow-sm">
+                                    <Search className="w-8 h-8 text-gray-300" />
+                                </div>
+                                <p className="text-gray-400 font-bold uppercase text-xs tracking-widest">{t('operations.none')}</p>
                             </div>
                         )}
                     </div>

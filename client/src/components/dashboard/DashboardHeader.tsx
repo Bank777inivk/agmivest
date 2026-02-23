@@ -15,11 +15,25 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { auth } from "@/lib/firebase";
-import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/routing";
+import { useTranslations, useLocale } from "next-intl";
+import { useRouter, usePathname } from "@/i18n/routing";
 import { useNotifications } from "@/hooks/useNotifications";
 import { formatDistanceToNow } from "date-fns";
-import { fr } from "date-fns/locale";
+import {
+    fr,
+    enGB as en,
+    es,
+    it,
+    de,
+    nl,
+    pl,
+    pt,
+    ro,
+    sv
+} from "date-fns/locale";
+
+const dateLocales: Record<string, any> = { fr, en, es, it, de, nl, pl, pt, ro, sv };
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 interface DashboardHeaderProps {
     onMenuClick: () => void;
@@ -32,6 +46,8 @@ interface DashboardHeaderProps {
 export default function DashboardHeader({ onMenuClick, isCollapsed, idStatus, userName, userEmail }: DashboardHeaderProps) {
     const router = useRouter();
     const t = useTranslations();
+    const tNotif = useTranslations('Dashboard.Notifications');
+    const locale = useLocale();
     const [showProfileMenu, setShowProfileMenu] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
     const profileMenuRef = useRef<HTMLDivElement>(null);
@@ -123,6 +139,11 @@ export default function DashboardHeader({ onMenuClick, isCollapsed, idStatus, us
             </div>
 
             <div className="flex items-center gap-2 md:gap-6">
+                {/* Language Selector */}
+                <div className="hidden md:block">
+                    <LanguageSwitcher />
+                </div>
+
                 {/* Notifications */}
                 <div className="relative" ref={notificationRef}>
                     <button
@@ -166,35 +187,44 @@ export default function DashboardHeader({ onMenuClick, isCollapsed, idStatus, us
                                             <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest">{t('Dashboard.Layout.Header.noNotifications')}</p>
                                         </div>
                                     ) : (
-                                        notifications.map((notif) => (
-                                            <button
-                                                key={notif.id}
-                                                onClick={() => {
-                                                    markAsRead(notif.id);
-                                                    if (notif.link) router.push(notif.link);
-                                                    setShowNotifications(false);
-                                                }}
-                                                className={`w-full p-5 text-left flex gap-4 transition-colors border-b border-slate-50 last:border-0 ${notif.read ? 'opacity-60 grayscale-[0.5]' : 'bg-blue-50/30'}`}
-                                            >
-                                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${notif.type === 'success' ? 'bg-emerald-50 text-emerald-500 border-emerald-100' :
-                                                    notif.type === 'warning' ? 'bg-amber-50 text-amber-500 border-amber-100' :
-                                                        notif.type === 'error' ? 'bg-red-50 text-red-500 border-red-100' :
-                                                            'bg-blue-50 text-ely-blue border-blue-100'
-                                                    }`}>
-                                                    {notif.type === 'success' ? <ShieldCheck className="w-5 h-5" /> : <Bell className="w-5 h-5" />}
-                                                </div>
-                                                <div className="space-y-1 overflow-hidden">
-                                                    <p className="text-[11px] font-black text-slate-900 uppercase tracking-tight truncate">{notif.title}</p>
-                                                    <p className="text-[10px] text-slate-500 font-medium leading-relaxed line-clamp-2">{notif.message}</p>
-                                                    <p className="text-[8px] text-slate-400 font-black uppercase tracking-[0.15em] pt-1">
-                                                        {notif.timestamp ? formatDistanceToNow(notif.timestamp.toDate(), { addSuffix: true, locale: fr }) : 'À l\'instant'}
-                                                    </p>
-                                                </div>
-                                                {!notif.read && (
-                                                    <div className="w-2 h-2 rounded-full bg-ely-blue shrink-0 mt-5" />
-                                                )}
-                                            </button>
-                                        ))
+                                        notifications.map((notif) => {
+                                            // Handle title and message translation (support fallback to raw text if key not found)
+                                            const translatedTitle = tNotif.has(notif.title) ? tNotif(notif.title, notif.params) : notif.title;
+                                            const translatedMessage = tNotif.has(notif.message) ? tNotif(notif.message, notif.params) : notif.message;
+
+                                            return (
+                                                <button
+                                                    key={notif.id}
+                                                    onClick={() => {
+                                                        markAsRead(notif.id);
+                                                        if (notif.link) router.push(notif.link);
+                                                        setShowNotifications(false);
+                                                    }}
+                                                    className={`w-full p-5 text-left flex gap-4 transition-colors border-b border-slate-50 last:border-0 ${notif.read ? 'opacity-60 grayscale-[0.5]' : 'bg-blue-50/30'}`}
+                                                >
+                                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${notif.type === 'success' ? 'bg-emerald-50 text-emerald-500 border-emerald-100' :
+                                                        notif.type === 'warning' ? 'bg-amber-50 text-amber-500 border-amber-100' :
+                                                            notif.type === 'error' ? 'bg-red-50 text-red-500 border-red-100' :
+                                                                'bg-blue-50 text-ely-blue border-blue-100'
+                                                        }`}>
+                                                        {notif.type === 'success' ? <ShieldCheck className="w-5 h-5" /> : <Bell className="w-5 h-5" />}
+                                                    </div>
+                                                    <div className="space-y-1 overflow-hidden">
+                                                        <p className="text-[11px] font-black text-slate-900 uppercase tracking-tight truncate">{translatedTitle}</p>
+                                                        <p className="text-[10px] text-slate-500 font-medium leading-relaxed line-clamp-2">{translatedMessage}</p>
+                                                        <p className="text-[8px] text-slate-400 font-black uppercase tracking-[0.15em] pt-1">
+                                                            {notif.timestamp ? formatDistanceToNow(notif.timestamp.toDate(), {
+                                                                addSuffix: true,
+                                                                locale: dateLocales[locale] || fr
+                                                            }) : t('Dashboard.Layout.Header.justNow')}
+                                                        </p>
+                                                    </div>
+                                                    {!notif.read && (
+                                                        <div className="w-2 h-2 rounded-full bg-ely-blue shrink-0 mt-5" />
+                                                    )}
+                                                </button>
+                                            );
+                                        })
                                     )}
                                 </div>
 

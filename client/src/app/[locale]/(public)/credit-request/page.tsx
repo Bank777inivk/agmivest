@@ -367,12 +367,12 @@ export default function CreditRequestPage() {
 
         // Validation des mots de passe
         if (formData.password !== formData.confirmPassword) {
-            alert("Les mots de passe ne correspondent pas.");
+            alert(t('Errors.passwordsDoNotMatch'));
             return;
         }
 
         if (formData.password.length < 6) {
-            alert("Le mot de passe doit contenir au moins 6 caractères.");
+            alert(t('Errors.passwordTooShort'));
             return;
         }
 
@@ -472,13 +472,13 @@ export default function CreditRequestPage() {
 
             // Gestion des erreurs Firebase
             if (error.code === "auth/email-already-in-use") {
-                alert("Cette adresse email est déjà utilisée. Veuillez vous connecter ou utiliser une autre adresse.");
+                alert(t('Errors.emailUsed'));
             } else if (error.code === "auth/weak-password") {
-                alert("Le mot de passe est trop faible. Utilisez au moins 6 caractères.");
+                alert(t('Errors.weakPassword'));
             } else if (error.code === "auth/invalid-email") {
-                alert("L'adresse email n'est pas valide.");
+                alert(t('Errors.invalidEmail'));
             } else {
-                alert("Une erreur est survenue lors de la création de votre compte. Veuillez réessayer.");
+                alert(t('Errors.genericError'));
             }
         }
     };

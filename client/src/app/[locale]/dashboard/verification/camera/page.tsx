@@ -6,13 +6,14 @@ import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Camera, Video, Loader2, X, Play, StopCircle, ArrowLeft, Check, RotateCcw } from "lucide-react";
 import Image from "next/image";
-import { saveMedia, getMedia } from "@/lib/idb";
+import { saveMedia, getMedia, deleteMedia } from "@/lib/idb";
 import { auth, db } from "@/lib/firebase";
 import { doc, updateDoc, serverTimestamp, query, collection, where, limit, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-import { deleteMedia } from "@/lib/idb";
+import { useTranslations } from "next-intl";
 
 export default function CameraPage() {
+    const t = useTranslations('Dashboard.Verification.Camera');
     const router = useNextRouter();
     const searchParams = useSearchParams();
     const step = parseInt(searchParams.get("step") || "1"); // 1 = selfie, 2 = video
@@ -176,7 +177,7 @@ export default function CameraPage() {
                 router.push("/dashboard/verification/camera?step=2");
             } catch (error) {
                 console.error("Error saving selfie:", error);
-                alert("❌ Erreur de sauvegarde du selfie.");
+                alert("❌ " + t('errors.saveSelfie'));
             }
         }
     };
@@ -250,12 +251,12 @@ export default function CameraPage() {
                         setIsVideoValidated(true);
                     } catch (error) {
                         console.error("Storage error:", error);
-                        alert("❌ Erreur de sauvegarde vidéo.");
+                        alert("❌ " + t('errors.saveVideo'));
                     }
                 })
                 .catch(err => {
                     console.error("Video validation error:", err);
-                    alert("❌ Une erreur est survenue lors de la validation.");
+                    alert("❌ " + t('errors.generic'));
                 });
         }
     };
@@ -305,7 +306,7 @@ export default function CameraPage() {
             const selfieBlob = await getMedia("selfieBlob");
             const videoBlob = await getMedia("videoBlob");
 
-            if (!selfieBlob || !videoBlob) throw new Error("Médias manquants");
+            if (!selfieBlob || !videoBlob) throw new Error(t('errors.missingMedia'));
 
             const selfieFile = new File([selfieBlob as Blob], "selfie.jpg", { type: "image/jpeg" });
             const finalVideoBlob = videoBlob as Blob;
@@ -333,7 +334,7 @@ export default function CameraPage() {
             }, 2000);
         } catch (error) {
             console.error("Submission error:", error);
-            alert("❌ Erreur lors de l'envoi des fichiers.");
+            alert("❌ " + t('errors.uploadFailed'));
             setIsSubmitting(false);
         }
     };
@@ -355,7 +356,7 @@ export default function CameraPage() {
     };
 
     const handleClearSession = async () => {
-        if (window.confirm("Voulez-vous vraiment effacer toutes les captures et recommencer ?")) {
+        if (window.confirm(t('confirmReset'))) {
             await deleteMedia("selfieBlob");
             await deleteMedia("videoBlob");
             await deleteMedia("selfiePreview");
@@ -381,21 +382,21 @@ export default function CameraPage() {
                                 </svg>
                             </div>
                             <div className="flex-1">
-                                <h3 className="text-amber-400 font-black text-lg mb-2 uppercase tracking-wide">📱 Vérification Mobile Uniquement</h3>
+                                <h3 className="text-amber-400 font-black text-lg mb-2 uppercase tracking-wide">📱 {t('desktopError.title')}</h3>
                                 <p className="text-white/80 text-sm mb-4 leading-relaxed">
-                                    Cette vérification doit être effectuée depuis un smartphone pour des raisons de sécurité.
+                                    {t('desktopError.message')}
                                 </p>
                                 <div className="flex flex-col gap-3">
                                     <button
                                         onClick={() => {
                                             navigator.clipboard.writeText(window.location.href);
-                                            alert("✅ Lien copié !");
+                                            alert("✅ " + t('desktopError.linkCopied'));
                                         }}
                                         className="px-6 py-3 bg-amber-500 text-white rounded-2xl font-bold hover:bg-amber-600 transition-all"
                                     >
-                                        📱 Copier le lien
+                                        📱 {t('desktopError.copyLink')}
                                     </button>
-                                    <button onClick={handleBack} className="text-white/50 text-xs underline hover:text-white/70">← Retour</button>
+                                    <button onClick={handleBack} className="text-white/50 text-xs underline hover:text-white/70">← {t('desktopError.back')}</button>
                                 </div>
                             </div>
                         </div>
@@ -442,11 +443,11 @@ export default function CameraPage() {
                                             }`}>
                                             <div className="mt-auto mb-10 px-6 py-3 bg-black/60 backdrop-blur-md rounded-full border border-white/20 transition-all duration-300">
                                                 <p className={`text-white text-xs font-black uppercase tracking-widest whitespace-nowrap ${recordingTime >= 12 ? "text-green-400" : ""}`}>
-                                                    {!isRecording ? "Appuyez pour lancer" :
-                                                        recordingTime < 4 ? "Tournez la tête à GAUCHE" :
-                                                            recordingTime < 8 ? "Tournez la tête à DROITE" :
-                                                                recordingTime < 12 ? "Soulevez la tête" :
-                                                                    "Parfait !"}
+                                                    {!isRecording ? t('instructions.tapToStart') :
+                                                        recordingTime < 4 ? t('instructions.turnLeft') :
+                                                            recordingTime < 8 ? t('instructions.turnRight') :
+                                                                recordingTime < 12 ? t('instructions.raiseHead') :
+                                                                    t('instructions.perfect')}
                                                 </p>
                                             </div>
                                         </div>
@@ -456,7 +457,7 @@ export default function CameraPage() {
                         ) : (
                             <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
                                 <Loader2 className="w-12 h-12 text-ely-blue animate-spin" />
-                                <p className="text-white/40 font-black uppercase tracking-widest text-xs">Accès caméra en cours...</p>
+                                <p className="text-white/40 font-black uppercase tracking-widest text-xs">{t('status.accessing')}</p>
                             </div>
                         )}
                         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
@@ -468,7 +469,7 @@ export default function CameraPage() {
                             )}
                             <div className="px-5 py-2 bg-black/40 backdrop-blur-md rounded-full border border-white/10">
                                 <p className="text-white font-bold text-xs uppercase tracking-wide flex items-center gap-2">
-                                    {step === 1 ? (isReviewing ? "Valider la photo" : <><Camera className="w-3 h-3" /> Selfie Photo</>) : (isVideoReviewing ? (isVideoValidated ? "Vérification terminée" : "Valider la vidéo") : <><Video className="w-3 h-3" /> Selfie Vidéo</>)}
+                                    {step === 1 ? (isReviewing ? t('status.validatePhoto') : <><Camera className="w-3 h-3" /> {t('status.selfieTitle')}</>) : (isVideoReviewing ? (isVideoValidated ? t('status.finished') : t('status.validateVideo')) : <><Video className="w-3 h-3" /> {t('status.videoTitle')}</>)}
                                 </p>
                             </div>
                             <div className="flex items-center gap-3">
@@ -501,14 +502,14 @@ export default function CameraPage() {
                             <div className="flex items-center justify-center w-full gap-6">
                                 {isReviewing ? (
                                     <>
-                                        <button onClick={retakePhoto} className="px-6 py-4 bg-white/10 text-white rounded-full font-bold text-xs uppercase tracking-wide border border-white/10 flex items-center gap-2"><RotateCcw className="w-4 h-4" /> Reprendre</button>
-                                        <button onClick={validatePhoto} className="px-8 py-4 bg-ely-blue text-white rounded-full font-bold text-xs uppercase tracking-wide shadow-lg shadow-blue-500/20 flex items-center gap-2"><Check className="w-4 h-4" /> Valider</button>
+                                        <button onClick={retakePhoto} className="px-6 py-4 bg-white/10 text-white rounded-full font-bold text-xs uppercase tracking-wide border border-white/10 flex items-center gap-2"><RotateCcw className="w-4 h-4" /> {t('actions.retake')}</button>
+                                        <button onClick={validatePhoto} className="px-8 py-4 bg-ely-blue text-white rounded-full font-bold text-xs uppercase tracking-wide shadow-lg shadow-blue-500/20 flex items-center gap-2"><Check className="w-4 h-4" /> {t('actions.validate')}</button>
                                     </>
                                 ) : isVideoReviewing ? (
-                                    isVideoValidated ? <div className="text-green-500 font-bold flex items-center gap-2 py-4"><Check className="w-5 h-5" /> Vidéo validée</div> : (
+                                    isVideoValidated ? <div className="text-green-500 font-bold flex items-center gap-2 py-4"><Check className="w-5 h-5" /> {t('status.finished')}</div> : (
                                         <>
-                                            <button onClick={retakeVideo} className="px-6 py-4 bg-white/10 text-white rounded-full font-bold text-xs uppercase tracking-wide border border-white/10 flex items-center gap-2"><RotateCcw className="w-4 h-4" /> Reprendre</button>
-                                            <button onClick={validateVideo} className="px-8 py-4 bg-ely-blue text-white rounded-full font-bold text-xs uppercase tracking-wide shadow-lg shadow-blue-500/20 flex items-center gap-2"><Check className="w-4 h-4" /> Valider</button>
+                                            <button onClick={retakeVideo} className="px-6 py-4 bg-white/10 text-white rounded-full font-bold text-xs uppercase tracking-wide border border-white/10 flex items-center gap-2"><RotateCcw className="w-4 h-4" /> {t('actions.retake')}</button>
+                                            <button onClick={validateVideo} className="px-8 py-4 bg-ely-blue text-white rounded-full font-bold text-xs uppercase tracking-wide shadow-lg shadow-blue-500/20 flex items-center gap-2"><Check className="w-4 h-4" /> {t('actions.validate')}</button>
                                         </>
                                     )
                                 ) : (
@@ -524,12 +525,12 @@ export default function CameraPage() {
                                 )}
                             </div>
                             {!isReviewing && !isVideoReviewing && !isRecording && (
-                                <button onClick={() => step === 1 ? fileInputRef.current?.click() : videoInputRef.current?.click()} className="text-white/40 text-xs font-medium hover:text-white transition-colors flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/5 uppercase tracking-widest font-black">Télécharger</button>
+                                <button onClick={() => step === 1 ? fileInputRef.current?.click() : videoInputRef.current?.click()} className="text-white/40 text-xs font-medium hover:text-white transition-colors flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/5 uppercase tracking-widest font-black">{t('actions.upload')}</button>
                             )}
                             <AnimatePresence>
                                 {isSelfieValidated && isVideoValidated && (
                                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full">
-                                        <button onClick={handleFinish} className="w-full py-4 bg-green-500 text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-green-600 transition-all shadow-lg shadow-green-500/20 flex items-center justify-center gap-2"><Check className="w-5 h-5" /> Finaliser la vérification</button>
+                                        <button onClick={handleFinish} className="w-full py-4 bg-green-500 text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-green-600 transition-all shadow-lg shadow-green-500/20 flex items-center justify-center gap-2"><Check className="w-5 h-5" /> {t('actions.finalize')}</button>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
@@ -561,12 +562,12 @@ export default function CameraPage() {
 
                         <div className="space-y-4 max-w-sm">
                             <h2 className="text-2xl font-black text-white uppercase tracking-tight">
-                                {isDone ? "Vérification Terminée" : "Transmission en cours"}
+                                {isDone ? t('submitting.doneTitle') : t('submitting.title')}
                             </h2>
                             <p className="text-white/60 font-medium text-sm leading-relaxed">
                                 {isDone
-                                    ? "Votre identité a été soumise avec succès. Vous allez être redirigé..."
-                                    : "Nous sécurisons vos données et finalisons la liaison de votre profil de paiement."
+                                    ? t('submitting.doneMessage')
+                                    : t('submitting.message')
                                 }
                             </p>
                         </div>
@@ -581,7 +582,7 @@ export default function CameraPage() {
                                         transition={{ duration: 15, ease: "linear" }}
                                     />
                                 </div>
-                                <p className="text-[10px] font-black text-white/30 uppercase tracking-widest">Chiffrement AES-256 en cours</p>
+                                <p className="text-[10px] font-black text-white/30 uppercase tracking-widest">{t('submitting.encryption')}</p>
                             </div>
                         )}
                     </motion.div>
@@ -590,3 +591,4 @@ export default function CameraPage() {
         </div>
     );
 }
+

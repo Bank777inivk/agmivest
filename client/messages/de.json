@@ -1,1570 +1,2673 @@
 {
   "Home": {
     "Services": {
-      "title": "[FIXME] Nos solutions de financement",
-      "subtitle": "[FIXME] Une expertise complète pour tous vos besoins financiers.",
-      "cta": "[FIXME] Voir tous nos services"
+      "title": "Unsere Finanzierungslösungen",
+      "subtitle": "Umfassendes Fachwissen für alle Ihre finanziellen Bedürfnisse.",
+      "cta": "Alle unsere Dienstleistungen ansehen"
     },
     "Simulator": {
-      "title": "[FIXME] Simulateur de prêt",
-      "subtitle": "[FIXME] Calculez vos mensualités en quelques clics."
+      "title": "Kreditrechner",
+      "subtitle": "Berechnen Sie Ihre monatlichen Raten mit nur wenigen Klicks."
     },
     "Contact": {
-      "title": "[FIXME] Contact & Accès",
-      "subtitle": "[FIXME] Une question ? Venez nous rencontrer ou envoyez-nous un message."
+      "title": "Kontakt & Anfahrt",
+      "subtitle": "Haben Sie eine Frage? Besuchen Sie uns oder senden Sie uns eine Nachricht."
     }
   },
   "Navigation": {
     "home": "Startseite",
-    "services": "Unsere Leistungen",
-    "documents": "[FIXME] Documents",
-    "about": "[FIXME] À Propos",
+    "services": "Dienstleistungen",
+    "documents": "Dokumente",
+    "about": "Über uns",
     "contact": "Kontakt",
-    "appointment": "[FIXME] Prendre RDV",
-    "creditRequest": "[FIXME] Demander un prêt",
-    "becomeClient": "[FIXME] Devenir Client",
-    "brandSubtitle": "[FIXME] Crédit & Assurance",
-    "reviews": "[FIXME] Avis"
+    "appointment": "Termin vereinbaren",
+    "creditRequest": "Kredit anfordern",
+    "becomeClient": "Kunde werden",
+    "brandSubtitle": "Kredit & Versicherung",
+    "reviews": "Bewertungen"
   },
   "Hero": {
-    "titleLine1": "[FIXME] Votre projet",
-    "titleLine2": "[FIXME] immobilier, bien",
-    "titleLine3": "[FIXME] accompagné",
-    "description1": "[FIXME] Votre crédit immobilier ou votre assurance emprunteur aux meilleures conditions :",
-    "descriptionHighlight": "[FIXME] c'est l'expertise AGM INVEST !",
-    "description2": "[FIXME] Notre équipe vous guide à chaque étape pour obtenir le meilleur financement.",
-    "tagline": "[FIXME] Tout simplement !",
+    "titleLine1": "Ihr Projekt",
+    "titleLine2": "Immobilien, gut",
+    "titleLine3": "begleitet",
+    "description1": "Ihre Immobilienfinanzierung oder Kreditversicherung zu den besten Konditionen:",
+    "descriptionHighlight": "das ist die Expertise von AGM INVEST!",
+    "description2": "Unser Team führt Sie durch jeden Schritt, um die beste Finanzierung zu erhalten.",
+    "tagline": "Ganz einfach!",
     "cta": "Mein Projekt simulieren"
   },
   "AdBanner": {
-    "msg1": "[FIXME] Besoin d'un prêt ? Je suis là pour vous aider !",
-    "msg2": "[FIXME] Obtenez votre simulation en 2 minutes !",
-    "msg3": "[FIXME] Nos clients nous font confiance depuis 20 ans",
-    "msg4": "[FIXME] Taux compétitifs garantis !",
-    "msg5": "[FIXME] Accompagnement personnalisé à chaque étape"
+    "msg1": "Benötigen Sie einen Kredit? Ich bin für Sie da!",
+    "msg2": "Erhalten Sie Ihre Simulation in 2 Minuten!",
+    "msg3": "Unsere Kunden vertrauen uns seit 20 Jahren",
+    "msg4": "Garantierte wettbewerbsfähige Zinssätze!",
+    "msg5": "Persönliche Begleitung bei jedem Schritt"
   },
   "Services": {
-    "title": "[FIXME] Nos Services",
-    "subtitle": "[FIXME] Une expertise complète pour tous vos besoins de financement.",
+    "title": "Unsere Dienstleistungen",
+    "subtitle": "Umfassende Expertise für alle Ihre Finanzierungsbedürfnisse.",
     "Items": {
       "realEstate": {
-        "title": "[FIXME] Prêt Immobilier",
-        "description": "[FIXME] Négociation des meilleurs taux pour votre résidence principale, secondaire ou locative."
+        "title": "Immobilienkredit",
+        "description": "Verhandlung der besten Zinssätze für Ihren Haupt- oder Zweitwohnsitz sowie für Mietinvestitionen."
       },
       "insurance": {
-        "title": "[FIXME] Assurance Emprunteur",
-        "description": "[FIXME] Économisez jusqu'à 50% sur votre assurance de prêt avec les mêmes garanties."
+        "title": "Restschuldversicherung",
+        "description": "Sparen Sie bis zu 50% bei Ihrer Kreditversicherung bei gleichen Garantien."
       },
       "creditConsolidation": {
-        "title": "[FIXME] Regroupement de Crédits",
-        "description": "[FIXME] Regroupez vos crédits pour réduire vos mensualités et simplifier votre budget."
+        "title": "Umschuldung",
+        "description": "Fassen Sie Ihre Kredite zusammen, um Ihre monatlichen Raten zu senken und Ihr Budget zu vereinfachen."
       },
       "professionalLoan": {
-        "title": "[FIXME] Prêt Professionnel",
-        "description": "[FIXME] Financement de vos murs, fonds de commerce ou équipements professionnels."
+        "title": "Gewerbekredit",
+        "description": "Finanzierung Ihrer Geschäftsräume, des Geschäftswerts oder Ihrer beruflichen Ausrüstung."
       },
       "renegotiation": {
-        "title": "[FIXME] Renégociation de Taux",
-        "description": "[FIXME] Profitez des taux bas actuels pour réduire le coût de votre crédit en cours."
+        "title": "Zinsneujahrsverhandlung",
+        "description": "Nutzen Sie die aktuell niedrigen Zinsen, um die Kosten Ihres laufenden Kredits zu senken."
       },
       "support": {
-        "title": "[FIXME] Accompagnement",
-        "description": "[FIXME] Un conseiller dédié vous suit de la simulation à la signature chez le notaire."
+        "title": "Begleitung",
+        "description": "Ein engagierter Berater begleitet Sie von der Simulation bis zur Unterzeichnung beim Notar."
       }
     }
   },
   "About": {
-    "title": "[FIXME] À Propos de Nous",
-    "subtitle": "[FIXME] Votre partenaire de confiance en crédit et assurance depuis plus de 20 ans.",
+    "title": "Über uns",
+    "subtitle": "Ihr vertrauenswürdiger Partner für Kredite und Versicherungen seit über 20 Jahren.",
     "Stats": {
       "experience": {
-        "value": "[FIXME] 20+",
-        "label": "[FIXME] Ans d'expérience"
+        "value": "20+",
+        "label": "Erfahrung"
       },
       "clients": {
-        "value": "[FIXME] Satisfaits",
-        "label": "[FIXME] Clients"
+        "value": "Glücklich",
+        "label": "Kunden"
       },
       "acceptance": {
-        "value": "[FIXME] 98%",
-        "label": "[FIXME] Taux d'acceptation"
+        "value": "98%",
+        "label": "Annahme"
       },
       "secure": {
-        "value": "[FIXME] 100%",
-        "label": "[FIXME] Sécurisé"
+        "value": "100%",
+        "label": "Sicher"
       }
     },
     "Mission": {
-      "title": "[FIXME] Notre Mission",
-      "p1": "[FIXME] Depuis plus de 20 ans, <highlight>AGM INVEST</highlight> accompagne les particuliers dans la réalisation de leurs projets immobiliers. Notre équipe d'experts vous guide à chaque étape pour obtenir le meilleur financement.",
-      "p2": "[FIXME] Nous négocions pour vous auprès de nos partenaires bancaires et vous garantissons un accompagnement personnalisé, de la simulation à la signature chez le notaire."
+      "title": "Unsere Mission",
+      "p1": "Seit über 20 Jahren begleitet <highlight>AGM INVEST</highlight> Privatpersonen bei der Realisierung ihrer Immobilienprojekte. Unser Expertenteam führt Sie durch jeden Schritt, um die beste Finanzierung zu erhalten.",
+      "p2": "Wir verhandeln für Sie mit unseren Bankpartnern und garantieren Ihnen eine persönliche Begleitung von der Simulation bis zur Unterzeichnung beim Notar."
     },
     "Values": {
-      "title": "[FIXME] Nos Valeurs",
-      "v1": "[FIXME] Transparence totale sur les taux et les frais",
-      "v2": "[FIXME] Accompagnement personnalisé et humain",
-      "v3": "[FIXME] Réactivité et disponibilité de nos conseillers",
-      "v4": "[FIXME] Expertise reconnue sur le marché immobilier"
+      "title": "Unsere Werte",
+      "v1": "Vollständige Transparenz bei Zinssätzen und Gebühren",
+      "v2": "Persönliche und menschliche Begleitung",
+      "v3": "Reaktionsschnelligkeit und Verfügbarkeit unserer Berater",
+      "v4": "Anerkannte Expertise auf dem Immobilienmarkt"
     }
   },
   "Process": {
-    "title": "[FIXME] Votre financement en 4 étapes",
-    "subtitle": "[FIXME] Un processus clair et transparent pour réaliser votre projet en toute sérénité.",
+    "title": "Ihre Finanzierung in 4 Schritten",
+    "subtitle": "Ein klarer und transparenter Prozess, um Ihr Projekt in aller Ruhe zu realisieren.",
     "Steps": {
       "s1": {
-        "title": "[FIXME] 1. Étude de faisabilité",
-        "description": "[FIXME] Analyse gratuite de votre dossier et définition de votre budget de financement."
+        "title": "1. Machbarkeitsstudie",
+        "description": "Kostenlose Analyse Ihrer Unterlagen und Definition Ihres Finanzierungsbudgets."
       },
       "s2": {
-        "title": "[FIXME] 2. Recherche & Négociation",
-        "description": "[FIXME] Nous interrogeons nos partenaires pour obtenir les meilleures conditions du marché."
+        "title": "2. Recherche & Verhandlung",
+        "description": "Wir fragen unsere Partner ab, um die besten Marktkonditionen zu erhalten."
       },
       "s3": {
-        "title": "[FIXME] 3. Accord de prêt",
-        "description": "[FIXME] Présentation des offres et sélection de la meilleure proposition bancaire."
+        "title": "3. Kreditzusage",
+        "description": "Präsentation der Angebote und Auswahl des besten Bankvorschlags."
       },
       "s4": {
-        "title": "[FIXME] 4. Signature",
-        "description": "[FIXME] Accompagnement jusqu'aux signatures de l'offre et de l'acte notarié."
+        "title": "4. Unterzeichnung",
+        "description": "Begleitung bis zur Unterzeichnung des Angebots und der notariellen Urkunde."
       }
     }
   },
   "WhyChooseUs": {
-    "title": "[FIXME] Pourquoi passer par <highlight>AGM INVEST</highlight> ?",
-    "subtitle": "[FIXME] Dans un marché complexe, avoir un allié expert à vos côtés fait toute la différence.",
+    "title": "Warum über <highlight>AGM INVEST</highlight> gehen?",
+    "subtitle": "In einem komplexen Markt macht es den entscheidenden Unterschied, einen Experten an seiner Seite zu haben.",
     "Items": {
       "time": {
-        "title": "[FIXME] Gain de Temps",
-        "description": "[FIXME] Un seul interlocuteur pour interroger toutes les banques. On s'occupe de toute la paperasse."
+        "title": "Zeitersparnis",
+        "description": "Ein einziger Ansprechpartner, um alle Banken abzufragen. Wir kümmern uns um den gesamten Papierkram."
       },
       "conditions": {
-        "title": "[FIXME] Conditions Préférentielles",
-        "description": "[FIXME] Grâce à notre volume d'affaires, nous négocions des taux et conditions d'assurance privilégiés."
+        "title": "Vorzugskonditionen",
+        "description": "Dank unseres Geschäftsvolumens verhandeln wir privilegierte Zins- und Versicherungskonditionen."
       },
       "expert": {
-        "title": "[FIXME] Conseil d'Expert",
-        "description": "[FIXME] Montage financier optimisé, choix de l'assurance, lissage de crédits... Nous optimisons chaque détail."
+        "title": "Expertenberatung",
+        "description": "Optimierte Finanzierungsstruktur, Wahl der Versicherung, Kreditglättung... Wir optimieren jedes Detail."
       },
       "support": {
-        "title": "[FIXME] Accompagnement Complet",
-        "description": "[FIXME] Nous sommes à vos côtés de la première simulation jusqu'au déblocage des fonds."
+        "title": "Umfassende Begleitung",
+        "description": "Wir stehen Ihnen von der ersten Simulation bis zur Auszahlung der Gelder zur Seite."
       }
     },
     "Simulation": {
-      "title": "[FIXME] Vos Économies",
-      "marketRate": "[FIXME] Taux moyen marché",
-      "ourRate": "[FIXME] Taux Négocié AGM",
-      "savings": "[FIXME] Économie Potentielle",
-      "disclaimer": "[FIXME] *Sur un prêt de 200 000€ sur 20 ans."
+      "title": "Ihre Ersparnis",
+      "marketRate": "Durchschnittlicher Marktzins",
+      "ourRate": "Verhandelter AGM-Zins",
+      "savings": "Potenzielle Ersparnis",
+      "disclaimer": "*Bei einem Kredit von 200.000€ über 20 Jahre."
     }
   },
   "Team": {
-    "title": "[FIXME] Une équipe à votre service",
-    "subtitle": "[FIXME] Des experts passionnés dédiés à la réussite de votre projet.",
+    "title": "Ein Team zu Ihren Diensten",
+    "subtitle": "Leidenschaftliche Experten, die sich dem Erfolg Ihres Projekts widmen.",
     "Members": {
       "meyer": {
-        "role": "[FIXME] Directeur Général",
-        "bio": "[FIXME] Expert en Financement Pro et Immobilier depuis 15 ans."
+        "role": "Geschäftsführer",
+        "bio": "Experte für Gewerbe- und Immobilienfinanzierung seit 15 Jahren."
       },
       "cyrille": {
-        "role": "[FIXME] Responsable Crédit",
-        "bio": "[FIXME] Spécialiste des dossiers complexes et des relations bancaires."
+        "role": "Leiter Kreditwesen",
+        "bio": "Spezialist für komplexe Dossiers und Bankbeziehungen."
       },
       "emilie": {
-        "role": "[FIXME] Experte Financement TPE/PME",
-        "bio": "[FIXME] Accompagne les entrepreneurs dans leur développement."
+        "role": "Expertin für KMU-Finanzierung",
+        "bio": "Begleitet Unternehmer bei ihrer Entwicklung."
       },
       "christophe": {
-        "role": "[FIXME] Chargé d'Affaires",
-        "bio": "[FIXME] Votre interlocuteur privilégié pour le suivi de votre dossier."
+        "role": "Key Account Manager",
+        "bio": "Ihr bevorzugter Ansprechpartner für die Nachverfolgung Ihres Dossiers."
       }
     }
   },
   "History": {
-    "title": "[FIXME] Notre Histoire",
-    "subtitle": "[FIXME] Près de 20 ans d'expertise et d'innovation au service de vos projets.",
+    "title": "Unsere Geschichte",
+    "subtitle": "Fast 20 Jahre Expertise und Innovation im Dienste Ihrer Projekte.",
     "Milestones": {
       "m2006": {
-        "title": "[FIXME] Création d'AGM Invest",
-        "description": "[FIXME] Fondation du cabinet à Nantes avec une vision : simplifier l'accès au crédit pour les particuliers."
+        "title": "Gründung von AGM Invest",
+        "description": "Gründung der Kanzlei in Nantes mit einer Vision: den Zugang zu Krediten für Privatpersonen zu vereinfachen."
       },
       "m2012": {
-        "title": "[FIXME] Expansion Régionale",
-        "description": "[FIXME] Ouverture de 3 nouvelles agences dans le Grand Ouest et recrutement de 10 experts."
+        "title": "Regionale Expansion",
+        "description": "Eröffnung von 3 neuen Niederlassungen in Westfrankreich und Einstellung von 10 Experten."
       },
       "m2018": {
-        "title": "[FIXME] Pôle Professionnel",
-        "description": "[FIXME] Lancement de l'offre dédiée aux entreprises et aux promoteurs immobiliers."
+        "title": "Gewerbebereich",
+        "description": "Einführung des speziellen Angebots für Unternehmen und Immobilienentwickler."
       },
       "m2024": {
-        "title": "[FIXME] Digitalisation 100%",
-        "description": "[FIXME] Mise en place de notre plateforme en ligne permettant un suivi des dossiers en temps réel."
+        "title": "100% Digitalisierung",
+        "description": "Einführung unserer Online-Plattform, die eine Verfolgung der Dossiers in Echtzeit ermöglicht."
       }
     }
   },
   "Documents": {
-    "title": "[FIXME] Préparez vos documents",
-    "subtitle": "[FIXME] Pour accélérer votre prêt, préparez ces pièces à l'avance.",
-    "cta": "[FIXME] Tous les documents peuvent être envoyés en ligne de manière sécurisée",
+    "title": "Bereiten Sie Ihre Dokumente vor",
+    "subtitle": "Um Ihren Kredit zu beschleunigen, bereiten Sie diese Unterlagen im Voraus vor.",
+    "cta": "Alle Dokumente können sicher online übermittelt werden",
     "Items": {
       "identity": {
-        "title": "[FIXME] Pièce d'identité",
-        "description": "[FIXME] Carte d'identité ou passeport en cours de validité"
+        "title": "Identitätsnachweis",
+        "description": "Gültiger Personalausweis oder Reisepass"
       },
       "income": {
-        "title": "[FIXME] Justificatifs de revenus",
-        "description": "[FIXME] 3 derniers bulletins de salaire et avis d'imposition"
+        "title": "Einkommensnachweise",
+        "description": "Die letzten 3 Gehaltsabrechnungen und Steuerbescheide"
       },
       "bank": {
-        "title": "[FIXME] Relevés bancaires",
-        "description": "[FIXME] 3 derniers mois de vos comptes courants"
+        "title": "Kontoauszüge",
+        "description": "Die letzten 3 Monate Ihrer laufenden Konten"
       },
       "home": {
-        "title": "[FIXME] Justificatif de domicile",
-        "description": "[FIXME] Facture de moins de 3 mois (électricité, eau, téléphone)"
+        "title": "Wohnsitznachweis",
+        "description": "Rechnung, die weniger als 3 Monate alt ist (Strom, Wasser, Telefon)"
       },
       "sales": {
-        "title": "[FIXME] Compromis de vente",
-        "description": "[FIXME] Si vous avez déjà trouvé votre bien immobilier"
+        "title": "Kaufvertrag",
+        "description": "Wenn Sie Ihre Immobilie bereits gefunden haben"
       },
       "amortization": {
-        "title": "[FIXME] Tableau d'amortissement",
-        "description": "[FIXME] Pour un rachat de crédit ou une renégociation de taux"
+        "title": "Tilgungsplan",
+        "description": "Für eine Umschuldung oder Zinsneujahrsverhandlung"
       }
     }
   },
   "Testimonials": {
-    "title": "[FIXME] Ils ont réalisé leur projet",
-    "rating": "[FIXME] 4.9/5 sur plus de 500 avis",
+    "title": "Sie haben ihr Projekt realisiert",
+    "rating": "4.9/5 basierend auf mehr als 500 Bewertungen",
     "Items": {
       "t1": {
-        "name": "[FIXME] Marc & Sophie",
-        "role": "[FIXME] Premier Achat",
-        "content": "[FIXME] AGM INVEST a réussi à nous obtenir un taux inespéré. Un accompagnement humain et rassurant pour notre premier achat."
+        "name": "Marc & Sophie",
+        "role": "Erster Kauf",
+        "content": "AGM INVEST hat es geschafft, uns einen unerhofften Zinssatz zu sichern. Eine menschliche und beruhigende Begleitung für unseren ersten Kauf."
       },
       "t2": {
-        "name": "[FIXME] Jean-Pierre",
-        "role": "[FIXME] Investissement Locatif",
-        "content": "[FIXME] Expertise technique parfaite sur le montage financier. Gain de temps précieux sur la négociation avec les banques."
+        "name": "Jean-Pierre",
+        "role": "Mietinvestition",
+        "content": "Perfekte technische Expertise bei der Finanzierungsstruktur. Wertvolle Zeitersparnis bei den Verhandlungen mit den Banken."
       },
       "t3": {
-        "name": "[FIXME] Linda",
-        "role": "[FIXME] Renégociation",
-        "content": "[FIXME] Simplicité et efficacité. Ma mensualité a baissé de 150€ par mois sans rallonger la durée de mon crédit."
+        "name": "Linda",
+        "role": "Umschuldung",
+        "content": "Einfachheit und Effizienz. Meine monatliche Rate ist um 150€ gesunken, ohne die Laufzeit meines Kredits zu verlängern."
       }
     }
   },
   "Auth": {
     "Login": {
-      "backToHome": "[FIXME] Retour au site",
-      "title": "[FIXME] Bon retour parmi nous",
-      "subtitle": "[FIXME] Accédez à votre espace client sécurisé",
-      "newHere": "[FIXME] Nouveau sur AGM INVEST ?",
-      "createAccount": "[FIXME] Créer un compte",
-      "email": "[FIXME] Adresse Email",
-      "password": "[FIXME] Mot de passe",
-      "rememberMe": "[FIXME] Se souvenir de moi",
-      "forgotPassword": "[FIXME] Mot de passe oublié ?",
-      "submit": "[FIXME] Se connecter",
-      "resetPasswordSuccess": "[FIXME] Email de réinitialisation envoyé ! Vérifiez votre boîte de réception.",
-      "auth/user-not-found": "[FIXME] Aucun compte correspondant à cet email.",
-      "auth/wrong-password": "[FIXME] Mot de passe incorrect.",
-      "auth/invalid-email": "[FIXME] Format d'email invalide.",
-      "auth/too-many-requests": "[FIXME] Compte temporairement bloqué. Réessayez plus tard."
+      "backToHome": "Zurück zur Website",
+      "title": "Willkommen zurück",
+      "subtitle": "Greifen Sie auf Ihren sicheren Kundenbereich zu",
+      "newHere": "Neu bei AGM INVEST?",
+      "createAccount": "Ein Konto erstellen",
+      "email": "E-Mail-Adresse",
+      "password": "Passwort",
+      "rememberMe": "Angemeldet bleiben",
+      "forgotPassword": "Passwort vergessen?",
+      "submit": "Anmelden",
+      "resetPasswordSuccess": "E-Mail zum Zurücksetzen gesendet! Bitte prüfen Sie Ihren Posteingang.",
+      "auth/user-not-found": "Kein Konto mit dieser E-Mail-Adresse gefunden.",
+      "auth/wrong-password": "Falsches Passwort.",
+      "auth/invalid-email": "Ungültiges E-Mail-Format.",
+      "auth/too-many-requests": "Konto vorübergehend gesperrt. Versuchen Sie es später erneut."
     },
     "Register": {
-      "backToHome": "[FIXME] Retour au site",
-      "title": "[FIXME] Rejoignez AGM INVEST",
-      "stepIndicator": "[FIXME] Étape {current} sur {total} : {stepName}",
-      "step1": "[FIXME] État Civil",
-      "step2": "[FIXME] Coordonnées",
-      "step3": "[FIXME] Sécurité",
+      "backToHome": "Zurück zur Website",
+      "title": "AGM INVEST beitreten",
+      "stepIndicator": "Schritt {current} von {total}: {stepName}",
+      "step1": "Personenstand",
+      "step2": "Kontaktdaten",
+      "step3": "Sicherheit",
       "Fields": {
-        "civility": "[FIXME] Civilité",
-        "firstName": "[FIXME] Prénom",
-        "lastName": "[FIXME] Nom",
-        "birthDate": "[FIXME] Date de naissance",
-        "birthPlace": "[FIXME] Ville de naissance",
-        "birthCountry": "[FIXME] Pays de naissance",
-        "nationality": "[FIXME] Nationalité",
-        "address": "[FIXME] Adresse de résidence",
-        "zipCode": "[FIXME] Code Postal",
-        "city": "[FIXME] Ville",
-        "residenceCountry": "[FIXME] Pays de résidence",
-        "phone": "[FIXME] Téléphone mobile",
-        "email": "[FIXME] Adresse Email",
-        "password": "[FIXME] Mot de passe",
-        "confirmPassword": "[FIXME] Confirmation",
-        "terms": "[FIXME] Je certifie l'exactitude des informations et j'accepte les <bold>Conditions Générales</bold> d'AGM INVEST."
+        "civility": "Anrede",
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "birthDate": "Geburtsdatum",
+        "birthPlace": "Geburtsort",
+        "birthCountry": "Geburtsland",
+        "nationality": "Nationalität",
+        "address": "Wohnadresse",
+        "zipCode": "Postleitzahl",
+        "city": "Stadt",
+        "residenceCountry": "Wohnsitzland",
+        "phone": "Mobiltelefon",
+        "email": "E-Mail-Adresse",
+        "password": "Passwort",
+        "confirmPassword": "Bestätigung",
+        "terms": "Ich bestätige die Richtigkeit der Informationen und akzeptiere die <bold>Allgemeinen Geschäftsbedingungen</bold> von AGM INVEST."
       },
-      "back": "[FIXME] Retour",
+      "back": "Zurück",
       "submit": {
-        "next": "[FIXME] Continuer",
-        "finish": "[FIXME] Créer mon compte"
+        "next": "Weiter",
+        "finish": "Mein Konto erstellen"
       },
-      "alreadyClient": "[FIXME] Déjà client ?",
-      "login": "[FIXME] Se connecter",
+      "alreadyClient": "Bereits Kunde?",
+      "login": "Anmelden",
       "Errors": {
-        "incompleteDate": "[FIXME] Veuillez saisir une date de naissance complète.",
-        "invalidDate": "[FIXME] La date de naissance saisie est invalide.",
-        "underage": "[FIXME] Vous devez avoir au moins 18 ans pour vous inscrire.",
-        "errorPasswordsDoNotMatch": "[FIXME] Les mots de passe ne correspondent pas."
+        "incompleteDate": "Bitte geben Sie ein vollständiges Geburtsdatum ein.",
+        "invalidDate": "Das eingegebene Geburtsdatum ist ungültig.",
+        "underage": "Sie müssen mindestens 18 Jahre alt sein, um sich zu registrieren.",
+        "errorPasswordsDoNotMatch": "Die Passwörter stimmen nicht überein."
       }
     }
   },
   "Partners": {
-    "title": "[FIXME] Nos partenaires bancaires",
-    "subtitle": "[FIXME] Et bien d'autres partenaires assureurs et banques spécialisées...",
+    "title": "Unsere Bankpartner",
+    "subtitle": "Und viele weitere Partner, Versicherer und Spezialbanken...",
     "list": [
-      "[FIXME] Boursorama Banque",
-      "[FIXME] BNP Paribas",
-      "[FIXME] Crédit Agricole",
-      "[FIXME] Société Générale",
-      "[FIXME] LCL",
-      "[FIXME] HSBC",
-      "[FIXME] Banque Populaire",
-      "[FIXME] Caisse d'Épargne",
-      "[FIXME] Fortuneo",
-      "[FIXME] Mutuelle Générale"
+      "Boursorama Bank",
+      "BNP Paribas",
+      "Crédit Agricole",
+      "Société Générale",
+      "LCL",
+      "HSBC",
+      "Banque Populaire",
+      "Caisse d'Épargne",
+      "Fortuneo",
+      "Mutuelle Générale"
     ],
     "Network": {
-      "title": "[FIXME] Notre force ? Un réseau solide.",
-      "description": "[FIXME] En tant que courtier spécialisé, nous entretenons des relations étroites avec les plus grands établissements bancaires nationaux. Cela nous permet de défendre votre dossier au plus haut niveau et d'obtenir des conditions dérogatoires que vous ne pourriez obtenir seul en agence."
+      "title": "Unsere Stärke? Ein solides Netzwerk.",
+      "description": "Als spezialisierter Makler pflegen wir enge Beziehungen zu den größten nationalen Bankinstituten. Dies ermöglicht es uns, Ihr Dossier auf höchster Ebene zu vertreten und Sonderkonditionen zu erwirken, die Sie allein in einer Filiale nicht erhalten könnten."
     },
     "stats": {
-      "banks": "[FIXME] Banques Partenaires",
-      "support": "[FIXME] Accompagnement Courtier"
+      "banks": "Partnerbanken",
+      "support": "Maklerbegleitung"
     }
   },
   "Contact": {
-    "title": "[FIXME] Contact & Accès",
-    "subtitle": "[FIXME] Une question ? Venez nous rencontrer ou envoyez-nous un message.",
-    "minimalTitle": "[FIXME] Envoyez-nous un message",
+    "title": "Kontakt & Anfahrt",
+    "subtitle": "Haben Sie eine Frage? Besuchen Sie uns oder senden Sie uns eine Nachricht.",
+    "minimalTitle": "Senden Sie uns eine Nachricht",
     "form": {
-      "name": "[FIXME] Nom complet *",
-      "namePlaceholder": "[FIXME] Votre nom",
-      "email": "[FIXME] Adresse email *",
-      "emailPlaceholder": "[FIXME] votre@email.com",
-      "phone": "[FIXME] Téléphone",
-      "phonePlaceholder": "[FIXME] 06 12 34 56 78",
-      "subject": "[FIXME] Sujet",
-      "message": "[FIXME] Message",
-      "messagePlaceholder": "[FIXME] Comment pouvons-nous vous aider ?",
-      "submit": "[FIXME] Envoyer le message",
-      "success": "[FIXME] Votre message a été envoyé avec succès !"
+      "name": "Vollständiger Name *",
+      "namePlaceholder": "Ihr Name",
+      "email": "E-Mail-Adresse *",
+      "emailPlaceholder": "ihre@email.com",
+      "phone": "Telefon",
+      "phonePlaceholder": "0123 4567890",
+      "subject": "Betreff",
+      "message": "Nachricht",
+      "messagePlaceholder": "Wie können wir Ihnen helfen?",
+      "submit": "Nachricht senden",
+      "success": "Ihre Nachricht wurde erfolgreich gesendet!"
     },
     "Why": {
-      "title": "[FIXME] Pourquoi nous contacter ?",
+      "title": "Warum uns kontaktieren?",
       "reasons": {
-        "r1": "[FIXME] Obtenir une simulation personnalisée gratuite",
-        "r2": "[FIXME] Poser vos questions à nos experts",
-        "r3": "[FIXME] Prendre rendez-vous avec un conseiller",
-        "r4": "[FIXME] Découvrir nos offres du moment"
+        "r1": "Erhalten Sie eine kostenlose persönliche Simulation",
+        "r2": "Stellen Sie Ihre Fragen unseren Experten",
+        "r3": "Vereinbaren Sie einen Termin mit einem Berater",
+        "r4": "Entdecken Sie unsere aktuellen Angebote"
       }
     },
     "QuickResponse": {
-      "title": "[FIXME] Réponse rapide garantie",
-      "text": "[FIXME] Notre équipe s'engage à vous répondre sous <bold>24 heures</bold>. Pour une réponse immédiate, n'hésitez pas à nous appeler au",
-      "phone": "[FIXME] +33 7 56 84 41 45"
+      "title": "Schnelle Antwort garantiert",
+      "text": "Unser Team verpflichtet sich, Ihnen innerhalb von <bold>24 Stunden</bold> zu antworten. Für eine sofortige Antwort rufen Sie uns bitte an unter",
+      "phone": "+33 7 56 84 41 45"
     }
   },
   "Location": {
-    "title": "[FIXME] Où nous trouver",
-    "subtitle": "[FIXME] Nos bureaux sont situés au coeur de Paris pour vous accueillir.",
-    "address": "[FIXME] Siège Social",
-    "phone": "[FIXME] Téléphone",
-    "email": "[FIXME] Email",
+    "title": "Wo Sie uns finden",
+    "subtitle": "Unsere Büros befinden sich im Herzen von Paris, um Sie zu empfangen.",
+    "address": "Hauptsitz",
+    "phone": "Telefon",
+    "email": "E-Mail",
     "details": {
-      "address": "[FIXME] 40 Rue Jean Monnet,\n68200 Mulhouse",
-      "phone": "[FIXME] +33 7 56 84 41 45",
-      "email": "[FIXME] contact@agm-negoce.com"
+      "address": "40 Rue Jean Monnet,\n68200 Mülhausen",
+      "phone": "+33 7 56 84 41 45",
+      "email": "contact@agm-negoce.com"
     },
     "hours": {
-      "title": "[FIXME] Horaires d'ouverture",
-      "week": "[FIXME] Lundi - Vendredi : 09h00 - 19h00",
-      "saturday": "[FIXME] Samedi : 10h00 - 16h00",
-      "sunday": "[FIXME] Dimanche : Fermé"
+      "title": "Öffnungszeiten",
+      "week": "Montag - Freitag: 09:00 - 19:00",
+      "saturday": "Samstag: 10:00 - 16:00",
+      "sunday": "Sonntag: Geschlossen"
     }
   },
   "Simulator": {
-    "amountLabel": "[FIXME] Montant souhaité (€)",
-    "durationLabel": "[FIXME] Durée (ans)",
-    "durationSuffix": "[FIXME] ans",
-    "months": "[FIXME] mois",
-    "rateLabel": "[FIXME] Taux d'intérêt (%)",
-    "guaranteedRate": "[FIXME] Taux fixe et garanti.",
-    "monthlyEstimate": "[FIXME] Votre mensualité",
-    "perMonth": "[FIXME] / mois",
-    "excludedInsurance": "[FIXME] Hors assurance",
-    "borrowerInsurance": "[FIXME] Assurance emprunteur",
-    "totalInsuranceCost": "[FIXME] Coût total assurance",
-    "disclaimer": "[FIXME] Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.",
-    "startRequest": "[FIXME] Obtenir mon étude"
+    "amountLabel": "Gewünschter Betrag (€)",
+    "durationLabel": "Laufzeit (Jahre)",
+    "durationSuffix": "Jahre",
+    "months": "Monate",
+    "rateLabel": "Zinssatz (%)",
+    "guaranteedRate": "Fester und garantierter Zinssatz.",
+    "monthlyEstimate": "Ihre monatliche Rate",
+    "perMonth": "/ Monat",
+    "excludedInsurance": "Ohne Versicherung",
+    "borrowerInsurance": "Kreditschutz",
+    "totalInsuranceCost": "Gesamtkosten der Versicherung",
+    "disclaimer": "Ein Kredit bindet Sie und muss zurückgezahlt werden. Prüfen Sie Ihre Rückzahlungsfähigkeit, bevor Sie sich verpflichten.",
+    "startRequest": "Meine Studie anfordern"
   },
   "Footer": {
-    "description": "[FIXME] Votre partenaire de confiance pour tous vos projets de financement immobilier et d'assurance depuis 20 ans.",
-    "linksTitle": "[FIXME] Liens rapides",
+    "description": "Ihr vertrauenswürdiger Partner für alle Ihre Immobilienfinanzierungs- und Versicherungsprojekte seit 20 Jahren.",
+    "linksTitle": "Schnelllinks",
     "Links": {
-      "services": "[FIXME] Nos services",
-      "simulator": "[FIXME] Simulateur",
-      "documents": "[FIXME] Documents",
-      "about": "[FIXME] À propos",
-      "contact": "[FIXME] Contact",
-      "clientArea": "[FIXME] Espace Client"
+      "services": "Unsere Leistungen",
+      "simulator": "Rechner",
+      "documents": "Dokumente",
+      "about": "Über uns",
+      "contact": "Kontakt",
+      "clientArea": "Kundenbereich"
     },
-    "contactTitle": "[FIXME] Contact",
+    "contactTitle": "Kontakt",
     "details": {
-      "phone": "[FIXME] +33 7 56 84 41 45",
-      "email": "[FIXME] contact@agm-negoce.com",
-      "address": "[FIXME] 40 Rue Jean Monnet,\n68200 Mulhouse"
+      "phone": "+33 7 56 84 41 45",
+      "email": "contact@agm-negoce.com",
+      "address": "40 Rue Jean Monnet,\n68200 Mülhausen"
     },
-    "copyright": "[FIXME] AGM INVEST Crédit & Assurance. Tous droits réservés.",
+    "copyright": "AGM INVEST Kredit & Versicherung. Alle Rechte vorbehalten.",
     "legal": {
-      "mentions": "[FIXME] Mentions Légales",
-      "privacy": "[FIXME] Confidentialité",
-      "cookies": "[FIXME] Cookies",
-      "cgu": "[FIXME] CGU",
-      "refund": "[FIXME] Remboursement",
-      "disclaimer": "[FIXME] Disclaimer",
-      "trust": "[FIXME] Sécurité",
-      "ads": "[FIXME] Publicité"
+      "mentions": "Impressum",
+      "privacy": "Datenschutz",
+      "cookies": "Cookies",
+      "cgu": "AGB",
+      "refund": "Rückerstattung",
+      "disclaimer": "Haftungsausschluss",
+      "trust": "Sicherheit",
+      "ads": "Werbung"
     }
   },
   "ServicesPage": {
     "CTA": {
-      "title": "[FIXME] Prêt à concrétiser votre projet ?",
-      "text": "[FIXME] Obtenez une réponse de principe immédiate pour votre financement.",
-      "button": "[FIXME] Démarrer ma demande"
+      "title": "Bereit, Ihr Projekt zu verwirklichen?",
+      "text": "Erhalten Sie eine sofortige Grundsatzentscheidung für Ihre Finanzierung.",
+      "button": "Meine Anfrage starten"
     }
   },
   "CreditRequest": {
     "Simulator": {
-      "title": "[FIXME] VOTRE SIMULATION",
-      "disclaimer": "[FIXME] *Assurance incluse (3%). Taux fixe selon conditions de l'établissement.",
-      "rateLabel": "[FIXME] Taux nominal"
+      "title": "IHRE SIMULATION",
+      "disclaimer": "*Inklusive Versicherung (3%). Fester Zinssatz gemäß den Bedingungen des Instituts.",
+      "rateLabel": "Nominalzins",
+      "guaranteedRate": "Fester und garantierter Zinssatz.",
+      "months": "Monate",
+      "durationSuffix": "Jahre",
+      "perMonth": "Monat",
+      "personalProject": "Privatkredit",
+      "autoProject": "Auto/Motorradkredit",
+      "proProject": "Gewerbekredit",
+      "otherProject": "Anderes Projekt",
+      "otherPrompt": "Geben Sie Ihr Projekt an (z. B. Renovierung, Hochzeit...)",
+      "amountLabel": "Gewünschter Betrag",
+      "durationLabel": "Kreditlaufzeit",
+      "monthlyLabel": "Ihre monatliche Rate",
+      "personalLabel": "Privatkredit",
+      "autoLabel": "Auto/Motorradkredit",
+      "proLabel": "Gewerbekredit",
+      "otherLabel": "Anderes Projekt",
+      "amountHint": "Passen Sie es nach Bedarf an.",
+      "durationHint": "Ausgedrückt in Monaten"
     },
     "title": {
-      "step1": "[FIXME] Votre projet de financement",
-      "step2": "[FIXME] Votre identité",
-      "step3": "[FIXME] Votre situation personnelle",
-      "step4": "[FIXME] Vos finances",
-      "step5": "[FIXME] Création de compte",
-      "analysis": "[FIXME] Analyse du dossier"
+      "step1": "Ihr Finanzierungsprojekt",
+      "step2": "Ihre Identität",
+      "step3": "Ihre persönliche Situation",
+      "step4": "Ihre Finanzen",
+      "step5": "Kontoerstellung",
+      "analysis": "Analyse der Unterlagen"
     },
-    "subtitle": "[FIXME] Finalisez votre demande en quelques étapes pour une décision instantanée.",
+    "subtitle": "Schließen Sie Ihre Anfrage in wenigen Schritten ab für eine sofortige Entscheidung.",
     "Steps": {
-      "project": "[FIXME] Projet",
-      "identity": "[FIXME] Identité",
-      "situation": "[FIXME] Situation",
-      "finances": "[FIXME] Finances",
-      "account": "[FIXME] Compte"
+      "project": "Projekt",
+      "identity": "Identität",
+      "situation": "Situation",
+      "finances": "Finanzen",
+      "account": "Konto",
+      "summary": "Zusammenfassung"
     },
     "Profile": {
-      "label": "[FIXME] Type de profil",
-      "individual": "[FIXME] Particulier",
-      "professional": "[FIXME] Professionnel",
-      "pro_badge": "[FIXME] Demande Pro",
-      "individual_badge": "[FIXME] Demande Particulier"
+      "label": "Profiltyp",
+      "individual": "Privatperson",
+      "professional": "Gewerblich",
+      "pro_badge": "Gewerbliche Anfrage",
+      "individual_badge": "Private Anfrage"
     },
     "Project": {
       "labels": {
-        "personal": "[FIXME] Prêt Personnel",
-        "auto": "[FIXME] Prêt Auto/Moto",
-        "pro": "[FIXME] Prêt Professionnel",
-        "other": "[FIXME] Autre projet"
+        "personal": "Privatkredit",
+        "auto": "Auto/Motorrad-Kredit",
+        "pro": "Geschäftskredit",
+        "other": "Anderes Projekt",
+        "personal loan": "Privatkredit",
+        "auto loan": "Auto/Motorrad-Kredit",
+        "business loan": "Geschäftskredit"
       },
-      "detailsLabel": "[FIXME] Précisez votre projet",
-      "detailsPlaceholder": "[FIXME] Décrivez brièvement votre besoin de financement..."
+      "detailsLabel": "Präzisieren Sie Ihr Projekt",
+      "detailsPlaceholder": "Beschreiben Sie kurz Ihren Finanzierungsbedarf..."
     },
     "Identity": {
-      "civility": "[FIXME] Civilité",
-      "firstName": "[FIXME] Prénom",
-      "lastName": "[FIXME] Nom",
-      "birthDate": "[FIXME] Date de naissance",
-      "birthPlace": "[FIXME] Ville de naissance",
-      "birthCountry": "[FIXME] Pays de naissance",
-      "nationality": "[FIXME] Nationalité",
+      "civility": "Anrede",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "birthDate": "Geburtsdatum",
+      "birthPlace": "Geburtsort",
+      "birthCountry": "Geburtsland",
+      "nationality": "Nationalität",
       "Options": {
-        "mr": "[FIXME] M.",
-        "mrs": "[FIXME] Mme",
-        "ms": "[FIXME] Mlle"
+        "mr": "Herr",
+        "mrs": "Frau",
+        "ms": "Fräulein"
+      },
+      "title": "Ihre Identität",
+      "subtitle": "Diese Angaben dienen zur Überprüfung Ihrer Förderfähigkeit.",
+      "civilityLabel": "Anrede",
+      "firstNameLabel": "Vorname",
+      "lastNameLabel": "Nachname",
+      "birthDateLabel": "Geburtsdatum",
+      "birthPlaceLabel": "Geburtsort",
+      "birthCountryLabel": "Geburtsland",
+      "nationalityLabel": "Staatsangehörigkeit",
+      "nationalityPlaceholder": "Z.B.: Deutsch",
+      "civilityOptions": {
+        "mr": "Herr",
+        "mrs": "Frau"
+      },
+      "Placeholders": {
+        "birthDate": "TT / MM / JJJJ",
+        "birthPlace": "Z.B.: Berlin",
+        "nationality": "Z.B.: Deutsch",
+        "firstName": "Z.B.: Hans",
+        "lastName": "Z.B.: Müller"
       }
     },
     "Situation": {
-      "maritalStatus": "[FIXME] Situation familiale",
-      "children": "[FIXME] Nombre d'enfants à charge",
-      "housingType": "[FIXME] Type de logement",
-      "housingSeniority": "[FIXME] Ancienneté logement",
-      "seniorityYears": "[FIXME] ans",
-      "seniorityMonths": "[FIXME] mois",
-      "residenceCountry": "[FIXME] Pays de résidence",
-      "phone": "[FIXME] Téléphone mobile",
-      "street": "[FIXME] Adresse (N° et rue)",
-      "zipCode": "[FIXME] Code Postal",
-      "city": "[FIXME] Ville",
+      "maritalStatus": "Familienstand",
+      "children": "Anzahl der unterhaltsberechtigten Kinder",
+      "housingType": "Wohnsituation",
+      "housingSeniority": "Wohndauer",
+      "seniorityYears": "Jahre",
+      "seniorityMonths": "Monate",
+      "residenceCountry": "Wohnsitzland",
+      "phone": "Mobiltelefon",
+      "street": "Adresse (Nr. und Straße)",
+      "zipCode": "Postleitzahl",
+      "city": "Stadt",
       "options": {
-        "single": "[FIXME] Célibataire",
-        "married": "[FIXME] Marié(e) / PACS",
-        "divorced": "[FIXME] Divorcé(e) / Veuf(ve)",
-        "tenant": "[FIXME] Locataire",
-        "owner": "[FIXME] Propriétaire",
-        "hosted": "[FIXME] Logé(e) à titre gratuit"
+        "single": "Ledig",
+        "married": "Geheiratet / Eingetragene Partnerschaft",
+        "divorced": "Geschieden / Verwitwet",
+        "tenant": "Mieter",
+        "owner": "Eigentümer",
+        "hosted": "Kostenlos untergebracht",
+        "pacs": "Eingetragene Partnerschaft",
+        "widow": "Verwitwet",
+        "owner_mortgage": "Eigentümer (mit Kredit)",
+        "free": "Kostenlos untergebracht"
       },
       "Placeholders": {
-        "street": "[FIXME] Ex: 40 Rue Jean Monnet",
-        "zipCode": "[FIXME] Ex: 68200",
-        "city": "[FIXME] Ex: Mulhouse"
+        "street": "Z.B.: 40 Rue Jean Monnet",
+        "zipCode": "Z.B.: 68200",
+        "city": "Z.B.: München",
+        "years": "Jahre",
+        "months": "Monate",
+        "address": "Geben Sie Ihre Adresse ein...",
+        "yearsPlaceholder": "Jahre",
+        "monthsPlaceholder": "Monate"
+      },
+      "title": "Ihre persönliche Situation",
+      "subtitle": "Damit wir Sie besser kennenlernen und begleiten können.",
+      "maritalStatusLabel": "Familienstand",
+      "childrenLabel": "Unterhaltsberechtigte Kinder",
+      "housingTypeLabel": "Wohnform",
+      "housingSeniorityLabel": "Wohndauer",
+      "residenceCountryLabel": "Wohnsitzland",
+      "phoneLabel": "Mobiltelefonnummer",
+      "addressLabel": "Wohnadresse",
+      "addressPlaceholder": "Adresse eingeben...",
+      "zipCodeLabel": "Postleitzahl",
+      "zipCodePlaceholder": "z.B.: 10115",
+      "cityLabel": "Stadt",
+      "maritalOptions": {
+        "single": "Ledig",
+        "married": "Verheiratet",
+        "pacs": "Eingetragene Lebenspartnerschaft",
+        "divorced": "Geschieden",
+        "widow": "Verwitwet"
+      },
+      "housingOptions": {
+        "tenant": "Mieter",
+        "owner": "Eigentümer",
+        "owner_mortgage": "Eigentümer (mit Kredit)",
+        "free": "Kostenloses Wohnen",
+        "hosted": "Beherbergt"
       }
     },
     "Finances": {
-      "contractType": "[FIXME] Type de contrat",
-      "income": "[FIXME] Revenu net mensuel",
-      "charges": "[FIXME] Loyers / Charges mensuelles",
-      "otherCredits": "[FIXME] Autres crédits en cours",
-      "bankInfo": "[FIXME] Informations Bancaires",
-      "bankName": "[FIXME] Nom de la banque",
-      "iban": "[FIXME] IBAN",
-      "bic": "[FIXME] Code BIC / SWIFT",
-      "ribEmail": "[FIXME] Email pour virements",
-      "disposableIncome": "[FIXME] Reste à vivre mensuel",
+      "contractType": "Vertragsart",
+      "income": "Monatliches Nettoeinkommen",
+      "charges": "Miete / Monatliche Belastungen",
+      "otherCredits": "Weitere laufende Kredite",
+      "bankInfo": "Bankverbindung",
+      "bankName": "Name der Bank",
+      "iban": "IBAN",
+      "bic": "BIC / SWIFT-Code",
+      "ribEmail": "E-Mail für Überweisungen",
+      "disposableIncome": "Monatlicher Restbetrag",
       "options": {
-        "cdi": "[FIXME] CDI",
-        "cdd": "[FIXME] CDD",
-        "temporary": "[FIXME] Intérimaire",
-        "civil_servant": "[FIXME] Fonctionnaire",
-        "liberal": "[FIXME] Libéral / Indépendant",
-        "business_owner": "[FIXME] Chef d'entreprise",
-        "artisan": "[FIXME] Artisan / Commerçant",
-        "independent": "[FIXME] Freelance",
-        "retired": "[FIXME] Retraité(e)",
-        "student": "[FIXME] Étudiant(e)",
-        "apprentice": "[FIXME] Apprenti(e) / Stagiaire",
-        "unemployed": "[FIXME] Sans emploi"
+        "cdi": "Unbefristet",
+        "cdd": "Befristet",
+        "temporary": "Zeitarbeit",
+        "civil_servant": "Beamter",
+        "liberal": "Freiberufler / Selbstständig",
+        "business_owner": "Unternehmer",
+        "artisan": "Handwerker / Händler",
+        "independent": "Freelance",
+        "retired": "Rentner",
+        "student": "Student",
+        "apprentice": "Auszubildender / Praktikant",
+        "unemployed": "Arbeitslos"
       },
       "Labels": {
-        "default": "[FIXME] Nom de l'entreprise",
-        "liberal": "[FIXME] Nom de l'activité",
-        "retired": "[FIXME] Dernier employeur",
-        "profession_default": "[FIXME] Profession actuelle",
-        "profession_retired": "[FIXME] Ancienne profession",
-        "income_retired": "[FIXME] Montant retraite",
-        "income_unemployed": "[FIXME] Allocations mensuelles",
-        "income_cdi": "[FIXME] Salaire net mensuel",
-        "income_cdd": "[FIXME] Salaire net mensuel",
-        "income_temporary": "[FIXME] Revenu net mensuel",
-        "income_civil_servant": "[FIXME] Traitement net mensuel",
-        "income_liberal": "[FIXME] Revenu net mensuel",
-        "income_business_owner": "[FIXME] Rémunération nette mensuelle",
-        "income_artisan": "[FIXME] Bénéfice net mensuel",
-        "income_independent": "[FIXME] CA net mensuel",
-        "income_student": "[FIXME] Bourses / Aide familiale",
-        "income_apprentice": "[FIXME] Gratification mensuelle"
+        "default": "Name des Unternehmens",
+        "liberal": "Name der Tätigkeit",
+        "retired": "Letzter Arbeitgeber",
+        "profession_default": "Aktueller Beruf",
+        "profession_retired": "Ehemaliger Beruf",
+        "income_retired": "Rentenbetrag",
+        "income_unemployed": "Monatliche Bezüge",
+        "income_cdi": "Monatliches Nettogehalt",
+        "income_cdd": "Monatliches Nettogehalt",
+        "income_temporary": "Monatliches Nettoeinkommen",
+        "income_civil_servant": "Monatliche Nettobezüge",
+        "income_liberal": "Monatliches Nettoeinkommen",
+        "income_business_owner": "Monatliche Nettovergütung",
+        "income_artisan": "Monatlicher Nettogewinn",
+        "income_independent": "Monatlicher Nettoumsatz",
+        "income_student": "Stipendien / Familiäre Unterstützung",
+        "income_apprentice": "Monatliche Vergütung",
+        "artisan": "Firmenname / Geschäftsbezeichnung",
+        "civil_servant": "Ministerium / Verwaltung",
+        "temporary": "Zeitarbeitsfirma / Arbeitgeber",
+        "business_owner": "Firmenname / Bezeichnung",
+        "company_student": "Einrichtung / Universität",
+        "company_apprentice": "Ausbildungsbetrieb / CFA"
       },
       "Placeholders": {
-        "company_default": "[FIXME] Le nom de votre employeur",
-        "company_cdi": "[FIXME] Ex: Google France",
-        "company_cdd": "[FIXME] Ex: Amazon Logistics",
-        "company_temporary": "[FIXME] Ex: Adecco / Manpower",
-        "company_civil_servant": "[FIXME] Ex: Ministère de l'Éducation",
-        "company_liberal": "[FIXME] Ex: Cabinet Médical Dupont",
-        "company_business_owner": "[FIXME] Ex: SAS AGM INVEST",
-        "company_artisan": "[FIXME] Ex: Boulangerie de la Paix",
-        "company_independent": "[FIXME] Ex: Freelance Web",
-        "company_student": "[FIXME] Ex: Université de Nantes",
-        "company_apprentice": "[FIXME] Ex: Airbus Atlantic",
-        "profession_default": "[FIXME] Ex: Consultant, Chef de projet...",
-        "profession_cdi": "[FIXME] Ex: Comptable",
-        "profession_cdd": "[FIXME] Ex: Chauffeur-livreur",
-        "profession_temporary": "[FIXME] Ex: Manutentionnaire",
-        "profession_civil_servant": "[FIXME] Ex: Professeur",
-        "profession_liberal": "[FIXME] Ex: Médecin",
-        "profession_business_owner": "[FIXME] Ex: Gérant",
-        "profession_artisan": "[FIXME] Ex: Menuisier",
-        "profession_independent": "[FIXME] Ex: Développeur",
-        "profession_student": "[FIXME] Ex: Étudiant Master 2",
-        "profession_apprentice": "[FIXME] Ex: Apprenti Mécanicien",
-        "bankName": "[FIXME] Ex: Boursorama Banque",
-        "iban": "[FIXME] FR76 1234 5...",
-        "bic": "[FIXME] ALPHFR2PXXX",
-        "ribEmail": "[FIXME] votre@email.com",
-        "charges": "[FIXME] Ex: 800"
-      }
+        "company_default": "Der Name Ihres Arbeitgebers",
+        "company_cdi": "Z.B.: Google Deutschland",
+        "company_cdd": "Z.B.: Amazon Logistics",
+        "company_temporary": "Z.B.: Adecco / Manpower",
+        "company_civil_servant": "Z.B.: Bildungsministerium",
+        "company_liberal": "Z.B.: Arztpraxis Schmidt",
+        "company_business_owner": "Z.B.: SAS AGM INVEST",
+        "company_artisan": "Z.B.: Bäckerei am Markt",
+        "company_independent": "Z.B.: Freelance Web",
+        "company_student": "Z.B.: Universität München",
+        "company_apprentice": "Z.B.: Airbus Atlantic",
+        "profession_default": "Z.B.: Berater, Projektleiter...",
+        "profession_cdi": "Z.B.: Buchhalter",
+        "profession_cdd": "Z.B.: Fahrer",
+        "profession_temporary": "Z.B.: Lagerarbeiter",
+        "profession_civil_servant": "Z.B.: Lehrer",
+        "profession_liberal": "Z.B.: Arzt",
+        "profession_business_owner": "Z.B.: Geschäftsführer",
+        "profession_artisan": "Z.B.: Tischler",
+        "profession_independent": "Z.B.: Entwickler",
+        "profession_student": "Z.B.: Master-Student",
+        "profession_apprentice": "Z.B.: Mechaniker-Lehrling",
+        "bankName": "Z.B.: Boursorama Bank",
+        "iban": "DE76 1234 5...",
+        "bic": "ALPHDE2PXXX",
+        "ribEmail": "ihre@email.com",
+        "charges": "Z.B.: 800",
+        "otherCredits": "Z.B.: 200"
+      },
+      "title": "Ihre Finanzen",
+      "subtitle": "Diese Informationen helfen uns dabei, Ihre Kreditfähigkeit zu berechnen.",
+      "contractTypeLabel": "Type de contrat",
+      "contractOptions": {
+        "cdi": "CDI",
+        "cdd": "CDD",
+        "temporary": "Intérimaire",
+        "civil_servant": "Fonctionnaire",
+        "liberal": "Libéral / Indépendant",
+        "business_owner": "Chef d'entreprise",
+        "artisan": "Artisan / Commerçant",
+        "independent": "Freelance",
+        "retired": "Retraité(e)",
+        "student": "Étudiant(e)",
+        "apprentice": "Apprenti(e) / Stagiaire",
+        "unemployed": "Sans emploi"
+      },
+      "chargesLabel": "Miete / Monatliche Kosten",
+      "otherCreditsLabel": "Andere laufende Kredite",
+      "profession": "Beruf",
+      "company": "Unternehmen / Arbeitgeber"
     },
     "Account": {
-      "email": "[FIXME] Adresse Email",
-      "password": "[FIXME] Mot de passe",
-      "confirmPassword": "[FIXME] Confirmation",
-      "terms": "[FIXME] Je certifie l'exactitude des informations et j'accepte les Conditions Générales d'AGM INVEST.",
+      "email": "E-Mail-Adresse",
+      "password": "Passwort",
+      "confirmPassword": "Bestätigung",
+      "terms": "Ich bestätige die Richtigkeit der Informationen und akzeptiere die Allgemeinen Geschäftsbedingungen von AGM INVEST.",
       "Placeholders": {
-        "email": "[FIXME] votre@email.com"
+        "email": "ihre@email.com"
       }
     },
     "Navigation": {
-      "next": "[FIXME] Étape suivante",
-      "back": "[FIXME] Retour",
-      "submit": "[FIXME] Soumettre ma demande",
-      "analyzing": "[FIXME] Analyse en cours..."
+      "next": "Nächster Schritt",
+      "back": "Zurück",
+      "submit": "Antrag absenden",
+      "analyzing": "Analyse läuft...",
+      "previous": "Zurück",
+      "confirm": "Antrag bestätigen",
+      "submitting": "Wird gesendet...",
+      "modify": "Antrag ändern",
+      "project": "Projekt",
+      "identity": "Identität",
+      "situation": "Situation",
+      "finances": "Finanzen",
+      "summary": "Zusammenfassung"
+    },
+    "Summary": {
+      "monthlyEstimation": "Monatliche Schätzung",
+      "capital": "Kapital",
+      "duration": "Laufzeit",
+      "totalCost": "Gesamtkosten",
+      "insurance": "Versicherung (3%)",
+      "totalDue": "Gesamtbetrag",
+      "taeg": "TAEG",
+      "secureData": "100% Sicher",
+      "secureDesc": "AES-256-Bit-Verschlüsselung",
+      "expertiseQuote": "\"Die Expertise von AGM INVEST für Ihre Finanzierungen bis zu 1 Million Euro.\"",
+      "rgpdCertified": "DSGVO-konform zertifiziert"
+    },
+    "FinalRecap": {
+      "title": "Abschließende Zusammenfassung",
+      "subtitle": "Bitte überprüfen Sie Ihre Informationen vor der sicheren Einreichung Ihres Dossiers.",
+      "projectSection": "Das Projekt",
+      "applicantSection": "Antragsteller",
+      "amount": "Betrag",
+      "duration": "Laufzeit",
+      "monthly": "Monatliche Rate",
+      "identity": "Identität",
+      "city": "Stadt",
+      "modify": "Ändern",
+      "confirm": "Bestätigen",
+      "processing": "Verarbeitung...",
+      "submitting": "Wird gesendet..."
     },
     "Result": {
-      "analysisTitle": "[FIXME] Analyse de votre dossier",
-      "analysisMessage": "[FIXME] Nous analysons vos données instantanément grâce à nos partenaires bancaires. Vous allez être redirigé vers votre espace client.",
-      "dashboardButton": "[FIXME] Accéder à mon tableau de bord"
+      "analysisTitle": "Analyse Ihrer Unterlagen",
+      "analysisMessage": "Wir analysieren Ihre Daten sofort dank unserer Bankpartner. Sie werden zu Ihrem Kundenbereich weitergeleitet.",
+      "dashboardButton": "Zu meinem Dashboard",
+      "summaryTitle": "IHRE ZUSAMMENFASSUNG",
+      "checkPrompt": "Letzte Prüfung",
+      "checkMessage": "Stellen Sie sicher, dass alle eingegebenen Informationen korrekt sind."
+    },
+    "Banners": {
+      "Rejected": {
+        "title": "Ich informiere Sie, dass:",
+        "message": "Ihr Finanzierungsantrag wurde von unseren Diensten nach Prüfung Ihres Dossiers abgelehnt.",
+        "extra": "Für weitere Details oder um mit einem Berater zu sprechen, kontaktieren Sie bitte unseren Support."
+      },
+      "Approved": {
+        "title": "Herzlichen Glückwunsch!",
+        "subtitle": "Es ist der Jackpot.",
+        "message": "Genießen Sie Ihren Kredit von {amount}, um Ihre Projekte zu verwalten.",
+        "warning": "Derzeit sind Sie nicht mehr berechtigt, einen Kredit zu beantragen, da Sie bereits einen in der Rückzahlung haben."
+      },
+      "Pending": {
+        "title": "Ich informiere Sie, dass:",
+        "message": "Sie haben bereits einen Finanzierungsantrag in Bearbeitung.",
+        "warning": "Als Sicherheitsmaßnahme und zur Qualität der Prüfung lassen wir nur ein aktives Dossier gleichzeitig zu."
+      }
+    },
+    "Notifications": {
+      "submittedTitle": "Antrag eingereicht 📄",
+      "submittedMessage": "Ihr Kreditantrag über {amount} wurde registriert.",
+      "error": "Bei der Übermittlung ist ein Fehler aufgetreten. Bitte überprüfen Sie Ihre Berechtigungen."
+    },
+    "Common": {
+      "trackRecord": "Meinen Antrag verfolgen",
+      "restart": "Neustart",
+      "previous": "Zurück",
+      "next": "Weiter",
+      "confirm": "Bestätigen",
+      "submitting": "Wird bearbeitet...",
+      "modify": "Ändern",
+      "step": "Schritt"
     },
     "Errors": {
-      "underage": "[FIXME] Vous devez avoir au moins 18 ans.",
-      "invalidDate": "[FIXME] La date saisie est invalide.",
-      "passwordsDoNotMatch": "[FIXME] Les mots de passe ne correspondent pas."
+      "underage": "Sie müssen mindestens 18 Jahre alt sein.",
+      "invalidDate": "Das eingegebene Datum ist ungültig.",
+      "passwordsDoNotMatch": "Die Passwörter stimmen nicht überein.",
+      "passwordTooShort": "Das Passwort muss mindestens 6 Zeichen enthalten.",
+      "emailUsed": "Diese E-Mail-Adresse wird bereits verwendet. Bitte melden Sie sich an oder verwenden Sie eine andere Adresse.",
+      "weakPassword": "Das Passwort ist zu schwach. Verwenden Sie mindestens 6 Zeichen.",
+      "invalidEmail": "Die E-Mail-Adresse ist ungültig.",
+      "genericError": "Bei der Erstellung Ihres Kontos ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
     },
     "Step1": {
-      "amount": "[FIXME] Montant du prêt",
-      "duration": "[FIXME] Durée (mois)",
-      "rate": "[FIXME] Taux nominal"
+      "amount": "Kreditbetrag",
+      "duration": "Laufzeit (Monate)",
+      "rate": "Nominalzins"
+    },
+    "Form": {
+      "lastName": "Nachname"
     }
   },
   "Legal": {
     "Mentions": {
-      "title": "[FIXME] Mentions Légales",
-      "subtitle": "[FIXME] Informations juridiques et réglementaires concernant AGM INVEST.",
+      "title": "Impressum",
+      "subtitle": "Rechtliche und regulatorische Informationen zu AGM INVEST.",
       "Section1": {
-        "title": "[FIXME] Identification de la Société",
-        "name": "[FIXME] Dénomination sociale :",
-        "form": "[FIXME] Forme juridique :",
-        "headquarters": "[FIXME] Siège social :",
-        "siren": "[FIXME] SIREN :",
-        "siret": "[FIXME] SIRET :",
-        "rcs": "[FIXME] RCS :",
-        "tva": "[FIXME] TVA Intracommunautaire :",
-        "ape": "[FIXME] Code APE / NAF :",
-        "manager": "[FIXME] Dirigeant :",
-        "creation": "[FIXME] Date de création :",
+        "title": "Unternehmensidentifikation",
+        "name": "Firmenname:",
+        "form": "Rechtsform:",
+        "headquarters": "Hauptsitz:",
+        "siren": "SIREN:",
+        "siret": "SIRET:",
+        "rcs": "RCS:",
+        "tva": "Umsatzsteuer-Identifikationsnummer:",
+        "ape": "APE / NAF Code:",
+        "manager": "Geschäftsführer:",
+        "creation": "Gründungsdatum:",
         "Values": {
-          "name": "[FIXME] AGM INVEST",
-          "form": "[FIXME] SARL au capital de 7 622 €",
-          "headquarters": "[FIXME] MELPARK – 40 rue Jean Monnet, 68200 Mulhouse",
-          "siren": "[FIXME] 389 858 630",
-          "siret": "[FIXME] 389 858 630 00046",
-          "rcs": "[FIXME] 389 858 630 R.C.S. Mulhouse",
-          "tva": "[FIXME] FR51 389858630",
-          "ape": "[FIXME] 64.92Z – Autre distribution de crédit",
-          "manager": "[FIXME] Alain Meyer",
-          "creation": "[FIXME] 16 janvier 1993"
+          "name": "AGM INVEST",
+          "form": "SARL mit einem Kapital von 7.622 €",
+          "headquarters": "MELPARK – 40 rue Jean Monnet, 68200 Mülhausen",
+          "siren": "389 858 630",
+          "siret": "389 858 630 00046",
+          "rcs": "389 858 630 R.C.S. Mulhouse",
+          "tva": "FR51 389858630",
+          "ape": "64.92Z – Sonstige Kreditgewährung",
+          "manager": "Alain Meyer",
+          "creation": "16. Januar 1993"
         }
       },
       "Section2": {
-        "title": "[FIXME] Activités & Expertise",
-        "p1": "[FIXME] AGM INVEST est une société française spécialisée dans le conseil financier, le courtage en financements et l’accompagnement stratégique des particuliers et des professionnels. Forte de plus de 50 ans d’expérience cumulée dans les services financiers, AGM INVEST met son expertise au service de projets patrimoniaux, immobiliers et financiers, en toute indépendance.",
+        "title": "Aktivitäten & Fachwissen",
+        "p1": "AGM INVEST ist ein französisches Unternehmen, das auf Finanzberatung, Kreditvermittlung und strategische Begleitung für Privatpersonen und Fachleute spezialisiert ist. Mit über 50 Jahren kumulierter Erfahrung im Finanzdienstleistungsbereich stellt AGM INVEST seine Expertise völlig unabhängig in den Dienst von Vermögens-, Immobilien- und Finanzprojekten.",
         "list": {
-          "li1": "[FIXME] Conseil financier et stratégique",
-          "li2": "[FIXME] Courtage en financements",
-          "li3": "[FIXME] Intermédiation en opérations de banque et services de paiement",
-          "li4": "[FIXME] Accompagnement en négociation et structuration financière",
-          "li5": "[FIXME] Conseil et commercialisation de projets immobiliers",
-          "li6": "[FIXME] Analyse et optimisation de solutions de financement"
+          "li1": "Finanz- und Strategieberatung",
+          "li2": "Kreditvermittlung",
+          "li3": "Vermittlung von Bankgeschäften und Zahlungsdiensten",
+          "li4": "Begleitung bei Verhandlungen und Finanzstrukturierung",
+          "li5": "Beratung und Vermarktung von Immobilienprojekten",
+          "li6": "Analyse und Optimierung von Finanzierungslösungen"
         }
       },
       "Section3": {
-        "title": "[FIXME] Conformité & Réglementation",
-        "p1": "[FIXME] AGM INVEST a été immatriculée à l’ORIAS sous le numéro 14001635 en qualité de :",
-        "oriasLink": "[FIXME] www.orias.fr",
-        "role": "[FIXME] ",
+        "title": "Compliance & Regulierung",
+        "p1": "AGM INVEST wurde bei der ORIAS unter der Nummer 14001635 registriert als:",
+        "oriasLink": "www.orias.fr",
+        "role": "",
         "list": {
-          "li1": "[FIXME] Mandataire d’Intermédiaire en Opérations Bancaires et Services de Paiement",
-          "li2": "[FIXME] Courtier en Opérations Bancaires et Services de Paiement",
-          "li3": "[FIXME] Courtier en Assurance"
+          "li1": "Beauftragter Vermittler für Bankgeschäfte und Zahlungsdienste",
+          "li2": "Kreditvermittler",
+          "li3": "Versicherungsmakler"
         },
-        "p2": "[FIXME] L'activité d'Intermédiaire en Opérations de Banque et en Services de Paiement (IOBSP) est régie par le Code Monétaire et Financier. AGM INVEST est soumise au contrôle de l'Autorité de Contrôle Prudentiel et de Résolution (ACPR), 4 Place de Budapest CS 92459, 75436 Paris Cedex 09."
+        "p2": "Die Tätigkeit des Vermittlers in Bankgeschäften und Zahlungsdiensten (IOBSP) unterliegt dem Währungs- und Finanzgesetzbuch. AGM INVEST unterliegt der Aufsicht der Behörde für Finanzmarktaufsicht (ACPR), 4 Place de Budapest CS 92459, 75436 Paris Cedex 09."
       },
       "Section4": {
-        "title": "[FIXME] Contact & Hébergement",
+        "title": "Kontakt & Hosting",
         "Service": {
-          "title": "[FIXME] Service Client",
-          "text": "[FIXME] Pour toute question ou réclamation, vous pouvez nous contacter par email :",
-          "address": "[FIXME] 40 rue Jean Monnet, 68200 Mulhouse"
+          "title": "Kundenservice",
+          "text": "Für Fragen oder Beschwerden können Sie uns per E-Mail kontaktieren:",
+          "address": "40 rue Jean Monnet, 68200 Mülhausen"
         },
         "Hosting": {
-          "title": "[FIXME] Hébergement Web",
-          "text": "[FIXME] Ce site est hébergé par :",
-          "name": "[FIXME] Hostinger",
-          "address": "[FIXME] 61 Lordou Vironos Street\n6023 Larnaca\nChypre"
+          "title": "Webhosting",
+          "text": "Diese Website wird gehostet von:",
+          "name": "Hostinger",
+          "address": "61 Lordou Vironos Street\n6023 Larnaca\nZypern"
         }
       },
       "Footer": {
-        "copyright": "[FIXME] © 1993 – 2026 AGM INVEST – Tous droits réservés",
-        "desc": "[FIXME] Société de conseil financier – Interventions sans maniement de fonds",
-        "disclaimer": "[FIXME] Les informations présentes sur ce site ne constituent pas une offre contractuelle."
+        "copyright": "© 1993 – 2026 AGM INVEST – Alle Rechte vorbehalten",
+        "desc": "Finanzberatungsunternehmen – Interventionen ohne Handhabung von Geldern",
+        "disclaimer": "Die Informationen auf dieser Website stellen kein vertragliches Angebot dar."
       }
     },
     "Privacy": {
-      "title": "[FIXME] Politique de Confidentialité",
-      "subtitle": "[FIXME] Engagement de AGM INVEST sur la protection de vos données personnelles et le respect de votre vie privée (RGPD).",
-      "intro": "[FIXME] Chez AGM INVEST, we accordons une importance capitale à la confidentialité et à la sécurité de vos informations. Cette politique détaille comment nous collectons, utilisons et protégeons vos données dans le cadre de nos activités de conseil financier et de courtage.",
+      "title": "Datenschutzerklärung",
+      "subtitle": "AGM INVEST verpflichtet sich zum Schutz Ihrer personenbezogenen Daten und zur Einhaltung Ihrer Privatsphäre (DSGVO).",
+      "intro": "Bei AGM INVEST messen wir dem Schutz und der Sicherheit Ihrer Informationen höchste Bedeutung bei. Diese Richtlinie beschreibt, wie wir Ihre Daten im Rahmen unserer Finanzberatungs- und Vermittlungstätigkeiten erfassen, verwenden und schützen.",
       "Section1": {
-        "title": "[FIXME] 1. Données Collectées",
-        "description": "[FIXME] Pour traiter vos demandes de financement et vous fournir nos services, nous sommes amenés à collecter les informations suivantes :",
+        "title": "1. Erfasste Daten",
+        "description": "Um Ihre Finanzierungsanfragen zu bearbeiten und Ihnen unsere Dienstleistungen bereitzustellen, erfassen wir folgende Informationen:",
         "list": {
-          "li1": "[FIXME] <bold>Identité :</bold> Nom, prénom, date de naissance, nationalité, documents d'identité.",
-          "li2": "[FIXME] <bold>Coordonnées :</bold> Adresse postale, email, numéro de téléphone.",
-          "li3": "[FIXME] <bold>Situation Familiale :</bold> Statut marital, nombre d'enfants à charge.",
-          "li4": "[FIXME] <bold>Situation Professionnelle :</bold> Employeur, type de contrat, ancienneté, revenus.",
-          "li5": "[FIXME] <bold>Situation Financière :</bold> Relevés bancaires, avis d'imposition, emprunts en cours, patrimoine.",
-          "li6": "[FIXME] <bold>Données de Connexion :</bold> Adresse IP, logs de connexion (pour la sécurité)."
+          "li1": "<bold>Identität:</bold> Name, Vorname, Geburtsdatum, Nationalität, Ausweisdokumente.",
+          "li2": "<bold>Kontaktdaten:</bold> Postanschrift, E-Mail-Adresse, Telefonnummer.",
+          "li3": "<bold>Familiäre Situation:</bold> Familienstand, Anzahl der unterhaltsberechtigten Kinder.",
+          "li4": "<bold>Berufliche Situation:</bold> Arbeitgeber, Vertragsart, Dienstalter, Einkommen.",
+          "li5": "<bold>Finanzielle Situation:</bold> Kontoauszüge, Steuerbescheide, laufende Kredite, Vermögen.",
+          "li6": "<bold>Verbindungsdaten:</bold> IP-Adresse, Verbindungsprotokolle (aus Sicherheitsgründen)."
         }
       },
       "Section2": {
-        "title": "[FIXME] 2. Finalités du Traitement",
-        "description": "[FIXME] Vos données sont traitées pour des finalités déterminées, explicites et légitimes :",
+        "title": "2. Verwendungszwecke",
+        "description": "Ihre Daten werden für festgelegte, eindeutige und rechtmäßige Zwecke verarbeitet:",
         "Cards": {
           "c1": {
-            "title": "[FIXME] Étude de solvabilité",
-            "desc": "[FIXME] Analyse de votre capacité de remboursement pour l'octroi de crédits."
+            "title": "Bonitätsprüfung",
+            "desc": "Analyse Ihrer Rückzahlungsfähigkeit für die Kreditvergabe."
           },
           "c2": {
-            "title": "[FIXME] Gestion de dossier",
-            "desc": "[FIXME] Suivi administratif, constitution des contrats et gestion de la relation client."
+            "title": "Aktenverwaltung",
+            "desc": "Administrative Nachverfolgung, Vertragserstellung und Kundenbeziehungsmanagement."
           },
           "c3": {
-            "title": "[FIXME] Obligations Légales",
-            "desc": "[FIXME] Lutte contre le blanchiment d'argent et le financement du terrorisme (LCB-FT)."
+            "title": "Gesetzliche Verpflichtungen",
+            "desc": "Bekämpfung von Geldwäsche und Terrorismusfinanzierung (GWG)."
           },
           "c4": {
-            "title": "[FIXME] Sécurité",
-            "desc": "[FIXME] Protection contre la fraude et sécurisation de vos accès en ligne."
+            "title": "Sicherheit",
+            "desc": "Schutz vor Betrug und Sicherung Ihrer Online-Zugänge."
           }
         }
       },
       "Section3": {
-        "title": "[FIXME] 3. Partage et Destinataires",
-        "p1": "[FIXME] Vos données sont strictement confidentielles. Elles ne sont transmises qu'aux destinataires habilités lorsque cela est nécessaire :",
+        "title": "3. Weitergabe und Empfänger",
+        "p1": "Ihre Daten werden streng vertraulich behandelt. Sie werden nur an autorisierte Empfänger weitergegeben, wenn dies erforderlich ist:",
         "list": {
-          "li1": "[FIXME] Nos partenaires bancaires et assureurs (pour l'étude et la validation de votre financement).",
-          "li2": "[FIXME] Les organismes publics et régulateurs (sur réquisition légale).",
-          "li3": "[FIXME] Nos prestataires techniques sécurisés (hébergement, signature électronique)."
+          "li1": "Unsere Bank- und Versicherungspartner (zur Prüfung und Validierung Ihrer Finanzierung).",
+          "li2": "Öffentliche Stellen und Aufsichtsbehörden (auf gesetzliche Anforderung).",
+          "li3": "Unsere gesicherten technischen Dienstleister (Hosting, elektronische Signatur)."
         },
-        "p2": "[FIXME] AGM INVEST ne vendra jamais vos données personnelles à des tiers à des fins commerciales."
+        "p2": "AGM INVEST wird Ihre personenbezogenen Daten niemals zu kommerziellen Zwecken an Dritte verkaufen."
       },
       "Section4": {
-        "title": "[FIXME] 4. Vos Droits",
-        "p1": "[FIXME] Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :",
+        "title": "4. Ihre Rechte",
+        "p1": "Gemäß der Datenschutz-Grundverordnung (DSGVO) haben Sie folgende Rechte:",
         "list": {
-          "li1": "[FIXME] Droit d'accès à vos données",
-          "li2": "[FIXME] Droit de rectification",
-          "li3": "[FIXME] Droit à l'effacement (\"droit à l'oubli\")",
-          "li4": "[FIXME] Droit à la limitation du traitement",
-          "li5": "[FIXME] Droit au portabilité des données",
-          "li6": "[FIXME] Droit d'opposition"
+          "li1": "Recht auf Auskunft über Ihre Daten",
+          "li2": "Recht auf Berichtigung",
+          "li3": "Recht auf Löschung (\"Recht auf Vergessenwerden\")",
+          "li4": "Recht auf Einschränkung der Verarbeitung",
+          "li5": "Recht auf Datenübertragbarkeit",
+          "li6": "Recht auf Widerspruch"
         },
-        "contact": "[FIXME] Pour exercer ces droits, contactez notre Délégué à la Protection des Données (DPO) :",
-        "postal": "[FIXME] ou par courrier postal au siège social."
+        "contact": "Um diese Rechte auszuüben, kontaktieren Sie bitte unseren Datenschutzbeauftragten (DSB):",
+        "postal": "oder per Post an den Hauptsitz."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026"
+        "updated": "Letzte Aktualisierung: Februar 2026"
       }
     },
     "Cookies": {
-      "title": "[FIXME] Gestion des Cookies",
-      "subtitle": "[FIXME] Comprendre comment et pourquoi nous utilisons des cookies pour améliorer votre expérience sur AGM INVEST.",
-      "intro": "[FIXME] Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) lors de la visite de notre site. Il permet à AGM INVEST de mémoriser vos actions et préférences sur une période donnée.",
+      "title": "Cookies-Verarbeitung",
+      "subtitle": "Erfahren Sie, wie und warum wir Cookies verwenden, um Ihre Erfahrung bei AGM INVEST zu verbessern.",
+      "intro": "Ein Cookie ist eine kleine Textdatei, die beim Besuch unserer Website auf Ihrem Endgerät (Computer, Tablet, Smartphone) abgelegt wird. Er ermöglicht es AGM INVEST, Ihre Aktionen und Präferenzen über einen bestimmten Zeitraum zu speichern.",
       "Section1": {
-        "title": "[FIXME] 1. Les Cookies que nous utilisons",
+        "title": "1. Die von uns verwendeten Cookies",
         "Essential": {
-          "title": "[FIXME] Cookies Essentiels",
-          "desc": "[FIXME] Indispensables au bon fonctionnement du site. Ils vous permettent de naviguer, d'accéder à votre espace sécurisé et d'assurer la sécurité des transactions. Ils ne peuvent pas être désactivés."
+          "title": "Essenziell Cookies",
+          "desc": "Unerlässlich für das ordnungsgemäße Funktionieren der Website. Sie ermöglichen es Ihnen zu navigieren, auf Ihren sicheren Bereich zuzugreifen und die Sicherheit von Transaktionen zu gewährleisten. Sie können nicht deaktiviert werden."
         },
         "Functional": {
-          "title": "[FIXME] Cookies Fonctionnels",
-          "desc": "[FIXME] Permettent de mémoriser vos choix (langue, nom d'utilisateur) pour vous offrir une expérience personnalisée et plus fluide."
+          "title": "Funktionale Cookies",
+          "desc": "Ermöglichen es, Ihre Auswahl (Sprache, Benutzername) zu speichern, um Ihnen eine personalisierte und flüssigere Erfahrung zu bieten."
         },
         "Analytics": {
-          "title": "[FIXME] Cookies Analytiques",
-          "desc": "[FIXME] Nous aident à comprendre comment les visiteurs interagissent avec le site (pages visitées, temps passé) afin d'améliorer nos services. Données anonymisées."
+          "title": "Analytische Cookies",
+          "desc": "Helfen uns zu verstehen, wie Besucher mit der Website interagieren (besuchte Seiten, Verweildauer), um unsere Dienstleistungen zu verbessern. Anonymisierte Daten."
         }
       },
       "Section2": {
-        "title": "[FIXME] 2. Gérer vos préférences",
-        "intro": "[FIXME] Vous pouvez à tout moment modifier vos préférences en matière de cookies via les paramètres de votre navigateur web.",
-        "Chrome": "[FIXME] Google Chrome :",
-        "ChromePath": "[FIXME] Paramètres > Confidentialité et sécurité > Cookies",
-        "Firefox": "[FIXME] Firefox :",
-        "FirefoxPath": "[FIXME] Options > Vie privée et sécurité > Cookies",
-        "Safari": "[FIXME] Safari :",
-        "SafariPath": "[FIXME] Préférences > Confidentialité",
-        "Edge": "[FIXME] Edge :",
-        "EdgePath": "[FIXME] Paramètres > Cookies et autorisations de site",
-        "note": "[FIXME] Note : Le refus des cookies essentiels peut empêcher l'accès à certaines fonctionnalités critiques comme la connexion à votre compte client."
+        "title": "2. Ihre Präferenzen verwalten",
+        "intro": "Sie können Ihre Cookie-Präferenzen jederzeit über die Einstellungen Ihres Webbrowsers ändern.",
+        "Chrome": "Google Chrome:",
+        "ChromePath": "Einstellungen > Datenschutz und Sicherheit > Cookies",
+        "Firefox": "Firefox:",
+        "FirefoxPath": "Optionen > Datenschutz & Sicherheit > Cookies",
+        "Safari": "Safari:",
+        "SafariPath": "Einstellungen > Datenschutz",
+        "Edge": "Edge:",
+        "EdgePath": "Einstellungen > Cookies und Websiteberechtigungen",
+        "note": "Hinweis: Die Ablehnung essenzieller Cookies kann den Zugriff auf bestimmte kritische Funktionen wie die Anmeldung an Ihrem Kundenkonto verhindern."
       },
       "Footer": {
-        "copyright": "[FIXME] © AGM INVEST - Politique de Cookies 2026"
+        "copyright": "© AGM INVEST - Cookie-Richtlinie 2026"
       }
     },
     "CGU": {
-      "title": "[FIXME] Conditions Générales d'Utilisation",
-      "subtitle": "[FIXME] Conditions d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne.",
+      "title": "Allgemeine Nutzungsbedingungen",
+      "subtitle": "Nutzungsbedingungen für die von AGM INVEST über seine Online-Plattform angebotenen Dienste.",
       "Section1": {
-        "title": "[FIXME] 1. Objet",
-        "content": "[FIXME] Les présentes Conditions Générales d'Utilisation (CGU) définissent les conditions d'accès et d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne."
+        "title": "1. Gegenstand",
+        "content": "Diese Allgemeinen Nutzungsbedingungen (ANB) definieren die Zugangs- und Nutzungsbedingungen für die von AGM INVEST über seine Online-Plattform angebotenen Dienste."
       },
       "Section2": {
-        "title": "[FIXME] 2. Accès au Service",
-        "p1": "[FIXME] L'accès à la plateforme est réservé aux utilisateurs disposant d'un compte validé.",
-        "p2": "[FIXME] AGM INVEST se réserve le droit de refuser ou suspendre un compte en cas de non-respect des présentes conditions."
+        "title": "2. Zugang zum Dienst",
+        "p1": "Der Zugang zur Plattform ist registrierten Nutzern mit einem validierten Konto vorbehalten.",
+        "p2": "AGM INVEST behält sich das Recht vor, ein Konto abzulehnen oder zu sperren, falls diese Bedingungen nicht eingehalten werden."
       },
       "Section3": {
-        "title": "[FIXME] 3. Nature des Services",
-        "intro": "[FIXME] AGM INVEST propose :",
+        "title": "3. Art der Dienstleistungen",
+        "intro": "AGM INVEST bietet an:",
         "list": {
-          "li1": "[FIXME] Un accompagnement administratif",
-          "li2": "[FIXME] Une assistance liée à l'acquisition de véhicules",
-          "li3": "[FIXME] Un service de gestion de dossiers clients"
+          "li1": "Administrative Begleitung",
+          "li2": "Unterstützung beim Fahrzeugkauf",
+          "li3": "Verwaltung von Kundendossiers"
         },
-        "warning": "[FIXME] AGM INVEST n'est pas un organisme bancaire, ni un établissement de crédit, mais un intermédiaire financier réglementé."
+        "warning": "AGM INVEST ist keine Bank und kein Kreditinstitut, sondern ein regulierter Finanzvermittler."
       },
       "Section4": {
-        "title": "[FIXME] 4. Processus de Vérification",
-        "content": "[FIXME] L'accès complet aux services nécessite une procédure de vérification en plusieurs étapes définies par AGM INVEST."
+        "title": "4. Verifizierungsprozess",
+        "content": "Der vollständige Zugang zu den Diensten erfordert einen mehrstufigen Verifizierungsprozess, der von AGM INVEST festgelegt wurde."
       },
       "Section5": {
-        "title": "[FIXME] 5. Paiements",
-        "p1": "[FIXME] Certains services peuvent nécessiter le versement de dépôts de sécurité.",
-        "p2": "[FIXME] Ces montants sont communiqués clairement au client avant toute validation."
+        "title": "5. Zahlungen",
+        "p1": "Bestimmte Dienste können die Hinterlegung von Sicherheitsleistungen erfordern.",
+        "p2": "Diese Beträge werden dem Kunden vor jeder Validierung klar mitgeteilt."
       },
       "Section6": {
-        "title": "[FIXME] 6. Responsabilité",
-        "content": "[FIXME] AGM INVEST agit en tant qu'intermédiaire administratif et ne garantit pas l'acceptation d'un dossier par des tiers (administrations, partenaires, prestataires)."
+        "title": "6. Haftung",
+        "content": "AGM INVEST handelt als administrativer Vermittler und garantiert nicht die Annahme eines Dossiers durch Dritte (Behörden, Partner, Dienstleister)."
       },
       "Section7": {
-        "title": "[FIXME] 7. Données Personnelles",
-        "content": "[FIXME] Les données sont traitées conformément à la réglementation en vigueur. Consultez notre",
-        "link": "[FIXME] Politique de Confidentialité"
+        "title": "7. Personenbezogene Daten",
+        "content": "Die Daten werden gemäß den geltenden Vorschriften verarbeitet. Konsultieren Sie unsere",
+        "link": "Datenschutzerklärung"
       },
       "Section8": {
-        "title": "[FIXME] 8. Résiliation",
-        "content": "[FIXME] AGM INVEST se réserve le droit de suspendre un compte en cas de fraude, fausse déclaration ou utilisation abusive du service."
+        "title": "8. Kündigung",
+        "content": "AGM INVEST behält sich das Recht vor, ein Konto im Falle von Betrug, Falschangaben oder missbräuchlicher Nutzung des Dienstes zu sperren."
       },
       "Section9": {
-        "title": "[FIXME] 9. Droit Applicable",
-        "p1": "[FIXME] Les présentes CGU sont soumises au droit français.",
-        "p2": "[FIXME] Tout litige relève de la compétence des tribunaux français."
+        "title": "9. Anwendbares Recht",
+        "p1": "Diese ANB unterliegen französischem Recht.",
+        "p2": "Alle Streitigkeiten fallen in die Zuständigkeit französischer Gerichte."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Letzte Aktualisierung: Februar 2026",
+        "copyright": "© 2026 AGM INVEST - Alle Rechte vorbehalten"
       }
     },
     "Refund": {
-      "title": "[FIXME] Conditions de Remboursement",
-      "subtitle": "[FIXME] Modalités de restitution du dépôt sécuritaire fixe AGM INVEST.",
+      "title": "Erstattungsbedingungen",
+      "subtitle": "Modalitäten für die Rückgabe der festen Sicherheitsleistung von AGM INVEST.",
       "Section1": {
-        "title": "[FIXME] 1. Dépôt Sécuritaire Fixe",
-        "p1": "[FIXME] Ce dépôt n'est pas des frais. Il doit provenir du même compte bancaire (RIB) que celui fourni lors de votre demande.",
-        "p2": "[FIXME] Il est intégralement restitué en même temps que le virement du crédit.",
-        "p3": "[FIXME] "
+        "title": "1. Feste Sicherheitsleistung",
+        "p1": "Diese Einzahlung stellt keine Gebühr dar. Sie muss von demselben Bankkonto (IBAN) stammen, das bei Ihrer Anfrage angegeben wurde.",
+        "p2": "Sie wird zusammen mit der Auszahlung des Kredits vollständig zurückerstattet.",
+        "p3": ""
       },
       "Section2": {
-        "title": "[FIXME] 2. Restitution",
-        "content": "[FIXME] La restitution du dépôt sécuritaire intervient conformément aux conditions prévues dans le contrat signé entre AGM INVEST et le client."
+        "title": "2. Rückerstattung",
+        "content": "Die Rückerstattung der Sicherheitsleistung erfolgt gemäß den im unterzeichneten Vertrag zwischen AGM INVEST und dem Kunden vorgesehenen Bedingungen."
       },
       "Section3": {
-        "title": "[FIXME] 3. Cas de Non-Restitution",
-        "intro": "[FIXME] Le dépôt sécuritaire peut ne pas être restitué en cas de :",
+        "title": "3. Fälle von Nicht-Rückerstattung",
+        "intro": "Die Sicherheitsleistung kann in folgenden Fällen nicht zurückerstattet werden:",
         "list": {
-          "li1": "[FIXME] Abandon volontaire du dossier par le client",
-          "li2": "[FIXME] Fausse déclaration",
-          "li3": "[FIXME] Non-respect des engagements contractuels"
+          "li1": "Freiwilliger Abbruch des Dossiers durch den Kunden",
+          "li2": "Falschangaben",
+          "li3": "Nichteinhaltung vertraglicher Verpflichtungen"
         }
       },
       "Section4": {
-        "title": "[FIXME] 4. Délais",
-        "content": "[FIXME] Les délais de restitution sont indiqués dans le contrat et peuvent varier selon la nature du dossier et les partenaires impliqués."
+        "title": "4. Fristen",
+        "content": "Die Rückerstattungsfristen sind im Vertrag angegeben und können je nach Art des Dossiers und den beteiligten Partnern variieren."
       },
       "Section5": {
-        "title": "[FIXME] 5. Litiges",
-        "content": "[FIXME] En cas de litige, le droit français s'applique."
+        "title": "5. Streitigkeiten",
+        "content": "Im Falle von Streitigkeiten gilt französisches Recht."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Letzte Aktualisierung: Februar 2026",
+        "copyright": "© 2026 AGM INVEST - Alle Rechte vorbehalten"
       }
     },
     "Trust": {
-      "title": "[FIXME] Confiance & Sécurité",
-      "subtitle": "[FIXME] Chez AGM INVEST, la sécurité des dossiers clients est une priorité absolue.",
-      "intro": "[FIXME] Nous mettons en œuvre des processus rigoureux et transparents pour garantir la sécurité et la confidentialité de vos informations.",
+      "title": "Vertrauen & Sicherheit",
+      "subtitle": "Bei AGM INVEST hat die Sicherheit der Kundendossiers oberste Priorität.",
+      "intro": "Wir setzen strenge und transparente Prozesse ein, um die Sicherheit und Vertraulichkeit Ihrer Informationen zu gewährleisten.",
       "engagements": {
-        "title": "[FIXME] Nos Engagements Sécurité",
+        "title": "Unsere Sicherheitsverpflichtungen",
         "admin": {
-          "title": "[FIXME] Vérification Administrative",
-          "desc": "[FIXME] Chaque dossier est vérifié minutieusement par notre équipe administrative."
+          "title": "Administrative Überprüfung",
+          "desc": "Jedes Dossier wird von unserem Administrativ-Team sorgfältig geprüft."
         },
         "multi": {
-          "title": "[FIXME] Validation Multi-Étapes",
-          "desc": "[FIXME] Processus de vérification en plusieurs étapes pour garantir la conformité."
+          "title": "Mehrstufige Validierung",
+          "desc": "Ein mehrstufiger Verifizierungsprozess zur Gewährleistung der Konformität."
         },
         "contract": {
-          "title": "[FIXME] Encadrement Contractuel Clair",
-          "desc": "[FIXME] Tous nos services sont encadrés par des contrats transparents et détaillés."
+          "title": "Klarer vertraglicher Rahmen",
+          "desc": "Alle unsere Dienste sind durch transparente und detaillierte Verträge geregelt."
         },
         "trace": {
-          "title": "[FIXME] Traçabilité des Paiements",
-          "desc": "[FIXME] Tous les paiements sont tracés et sécurisés via des systèmes certifiés."
+          "title": "Rückverfolgbarkeit von Zahlungen",
+          "desc": "Alle Zahlungen werden über zertifizierte Systeme verfolgt und gesichert."
         },
         "data": {
-          "title": "[FIXME] Protection des Données",
-          "desc": "[FIXME] Conformité RGPD et chiffrement de toutes vos données personnelles."
+          "title": "Datenschutz",
+          "desc": "DSGVO-Konformität und Verschlüsselung all Ihrer personenbezogenen Daten."
         },
         "support": {
-          "title": "[FIXME] Support Client Dédié",
-          "desc": "[FIXME] Une équipe à votre écoute pour répondre à toutes vos questions."
+          "title": "Engagierter Kundensupport",
+          "desc": "Ein Team, das Ihnen zuhört und alle Ihre Fragen beantwortet."
         }
       },
       "individual": {
-        "title": "[FIXME] Traitement Individuel",
-        "content": "[FIXME] Chaque dossier est traité de manière individuelle par notre équipe. Nous prenons le temps d'analyser votre situation spécifique pour vous proposer un accompagnement personnalisé."
+        "title": "Individuelle Bearbeitung",
+        "content": "Jedes Dossier wird von unserem Team individuell bearbeitet. Wir nehmen uns die Zeit, Ihre spezifische Situation zu analysieren, um Ihnen eine personalisierte Begleitung anzubieten."
       },
       "promise": {
-        "title": "[FIXME] Notre Engagement",
-        "content": "[FIXME] AGM INVEST s'engage à la transparence dans ses processus et ses communications. Votre confiance est notre priorité."
+        "title": "Unser Versprechen",
+        "content": "AGM INVEST verpflichtet sich zur Transparenz in seinen Prozessen und seiner Kommunikation. Ihr Vertrauen ist unsere Priorität."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Letzte Aktualisierung: Februar 2026",
+        "copyright": "© 2026 AGM INVEST - Alle Rechte vorbehalten"
       }
     },
     "Disclaimer": {
-      "title": "[FIXME] Disclaimer Financier",
-      "subtitle": "[FIXME] Informations importantes sur la nature des services AGM INVEST.",
+      "title": "Finanz-Disclaimer",
+      "subtitle": "Wichtige Informationen über die Art der Dienstleistungen von AGM INVEST.",
       "warning": {
-        "title": "[FIXME] Avertissement Important",
-        "content": "[FIXME] AGM INVEST n'est ni un établissement bancaire, ni un organisme de crédit, mais un intermédiaire financier réglementé."
+        "title": "Wichtiger Warnhinweis",
+        "content": "AGM INVEST ist weder ein Bankinstitut noch ein Kreditunternehmen, sondern ein regulierter Finanzvermittler."
       },
       "nature": {
-        "title": "[FIXME] Nature de l'Activité",
-        "p1": "[FIXME] AGM INVEST intervient exclusivement en tant qu'intermédiaire administratif et de mise en relation.",
-        "p2": "[FIXME] Nos services consistent en un accompagnement dans vos démarches administratives et la mise en relation avec des partenaires qualifiés."
+        "title": "Art der Tätigkeit",
+        "p1": "AGM INVEST handelt ausschließlich als administrativer Vermittler und Kontaktvermittler.",
+        "p2": "Unsere Dienstleistungen bestehen in einer Begleitung bei Ihren administrativen Schritten und der Vermittlung an qualifizierte Partner."
       },
       "limitations": {
-        "title": "[FIXME] Limitations de Garantie",
+        "title": "Haftungsbeschränkungen",
         "list": {
-          "li1": "[FIXME] AGM INVEST ne garantit pas l'acceptation d'un dossier par des tiers",
-          "li2": "[FIXME] AGM INVEST ne garantit pas l'obtention effective d'un financement",
-          "li3": "[FIXME] Les délais, montants et décisions finales dépendent des partenaires externes et des organismes concernés"
+          "li1": "AGM INVEST garantiert nicht die Annahme eines Dossiers durch Dritte",
+          "li2": "AGM INVEST garantiert nicht den effektiven Erhalt einer Finanzierung",
+          "li3": "Fristen, Beträge und finale Entscheidungen hängen von externen Partnern und den betroffenen Stellen ab"
         }
       },
       "indicative": {
-        "title": "[FIXME] Informations Indicatives",
-        "content": "[FIXME] Toute information communiquée par AGM INVEST est fournie à titre indicatif et ne constitue en aucun cas un engagement contractuel de résultat."
+        "title": "Unverbindliche Informationen",
+        "content": "Alle von AGM INVEST kommunizierten Informationen werden unverbindlich bereitgestellt und stellen in keinem Fall eine vertragliche Erfolgszusage dar."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Letzte Aktualisierung: Februar 2026",
+        "copyright": "© 2026 AGM INVEST - Alle Rechte vorbehalten"
       }
     },
     "Ads": {
-      "title": "[FIXME] Mentions Publicitaires",
-      "subtitle": "[FIXME] Clarifications importantes sur les services proposés par AGM INVEST.",
+      "title": "Werbehinweise",
+      "subtitle": "Wichtige Klarstellungen zu den von AGM INVEST angebotenen Diensten.",
       "warning": {
-        "title": "[FIXME] Information Importante",
-        "content": "[FIXME] AGM INVEST n'est pas une banque ni un organisme de crédit, mais un intermédiaire financier réglementé."
+        "title": "Wichtige Information",
+        "content": "AGM INVEST ist keine Bank und kein Kreditunternehmen, sondern ein regulierter Finanzvermittler."
       },
       "nature": {
-        "title": "[FIXME] Nature des Services",
-        "p1": "[FIXME] Les services proposés par AGM INVEST relèvent de l'accompagnement administratif et de la mise en relation.",
-        "p2": "[FIXME] Nous intervenons en tant qu'intermédiaire pour faciliter vos démarches et vous mettre en contact avec des partenaires qualifiés."
+        "title": "Art der Dienstleistungen",
+        "p1": "Die von AGM INVEST angebotenen Dienste fallen unter administrative Begleitung und Kontaktvermittlung.",
+        "p2": "Wir agieren als Vermittler, um Ihre Schritte zu erleichtern und Sie mit qualifizierten Partnern in Kontakt zu bringen."
       },
       "acceptance": {
-        "title": "[FIXME] Acceptation des Dossiers",
-        "content": "[FIXME] L'acceptation des dossiers dépend de partenaires externes. AGM INVEST ne peut garantir l'acceptation systématique de votre demande."
+        "title": "Annahme der Dossiers",
+        "content": "Die Annahme der Dossiers hängt von externen Partnern ab. AGM INVEST kann die systematische Annahme Ihrer Anfrage nicht garantieren."
       },
       "results": {
-        "title": "[FIXME] Résultats Variables",
-        "content": "[FIXME] Les résultats peuvent varier selon la situation du client, les critères des partenaires et les conditions du marché."
+        "title": "Variable Ergebnisse",
+        "content": "Die Ergebnisse können je nach Situation des Kunden, den Kriterien der Partner und den Marktbedingungen variieren."
       },
       "links": {
-        "title": "[FIXME] Pour plus d'informations, consultez nos :",
-        "cgu": "[FIXME] Conditions Générales",
-        "mentions": "[FIXME] Mentions Légales"
+        "title": "Für weitere Informationen konsultieren Sie unsere:",
+        "cgu": "Allgemeine Bedingungen",
+        "mentions": "Impressum"
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Letzte Aktualisierung: Februar 2026",
+        "copyright": "© 2026 AGM INVEST - Alle Rechte vorbehalten"
       }
     }
   },
   "Dashboard": {
+    "Notifications": {
+      "requestSubmitted": {
+        "title": "Kreditantrag eingereicht 📄",
+        "message": "Ihr Kreditantrag über {amount} wurde erfolgreich registriert."
+      },
+      "transferInitiated": {
+        "title": "Überweisung eingeleitet 🚀",
+        "message": "Ihre Überweisung von {amount} wird bearbeitet."
+      },
+      "newMessage": {
+        "title": "Neue Nachricht 💬",
+        "message": "Sie haben eine neue Nachricht von Ihrem Berater erhalten."
+      },
+      "statusUpdate": {
+        "title": "Dateistatus aktualisiert 🔔",
+        "message": "Ihr Dateistatus wurde aktualisiert."
+      },
+      "verified": {
+        "title": "Identität verifiziert ✅",
+        "message": "Herzlichen Glückwunsch! Ihre Identität wurde erfolgreich validiert."
+      },
+      "rejected": {
+        "title": "Identität abgelehnt ❌",
+        "message": "Ihre Identitätsprüfung wurde abgelehnt. Bitte überprüfen Sie Ihre Dokumente."
+      },
+      "partialRejection": {
+        "title": "Unvollständige Dokumente ⚠️",
+        "message": "Einige Dokumente in Ihrer Akte müssen vervollständigt werden."
+      },
+      "verificationSubmitted": {
+        "title": "Prüfung eingereicht 🛡️",
+        "message": "Ihre Ausweisdokumente werden geprüft."
+      },
+      "securityUpdate": {
+        "title": "Sicherheit aktualisiert 🔒",
+        "message": "Ihr Passwort wurde erfolgreich geändert."
+      }
+    },
     "Layout": {
       "Sidebar": {
-        "clientSpace": "[FIXME] Espace Client",
-        "balance": "[FIXME] Mon Solde",
-        "makeRequest": "[FIXME] Demander un Prêt",
-        "myRequests": "[FIXME] Mes Demandes",
-        "myDocuments": "[FIXME] Mes Documents",
-        "billing": "[FIXME] Facturation",
-        "myProfile": "[FIXME] Mon Profil",
-        "settings": "[FIXME] Paramètres",
-        "support": "[FIXME] Aide & Support",
-        "logout": "[FIXME] Déconnexion"
+        "menuTitle": "Navigation",
+        "preferencesTitle": "Einstellungen",
+        "clientSpace": "Dashboard",
+        "balance": "Mein Konto",
+        "makeRequest": "Kredit anfragen",
+        "myRequests": "Meine Anfragen",
+        "myDocuments": "Meine Dokumente",
+        "billing": "Rechnungsstellung",
+        "myProfile": "Mein Profil",
+        "settings": "Einstellungen",
+        "support": "Support",
+        "logout": "Abmelden",
+        "premiumStatus": "Premium-Status",
+        "verifiedClient": "Verifizierter Kunde",
+        "actionRequired": "Aktion erforderlich",
+        "docsToComplete": "Dokumente zu vervollständigen",
+        "docsAttention": "Einige Dokumente erfordern Ihre Aufmerksamkeit.",
+        "identityRejected": "Identität abgelehnt",
+        "contactSupport": "Bitte kontaktieren Sie den Support."
+      },
+      "Header": {
+        "searchPlaceholder": "Suchen...",
+        "notifications": "Benachrichtigungen",
+        "markAllAsRead": "Als gelesen markieren",
+        "noNotifications": "Keine Benachrichtigungen",
+        "managePreferences": "Einstellungen verwalten",
+        "user": "Benutzer",
+        "verifiedClient": "Verifizierter Kunde",
+        "verificationInProgress": "Verifizierung läuft",
+        "actionRequired": "Aktion erforderlich",
+        "identityRejected": "Identität abgelehnt",
+        "docsToComplete": "Dokumente zu vervollständigen",
+        "accountToVerify": "Konto zu verifizieren"
+      },
+      "Notifications": {
+        "statusUpdate": {
+          "title": "Statusaktualisierung",
+          "message": "Der Status Ihrer Identitätsprüfung hat sich geändert."
+        },
+        "verified": {
+          "title": "Identität Verifiziert ✅",
+          "message": "Ihre Identität wurde bestätigt. Sie haben jetzt Zugang zu allen Funktionen."
+        },
+        "rejected": {
+          "title": "Identität Abgelehnt ❌",
+          "message": "Ihre Dokumente wurden nicht akzeptiert. Bitte reichen Sie neue ein."
+        },
+        "partialRejection": {
+          "title": "Dokumente Teilweise Abgelehnt ⚠️",
+          "message": "Einige Dokumente müssen korrigiert werden. Prüfen Sie den Abschnitt Verifizierung."
+        },
+        "newMessage": {
+          "title": "Neue Nachricht 💬",
+          "message": "Sie haben eine neue Nachricht von unserem Team."
+        }
+      },
+      "IdentityBanner": {
+        "pendingTitle": "Verifizierung läuft...",
+        "pendingMessage": "Unsere Experten prüfen Ihre Dokumente. Ihre Sicherheit ist unsere Priorität, Antwort innerhalb von 24 Stunden.",
+        "requiredTitle": "Aktion erforderlich: Identität",
+        "requiredMessage": "Um Ihre Finanzierungsoptionen freizuschalten, ist eine kurze Sicherheitsprüfung erforderlich.",
+        "action": "Jetzt verifizieren"
+      },
+      "Requests": {
+        "Details": {
+          "status": {
+            "pending": "Ausstehend",
+            "approved": "Genehmigt",
+            "rejected": "Abgelehnt",
+            "processing": "In Bearbeitung"
+          },
+          "timeline": {
+            "step1": {
+              "title": "Akte erhalten",
+              "desc": "Ihr Antrag wurde erfolgreich erfasst."
+            },
+            "step2": {
+              "title": "Technische Analyse",
+              "desc": "Unsere Experten prüfen die Machbarkeit Ihres Projekts."
+            },
+            "step3": {
+              "title": "Dokumentenprüfung",
+              "desc": "Detaillierte Prüfung der eingereichten Belege."
+            },
+            "step4": {
+              "approved": {
+                "title": "Endentscheidung: Genehmigt",
+                "desc": "Herzlichen Glückwunsch, Ihre Finanzierung wurde bestätigt."
+              },
+              "rejected": {
+                "title": "Endentscheidung: Abgelehnt",
+                "desc": "Leider können wir Ihren Antrag nicht weiter bearbeiten."
+              },
+              "pending": "Warten auf die endgültige Kommission."
+            }
+          },
+          "banners": {
+            "approved": {
+              "title": "Herzlichen Glückwunsch! Ihr Kredit ist genehmigt 🚀",
+              "message": "Ihre Finanzierung wurde bestätigt. Eine letzte Identitätsprüfung ist erforderlich, um die Überweisung zu aktivieren.",
+              "action": "Verifizierung erforderlich"
+            },
+            "actionRequired": {
+              "title": "Aktion erforderlich",
+              "message": "Ihre Identität wurde bestätigt! Um Ihren Kredit zu aktivieren, ist jetzt die Authentifizierungseinzahlung erforderlich.",
+              "action": "Einzahlung vornehmen"
+            }
+          },
+          "header": {
+            "back": "Zurück",
+            "amountLabel": "Projektbetrag"
+          },
+          "info": {
+            "duration": "Laufzeit",
+            "monthlyPayment": "Monatliche Rate",
+            "rate": "Zinssatz (APR)",
+            "creationDate": "Erstelldatum"
+          },
+          "progression": "Fortschritt",
+          "declaration": {
+            "title": "Meine Erklärung",
+            "situation": "Berufliche Situation",
+            "income": "Monatliches Einkommen",
+            "expenses": "Geschätzte Ausgaben",
+            "security": "Vollständige Vertraulichkeit garantiert von ELYSIO"
+          },
+          "advisor": {
+            "title": "Senior-Berater",
+            "contact": "Kontaktieren"
+          },
+          "nextStep": {
+            "title": "Nächster Schritt",
+            "pending": "Die erste Analyse wird bis Tagesende abgeschlossen. Ein Experte wird Sie bei Bedarf kontaktieren.",
+            "processing": "Wir prüfen Ihre Dokumente. Ihrerseits ist momentan keine Aktion erforderlich.",
+            "finished": "Ihre Akte ist abgeschlossen. Besuchen Sie den Reiter 'Konten', um Ihre Finanzierung zu aktivieren.",
+            "estimateLabel": "Geschätzte Zeit",
+            "estimateValue": "Weniger als 24h"
+          }
+        }
       }
     },
     "Home": {
-      "welcome": "[FIXME] Bonjour, {name} !",
-      "subtitle": "[FIXME] Bienvenue sur votre tableau de bord.",
-      "status": {
-        "verified": "[FIXME] Compte Vérifié",
-        "premium": "[FIXME] Client Premium"
+      "welcome": "Guten Tag, <bold>{name}</bold> !",
+      "subtitle": "Hier ist die Zusammenfassung Ihres Kundenbereichs.",
+      "alerts": {
+        "rejected": {
+          "title": "Antrag abgelehnt",
+          "message": "Leider wurde Ihr Finanzierungsantrag nach Prüfung Ihrer Unterlagen abgelehnt."
+        },
+        "approvedIdentityNeeded": {
+          "title": "Herzlichen Glückwunsch! Kredit genehmigt",
+          "message": "Ihr Antrag wurde angenommen. Um die Mittel freizugeben, müssen wir die Überprüfung Ihrer Identität abschließen.",
+          "action": "Meine Identität verifizieren"
+        },
+        "approvedDepositNeeded": {
+          "title": "Kredit bereit zur Auszahlung",
+          "message": "Ihre Identität ist verifiziert. Bitte schießen Sie Ihre Ersteinlage ab, um die Überweisung Ihrer Mittel freizugeben.",
+          "action": "Meine Einzahlung abschließen"
+        },
+        "idRejected": {
+          "title": "Identität abgelehnt",
+          "message": "Die für Ihre Identität bereitgestellten Dokumente entsprechen nicht den Anforderungen. Bitte aktualisieren Sie diese."
+        },
+        "partialRejection": {
+          "title": "Aktion erforderlich",
+          "message": "Einige Ihrer Dokumente wurden abgelehnt. Bitte reichen Sie neue Nachweise ein.",
+          "action": "Aktualisieren"
+        }
+      },
+      "loanAccount": {
+        "title": "Kreditkonto",
+        "remainingAmount": "Restschuld",
+        "totalAmount": "Kreditbetrag"
+      },
+      "balance": {
+        "repaid": "Zu {percent}% zurückgezahlt",
+        "monthsRemaining": "Noch {count} Monate"
       },
       "stats": {
-        "total": "[FIXME] Total Demandes",
-        "approved": "[FIXME] Approuvées",
-        "pending": "[FIXME] En attente",
-        "projects": "[FIXME] Projets"
+        "total": "Gesamtanträge",
+        "approved": "Genehmigte Anträge",
+        "pending": "In Prüfung",
+        "projects": "Projektarten"
+      },
+      "recentRequests": {
+        "title": "Letzte Anträge",
+        "viewAll": "Alle anzeigen",
+        "type": "Projektart",
+        "status": "Status",
+        "none": "Keine letzten Anträge"
+      },
+      "support": {
+        "title": "Brauchen Sie Hilfe?",
+        "subtitle": "Unser Team steht Ihnen zur Verfügung, um Sie bei Ihren Schritten zu unterstützen.",
+        "action": "Support kontaktieren"
+      },
+      "quickActions": {
+        "title": "Schnellaktionen",
+        "docs": "Meine Dokumente",
+        "transfer": "Überweisung",
+        "history": "Zeitplan",
+        "profile": "Mein Profil"
+      },
+      "security": {
+        "title": "Maximale Sicherheit",
+        "message": "Ihre vertraulichen und Bankdaten sind durch Ende-zu-Ende-Verschlüsselung geschützt."
       }
     },
     "Accounts": {
-      "title": "[FIXME] Mon Solde",
-      "subtitle": "[FIXME] Gérez vos comptes et vos informations bancaires."
+      "title": "Mein Konto",
+      "subtitle": "Verwaltung Ihres Kredits",
+      "card": {
+        "totalBalance": "Verbleibende Restschuld",
+        "capitalRemaining": "Verbleibendes Kapital auf Ihrem Kredit",
+        "initialAmount": "Ursprungsbetrag",
+        "nextInstallment": "Nächste Rate",
+        "firstInstallment": "Erste Rate",
+        "deferredPeriod": "Karenzzeit"
+      },
+      "stats": {
+        "rate": "Zinssatz",
+        "remainingDuration": "Restlaufzeit",
+        "months": "Monate"
+      },
+      "actions": {
+        "transfer": "Überweisung tätigen",
+        "schedule": "Tilgungsplan"
+      },
+      "operations": {
+        "title": "Bewegungen",
+        "none": "Keine Bewegungen",
+        "loanDisbursement": "Kreditauszahlung",
+        "externalAccount": "Externes Konto",
+        "transferTo": "Überweisung an {bank}",
+        "receivedOn": "Erhalten am {date}",
+        "labels": {
+          "done": "Abgeschlossen",
+          "rejected": "Abgelehnt",
+          "pending": "In Erwartung"
+        },
+        "status": {
+          "processing": "In Bearbeitung..."
+        }
+      },
+      "rib": {
+        "title": "Bankverbindung (RIB)",
+        "edit": "Bearbeiten",
+        "bank": "Bank",
+        "iban": "IBAN",
+        "bic": "BIC / SWIFT",
+        "email": "Verknüpfte E-Mail",
+        "undefined": "Nicht definiert",
+        "notProvided": "Nicht angegeben",
+        "verifiedFooter": "Diese Bankinformationen sind verifiziert und sicher. Jede Änderung muss validiert werden."
+      },
+      "support": {
+        "title": "Benötigen Sie Hilfe?",
+        "message": "Unser Team steht Ihnen zur Verfügung, um Sie bei Ihren Schritten zu unterstützen.",
+        "action": "Support kontaktieren"
+      },
+      "modal": {
+        "title": "Bankverbindung ändern",
+        "subtitle": "Aktualisieren Sie Ihre Bankdaten",
+        "bankLabel": "Name der Bank",
+        "bankPlaceholder": "Z.B.: Deutsche Bank",
+        "ibanLabel": "IBAN",
+        "ibanPlaceholder": "DE76...",
+        "bicLabel": "BIC / SWIFT",
+        "bicPlaceholder": "DEUTDE...",
+        "emailLabel": "E-Mail-Adresse",
+        "emailPlaceholder": "ihre@email.de",
+        "info": "Jede Änderung Ihrer Bankverbindung wird von unserem Team geprüft, bevor sie validiert wird.",
+        "save": "Änderungen speichern"
+      },
+      "messages": {
+        "success": "Bankinformationen erfolgreich aktualisiert",
+        "error": "Beim Aktualisieren ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
+      }
+    },
+    "Transfers": {
+      "title": "Banküberweisung",
+      "subtitle": "Geld auf Ihr Bankkonto überweisen",
+      "form": {
+        "amountLabel": "Überweisungsbetrag",
+        "destinationLabel": "Zielkonto",
+        "referenceAccount": "Referenzkonto",
+        "verifiedAccount": "Verifiziert",
+        "delayNote": "Überweisungen werden innerhalb von 24 bis 72 Werktagsstunden bearbeitet. Sie erhalten eine Bestätigung per E-Mail.",
+        "total": "Gesamt",
+        "confirm": "Überweisung bestätigen",
+        "blocked": "Überweisung blockiert",
+        "required": {
+          "verification": "Identitätsprüfung erforderlich",
+          "finalization": "Finalisierung erforderlich"
+        }
+      },
+      "errors": {
+        "insufficientBalance": "Nicht genügend Guthaben. Sie haben {balance}€ und versuchen, {amount}€ zu überweisen."
+      },
+      "messages": {
+        "initiated": "Überweisung initiiert 💸",
+        "processing": "Ihre Überweisungsanfrage über {amount} € wird bearbeitet.",
+        "genericError": "Bei der Übertragung ist ein Fehler aufgetreten. Bitte überprüfen Sie Ihre Berechtigungen."
+      },
+      "success": {
+        "title": "Überweisung eingeleitet!",
+        "message": "Ihre Überweisung ist derzeit {status}. Sie erhalten eine Benachrichtigung, sobald sie bearbeitet wurde.",
+        "pending": "IN ERWARTUNG",
+        "newTransfer": "Neue Überweisung",
+        "myAccounts": "Meine Konten"
+      },
+      "blocking": {
+        "verification": {
+          "title": "Identitätsverifizierung erforderlich",
+          "short": "Vervollständigen Sie Ihr KYC, um Überweisungen zu tätigen.",
+          "long": "Aus Sicherheitsgründen muss Ihre Identität verifiziert werden, bevor Sie Überweisungen tätigen können. Gehen Sie zum Bereich Dokumente, um Ihr Dossier zu vervollständigen."
+        },
+        "deposit": {
+          "title": "Erste Einzahlung erforderlich",
+          "short": "Schliessen Sie Ihre Einzahlung ab, um Überweisungen freizuschalten.",
+          "long": "Ihre erste Zahlung steht noch aus. Bitte schliessen Sie Ihre Einzahlung ab, um die Überweisungsfunktion freizuschalten."
+        }
+      },
+      "security": {
+        "title": "Sicherheitskontrolle",
+        "message": "Jede Überweisung wird einer Sicherheitskontrolle unterzogen, um Ihr Guthaben zu schützen.",
+        "estimatedDelay": "Geschätzte Dauer",
+        "delay": "24 - 72 Std.",
+        "protection": "Schutz",
+        "aes": "AES-256"
+      },
+      "status": {
+        "approved": "Genehmigt",
+        "rejected": "Abgelehnt",
+        "review": "In Prüfung",
+        "advanced": "Erweitert",
+        "pending": "In Erwartung"
+      },
+      "history": {
+        "title": "Aktuelle Historie",
+        "full": "Vollständige Historie",
+        "subtitle": "Alle Ihre getätigten Überweisungen",
+        "none": "Keine Überweisungen getätigt",
+        "viewAll": "Gesamte Historie anzeigen",
+        "table": {
+          "date": "Datum",
+          "recipient": "Empfänger",
+          "iban": "IBAN",
+          "amount": "Betrag",
+          "status": "Status",
+          "justNow": "Gerade eben"
+        },
+        "pagination": {
+          "page": "Seite",
+          "display": "Anzeige {start} - {end} von {total}"
+        }
+      }
+    },
+    "Verification": {
+      "title": "Verifizierung",
+      "subtitle": "Biometrisch gesicherte Identität.",
+      "Intro": {
+        "title": "Sicherheitsüberprüfung",
+        "description": "Um Ihre Authentifizierungs-Einzahlung zu validieren und den Zugriff auf die Gelder zu sichern, müssen wir Ihre Identität durch ein Live-Selfie und eine kurze Videosequenz bestätigen.",
+        "selfieTitle": "Selfie-Foto",
+        "selfieDesc": "Klares Gesicht, gute Beleuchtung.",
+        "videoTitle": "Video-Selfie (10s)",
+        "videoDesc": "Drehen Sie Ihren Kopf leicht.",
+        "startButton": "Verifizierung starten",
+        "gdpr": "Pflichtaktion • DSGVO-konform"
+      },
+      "Processing": {
+        "title": "Sitzung läuft",
+        "description": "Wir haben ausstehende Aufnahmen auf diesem Gerät erkannt. Möchten Sie die Übermittlung abschließen oder neu starten?",
+        "continueButton": "Weiter zur Übermittlung",
+        "resetButton": "Löschen und neu starten"
+      },
+      "Notifications": {
+        "submittedTitle": "Verifizierung übermittelt 📸",
+        "submittedMessage": "Ihr Selfie und Video werden analysiert. Bitte warten Sie.",
+        "error": "Bei der Übermittlung ist ein Fehler aufgetreten."
+      },
+      "Camera": {
+        "desktopError": {
+          "title": "Nur mobile Verifizierung",
+          "message": "Diese Verifizierung muss aus Sicherheitsgründen von einem Smartphone aus durchgeführt werden.",
+          "copyLink": "Link kopieren",
+          "linkCopied": "Link kopiert!",
+          "back": "Zurück"
+        },
+        "status": {
+          "accessing": "Kamerazugriff...",
+          "validatePhoto": "Foto bestätigen",
+          "validateVideo": "Video bestätigen",
+          "finished": "Verifizierung abgeschlossen",
+          "selfieTitle": "Selfie-Foto",
+          "videoTitle": "Selfie-Video"
+        },
+        "instructions": {
+          "tapToStart": "Zum Starten tippen",
+          "turnLeft": "Kopf nach LINKS drehen",
+          "turnRight": "Kopf nach RECHTS drehen",
+          "raiseHead": "Kopf anheben",
+          "perfect": "Perfekt!"
+        },
+        "actions": {
+          "retake": "Wiederholen",
+          "validate": "Bestätigen",
+          "upload": "Hochladen",
+          "finalize": "Verifizierung abschließen"
+        },
+        "confirmReset": "Sind Sie sicher, dass Sie alle Aufnahmen löschen und neu beginnen möchten?",
+        "submitting": {
+          "title": "Übertragung läuft",
+          "message": "Wir sichern Ihre Daten und schließen die Verknüpfung Ihres Zahlungsprofils ab.",
+          "doneTitle": "Verifizierung abgeschlossen",
+          "doneMessage": "Ihre Identität wurde erfolgreich übermittelt. Sie werden weitergeleitet...",
+          "encryption": "AES-256-Verschlüsselung läuft"
+        },
+        "errors": {
+          "saveSelfie": "Fehler beim Speichern des Selfies.",
+          "saveVideo": "Fehler beim Speichern des Videos.",
+          "generic": "Bei der Validierung ist un Fehler aufgetreten.",
+          "missingMedia": "Fehlende Medien",
+          "uploadFailed": "Fehler beim Senden der Dateien."
+        }
+      }
     },
     "Profile": {
-      "title": "[FIXME] Mon Profil",
-      "subtitle": "[FIXME] Gérez vos informations personnelles et votre sécurité.",
-      "editButton": "[FIXME] Modifier Profil",
-      "saveButton": "[FIXME] Enregistrer",
-      "cancelButton": "[FIXME] Annuler",
+      "title": "Mein Profil",
+      "subtitle": "Verwalten Sie Ihre persönlichen Daten und Sicherheit.",
+      "editButton": "Profil bearbeiten",
+      "saveButton": "Speichern",
+      "cancelButton": "Abbrechen",
       "Identity": {
-        "title": "[FIXME] État Civil"
+        "title": "Personenstand"
       },
       "Location": {
-        "title": "[FIXME] Coordonnées"
+        "title": "Kontaktdaten"
       },
       "Situation": {
-        "title": "[FIXME] Situation Personnelle"
+        "title": "Persönliche Situation"
       },
       "Professional": {
-        "title": "[FIXME] Situation Professionnelle"
+        "title": "Berufliche Situation"
       },
       "Financial": {
-        "title": "[FIXME] Situation Financière"
+        "title": "Finanzielle Situation"
+      },
+      "sections": {
+        "identity": "Persönliche Daten",
+        "contact": "Kontaktdaten",
+        "personal": "Persönliche Situation",
+        "professional": "Berufliche Situation",
+        "financial": "Finanzielle Situation"
+      },
+      "fields": {
+        "address": "Wohnadresse",
+        "zipCode": "Postleitzahl",
+        "city": "Stadt",
+        "country": "Land",
+        "phone": "Mobiltelefon"
+      },
+      "companyLabels": {
+        "student": "Bildungseinrichtung / Universität",
+        "apprentice": "Ausbildungsbetrieb / Berufsschule",
+        "independent": "Name Ihrer Tätigkeit",
+        "artisan": "Handwerksbetrieb / Firmenname",
+        "civil_servant": "Ministerium / Behörde",
+        "temporary": "Zeitarbeitsfirma / Arbeitgeber",
+        "liberal": "Kanzlei / Firmenname",
+        "business_owner": "Firmenname / Marke"
+      },
+      "incomeLabels": {
+        "retired": "Monatliche Rente",
+        "unemployed": "Leistungen / Einkommen",
+        "student": "Stipendien / Monatliches Einkommen",
+        "apprentice": "Monatliche Vergütung",
+        "civil_servant": "Monatliches Nettogehalt",
+        "selfEmployed": "Durchschnittliches monatliches Einkommen"
       }
     },
     "Requests": {
-      "title": "[FIXME] Mes Demandes",
-      "subtitle": "[FIXME] Consultez l'historique et l'avancement de vos dossiers.",
-      "searchPlaceholder": "[FIXME] Rechercher...",
-      "noneFound": "[FIXME] Aucune demande trouvée",
-      "newRequest": "[FIXME] Nouvelle demande"
+      "title": "Meine Anfragen",
+      "subtitle": "Verfolgen Sie den Fortschritt Ihrer Dossiers.",
+      "searchPlaceholder": "Suchen...",
+      "noneFound": "Keine Anfragen gefunden",
+      "noneDescription": "Sie haben noch keine Finanzierungsanfrage gestellt. Beginnen Sie mit der Simulation Ihres Projekts.",
+      "newRequest": "Neue Anfrage",
+      "defaultType": "Kreditanfrage",
+      "requestedAmount": "Angeforderter Betrag",
+      "follow": "Verfolgen",
+      "status": {
+        "pending": "Ausstehend",
+        "approved": "Genehmigt",
+        "rejected": "Abgelehnt",
+        "processing": "In Bearbeitung"
+      },
+      "banners": {
+        "approved": {
+          "title": "Herzlichen Glückwunsch! Ihr Kredit ist genehmigt 🚀",
+          "message": "Gute Nachrichten: Ihre Finanzierung wurde bestätigt. Eine letzte Identitätsprüfung ist erforderlich, um die Überweisung zu aktivieren.",
+          "action": "Verifizierung erforderlich"
+        },
+        "actionRequired": {
+          "title": "Aktion erforderlich",
+          "message": "Ihre Identität wurde bestätigt! Um Ihren Kredit zu aktivieren, ist jetzt die Authentifizierungseinzahlung erforderlich.",
+          "action": "Einzahlung vornehmen"
+        }
+      },
+      "Details": {
+        "header": {
+          "back": "Zurück",
+          "amountLabel": "Beantragte Summe"
+        },
+        "status": {
+          "pending": "Ausstehend",
+          "approved": "Genehmigt",
+          "rejected": "Abgelehnt",
+          "processing": "Wird analysiert"
+        },
+        "progression": "FORTSCHRITT DES ANTRAGS",
+        "info": {
+          "duration": "Laufzeit",
+          "monthlyPayment": "Monatsrate",
+          "rate": "Zinssatz",
+          "creationDate": "Erstellungsdatum"
+        },
+        "timeline": {
+          "step1": {
+            "title": "ANTRAG ERHALTEN",
+            "desc": "Ihr Antrag ist eingegangen. Unser Team wird ihn prüfen."
+          },
+          "step2": {
+            "title": "ANALYSE LÄUFT",
+            "desc": "Unsere Berater analysieren Ihren Antrag im Detail."
+          },
+          "step3": {
+            "title": "ABSCHLUSSPRÜFUNG",
+            "desc": "Abschließende Überprüfung aller Elemente Ihres Antrags."
+          },
+          "step4": {
+            "approved": {
+              "title": "ANTRAG GENEHMIGT",
+              "desc": "Herzlichen Glückwunsch! Ihre Finanzierung wurde genehmigt."
+            },
+            "rejected": {
+              "title": "ANTRAG ABGELEHNT",
+              "desc": "Ihr Antrag wurde nicht angenommen. Bitte wenden Sie sich an unseren Support."
+            },
+            "pending": "Warte auf die endgültige Entscheidung..."
+          }
+        },
+        "declaration": {
+          "title": "FINANZIELLE ERKLÄRUNG",
+          "situation": "Berufliche Situation",
+          "income": "Monatliches Einkommen",
+          "expenses": "Monatliche Ausgaben",
+          "security": "Verschlüsselte und gesicherte Daten - AES-256",
+          "seniorityDesc": "Betriebszugehörigkeit bestätigt",
+          "incomeDesc": "Netto vor Steuern",
+          "expensesDesc": "Miete und Kredite"
+        },
+        "advisor": {
+          "title": "Ihr Berater",
+          "contact": "Meinen Berater kontaktieren",
+          "quote": "\"Ihre Akte ist in guten Händen. Ich kümmere mich persönlich darum.\""
+        },
+        "nextStep": {
+          "title": "NÄCHSTER SCHRITT",
+          "pending": "Ihr Antrag wird geprüft. Wir melden uns innerhalb von 24-48 Stunden.",
+          "processing": "Unser Team schließt die Analyse ab. Sie werden sehr bald kontaktiert.",
+          "finished": "Ihr Antrag wurde bearbeitet. Überprüfen Sie den Status oben.",
+          "estimateLabel": "Geschätzte Zeit",
+          "estimateValue": "24 bis 48 Stunden"
+        },
+        "banners": {
+          "approved": {
+            "title": "IHRE FINANZIERUNG WURDE GENEHMIGT",
+            "message": "Wir müssen Ihre Identität verifizieren, bevor wir die Mittel freigeben.",
+            "action": "Identitätsverifizierung abschließen"
+          },
+          "actionRequired": {
+            "title": "AKTION ERFORDERLICH",
+            "message": "Ihr Antrag wurde genehmigt. Eine Aktion ist erforderlich, um Ihre Finanzierung abzuschließen.",
+            "action": "Meine Zahlung vornehmen"
+          }
+        }
+      }
     },
-    "settings": {
-      "title": "[FIXME] Paramètres",
-      "subtitle": "[FIXME] Gérez vos préférences de compte, les notifications et la sécurité.",
-      "language": "[FIXME] Langue",
-      "lastLogin": "[FIXME] Dernière connexion",
-      "notifications": "[FIXME] Notifications",
-      "security": "[FIXME] Sécurité du Compte",
-      "autoLogout": "[FIXME] Déconnexion auto",
-      "password": "[FIXME] Mot de passe"
+    "Settings": {
+      "title": "Einstellungen",
+      "subtitle": "Verwalten Sie Ihre Kontoeinstellungen, Benachrichtigungen und die Sicherheit.",
+      "language": "Sprache",
+      "lastLogin": "Letzter Login",
+      "notifications": "Benachrichtigungen",
+      "security": "Kontosicherheit",
+      "loginEmail": "Anmelde-E-Mail",
+      "autoLogout": "Automatisches Abmelden",
+      "password": "Passwort",
+      "timeouts": {
+        "never": "Nie",
+        "5min": "5 Minuten",
+        "15min": "15 Minuten",
+        "30min": "30 Minuten"
+      },
+      "PasswordModal": {
+        "title": "Passwort ändern",
+        "currentLabel": "Aktuelles Passwort",
+        "newLabel": "Neues Passwort",
+        "confirmLabel": "Neues Passwort bestätigen",
+        "submit": "Aktualisieren",
+        "updating": "Aktualisierung läuft...",
+        "errorMatch": "Die Passwörter stimmen nicht überein.",
+        "errorLength": "Das Passwort muss mindestens 6 Zeichen lang sein.",
+        "errorWrong": "Das aktuelle Passwort ist falsch.",
+        "errorGeneric": "Bei der Aktualisierung ist ein Fehler aufgetreten.",
+        "successAlert": "Passwort erfolgreich aktualisiert!"
+      },
+      "Notifications": {
+        "securityTitle": "Sicherheit aktualisiert 🔒",
+        "securityMessage": "Ihr Passwort wurde erfolgreich geändert.",
+        "emailLabel": "E-Mail",
+        "emailDesc": "Dossier-Benachrichtigungen",
+        "pushLabel": "Push",
+        "pushDesc": "Direkt mobil",
+        "offersLabel": "Angebote",
+        "offersDesc": "Partner"
+      },
+      "system": {
+        "lastLogin": "Letzter Login",
+        "sessionActive": "Aktuelle Sitzung"
+      },
+      "footer": {
+        "aes": "AES-256 Verschlüsselung",
+        "lastUpdate": "Letzte Aktualisierung",
+        "february": "Februar"
+      }
+    },
+    "Schedule": {
+      "title": "Mein Tilgungsplan",
+      "subtitle": "Finanzierungsdetails",
+      "back": "Zurück zu den Konten",
+      "exportPDF": "Als PDF exportieren",
+      "stats": {
+        "monthlyPayment": "Durchschnittliche monatliche Rate",
+        "insurance": "Davon {amount} Versicherung (3%)",
+        "totalInterest": "Zinsen insgesamt",
+        "loanDuration": "Kreditlaufzeit",
+        "months": "Monate"
+      },
+      "table": {
+        "number": "Nr.",
+        "date": "Zahlungsdatum",
+        "amount": "Betrag",
+        "principal": "Tilgung",
+        "balance": "Restschuld",
+        "status": "Status"
+      },
+      "status": {
+        "paid": "Bezahlt",
+        "overdue": "ÜBERFÄLLIG",
+        "pending": "In Bearbeitung",
+        "upcoming": "Bevorstehend"
+      },
+      "pagination": {
+        "page": "Seite {current} von {total}"
+      },
+      "footer": {
+        "certified": "Dokument zertifiziert von AGM INVEST • Banksicherheit"
+      },
+      "noActiveLoan": {
+        "title": "Kein aktiver Kredit gefunden",
+        "message": "Sie haben noch keinen Tilgungsplan zur Einsicht verfügbar.",
+        "back": "Zurück zum Dashboard"
+      }
+    },
+    "Documents": {
+      "title": "Meine Dokumente",
+      "subtitle": "Sehen und laden Sie Ihre Vertragsdokumente, Bescheinigungen und zertifizierten Garantien herunter.",
+      "empty": {
+        "title": "Keine Dokumente verfügbar",
+        "message": "Ihre offiziellen Dokumente werden automatisch erstellt, sobald Ihre Finanzierung aktiviert ist."
+      },
+      "contract": {
+        "title": "Darlehensvertrag",
+        "description": "Ihr vollständiger Vertrag einschließlich Tilgungsplan, allgemeiner Bedingungen und rechtlicher Hinweise.",
+        "button": "PDF herunterladen"
+      },
+      "insurance": {
+        "title": "Versicherung",
+        "description": "Beitrittszertifikat zur AGM INVEST Kreditnehmerversicherung, die Ihr Projekt zu 100% absichert.",
+        "button": "Zertifikat herunterladen"
+      },
+      "privacy": {
+        "title": "Datenschutz",
+        "description": "Dokument mit Details zum Schutz Ihrer persönlichen Daten und Ihren DSGVO-Rechten.",
+        "button": "PDF herunterladen"
+      },
+      "security": {
+        "title": "Zertifizierte & Gesicherte Dokumente",
+        "message": "\"Alle von diesem Bereich generierten Dokumente sind elektronisch geschützt und von AGM INVEST als konform zertifiziert. Sie haben rechtlichen Wert für Ihre Vorgänge.\""
+      }
+    },
+    "Billing": {
+      "title": "Abrechnung",
+      "subtitle": "Verwalten Sie Ihre Zahlungen und sicheren Einlagen.",
+      "errors": {
+        "accessDenied": "Zugriff verweigert"
+      },
+      "paymentTypes": {
+        "frais_dossier": "Bearbeitungsgebühren",
+        "assurance": "Versicherung",
+        "frais_notaire": "Notarkosten",
+        "authentication_deposit": "Authentifizierungseinlage",
+        "none": "Keine"
+      },
+      "empty": {
+        "title": "Keine ausstehende Abrechnung",
+        "message": "Ihr Konto ist auf dem neuesten Stand. Derzeit ist keine Zahlungsaktion erforderlich.",
+        "dashboardButton": "Dashboard"
+      },
+      "policy": {
+        "badge": "Null-Gebühren-Charta",
+        "title": "Transparenzrichtlinie",
+        "noHiddenFees": {
+          "text": "AGM INVEST erhebt",
+          "highlight": "keine versteckten Gebühren"
+        },
+        "depositExplanation": {
+          "text1": "Diese Überweisung von",
+          "text2": "entspricht einer",
+          "text3": "von Ihrem Bankkonto."
+        },
+        "important": {
+          "label": "Wichtig:",
+          "text1": "Dies ist keine Bearbeitungsgebühr. Dieser Betrag wird",
+          "highlight": "zu 100% gutgeschrieben",
+          "text2": "auf Ihrem Kundenguthaben und dient zur Aktivierung Ihrer Finanzierung."
+        }
+      },
+      "deposit": {
+        "label": "Einlagebetrag",
+        "credited": "Zu 100% gutgeschrieben"
+      },
+      "sepa": {
+        "title": "SEPA-Sicherheit",
+        "description": "Gesicherte Sofortüberweisung an unseren europäischen Partner."
+      },
+      "rib": {
+        "title": "Bankdaten",
+        "subtitle": "Einlagenüberweisung",
+        "secureTransfer": "Sichere Überweisung",
+        "copied": "Kopiert!",
+        "confidentialNote": "Diese Überweisung ist streng vertraulich. Ihr Berater erhält eine automatische Benachrichtigung, wenn die Gelder von unserer Partnerbank eingegangen sind.",
+        "fields": {
+          "beneficiary": "Empfänger",
+          "bank": "Kreditinstitut",
+          "iban": "IBAN-Code",
+          "bic": "BIC-Code (SWIFT)"
+        }
+      },
+      "backLater": "Später zurückkehren"
+    },
+    "Support": {
+      "title": "Hilfe-Zentrum",
+      "subtitle": "Wir sind hier, um Ihre Fragen zu beantworten und Sie zu unterstützen.",
+      "badge": "Hilfe & Support",
+      "searchPlaceholder": "Nach einer Lösung suchen...",
+      "contactButton": "Kontaktieren",
+      "faqTitle": "Häufig gestellte Fragen",
+      "faqAll": "Alle Fragen anzeigen",
+      "security": {
+        "title": "Zertifizierter sicherer Support",
+        "desc": "Aktive Verschlüsselungsprotokolle"
+      },
+      "Methods": {
+        "chat": {
+          "title": "Live-Chat",
+          "value": "Online-Berater",
+          "desc": "Sofortige Antwort"
+        },
+        "phone": {
+          "title": "Telefonleitung",
+          "value": "AGM INVEST +33 7 56 84 41 45",
+          "desc": "9 - 18 Uhr (Mo-Fr)"
+        },
+        "email": {
+          "title": "E-Mail-Unterstützung",
+          "value": "contact@agm-negoce.com",
+          "desc": "Innerhalb von 24 Stunden"
+        }
+      },
+      "FAQs": [
+        {
+          "q": "Wie funktioniert die Identitätsprüfung?",
+          "a": "Die Prüfung erfolgt vollständig online. Laden Sie einfach einen gültigen Ausweis hoch und machen Sie ein kurzes Video-Selfie, um Ihre Identität in Sekunden zu bestätigen."
+        },
+        {
+          "q": "Wie lange dauert die Kreditgenehmigung?",
+          "a": "Sobald Ihre Unterlagen vollständig sind, erhalten Sie eine sofortige Grundsatzentscheidung. Die endgültige Analyse und die Auszahlung der Mittel erfolgen in der Regel innerhalb von 24 bis 48 Werktagen."
+        },
+        {
+          "q": "Kann ich meinen Antrag nach der Einreichung noch ändern?",
+          "a": "Solange Ihr Antrag den Status 'Ausstehend' hat, können Sie unseren Support kontaktieren, um Änderungen vorzunehmen. Nach der Validierung sind keine Änderungen mehr möglich."
+        },
+        {
+          "q": "Wie lade ich meinen unterschriebenen Vertrag herunter?",
+          "a": "Ihr Vertrag ist im Bereich 'Meine Dokumente' Ihres Dashboards verfügbar, sobald die elektronische Signatur bestätigt wurde."
+        },
+        {
+          "q": "Was sind die Voraussetzungen für die Berechtigung?",
+          "a": "Sie müssen volljährig sein, in einem berechtigten Land wohnen und ein stabiles Einkommen nachweisen können. Jedes Projekt wird von unseren Experten individuell geprüft."
+        },
+        {
+          "q": "Wie sichere ich mein Konto ab?",
+          "a": "Wir empfehlen, die Zwei-Faktor-Authentifizierung (2FA) in Ihren Einstellungen zu aktivieren und ein einzigartiges, komplexes Passwort zu verwenden."
+        }
+      ]
+    },
+    "Chat": {
+      "onlineStatus": "KUNDE ONLINE",
+      "welcome": "Hallo!",
+      "advisorReady": "Ihr Berater ist bereit, Ihnen zu helfen.",
+      "askQuestion": "Stellen Sie Ihre Frage unten.",
+      "filePlaceholder": "Datei",
+      "loadingFile": "Datei wird hochgeladen...",
+      "inputPlaceholder": "Dem Kunden antworten...",
+      "fileTooLarge": "Die Datei ist zu groß (max. 10MB)",
+      "uploadError": "Fehler beim Hochladen der Datei. Bitte versuchen Sie es erneut.",
+      "fileSent": "📎 Datei gesendet"
+    },
+    "KYC": {
+      "title": "Identitätsprüfung",
+      "subtitle": "Compliance und Sicherheit.",
+      "Intro": {
+        "badge": "Compliance",
+        "title": "Abschluss Ihrer Akte",
+        "step1": {
+          "title": "Identität",
+          "desc": "Nur scharfe Farbfotos.",
+          "note": "Alle 4 Ränder müssen sichtbar sein."
+        },
+        "step2": {
+          "title": "Finanzen & Wohnsitz",
+          "desc": "Original-PDF-Format.",
+          "note": "Scans werden abgelehnt."
+        },
+        "support": "Support verfügbar",
+        "contact": "Kontakt",
+        "secure": "AES-256 Sicherheit"
+      },
+      "Documents": {
+        "identity_1": "Identität 1",
+        "identity_2": "Identität 2",
+        "id_front": "Ausweis (Vorderseite)",
+        "id_back": "Ausweis (Rückseite)",
+        "front": "Vorderseite",
+        "back": "Rückseite",
+        "cni": "Personalausweis",
+        "passport": "Reisepass",
+        "resident_card": "Aufenthaltstitel",
+        "driver_license": "Führerschein",
+        "vital_card": "Gesundheitskarte",
+        "tax_notice": "Steuerbescheid",
+        "pay_slip_1": "Gehaltsnachweis 1",
+        "pay_slip_2": "Gehaltsnachweis 2",
+        "pay_slip_3": "Gehaltsnachweis 3",
+        "address_proof": "Wohnsitznachweis",
+        "rib": "Bankverbindung",
+        "nature_1": "ID Typ 1",
+        "nature_2": "ID Typ 2",
+        "labels": {
+          "cni": "Ausweis",
+          "passport": "Reisepass",
+          "resident_card": "Titel",
+          "driver_license": "Führerschein"
+        },
+        "descriptions": {
+          "generic_recto": "Vorderseite von {label}. Scharf, Ränder sichtbar.",
+          "generic_verso": "Rückseite von {label}. Scharf, Ränder sichtbar.",
+          "generic_simple": "Foto von {label}. Scharf, Ränder sichtbar.",
+          "vital_card": "Gesundheitskarte (Kopie).",
+          "tax_notice": "Steuerbescheid (PDF).",
+          "pay_slip": "Gehaltsabrechnung (PDF).",
+          "pay_slip_detailed": "Aktueller/letzter Monat (PDF).",
+          "address_proof": "Rechnung (Strom, Wasser) (PDF).",
+          "rib": "Auf Ihren Namen (PDF).",
+          "intl_id": "Scharfe Fotos, Ränder sichtbar.",
+          "intl_address": "Bescheinigung (PDF)."
+        }
+      },
+      "Status": {
+        "global": "Status",
+        "valid": "Validiert",
+        "certified": "Zertifiziert",
+        "missing": "Fehlt",
+        "recorded": "Gespeichert",
+        "success": "Erfolg!",
+        "transmitted": "Übermittelt",
+        "transmission": "Übertragung",
+        "transmission_desc": "Dokumente zur Prüfung senden.",
+        "transmitted_desc": "Erfolgreich übermittelt.",
+        "transmitting": "Übertragung...",
+        "submit": "Akte senden",
+        "finalizing": "Akte abschließen",
+        "encryption": "AES-256 Verschlüsselung",
+        "validCount": "{completed} / {total} Validiert",
+        "transmitted_short": "Übermittelt"
+      },
+      "Actions": {
+        "capture": "Aufnahme",
+        "upload": "Hochladen",
+        "home": "Home",
+        "instructions": "Icon klicken.",
+        "takePhoto": "Foto machen",
+        "selectFile": "Datei wählen",
+        "support_short": "Support",
+        "retake": "Wiederholen",
+        "validate": "Validieren"
+      },
+      "Overlays": {
+        "success": {
+          "title": "Erfolg!",
+          "message": "Dokumente übermittelt. Antwort in 24h."
+        },
+        "cameraError": "Kamera nicht verfügbar.",
+        "analyzing": "Analyse..."
+      },
+      "Errors": {
+        "pdfRequired": "PDF erforderlich.",
+        "fileTooLarge": "Max 8MB.",
+        "missingDocs": "Fehlende Dokumente.",
+        "submitError": "Fehler beim Senden.",
+        "uploadError": "Fehler beim Upload."
+      },
+      "MobileRedirect": {
+        "title": "Mobil nutzen",
+        "subtitle": "Aufnahme nur für Smartphones.",
+        "method1_label": "Empfohlen",
+        "method1_desc": "QR-Code scannen",
+        "method2_label": "Direkter Link",
+        "method2_desc": "agminvest.com",
+        "button": "Verstanden"
+      }
     }
   },
   "Reviews": {
-    "title": "[FIXME] Ce que nos clients <highlight>disent de nous</highlight>",
-    "description": "[FIXME] Découvrez les témoignages de ceux qui nous ont fait confiance pour leur projet de financement.",
-    "backToHome": "[FIXME] Retour à l'accueil",
-    "allReviews": "[FIXME] Tous les avis",
-    "page": "[FIXME] Page",
-    "of": "[FIXME] sur",
-    "verified": "[FIXME] Avis Vérifié",
-    "previous": "[FIXME] Précédent",
-    "next": "[FIXME] Suivant",
+    "title": "Was unsere Kunden <highlight>über uns sagen</highlight>",
+    "description": "Entdecken Sie die Erfahrungsberichte derer, die uns ihr Finanzierungsprojekt anvertraut haben.",
+    "backToHome": "Zurück zur Startseite",
+    "allReviews": "Alle Bewertungen",
+    "page": "Seite",
+    "of": "von",
+    "verified": "Verifizierte Bewertung",
+    "previous": "Zurück",
+    "next": "Weiter",
     "Items": {
       "r1": {
-        "region": "[FIXME] Paris",
-        "comment": "[FIXME] Service impeccable ! J'ai obtenu mon financement en moins de 2 semaines. L'équipe est très professionnelle."
+        "region": "Paris",
+        "comment": "Einwandfreier Service! Ich habe meine Finanzierung in weniger als 2 Wochen erhalten. Das Team ist sehr professionell."
       },
       "r2": {
-        "region": "[FIXME] Lyon",
-        "comment": "[FIXME] Excellente expérience. Le conseiller m'a accompagné à chaque étape. Je recommande vivement AGM INVEST."
+        "region": "Lyon",
+        "comment": "Exzellente Erfahrung. Der Berater hat mich bei jedem Schritt begleitet. Ich empfehle AGM INVEST wärmstens."
       },
       "r3": {
-        "region": "[FIXME] Marseille",
-        "comment": "[FIXME] Très satisfait du service. Processus rapide et transparent. Quelques documents à fournir mais c'est normal."
+        "region": "Marseille",
+        "comment": "Sehr zufrieden mit dem Service. Schneller und transparenter Prozess. Einige Dokumente einzureichen, aber das ist normal."
       },
       "r4": {
-        "region": "[FIXME] Toulouse",
-        "comment": "[FIXME] Je suis ravie ! Mon dossier a été traité rapidement et j'ai pu acheter ma voiture sans stress."
+        "region": "Toulouse",
+        "comment": "Ich bin begeistert! Mein Dossier wurde schnell bearbeitet und ich konnte mein Auto stressfrei kaufen."
       },
       "r5": {
-        "region": "[FIXME] Nice",
-        "comment": "[FIXME] Service au top ! L'équipe est réactive et à l'écoute. Mon crédit a été validé en 10 jours."
+        "region": "Nizza",
+        "comment": "Top Service! Das Team ist reaktionsschnell und aufmerksam. Mein Kredit wurde in 10 Tagen validiert."
       },
       "r6": {
-        "region": "[FIXME] Nantes",
-        "comment": "[FIXME] Bonne expérience globale. Le suivi est excellent et les conseillers sont compétents."
+        "region": "Nantes",
+        "comment": "Gute Gesamterfahrung. Die Betreuung ist exzellent und die Berater sind kompetent."
       },
       "r7": {
-        "region": "[FIXME] Strasbourg",
-        "comment": "[FIXME] Parfait ! Processus simple et efficace. J'ai eu mon financement automobile sans problème."
+        "region": "Straßburg",
+        "comment": "Perfekt! Einfacher und effizienter Prozess. Ich hatte keine Probleme mit meiner Autofinanzierung."
       },
       "r8": {
-        "region": "[FIXME] Montpellier",
-        "comment": "[FIXME] Je recommande à 100% ! Service professionnel, rapide et transparent. Merci à toute l'équipe."
+        "region": "Montpellier",
+        "comment": "Ich empfehle es zu 100%! Professioneller, schneller und transparenter Service. Danke an das gesamte Team."
       },
       "r9": {
-        "region": "[FIXME] Bordeaux",
-        "comment": "[FIXME] Très bon service. Les délais ont été respectés et le conseiller était disponible pour répondre à mes questions."
+        "region": "Bordeaux",
+        "comment": "Sehr guter Service. Die Fristen wurden eingehalten und der Berater war für meine Fragen erreichbar."
       },
       "r10": {
-        "region": "[FIXME] Lille",
-        "comment": "[FIXME] Expérience exceptionnelle ! Dossier traité rapidement, équipe professionnelle. Je suis très satisfaite."
+        "region": "Lille",
+        "comment": "Außergewöhnliche Erfahrung! Dossier schnell bearbeitet, professionelles Team. Ich bin sehr zufrieden."
       },
       "r11": {
-        "region": "[FIXME] Rennes",
-        "comment": "[FIXME] Service irréprochable. Mon conseiller m'a guidé tout au long du processus. Financement obtenu en 12 jours."
+        "region": "Rennes",
+        "comment": "Tadelloser Service. Mein Berater hat mich durch den gesamten Prozess geführt. Finanzierung in 12 Tagen erhalten."
       },
       "r12": {
-        "region": "[FIXME] Reims",
-        "comment": "[FIXME] Bonne prestation. Le processus est bien expliqué et l'équipe est disponible."
+        "region": "Reims",
+        "comment": "Gute Leistung. Der Prozess ist gut erklärt und das Team ist erreichbar."
       },
       "r13": {
-        "region": "[FIXME] Le Havre",
-        "comment": "[FIXME] Excellent ! J'ai pu financer mon véhicule rapidement. Service client au top."
+        "region": "Le Havre",
+        "comment": "Exzellent! Ich konnte mein Fahrzeug schnell finanzieren. Top Kundenservice."
       },
       "r14": {
-        "region": "[FIXME] Saint-Étienne",
-        "comment": "[FIXME] Très professionnels et efficaces. Mon dossier a été accepté rapidement. Je recommande."
+        "region": "Saint-Étienne",
+        "comment": "Sehr professionell und effizient. Mein Dossier wurde schnell akzeptiert. Ich empfehle es."
       },
       "r15": {
-        "region": "[FIXME] Toulon",
-        "comment": "[FIXME] Service de qualité. Bonne communication et suivi régulier du dossier."
+        "region": "Toulon",
+        "comment": "Qualitätsservice. Gute Kommunikation und regelmäßige Nachverfolgung des Dossiers."
       },
       "r16": {
-        "region": "[FIXME] Grenoble",
-        "comment": "[FIXME] Parfait du début à la fin ! Équipe réactive et professionnelle. Mon crédit validé en 8 jours."
+        "region": "Grenoble",
+        "comment": "Perfekt von Anfang bis Ende! Reaktionsschnelles und professionelles Team. Mein Kredit in 8 Tagen validiert."
       },
       "r17": {
-        "region": "[FIXME] Dijon",
-        "comment": "[FIXME] Je suis très satisfait. Processus simple, rapide et transparent. Merci AGM INVEST !"
+        "region": "Dijon",
+        "comment": "Ich bin sehr zufrieden. Einfacher, schneller und transparenter Prozess. Danke AGM INVEST!"
       },
       "r18": {
-        "region": "[FIXME] Angers",
-        "comment": "[FIXME] Bonne expérience. Les conseillers sont compétents et le suivi est régulier."
+        "region": "Angers",
+        "comment": "Gute Erfahrung. Die Berater sind kompetent und die Betreuung ist regelmäßig."
       },
       "r19": {
-        "region": "[FIXME] Nîmes",
-        "comment": "[FIXME] Service excellent ! Mon dossier a été traité rapidement et efficacement."
+        "region": "Nîmes",
+        "comment": "Exzellenter Service! Mein Dossier wurde schnell und effizient bearbeitet."
       },
       "r20": {
-        "region": "[FIXME] Villeurbanne",
-        "comment": "[FIXME] Très bonne expérience. L'équipe est professionnelle et à l'écoute."
+        "region": "Villeurbanne",
+        "comment": "Sehr gute Erfahrung. Das Team ist professionell und aufmerksam."
       },
       "r21": {
-        "region": "[FIXME] Le Mans",
-        "comment": "[FIXME] Satisfait du service. Bon accompagnement tout au long du processus."
+        "region": "Le Mans",
+        "comment": "Zufrieden mit dem Service. Gute Begleitung während des gesamten Prozesses."
       },
       "r22": {
-        "region": "[FIXME] Aix-en-Provence",
-        "comment": "[FIXME] Impeccable ! Financement obtenu rapidement. Je recommande vivement."
+        "region": "Aix-en-Provence",
+        "comment": "Tadellos! Finanzierung schnell erhalten. Ich empfehle es wärmstens."
       },
       "r23": {
-        "region": "[FIXME] Clermont-Ferrand",
-        "comment": "[FIXME] Excellent service. Équipe réactive et professionnelle. Dossier validé en 10 jours."
+        "region": "Clermont-Ferrand",
+        "comment": "Exzellenter Service. Reaktionsschnelles und professionelles Team. Dossier in 10 Tagen validiert."
       },
       "r24": {
-        "region": "[FIXME] Brest",
-        "comment": "[FIXME] Bonne prestation globale. Le conseiller était disponible et compétent."
+        "region": "Brest",
+        "comment": "Gute Gesamtleistung. Der Berater war erreichbar und kompetent."
       },
       "r25": {
-        "region": "[FIXME] Tours",
-        "comment": "[FIXME] Service au top ! Processus rapide et transparent. Très satisfait."
+        "region": "Tours",
+        "comment": "Top Service! Schneller und transparenter Prozess. Sehr zufrieden."
       },
       "r26": {
-        "region": "[FIXME] Amiens",
-        "comment": "[FIXME] Parfait ! Mon crédit automobile a été validé rapidement. Équipe professionnelle."
+        "region": "Amiens",
+        "comment": "Perfekt! Mein Kredit wurde schnell validiert. Professionelles Team."
       },
       "r27": {
-        "region": "[FIXME] Limoges",
-        "comment": "[FIXME] Très bon service. Communication claire et suivi régulier."
+        "region": "Limoges",
+        "comment": "Sehr guter Service. Klare Kommunikation und regelmäßige Nachverfolgung."
       },
       "r28": {
-        "region": "[FIXME] Annecy",
-        "comment": "[FIXME] Excellente expérience ! Conseiller à l'écoute et processus efficace."
+        "region": "Annecy",
+        "comment": "Exzellente Erfahrung! Aufmerksamer Berater und effizienter Prozess."
       },
       "r29": {
-        "region": "[FIXME] Perpignan",
-        "comment": "[FIXME] Je recommande ! Service rapide et professionnel. Mon dossier traité en 2 semaines."
+        "region": "Perpignan",
+        "comment": "Ich empfehle es! Schneller und professioneller Service. Mein Dossier in 2 Wochen bearbeitet."
       },
       "r30": {
-        "region": "[FIXME] Boulogne-Billancourt",
-        "comment": "[FIXME] Bonne expérience. L'équipe est compétente et réactive."
+        "region": "Boulogne-Billancourt",
+        "comment": "Gute Erfahrung. Das Team ist kompetent und reaktionsschnell."
       },
       "r31": {
-        "region": "[FIXME] Metz",
-        "comment": "[FIXME] Service impeccable ! Financement obtenu rapidement. Très satisfait."
+        "region": "Metz",
+        "comment": "Einwandfreier Service! Finanzierung schnell erhalten. Sehr zufrieden."
       },
       "r32": {
-        "region": "[FIXME] Besançon",
-        "comment": "[FIXME] Excellente prestation. Processus simple et équipe professionnelle."
+        "region": "Besançon",
+        "comment": "Exzellente Leistung. Einfacher Prozess und professionelles Team."
       },
       "r33": {
-        "region": "[FIXME] Orléans",
-        "comment": "[FIXME] Très bon service. Mon conseiller m'a bien accompagné."
+        "region": "Orléans",
+        "comment": "Sehr guter Service. Mein Berater hat mich gut begleitet."
       },
       "r34": {
-        "region": "[FIXME] Saint-Denis",
-        "comment": "[FIXME] Parfait ! Dossier traité rapidement et efficacement. Je recommande."
+        "region": "Saint-Denis",
+        "comment": "Perfekt! Dossier schnell und effizient bearbeitet. Ich empfehle es."
       },
       "r35": {
-        "region": "[FIXME] Argenteuil",
-        "comment": "[FIXME] Service au top ! Équipe réactive et professionnelle."
+        "region": "Argenteuil",
+        "comment": "Top Service! Reaktionsschnelles und professionelles Team."
       },
       "r36": {
-        "region": "[FIXME] Rouen",
-        "comment": "[FIXME] Bonne expérience globale. Processus transparent et bien expliqué."
+        "region": "Rouen",
+        "comment": "Gute Gesamterfahrung. Transparenter und gut erklärter Prozess."
       },
       "r37": {
-        "region": "[FIXME] Mulhouse",
-        "comment": "[FIXME] Excellent ! Mon crédit validé en 9 jours. Service professionnel."
+        "region": "Mülhausen",
+        "comment": "Exzellent! Mein Kredit in 9 Tagen validiert. Professioneller Service."
       },
       "r38": {
-        "region": "[FIXME] Montreuil",
-        "comment": "[FIXME] Très satisfaite ! L'équipe est à l'écoute et efficace."
+        "region": "Montreuil",
+        "comment": "Sehr zufrieden! Das Team ist aufmerksam und effizient."
       },
       "r39": {
-        "region": "[FIXME] Caen",
-        "comment": "[FIXME] Bon service. Conseiller compétent et disponible."
+        "region": "Caen",
+        "comment": "Guter Service. Kompetenter und erreichbarer Berater."
       },
       "r40": {
-        "region": "[FIXME] Nancy",
-        "comment": "[FIXME] Impeccable ! Processus rapide et transparent. Je recommande vivement."
+        "region": "Nancy",
+        "comment": "Tadellos! Schneller und transparenter Prozess. Ich empfehle es wärmstens."
       },
       "r41": {
-        "region": "[FIXME] Versailles",
-        "comment": "[FIXME] Service excellent ! Mon dossier a été traité avec professionnalisme."
+        "region": "Versailles",
+        "comment": "Exzellenter Service! Mein Dossier wurde professionell bearbeitet."
       },
       "r42": {
-        "region": "[FIXME] Nanterre",
-        "comment": "[FIXME] Très bonne prestation. Équipe réactive et à l'écoute."
+        "region": "Nanterre",
+        "comment": "Sehr gute Leistung. Reaktionsschnelles und aufmerksames Team."
       },
       "r43": {
-        "region": "[FIXME] Créteil",
-        "comment": "[FIXME] Parfait ! Financement obtenu rapidement. Service professionnel."
+        "region": "Créteil",
+        "comment": "Perfekt! Finanzierung schnell erhalten. Professioneller Service."
       },
       "r44": {
-        "region": "[FIXME] Vitry-sur-Seine",
-        "comment": "[FIXME] Excellente expérience ! Conseiller compétent et processus efficace."
+        "region": "Vitry-sur-Seine",
+        "comment": "Exzellente Erfahrung! Kompetenter Berater und effizienter Prozess."
       },
       "r45": {
-        "region": "[FIXME] Avignon",
-        "comment": "[FIXME] Bon service. Communication claire et suivi régulier du dossier."
+        "region": "Avignon",
+        "comment": "Guter Service. Klare Kommunikation und regelmäßige Nachverfolgung des Dossiers."
       },
       "r46": {
-        "region": "[FIXME] Poitiers",
-        "comment": "[FIXME] Je recommande ! Service rapide et transparent. Très satisfaite."
+        "region": "Poitiers",
+        "comment": "Ich empfehle es! Schneller und transparenter Service. Sehr zufrieden."
       },
       "r47": {
-        "region": "[FIXME] Aubervilliers",
-        "comment": "[FIXME] Service au top ! Mon crédit validé en 11 jours."
+        "region": "Aubervilliers",
+        "comment": "Top Service! Mein Kredit in 11 Tagen validiert."
       },
       "r48": {
-        "region": "[FIXME] Aulnay-sous-Bois",
-        "comment": "[FIXME] Bonne expérience. L'équipe est professionnelle et réactive."
+        "region": "Aulnay-sous-Bois",
+        "comment": "Gute Erfahrung. Das Team ist professionell und reaktionsschnell."
       },
       "r49": {
-        "region": "[FIXME] Asnières-sur-Seine",
-        "comment": "[FIXME] Excellent ! Processus simple et rapide. Je recommande."
+        "region": "Asnières-sur-Seine",
+        "comment": "Exzellent! Einfacher und schneller Prozess. Ich empfehle es."
       },
       "r50": {
-        "region": "[FIXME] Colombes",
-        "comment": "[FIXME] Très satisfaite ! Équipe à l'écoute et efficace."
+        "region": "Colombes",
+        "comment": "Sehr zufrieden! Das Team ist aufmerksam und effizient."
       },
       "r51": {
-        "region": "[FIXME] La Rochelle",
-        "comment": "[FIXME] Bon service. Mon conseiller était disponible et compétent."
+        "region": "La Rochelle",
+        "comment": "Guter Service. Mein Berater war erreichbar und kompetent."
       },
       "r52": {
-        "region": "[FIXME] Calais",
-        "comment": "[FIXME] Impeccable ! Dossier traité rapidement. Service professionnel."
+        "region": "Calais",
+        "comment": "Tadellos! Dossier schnell bearbeitet. Professioneller Service."
       },
       "r53": {
-        "region": "[FIXME] Rueil-Malmaison",
-        "comment": "[FIXME] Parfait ! Financement obtenu en moins de 2 semaines."
+        "region": "Rueil-Malmaison",
+        "comment": "Perfekt! Finanzierung in weniger als 2 Wochen erhalten."
       },
       "r54": {
-        "region": "[FIXME] Antibes",
-        "comment": "[FIXME] Très bonne prestation. Processus transparent et bien expliqué."
+        "region": "Antibes",
+        "comment": "Sehr gute Leistung. Transparenter und gut erklärter Prozess."
       },
       "r55": {
-        "region": "[FIXME] Saint-Maur-des-Fossés",
-        "comment": "[FIXME] Excellent service ! Équipe réactive et professionnelle."
+        "region": "Saint-Maur-des-Fossés",
+        "comment": "Exzellenter Service! Reaktionsschnelles und professionelles Team."
       },
       "r56": {
-        "region": "[FIXME] Champigny-sur-Marne",
-        "comment": "[FIXME] Je recommande vivement ! Service rapide et efficace."
+        "region": "Champigny-sur-Marne",
+        "comment": "Ich empfehle es wärmstens! Schneller und effizienter Service."
       },
       "r57": {
-        "region": "[FIXME] Dunkerque",
-        "comment": "[FIXME] Bonne expérience globale. Conseiller compétent."
+        "region": "Dünkirchen",
+        "comment": "Gute Gesamterfahrung. Kompetenter Berater."
       },
       "r58": {
-        "region": "[FIXME] Bourges",
-        "comment": "[FIXME] Service au top ! Mon dossier validé rapidement."
+        "region": "Bourges",
+        "comment": "Top Service! Mein Dossier schnell validiert."
       },
       "r59": {
-        "region": "[FIXME] Cannes",
-        "comment": "[FIXME] Parfait ! Processus simple et transparent. Très satisfait."
+        "region": "Cannes",
+        "comment": "Perfekt! Einfacher und transparenter Prozess. Sehr zufrieden."
       },
       "r60": {
-        "region": "[FIXME] Pau",
-        "comment": "[FIXME] Très bon service. L'équipe est à l'écoute et réactive."
+        "region": "Pau",
+        "comment": "Sehr guter Service. Das Team ist aufmerksam und reaktionsschnell."
       },
       "r61": {
-        "region": "[FIXME] Colmar",
-        "comment": "[FIXME] Excellent ! Mon crédit automobile validé en 10 jours."
+        "region": "Colmar",
+        "comment": "Exzellent! Mein Autokredit in 10 Tagen validiert."
       },
       "r62": {
-        "region": "[FIXME] Quimper",
-        "comment": "[FIXME] Service impeccable ! Équipe professionnelle et efficace."
+        "region": "Quimper",
+        "comment": "Einwandfreier Service! Professionelles und effizientes Team."
       },
       "r63": {
-        "region": "[FIXME] Valence",
-        "comment": "[FIXME] Bonne prestation. Communication claire et suivi régulier."
+        "region": "Valence",
+        "comment": "Gute Leistung. Klare Kommunikation und regelmäßige Betreuung."
       },
       "r64": {
-        "region": "[FIXME] Troyes",
-        "comment": "[FIXME] Je recommande ! Service rapide et professionnel."
+        "region": "Troyes",
+        "comment": "Ich empfehle es! Schneller und professioneller Service."
       },
       "r65": {
-        "region": "[FIXME] Ajaccio",
-        "comment": "[FIXME] Parfait ! Financement obtenu rapidement. Très satisfait."
+        "region": "Ajaccio",
+        "comment": "Perfekt! Finanzierung schnell erhalten. Sehr zufrieden."
       },
       "r66": {
-        "region": "[FIXME] Chambéry",
-        "comment": "[FIXME] Très bonne expérience. L'équipe est compétente."
+        "region": "Chambéry",
+        "comment": "Sehr gute Erfahrung. Das Team ist kompetent."
       },
       "r67": {
-        "region": "[FIXME] Lorient",
-        "comment": "[FIXME] Service excellent ! Processus efficace et transparent."
+        "region": "Lorient",
+        "comment": "Exzellenter Service! Effizienter und transparenter Prozess."
       },
       "r68": {
-        "region": "[FIXME] Niort",
-        "comment": "[FIXME] Impeccable ! Mon dossier traité avec professionnalisme."
+        "region": "Niort",
+        "comment": "Tadellos! Mein Dossier professionell bearbeitet."
       },
       "r69": {
-        "region": "[FIXME] Sarcelles",
-        "comment": "[FIXME] Bon service. Conseiller disponible et à l'écoute."
+        "region": "Sarcelles",
+        "comment": "Guter Service. Berater erreichbar und aufmerksam."
       },
       "r70": {
-        "region": "[FIXME] Beauvais",
-        "comment": "[FIXME] Excellent ! Je recommande vivement AGM INVEST."
+        "region": "Beauvais",
+        "comment": "Exzellent! Ich empfehle AGM INVEST wärmstens."
       },
       "r71": {
-        "region": "[FIXME] Vannes",
-        "comment": "[FIXME] Service au top ! Mon crédit validé en 9 jours."
+        "region": "Vannes",
+        "comment": "Top Service! Mein Kredit in 9 Tagen validiert."
       },
       "r72": {
-        "region": "[FIXME] Ivry-sur-Seine",
-        "comment": "[FIXME] Très bonne prestation. Équipe réactive et professionnelle."
+        "region": "Ivry-sur-Seine",
+        "comment": "Sehr gute Leistung. Reaktionsschnelles und professionelles Team."
       },
       "r73": {
-        "region": "[FIXME] Cergy",
-        "comment": "[FIXME] Parfait ! Processus rapide et transparent."
+        "region": "Cergy",
+        "comment": "Perfekt! Schneller und transparenter Prozess."
       },
       "r74": {
-        "region": "[FIXME] Levallois-Perret",
-        "comment": "[FIXME] Excellente expérience ! Service professionnel."
+        "region": "Levallois-Perret",
+        "comment": "Exzellente Erfahrung! Professioneller Service."
       },
       "r75": {
-        "region": "[FIXME] Pessac",
-        "comment": "[FIXME] Bon service. Mon conseiller était compétent."
+        "region": "Pessac",
+        "comment": "Guter Service. Mein Berater war kompetent."
       },
       "r76": {
-        "region": "[FIXME] Clichy",
-        "comment": "[FIXME] Je recommande ! Dossier traité rapidement."
+        "region": "Clichy",
+        "comment": "Ich empfehle es! Dossier schnell bearbeitet."
       },
       "r77": {
-        "region": "[FIXME] Arles",
-        "comment": "[FIXME] Service impeccable ! Équipe à l'écoute et efficace."
+        "region": "Arles",
+        "comment": "Einwandfreier Service! Aufmerksames und effizientes Team."
       },
       "r78": {
-        "region": "[FIXME] Vénissieux",
-        "comment": "[FIXME] Très bonne expérience. Processus bien expliqué."
+        "region": "Vénissieux",
+        "comment": "Sehr gute Erfahrung. Prozess gut erklärt."
       },
       "r79": {
-        "region": "[FIXME] Antony",
-        "comment": "[FIXME] Excellent ! Mon financement obtenu en 12 jours."
+        "region": "Antony",
+        "comment": "Exzellent! Meine Finanzierung in 12 Tagen erhalten."
       },
       "r80": {
-        "region": "[FIXME] La Seyne-sur-Mer",
-        "comment": "[FIXME] Parfait ! Service rapide et professionnel."
+        "region": "La Seyne-sur-Mer",
+        "comment": "Perfekt! Schneller und professioneller Service."
       },
       "r81": {
-        "region": "[FIXME] Neuilly-sur-Seine",
-        "comment": "[FIXME] Bon service. L'équipe est réactive."
+        "region": "Neuilly-sur-Seine",
+        "comment": "Guter Service. Das Team ist reaktionsschnell."
       },
       "r82": {
-        "region": "[FIXME] Montauban",
-        "comment": "[FIXME] Je recommande vivement ! Service excellent."
+        "region": "Montauban",
+        "comment": "Ich empfehle es wärmstens! Exzellenter Service."
       },
       "r83": {
-        "region": "[FIXME] Pantin",
-        "comment": "[FIXME] Service au top ! Dossier validé rapidement."
+        "region": "Pantin",
+        "comment": "Top Service! Dossier schnell validiert."
       },
       "r84": {
-        "region": "[FIXME] Noisy-le-Grand",
-        "comment": "[FIXME] Très bonne prestation. Conseiller compétent."
+        "region": "Noisy-le-Grand",
+        "comment": "Sehr gute Leistung. Kompetenter Berater."
       },
       "r85": {
-        "region": "[FIXME] Évry",
-        "comment": "[FIXME] Excellent service ! Processus efficace."
+        "region": "Évry",
+        "comment": "Exzellenter Service! Effizienter Prozess."
       },
       "r86": {
-        "region": "[FIXME] Villeneuve-d'Ascq",
-        "comment": "[FIXME] Impeccable ! Mon crédit automobile validé."
+        "region": "Villeneuve-d'Ascq",
+        "comment": "Tadellos! Mein Autokredit validiert."
       },
       "r87": {
-        "region": "[FIXME] Meaux",
-        "comment": "[FIXME] Bon service. Communication claire."
+        "region": "Meaux",
+        "comment": "Guter Service. Klare Kommunikation."
       },
       "r88": {
-        "region": "[FIXME] Cholet",
-        "comment": "[FIXME] Parfait ! Équipe professionnelle et réactive."
+        "region": "Cholet",
+        "comment": "Perfekt! Professionelles und reaktionsschnelles Team."
       },
       "r89": {
-        "region": "[FIXME] Belfort",
-        "comment": "[FIXME] Service excellent ! Je recommande."
+        "region": "Belfort",
+        "comment": "Exzellenter Service! Ich empfehle es."
       },
       "r90": {
-        "region": "[FIXME] Bayonne",
-        "comment": "[FIXME] Très bonne expérience. Processus transparent."
+        "region": "Bayonne",
+        "comment": "Sehr gute Erfahrung. Transparenter Prozess."
       },
       "r91": {
-        "region": "[FIXME] Chartres",
-        "comment": "[FIXME] Impeccable ! Financement obtenu rapidement."
+        "region": "Chartres",
+        "comment": "Tadellos! Finanzierung schnell erhalten."
       },
       "r92": {
-        "region": "[FIXME] Drancy",
-        "comment": "[FIXME] Excellent ! Service professionnel et efficace."
+        "region": "Drancy",
+        "comment": "Exzellent! Professioneller und effizienter Service."
       },
       "r93": {
-        "region": "[FIXME] Sartrouville",
-        "comment": "[FIXME] Bon service. Mon conseiller était disponible."
+        "region": "Sartrouville",
+        "comment": "Guter Service. Mein Berater war erreichbar."
       },
       "r94": {
-        "region": "[FIXME] Saint-Quentin",
-        "comment": "[FIXME] Je recommande ! Dossier traité avec soin."
+        "region": "Saint-Quentin",
+        "comment": "Ich empfehle es! Dossier sorgfältig bearbeitet."
       },
       "r95": {
-        "region": "[FIXME] Île-de-France",
-        "comment": "[FIXME] Service au top ! Très satisfait du résultat."
+        "region": "Île-de-France",
+        "comment": "Top Service! Sehr zufrieden mit dem Ergebnis."
       },
       "r96": {
-        "region": "[FIXME] Auvergne-Rhône-Alpes",
-        "comment": "[FIXME] Très bonne prestation. Équipe compétente."
+        "region": "Auvergne-Rhône-Alpes",
+        "comment": "Sehr gute Leistung. Kompetentes Team."
       },
       "r97": {
-        "region": "[FIXME] Nouvelle-Aquitaine",
-        "comment": "[FIXME] Parfait ! Processus simple et rapide."
+        "region": "Nouvelle-Aquitaine",
+        "comment": "Perfekt! Einfacher und schneller Prozess."
       },
       "r98": {
-        "region": "[FIXME] Occitanie",
-        "comment": "[FIXME] Excellent service ! Mon crédit validé en 10 jours."
+        "region": "Okzitanien",
+        "comment": "Exzellenter Service! Mein Kredit in 10 Tagen validiert."
       },
       "r99": {
-        "region": "[FIXME] Hauts-de-France",
-        "comment": "[FIXME] Bon service. Communication efficace."
+        "region": "Hauts-de-France",
+        "comment": "Guter Service. Effiziente Kommunikation."
       },
       "r100": {
-        "region": "[FIXME] Provence-Alpes-Côte d'Azur",
-        "comment": "[FIXME] Je recommande vivement ! Service professionnel."
+        "region": "Provence-Alpes-Côte d'Azur",
+        "comment": "Ich empfehle es wärmstens! Professioneller Service."
       },
       "r101": {
-        "region": "[FIXME] Grand Est",
-        "comment": "[FIXME] Impeccable ! Équipe réactive et à l'écoute."
+        "region": "Grand Est",
+        "comment": "Tadellos! Reaktionsschnelles und aufmerksames Team."
       },
       "r102": {
-        "region": "[FIXME] Pays de la Loire",
-        "comment": "[FIXME] Très bonne expérience. Processus transparent."
+        "region": "Pays de la Loire",
+        "comment": "Sehr gute Erfahrung. Transparenter Prozess."
       },
       "r103": {
-        "region": "[FIXME] Bretagne",
-        "comment": "[FIXME] Service excellent ! Mon dossier validé rapidement."
+        "region": "Bretagne",
+        "comment": "Exzellenter Service! Mein Dossier schnell validiert."
       },
       "r104": {
-        "region": "[FIXME] Normandie",
-        "comment": "[FIXME] Parfait ! Je recommande AGM INVEST."
+        "region": "Normandie",
+        "comment": "Perfekt! Ich empfehle AGM INVEST."
       },
       "r105": {
-        "region": "[FIXME] Bourgogne-Franche-Comté",
-        "comment": "[FIXME] Bon service. Conseiller compétent et disponible."
+        "region": "Bourgogne-Franche-Comté",
+        "comment": "Guter Service. Kompetenter und erreichbarer Berater."
       },
       "r106": {
-        "region": "[FIXME] Centre-Val de Loire",
-        "comment": "[FIXME] Excellent ! Financement obtenu en 11 jours."
+        "region": "Centre-Val de Loire",
+        "comment": "Exzellent! Finanzierung in 11 Tagen erhalten."
       },
       "r107": {
-        "region": "[FIXME] Corse",
-        "comment": "[FIXME] Service impeccable ! Équipe professionnelle."
+        "region": "Korsika",
+        "comment": "Einwandfreier Service! Professionelles Team."
       },
       "r108": {
-        "region": "[FIXME] Paris",
-        "comment": "[FIXME] Très bonne prestation. Processus efficace."
+        "region": "Paris",
+        "comment": "Sehr gute Leistung. Effizienter Prozess."
       },
       "r109": {
-        "region": "[FIXME] Lyon",
-        "comment": "[FIXME] Je recommande ! Service rapide et transparent."
+        "region": "Lyon",
+        "comment": "Ich empfehle es! Schneller und transparenter Service."
       },
       "r110": {
-        "region": "[FIXME] Marseille",
-        "comment": "[FIXME] Parfait ! Mon crédit automobile validé rapidement."
+        "region": "Marseille",
+        "comment": "Perfekt! Mein Autokredit wurde schnell validiert."
       }
     },
-    "subtitle": "[FIXME] Découvrez les témoignages de ceux qui nous ont fait confiance pour leur projet de financement.",
-    "stars": "[FIXME] étoiles",
-    "seeAll": "[FIXME] Voir tous les avis",
-    "allReviewsLabel": "[FIXME] Tous nos avis",
+    "subtitle": "Entdecken Sie die Erfahrungsberichte derer, die uns ihr Finanzierungsprojekt anvertraut haben.",
+    "stars": "Sterne",
+    "seeAll": "Alle Bewertungen ansehen",
+    "allReviewsLabel": "Alle unsere Bewertungen",
     "Stats": {
-      "averageRating": "[FIXME] Note Moyenne",
-      "totalReviews": "[FIXME] Avis Vérifiés",
-      "fiveStars": "[FIXME] Avis 5 étoiles"
+      "averageRating": "Durchschnittsbewertung",
+      "totalReviews": "Verifizierte Bewertungen",
+      "fiveStars": "5-Sterne-Bewertungen"
     }
   },
   "ReviewForm": {
-    "brandName": "[FIXME] AGM INVEST",
-    "certifiedReviews": "[FIXME] Avis Clients Certifiés",
-    "verifiedEstablishment": "[FIXME] Établissement Vérifié",
+    "brandName": "AGM INVEST",
+    "certifiedReviews": "Zertifizierte Kundenbewertungen",
+    "verifiedEstablishment": "Verifizierte Einrichtung",
     "Success": {
-      "title": "[FIXME] Merci pour votre avis !",
-      "message": "[FIXME] Votre témoignage a bien été reçu. Il sera publié après validation par notre équipe de modération.",
-      "button": "[FIXME] Fermer"
+      "title": "Danke für Ihre Bewertung!",
+      "message": "Ihr Erfahrungsbericht wurde empfangen. Er wird nach der Validierung durch unser Moderationsteam veröffentlicht.",
+      "button": "Schließen"
     },
-    "ratingLabel": "[FIXME] Votre note globale",
+    "ratingLabel": "Ihre Gesamtbewertung",
     "Labels": {
-      "name": "[FIXME] Votre nom complet",
-      "region": "[FIXME] Votre ville / région",
-      "comment": "[FIXME] Votre témoignage"
+      "name": "Ihr vollständiger Name",
+      "region": "Ihre Stadt / Region",
+      "comment": "Ihr Erfahrungsbericht"
     },
     "Placeholders": {
-      "name": "[FIXME] Ex: Jean Dupont",
-      "region": "[FIXME] Ex: Strasbourg, Grand Est",
-      "comment": "[FIXME] Partagez votre expérience avec AGM INVEST..."
+      "name": "Z.B.: Jean Dupont",
+      "region": "Z.B.: Straßburg, Grand Est",
+      "comment": "Teilen Sie Ihre Erfahrung mit AGM INVEST..."
     },
-    "submit": "[FIXME] Publier mon avis",
-    "disclaimer": "[FIXME] En publiant cet avis, vous acceptez nos conditions d'utilisation.",
+    "submit": "Meine Bewertung veröffentlichen",
+    "disclaimer": "Mit der Veröffentlichung dieser Bewertung akzeptieren Sie unsere Nutzungsbedingungen.",
     "Errors": {
-      "submission": "[FIXME] Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
-      "name": "[FIXME] Le nom est obligatoire.",
-      "region": "[FIXME] La région est obligatoire.",
-      "commentRequired": "[FIXME] Le commentaire est obligatoire.",
-      "commentTooShort": "[FIXME] Le commentaire doit faire au moins 10 caractères."
+      "submission": "Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+      "name": "Der Name ist obligatorisch.",
+      "region": "Die Region ist obligatorisch.",
+      "commentRequired": "Der Kommentar ist obligatorisch.",
+      "commentTooShort": "Der Kommentar muss mindestens 10 Zeichen lang sein."
     },
     "Ratings": {
-      "1": "[FIXME] Décevant",
-      "2": "[FIXME] Moyen",
-      "3": "[FIXME] Satisfaisant",
-      "4": "[FIXME] Très bien",
-      "5": "[FIXME] Excellent"
+      "1": "Enttäuschend",
+      "2": "Mittelmäßig",
+      "3": "Zufriedenstellend",
+      "4": "Sehr gut",
+      "5": "Ausgezeichnet"
     }
   },
   "NotificationPopup": {
-    "title": "[FIXME] Nouvelle demande !",
-    "from": "[FIXME] de",
-    "action": "[FIXME] vient de soumettre une demande",
-    "close": "[FIXME] Fermer"
+    "title": "Neue Anfrage!",
+    "from": "aus",
+    "action": "hat gerade eine Anfrage gestellt",
+    "close": "Schließen"
   }
 }

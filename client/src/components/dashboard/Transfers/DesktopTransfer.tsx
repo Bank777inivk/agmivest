@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "@/i18n/routing";
+import { useTranslations, useLocale } from "next-intl";
 
 interface DesktopTransferProps {
     amount: string;
@@ -52,19 +53,21 @@ export default function DesktopTransfer({
     itemsPerPage
 }: DesktopTransferProps) {
     const router = useRouter();
+    const t = useTranslations('Dashboard.Transfers');
+    const locale = useLocale();
 
     const getStatusStyles = (status: string) => {
         switch (status) {
             case 'approved':
-                return { bg: "bg-emerald-50 text-emerald-600 border-emerald-100", label: "Validé", icon: CheckCircle2 };
+                return { bg: "bg-emerald-50 text-emerald-600 border-emerald-100", label: t('status.approved'), icon: CheckCircle2 };
             case 'rejected':
-                return { bg: "bg-red-50 text-red-600 border-red-100", label: "Refusé", icon: X };
+                return { bg: "bg-red-50 text-red-600 border-red-100", label: t('status.rejected'), icon: X };
             case 'review':
-                return { bg: "bg-blue-50 text-blue-600 border-blue-100", label: "En examen", icon: Search };
+                return { bg: "bg-blue-50 text-blue-600 border-blue-100", label: t('status.review'), icon: Search };
             case 'advanced':
-                return { bg: "bg-purple-50 text-purple-600 border-purple-100", label: "Contrôle avancé", icon: ShieldCheck };
+                return { bg: "bg-purple-50 text-purple-600 border-purple-100", label: t('status.advanced'), icon: ShieldCheck };
             default:
-                return { bg: "bg-amber-50 text-amber-600 border-amber-100", label: "En attente", icon: Clock };
+                return { bg: "bg-amber-50 text-amber-600 border-amber-100", label: t('status.pending'), icon: Clock };
         }
     };
 
@@ -80,8 +83,8 @@ export default function DesktopTransfer({
                         <ArrowLeft className="w-6 h-6 text-gray-400 group-hover:text-ely-blue transition-colors" />
                     </button>
                     <div>
-                        <h1 className="text-3xl font-black text-gray-900 tracking-tight">Virement Bancaire</h1>
-                        <p className="text-base text-gray-500 font-medium tracking-tight">Espace de transfert sécurisé AGMINVEST.</p>
+                        <h1 className="text-3xl font-black text-gray-900 tracking-tight">{t('title')}</h1>
+                        <p className="text-base text-gray-500 font-medium tracking-tight">{t('subtitle')}</p>
                     </div>
                 </div>
             </header>
@@ -101,9 +104,11 @@ export default function DesktopTransfer({
                                     <CheckCircle2 className="w-12 h-12" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h2 className="text-3xl font-black text-gray-900 leading-tight">Virement émis avec succès</h2>
+                                    <h2 className="text-3xl font-black text-gray-900 leading-tight">{t('success.title')}</h2>
                                     <p className="text-gray-500 font-medium px-8 leading-relaxed">
-                                        Votre demande est maintenant <span className="text-amber-600 font-bold uppercase tracking-widest text-xs px-2 py-1 bg-amber-50 rounded-lg ml-1">En attente de contrôle</span> par un conseiller.
+                                        {t.rich('success.message', {
+                                            status: (chunks) => <span className="text-amber-600 font-bold uppercase tracking-widest text-xs px-2 py-1 bg-amber-50 rounded-lg ml-1">{t('success.pending')}</span>
+                                        })}
                                     </p>
                                 </div>
                                 <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
@@ -111,13 +116,13 @@ export default function DesktopTransfer({
                                         onClick={() => setShowSuccess(false)}
                                         className="px-8 py-4 bg-gray-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-gray-800 transition-all"
                                     >
-                                        Nouveau virement
+                                        {t('success.newTransfer')}
                                     </button>
                                     <button
                                         onClick={() => router.push("/dashboard/accounts")}
                                         className="px-8 py-4 bg-white border border-gray-200 text-gray-900 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-gray-50 transition-all"
                                     >
-                                        Mes comptes
+                                        {t('success.myAccounts')}
                                     </button>
                                 </div>
                             </motion.div>
@@ -135,7 +140,7 @@ export default function DesktopTransfer({
                                 <div className="relative z-10 space-y-10">
                                     {/* Amount Input */}
                                     <div className="space-y-4">
-                                        <label className="text-[10px] font-black text-white/40 uppercase tracking-widest ml-4">Montant à transférer</label>
+                                        <label className="text-[10px] font-black text-white/40 uppercase tracking-widest ml-4">{t('form.amountLabel')}</label>
                                         <div className="p-8 bg-white/5 backdrop-blur-md rounded-[2.5rem] border border-white/10 group focus-within:border-ely-mint/30 transition-all">
                                             <div className="flex items-center gap-6">
                                                 <div className="p-4 bg-white/10 rounded-2xl shadow-sm text-ely-mint shrink-0">
@@ -149,7 +154,7 @@ export default function DesktopTransfer({
                                                         placeholder="0.00"
                                                         className="bg-transparent text-5xl font-black text-white w-full outline-none placeholder:text-white/10"
                                                     />
-                                                    <span className="text-4xl font-black text-white/20">€</span>
+                                                    <span className="text-4xl font-black text-white/20">{new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).formatToParts(0).find(p => p.type === 'currency')?.value}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -157,7 +162,7 @@ export default function DesktopTransfer({
 
                                     {/* Destination Account Card */}
                                     <div className="space-y-4">
-                                        <label className="text-[10px] font-black text-white/40 uppercase tracking-widest ml-4">Compte de destination</label>
+                                        <label className="text-[10px] font-black text-white/40 uppercase tracking-widest ml-4">{t('form.destinationLabel')}</label>
                                         <div className="p-8 bg-white/5 backdrop-blur-md rounded-[2.5rem] border-2 border-dashed border-white/10 relative group transition-all">
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-6">
@@ -165,13 +170,13 @@ export default function DesktopTransfer({
                                                         <Landmark className="w-8 h-8" />
                                                     </div>
                                                     <div>
-                                                        <p className="font-bold text-white">{loanAccount?.bankName || "Compte de référence"}</p>
+                                                        <p className="font-bold text-white">{loanAccount?.bankName || t('form.referenceAccount')}</p>
                                                         <p className="font-mono text-sm text-white/40 mt-1">
                                                             {loanAccount?.iban?.slice(0, 4)} •••• •••• •••• •••• {loanAccount?.iban?.slice(-4)}
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div className="px-4 py-2 bg-ely-mint/20 text-ely-mint text-[10px] font-black rounded-full uppercase tracking-widest border border-ely-mint/20">Compte Vérifié</div>
+                                                <div className="px-4 py-2 bg-ely-mint/20 text-ely-mint text-[10px] font-black rounded-full uppercase tracking-widest border border-ely-mint/20">{t('form.verifiedAccount')}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -184,12 +189,12 @@ export default function DesktopTransfer({
                                             </div>
                                             <div className="relative z-10">
                                                 <p className="text-sm text-white font-black mb-1 uppercase tracking-widest">
-                                                    {blockingReason === 'verification' ? "Vérification Requise" : "Dépôt Requis"}
+                                                    {blockingReason === 'verification' ? t('blocking.verification.title') : t('blocking.deposit.title')}
                                                 </p>
                                                 <p className="text-xs text-white/70 font-medium leading-relaxed">
                                                     {blockingReason === 'verification'
-                                                        ? "Pour sécuriser vos transactions, une vérification d'identité est nécessaire avant tout virement sortant. Veuillez régulariser votre situation dans l'onglet \"Vérification\"."
-                                                        : "Le versement de votre Dépôt d'Authentification est requis pour finaliser l'activation de vos transferts. Veuillez régulariser votre situation dans l'onglet \"Facturation\"."
+                                                        ? t('blocking.verification.long')
+                                                        : t('blocking.deposit.long')
                                                     }
                                                 </p>
                                             </div>
@@ -199,14 +204,14 @@ export default function DesktopTransfer({
                                         <div className="bg-amber-500/10 p-6 rounded-3xl border border-amber-500/20 flex items-start gap-4">
                                             <Info className="w-5 h-5 text-amber-300 shrink-0 mt-1" />
                                             <p className="text-xs text-amber-100/60 font-medium leading-relaxed">
-                                                Les fonds seront transférés sur votre compte bancaire enregistré. Le délai habituel de réception est de 24h à 48h ouvrées par mesure de contrôle.
+                                                {t('form.delayNote')}
                                             </p>
                                         </div>
                                     )}
 
                                     <div className="flex items-center justify-between font-bold text-white border-t border-white/10 pt-4 mt-6">
-                                        <span className="opacity-40 uppercase text-[10px] tracking-widest">Total à débiter</span>
-                                        <span className="text-2xl font-black">{amount ? parseFloat(amount).toLocaleString() : "0"} €</span>
+                                        <span className="opacity-40 uppercase text-[10px] tracking-widest">{t('form.total')}</span>
+                                        <span className="text-2xl font-black">{new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).format(amount ? parseFloat(amount) : 0)}</span>
                                     </div>
 
                                     <AnimatePresence mode="wait">
@@ -234,8 +239,8 @@ export default function DesktopTransfer({
                                         ) : (
                                             <>
                                                 {isBlocked
-                                                    ? (blockingReason === 'verification' ? "Vérification Requise" : "Finalisation Requise")
-                                                    : "Confirmer le virement"
+                                                    ? (blockingReason === 'verification' ? t('form.required.verification') : t('form.required.finalization'))
+                                                    : t('form.confirm')
                                                 }
                                                 <Send className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                                             </>
@@ -253,19 +258,19 @@ export default function DesktopTransfer({
                         <div className="absolute top-0 right-0 w-32 h-32 bg-ely-mint/10 blur-3xl rounded-full" />
                         <h4 className="text-lg font-bold mb-4 flex items-center gap-3">
                             <Info className="w-5 h-5 text-ely-mint" />
-                            Contrôle de sécurité
+                            {t('security.title')}
                         </h4>
                         <p className="text-sm text-white/50 leading-relaxed mb-6">
-                            Par mesure de lutte contre la fraude, chaque virement fait l'objet d'une analyse systématique par nos services de conformité.
+                            {t('security.message')}
                         </p>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
-                                <p className="text-[10px] font-black text-white/30 uppercase mb-1">Délai estimé</p>
-                                <p className="text-sm font-bold">24h - 48h</p>
+                                <p className="text-[10px] font-black text-white/30 uppercase mb-1">{t('security.estimatedDelay')}</p>
+                                <p className="text-sm font-bold">{t('security.delay')}</p>
                             </div>
                             <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
-                                <p className="text-[10px] font-black text-white/30 uppercase mb-1">Protection</p>
-                                <p className="text-sm font-bold">Cryptage AES</p>
+                                <p className="text-[10px] font-black text-white/30 uppercase mb-1">{t('security.protection')}</p>
+                                <p className="text-sm font-bold">{t('security.aes')}</p>
                             </div>
                         </div>
                     </div>
@@ -273,7 +278,7 @@ export default function DesktopTransfer({
                     <div className="bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-sm">
                         <h4 className="font-bold text-gray-900 mb-6 flex items-center gap-3 text-lg">
                             <History className="w-6 h-6 text-ely-blue" />
-                            Aperçu Historique
+                            {t('history.title')}
                         </h4>
                         <div className="space-y-6">
                             {transfers.slice(0, 3).map((transfer) => {
@@ -285,9 +290,9 @@ export default function DesktopTransfer({
                                                 <styles.icon className="w-5 h-5" />
                                             </div>
                                             <div>
-                                                <p className="font-bold text-gray-900">{transfer.amount?.toLocaleString()} €</p>
+                                                <p className="font-bold text-gray-900">{new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).format(transfer.amount || 0)}</p>
                                                 <p className="text-[10px] text-gray-400 font-medium">
-                                                    {transfer.createdAt?.seconds ? new Date(transfer.createdAt.seconds * 1000).toLocaleDateString() : "En cours..."}
+                                                    {transfer.createdAt?.seconds ? new Date(transfer.createdAt.seconds * 1000).toLocaleDateString() : t('history.table.justNow')}
                                                 </p>
                                             </div>
                                         </div>
@@ -300,13 +305,13 @@ export default function DesktopTransfer({
                             {transfers.length === 0 && (
                                 <div className="text-center py-10 opacity-40">
                                     <Search className="w-12 h-12 mx-auto mb-4" />
-                                    <p className="text-sm">Aucun virement récent</p>
+                                    <p className="text-sm">{t('history.none')}</p>
                                 </div>
                             )}
                         </div>
                         {transfers.length > 3 && (
                             <button className="w-full mt-6 py-4 bg-gray-50 text-gray-900 font-bold rounded-2xl hover:bg-gray-100 transition-all text-[11px] uppercase tracking-widest">
-                                Voir tout l'historique
+                                {t('history.viewAll')}
                             </button>
                         )}
                     </div>
@@ -323,8 +328,8 @@ export default function DesktopTransfer({
                 >
                     <div className="flex items-center justify-between mb-10">
                         <div className="space-y-1">
-                            <h3 className="text-2xl font-black text-gray-900">Historique complet</h3>
-                            <p className="text-gray-500 font-medium italic">Suivez l'état de vos transferts en temps réel.</p>
+                            <h3 className="text-2xl font-black text-gray-900">{t('history.full')}</h3>
+                            <p className="text-gray-500 font-medium italic">{t('history.subtitle')}</p>
                         </div>
                     </div>
 
@@ -332,11 +337,11 @@ export default function DesktopTransfer({
                         <table className="w-full">
                             <thead>
                                 <tr className="border-b border-gray-50 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] text-left">
-                                    <th className="pb-6 px-4">Date</th>
-                                    <th className="pb-6 px-4">Destinataire</th>
-                                    <th className="pb-6 px-4">IBAN</th>
-                                    <th className="pb-6 px-4">Montant</th>
-                                    <th className="pb-6 px-4">Statut</th>
+                                    <th className="pb-6 px-4">{t('history.table.date')}</th>
+                                    <th className="pb-6 px-4">{t('history.table.recipient')}</th>
+                                    <th className="pb-6 px-4">{t('history.table.iban')}</th>
+                                    <th className="pb-6 px-4">{t('history.table.amount')}</th>
+                                    <th className="pb-6 px-4">{t('history.table.status')}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -346,7 +351,7 @@ export default function DesktopTransfer({
                                         <tr key={transfer.id} className="group hover:bg-gray-50/50 transition-all border-b border-gray-50/50">
                                             <td className="py-6 px-4">
                                                 <p className="font-bold text-gray-900 text-sm">
-                                                    {transfer.createdAt?.seconds ? new Date(transfer.createdAt.seconds * 1000).toLocaleDateString() : "Juste à l'instant"}
+                                                    {transfer.createdAt?.seconds ? new Date(transfer.createdAt.seconds * 1000).toLocaleDateString() : t('history.table.justNow')}
                                                 </p>
                                             </td>
                                             <td className="py-6 px-4">
@@ -358,7 +363,7 @@ export default function DesktopTransfer({
                                                 </p>
                                             </td>
                                             <td className="py-6 px-4">
-                                                <p className="font-black text-gray-900 text-sm">{transfer.amount?.toLocaleString()} €</p>
+                                                <p className="font-black text-gray-900 text-sm">{new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).format(transfer.amount || 0)}</p>
                                             </td>
                                             <td className="py-6 px-4">
                                                 <div className={cn("inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-[10px] font-black uppercase tracking-widest", styles.bg)}>
@@ -377,7 +382,11 @@ export default function DesktopTransfer({
                     {transfers.length > itemsPerPage && (
                         <div className="mt-10 flex items-center justify-between border-t border-gray-50 pt-8">
                             <p className="text-xs text-gray-400 font-medium">
-                                Affichage de <span className="text-gray-900 font-bold">{(currentPage - 1) * itemsPerPage + 1}</span> à <span className="text-gray-900 font-bold">{Math.min(currentPage * itemsPerPage, transfers.length)}</span> sur <span className="text-gray-900 font-bold">{transfers.length}</span> transferts
+                                {t('history.pagination.display', {
+                                    start: (currentPage - 1) * itemsPerPage + 1,
+                                    end: Math.min(currentPage * itemsPerPage, transfers.length),
+                                    total: transfers.length
+                                })}
                             </p>
                             <div className="flex gap-3">
                                 <button

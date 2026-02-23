@@ -1,0 +1,442 @@
+{
+  "r1": {
+    "region": "Paris",
+    "comment": "Oklanderlig service ! Jag fick min finansiering på mindre än 2 veckor. Teamet är mycket professionellt."
+  },
+  "r2": {
+    "region": "Lyon",
+    "comment": "Utmärkt erfarenhet. Rådgivaren följde mig vid varje steg. Jag rekommenderar AGM INVEST varmt."
+  },
+  "r3": {
+    "region": "Marseille",
+    "comment": "Mycket nöjd med servicen. Snabb och transparent process. Några dokument att tillhandahålla, men det är normalt."
+  },
+  "r4": {
+    "region": "Toulouse",
+    "comment": "Jag är mycket nöjd ! Mitt ärende behandlades snabbt och jag kunde köpa min bil utan stress."
+  },
+  "r5": {
+    "region": "Nice",
+    "comment": "Toppservice ! Teamet är lyhört och lyssnar. Min kredit validerades på 10 dagar."
+  },
+  "r6": {
+    "region": "Nantes",
+    "comment": "Bra helhetsupplevelse. Uppföljningen är utmärkt och rådgivarna är kompetenta."
+  },
+  "r7": {
+    "region": "Strasbourg",
+    "comment": "Perfekt ! Enkel och effektiv process. Jag fick min bilfinansiering utan problem."
+  },
+  "r8": {
+    "region": "Montpellier",
+    "comment": "Jag rekommenderar till 100% ! Professionell, snabb och transparent service. Tack till hela teamet."
+  },
+  "r9": {
+    "region": "Bordeaux",
+    "comment": "Mycket bra service. Tidsramarna respekterades och rådgivaren var tillgänglig för att svara på mina frågor."
+  },
+  "r10": {
+    "region": "Lille",
+    "comment": "Enastående erfarenhet ! Ärende behandlat snabbt, professionellt team. Jag är mycket nöjd."
+  },
+  "r11": {
+    "region": "Rennes",
+    "comment": "Felfri service. Min rådgivare vägledde mig genom hela processen. Finansiering erhållen på 12 dagar."
+  },
+  "r12": {
+    "region": "Reims",
+    "comment": "Bra prestation. Processen är väl förklarad och teamet är tillgängligt."
+  },
+  "r13": {
+    "region": "Le Havre",
+    "comment": "Utmärkt ! Jag kunde finansiera mitt fordon snabbt. Kundtjänst i toppklass."
+  },
+  "r14": {
+    "region": "Saint-Étienne",
+    "comment": "Mycket professionella och effektiva. Mitt ärende accepterades snabbt. Jag rekommenderar."
+  },
+  "r15": {
+    "region": "Toulon",
+    "comment": "Service av hög kvalitet. Bra kommunikation och regelbunden uppföljning av ärendet."
+  },
+  "r16": {
+    "region": "Grenoble",
+    "comment": "Perfekt från början till slut ! Lyhört och professionellt team. Min kredit validerad på 8 dagar."
+  },
+  "r17": {
+    "region": "Dijon",
+    "comment": "Jag är mycket nöjd. Enkel, snabb och transparent process. Tack AGM INVEST !"
+  },
+  "r18": {
+    "region": "Angers",
+    "comment": "Bra erfarenhet. Rådgivarna är kompetenta och uppföljningen är regelbunden."
+  },
+  "r19": {
+    "region": "Nîmes",
+    "comment": "Utmärkt service ! Mitt ärende behandlades snabbt och effektivt."
+  },
+  "r20": {
+    "region": "Villeurbanne",
+    "comment": "Mycket bra erfarenhet. Teamet är professionellt och lyssnar."
+  },
+  "r21": {
+    "region": "Le Mans",
+    "comment": "Nöjd med servicen. Bra stöd under hela processen."
+  },
+  "r22": {
+    "region": "Aix-en-Provence",
+    "comment": "Oklanderligt ! Finansiering erhållen snabbt. Jag rekommenderar varmt."
+  },
+  "r23": {
+    "region": "Clermont-Ferrand",
+    "comment": "Utmärkt service. Lyhört och professionellt team. Ärende validerat på 10 dagar."
+  },
+  "r24": {
+    "region": "Brest",
+    "comment": "Bra helhetsprestation. Rådgivaren var tillgänglig och kompetent."
+  },
+  "r25": {
+    "region": "Tours",
+    "comment": "Toppservice ! Snabb och transparent process. Mycket nöjd."
+  },
+  "r26": {
+    "region": "Amiens",
+    "comment": "Perfekt ! Min bilkredit validerades snabbt. Professionellt team."
+  },
+  "r27": {
+    "region": "Limoges",
+    "comment": "Mycket bra service. Klar kommunikation och regelbunden uppföljning."
+  },
+  "r28": {
+    "region": "Annecy",
+    "comment": "Utmärkt erfarenhet ! Rådgivare som lyssnar och effektiv process."
+  },
+  "r29": {
+    "region": "Perpignan",
+    "comment": "Jag rekommenderar ! Snabb och professionell service. Mitt ärende behandlat på 2 veckor."
+  },
+  "r30": {
+    "region": "Boulogne-Billancourt",
+    "comment": "Bra erfarenhet. Teamet är kompetent och lyhört."
+  },
+  "r31": {
+    "region": "Metz",
+    "comment": "Oklanderlig service ! Finansiering erhållen snabbt. Mycket nöjd."
+  },
+  "r32": {
+    "region": "Besançon",
+    "comment": "Utmärkt prestation. Enkel process och professionellt team."
+  },
+  "r33": {
+    "region": "Orléans",
+    "comment": "Mycket bra service. Min rådgivare gav mig gott stöd."
+  },
+  "r34": {
+    "region": "Saint-Denis",
+    "comment": "Perfekt ! Ärende behandlat snabbt och effektivt. Jag rekommenderar."
+  },
+  "r35": {
+    "region": "Argenteuil",
+    "comment": "Toppservice ! Lyhört och professionellt team."
+  },
+  "r36": {
+    "region": "Rouen",
+    "comment": "Bra helhetsupplevelse. Transparent process och väl förklarad."
+  },
+  "r37": {
+    "region": "Mulhouse",
+    "comment": "Utmärkt ! Min kredit validerad på 9 dagar. Professionell service."
+  },
+  "r38": {
+    "region": "Montreuil",
+    "comment": "Mycket nöjd ! Teamet lyssnar och är effektivt."
+  },
+  "r39": {
+    "region": "Caen",
+    "comment": "Bra service. Kompetent och tillgänglig rådgivare."
+  },
+  "r40": {
+    "region": "Nancy",
+    "comment": "Oklanderligt ! Snabb och transparent process. Jag rekommenderar varmt."
+  },
+  "r41": {
+    "region": "Versailles",
+    "comment": "Utmärkt service ! Mitt ärende behandlades professionellt."
+  },
+  "r42": {
+    "region": "Nanterre",
+    "comment": "Mycket bra prestation. Lyhört team som lyssnar."
+  },
+  "r43": {
+    "region": "Créteil",
+    "comment": "Perfekt ! Finansiering erhållen snabbt. Professionell service."
+  },
+  "r44": {
+    "region": "Vitry-sur-Seine",
+    "comment": "Utmärkt erfarenhet ! Kompetent rådgivare och effektiv process."
+  },
+  "r45": {
+    "region": "Avignon",
+    "comment": "Bra service. Klar kommunikation och regelbunden uppföljning av ärendet."
+  },
+  "r46": {
+    "region": "Poitiers",
+    "comment": "Jag rekommenderar ! Snabb och transparent service. Mycket nöjd."
+  },
+  "r47": {
+    "region": "Aubervilliers",
+    "comment": "Toppservice ! Min kredit validerad på 11 dagar."
+  },
+  "r48": {
+    "region": "Aulnay-sous-Bois",
+    "comment": "Bra erfarenhet. Teamet är professionellt och lyhört."
+  },
+  "r49": {
+    "region": "Asnières-sur-Seine",
+    "comment": "Utmärkt ! Enkel och snabb process. Jag rekommenderar."
+  },
+  "r50": {
+    "region": "Colombes",
+    "comment": "Mycket nöjd ! Team som lyssnar och är effektivt."
+  },
+  "r51": {
+    "region": "La Rochelle",
+    "comment": "Bra service. Min rådgivare var tillgänglig och kompetent."
+  },
+  "r52": {
+    "region": "Calais",
+    "comment": "Oklanderligt ! Ärende behandlat snabbt. Professionell service."
+  },
+  "r53": {
+    "region": "Rueil-Malmaison",
+    "comment": "Perfekt ! Finansiering erhållen på mindre än 2 veckor."
+  },
+  "r54": {
+    "region": "Antibes",
+    "comment": "Mycket bra prestation. Transparent process och väl förklarad."
+  },
+  "r55": {
+    "region": "Saint-Maur-des-Fossés",
+    "comment": "Utmärkt service ! Lyhört och professionellt team."
+  },
+  "r56": {
+    "region": "Champigny-sur-Marne",
+    "comment": "Jag rekommenderar varmt ! Snabb och effektiv service."
+  },
+  "r57": {
+    "region": "Dunkerque",
+    "comment": "Bra helhetsupplevelse. Kompetent rådgivare."
+  },
+  "r58": {
+    "region": "Bourges",
+    "comment": "Toppservice ! Mitt ärende validerades snabbt."
+  },
+  "r59": {
+    "region": "Cannes",
+    "comment": "Perfekt ! Enkel och transparent process. Mycket nöjd."
+  },
+  "r60": {
+    "region": "Pau",
+    "comment": "Mycket bra service. Teamet lyssnar och är lyhört."
+  },
+  "r61": {
+    "region": "Colmar",
+    "comment": "Utmärkt ! Min bilkredit validerad på 10 dagar."
+  },
+  "r62": {
+    "region": "Quimper",
+    "comment": "Oklanderlig service ! Professionellt och effektivt team."
+  },
+  "r63": {
+    "region": "Valence",
+    "comment": "Bra prestation. Klar kommunikation och regelbunden uppföljning."
+  },
+  "r64": {
+    "region": "Troyes",
+    "comment": "Jag rekommenderar ! Snabb och professionell service."
+  },
+  "r65": {
+    "region": "Ajaccio",
+    "comment": "Perfekt ! Finansiering erhållen snabbt. Mycket nöjd."
+  },
+  "r66": {
+    "region": "Chambéry",
+    "comment": "Mycket bra erfarenhet. Teamet är kompetent."
+  },
+  "r67": {
+    "region": "Lorient",
+    "comment": "Utmärkt service ! Effektiv och transparent process."
+  },
+  "r68": {
+    "region": "Niort",
+    "comment": "Oklanderligt ! Mitt ärende behandlades professionellt."
+  },
+  "r69": {
+    "region": "Sarcelles",
+    "comment": "Bra service. Tillgänglig rådgivare som lyssnar."
+  },
+  "r70": {
+    "region": "Beauvais",
+    "comment": "Utmärkt ! Jag rekommenderar AGM INVEST varmt."
+  },
+  "r71": {
+    "region": "Vannes",
+    "comment": "Toppservice ! Min kredit validerad på 9 dagar."
+  },
+  "r72": {
+    "region": "Ivry-sur-Seine",
+    "comment": "Mycket bra prestation. Lyhört och professionellt team."
+  },
+  "r73": {
+    "region": "Cergy",
+    "comment": "Perfekt ! Snabb och transparent process."
+  },
+  "r74": {
+    "region": "Levallois-Perret",
+    "comment": "Utmärkt erfarenhet ! Professionell service."
+  },
+  "r75": {
+    "region": "Pessac",
+    "comment": "Bra service. Min rådgivare var kompetent."
+  },
+  "r76": {
+    "region": "Clichy",
+    "comment": "Jag rekommenderar ! Ärende behandlat snabbt."
+  },
+  "r77": {
+    "region": "Arles",
+    "comment": "Oklanderlig service ! Team som lyssnar och är effektivt."
+  },
+  "r78": {
+    "region": "Vénissieux",
+    "comment": "Mycket bra erfarenhet. Processen väl förklarad."
+  },
+  "r79": {
+    "region": "Antony",
+    "comment": "Utmärkt ! Min finansiering erhållen på 12 dagar."
+  },
+  "r80": {
+    "region": "La Seyne-sur-Mer",
+    "comment": "Perfekt ! Snabb och professionell service."
+  },
+  "r81": {
+    "region": "Neuilly-sur-Seine",
+    "comment": "Bra service. Teamet är lyhört."
+  },
+  "r82": {
+    "region": "Montauban",
+    "comment": "Jag rekommenderar varmt ! Utmärkt service."
+  },
+  "r83": {
+    "region": "Pantin",
+    "comment": "Toppservice ! Ärende validerat snabbt."
+  },
+  "r84": {
+    "region": "Noisy-le-Grand",
+    "comment": "Mycket bra prestation. Kompetent rådgivare."
+  },
+  "r85": {
+    "region": "Évry",
+    "comment": "Utmärkt service ! Effektiv process."
+  },
+  "r86": {
+    "region": "Villeneuve-d'Ascq",
+    "comment": "Oklanderligt ! Min bilkredit validerad."
+  },
+  "r87": {
+    "region": "Meaux",
+    "comment": "Bra service. Klar kommunikation."
+  },
+  "r88": {
+    "region": "Cholet",
+    "comment": "Perfekt ! Professionellt och lyhört team."
+  },
+  "r89": {
+    "region": "Belfort",
+    "comment": "Utmärkt service ! Jag rekommenderar."
+  },
+  "r90": {
+    "region": "Bayonne",
+    "comment": "Mycket bra erfarenhet. Transparent process."
+  },
+  "r91": {
+    "region": "Chartres",
+    "comment": "Oklanderligt ! Finansiering erhållen snabbt."
+  },
+  "r92": {
+    "region": "Drancy",
+    "comment": "Utmärkt ! Professionell och effektiv service."
+  },
+  "r93": {
+    "region": "Sartrouville",
+    "comment": "Bra service. Min rådgivare var tillgänglig."
+  },
+  "r94": {
+    "region": "Saint-Quentin",
+    "comment": "Jag rekommenderar ! Ärende behandlat med omsorg."
+  },
+  "r95": {
+    "region": "Storstockholm",
+    "comment": "Toppservice ! Mycket nöjd med resultatet."
+  },
+  "r96": {
+    "region": "Auvergne-Rhône-Alpes",
+    "comment": "Mycket bra prestation. Kompetent team."
+  },
+  "r97": {
+    "region": "Nya Akvitanien",
+    "comment": "Perfekt ! Enkel och snabb process."
+  },
+  "r98": {
+    "region": "Occitanien",
+    "comment": "Utmärkt service ! Min kredit validerad på 10 dagar."
+  },
+  "r99": {
+    "region": "Hauts-de-France",
+    "comment": "Bra service. Effektiv kommunikation."
+  },
+  "r100": {
+    "region": "Provence-Alpes-Côte d'Azur",
+    "comment": "Jag rekommenderar varmt ! Professionell service."
+  },
+  "r101": {
+    "region": "Grand Est",
+    "comment": "Oklanderligt ! Lyhört team som lyssnar."
+  },
+  "r102": {
+    "region": "Pays de la Loire",
+    "comment": "Mycket bra erfarenhet. Transparent process."
+  },
+  "r103": {
+    "region": "Bretagne",
+    "comment": "Utmärkt service ! Mitt ärende validerades snabbt."
+  },
+  "r104": {
+    "region": "Normandie",
+    "comment": "Perfekt ! Jag rekommenderar AGM INVEST."
+  },
+  "r105": {
+    "region": "Bourgogne-Franche-Comté",
+    "comment": "Bra service. Kompetent och tillgänglig rådgivare."
+  },
+  "r106": {
+    "region": "Centre-Val de Loire",
+    "comment": "Utmärkt ! Finansiering erhållen på 11 dagar."
+  },
+  "r107": {
+    "region": "Korsika",
+    "comment": "Oklanderlig service ! Professionellt team."
+  },
+  "r108": {
+    "region": "Paris",
+    "comment": "Mycket bra prestation. Effektiv process."
+  },
+  "r109": {
+    "region": "Lyon",
+    "comment": "Jag rekommenderar ! Snabb och transparent service."
+  },
+  "r110": {
+    "region": "Marseille",
+    "comment": "Perfekt ! Min bilkredit validerad snabbt."
+  }
+}

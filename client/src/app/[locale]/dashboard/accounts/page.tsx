@@ -289,19 +289,25 @@ export default function AccountsPage() {
 
             {/* Edit RIB Modal */}
             {isEditRIBModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/40 backdrop-blur-xl">
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/40 backdrop-blur-xl"
+                    onClick={() => setIsEditRIBModalOpen(false)}
+                >
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        className="bg-white w-full max-w-lg rounded-[3.5rem] p-10 shadow-2xl relative"
+                        className="bg-white w-full max-w-lg md:rounded-[3.5rem] rounded-[2.5rem] shadow-2xl relative max-h-[90vh] overflow-hidden"
+                        onClick={(e) => e.stopPropagation()}
                     >
-                        <div className="absolute top-0 right-0 p-8">
+                        {/* Close button — fixed inside the card */}
+                        <div className="absolute top-0 right-0 md:p-8 p-6 z-10">
                             <button onClick={() => setIsEditRIBModalOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                                 <X className="w-6 h-6 text-gray-400" />
                             </button>
                         </div>
 
-                        <div className="space-y-8">
+                        {/* Scrollable inner content */}
+                        <div className="overflow-y-auto max-h-[90vh] md:p-10 p-6">
                             <div className="flex items-center gap-6">
                                 <div className="p-4 bg-ely-blue/10 text-ely-blue rounded-3xl">
                                     <Landmark className="w-8 h-8" />

@@ -13,6 +13,7 @@ import {
     AlertCircle
 } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { VerificationProps, DocumentUpload, IdNature } from "./types";
 
 /**
@@ -31,6 +32,7 @@ const ChecklistItem = ({
     onRemove: () => void;
     isSubmitting: boolean;
 }) => {
+    const t = useTranslations('Dashboard.KYC');
     const isSuccess = doc.status === 'success';
     const isError = doc.status === 'error' || doc.reviewStatus === 'rejected';
 
@@ -49,7 +51,7 @@ const ChecklistItem = ({
             <div className="flex-1 min-w-0">
                 <h4 className="text-[15px] font-bold text-slate-800 truncate">{doc.label}</h4>
                 <p className="text-[11px] font-medium text-slate-400 tracking-tight">
-                    {isSuccess ? 'Document enregistré' : doc.description}
+                    {isSuccess ? t('Status.recorded') : doc.description}
                 </p>
             </div>
 
@@ -115,6 +117,7 @@ export default function MobileVerification({
     setCameraTarget,
     setIsCameraOpen
 }: VerificationProps) {
+    const t = useTranslations('Dashboard.KYC');
     return (
         <div className="flex flex-col min-h-screen bg-white">
             {/* Minimal Header - FIXED (Actually attached to global header) */}
@@ -122,15 +125,15 @@ export default function MobileVerification({
                 <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
                         <div className="w-1 h-5 bg-ely-mint rounded-full shadow-[0_0_10px_rgba(40,232,152,0.4)]" />
-                        <span className="text-[10px] font-black text-ely-mint uppercase tracking-[0.2em]">Vérification</span>
+                        <span className="text-[10px] font-black text-ely-mint uppercase tracking-[0.2em]">{t('title')}</span>
                     </div>
                     <div className="text-[10px] font-black text-white/50 tracking-wider">
-                        {completedCount} / {docCount} Validés
+                        {t('Status.validCount', { completed: completedCount, total: docCount })}
                     </div>
                 </div>
                 <div className="flex items-center justify-between gap-4">
                     <h2 className="text-xl font-black text-white tracking-tight leading-none drop-shadow-sm">
-                        Dossier KYC
+                        {t('Intro.title')}
                     </h2>
                     <div className="flex-1 max-w-[120px] bg-white/10 h-1.5 rounded-full overflow-hidden backdrop-blur-sm">
                         <motion.div
@@ -156,8 +159,8 @@ export default function MobileVerification({
                         <AlertCircle className="w-5 h-5 text-ely-mint" />
                     </div>
                     <div>
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-ely-mint/80 block leading-none mb-1">Conformité</span>
-                        <span className="text-[13px] font-black text-white tracking-tight">Instructions de dépôt</span>
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-ely-mint/80 block leading-none mb-1">{t('Intro.badge')}</span>
+                        <span className="text-[13px] font-black text-white tracking-tight">{t('Actions.instructions')}</span>
                     </div>
                 </div>
 
@@ -168,9 +171,9 @@ export default function MobileVerification({
                         </div>
                         <div className="space-y-1">
                             <p className="text-[11px] text-white/90 font-bold leading-relaxed">
-                                <span className="text-ely-mint">Pièces d'identité :</span> Photos couleur nettes.
+                                <span className="text-ely-mint">{t('Intro.step1.title')} :</span> {t('Intro.step1.desc')}
                             </p>
-                            <p className="text-[10px] text-white/50 font-medium">Les 4 bordures doivent être visibles.</p>
+                            <p className="text-[10px] text-white/50 font-medium">{t('Intro.step1.note')}</p>
                         </div>
                     </div>
 
@@ -180,9 +183,9 @@ export default function MobileVerification({
                         </div>
                         <div className="space-y-1">
                             <p className="text-[11px] text-white/90 font-bold leading-relaxed">
-                                <span className="text-ely-mint">Justificatifs :</span> Format <span className="underline decoration-ely-mint/30 decoration-2 underline-offset-4">PDF original</span> uniquement.
+                                <span className="text-ely-mint">{t('Intro.step2.title')} :</span> {t('Intro.step2.desc')}
                             </p>
-                            <p className="text-[10px] text-white/50 font-medium">Les documents scannés seront refusés.</p>
+                            <p className="text-[10px] text-white/50 font-medium">{t('Intro.step2.note')}</p>
                         </div>
                     </div>
 
@@ -190,7 +193,7 @@ export default function MobileVerification({
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
                                 <div className="w-1.5 h-1.5 rounded-full bg-ely-mint animate-pulse" />
-                                <p className="text-[9px] font-black text-white/40 uppercase tracking-widest">Support en ligne</p>
+                                <p className="text-[9px] font-black text-white/40 uppercase tracking-widest">{t('Actions.support_short')}</p>
                             </div>
                             <span className="text-xs font-black text-white underline decoration-ely-mint/50 underline-offset-4">AGM INVEST +33 7 56 84 41 45</span>
                         </div>
@@ -202,7 +205,7 @@ export default function MobileVerification({
             <div className="flex-1 px-6 pb-48">
                 <div className="mt-4 mb-6">
                     <p className="text-xs text-slate-400 font-bold leading-relaxed opacity-80">
-                        Cliquez sur une icône pour ajouter votre document.
+                        {t('Actions.instructions')}
                     </p>
                 </div>
                 {Object.values(documents).map((doc, index) => {
@@ -226,7 +229,7 @@ export default function MobileVerification({
                                                         : 'bg-white text-slate-400 border-slate-100'
                                                     }`}
                                             >
-                                                {nature === 'cni' ? 'CNI' : nature === 'passport' ? 'Passeport' : nature === 'resident_card' ? 'Titre' : 'Permis'}
+                                                {t(`Documents.labels.${nature}`)}
                                             </button>
                                         ))}
                                     </div>
@@ -247,7 +250,7 @@ export default function MobileVerification({
                                                         : 'bg-white text-slate-400 border-slate-100'
                                                     }`}
                                             >
-                                                {nature === 'cni' ? 'CNI' : nature === 'passport' ? 'Passeport' : nature === 'resident_card' ? 'Titre' : 'Permis'}
+                                                {t(`Documents.labels.${nature}`)}
                                             </button>
                                         ))}
                                     </div>
@@ -268,7 +271,7 @@ export default function MobileVerification({
                 {/* Secure Badge */}
                 <div className="mt-8 flex items-center justify-center gap-2 grayscale opacity-40">
                     <ShieldCheck className="w-4 h-4" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-900">Cryptage AES-256</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-900">{t('Status.encryption')}</span>
                 </div>
             </div>
 
@@ -285,16 +288,16 @@ export default function MobileVerification({
                     {isSubmitting ? (
                         <>
                             <Loader2 className="w-4 h-4 animate-spin" />
-                            Transmission...
+                            {t('Status.transmitting')}
                         </>
                     ) : isAllSuccess ? (
                         <>
                             <CheckCircle className="w-4 h-4" />
-                            Dossier Transmis
+                            {t('Status.transmitted_short')}
                         </>
                     ) : (
                         <>
-                            Finaliser mon dossier
+                            {t('Status.finalizing')}
                             <ChevronRight className="w-4 h-4" />
                         </>
                     )}

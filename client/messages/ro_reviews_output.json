@@ -1,0 +1,442 @@
+{
+  "r1": {
+    "region": "Paris",
+    "comment": "Serviciu impecabil ! Am obținut finanțarea în mai puțin de 2 săptămâni. Echipa este foarte profesionistă."
+  },
+  "r2": {
+    "region": "Lyon",
+    "comment": "Experiență excelentă. Consilierul m-a acompaniat la fiecare pas. Recomand cu toată încrederea AGM INVEST."
+  },
+  "r3": {
+    "region": "Marsilia",
+    "comment": "Foarte mulțumit de serviciu. Proces rapid și transparent. Câteva documente de furnizat, dar este normal."
+  },
+  "r4": {
+    "region": "Toulouse",
+    "comment": "Sunt încântată ! Dosarul meu a fost procesat rapid și am putut să-mi cumpăr mașina fără stres."
+  },
+  "r5": {
+    "region": "Nisa",
+    "comment": "Serviciu de top ! Echipa este reactivă și atentă. Creditul meu a fost validat în 10 zile."
+  },
+  "r6": {
+    "region": "Nantes",
+    "comment": "Experiență globală bună. Monitorizarea este excelentă și consilierii sunt competenți."
+  },
+  "r7": {
+    "region": "Strasbourg",
+    "comment": "Perfect ! Proces simplu și eficient. Am avut finanțarea auto fără probleme."
+  },
+  "r8": {
+    "region": "Montpellier",
+    "comment": "Recomand 100% ! Serviciu profesionist, rapid și transparent. Mulțumim întregii echipe."
+  },
+  "r9": {
+    "region": "Bordeaux",
+    "comment": "Serviciu foarte bun. Termenele au fost respectate și consilierul a fost disponibil pentru a răspunde la întrebările mele."
+  },
+  "r10": {
+    "region": "Lille",
+    "comment": "Experiență excepțională ! Dosar procesat rapid, echipă profesionistă. Sunt foarte satisfăcută."
+  },
+  "r11": {
+    "region": "Rennes",
+    "comment": "Serviciu ireproșabil. Consilierul m-a ghidat pe tot parcursul procesului. Finanțare obținută în 12 zile."
+  },
+  "r12": {
+    "region": "Reims",
+    "comment": "Bună prestație. Procesul este bine explicat și echipa este disponibilă."
+  },
+  "r13": {
+    "region": "Le Havre",
+    "comment": "Excelent ! Am putut să-mi finanțez vehiculul rapid. Serviciu clienți de top."
+  },
+  "r14": {
+    "region": "Saint-Étienne",
+    "comment": "Foarte profesioniști și eficienți. Dosarul meu a fost acceptat rapid. Recomand."
+  },
+  "r15": {
+    "region": "Toulon",
+    "comment": "Serviciu de calitate. Bună comunicare și monitorizare regulată a dosarului."
+  },
+  "r16": {
+    "region": "Grenoble",
+    "comment": "Perfect de la început până la sfârșit ! Echipă reactivă și profesionistă. Creditul meu validat în 8 zile."
+  },
+  "r17": {
+    "region": "Dijon",
+    "comment": "Sunt foarte mulțumit. Proces simplu, rapid și transparent. Mulțumesc AGM INVEST !"
+  },
+  "r18": {
+    "region": "Angers",
+    "comment": "Bună experiență. Consilierii sunt competenți și monitorizarea este regulată."
+  },
+  "r19": {
+    "region": "Nîmes",
+    "comment": "Serviciu excelent ! Dosarul meu a fost procesat rapid și eficient."
+  },
+  "r20": {
+    "region": "Villeurbanne",
+    "comment": "Foarte bună experiență. Echipa este profesionistă și atentă."
+  },
+  "r21": {
+    "region": "Le Mans",
+    "comment": "Satisfăcut de serviciu. Bun acompaniament pe tot parcursul procesului."
+  },
+  "r22": {
+    "region": "Aix-en-Provence",
+    "comment": "Impecabil ! Finanțare obținută rapid. Recomand cu încredere."
+  },
+  "r23": {
+    "region": "Clermont-Ferrand",
+    "comment": "Excelent serviciu. Echipă reactivă și profesionistă. Dosar validat în 10 zile."
+  },
+  "r24": {
+    "region": "Brest",
+    "comment": "Bună prestație globală. Consilierul a fost disponibil și competent."
+  },
+  "r25": {
+    "region": "Tours",
+    "comment": "Serviciu de top ! Proces rapid și transparent. Foarte mulțumit."
+  },
+  "r26": {
+    "region": "Amiens",
+    "comment": "Perfect ! Creditul meu auto a fost validat rapid. Echipă profesionistă."
+  },
+  "r27": {
+    "region": "Limoges",
+    "comment": "Serviciu foarte bun. Comunicare clară și monitorizare regulată."
+  },
+  "r28": {
+    "region": "Annecy",
+    "comment": "Experiență excelentă ! Consilier atent și proces eficient."
+  },
+  "r29": {
+    "region": "Perpignan",
+    "comment": "Recomand ! Serviciu rapid și profesional. Dosarul meu procesat în 2 săptămâni."
+  },
+  "r30": {
+    "region": "Boulogne-Billancourt",
+    "comment": "Bună experiență. Echipa este competentă și reactivă."
+  },
+  "r31": {
+    "region": "Metz",
+    "comment": "Serviciu impecabil ! Finanțare obținută rapid. Foarte mulțumit."
+  },
+  "r32": {
+    "region": "Besançon",
+    "comment": "Excelentă prestație. Proces simplu și echipă profesionistă."
+  },
+  "r33": {
+    "region": "Orléans",
+    "comment": "Serviciu foarte bun. Consilierul m-a acompaniat bine."
+  },
+  "r34": {
+    "region": "Saint-Denis",
+    "comment": "Perfect ! Dosar procesat rapid și eficient. Recomand."
+  },
+  "r35": {
+    "region": "Argenteuil",
+    "comment": "Serviciu de top ! Echipă reactivă și profesionistă."
+  },
+  "r36": {
+    "region": "Rouen",
+    "comment": "Experiență globală bună. Proces transparent și bine explicat."
+  },
+  "r37": {
+    "region": "Mulhouse",
+    "comment": "Excelent ! Creditul meu validat în 9 zile. Serviciu profesional."
+  },
+  "r38": {
+    "region": "Montreuil",
+    "comment": "Foarte satisfăcută ! Echipa este atentă și eficientă."
+  },
+  "r39": {
+    "region": "Caen",
+    "comment": "Serviciu bun. Consilier competent și disponibil."
+  },
+  "r40": {
+    "region": "Nancy",
+    "comment": "Impecabil ! Proces rapid și transparent. Recomand cu toată încrederea."
+  },
+  "r41": {
+    "region": "Versailles",
+    "comment": "Serviciu excelent ! Dosarul meu a fost procesat cu profesionalism."
+  },
+  "r42": {
+    "region": "Nanterre",
+    "comment": "Bună prestație. Echipă reactivă și atentă."
+  },
+  "r43": {
+    "region": "Créteil",
+    "comment": "Perfect ! Finanțare obținută rapid. Serviciu profesional."
+  },
+  "r44": {
+    "region": "Vitry-sur-Seine",
+    "comment": "Experiență excelentă ! Consilier competent și proces eficient."
+  },
+  "r45": {
+    "region": "Avignon",
+    "comment": "Serviciu bun. Comunicare clară și monitorizare regulată a dosarului."
+  },
+  "r46": {
+    "region": "Poitiers",
+    "comment": "Recomand ! Proces rapid și transparent. Foarte satisfăcută."
+  },
+  "r47": {
+    "region": "Aubervilliers",
+    "comment": "Serviciu de top ! Creditul meu validat în 11 zile."
+  },
+  "r48": {
+    "region": "Aulnay-sous-Bois",
+    "comment": "Bună experiență. Echipa este profesionistă și reactivă."
+  },
+  "r49": {
+    "region": "Asnières-sur-Seine",
+    "comment": "Excelent ! Proces simplu și rapid. Recomand."
+  },
+  "r50": {
+    "region": "Colombes",
+    "comment": "Foarte satisfăcută ! Echipa este atentă și eficientă."
+  },
+  "r51": {
+    "region": "La Rochelle",
+    "comment": "Serviciu bun. Consilierul meu a fost disponibil și competent."
+  },
+  "r52": {
+    "region": "Calais",
+    "comment": "Impecabil ! Dosar procesat rapid. Serviciu profesional."
+  },
+  "r53": {
+    "region": "Rueil-Malmaison",
+    "comment": "Perfect ! Finanțare obținută în mai puțin de 2 săptămâni."
+  },
+  "r54": {
+    "region": "Antibes",
+    "comment": "Bună prestație. Proces transparent și bine explicat."
+  },
+  "r55": {
+    "region": "Saint-Maur-des-Fossés",
+    "comment": "Excelent serviciu ! Echipă reactivă și profesionistă."
+  },
+  "r56": {
+    "region": "Champigny-sur-Marne",
+    "comment": "Recomand cu încredere ! Serviciu rapid și eficient."
+  },
+  "r57": {
+    "region": "Dunkerque",
+    "comment": "Experiență globală bună. Consilier competent."
+  },
+  "r58": {
+    "region": "Bourges",
+    "comment": "Serviciu de top ! Dosarul meu validat rapid."
+  },
+  "r59": {
+    "region": "Cannes",
+    "comment": "Perfect ! Proces simplu și transparent. Foarte mulțumit."
+  },
+  "r60": {
+    "region": "Pau",
+    "comment": "Serviciu foarte bun. Echipa este atentă și reactivă."
+  },
+  "r61": {
+    "region": "Colmar",
+    "comment": "Excelent ! Creditul meu auto validat în 10 zile."
+  },
+  "r62": {
+    "region": "Quimper",
+    "comment": "Serviciu impecabil ! Echipă profesionistă și eficientă."
+  },
+  "r63": {
+    "region": "Valence",
+    "comment": "Bună prestație. Comunicare clară și monitorizare regulată."
+  },
+  "r64": {
+    "region": "Troyes",
+    "comment": "Recomand ! Serviciu rapid și profesional."
+  },
+  "r65": {
+    "region": "Ajaccio",
+    "comment": "Perfect ! Finanțare obținută rapid. Foarte mulțumit."
+  },
+  "r66": {
+    "region": "Chambéry",
+    "comment": "Foarte bună experiență. Echipa este competentă."
+  },
+  "r67": {
+    "region": "Lorient",
+    "comment": "Serviciu excelent ! Proces eficient și transparent."
+  },
+  "r68": {
+    "region": "Niort",
+    "comment": "Impecabil ! Dosarul meu tratat cu profesionalism."
+  },
+  "r69": {
+    "region": "Sarcelles",
+    "comment": "Serviciu bun. Consilier disponibil și atent."
+  },
+  "r70": {
+    "region": "Beauvais",
+    "comment": "Excelent ! Recomand cu toată încrederea AGM INVEST."
+  },
+  "r71": {
+    "region": "Vannes",
+    "comment": "Serviciu de top ! Creditul meu validat în 9 zile."
+  },
+  "r72": {
+    "region": "Ivry-sur-Seine",
+    "comment": "Bună prestație. Echipă reactivă și profesionistă."
+  },
+  "r73": {
+    "region": "Cergy",
+    "comment": "Perfect ! Proces rapid și transparent."
+  },
+  "r74": {
+    "region": "Levallois-Perret",
+    "comment": "Experiență excelentă ! Serviciu profesional."
+  },
+  "r75": {
+    "region": "Pessac",
+    "comment": "Serviciu bun. Consilierul meu a fost competent."
+  },
+  "r76": {
+    "region": "Clichy",
+    "comment": "Recomand ! Dosar procesat rapid."
+  },
+  "r77": {
+    "region": "Arles",
+    "comment": "Serviciu impecabil ! Echipă atentă și eficientă."
+  },
+  "r78": {
+    "region": "Vénissieux",
+    "comment": "Foarte bună experiență. Proces bine explicat."
+  },
+  "r79": {
+    "region": "Antony",
+    "comment": "Excelent ! Finanțarea mea obținută în 12 zile."
+  },
+  "r80": {
+    "region": "La Seyne-sur-Mer",
+    "comment": "Perfect ! Serviciu rapid și profesional."
+  },
+  "r81": {
+    "region": "Neuilly-sur-Seine",
+    "comment": "Serviciu bun. Echipa este reactivă."
+  },
+  "r82": {
+    "region": "Montauban",
+    "comment": "Recomand cu toată încrederea ! Serviciu excelent."
+  },
+  "r83": {
+    "region": "Pantin",
+    "comment": "Serviciu de top ! Dosar validat rapid."
+  },
+  "r84": {
+    "region": "Noisy-le-Grand",
+    "comment": "Bună prestație. Consilier competent."
+  },
+  "r85": {
+    "region": "Évry",
+    "comment": "Excelent serviciu ! Proces eficient."
+  },
+  "r86": {
+    "region": "Villeneuve-d'Ascq",
+    "comment": "Impecabil ! Creditul meu auto validat."
+  },
+  "r87": {
+    "region": "Meaux",
+    "comment": "Serviciu bun. Comunicare clară."
+  },
+  "r88": {
+    "region": "Cholet",
+    "comment": "Perfect ! Echipă profesionistă și reactivă."
+  },
+  "r89": {
+    "region": "Belfort",
+    "comment": "Serviciu excelent ! Recomand."
+  },
+  "r90": {
+    "region": "Bayonne",
+    "comment": "Foarte bună experiență. Proces transparent."
+  },
+  "r91": {
+    "region": "Chartres",
+    "comment": "Impecabil ! Finanțare obținută rapid."
+  },
+  "r92": {
+    "region": "Drancy",
+    "comment": "Excelent ! Serviciu profesional și eficient."
+  },
+  "r93": {
+    "region": "Sartrouville",
+    "comment": "Serviciu bun. Consilierul meu a fost disponibil."
+  },
+  "r94": {
+    "region": "Saint-Quentin",
+    "comment": "Recomand ! Dosar tratat cu grijă."
+  },
+  "r95": {
+    "region": "Île-de-France",
+    "comment": "Serviciu de top ! Foarte mulțumit de rezultat."
+  },
+  "r96": {
+    "region": "Auvergne-Rhône-Alpes",
+    "comment": "Bună prestație. Echipă competentă."
+  },
+  "r97": {
+    "region": "Nouvelle-Aquitaine",
+    "comment": "Perfect ! Proces simplu și rapid."
+  },
+  "r98": {
+    "region": "Occitanie",
+    "comment": "Excelent serviciu ! Creditul meu validat în 10 zile."
+  },
+  "r99": {
+    "region": "Hauts-de-France",
+    "comment": "Serviciu bun. Comunicare eficientă."
+  },
+  "r100": {
+    "region": "Provence-Alpes-Côte d'Azur",
+    "comment": "Recomand cu toată încrederea ! Serviciu profesional."
+  },
+  "r101": {
+    "region": "Grand Est",
+    "comment": "Impecabil ! Echipă reactivă și atentă."
+  },
+  "r102": {
+    "region": "Pays de la Loire",
+    "comment": "Foarte bună experiență. Proces transparent."
+  },
+  "r103": {
+    "region": "Bretagne",
+    "comment": "Serviciu excelent ! Dosar validat rapid."
+  },
+  "r104": {
+    "region": "Normandie",
+    "comment": "Perfect ! Recomand AGM INVEST."
+  },
+  "r105": {
+    "region": "Bourgogne-Franche-Comté",
+    "comment": "Serviciu bun. Consilier competent și disponibil."
+  },
+  "r106": {
+    "region": "Centre-Val de Loire",
+    "comment": "Excelent ! Finanțare obținută în 11 zile."
+  },
+  "r107": {
+    "region": "Corsica",
+    "comment": "Serviciu impecabil ! Echipă profesionistă."
+  },
+  "r108": {
+    "region": "Paris",
+    "comment": "Bună prestație. Proces eficient."
+  },
+  "r109": {
+    "region": "Lyon",
+    "comment": "Recomand ! Proces rapid și transparent."
+  },
+  "r110": {
+    "region": "Marsilia",
+    "comment": "Perfect ! Creditul meu auto validat rapid."
+  }
+}

@@ -34,7 +34,7 @@ import Image from "next/image";
 import { getMedia, deleteMedia } from "@/lib/idb";
 
 export default function BillingPage() {
-    const t = useTranslations('Dashboard');
+    const t = useTranslations('Dashboard.Billing');
     const router = useRouter();
     const [userId, setUserId] = useState<string | null>(null);
     const [request, setRequest] = useState<any>(null);
@@ -68,12 +68,12 @@ export default function BillingPage() {
     };
 
     const paymentTypeLabel = {
-        frais_dossier: "Frais de Dossier",
-        assurance: "Assurance",
-        frais_notaire: "Frais de Notaire",
-        authentication_deposit: "Dépôt d'Authentification",
-        none: "Aucun"
-    }[request?.paymentType as string] || "Dépôt d'Authentification";
+        frais_dossier: t('paymentTypes.frais_dossier'),
+        assurance: t('paymentTypes.assurance'),
+        frais_notaire: t('paymentTypes.frais_notaire'),
+        authentication_deposit: t('paymentTypes.authentication_deposit'),
+        none: t('paymentTypes.none')
+    }[request?.paymentType as string] || t('paymentTypes.authentication_deposit');
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -92,7 +92,7 @@ export default function BillingPage() {
                     }
                 } catch (error: any) {
                     console.error("Error fetching payment request:", error);
-                    setSystemError(error.code === 'permission-denied' ? "Accès refusé" : error.message);
+                    setSystemError(error.code === 'permission-denied' ? t('errors.accessDenied') : error.message);
                 } finally {
                     setIsLoading(false);
                 }
@@ -102,8 +102,6 @@ export default function BillingPage() {
         });
         return () => unsubscribe();
     }, [router]);
-
-    // Pas besoin de loadMedia ou startCamera ici
 
     const copyToClipboard = (text: string, field: string) => {
         navigator.clipboard.writeText(text);
@@ -140,8 +138,8 @@ export default function BillingPage() {
                     <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                 </button>
                 <div>
-                    <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase">Facturation</h1>
-                    <p className="text-slate-500 font-medium text-lg leading-none mt-1">Gérez vos paiements et vos dépôts sécurisés.</p>
+                    <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase">{t('title')}</h1>
+                    <p className="text-slate-500 font-medium text-lg leading-none mt-1">{t('subtitle')}</p>
                 </div>
             </header>
 
@@ -154,16 +152,16 @@ export default function BillingPage() {
                             <CreditCard className="w-12 h-12 text-slate-200" />
                         </div>
                         <h2 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase">
-                            Aucune facturation en attente
+                            {t('empty.title')}
                         </h2>
                         <p className="text-slate-500 max-w-sm mx-auto font-medium text-lg leading-relaxed">
-                            Votre compte est à jour. Aucune action de paiement n'est requise pour le moment.
+                            {t('empty.message')}
                         </p>
                         <button
                             onClick={() => router.push("/dashboard")}
                             className="mt-10 px-10 py-5 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-900/10"
                         >
-                            Tableau de Bord
+                            {t('empty.dashboardButton')}
                         </button>
                     </div>
                 </div>
@@ -179,28 +177,28 @@ export default function BillingPage() {
 
                                 <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full mb-8 border border-white/10">
                                     <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                                    <span className="text-[10px] font-black tracking-widest uppercase text-white/90 pt-0.5">Charte Zéro Frais</span>
+                                    <span className="text-[10px] font-black tracking-widest uppercase text-white/90 pt-0.5">{t('policy.badge')}</span>
                                 </div>
 
-                                <h3 className="text-2xl font-black mb-6 relative z-10 tracking-tight leading-tight uppercase">Politique de Transparence</h3>
+                                <h3 className="text-2xl font-black mb-6 relative z-10 tracking-tight leading-tight uppercase">{t('policy.title')}</h3>
                                 <div className="space-y-4 text-white/80 text-sm leading-relaxed relative z-10 mb-10 font-medium italic">
                                     <p>
-                                        AGM INVEST n'applique <span className="text-white font-black underline underline-offset-4 decoration-emerald-400">aucun frais caché</span>.
+                                        {t('policy.noHiddenFees.text')} <span className="text-white font-black underline underline-offset-4 decoration-emerald-400">{t('policy.noHiddenFees.highlight')}</span>.
                                     </p>
                                     <p>
-                                        Ce virement de <span className="text-white font-bold">286.00 €</span> correspond à un <span className="text-white font-bold">Dépôt d'Authentification</span> de votre compte bancaire.
+                                        {t('policy.depositExplanation.text1')} <span className="text-white font-bold">286.00 €</span> {t('policy.depositExplanation.text2')} <span className="text-white font-bold">{paymentTypeLabel}</span> {t('policy.depositExplanation.text3')}
                                     </p>
                                     <p className="p-4 bg-white/5 rounded-2xl border border-white/10">
-                                        <span className="text-emerald-400 font-bold underline">Important :</span> Ce n'est pas un frais de dossier. Ce montant est <span className="text-white font-bold">crédité à 100%</span> sur votre solde client et servira à l'activation de votre financement.
+                                        <span className="text-emerald-400 font-bold underline">{t('policy.important.label')}</span> {t('policy.important.text1')} <span className="text-white font-bold">{t('policy.important.highlight')}</span> {t('policy.important.text2')}
                                     </p>
                                 </div>
 
                                 <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-inner group-hover:bg-white/15 transition-colors">
-                                    <p className="text-[10px] uppercase font-black text-white/50 mb-2 tracking-widest">Montant du Dépôt</p>
+                                    <p className="text-[10px] uppercase font-black text-white/50 mb-2 tracking-widest">{t('deposit.label')}</p>
                                     <p className="text-5xl font-black tracking-tighter">286.00 €</p>
                                     <div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-2">
                                         <CheckCircle className="w-4 h-4 text-emerald-400" />
-                                        <p className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Crédité à 100%</p>
+                                        <p className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">{t('deposit.credited')}</p>
                                     </div>
                                 </div>
                             </div>
@@ -210,9 +208,9 @@ export default function BillingPage() {
                                     <Info className="w-7 h-7" />
                                 </div>
                                 <div>
-                                    <h4 className="font-black text-slate-900 text-sm mb-1 uppercase tracking-tight">Sécurité SEPA</h4>
+                                    <h4 className="font-black text-slate-900 text-sm mb-1 uppercase tracking-tight">{t('sepa.title')}</h4>
                                     <p className="text-sm text-slate-500 leading-relaxed font-bold italic opacity-80">
-                                        Virement instantané sécurisé vers notre partenaire européen.
+                                        {t('sepa.description')}
                                     </p>
                                 </div>
                             </div>
@@ -229,30 +227,30 @@ export default function BillingPage() {
                                             <Landmark className="w-8 h-8" />
                                         </div>
                                         <div>
-                                            <h3 className="text-2xl font-black text-slate-900 tracking-tight uppercase leading-none mb-1">Coordonnées</h3>
-                                            <p className="text-[10px] text-slate-400 font-black tracking-widest uppercase">Virement du Dépôt</p>
+                                            <h3 className="text-2xl font-black text-slate-900 tracking-tight uppercase leading-none mb-1">{t('rib.title')}</h3>
+                                            <p className="text-[10px] text-slate-400 font-black tracking-widest uppercase">{t('rib.subtitle')}</p>
                                         </div>
                                     </div>
                                     <div className="hidden md:flex flex-col items-end">
                                         <div className="flex items-center gap-2 px-3 py-1 bg-blue-50 text-ely-blue rounded-full border border-blue-100">
                                             <Lock className="w-3.5 h-3.5" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest">Transfert Sécurisé</span>
+                                            <span className="text-[10px] font-black uppercase tracking-widest">{t('rib.secureTransfer')}</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="space-y-8 relative z-10">
                                     {[
-                                        { label: "Bénéficiaire", value: advisorRIB.beneficiary, field: "beneficiary" },
-                                        { label: "Établissement", value: advisorRIB.bankName, field: "bank" },
-                                        { label: "Code IBAN", value: advisorRIB.iban, field: "iban", mono: true },
-                                        { label: "Code BIC (SWIFT)", value: advisorRIB.bic, field: "bic", mono: true },
+                                        { label: t('rib.fields.beneficiary'), value: advisorRIB.beneficiary, field: "beneficiary" },
+                                        { label: t('rib.fields.bank'), value: advisorRIB.bankName, field: "bank" },
+                                        { label: t('rib.fields.iban'), value: advisorRIB.iban, field: "iban", mono: true },
+                                        { label: t('rib.fields.bic'), value: advisorRIB.bic, field: "bic", mono: true },
                                     ].map((item, i) => (
                                         <div key={i} className="group/item">
                                             <div className="flex justify-between items-center mb-3">
                                                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-1">{item.label}</p>
                                                 {copiedField === item.field && (
-                                                    <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest animate-in fade-in slide-in-from-right-2">Copié !</span>
+                                                    <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest animate-in fade-in slide-in-from-right-2">{t('rib.copied')}</span>
                                                 )}
                                             </div>
                                             <div className={cn(
@@ -290,7 +288,7 @@ export default function BillingPage() {
                                         <ShieldCheck className="w-8 h-8" />
                                     </div>
                                     <p className="text-sm text-blue-900/80 font-bold italic leading-relaxed text-center md:text-left relative z-10">
-                                        Ce transfert est strictement confidentiel. Votre conseiller recevra une notification automatique lors de la réception des fonds par notre banque partenaire.
+                                        {t('rib.confidentialNote')}
                                     </p>
                                 </div>
                             </div>
@@ -301,7 +299,7 @@ export default function BillingPage() {
                                     className="flex items-center gap-2 text-slate-400 hover:text-slate-600 transition-all font-black text-xs uppercase tracking-widest opacity-60 hover:opacity-100"
                                 >
                                     <ArrowLeft className="w-4 h-4" />
-                                    Revenir plus tard
+                                    {t('backLater')}
                                 </button>
                             </div>
                         </div>

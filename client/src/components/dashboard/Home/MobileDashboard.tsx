@@ -19,7 +19,7 @@ import {
     CreditCard,
     PlusCircle
 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
@@ -57,6 +57,7 @@ export default function MobileDashboard({
     const t = useTranslations('Dashboard.Home');
     const tLayout = useTranslations('Dashboard.Layout');
     const tProjects = useTranslations('CreditRequest.Project.labels');
+    const locale = useLocale();
 
     return (
         <motion.div
@@ -231,8 +232,8 @@ export default function MobileDashboard({
                 {[
                     { label: t('quickActions.docs'), icon: FileText, color: "orange", route: "/dashboard/documents" },
                     { label: t('quickActions.transfer'), icon: ArrowUpRight, color: "emerald", route: "/dashboard/accounts/transfer" },
-                    { label: t('quickActions.schedule'), icon: Clock, color: "blue", route: "/dashboard/accounts/schedule" },
-                    { label: t('quickActions.ribRef'), icon: Landmark, color: "purple", route: "/dashboard/accounts" },
+                    { label: t('quickActions.history'), icon: Clock, color: "blue", route: "/dashboard/accounts/schedule" },
+                    { label: t('quickActions.profile'), icon: Landmark, color: "purple", route: "/dashboard/profile" },
                 ].map((action, idx) => (
                     <button
                         key={idx}
@@ -250,8 +251,8 @@ export default function MobileDashboard({
             {/* Recent Requests List */}
             <motion.div variants={item} className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
                 <div className="p-6 border-b border-gray-50 flex justify-between items-center">
-                    <h3 className="font-black text-gray-900 uppercase tracking-widest text-[10px]">{t('requests.title')}</h3>
-                    <button onClick={() => router.push("/dashboard/requests")} className="text-[10px] font-bold text-ely-blue">{t('requests.viewAll')}</button>
+                    <h3 className="font-black text-gray-900 uppercase tracking-widest text-[10px]">{t('recentRequests.title')}</h3>
+                    <button onClick={() => router.push("/dashboard/requests")} className="text-[10px] font-bold text-ely-blue">{t('recentRequests.viewAll')}</button>
                 </div>
                 <div className="divide-y divide-gray-50">
                     {recentRequests.length > 0 ? (
@@ -263,25 +264,25 @@ export default function MobileDashboard({
                                     </div>
                                     <div>
                                         <p className="text-xs font-bold text-gray-900">
-                                            {req.projectType ? tProjects(req.projectType.toLowerCase()) : t('requests.project')}
+                                            {req.projectType ? tProjects(req.projectType.toLowerCase()) : t('recentRequests.type')}
                                         </p>
                                         <p className="text-[9px] text-gray-400 font-medium">#{req.id.slice(0, 8)}</p>
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-xs font-black text-gray-900">{new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(req.amount || 0)}</p>
+                                    <p className="text-xs font-black text-gray-900">{new Intl.NumberFormat(locale === 'Utilisateur' ? 'fr-FR' : locale, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(req.amount || 0)}</p>
                                     <div className={cn(
                                         "text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full inline-block mt-1",
                                         req.status === 'approved' ? "bg-emerald-50 text-emerald-600" : "bg-ely-blue/5 text-ely-blue"
                                     )}>
-                                        {req.status === 'approved' ? t('requests.statusApproved') : t('requests.statusProcessing')}
+                                        {req.status === 'approved' ? t('recentRequests.status') : t('recentRequests.status')}
                                     </div>
                                 </div>
                             </div>
                         ))
                     ) : (
                         <div className="p-10 text-center">
-                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{t('requests.empty')}</p>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{t('recentRequests.none')}</p>
                         </div>
                     )}
                 </div>

@@ -80,26 +80,25 @@ export default function DesktopCreditRequest({
                 <div className="space-y-4">
                     <div className="flex items-center gap-2">
                         <span className="px-4 py-1.5 bg-gradient-to-r from-ely-mint to-emerald-500 text-white text-xs font-black uppercase tracking-[0.2em] rounded-full shadow-xl shadow-ely-mint/30 border border-white/20">
-                            Simulation Premium
+                            {t('Simulator.title')}
                         </span>
                     </div>
                     <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-none">
-                        Faire une demande <br className="hidden md:block" />
-                        <span className="text-ely-blue">de crédit</span>
+                        {t('title.step' + step)}
                     </h1>
                     <p className="text-slate-500 font-medium text-lg max-w-md leading-relaxed">
-                        Financez vos projets les plus ambitieux avec nos options sur-mesure.
+                        {t('subtitle')}
                     </p>
                 </div>
 
                 {/* Stepper with labels */}
                 <div className="bg-white/60 backdrop-blur-xl p-6 rounded-[2.5rem] border border-white shadow-2xl shadow-slate-200/50 flex items-center gap-2 overflow-x-auto no-scrollbar">
                     {[
-                        { id: 1, label: "Projet" },
-                        { id: 2, label: "Identité" },
-                        { id: 3, label: "Situation" },
-                        { id: 4, label: "Finances" },
-                        { id: 5, label: "Résumé" }
+                        { id: 1, label: t('Steps.project') },
+                        { id: 2, label: t('Steps.identity') },
+                        { id: 3, label: t('Steps.situation') },
+                        { id: 4, label: t('Steps.finances') },
+                        { id: 5, label: t('Steps.account') }
                     ].map((s) => (
                         <div key={s.id} className="flex items-center gap-2 shrink-0">
                             <div className="flex flex-col items-center gap-2 px-2">
@@ -151,7 +150,7 @@ export default function DesktopCreditRequest({
                                 <div className="flex items-center gap-3 border-b border-slate-50 pb-4">
                                     <div className="w-1.5 h-6 bg-ely-mint rounded-full shadow-[0_0_10px_rgba(0,201,167,0.4)]" />
                                     <label className="text-xs font-black text-white/90 uppercase tracking-[0.2em]">
-                                        Votre Profil
+                                        {t('Profile.label')}
                                     </label>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4 p-2 bg-slate-50/50 rounded-[1.8rem] border border-slate-100">
@@ -165,7 +164,7 @@ export default function DesktopCreditRequest({
                                         )}
                                     >
                                         <User className={cn("w-3 h-3 md:w-4 md:h-4", profileType === "particulier" ? "text-ely-mint" : "text-white/80")} />
-                                        Particulier
+                                        {t('Profile.individual')}
                                     </button>
                                     <button
                                         onClick={() => setProfileType("pro")}
@@ -177,7 +176,7 @@ export default function DesktopCreditRequest({
                                         )}
                                     >
                                         <Building2 className={cn("w-3 h-3 md:w-4 md:h-4", profileType === "pro" ? "text-ely-mint" : "text-white/80")} />
-                                        Professionnel
+                                        {t('Profile.professional')}
                                     </button>
                                 </div>
                             </div>
@@ -187,15 +186,15 @@ export default function DesktopCreditRequest({
                                 <div className="flex items-center gap-3 border-b border-slate-50 pb-4">
                                     <div className="w-1.5 h-7 bg-ely-mint rounded-full shadow-[0_0_10px_rgba(0,201,167,0.5)]" />
                                     <label className="text-xs font-black text-white/90 uppercase tracking-[0.2em]">
-                                        Nature de votre prêt
+                                        {t('Project.detailsLabel')}
                                     </label>
                                 </div>
                                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                                     {[
-                                        { id: "personal", label: "Personnel", icon: User },
-                                        { id: "auto", label: "Auto/Moto", icon: CheckCircle2 },
-                                        { id: "pro", label: "Business", icon: History },
-                                        { id: "other", label: "Autre", icon: Info },
+                                        { id: "personal", icon: User },
+                                        { id: "auto", icon: CheckCircle2 },
+                                        { id: "pro", icon: History },
+                                        { id: "other", icon: Info },
                                     ].map((type) => (
                                         <button
                                             key={type.id}
@@ -216,7 +215,7 @@ export default function DesktopCreditRequest({
                                             <span className={cn(
                                                 "text-xs font-black uppercase tracking-widest transition-colors",
                                                 projectType === type.id ? "text-white" : "text-white/90"
-                                            )}>{type.label}</span>
+                                            )}>{t('Project.labels.' + type.id)}</span>
                                             {projectType === type.id && (
                                                 <div className="absolute top-2 right-2">
                                                     <div className="w-2 h-2 bg-ely-mint rounded-full animate-pulse" />
@@ -238,13 +237,13 @@ export default function DesktopCreditRequest({
                                             <div className="space-y-4">
                                                 <label className="text-xs font-black text-white/90 uppercase tracking-widest flex items-center gap-2">
                                                     <FileText className="w-4 h-4 text-ely-blue" />
-                                                    Précisez votre projet
+                                                    {t('Project.detailsLabel')}
                                                 </label>
                                                 <input
                                                     type="text"
                                                     value={projectDescription}
                                                     onChange={(e) => setProjectDescription(e.target.value)}
-                                                    placeholder="Décrivez brièvement votre besoin (ex: Travaux, Mariage, Voyage...)"
+                                                    placeholder={t('Project.detailsPlaceholder')}
                                                     className="w-full px-8 py-5 bg-white rounded-[2rem] border-2 border-slate-100 focus:border-ely-mint outline-none transition-all font-bold text-slate-900 shadow-sm"
                                                     autoFocus
                                                 />
@@ -261,10 +260,10 @@ export default function DesktopCreditRequest({
                                         <div className="flex items-center gap-2">
                                             <div className="w-1.5 h-5 bg-ely-mint rounded-full shadow-[0_0_8px_rgba(0,201,167,0.4)]" />
                                             <label className="text-xs font-black text-white/70 uppercase tracking-[0.2em]">
-                                                Montant souhaité
+                                                {t('Simulator.amountLabel')}
                                             </label>
                                         </div>
-                                        <p className="text-sm text-white/40 font-medium italic">Ajustez selon votre besoin réel.</p>
+                                        <p className="text-sm text-white/40 font-medium italic">{t('Simulator.amountHint')}</p>
                                     </div>
                                     <div className="flex items-center gap-1 px-4 py-2 md:px-6 md:py-3 bg-white/5 rounded-2xl border border-white/5 shadow-xl backdrop-blur-md transition-transform duration-500">
                                         <input
@@ -302,10 +301,10 @@ export default function DesktopCreditRequest({
                                         <div className="flex items-center gap-2">
                                             <div className="w-1.5 h-5 bg-ely-mint rounded-full shadow-[0_0_8px_rgba(0,201,167,0.4)]" />
                                             <label className="text-xs font-black text-white/70 uppercase tracking-[0.2em]">
-                                                Taux d'intérêt annuel
+                                                {t('Step1.rate')}
                                             </label>
                                         </div>
-                                        <p className="text-sm text-white/40 font-medium italic">Taux fixe AGMINVEST</p>
+                                        <p className="text-sm text-white/40 font-medium italic">{t('Simulator.guaranteedRate')}</p>
                                     </div>
                                     <div className="flex items-center gap-1 px-6 py-3 bg-white/5 rounded-2xl border border-white/5 shadow-xl backdrop-blur-md">
                                         <input
@@ -344,10 +343,10 @@ export default function DesktopCreditRequest({
                                         <div className="flex items-center gap-2">
                                             <div className="w-1.5 h-5 bg-ely-mint rounded-full shadow-[0_0_8px_rgba(0,201,167,0.4)]" />
                                             <label className="text-xs font-black text-white/70 uppercase tracking-[0.2em]">
-                                                Durée du remboursement
+                                                {t('Simulator.durationLabel')}
                                             </label>
                                         </div>
-                                        <p className="text-sm text-white/40 font-medium italic">Exprimée en mensualités</p>
+                                        <p className="text-sm text-white/40 font-medium italic">{t('Simulator.durationHint')}</p>
                                     </div>
                                     <div className="flex items-center gap-1 px-6 py-3 bg-white/5 rounded-2xl border border-white/5 shadow-xl backdrop-blur-md">
                                         <input
@@ -358,7 +357,7 @@ export default function DesktopCreditRequest({
                                             onBlur={handleBlur}
                                             className="bg-transparent border-none outline-none font-black text-3xl text-white w-24 text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:ring-0"
                                         />
-                                        <span className="text-xl font-black text-white/20 ml-1">mois</span>
+                                        <span className="text-xl font-black text-white/20 ml-1">{t('Simulator.months')}</span>
                                     </div>
                                 </div>
                                 <div className="relative pt-4">
@@ -372,8 +371,8 @@ export default function DesktopCreditRequest({
                                         className="w-full h-2 bg-white/10 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-7 [&::-webkit-slider-thumb]:w-7 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-ely-mint [&::-webkit-slider-thumb]:border-4 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-[0_0_20px_rgba(0,201,167,0.6)] [&::-webkit-slider-thumb]:transition-all [&::-moz-range-thumb]:h-7 [&::-moz-range-thumb]:w-7 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-ely-mint [&::-moz-range-thumb]:border-4 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow-[0_0_20px_rgba(0,201,167,0.6)] transition-all"
                                     />
                                     <div className="flex justify-between mt-6 text-xs font-black text-slate-900 uppercase tracking-[0.15em]">
-                                        <span className="bg-white px-4 py-1.5 rounded-xl border border-slate-50 shadow-sm">6 mois</span>
-                                        <span className="bg-white px-4 py-1.5 rounded-xl border border-slate-50 shadow-sm">30 ans</span>
+                                        <span className="bg-white px-4 py-1.5 rounded-xl border border-slate-50 shadow-sm">6 {t('Simulator.months')}</span>
+                                        <span className="bg-white px-4 py-1.5 rounded-xl border border-slate-50 shadow-sm">30 {t('Simulator.durationSuffix')}</span>
                                     </div>
                                 </div>
                             </div>
@@ -382,7 +381,7 @@ export default function DesktopCreditRequest({
                                 onClick={() => setStep(2)}
                                 className="w-full py-5 bg-gradient-to-br from-ely-blue to-blue-800 text-white rounded-[1.8rem] font-black text-lg shadow-xl shadow-ely-blue/20 hover:shadow-ely-blue/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 mt-6"
                             >
-                                <span className="uppercase tracking-[0.2em] text-xs">Continuer vers l'identité</span>
+                                <span className="uppercase tracking-[0.2em] text-xs">{t('Navigation.next')}</span>
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
                             </button>
                         </div>
@@ -395,7 +394,7 @@ export default function DesktopCreditRequest({
 
                                 <div className="relative z-10 space-y-8">
                                     <div className="space-y-2 text-center">
-                                        <h3 className="text-xs font-black text-white/80 uppercase tracking-[0.25em]">Estimation Mensuelle</h3>
+                                        <h3 className="text-xs font-black text-white/80 uppercase tracking-[0.25em]">{t('Summary.monthlyEstimation')}</h3>
                                         <div className="flex items-center justify-center">
                                             <p className="text-5xl font-black text-ely-mint flex items-end drop-shadow-2xl">
                                                 {totalMonthlyPayment.toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
@@ -406,25 +405,25 @@ export default function DesktopCreditRequest({
 
                                     <div className="space-y-5 pt-10 border-t border-white/10">
                                         <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
-                                            <span className="text-xs font-black uppercase tracking-widest text-white/90">Capital</span>
+                                            <span className="text-xs font-black uppercase tracking-widest text-white/90">{t('Summary.capital')}</span>
                                             <span className="font-black text-sm">{amount.toLocaleString()} €</span>
                                         </div>
                                         <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
-                                            <span className="text-xs font-black uppercase tracking-widest text-white/90">Coût total</span>
+                                            <span className="text-xs font-black uppercase tracking-widest text-white/90">{t('Summary.totalCost')}</span>
                                             <span className="font-black text-sm text-ely-mint">{(totalCost - (amount * 0.03)).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 2 })} €</span>
                                         </div>
                                         <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
-                                            <span className="text-xs font-black uppercase tracking-widest text-ely-mint">Assurance (3%)</span>
-                                            <span className="font-black text-sm text-ely-mint">+{((amount * 0.03) / duration).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €/mois</span>
+                                            <span className="text-xs font-black uppercase tracking-widest text-ely-mint">{t('Summary.insurance')}</span>
+                                            <span className="font-black text-sm text-ely-mint">+{((amount * 0.03) / duration).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €/{t('Simulator.perMonth')}</span>
                                         </div>
 
                                         <div className="pt-6 px-2 flex justify-between items-end">
                                             <div className="space-y-1">
-                                                <span className="text-[9px] font-black uppercase tracking-widest text-white/30 block">Montant total dû</span>
+                                                <span className="text-[9px] font-black uppercase tracking-widest text-white/30 block">{t('Summary.totalDue')}</span>
                                                 <span className="font-black text-2xl text-white tracking-tighter">{(amount + totalCost).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €</span>
                                             </div>
                                             <div className="text-right">
-                                                <span className="text-[9px] font-black uppercase tracking-widest text-white/30 block mb-1">TAEG</span>
+                                                <span className="text-[9px] font-black uppercase tracking-widest text-white/30 block mb-1">{t('Summary.taeg')}</span>
                                                 <span className="px-3 py-1 bg-ely-mint/10 text-ely-mint rounded-lg text-[11px] font-black border border-ely-mint/20">
                                                     {(annualRate + 0.55).toFixed(2)} %
                                                 </span>
@@ -441,13 +440,13 @@ export default function DesktopCreditRequest({
                                         <ShieldCheck className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <p className="text-sm font-black text-slate-900">100% Sécurisé</p>
-                                        <p className="text-xs text-slate-400">Chiffrement AES-256 bits</p>
+                                        <p className="text-sm font-black text-slate-900">{t('Summary.secureData')}</p>
+                                        <p className="text-xs text-slate-400">{t('Summary.secureDesc')}</p>
                                     </div>
                                 </div>
                                 <div className="p-4 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
                                     <p className="text-[10px] font-medium text-slate-400 leading-relaxed italic">
-                                        "L'expertise AGM INVEST pour vos financements jusqu'à 1 million d'euros."
+                                        {t('Summary.expertiseQuote')}
                                     </p>
                                 </div>
                             </div>
@@ -467,13 +466,13 @@ export default function DesktopCreditRequest({
                             {step === 2 && (
                                 <>
                                     <div className="space-y-3 border-b border-slate-50 pb-6">
-                                        <h3 className="text-2xl font-black text-slate-900 tracking-tight">Votre Identité</h3>
-                                        <p className="text-slate-500 font-medium text-base leading-relaxed">Ces informations sont nécessaires pour l'édition de votre contrat.</p>
+                                        <h3 className="text-2xl font-black text-slate-900 tracking-tight">{t('Identity.title')}</h3>
+                                        <p className="text-slate-500 font-medium text-base leading-relaxed">{t('Identity.subtitle')}</p>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Civilité</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Identity.civilityLabel')}</label>
                                             <select
                                                 name="civility"
                                                 value={formData.civility}
@@ -484,18 +483,18 @@ export default function DesktopCreditRequest({
                                                     readOnlyFields.has('civility') && "bg-slate-100/80 cursor-not-allowed opacity-70"
                                                 )}
                                             >
-                                                <option value="M.">Monsieur (M.)</option>
-                                                <option value="Mme">Madame (Mme)</option>
+                                                <option value="M.">{t('Identity.civilityOptions.mr')}</option>
+                                                <option value="Mme">{t('Identity.civilityOptions.mrs')}</option>
                                             </select>
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Nationalité</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Identity.nationalityLabel')}</label>
                                             <input
                                                 type="text"
                                                 name="nationality"
                                                 value={formData.nationality}
                                                 onChange={handleChange}
-                                                placeholder="Ex: Française"
+                                                placeholder={t('Identity.Placeholders.nationality')}
                                                 readOnly={readOnlyFields.has('nationality')}
                                                 className={cn(
                                                     "w-full px-6 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
@@ -504,7 +503,7 @@ export default function DesktopCreditRequest({
                                             />
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Prénom</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Identity.firstNameLabel')}</label>
                                             <input
                                                 type="text"
                                                 name="firstName"
@@ -518,7 +517,7 @@ export default function DesktopCreditRequest({
                                             />
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Nom de famille</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Identity.lastNameLabel')}</label>
                                             <input
                                                 type="text"
                                                 name="lastName"
@@ -532,7 +531,7 @@ export default function DesktopCreditRequest({
                                             />
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Pays de naissance</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Identity.birthCountryLabel')}</label>
                                             <select
                                                 name="birthCountry"
                                                 value={formData.birthCountry}
@@ -547,14 +546,14 @@ export default function DesktopCreditRequest({
                                             </select>
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Date de naissance</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Identity.birthDateLabel')}</label>
                                             <div className="relative">
                                                 <input
                                                     type="text"
                                                     name="birthDate"
                                                     value={formData.birthDate}
                                                     onChange={handleDateChange}
-                                                    placeholder="JJ / MM / AAAA"
+                                                    placeholder={t('Identity.Placeholders.birthDate')}
                                                     readOnly={readOnlyFields.has('birthDate')}
                                                     className={cn(
                                                         "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
@@ -570,18 +569,18 @@ export default function DesktopCreditRequest({
                                             </div>
                                             {formData.birthDate.length === 14 && getDateStatus(formData.birthDate) !== "valid" && !readOnlyFields.has('birthDate') && (
                                                 <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest ml-4">
-                                                    {getDateStatus(formData.birthDate) === "underage" ? "Vous devez être majeur" : "Date invalide"}
+                                                    {getDateStatus(formData.birthDate) === "underage" ? t('Errors.underage') : t('Errors.invalidDate')}
                                                 </p>
                                             )}
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Lieu de naissance</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Identity.birthPlaceLabel')}</label>
                                             <input
                                                 type="text"
                                                 name="birthPlace"
                                                 value={formData.birthPlace}
                                                 onChange={handleChange}
-                                                placeholder="Ex: Paris"
+                                                placeholder={t('Identity.Placeholders.birthPlace')}
                                                 readOnly={readOnlyFields.has('birthPlace')}
                                                 className={cn(
                                                     "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
@@ -596,13 +595,13 @@ export default function DesktopCreditRequest({
                             {step === 3 && (
                                 <>
                                     <div className="space-y-3 border-b border-slate-50 pb-6">
-                                        <h3 className="text-2xl font-black text-slate-900 tracking-tight">Votre Situation</h3>
-                                        <p className="text-slate-500 font-medium text-base leading-relaxed">Détails sur votre cadre de vie et famille.</p>
+                                        <h3 className="text-2xl font-black text-slate-900 tracking-tight">{t('Situation.title')}</h3>
+                                        <p className="text-slate-500 font-medium text-base leading-relaxed">{t('Situation.subtitle')}</p>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">État Civil</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Situation.maritalStatusLabel')}</label>
                                             <select
                                                 name="maritalStatus"
                                                 value={formData.maritalStatus}
@@ -613,15 +612,15 @@ export default function DesktopCreditRequest({
                                                     readOnlyFields.has('maritalStatus') && "bg-slate-100/80 cursor-not-allowed opacity-70"
                                                 )}
                                             >
-                                                <option value="single">Célibataire</option>
-                                                <option value="married">Marié(e)</option>
-                                                <option value="pacs">Pacsé(e)</option>
-                                                <option value="divorced">Divorcé(e)</option>
-                                                <option value="widow">Veuf/Veuve</option>
+                                                <option value="single">{t('Situation.maritalOptions.single')}</option>
+                                                <option value="married">{t('Situation.maritalOptions.married')}</option>
+                                                <option value="pacs">{t('Situation.maritalOptions.pacs')}</option>
+                                                <option value="divorced">{t('Situation.maritalOptions.divorced')}</option>
+                                                <option value="widow">{t('Situation.maritalOptions.widow')}</option>
                                             </select>
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Enfants à charge</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Situation.childrenLabel')}</label>
                                             <input
                                                 type="number"
                                                 name="children"
@@ -635,7 +634,7 @@ export default function DesktopCreditRequest({
                                             />
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Logement actuel</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Situation.housingTypeLabel')}</label>
                                             <select
                                                 name="housingType"
                                                 value={formData.housingType}
@@ -646,14 +645,14 @@ export default function DesktopCreditRequest({
                                                     readOnlyFields.has('housingType') && "bg-slate-100/80 cursor-not-allowed opacity-70"
                                                 )}
                                             >
-                                                <option value="tenant">Locataire</option>
-                                                <option value="owner">Propriétaire</option>
-                                                <option value="owner_mortgage">Propriétaire avec crédit</option>
-                                                <option value="free">Hébergé gratuitement</option>
+                                                <option value="tenant">{t('Situation.housingOptions.tenant')}</option>
+                                                <option value="owner">{t('Situation.housingOptions.owner')}</option>
+                                                <option value="owner_mortgage">{t('Situation.housingOptions.owner_mortgage')}</option>
+                                                <option value="free">{t('Situation.housingOptions.free')}</option>
                                             </select>
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Ancienneté Logement</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Situation.housingSeniorityLabel')}</label>
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div className="relative">
                                                     <input
@@ -661,14 +660,14 @@ export default function DesktopCreditRequest({
                                                         name="housingSeniority"
                                                         value={formData.housingSeniority}
                                                         onChange={handleChange}
-                                                        placeholder="Années"
+                                                        placeholder={t('Situation.Placeholders.years')}
                                                         readOnly={readOnlyFields.has('housingSeniority')}
                                                         className={cn(
                                                             "w-full px-6 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
                                                             readOnlyFields.has('housingSeniority') && "bg-slate-100/80 cursor-not-allowed opacity-70"
                                                         )}
                                                     />
-                                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-300 uppercase">Ans</span>
+                                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-300 uppercase">{t('Simulator.durationSuffix')}</span>
                                                 </div>
                                                 <div className="relative">
                                                     <input
@@ -676,7 +675,7 @@ export default function DesktopCreditRequest({
                                                         name="housingSeniorityMonths"
                                                         value={formData.housingSeniorityMonths}
                                                         onChange={handleChange}
-                                                        placeholder="Mois"
+                                                        placeholder={t('Situation.Placeholders.months')}
                                                         readOnly={readOnlyFields.has('housingSeniorityMonths')}
                                                         className={cn(
                                                             "w-full px-6 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
@@ -685,12 +684,12 @@ export default function DesktopCreditRequest({
                                                         min="0"
                                                         max="11"
                                                     />
-                                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-300 uppercase">Mois</span>
+                                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-300 uppercase">{t('Simulator.months')}</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Pays de résidence</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Situation.residenceCountryLabel')}</label>
                                             <select
                                                 name="residenceCountry"
                                                 value={formData.residenceCountry}
@@ -705,7 +704,7 @@ export default function DesktopCreditRequest({
                                             </select>
                                         </div>
                                         <div className="md:col-span-2 space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Numéro de téléphone</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Situation.phoneLabel')}</label>
                                             <div className="flex gap-4">
                                                 <div className="w-24 px-4 py-4 bg-slate-50/50 rounded-[1.3rem] border-2 border-slate-100 flex items-center justify-center font-black text-xl shadow-sm">
                                                     {COUNTRY_PHONE_DATA[formData.phoneCountry]?.flag || "🏳️"}
@@ -730,7 +729,7 @@ export default function DesktopCreditRequest({
                                             </div>
                                         </div>
                                         <div className="md:col-span-2 space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Adresse de résidence</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Situation.addressLabel')}</label>
                                             <AddressAutocomplete
                                                 value={formData.street}
                                                 onChange={(val) => handleChange({ target: { name: 'street', value: val } } as any)}
@@ -740,7 +739,7 @@ export default function DesktopCreditRequest({
                                                     handleChange({ target: { name: 'city', value: addr.city } } as any);
                                                 }}
                                                 country={formData.residenceCountry}
-                                                placeholder="Numéro et nom de rue"
+                                                placeholder={t('Situation.Placeholders.address')}
                                                 disabled={readOnlyFields.has('street')}
                                                 className={cn(
                                                     "w-full px-8 py-5 bg-slate-50/50 rounded-[2rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
@@ -749,13 +748,13 @@ export default function DesktopCreditRequest({
                                             />
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Code Postal</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Situation.zipCodeLabel')}</label>
                                             <input
                                                 type="text"
                                                 name="zipCode"
                                                 value={formData.zipCode}
                                                 onChange={handleChange}
-                                                placeholder="Ex: 75000"
+                                                placeholder={t('Situation.Placeholders.zipCode')}
                                                 readOnly={readOnlyFields.has('zipCode')}
                                                 className={cn(
                                                     "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
@@ -764,13 +763,13 @@ export default function DesktopCreditRequest({
                                             />
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Ville</label>
+                                            <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Situation.cityLabel')}</label>
                                             <input
                                                 type="text"
                                                 name="city"
                                                 value={formData.city}
                                                 onChange={handleChange}
-                                                placeholder="Ex: Paris"
+                                                placeholder={t('Situation.Placeholders.city')}
                                                 readOnly={readOnlyFields.has('city')}
                                                 className={cn(
                                                     "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
@@ -785,15 +784,15 @@ export default function DesktopCreditRequest({
                             {step === 4 && (
                                 <>
                                     <div className="space-y-3 border-b border-slate-50 pb-6">
-                                        <h3 className="text-2xl font-black text-slate-900 tracking-tight">Vos Finances</h3>
-                                        <p className="text-slate-500 font-medium text-base leading-relaxed">Évaluation de la faisabilité de votre projet.</p>
+                                        <h3 className="text-2xl font-black text-slate-900 tracking-tight">{t('Finances.title')}</h3>
+                                        <p className="text-slate-500 font-medium text-base leading-relaxed">{t('Finances.subtitle')}</p>
                                     </div>
 
                                     <div className="space-y-8">
                                         {/* Row 1: Contract Type & Company (Conditional) */}
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                             <div className="space-y-4">
-                                                <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Type de contrat</label>
+                                                <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Finances.contractTypeLabel')}</label>
                                                 <select
                                                     name="contractType"
                                                     value={formData.contractType}
@@ -804,18 +803,18 @@ export default function DesktopCreditRequest({
                                                         readOnlyFields.has('contractType') && "bg-slate-100/80 cursor-not-allowed opacity-70"
                                                     )}
                                                 >
-                                                    <option value="cdi">CDI</option>
-                                                    <option value="cdd">CDD</option>
-                                                    <option value="temporary">Intérimaire / Mission</option>
-                                                    <option value="civil_servant">Fonctionnaire</option>
-                                                    <option value="liberal">Profession Libérale</option>
-                                                    <option value="business_owner">Chef d'entreprise</option>
-                                                    <option value="artisan">Commerçant / Artisan</option>
-                                                    <option value="independent">Indépendant / Freelance</option>
-                                                    <option value="retired">Retraité</option>
-                                                    <option value="student">Étudiant</option>
-                                                    <option value="apprentice">Apprenti / Alternant</option>
-                                                    <option value="unemployed">Sans emploi</option>
+                                                    <option value="cdi">{t('Finances.options.cdi')}</option>
+                                                    <option value="cdd">{t('Finances.options.cdd')}</option>
+                                                    <option value="temporary">{t('Finances.options.temporary')}</option>
+                                                    <option value="civil_servant">{t('Finances.options.civil_servant')}</option>
+                                                    <option value="liberal">{t('Finances.options.liberal')}</option>
+                                                    <option value="business_owner">{t('Finances.options.business_owner')}</option>
+                                                    <option value="artisan">{t('Finances.options.artisan')}</option>
+                                                    <option value="independent">{t('Finances.options.independent')}</option>
+                                                    <option value="retired">{t('Finances.options.retired')}</option>
+                                                    <option value="student">{t('Finances.options.student')}</option>
+                                                    <option value="apprentice">{t('Finances.options.apprentice')}</option>
+                                                    <option value="unemployed">{t('Finances.options.unemployed')}</option>
                                                 </select>
                                             </div>
 
@@ -823,25 +822,25 @@ export default function DesktopCreditRequest({
                                                 <div className="space-y-4">
                                                     <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">
                                                         {formData.contractType === 'student'
-                                                            ? "Établissement / Université"
+                                                            ? t('Finances.Labels.company_student') || "Établissement / Université"
                                                             : formData.contractType === 'apprentice'
-                                                                ? "Entreprise d'accueil / CFA"
+                                                                ? t('Finances.Labels.company_apprentice') || "Entreprise d'accueil / CFA"
                                                                 : formData.contractType === 'independent'
-                                                                    ? "Nom de votre activité"
+                                                                    ? t('Finances.Labels.liberal')
                                                                     : formData.contractType === 'artisan'
-                                                                        ? "Enseigne / Nom de l'Entreprise"
+                                                                        ? t('Finances.Labels.artisan') || "Enseigne / Nom de l'Entreprise"
                                                                         : formData.contractType === 'civil_servant'
-                                                                            ? "Ministère / Administration"
+                                                                            ? t('Finances.Labels.civil_servant') || "Ministère / Administration"
                                                                             : formData.contractType === 'temporary'
-                                                                                ? "Société d'intérim / Employeur"
+                                                                                ? t('Finances.Labels.temporary') || "Société d'intérim / Employeur"
                                                                                 : formData.contractType === 'liberal'
-                                                                                    ? "Cabinet / Raison sociale"
+                                                                                    ? t('Finances.Labels.liberal')
                                                                                     : formData.contractType === 'business_owner'
-                                                                                        ? "Nom de la société / Enseigne"
-                                                                                        : "Nom de l'Employeur"}
+                                                                                        ? t('Finances.Labels.business_owner') || "Nom de la société / Enseigne"
+                                                                                        : t('Finances.Labels.default')}
                                                     </label>
                                                     <div className="relative group">
-                                                        <input type="text" name="companyName" value={formData.companyName} onChange={handleChange} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" placeholder={formData.contractType === 'student' ? "Ex: Sorbonne" : formData.contractType === 'independent' ? "Ex: Freelance IT" : formData.contractType === 'civil_servant' ? "Ex: Préfecture" : "Ex: AGM INVEST"} />
+                                                        <input type="text" name="companyName" value={formData.companyName} onChange={handleChange} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" placeholder={t(`Finances.Placeholders.company_${formData.contractType}`) || t('Finances.Placeholders.company_default')} />
                                                         <Building2 className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
                                                     </div>
                                                 </div>
@@ -854,14 +853,14 @@ export default function DesktopCreditRequest({
                                                 <div className="space-y-4">
                                                     <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">
                                                         {formData.contractType === 'civil_servant'
-                                                            ? "Fonction / Grade"
+                                                            ? t('Finances.Labels.profession_civil_servant') || "Fonction / Grade"
                                                             : formData.contractType === 'student'
-                                                                ? "Domaine / Filière d'études"
+                                                                ? t('Finances.Labels.profession_student') || "Domaine / Filière d'études"
                                                                 : formData.contractType === 'retired'
-                                                                    ? "Ancienne profession"
+                                                                    ? t('Finances.Labels.profession_retired')
                                                                     : formData.contractType === 'apprentice'
-                                                                        ? "Métier préparé"
-                                                                        : "Profession / Métier"}
+                                                                        ? t('Finances.Labels.profession_apprentice') || "Métier préparé"
+                                                                        : t('Finances.Labels.profession_default')}
                                                     </label>
                                                     <div className="relative group">
                                                         <input
@@ -869,7 +868,7 @@ export default function DesktopCreditRequest({
                                                             name="profession"
                                                             value={formData.profession}
                                                             onChange={handleChange}
-                                                            placeholder={formData.contractType === 'civil_servant' ? "Ex: Adjoint Administratif" : formData.contractType === 'student' ? "Ex: Management / Finance" : "Ex: Chef de projet"}
+                                                            placeholder={t(`Finances.Placeholders.profession_${formData.contractType}`) || t('Finances.Placeholders.profession_default')}
                                                             readOnly={readOnlyFields.has('profession')}
                                                             className={cn(
                                                                 "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
@@ -883,19 +882,7 @@ export default function DesktopCreditRequest({
 
                                             <div className="space-y-4">
                                                 <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">
-                                                    {formData.contractType === 'retired'
-                                                        ? "Pension mensuelle (€)"
-                                                        : formData.contractType === 'unemployed'
-                                                            ? "Allocations / Revenus (€)"
-                                                            : formData.contractType === 'student'
-                                                                ? "Bourses / Revenus mensuels (€)"
-                                                                : formData.contractType === 'apprentice'
-                                                                    ? "Rémunération mensuelle (€)"
-                                                                    : formData.contractType === 'civil_servant'
-                                                                        ? "Traitement mensuel net (€)"
-                                                                        : ['independent', 'artisan', 'liberal', 'business_owner'].includes(formData.contractType)
-                                                                            ? "Revenu mensuel moyen (€)"
-                                                                            : "Revenus mensuels nets (€)"}
+                                                    {t(`Finances.Labels.income_${formData.contractType}`) || t('Finances.income')}
                                                 </label>
                                                 <div className="relative group">
                                                     <input
@@ -918,14 +905,14 @@ export default function DesktopCreditRequest({
                                         {/* Row 3: Charges & Other Credits */}
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                             <div className="space-y-4">
-                                                <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Charges mensuelles (€)</label>
+                                                <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Finances.chargesLabel')} (€)</label>
                                                 <div className="relative group">
                                                     <input
                                                         type="number"
                                                         name="charges"
                                                         value={formData.charges}
                                                         onChange={handleChange}
-                                                        placeholder="0"
+                                                        placeholder={t('Finances.Placeholders.charges') || "0"}
                                                         readOnly={readOnlyFields.has('charges')}
                                                         className={cn(
                                                             "w-full px-8 py-6 bg-slate-50/50 rounded-[2rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm text-2xl pl-16",
@@ -936,14 +923,14 @@ export default function DesktopCreditRequest({
                                                 </div>
                                             </div>
                                             <div className="space-y-4">
-                                                <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Autres crédits en cours (€)</label>
+                                                <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Finances.otherCreditsLabel')} (€)</label>
                                                 <div className="relative group">
                                                     <input
                                                         type="number"
                                                         name="otherCredits"
                                                         value={formData.otherCredits}
                                                         onChange={handleChange}
-                                                        placeholder="0"
+                                                        placeholder={t('Finances.Placeholders.otherCredits') || "0"}
                                                         readOnly={readOnlyFields.has('otherCredits')}
                                                         className={cn(
                                                             "w-full px-8 py-6 bg-slate-50/50 rounded-[2rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm text-2xl pl-16",
@@ -961,19 +948,19 @@ export default function DesktopCreditRequest({
                                                 <div className="w-10 h-10 rounded-2xl bg-ely-mint/10 flex items-center justify-center text-ely-mint">
                                                     <Building2 className="w-5 h-5" />
                                                 </div>
-                                                <h3 className="text-xl font-black text-slate-900 uppercase tracking-wider">Informations Bancaires</h3>
+                                                <h3 className="text-xl font-black text-slate-900 uppercase tracking-wider">{t('Finances.bankInfo')}</h3>
                                             </div>
 
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                                 <div className="space-y-4">
-                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">Banque principale</label>
+                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Finances.bankName')}</label>
                                                     <div className="relative group">
                                                         <input
                                                             type="text"
                                                             name="bankName"
                                                             value={formData.bankName}
                                                             onChange={handleChange}
-                                                            placeholder="Nom de votre banque"
+                                                            placeholder={t('Finances.Placeholders.bankName')}
                                                             readOnly={readOnlyFields.has('bankName')}
                                                             className={cn(
                                                                 "w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm",
@@ -984,9 +971,9 @@ export default function DesktopCreditRequest({
                                                     </div>
                                                 </div>
                                                 <div className="md:col-span-2 space-y-4">
-                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">IBAN</label>
+                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Finances.iban')}</label>
                                                     <div className="relative group">
-                                                        <input type="text" name="iban" value={formData.iban} onChange={handleChange} placeholder="FR76 ..." className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm font-mono" />
+                                                        <input type="text" name="iban" value={formData.iban} onChange={handleChange} placeholder={t('Finances.Placeholders.iban')} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm font-mono" />
                                                         <ShieldCheck className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
                                                     </div>
                                                 </div>
@@ -994,14 +981,14 @@ export default function DesktopCreditRequest({
 
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                                 <div className="space-y-4">
-                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">BIC</label>
+                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Finances.bic')}</label>
                                                     <div className="relative group">
-                                                        <input type="text" name="bic" value={formData.bic} onChange={handleChange} placeholder="XXXXXXXX" className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm font-mono uppercase" />
+                                                        <input type="text" name="bic" value={formData.bic} onChange={handleChange} placeholder={t('Finances.Placeholders.bic')} className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm font-mono uppercase" />
                                                         <Lock className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
                                                     </div>
                                                 </div>
                                                 <div className="space-y-4">
-                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">E-mail lié au RIB</label>
+                                                    <label className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] ml-2">{t('Finances.ribEmail')}</label>
                                                     <div className="relative group">
                                                         <input type="email" name="ribEmail" value={formData.ribEmail} onChange={handleChange} placeholder="jean@exemple.com" className="w-full px-8 py-5 bg-slate-50/50 rounded-[1.8rem] border-2 border-slate-100 focus:border-ely-mint focus:bg-white outline-none transition-all font-black text-slate-700 shadow-sm" />
                                                         <Mail className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-ely-mint transition-colors w-5 h-5" />
@@ -1019,14 +1006,14 @@ export default function DesktopCreditRequest({
                                     className="flex-1 py-4 bg-white border-2 border-slate-100 text-slate-400 rounded-2xl font-black text-[13px] uppercase tracking-widest hover:bg-slate-50 hover:text-slate-600 transition-all active:scale-95 flex items-center justify-center gap-3"
                                 >
                                     <ArrowLeft className="w-4 h-4" />
-                                    Précédent
+                                    {t('Common.previous')}
                                 </button>
                                 <button
                                     onClick={() => canGoNext() && setStep(step + 1)}
                                     disabled={!canGoNext()}
                                     className="flex-[2] py-4 bg-gradient-to-br from-ely-blue to-blue-800 text-white rounded-2xl font-black text-[13px] uppercase tracking-widest shadow-xl shadow-ely-blue/20 hover:shadow-ely-blue/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-4 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                                 >
-                                    Suivant
+                                    {t('Common.next')}
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
                                 </button>
                             </div>
@@ -1040,7 +1027,7 @@ export default function DesktopCreditRequest({
 
                                 <div className="relative z-10 space-y-8">
                                     <div className="space-y-2 text-center">
-                                        <h3 className="text-xs font-black text-white/80 uppercase tracking-[0.25em]">Estimation Mensuelle</h3>
+                                        <h3 className="text-xs font-black text-white/80 uppercase tracking-[0.25em]">{t('Summary.monthlyEstimation')}</h3>
                                         <div className="flex items-center justify-center">
                                             <p className="text-5xl font-black text-ely-mint flex items-end drop-shadow-2xl">
                                                 {totalMonthlyPayment.toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
@@ -1050,20 +1037,20 @@ export default function DesktopCreditRequest({
                                     </div>
                                     <div className="space-y-5 pt-10 border-t border-white/10">
                                         <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
-                                            <span className="text-xs font-black uppercase tracking-widest text-white/90">Capital</span>
+                                            <span className="text-xs font-black uppercase tracking-widest text-white/90">{t('Summary.capital')}</span>
                                             <span className="font-black text-sm">{amount.toLocaleString()} €</span>
                                         </div>
                                         <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
-                                            <span className="text-xs font-black uppercase tracking-widest text-white/90">Durée</span>
-                                            <span className="font-black text-sm">{duration} mois</span>
+                                            <span className="text-xs font-black uppercase tracking-widest text-white/90">{t('Summary.duration')}</span>
+                                            <span className="font-black text-sm">{duration} {t('Simulator.months')}</span>
                                         </div>
                                         <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
-                                            <span className="text-xs font-black uppercase tracking-widest text-ely-mint">Assurance (3%)</span>
-                                            <span className="font-black text-sm text-ely-mint">+{Math.round((amount * 0.03) / duration).toLocaleString()} €/mois</span>
+                                            <span className="text-xs font-black uppercase tracking-widest text-ely-mint">{t('Summary.insurance')}</span>
+                                            <span className="font-black text-sm text-ely-mint">+{Math.round((amount * 0.03) / duration).toLocaleString()} €/{t('Simulator.perMonth')}</span>
                                         </div>
                                         <div className="pt-6 px-2 flex justify-between items-end">
                                             <div className="space-y-1">
-                                                <span className="text-[9px] font-black uppercase tracking-widest text-white/30 block">Montant total dû</span>
+                                                <span className="text-[9px] font-black uppercase tracking-widest text-white/30 block">{t('Summary.totalDue')}</span>
                                                 <span className="font-black text-2xl text-white tracking-tighter">{(amount + totalCost).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €</span>
                                             </div>
                                         </div>
@@ -1076,8 +1063,8 @@ export default function DesktopCreditRequest({
                                         <ShieldCheck className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <p className="text-sm font-black text-slate-900">Données Sécurisées</p>
-                                        <p className="text-xs text-slate-400">Certifié conforme RGPD</p>
+                                        <p className="text-sm font-black text-slate-900">{t('Summary.secureData')}</p>
+                                        <p className="text-xs text-slate-400">{t('Summary.rgpdCertified')}</p>
                                     </div>
                                 </div>
                             </div>
@@ -1098,9 +1085,9 @@ export default function DesktopCreditRequest({
                                 <div className="inline-flex items-center justify-center p-5 bg-white/5 rounded-[2rem] mb-2 border border-white/10 shadow-xl backdrop-blur-md">
                                     <ShieldCheck className="w-12 h-12 text-ely-mint" />
                                 </div>
-                                <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase">Récapitulatif Final</h1>
+                                <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase">{t('FinalRecap.title')}</h1>
                                 <p className="text-white font-medium text-base max-w-xl mx-auto leading-relaxed italic">
-                                    Veuillez vérifier vos informations avant la soumission sécurisée de votre dossier.
+                                    {t('FinalRecap.subtitle')}
                                 </p>
                             </div>
 
@@ -1113,19 +1100,19 @@ export default function DesktopCreditRequest({
                                         <div className="p-2.5 bg-white/10 rounded-xl shadow-sm text-ely-mint border border-white/10">
                                             <Calculator className="w-5 h-5" />
                                         </div>
-                                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Le Projet</h4>
+                                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-white">{t('FinalRecap.projectSection')}</h4>
                                     </div>
                                     <div className="space-y-4 relative z-10">
                                         <div className="flex justify-between items-center bg-white/5 px-5 py-3.5 rounded-xl border border-white/5">
-                                            <span className="text-white font-bold text-xs">Montant</span>
+                                            <span className="text-white font-bold text-xs">{t('FinalRecap.amount')}</span>
                                             <span className="font-black text-white text-sm">{amount.toLocaleString()} €</span>
                                         </div>
                                         <div className="flex justify-between items-center bg-white/5 px-5 py-3.5 rounded-xl border border-white/5">
-                                            <span className="text-white font-bold text-xs">Durée</span>
-                                            <span className="font-black text-white text-sm">{duration} mois</span>
+                                            <span className="text-white font-bold text-xs">{t('FinalRecap.duration')}</span>
+                                            <span className="font-black text-white text-sm">{duration} {t('Simulator.months')}</span>
                                         </div>
                                         <div className="flex justify-between items-center bg-white/10 px-5 py-4 rounded-xl border border-white/10 shadow-inner">
-                                            <span className="text-white font-bold text-xs">Mensualité</span>
+                                            <span className="text-white font-bold text-xs">{t('FinalRecap.monthly')}</span>
                                             <span className="font-black text-ely-mint text-lg">{totalMonthlyPayment.toLocaleString()} €</span>
                                         </div>
                                     </div>
@@ -1139,15 +1126,15 @@ export default function DesktopCreditRequest({
                                         <div className="p-2.5 bg-white/10 rounded-xl shadow-sm text-ely-mint border border-white/10">
                                             <User className="w-5 h-5" />
                                         </div>
-                                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Demandeur</h4>
+                                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-white">{t('FinalRecap.applicantSection')}</h4>
                                     </div>
                                     <div className="space-y-4 relative z-10">
                                         <div className="flex justify-between items-center bg-white/5 px-5 py-3.5 rounded-xl border border-white/5">
-                                            <span className="text-white font-bold text-xs">Identité</span>
+                                            <span className="text-white font-bold text-xs">{t('FinalRecap.identity')}</span>
                                             <span className="font-black text-white text-sm">{formData.firstName} {formData.lastName.toUpperCase()}</span>
                                         </div>
                                         <div className="flex justify-between items-center bg-white/5 px-5 py-3.5 rounded-xl border border-white/5">
-                                            <span className="text-white font-bold text-xs">Ville</span>
+                                            <span className="text-white font-bold text-xs">{t('FinalRecap.city')}</span>
                                             <span className="font-black text-white text-sm">{formData.city}</span>
                                         </div>
                                     </div>
@@ -1161,14 +1148,14 @@ export default function DesktopCreditRequest({
                                     disabled={isSubmitting}
                                 >
                                     <ArrowLeft className="w-4 h-4 text-ely-mint" />
-                                    Modifier
+                                    {t('Navigation.modify')}
                                 </button>
                                 <button
                                     onClick={handleSubmit}
                                     disabled={isSubmitting}
                                     className="flex-[2] py-4 bg-gradient-to-r from-ely-mint to-emerald-500 text-white rounded-2xl font-black text-base uppercase tracking-widest shadow-xl shadow-ely-mint/20 hover:shadow-ely-mint/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-4 disabled:opacity-50"
                                 >
-                                    {isSubmitting ? "Traitement..." : "Confirmer"}
+                                    {isSubmitting ? t('Navigation.submitting') : t('Navigation.confirm')}
                                     {!isSubmitting && <CheckCircle2 className="w-5 h-5" />}
                                 </button>
                             </div>

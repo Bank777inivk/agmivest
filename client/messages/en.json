@@ -441,7 +441,25 @@
     "Simulator": {
       "title": "YOUR SIMULATION",
       "disclaimer": "*Insurance included (3%). Fixed rate subject to establishment conditions.",
-      "rateLabel": "Nominal rate"
+      "rateLabel": "Nominal rate",
+      "guaranteedRate": "Fixed and guaranteed rate.",
+      "months": "months",
+      "durationSuffix": "years",
+      "perMonth": "month",
+      "personalProject": "Personal Loan",
+      "autoProject": "Auto/Moto Loan",
+      "proProject": "Business Loan",
+      "otherProject": "Other project",
+      "otherPrompt": "Specify your project (ex: Renovation, Wedding...)",
+      "amountLabel": "Desired amount",
+      "durationLabel": "Loan duration",
+      "monthlyLabel": "Your monthly payment",
+      "personalLabel": "Personal Loan",
+      "autoLabel": "Auto/Moto Loan",
+      "proLabel": "Business Loan",
+      "otherLabel": "Other project",
+      "amountHint": "Adjust according to your real need.",
+      "durationHint": "Expressed in monthly instalments"
     },
     "title": {
       "step1": "Your financing project",
@@ -457,7 +475,8 @@
       "identity": "Identity",
       "situation": "Situation",
       "finances": "Finances",
-      "account": "Account"
+      "account": "Account",
+      "summary": "Summary"
     },
     "Profile": {
       "label": "Profile type",
@@ -471,7 +490,10 @@
         "personal": "Personal Loan",
         "auto": "Auto/Moto Loan",
         "pro": "Business Loan",
-        "other": "Other project"
+        "other": "Other project",
+        "personal loan": "Personal Loan",
+        "auto loan": "Auto/Moto Loan",
+        "business loan": "Business Loan"
       },
       "detailsLabel": "Specify your project",
       "detailsPlaceholder": "Briefly describe your financing need..."
@@ -488,6 +510,27 @@
         "mr": "Mr.",
         "mrs": "Mrs.",
         "ms": "Ms."
+      },
+      "title": "Your identity",
+      "subtitle": "This information allows us to verify your eligibility.",
+      "civilityLabel": "Civility",
+      "firstNameLabel": "First name",
+      "lastNameLabel": "Last name",
+      "birthDateLabel": "Date of birth",
+      "birthPlaceLabel": "Birth city",
+      "birthCountryLabel": "Birth country",
+      "nationalityLabel": "Nationality",
+      "nationalityPlaceholder": "Ex: French",
+      "civilityOptions": {
+        "mr": "Mr.",
+        "mrs": "Mrs."
+      },
+      "Placeholders": {
+        "firstName": "Ex: John",
+        "lastName": "Ex: Doe",
+        "birthDate": "DD / MM / YYYY",
+        "birthPlace": "Ex: London",
+        "nationality": "Ex: British"
       }
     },
     "Situation": {
@@ -508,19 +551,57 @@
         "divorced": "Divorced / Widowed",
         "tenant": "Tenant",
         "owner": "Owner",
-        "hosted": "Living for free"
+        "hosted": "Living for free",
+        "pacs": "Civil partnership",
+        "widow": "Widowed",
+        "owner_mortgage": "Owner (with mortgage)",
+        "free": "Living rent-free"
       },
       "Placeholders": {
-        "street": "Ex: 40 Rue Jean Monnet",
-        "zipCode": "Ex: 68200",
-        "city": "Ex: Mulhouse"
+        "street": "Ex: 10 Downing Street",
+        "zipCode": "Ex: SW1A 2AA",
+        "city": "Ex: London",
+        "years": "Years",
+        "months": "Months",
+        "address": "Enter your address...",
+        "yearsPlaceholder": "Years",
+        "monthsPlaceholder": "Months"
+      },
+      "title": "Your personal situation",
+      "subtitle": "Getting to know you better to better support you.",
+      "maritalStatusLabel": "Family situation",
+      "childrenLabel": "Dependent children",
+      "housingTypeLabel": "Housing type",
+      "housingSeniorityLabel": "Seniority in housing",
+      "residenceCountryLabel": "Country of residence",
+      "phoneLabel": "Mobile phone number",
+      "addressLabel": "Residence address",
+      "addressPlaceholder": "Enter your address...",
+      "zipCodeLabel": "Zip code",
+      "zipCodePlaceholder": "Ex: SW1A 1AA",
+      "cityLabel": "City",
+      "maritalOptions": {
+        "single": "Single",
+        "married": "Married",
+        "pacs": "Civil Union",
+        "divorced": "Divorced",
+        "widow": "Widow"
+      },
+      "housingOptions": {
+        "tenant": "Tenant",
+        "owner": "Owner",
+        "owner_mortgage": "Owner (with mortgage)",
+        "free": "Staying for free",
+        "hosted": "Staying for free"
       }
     },
     "Finances": {
       "contractType": "Contract type",
       "income": "Monthly net income",
-      "charges": "Rents / Monthly charges",
+      "charges": "Rent / Monthly charges",
+      "chargesLabel": "Rent / Monthly charges",
       "otherCredits": "Other ongoing credits",
+      "otherCreditsLabel": "Other ongoing credits",
       "bankInfo": "Banking Information",
       "bankName": "Bank name",
       "iban": "IBAN",
@@ -558,7 +639,13 @@
         "income_artisan": "Monthly net profit",
         "income_independent": "Monthly net revenue",
         "income_student": "Grants / Family aid",
-        "income_apprentice": "Monthly gratification"
+        "income_apprentice": "Monthly gratification",
+        "artisan": "Sign / Business name",
+        "civil_servant": "Ministry / Administration",
+        "temporary": "Temp agency / Employer",
+        "business_owner": "Company name / Sign",
+        "company_student": "Establishment / University",
+        "company_apprentice": "Host company / CFA"
       },
       "Placeholders": {
         "company_default": "Your employer's name",
@@ -587,8 +674,28 @@
         "iban": "FR76 1234 5...",
         "bic": "ALPHFR2PXXX",
         "ribEmail": "your@email.com",
-        "charges": "Ex: 800"
-      }
+        "charges": "Ex: 800",
+        "otherCredits": "Ex: 200"
+      },
+      "title": "Your finances",
+      "subtitle": "This information helps us calculate your borrowing capacity.",
+      "contractTypeLabel": "Contract type",
+      "contractOptions": {
+        "cdi": "Permanent (CDI)",
+        "cdd": "Fixed-term (CDD)",
+        "temporary": "Temporary",
+        "civil_servant": "Civil Servant",
+        "liberal": "Liberal / Independent",
+        "business_owner": "Business Owner",
+        "artisan": "Artisan / Shopkeeper",
+        "independent": "Freelance",
+        "retired": "Retired",
+        "student": "Student",
+        "apprentice": "Apprentice / Intern",
+        "unemployed": "Unemployed"
+      },
+      "profession": "Profession",
+      "company": "Company / Employer"
     },
     "Account": {
       "email": "Email Address",
@@ -603,22 +710,103 @@
       "next": "Next step",
       "back": "Back",
       "submit": "Submit my request",
-      "analyzing": "Analysis in progress..."
+      "analyzing": "Analysis in progress...",
+      "previous": "Previous",
+      "confirm": "Confirm my request",
+      "submitting": "Sending...",
+      "modify": "Modify my request",
+      "project": "Project",
+      "identity": "Identity",
+      "situation": "Situation",
+      "finances": "Finances",
+      "summary": "Summary"
+    },
+    "Summary": {
+      "monthlyEstimation": "Monthly Estimation",
+      "capital": "Capital",
+      "duration": "Duration",
+      "totalCost": "Total Cost",
+      "insurance": "Insurance (3%)",
+      "totalDue": "Total Amount Due",
+      "taeg": "APR",
+      "secureData": "100% Secure",
+      "secureDesc": "AES-256 bits encryption",
+      "expertiseQuote": "\"AGM INVEST expertise for your financing up to 1 million euros.\"",
+      "rgpdCertified": "GDPR Compliant Certified"
+    },
+    "FinalRecap": {
+      "title": "Final Summary",
+      "subtitle": "Please check your information before the secure submission of your file.",
+      "projectSection": "The Project",
+      "applicantSection": "Applicant",
+      "amount": "Amount",
+      "duration": "Duration",
+      "monthly": "Monthly payment",
+      "identity": "Identity",
+      "city": "City",
+      "modify": "Modify",
+      "confirm": "Confirm",
+      "processing": "Processing...",
+      "submitting": "Sending..."
     },
     "Result": {
       "analysisTitle": "Analysis of your file",
       "analysisMessage": "We analyze your data instantly thanks to our banking partners. You will be redirected to your client area.",
-      "dashboardButton": "Access my dashboard"
+      "dashboardButton": "Access my dashboard",
+      "summaryTitle": "YOUR SUMMARY",
+      "checkPrompt": "Final verification",
+      "checkMessage": "Ensure all entered information is accurate."
+    },
+    "Banners": {
+      "Rejected": {
+        "title": "I inform you that:",
+        "message": "Your request for funding has been rejected by our services after reviewing your file.",
+        "extra": "For more details or to speak with an advisor, please contact our support."
+      },
+      "Approved": {
+        "title": "Congratulations!",
+        "subtitle": "It's the Jackpot.",
+        "message": "Enjoy your loan of {amount} to manage your projects.",
+        "warning": "Currently, you are no longer eligible to apply for a loan because you already have one in progress of repayment."
+      },
+      "Pending": {
+        "title": "I inform you that:",
+        "message": "You already have a funding request in progress.",
+        "warning": "As a security measure and quality of study, we only allow one active file at a time."
+      }
+    },
+    "Notifications": {
+      "submittedTitle": "Request submitted 📄",
+      "submittedMessage": "Your loan request for {amount} has been registered.",
+      "error": "An error occurred during submission. Please check your permissions."
+    },
+    "Common": {
+      "trackRecord": "Track my record",
+      "restart": "Restart",
+      "previous": "Previous",
+      "next": "Next",
+      "confirm": "Confirm",
+      "submitting": "Processing...",
+      "modify": "Modify",
+      "step": "Step"
     },
     "Errors": {
       "underage": "You must be at least 18 years old.",
       "invalidDate": "The entered date is invalid.",
-      "passwordsDoNotMatch": "Passwords do not match."
+      "passwordsDoNotMatch": "Passwords do not match.",
+      "passwordTooShort": "The password must contain at least 6 characters.",
+      "emailUsed": "This email address is already in use. Please log in or use another address.",
+      "weakPassword": "The password is too weak. Use at least 6 characters.",
+      "invalidEmail": "The email address is not valid.",
+      "genericError": "An error occurred while creating your account. Please try again."
     },
     "Step1": {
       "amount": "Loan amount",
       "duration": "Duration (months)",
       "rate": "Nominal rate"
+    },
+    "Form": {
+      "lastName": "Last Name"
     }
   },
   "Legal": {
@@ -987,79 +1175,6 @@
         "updated": "Last updated: February 2026",
         "copyright": "© 2026 AGM INVEST - All rights reserved"
       }
-    }
-  },
-  "Dashboard": {
-    "Layout": {
-      "Sidebar": {
-        "clientSpace": "Client Area",
-        "balance": "My Balance",
-        "makeRequest": "Request a Loan",
-        "myRequests": "My Requests",
-        "myDocuments": "My Documents",
-        "billing": "Billing",
-        "myProfile": "My Profile",
-        "settings": "Settings",
-        "support": "Help & Support",
-        "logout": "Logout"
-      }
-    },
-    "Home": {
-      "welcome": "Hello, {name}!",
-      "subtitle": "Welcome to your dashboard.",
-      "status": {
-        "verified": "Verified Account",
-        "premium": "Premium Client"
-      },
-      "stats": {
-        "total": "Total Requests",
-        "approved": "Approved",
-        "pending": "Pending",
-        "projects": "Projects"
-      }
-    },
-    "Accounts": {
-      "title": "My Balance",
-      "subtitle": "Manage your accounts and banking information."
-    },
-    "Profile": {
-      "title": "My Profile",
-      "subtitle": "Manage your personal information and security.",
-      "editButton": "Edit Profile",
-      "saveButton": "Save",
-      "cancelButton": "Cancel",
-      "Identity": {
-        "title": "Civil Status"
-      },
-      "Location": {
-        "title": "Contact Details"
-      },
-      "Situation": {
-        "title": "Personal Situation"
-      },
-      "Professional": {
-        "title": "Professional Situation"
-      },
-      "Financial": {
-        "title": "Financial Situation"
-      }
-    },
-    "Requests": {
-      "title": "My Requests",
-      "subtitle": "Consult the history and progress of your files.",
-      "searchPlaceholder": "Search...",
-      "noneFound": "No requests found",
-      "newRequest": "New request"
-    },
-    "settings": {
-      "title": "Settings",
-      "subtitle": "Manage your account preferences, notifications, and security.",
-      "language": "Language",
-      "lastLogin": "Last login",
-      "notifications": "Notifications",
-      "security": "Account Security",
-      "autoLogout": "Auto logout",
-      "password": "Password"
     }
   },
   "Reviews": {
@@ -1566,5 +1681,993 @@
     "from": "from",
     "action": "just submitted an application",
     "close": "Close"
+  },
+  "Dashboard": {
+    "Notifications": {
+      "requestSubmitted": {
+        "title": "Loan request submitted 📄",
+        "message": "Your loan request for {amount} has been successfully registered."
+      },
+      "transferInitiated": {
+        "title": "Transfer initiated 🚀",
+        "message": "Your transfer of {amount} is being processed."
+      },
+      "newMessage": {
+        "title": "New message 💬",
+        "message": "You have received a new message from your advisor."
+      },
+      "statusUpdate": {
+        "title": "File status updated 🔔",
+        "message": "Your file status has been updated."
+      },
+      "verified": {
+        "title": "Identity verified ✅",
+        "message": "Congratulations! Your identity has been successfully validated."
+      },
+      "rejected": {
+        "title": "Identity rejected ❌",
+        "message": "Your identity verification has been rejected. Please check your documents."
+      },
+      "partialRejection": {
+        "title": "Incomplete documents ⚠️",
+        "message": "Some documents in your file need to be completed."
+      },
+      "verificationSubmitted": {
+        "title": "Verification submitted 🛡️",
+        "message": "Your identity documents are being reviewed."
+      },
+      "securityUpdate": {
+        "title": "Security updated 🔒",
+        "message": "Your password has been changed successfully."
+      }
+    },
+    "Layout": {
+      "Sidebar": {
+        "menuTitle": "Navigation",
+        "preferencesTitle": "Preferences",
+        "clientSpace": "Dashboard",
+        "balance": "My Account",
+        "makeRequest": "Make a Request",
+        "myRequests": "My Requests",
+        "myDocuments": "My Documents",
+        "billing": "Billing",
+        "myProfile": "My Profile",
+        "settings": "Settings",
+        "support": "Support",
+        "logout": "Logout",
+        "premiumStatus": "Premium Status",
+        "verifiedClient": "Verified Client",
+        "actionRequired": "Action Required",
+        "docsToComplete": "Documents to complete",
+        "docsAttention": "Some documents require your attention.",
+        "identityRejected": "Identity Rejected",
+        "contactSupport": "Please contact support."
+      },
+      "Header": {
+        "searchPlaceholder": "Search...",
+        "notifications": "Notifications",
+        "markAllAsRead": "Mark all as read",
+        "noNotifications": "No notifications",
+        "managePreferences": "Manage preferences",
+        "user": "User",
+        "verifiedClient": "Verified Client",
+        "verificationInProgress": "Verification in progress",
+        "actionRequired": "Action Required",
+        "identityRejected": "Identity Rejected",
+        "docsToComplete": "Documents to complete",
+        "accountToVerify": "Account to verify"
+      },
+      "Notifications": {
+        "statusUpdate": {
+          "title": "Status Update",
+          "message": "The status of your identity verification has changed."
+        },
+        "verified": {
+          "title": "Identity Verified ✅",
+          "message": "Your identity has been confirmed. You can now access all features."
+        },
+        "rejected": {
+          "title": "Identity Rejected ❌",
+          "message": "Your documents were not accepted. Please submit new ones."
+        },
+        "partialRejection": {
+          "title": "Documents Partially Rejected ⚠️",
+          "message": "Some documents need correction. Check the Verification section."
+        },
+        "newMessage": {
+          "title": "New Message 💬",
+          "message": "You have a new message from our team."
+        }
+      },
+      "IdentityBanner": {
+        "pendingTitle": "Verification in progress...",
+        "pendingMessage": "Our experts are certifying your documents. Your serenity is our priority, response within 24 hours.",
+        "requiredTitle": "Action required: Identity",
+        "requiredMessage": "To unlock your financing options, a brief security verification is required.",
+        "action": "Verify now"
+      },
+      "Requests": {
+        "Details": {
+          "status": {
+            "pending": "Pending",
+            "approved": "Approved",
+            "rejected": "Rejected",
+            "processing": "Processing"
+          },
+          "timeline": {
+            "step1": {
+              "title": "File received",
+              "desc": "Your request has been successfully registered."
+            },
+            "step2": {
+              "title": "Technical analysis",
+              "desc": "Our experts are checking the feasibility of your project."
+            },
+            "step3": {
+              "title": "Document verification",
+              "desc": "Detailed examination of the submitted supporting documents."
+            },
+            "step4": {
+              "approved": {
+                "title": "Final decision: Approved",
+                "desc": "Congratulations, your financing has been validated."
+              },
+              "rejected": {
+                "title": "Final decision: Rejected",
+                "desc": "Unfortunately, we cannot proceed with your request."
+              },
+              "pending": "Waiting for final commission."
+            }
+          },
+          "banners": {
+            "approved": {
+              "title": "Congratulations! Your credit is approved 🚀",
+              "message": "Your financing has been validated. A final identity verification is required to activate the funds transfer.",
+              "action": "Verification required"
+            },
+            "actionRequired": {
+              "title": "Action Required",
+              "message": "Your identity has been confirmed! To finalize your credit activation, the authentication deposit is now necessary.",
+              "action": "Make deposit"
+            }
+          },
+          "header": {
+            "back": "Back",
+            "amountLabel": "Project Amount"
+          },
+          "info": {
+            "duration": "Duration",
+            "monthlyPayment": "Monthly payment",
+            "rate": "Rate (APR)",
+            "creationDate": "Creation"
+          },
+          "progression": "Progression",
+          "declaration": {
+            "title": "My Declaration",
+            "situation": "Pro Situation",
+            "income": "Monthly Income",
+            "expenses": "Estimated Expenses",
+            "security": "Total confidentiality guaranteed by ELYSIO"
+          },
+          "advisor": {
+            "title": "Senior Advisor",
+            "contact": "Contact"
+          },
+          "nextStep": {
+            "title": "Next step",
+            "pending": "The initial analysis will be completed by the end of the day. An expert will contact you if necessary.",
+            "processing": "We are reviewing your documents. No action required from you for now.",
+            "finished": "Your file is closed. Consult the 'Accounts' tab to activate your financing.",
+            "estimateLabel": "Estimated time",
+            "estimateValue": "Less than 24h"
+          }
+        }
+      }
+    },
+    "Home": {
+      "welcome": "Hello, <bold>{name}</bold> !",
+      "subtitle": "Here is your client area summary.",
+      "alerts": {
+        "rejected": {
+          "title": "Request Rejected",
+          "message": "Unfortunately, your financing request has been rejected after reviewing your case."
+        },
+        "approvedIdentityNeeded": {
+          "title": "Congratulations! Credit Approved",
+          "message": "Your request has been accepted. To unlock the funds, we need to finalize your identity verification.",
+          "action": "Verify my identity"
+        },
+        "approvedDepositNeeded": {
+          "title": "Loan ready to be disbursed",
+          "message": "Your identity is verified. Please finalize your initial contribution to unlock your fund transfer.",
+          "action": "Finalize my deposit"
+        },
+        "idRejected": {
+          "title": "Identity Rejected",
+          "message": "The documents provided for your identity do not comply. Please update them."
+        },
+        "partialRejection": {
+          "title": "Action Required",
+          "message": "Some of your documents have been rejected. Please provide new proof.",
+          "action": "Update"
+        }
+      },
+      "loanAccount": {
+        "title": "Credit Account",
+        "remainingAmount": "Principal Remaining",
+        "totalAmount": "Loan Amount"
+      },
+      "balance": {
+        "repaid": "{percent}% Repaid",
+        "monthsRemaining": "{count} months remaining"
+      },
+      "stats": {
+        "total": "Total Files",
+        "approved": "Approved Files",
+        "pending": "Review in Progress",
+        "projects": "Project Types"
+      },
+      "recentRequests": {
+        "title": "Recent Requests",
+        "viewAll": "View all",
+        "type": "Project Type",
+        "status": "Status",
+        "none": "No recent requests"
+      },
+      "support": {
+        "title": "Need help?",
+        "subtitle": "Our team is available to assist you with your steps.",
+        "action": "Contact support"
+      },
+      "quickActions": {
+        "title": "Quick Actions",
+        "docs": "My Documents",
+        "transfer": "Transfer",
+        "history": "Schedule",
+        "profile": "My Profile"
+      },
+      "security": {
+        "title": "Maximum Security",
+        "message": "Your confidential and banking data is protected by end-to-end encryption."
+      }
+    },
+    "Accounts": {
+      "title": "My Account",
+      "subtitle": "Loan management",
+      "card": {
+        "totalBalance": "Remaining Capital Due",
+        "capitalRemaining": "Remaining capital on your loan",
+        "initialAmount": "Initial Amount",
+        "nextInstallment": "Next Installment",
+        "firstInstallment": "First Installment",
+        "deferredPeriod": "Grace period"
+      },
+      "stats": {
+        "rate": "Interest rate",
+        "remainingDuration": "Remaining Duration",
+        "months": "months"
+      },
+      "actions": {
+        "transfer": "Make a transfer",
+        "schedule": "Amortization table"
+      },
+      "operations": {
+        "title": "Movements",
+        "none": "No movements",
+        "loanDisbursement": "Loan disbursement",
+        "externalAccount": "External Account",
+        "transferTo": "Transfer to {bank}",
+        "receivedOn": "Received on {date}",
+        "labels": {
+          "done": "Completed",
+          "rejected": "Rejected",
+          "pending": "Pending"
+        },
+        "status": {
+          "processing": "Processing..."
+        }
+      },
+      "rib": {
+        "title": "Banking Information (RIB)",
+        "edit": "Edit",
+        "bank": "Bank",
+        "iban": "IBAN",
+        "bic": "BIC / SWIFT",
+        "email": "Linked Email",
+        "undefined": "Not defined",
+        "notProvided": "Not provided",
+        "verifiedFooter": "This banking information is verified and secure. Any changes must be validated."
+      },
+      "support": {
+        "title": "Need help?",
+        "message": "Our team is available to assist you with your procedures.",
+        "action": "Contact Support"
+      },
+      "modal": {
+        "title": "Edit RIB",
+        "subtitle": "Update your banking details",
+        "bankLabel": "Bank Name",
+        "bankPlaceholder": "e.g., Barclays Bank",
+        "ibanLabel": "IBAN",
+        "ibanPlaceholder": "GB29...",
+        "bicLabel": "BIC / SWIFT",
+        "bicPlaceholder": "BARCGB...",
+        "emailLabel": "Email Address",
+        "emailPlaceholder": "your@email.com",
+        "info": "Any modification to your banking details will be verified by our team before being validated.",
+        "save": "Save Changes"
+      },
+      "messages": {
+        "success": "Banking information updated successfully",
+        "error": "An error occurred during the update. Please try again."
+      }
+    },
+    "Transfers": {
+      "title": "Bank Transfer",
+      "subtitle": "Transfer funds to your bank account",
+      "form": {
+        "amountLabel": "Amount to transfer",
+        "destinationLabel": "Destination account",
+        "referenceAccount": "Reference Account",
+        "verifiedAccount": "Verified",
+        "delayNote": "Transfers are processed within 24 to 72 business hours. You will receive an email confirmation.",
+        "total": "Total",
+        "confirm": "Confirm transfer",
+        "blocked": "Transfer blocked",
+        "required": {
+          "verification": "Identity verification required",
+          "finalization": "Finalization required"
+        }
+      },
+      "errors": {
+        "insufficientBalance": "Insufficient balance. You have {balance}€ and are trying to transfer {amount}€."
+      },
+      "messages": {
+        "initiated": "Transfer initiated 💸",
+        "processing": "Your transfer request of {amount} € is being processed.",
+        "genericError": "An error occurred during the transfer. Please check your permissions."
+      },
+      "success": {
+        "title": "Transfer initiated!",
+        "message": "Your transfer is currently {status}. You will receive a notification as soon as it is processed.",
+        "pending": "PENDING",
+        "newTransfer": "New transfer",
+        "myAccounts": "My accounts"
+      },
+      "blocking": {
+        "verification": {
+          "title": "Identity verification required",
+          "short": "Complete your KYC to make transfers.",
+          "long": "For security reasons, your identity must be verified before making transfers. Go to the Documents section to complete your file."
+        },
+        "deposit": {
+          "title": "Initial deposit required",
+          "short": "Finalize your deposit to unlock transfers.",
+          "long": "Your initial payment is pending. Please finalize your deposit to unlock the transfer function."
+        }
+      },
+      "security": {
+        "title": "Security check",
+        "message": "Each transfer is subject to a security check to protect your funds.",
+        "estimatedDelay": "Estimated delay",
+        "delay": "24 - 72h",
+        "protection": "Protection",
+        "aes": "AES-256"
+      },
+      "status": {
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "review": "In review",
+        "advanced": "Advanced",
+        "pending": "Pending"
+      },
+      "history": {
+        "title": "Recent history",
+        "full": "Full History",
+        "subtitle": "All your transfers made",
+        "none": "No transfers made",
+        "viewAll": "View all history",
+        "table": {
+          "date": "Date",
+          "recipient": "Recipient",
+          "iban": "IBAN",
+          "amount": "Amount",
+          "status": "Status",
+          "justNow": "Just now"
+        },
+        "pagination": {
+          "page": "Page",
+          "display": "Displaying {start} - {end} of {total}"
+        }
+      }
+    },
+    "Schedule": {
+      "title": "My Amortization Table",
+      "subtitle": "Financing details",
+      "back": "Back to accounts",
+      "exportPDF": "Export to PDF",
+      "stats": {
+        "monthlyPayment": "Average monthly payment",
+        "insurance": "Including {amount} of insurance (3%)",
+        "totalInterest": "Total interest",
+        "loanDuration": "Loan duration",
+        "months": "months"
+      },
+      "table": {
+        "number": "No.",
+        "date": "Payment date",
+        "amount": "Amount",
+        "principal": "Amortization",
+        "balance": "Remaining balance",
+        "status": "State"
+      },
+      "status": {
+        "paid": "Paid",
+        "overdue": "OVERDUE",
+        "pending": "In progress",
+        "upcoming": "Upcoming"
+      },
+      "pagination": {
+        "page": "Page {current} of {total}"
+      },
+      "footer": {
+        "certified": "Document certified by AGM INVEST • Banking Security"
+      },
+      "noActiveLoan": {
+        "title": "No active loan found",
+        "message": "You do not have a payment schedule available for consultation yet.",
+        "back": "Back to dashboard"
+      }
+    },
+    "Verification": {
+      "title": "Verification",
+      "subtitle": "Security identity via biometrics.",
+      "Intro": {
+        "title": "Security Verification",
+        "description": "To validate your authentication deposit and secure access to funds, we must confirm your identity through a live selfie and a short video sequence.",
+        "selfieTitle": "Selfie Photo",
+        "selfieDesc": "Clear face, good lighting.",
+        "videoTitle": "Video Selfie (10s)",
+        "videoDesc": "Turn your head slightly.",
+        "startButton": "Start verification",
+        "gdpr": "Mandatory action • GDPR compliant"
+      },
+      "Processing": {
+        "title": "Session in progress",
+        "description": "We detected pending captures on this device. Do you want to finalize the submission or start over?",
+        "continueButton": "Continue to submission",
+        "resetButton": "Clear and restart"
+      },
+      "Notifications": {
+        "submittedTitle": "Verification submitted 📸",
+        "submittedMessage": "Your selfie and video are being analyzed. Please wait.",
+        "error": "An error occurred during submission."
+      },
+      "Camera": {
+        "desktopError": {
+          "title": "Mobile Verification Only",
+          "message": "This verification must be performed from a smartphone for security reasons.",
+          "copyLink": "Copy link",
+          "linkCopied": "Link copied!",
+          "back": "Back"
+        },
+        "status": {
+          "accessing": "Accessing camera...",
+          "validatePhoto": "Validate photo",
+          "validateVideo": "Validate video",
+          "finished": "Verification finished",
+          "selfieTitle": "Selfie Photo",
+          "videoTitle": "Selfie Video"
+        },
+        "instructions": {
+          "tapToStart": "Tap to start",
+          "turnLeft": "Turn your head LEFT",
+          "turnRight": "Turn your head RIGHT",
+          "raiseHead": "Raise your head",
+          "perfect": "Perfect!"
+        },
+        "actions": {
+          "retake": "Retake",
+          "validate": "Validate",
+          "upload": "Upload",
+          "finalize": "Finalize verification"
+        },
+        "confirmReset": "Are you sure you want to clear all captures and start over?",
+        "submitting": {
+          "title": "Transmission in progress",
+          "message": "We are securing your data and finalizing your payment profile link.",
+          "doneTitle": "Verification Finished",
+          "doneMessage": "Your identity has been successfully submitted. You will be redirected...",
+          "encryption": "AES-256 encryption in progress"
+        },
+        "errors": {
+          "saveSelfie": "Error saving selfie.",
+          "saveVideo": "Error saving video.",
+          "generic": "An error occurred during validation.",
+          "missingMedia": "Missing media",
+          "uploadFailed": "Error sending files."
+        }
+      }
+    },
+    "Profile": {
+      "title": "My Profile",
+      "subtitle": "Manage your personal information and security.",
+      "editButton": "Edit Profile",
+      "saveButton": "Save",
+      "cancelButton": "Cancel",
+      "Identity": {
+        "title": "Civil Status"
+      },
+      "Location": {
+        "title": "Contact Details"
+      },
+      "Situation": {
+        "title": "Personal Situation"
+      },
+      "Professional": {
+        "title": "Professional Situation"
+      },
+      "Financial": {
+        "title": "Financial Situation"
+      },
+      "sections": {
+        "identity": "Personal Details",
+        "contact": "Contact Information",
+        "personal": "Personal Situation",
+        "professional": "Professional Situation",
+        "financial": "Financial Situation"
+      },
+      "fields": {
+        "address": "Residential address",
+        "zipCode": "Zip Code",
+        "city": "City",
+        "country": "Country",
+        "phone": "Mobile phone"
+      },
+      "companyLabels": {
+        "student": "School / University",
+        "apprentice": "Host company / Training center",
+        "independent": "Name of your activity",
+        "artisan": "Trade / Company name",
+        "civil_servant": "Ministry / Administration",
+        "temporary": "Staffing agency / Employer",
+        "liberal": "Practice / Business name",
+        "business_owner": "Company name / Brand"
+      },
+      "incomeLabels": {
+        "retired": "Monthly pension",
+        "unemployed": "Benefits / Income",
+        "student": "Grants / Monthly income",
+        "apprentice": "Monthly pay",
+        "civil_servant": "Net monthly salary",
+        "selfEmployed": "Average monthly income"
+      }
+    },
+    "Requests": {
+      "title": "My Requests",
+      "subtitle": "Track the progress of your files.",
+      "searchPlaceholder": "Search...",
+      "noneFound": "No requests found",
+      "noneDescription": "You haven't made a financing request yet. Start by simulating your project.",
+      "newRequest": "New request",
+      "defaultType": "Credit Request",
+      "requestedAmount": "Requested amount",
+      "follow": "Track",
+      "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "processing": "Processing"
+      },
+      "banners": {
+        "approved": {
+          "title": "Congratulations! Your credit is approved 🚀",
+          "message": "Great news: your financing has been validated. A final identity verification is required to activate the funds transfer.",
+          "action": "Verification required"
+        },
+        "actionRequired": {
+          "title": "Action Required",
+          "message": "Your identity has been confirmed! To finalize your credit activation, the authentication deposit is now necessary.",
+          "action": "Make deposit"
+        }
+      },
+      "Details": {
+        "header": {
+          "back": "Back",
+          "amountLabel": "Requested Amount"
+        },
+        "status": {
+          "pending": "Pending",
+          "approved": "Approved",
+          "rejected": "Rejected",
+          "processing": "Being Analyzed"
+        },
+        "progression": "FILE PROGRESS",
+        "info": {
+          "duration": "Duration",
+          "monthlyPayment": "Monthly Payment",
+          "rate": "Rate",
+          "creationDate": "Creation Date"
+        },
+        "timeline": {
+          "step1": {
+            "title": "FILE RECEIVED",
+            "desc": "Your application has been received. Our team will review it."
+          },
+          "step2": {
+            "title": "ANALYSIS IN PROGRESS",
+            "desc": "Our expert advisors are analyzing your file in detail."
+          },
+          "step3": {
+            "title": "FINAL VERIFICATION",
+            "desc": "Final verification of all elements of your file."
+          },
+          "step4": {
+            "approved": {
+              "title": "FILE APPROVED",
+              "desc": "Congratulations! Your financing has been approved."
+            },
+            "rejected": {
+              "title": "FILE REJECTED",
+              "desc": "Your application was not accepted. Please contact our support."
+            },
+            "pending": "Awaiting final decision..."
+          }
+        },
+        "declaration": {
+          "title": "FINANCIAL DECLARATION",
+          "situation": "Professional situation",
+          "income": "Monthly income",
+          "expenses": "Monthly expenses",
+          "security": "Encrypted and secured data - AES-256",
+          "seniorityDesc": "Confirmed seniority",
+          "incomeDesc": "Net before taxes",
+          "expensesDesc": "Rent and loans"
+        },
+        "advisor": {
+          "title": "Your advisor",
+          "contact": "Contact my advisor",
+          "quote": "\"Your file is in good hands. I am personally looking after it.\""
+        },
+        "nextStep": {
+          "title": "NEXT STEP",
+          "pending": "Your file is under review. We will contact you within 24-48 hours.",
+          "processing": "Our team is finalizing the analysis. You will be contacted very soon.",
+          "finished": "Your file has been processed. Check the status above.",
+          "estimateLabel": "Estimated time",
+          "estimateValue": "24 to 48 hours"
+        },
+        "banners": {
+          "approved": {
+            "title": "YOUR FINANCING IS APPROVED",
+            "message": "We need to verify your identity before releasing the funds.",
+            "action": "Complete identity verification"
+          },
+          "actionRequired": {
+            "title": "ACTION REQUIRED",
+            "message": "Your file has been approved. An action is required to finalize your financing.",
+            "action": "Make my payment"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "title": "Settings",
+      "subtitle": "Manage your account preferences, notifications, and security.",
+      "language": "Language",
+      "lastLogin": "Last login",
+      "notifications": "Notifications",
+      "security": "Account Security",
+      "loginEmail": "Login Email",
+      "autoLogout": "Auto logout",
+      "password": "Password",
+      "timeouts": {
+        "never": "Never",
+        "5min": "5 Minutes",
+        "15min": "15 Minutes",
+        "30min": "30 Minutes"
+      },
+      "PasswordModal": {
+        "title": "Change Password",
+        "currentLabel": "Current Password",
+        "newLabel": "New Password",
+        "confirmLabel": "Confirm New Password",
+        "submit": "Update",
+        "updating": "Updating...",
+        "errorMatch": "Passwords do not match.",
+        "errorLength": "Password must be at least 6 characters.",
+        "errorWrong": "Current password is incorrect.",
+        "errorGeneric": "An error occurred during update.",
+        "successAlert": "Password updated successfully!"
+      },
+      "Notifications": {
+        "securityTitle": "Security updated 🔒",
+        "securityMessage": "Your password has been changed successfully.",
+        "emailLabel": "Email",
+        "emailDesc": "File alerts",
+        "pushLabel": "Push",
+        "pushDesc": "Direct mobile",
+        "offersLabel": "Offers",
+        "offersDesc": "Partners"
+      },
+      "system": {
+        "lastLogin": "Last login",
+        "sessionActive": "Current session"
+      },
+      "footer": {
+        "aes": "AES-256 Encryption",
+        "lastUpdate": "Last update",
+        "february": "February"
+      }
+    },
+    "Documents": {
+      "title": "My Documents",
+      "subtitle": "View and download your contractual documents, certificates and certified guarantees.",
+      "empty": {
+        "title": "No documents available",
+        "message": "Your official documents will be generated automatically once your financing is activated."
+      },
+      "contract": {
+        "title": "Loan Agreement",
+        "description": "Your complete contract including the repayment schedule, general conditions and legal notices.",
+        "button": "Download PDF"
+      },
+      "insurance": {
+        "title": "Insurance",
+        "description": "AGM INVEST borrower insurance membership certificate covering your project 100%.",
+        "button": "Download Certificate"
+      },
+      "privacy": {
+        "title": "Privacy",
+        "description": "Document detailing the protection of your personal data and your GDPR rights.",
+        "button": "Download PDF"
+      },
+      "security": {
+        "title": "Certified & Secure Documents",
+        "message": "\"All documents generated from this area are electronically protected and certified compliant by AGM INVEST. They have legal value for your procedures.\""
+      }
+    },
+    "Billing": {
+      "title": "Billing",
+      "subtitle": "Manage your payments and secure deposits.",
+      "errors": {
+        "accessDenied": "Access denied"
+      },
+      "paymentTypes": {
+        "frais_dossier": "File Fees",
+        "assurance": "Insurance",
+        "frais_notaire": "Notary Fees",
+        "authentication_deposit": "Authentication Deposit",
+        "none": "None"
+      },
+      "empty": {
+        "title": "No pending billing",
+        "message": "Your account is up to date. No payment action is required at this time.",
+        "dashboardButton": "Dashboard"
+      },
+      "policy": {
+        "badge": "Zero Fees Charter",
+        "title": "Transparency Policy",
+        "noHiddenFees": {
+          "text": "AGM INVEST applies",
+          "highlight": "no hidden fees"
+        },
+        "depositExplanation": {
+          "text1": "This transfer of",
+          "text2": "corresponds to an",
+          "text3": "from your bank account."
+        },
+        "important": {
+          "label": "Important:",
+          "text1": "This is not a file fee. This amount is",
+          "highlight": "100% credited",
+          "text2": "to your client balance and will be used to activate your financing."
+        }
+      },
+      "deposit": {
+        "label": "Deposit Amount",
+        "credited": "100% Credited"
+      },
+      "sepa": {
+        "title": "SEPA Security",
+        "description": "Secure instant transfer to our European partner."
+      },
+      "rib": {
+        "title": "Bank Details",
+        "subtitle": "Deposit Transfer",
+        "secureTransfer": "Secure Transfer",
+        "copied": "Copied!",
+        "confidentialNote": "This transfer is strictly confidential. Your advisor will receive an automatic notification when the funds are received by our partner bank.",
+        "fields": {
+          "beneficiary": "Beneficiary",
+          "bank": "Financial Institution",
+          "iban": "IBAN Code",
+          "bic": "BIC Code (SWIFT)"
+        }
+      },
+      "backLater": "Come back later"
+    },
+    "Support": {
+      "title": "Support Center",
+      "subtitle": "We are here to answer your questions and support you.",
+      "badge": "Help & Support",
+      "searchPlaceholder": "Search for a solution...",
+      "contactButton": "Contact",
+      "faqTitle": "Frequently Asked Questions",
+      "faqAll": "Show all questions",
+      "security": {
+        "title": "Certified Secure Support",
+        "desc": "Active encryption protocols"
+      },
+      "Methods": {
+        "chat": {
+          "title": "Live Chat",
+          "value": "Online Advisor",
+          "desc": "Immediate response"
+        },
+        "phone": {
+          "title": "Phone Line",
+          "value": "AGM INVEST +33 7 56 84 41 45",
+          "desc": "9am - 6pm (Mon-Fri)"
+        },
+        "email": {
+          "title": "Email Support",
+          "value": "contact@agm-negoce.com",
+          "desc": "Within 24 hours"
+        }
+      },
+      "FAQs": [
+        {
+          "q": "How does identity verification work?",
+          "a": "Verification is done entirely online. Simply upload a valid ID and perform a quick video selfie to confirm your identity in seconds."
+        },
+        {
+          "q": "What are the loan approval times?",
+          "a": "Once your file is complete, you receive an immediate response in principle. Final analysis and fund disbursement usually occur within 24 to 48 business hours."
+        },
+        {
+          "q": "Can I modify my request after submission?",
+          "a": "As long as your request is in 'Pending' status, you can contact our support to make changes. Once validated, modifications are no longer possible."
+        },
+        {
+          "q": "How do I download my signed contract?",
+          "a": "Your contract is available in the 'My Documents' section of your dashboard as soon as the electronic signature is confirmed."
+        },
+        {
+          "q": "What are the eligibility criteria?",
+          "a": "You must be of legal age, reside in an eligible country, and prove stable income. Each project is studied personally by our experts."
+        },
+        {
+          "q": "How do I secure my account?",
+          "a": "We recommend activating two-factor authentication (2FA) in your settings and using a unique, complex password."
+        }
+      ]
+    },
+    "Chat": {
+      "onlineStatus": "CLIENT ONLINE",
+      "welcome": "Hello!",
+      "advisorReady": "Your advisor is ready to help you.",
+      "askQuestion": "Ask your question below.",
+      "filePlaceholder": "File",
+      "loadingFile": "Uploading file...",
+      "inputPlaceholder": "Reply to client...",
+      "fileTooLarge": "The file is too large (max 10MB)",
+      "uploadError": "Error uploading file. Please try again.",
+      "fileSent": "📎 File sent"
+    },
+    "KYC": {
+      "title": "Identity Verification",
+      "subtitle": "Compliance and funds security.",
+      "Intro": {
+        "badge": "Compliance",
+        "title": "Finalizing your file",
+        "step1": {
+          "title": "Identity",
+          "desc": "Clear color photos only.",
+          "note": "All 4 borders must be visible."
+        },
+        "step2": {
+          "title": "Finance & Home",
+          "desc": "Original PDF format.",
+          "note": "Scans will be rejected."
+        },
+        "support": "Support available if needed",
+        "contact": "Contact",
+        "secure": "AES-256 Secure Validation"
+      },
+      "Documents": {
+        "identity_1": "Identity 1",
+        "identity_2": "Identity 2",
+        "id_front": "ID Piece (Front)",
+        "id_back": "ID Piece (Back)",
+        "front": "Front",
+        "back": "Back",
+        "cni": "ID Card",
+        "passport": "Passport",
+        "resident_card": "Card",
+        "driver_license": "License",
+        "vital_card": "Health Card",
+        "tax_notice": "Tax Notice",
+        "pay_slip_1": "Pay Slip #1",
+        "pay_slip_2": "Pay Slip #2",
+        "pay_slip_3": "Pay Slip #3",
+        "address_proof": "Proof of Address",
+        "rib": "Bank Details",
+        "nature_1": "ID 1 Nature",
+        "nature_2": "ID 2 Nature",
+        "labels": {
+          "cni": "ID Card",
+          "passport": "Passport",
+          "resident_card": "Residence",
+          "driver_license": "Driver"
+        },
+        "descriptions": {
+          "generic_recto": "Front side of your {label}. Clear photos, borders visible.",
+          "generic_verso": "Back side of your {label}. Clear photos, borders visible.",
+          "generic_simple": "Clear photo of your {label}. Clear photos, borders visible.",
+          "vital_card": "Readable copy of your health card.",
+          "tax_notice": "Full tax notice (PDF).",
+          "pay_slip": "Pay slip or proof of pension (PDF).",
+          "pay_slip_detailed": "Current or previous month (PDF).",
+          "address_proof": "Recent bill (Electricity, Water, Internet) (PDF).",
+          "rib": "In your first and last name (PDF).",
+          "intl_id": "Clear color photos, borders visible.",
+          "intl_address": "Recent bill or certificate (PDF)."
+        }
+      },
+      "Status": {
+        "global": "Global Status",
+        "valid": "Validated",
+        "certified": "Certified",
+        "missing": "Missing",
+        "recorded": "Recorded",
+        "success": "Success!",
+        "transmitted": "Submitted",
+        "transmission": "Transmission",
+        "transmission_desc": "Send your documents for review.",
+        "transmitted_desc": "Submitted successfully.",
+        "transmitting": "Processing...",
+        "submit": "Submit File",
+        "finalizing": "Finalize my file",
+        "encryption": "AES-256 Encryption",
+        "validCount": "{completed} / {total} Validated",
+        "transmitted_short": "Submitted"
+      },
+      "Actions": {
+        "capture": "Capture",
+        "upload": "Upload",
+        "home": "Home",
+        "instructions": "Click on an icon.",
+        "takePhoto": "Take photo",
+        "selectFile": "Select file",
+        "support_short": "Support",
+        "retake": "Retake",
+        "validate": "Validate"
+      },
+      "Overlays": {
+        "success": {
+          "title": "Success!",
+          "message": "Documents transmitted. Response in 24h."
+        },
+        "cameraError": "Unable to access camera.",
+        "analyzing": "Analyzing..."
+      },
+      "Errors": {
+        "pdfRequired": "PDF format required.",
+        "fileTooLarge": "File too large (max 8MB).",
+        "missingDocs": "Missing documents.",
+        "submitError": "Submit error.",
+        "uploadError": "Upload error."
+      },
+      "MobileRedirect": {
+        "title": "Use your mobile",
+        "subtitle": "Capture is reserved for smartphones.",
+        "method1_label": "Recommended",
+        "method1_desc": "Scan QR Code",
+        "method2_label": "Direct links",
+        "method2_desc": "agminvest.com",
+        "button": "I understand"
+      }
+    }
   }
 }

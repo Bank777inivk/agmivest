@@ -264,6 +264,8 @@ export default function SchedulePage() {
         paginatedSchedule
     };
 
+    const tSchedule = useTranslations('Dashboard.Schedule');
+
     if (isLoading) {
         return (
             <div className="flex items-center justify-center min-h-[400px]">
@@ -279,14 +281,14 @@ export default function SchedulePage() {
                     <AlertCircle className="w-10 h-10 text-slate-300" />
                 </div>
                 <div className="space-y-2">
-                    <h2 className="text-2xl font-bold text-gray-900">Aucun crédit actif trouvé</h2>
-                    <p className="text-gray-500 max-w-sm mx-auto">Vous n'avez pas encore d'échéancier disponible pour consultation.</p>
+                    <h2 className="text-2xl font-bold text-gray-900">{tSchedule('noActiveLoan.title')}</h2>
+                    <p className="text-gray-500 max-w-sm mx-auto">{tSchedule('noActiveLoan.message')}</p>
                 </div>
                 <button
-                    onClick={() => router.back()}
+                    onClick={() => router.push('/dashboard')}
                     className="px-8 py-3 bg-white border border-slate-200 text-slate-600 rounded-2xl font-bold hover:bg-slate-50 transition-all shadow-sm"
                 >
-                    Retourner au tableau de bord
+                    {tSchedule('noActiveLoan.back')}
                 </button>
             </div>
         );

@@ -54,7 +54,15 @@ export default function AboutSection() {
                             className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center hover:bg-white/20 transition-all"
                         >
                             <stat.icon className="w-8 h-8 md:w-10 md:h-10 text-ely-mint mx-auto mb-4" />
-                            <div className="text-3xl md:text-4xl font-black text-ely-mint mb-2">{stat.number}</div>
+                            <div className={`font-black text-ely-mint mb-2 break-words ${
+                                stat.number.length > 8 
+                                    ? 'text-xl md:text-2xl' 
+                                    : stat.number.length > 6 
+                                        ? 'text-2xl md:text-3xl' 
+                                        : 'text-3xl md:text-4xl'
+                            }`}>
+                                {stat.number}
+                            </div>
                             <div className="text-sm md:text-base text-gray-300">{stat.label}</div>
                         </motion.div>
                     ))}

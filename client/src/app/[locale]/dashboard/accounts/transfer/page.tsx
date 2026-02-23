@@ -13,6 +13,7 @@ import DesktopTransfer from "@/components/dashboard/Transfers/DesktopTransfer";
 
 export default function TransferPage() {
     const t = useTranslations('Dashboard.Accounts');
+    const tTransfers = useTranslations('Dashboard.Transfers');
     const router = useRouter();
     const [loanAccount, setLoanAccount] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -126,7 +127,10 @@ export default function TransferPage() {
         const availableBalance = loanAccount.remainingAmount || 0;
 
         if (transferAmount > availableBalance) {
-            setError(`Solde insuffisant. Vous disposez de ${availableBalance.toFixed(2)}€ et tentez de transférer ${transferAmount.toFixed(2)}€.`);
+            setError(tTransfers('errors.insufficientBalance', {
+                balance: availableBalance.toFixed(2),
+                amount: transferAmount.toFixed(2)
+            }));
             return;
         }
 
@@ -150,8 +154,9 @@ export default function TransferPage() {
 
             // Create Notification
             await createNotification(auth.currentUser.uid, {
-                title: "Virement initié 💸",
-                message: `Votre demande de virement de ${transferAmount.toLocaleString()} € est en cours de traitement.`,
+                title: 'transferInitiated.title',
+                message: 'transferInitiated.message',
+                params: { amount: transferAmount.toLocaleString() },
                 type: 'info'
             });
 
@@ -159,7 +164,7 @@ export default function TransferPage() {
             setAmount("");
         } catch (error) {
             console.error("Transfer error:", error);
-            alert("Une erreur est survenue lors du virement. Vérifiez vos permissions.");
+            alert(tTransfers('messages.genericError'));
         } finally {
             setIsProcessing(false);
         }

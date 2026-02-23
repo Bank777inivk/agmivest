@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { AlertCircle, Clock } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 interface IdentityBannerProps {
     idStatus: string | null;
@@ -10,6 +11,7 @@ interface IdentityBannerProps {
 
 export default function IdentityBanner({ idStatus }: IdentityBannerProps) {
     const router = useRouter();
+    const t = useTranslations("Dashboard.Layout.IdentityBanner");
 
     if (idStatus !== "verification_required" && idStatus !== "pending_verification") return null;
 
@@ -50,12 +52,12 @@ export default function IdentityBanner({ idStatus }: IdentityBannerProps) {
 
                 <div className="flex flex-col items-center md:items-start space-y-1">
                     <h4 className={`text-xl font-black tracking-tight ${isPending ? "text-blue-950" : "text-amber-950"}`}>
-                        {isPending ? "Vérification en cours..." : "Action requise : Identité"}
+                        {isPending ? t("pendingTitle") : t("requiredTitle")}
                     </h4>
                     <p className={`text-sm font-medium leading-relaxed max-w-md text-center md:text-left ${isPending ? "text-blue-800/80" : "text-amber-800/80"}`}>
                         {isPending
-                            ? "Nos experts certifient vos documents. Votre sérénité est notre priorité, réponse sous 24h."
-                            : "Pour débloquer vos options de financement, une brève vérification de sécurité est nécessaire."
+                            ? t("pendingMessage")
+                            : t("requiredMessage")
                         }
                     </p>
                 </div>
@@ -68,7 +70,7 @@ export default function IdentityBanner({ idStatus }: IdentityBannerProps) {
                     onClick={() => router.push("/dashboard/profile/verification")}
                     className="relative z-10 w-full md:w-auto px-8 py-4 bg-slate-900 text-white rounded-[1.2rem] font-black text-sm uppercase tracking-widest hover:bg-black transition-all shadow-2xl flex items-center justify-center gap-2"
                 >
-                    Vérifier maintenant
+                    {t("action")}
                 </motion.button>
             )}
         </motion.div>

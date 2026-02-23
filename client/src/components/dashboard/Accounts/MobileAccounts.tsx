@@ -169,9 +169,9 @@ export default function MobileAccounts({
                                         <ArrowUpRight className="w-4 h-4" />
                                     </div>
                                     <div>
-                                        <p className="font-bold text-gray-900 text-xs">{t('operations.transferTo', { bank: tx.bankName })}</p>
+                                        <p className="font-bold text-gray-900 text-xs">{tx.type === 'loan' ? t('operations.loanDisbursement') : t('operations.transferTo', { bank: tx.bankName || t('operations.externalAccount') })}</p>
                                         <p className="text-[9px] text-gray-400 font-medium">
-                                            {tx.createdAt?.seconds ? new Date(tx.createdAt.seconds * 1000).toLocaleDateString('fr-FR') : 'Date...'}
+                                            {tx.createdAt?.seconds ? new Date(tx.createdAt.seconds * 1000).toLocaleDateString() : t('operations.status.processing')}
                                         </p>
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@ export default function MobileAccounts({
                     ) : (
                         <div className="p-8 text-center">
                             <Wallet className="w-8 h-8 text-gray-100 mx-auto mb-2" />
-                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{t('operations.empty')}</p>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{t('operations.none')}</p>
                         </div>
                     )}
 
@@ -202,9 +202,12 @@ export default function MobileAccounts({
                                     <p className="text-[9px] text-gray-400 font-medium">{t('operations.receivedOn', { date: loanAccount.startDateFormatted })}</p>
                                 </div>
                             </div>
-                            <p className="font-black text-green-600 text-sm">
-                                +{new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(loanAccount.totalAmount)}
-                            </p>
+                            <div className="text-right">
+                                <p className="font-black text-green-600 text-sm">
+                                    +{new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(loanAccount.totalAmount)}
+                                </p>
+                                <p className="text-[8px] font-black text-gray-300 uppercase tracking-widest leading-none mt-1">{t('operations.labels.done')}</p>
+                            </div>
                         </div>
                     )}
                 </div>

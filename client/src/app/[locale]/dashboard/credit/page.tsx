@@ -310,8 +310,9 @@ export default function CreditRequestPage() {
 
             // Create notification for user
             await createNotification(auth.currentUser.uid, {
-                title: "Demande soumise 📄",
-                message: `Votre demande de prêt de ${amount.toLocaleString()} € a été enregistrée.`,
+                title: 'requestSubmitted.title',
+                message: 'requestSubmitted.message',
+                params: { amount: amount.toLocaleString() },
                 type: 'success',
                 link: '/dashboard/requests'
             });
@@ -325,7 +326,7 @@ export default function CreditRequestPage() {
             setStep(6);
         } catch (error) {
             console.error("Error submitting request:", error);
-            alert("Une erreur est survenue lors de la soumission. Veuillez vérifier vos permissions.");
+            alert(t('Notifications.error'));
         } finally {
             setIsSubmitting(false);
         }
@@ -386,38 +387,38 @@ export default function CreditRequestPage() {
                         {isRejected ? (
                             <>
                                 <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase leading-tight">
-                                    Je vous informe que :
+                                    {t('Banners.Rejected.title')}
                                 </h2>
                                 <p className="text-lg md:text-xl text-white/80 font-medium max-w-xl mx-auto leading-relaxed">
-                                    Votre demande de financement a été refusée par nos services après étude de votre dossier.
+                                    {t('Banners.Rejected.message')}
                                     <br /><br />
                                     <span className="text-white/40 text-base md:text-lg italic uppercase tracking-tighter">
-                                        Pour plus de détails ou pour échanger avec un conseiller, veuillez contacter notre support.
+                                        {t('Banners.Rejected.extra')}
                                     </span>
                                 </p>
                             </>
                         ) : isApproved ? (
                             <>
                                 <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight uppercase leading-tight">
-                                    Félicitations ! <br />
-                                    <span className="text-ely-mint">C'est le Jackpot.</span>
+                                    {t('Banners.Approved.title')} <br />
+                                    <span className="text-ely-mint">{t('Banners.Approved.subtitle')}</span>
                                 </h2>
                                 <div className="space-y-6">
                                     <p className="text-lg md:text-xl text-white/80 font-medium max-w-2xl mx-auto leading-relaxed">
-                                        Profitez de votre emprunt de <span className="text-white font-black">{activeLoanData?.amount?.toLocaleString()} €</span> pour gérer vos projets.
+                                        {t('Banners.Approved.message', { amount: activeLoanData?.amount?.toLocaleString() })}
                                     </p>
                                     <div className="inline-block bg-white/10 py-3 px-6 rounded-2xl text-xs md:text-sm border border-white/10 text-white/70 max-w-lg mx-auto leading-relaxed">
-                                        Actuellement, vous n'êtes plus éligible pour faire une demande de prêt car vous en avez déjà une en cours de remboursement.
+                                        {t('Banners.Approved.warning')}
                                     </div>
                                 </div>
                             </>
                         ) : (
                             <>
-                                <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase leading-tight">Je vous informe que :</h2>
+                                <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase leading-tight">{t('Banners.Pending.title')}</h2>
                                 <p className="text-lg md:text-xl text-white/80 font-medium max-w-xl mx-auto leading-relaxed">
-                                    Vous avez déjà une demande de financement en cours de traitement.
+                                    {t('Banners.Pending.message')}
                                     <br /><br />
-                                    <span className="text-white/40 text-base md:text-lg italic">Par mesure de sécurité et de qualité d'étude, nous ne permettons qu'un seul dossier actif à la fois.</span>
+                                    <span className="text-white/40 text-base md:text-lg italic">{t('Banners.Pending.warning')}</span>
                                 </p>
                             </>
                         )}
@@ -428,14 +429,14 @@ export default function CreditRequestPage() {
                             onClick={() => router.push("/dashboard/requests")}
                             className="w-full sm:w-auto px-10 py-5 bg-white text-ely-blue rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest shadow-2xl shadow-white/10 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3 group"
                         >
-                            Suivre mon dossier
+                            {t('Common.trackRecord')}
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </button>
                         <button
                             onClick={() => router.push("/dashboard")}
                             className="w-full sm:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest hover:bg-white/10 transition-all active:scale-95"
                         >
-                            Tableau de bord
+                            {t('Result.dashboardButton')}
                         </button>
                     </div>
                 </motion.div>

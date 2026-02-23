@@ -46,7 +46,7 @@ const languages = [
 ];
 
 export default function SettingsPage() {
-    const t = useTranslations('Dashboard.settings');
+    const t = useTranslations('Dashboard.Settings');
     const locale = useLocale();
     const router = useRouter();
     const pathname = usePathname();
@@ -138,11 +138,11 @@ export default function SettingsPage() {
     const handlePasswordUpdate = async (e: React.FormEvent) => {
         e.preventDefault();
         if (newPassword !== confirmPassword) {
-            setPasswordError("Les mots de passe ne correspondent pas.");
+            setPasswordError(t('PasswordModal.errorMatch'));
             return;
         }
         if (newPassword.length < 6) {
-            setPasswordError("Le mot de passe doit faire au moins 6 caractères.");
+            setPasswordError(t('PasswordModal.errorLength'));
             return;
         }
 
@@ -164,18 +164,18 @@ export default function SettingsPage() {
 
             // Create notification
             await createNotification(user.uid, {
-                title: "Sécurité mise à jour 🔒",
-                message: "Votre mot de passe a été modifié avec succès.",
+                title: 'securityUpdate.title',
+                message: 'securityUpdate.message',
                 type: 'success'
             });
 
-            alert("Mot de passe mis à jour avec succès !");
+            alert(t('PasswordModal.successAlert'));
         } catch (error: any) {
             console.error(error);
             if (error.code === 'auth/wrong-password') {
-                setPasswordError("Le mot de passe actuel est incorrect.");
+                setPasswordError(t('PasswordModal.errorWrong'));
             } else {
-                setPasswordError("Une erreur est survenue lors de la mise à jour.");
+                setPasswordError(t('PasswordModal.errorGeneric'));
             }
         } finally {
             setIsUpdatingPassword(false);
@@ -211,13 +211,13 @@ export default function SettingsPage() {
                 <header className="space-y-3 pt-12">
                     <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-400">
                         <Settings className="w-3.5 h-3.5" />
-                        <span className="text-[10px] font-bold uppercase tracking-widest">Configuration</span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest">{t('title')}</span>
                     </div>
                     <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
-                        Paramètres
+                        {t('title')}
                     </h1>
                     <p className="text-slate-500 font-medium text-sm max-w-lg">
-                        Gérez vos préférences de compte, les notifications et la sécurité.
+                        {t('subtitle')}
                     </p>
                 </header>
 
@@ -236,7 +236,7 @@ export default function SettingsPage() {
                             <div className="w-10 h-10 bg-blue-50/50 rounded-xl flex items-center justify-center text-ely-blue border border-blue-100">
                                 <Globe className="w-5 h-5" />
                             </div>
-                            <h2 className="text-lg font-black text-slate-900 uppercase tracking-tight">Langue</h2>
+                            <h2 className="text-lg font-black text-slate-900 uppercase tracking-tight">{t('language')}</h2>
                         </div>
 
                         <div className="space-y-4">
@@ -292,16 +292,16 @@ export default function SettingsPage() {
                         </div>
                         <div className="flex items-center gap-3 relative z-10">
                             <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                            <span className="text-[10px] font-black text-blue-100/60 uppercase tracking-[0.2em]">Dernière connexion</span>
+                            <span className="text-[10px] font-black text-blue-100/60 uppercase tracking-[0.2em]">{t('lastLogin')}</span>
                         </div>
                         <p className="text-sm text-white font-medium relative z-10 leading-relaxed uppercase tracking-wider">
-                            {isMounted && (lastLogin ? new Date(lastLogin).toLocaleString('fr-FR', {
+                            {isMounted && (lastLogin ? new Date(lastLogin).toLocaleString(locale, {
                                 day: '2-digit',
                                 month: 'long',
                                 year: 'numeric',
                                 hour: '2-digit',
                                 minute: '2-digit'
-                            }) : 'Session actuelle')}
+                            }) : t('system.sessionActive'))}
                         </p>
                     </motion.section>
 
@@ -314,14 +314,14 @@ export default function SettingsPage() {
                             <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400">
                                 <Bell className="w-5 h-5" />
                             </div>
-                            <h2 className="text-lg font-black text-slate-900 uppercase tracking-tight">Notifications</h2>
+                            <h2 className="text-lg font-black text-slate-900 uppercase tracking-tight">{t('notifications')}</h2>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             {[
-                                { id: 'email', icon: Mail, label: 'Email', desc: 'Alertes dossiers' },
-                                { id: 'push', icon: Smartphone, label: 'Push', desc: 'Mobile direct' },
-                                { id: 'marketing', icon: Globe, label: 'Offres', desc: 'Partenaires' }
+                                { id: 'email', icon: Mail, label: t('Notifications.emailLabel'), desc: t('Notifications.emailDesc') },
+                                { id: 'push', icon: Smartphone, label: t('Notifications.pushLabel'), desc: t('Notifications.pushDesc') },
+                                { id: 'marketing', icon: Globe, label: t('Notifications.offersLabel'), desc: t('Notifications.offersDesc') }
                             ].map((notif) => (
                                 <div
                                     key={notif.id}
@@ -357,12 +357,12 @@ export default function SettingsPage() {
                             <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white border border-white/10">
                                 <ShieldCheck className="w-6 h-6" />
                             </div>
-                            <h2 className="text-xl font-black text-white uppercase tracking-tight">Sécurité du Compte</h2>
+                            <h2 className="text-xl font-black text-white uppercase tracking-tight">{t('security')}</h2>
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end relative z-10">
                             <div className="lg:col-span-6 space-y-4">
-                                <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">Email de connexion</label>
+                                <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">{t('loginEmail')}</label>
                                 <div className="flex items-center justify-between px-6 py-4.5 bg-white/5 border border-white/10 rounded-2xl text-slate-300">
                                     <p className="font-bold text-sm truncate">{userEmail}</p>
                                     <Check className="w-4 h-4 text-blue-400" />
@@ -370,22 +370,22 @@ export default function SettingsPage() {
                             </div>
                             <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-4">
-                                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">Sécurité</label>
+                                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">{t('security')}</label>
                                     <button
                                         onClick={() => setShowPasswordModal(true)}
                                         className="w-full px-6 py-4.5 bg-white/10 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-white/20 transition-all border border-white/5 active:scale-95"
                                     >
-                                        Password
+                                        {t('password')}
                                     </button>
                                 </div>
                                 <div className="space-y-4 relative" ref={timeoutRef}>
-                                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">Déconnexion auto</label>
+                                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">{t('autoLogout')}</label>
                                     <button
                                         onClick={() => setIsTimeoutOpen(!isTimeoutOpen)}
                                         className="w-full px-6 py-4.5 bg-white/5 border border-white/10 rounded-2xl text-[11px] font-bold text-white uppercase tracking-widest outline-none flex items-center justify-between hover:bg-white/10 transition-all"
                                     >
                                         <span>
-                                            {isMounted ? (inactivityTimeout === 'never' ? 'Jamais' : `${inactivityTimeout} Minutes`) : '...'}
+                                            {isMounted ? (inactivityTimeout === 'never' ? t('timeouts.never') : t(`timeouts.${inactivityTimeout}min`)) : '...'}
                                         </span>
                                         <ChevronRight className={`w-3 h-3 text-slate-500 transition-transform ${isTimeoutOpen ? 'rotate-90' : ''}`} />
                                     </button>
@@ -399,10 +399,10 @@ export default function SettingsPage() {
                                                 className="absolute bottom-full left-0 right-0 mb-2 bg-slate-800 border border-white/10 rounded-xl shadow-2xl py-2 z-50 overflow-hidden"
                                             >
                                                 {[
-                                                    { val: 'never', label: 'Jamais' },
-                                                    { val: '5', label: '5 Minutes' },
-                                                    { val: '15', label: '15 Minutes' },
-                                                    { val: '30', label: '30 Minutes' }
+                                                    { val: 'never', label: t('timeouts.never') },
+                                                    { val: '5', label: t('timeouts.5min') },
+                                                    { val: '15', label: t('timeouts.15min') },
+                                                    { val: '30', label: t('timeouts.30min') }
                                                 ].map((opt) => (
                                                     <button
                                                         key={opt.val}
@@ -427,9 +427,9 @@ export default function SettingsPage() {
                 <footer className="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-[10px] font-bold uppercase tracking-[0.1em]">
                     <div className="flex items-center gap-2">
                         <Lock className="w-3.5 h-3.5" />
-                        <span>Chiffrement AES-256</span>
+                        <span>{t('footer.aes')}</span>
                     </div>
-                    <span>Dernière mise à jour : Février 2026</span>
+                    <span>{t('footer.lastUpdate')} : {t('footer.february')} 2026</span>
                 </footer>
             </div>
 
@@ -452,7 +452,7 @@ export default function SettingsPage() {
                         >
                             <div className="p-8 space-y-8">
                                 <div className="flex items-center justify-between">
-                                    <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Changer le mot de passe</h3>
+                                    <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">{t('PasswordModal.title')}</h3>
                                     <button
                                         onClick={() => setShowPasswordModal(false)}
                                         className="p-2 hover:bg-slate-100 rounded-xl transition-colors"
@@ -463,7 +463,7 @@ export default function SettingsPage() {
 
                                 <form onSubmit={handlePasswordUpdate} className="space-y-6">
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Mot de passe actuel</label>
+                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('PasswordModal.currentLabel')}</label>
                                         <input
                                             required
                                             type="password"
@@ -475,7 +475,7 @@ export default function SettingsPage() {
                                     </div>
                                     <div className="space-y-4">
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Nouveau mot de passe</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('PasswordModal.newLabel')}</label>
                                             <input
                                                 required
                                                 type="password"
@@ -486,7 +486,7 @@ export default function SettingsPage() {
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Confirmer nouveau mot de passe</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('PasswordModal.confirmLabel')}</label>
                                             <input
                                                 required
                                                 type="password"
@@ -512,9 +512,9 @@ export default function SettingsPage() {
                                         {isUpdatingPassword ? (
                                             <>
                                                 <Loader2 className="w-5 h-5 animate-spin" />
-                                                Mise à jour...
+                                                {t('PasswordModal.updating')}
                                             </>
-                                        ) : "Mettre à jour"}
+                                        ) : t('PasswordModal.submit')}
                                     </button>
                                 </form>
                             </div>

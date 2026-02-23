@@ -8,8 +8,10 @@ import { collection, query, where, getDocs, limit, doc, getDoc } from "firebase/
 import { onAuthStateChanged } from "firebase/auth";
 import { generateLoanContract, generateInsuranceCertificate, generatePrivacyPolicy } from "@/lib/pdfGenerator";
 import PremiumSpinner from "@/components/dashboard/PremiumSpinner";
+import { useTranslations } from "next-intl";
 
 export default function DocumentsPage() {
+    const t = useTranslations('Dashboard.Documents');
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState<any>(null);
     const [loanAccount, setLoanAccount] = useState<any>(null);
@@ -111,11 +113,11 @@ export default function DocumentsPage() {
                         <FolderOpen className="w-8 h-8" />
                     </div>
                     <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase">
-                        Mes Documents
+                        {t('title')}
                     </h1>
                 </div>
                 <p className="text-slate-500 font-medium text-lg leading-tight max-w-2xl">
-                    Consultez et téléchargez vos documents contractuels, attestations et garanties certifiées.
+                    {t('subtitle')}
                 </p>
             </header>
 
@@ -131,9 +133,9 @@ export default function DocumentsPage() {
                         <div className="w-24 h-24 bg-slate-50 rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 transform rotate-3 shadow-inner">
                             <FolderOpen className="w-12 h-12 text-slate-200" />
                         </div>
-                        <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase">Aucun document disponible</h3>
+                        <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase">{t('empty.title')}</h3>
                         <p className="text-slate-500 max-w-sm mx-auto font-medium text-lg leading-relaxed">
-                            Vos documents officiels seront générés automatiquement dès que votre financement sera activé.
+                            {t('empty.message')}
                         </p>
                     </div>
                 </motion.div>
@@ -154,9 +156,9 @@ export default function DocumentsPage() {
                                 <FileText className="w-8 h-8" />
                             </div>
 
-                            <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase leading-none">Contrat de Prêt</h3>
+                            <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase leading-none">{t('contract.title')}</h3>
                             <p className="text-base font-medium text-slate-500 mb-10 flex-1 leading-relaxed">
-                                Votre contrat complet incluant l'échéancier, les conditions générales et les mentions légales.
+                                {t('contract.description')}
                             </p>
 
                             <button
@@ -164,7 +166,7 @@ export default function DocumentsPage() {
                                 className="w-full py-5 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-900/10"
                             >
                                 <Download className="w-5 h-5" />
-                                Télécharger PDF
+                                {t('contract.button')}
                             </button>
                         </div>
                     </motion.div>
@@ -185,9 +187,9 @@ export default function DocumentsPage() {
                                 <ShieldCheck className="w-8 h-8" />
                             </div>
 
-                            <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase leading-none">Assurance</h3>
+                            <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase leading-none">{t('insurance.title')}</h3>
                             <p className="text-base font-medium text-slate-500 mb-10 flex-1 leading-relaxed">
-                                Certificat d'adhésion à l'assurance emprunteur AGM INVEST couvrant votre projet à 100%.
+                                {t('insurance.description')}
                             </p>
 
                             <button
@@ -195,7 +197,7 @@ export default function DocumentsPage() {
                                 className="w-full py-5 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-emerald-900/10"
                             >
                                 <Download className="w-5 h-5" />
-                                Télécharger Certificat
+                                {t('insurance.button')}
                             </button>
                         </div>
                     </motion.div>
@@ -216,9 +218,9 @@ export default function DocumentsPage() {
                                 <Lock className="w-8 h-8" />
                             </div>
 
-                            <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase leading-none">Vie Privée</h3>
+                            <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase leading-none">{t('privacy.title')}</h3>
                             <p className="text-base font-medium text-slate-500 mb-10 flex-1 leading-relaxed">
-                                Document détaillant la protection de vos données personnelles et vos droits RGPD.
+                                {t('privacy.description')}
                             </p>
 
                             <button
@@ -226,7 +228,7 @@ export default function DocumentsPage() {
                                 className="w-full py-5 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-slate-900/20"
                             >
                                 <Download className="w-5 h-5" />
-                                Télécharger PDF
+                                {t('privacy.button')}
                             </button>
                         </div>
                     </motion.div>
@@ -244,9 +246,9 @@ export default function DocumentsPage() {
                             <Lock className="w-7 h-7" />
                         </div>
                         <div className="text-center md:text-left">
-                            <h4 className="font-black text-slate-900 text-sm uppercase tracking-wider mb-1">Documents Certifiés & Sécurisés</h4>
+                            <h4 className="font-black text-slate-900 text-sm uppercase tracking-wider mb-1">{t('security.title')}</h4>
                             <p className="text-sm text-slate-500 italic font-medium">
-                                "Tous les documents générés depuis cet espace sont protégés électroniquement et certifiés conformes par AGM INVEST. Ils ont valeur légale pour vos démarches."
+                                {t('security.message')}
                             </p>
                         </div>
                     </motion.div>

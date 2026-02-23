@@ -69,11 +69,11 @@ export default function MobileCreditRequest({
     readOnlyFields
 }: CreditRequestProps) {
     const steps = [
-        { id: 1, label: "Projet" },
-        { id: 2, label: "Identité" },
-        { id: 3, label: "Situation" },
-        { id: 4, label: "Finances" },
-        { id: 5, label: "Résumé" }
+        { id: 1, label: t('Navigation.project') || "Projet" },
+        { id: 2, label: t('Navigation.identity') || "Identité" },
+        { id: 3, label: t('Navigation.situation') || "Situation" },
+        { id: 4, label: t('Navigation.finances') || "Finances" },
+        { id: 5, label: t('Navigation.summary') || "Résumé" }
     ];
 
     const currentStepLabel = steps.find(s => s.id === step)?.label;
@@ -135,7 +135,7 @@ export default function MobileCreditRequest({
                                                 : "text-white/60 hover:text-white/80"
                                         )}
                                     >
-                                        {t('Personal.title')}
+                                        {t('Profile.individual')}
                                     </button>
                                     <button
                                         onClick={() => setProfileType("pro")}
@@ -146,7 +146,7 @@ export default function MobileCreditRequest({
                                                 : "text-white/60 hover:text-white/80"
                                         )}
                                     >
-                                        {t('Professional.title')}
+                                        {t('Profile.professional')}
                                     </button>
                                 </div>
 
@@ -283,7 +283,7 @@ export default function MobileCreditRequest({
                                 {step === 2 && (
                                     <div className="space-y-6">
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.civility')}</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Identity.civilityLabel')}</label>
                                             <select
                                                 name="civility"
                                                 value={formData.civility}
@@ -294,19 +294,19 @@ export default function MobileCreditRequest({
                                                     readOnlyFields.has('civility') && "bg-slate-100/80 cursor-not-allowed opacity-70"
                                                 )}
                                             >
-                                                <option value="M." className="bg-white">Monsieur (M.)</option>
-                                                <option value="Mme" className="bg-white">Madame (Mme)</option>
+                                                <option value="M." className="bg-white">{t('Identity.civilityOptions.mr')}</option>
+                                                <option value="Mme" className="bg-white">{t('Identity.civilityOptions.mrs')}</option>
                                             </select>
                                         </div>
                                         <div className="grid grid-cols-1 gap-5">
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.firstName')}</label>
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Identity.firstNameLabel')}</label>
                                                 <input
                                                     type="text"
                                                     name="firstName"
                                                     value={formData.firstName}
                                                     onChange={handleChange}
-                                                    placeholder="Jean"
+                                                    placeholder={t('Identity.Placeholders.firstName')}
                                                     readOnly={readOnlyFields.has('firstName')}
                                                     className={cn(
                                                         "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300",
@@ -315,13 +315,13 @@ export default function MobileCreditRequest({
                                                 />
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.lastName')}</label>
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Identity.lastNameLabel')}</label>
                                                 <input
                                                     type="text"
                                                     name="lastName"
                                                     value={formData.lastName}
                                                     onChange={handleChange}
-                                                    placeholder="DUPONT"
+                                                    placeholder={t('Identity.Placeholders.lastName')}
                                                     readOnly={readOnlyFields.has('lastName')}
                                                     className={cn(
                                                         "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 uppercase placeholder:text-slate-300",
@@ -331,7 +331,7 @@ export default function MobileCreditRequest({
                                             </div>
                                         </div>
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Pays de naissance</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Identity.birthCountryLabel')}</label>
                                             <select
                                                 name="birthCountry"
                                                 value={formData.birthCountry}
@@ -346,14 +346,14 @@ export default function MobileCreditRequest({
                                             </select>
                                         </div>
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.birthDate')}</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Identity.birthDateLabel')}</label>
                                             <div className="relative">
                                                 <input
                                                     type="text"
                                                     name="birthDate"
                                                     value={formData.birthDate}
                                                     onChange={handleDateChange}
-                                                    placeholder="JJ / MM / AAAA"
+                                                    placeholder={t('Identity.Placeholders.birthDate')}
                                                     readOnly={readOnlyFields.has('birthDate')}
                                                     className={cn(
                                                         "w-full px-6 py-4 bg-slate-50 border rounded-2xl outline-none font-bold text-sm text-slate-900",
@@ -369,18 +369,18 @@ export default function MobileCreditRequest({
                                             </div>
                                             {formData.birthDate.length === 14 && getDateStatus(formData.birthDate) !== "valid" && !readOnlyFields.has('birthDate') && (
                                                 <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest ml-2">
-                                                    {getDateStatus(formData.birthDate) === "underage" ? "Vous devez être majeur" : "Date invalide"}
+                                                    {getDateStatus(formData.birthDate) === "underage" ? t('Errors.underage') : t('Errors.invalidDate')}
                                                 </p>
                                             )}
                                         </div>
                                         <div className="space-y-4">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Lieu de naissance</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Identity.birthPlaceLabel')}</label>
                                             <input
                                                 type="text"
                                                 name="birthPlace"
                                                 value={formData.birthPlace}
                                                 onChange={handleChange}
-                                                placeholder="Ex: Paris"
+                                                placeholder={t('Identity.Placeholders.birthPlace')}
                                                 readOnly={readOnlyFields.has('birthPlace')}
                                                 className={cn(
                                                     "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300",
@@ -394,7 +394,7 @@ export default function MobileCreditRequest({
                                 {step === 3 && (
                                     <div className="space-y-6">
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.maritalStatus')}</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Situation.maritalStatusLabel')}</label>
                                             <select
                                                 name="maritalStatus"
                                                 value={formData.maritalStatus}
@@ -405,15 +405,15 @@ export default function MobileCreditRequest({
                                                     readOnlyFields.has('maritalStatus') && "bg-slate-100/80 cursor-not-allowed opacity-70"
                                                 )}
                                             >
-                                                <option value="single" className="bg-white">{t('Form.single')}</option>
-                                                <option value="married" className="bg-white">{t('Form.married')}</option>
-                                                <option value="pacs" className="bg-white">{t('Form.pacs')}</option>
-                                                <option value="divorced" className="bg-white">{t('Form.divorced')}</option>
-                                                <option value="widow" className="bg-white">{t('Form.widow')}</option>
+                                                <option value="single" className="bg-white">{t('Situation.options.single')}</option>
+                                                <option value="married" className="bg-white">{t('Situation.options.married')}</option>
+                                                <option value="pacs" className="bg-white">{t('Situation.options.pacs')}</option>
+                                                <option value="divorced" className="bg-white">{t('Situation.options.divorced')}</option>
+                                                <option value="widow" className="bg-white">{t('Situation.options.widow')}</option>
                                             </select>
                                         </div>
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Ancienneté Logement</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Situation.housingSeniorityLabel')}</label>
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div className="relative">
                                                     <input
@@ -421,14 +421,14 @@ export default function MobileCreditRequest({
                                                         name="housingSeniority"
                                                         value={formData.housingSeniority}
                                                         onChange={handleChange}
-                                                        placeholder="Années"
+                                                        placeholder={t('Situation.Placeholders.years')}
                                                         readOnly={readOnlyFields.has('housingSeniority')}
                                                         className={cn(
                                                             "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900",
                                                             readOnlyFields.has('housingSeniority') && "bg-slate-100/80 cursor-not-allowed opacity-70"
                                                         )}
                                                     />
-                                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[9px] font-black text-slate-300 uppercase">Ans</span>
+                                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[9px] font-black text-slate-300 uppercase">{t('Situation.seniorityYears')}</span>
                                                 </div>
                                                 <div className="relative">
                                                     <input
@@ -436,7 +436,7 @@ export default function MobileCreditRequest({
                                                         name="housingSeniorityMonths"
                                                         value={formData.housingSeniorityMonths}
                                                         onChange={handleChange}
-                                                        placeholder="Mois"
+                                                        placeholder={t('Situation.Placeholders.months')}
                                                         readOnly={readOnlyFields.has('housingSeniorityMonths')}
                                                         className={cn(
                                                             "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900",
@@ -445,12 +445,12 @@ export default function MobileCreditRequest({
                                                         min="0"
                                                         max="11"
                                                     />
-                                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[9px] font-black text-slate-300 uppercase">Mois</span>
+                                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[9px] font-black text-slate-300 uppercase">{t('Situation.seniorityMonths')}</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Pays de résidence</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Situation.residenceCountryLabel')}</label>
                                             <select
                                                 name="residenceCountry"
                                                 value={formData.residenceCountry}
@@ -465,7 +465,7 @@ export default function MobileCreditRequest({
                                             </select>
                                         </div>
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Numéro de téléphone</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Situation.phoneLabel')}</label>
                                             <div className="flex gap-2">
                                                 <div className="w-16 px-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center font-black text-lg">
                                                     {COUNTRY_PHONE_DATA[formData.phoneCountry]?.flag || "🏳️"}
@@ -479,7 +479,7 @@ export default function MobileCreditRequest({
                                                         name="phone"
                                                         value={formData.phone}
                                                         onChange={handleChange}
-                                                        placeholder={COUNTRY_PHONE_DATA[formData.phoneCountry]?.placeholder || "06 12 34 56 78"}
+                                                        placeholder={COUNTRY_PHONE_DATA[formData.phoneCountry]?.placeholder}
                                                         readOnly={readOnlyFields.has('phone')}
                                                         className={cn(
                                                             "w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900",
@@ -490,7 +490,7 @@ export default function MobileCreditRequest({
                                             </div>
                                         </div>
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.address')}</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Situation.addressLabel')}</label>
                                             <AddressAutocomplete
                                                 value={formData.street}
                                                 onChange={(val) => handleChange({ target: { name: 'street', value: val } } as any)}
@@ -500,7 +500,7 @@ export default function MobileCreditRequest({
                                                     handleChange({ target: { name: 'city', value: addr.city } } as any);
                                                 }}
                                                 country={formData.residenceCountry}
-                                                placeholder="123 Rue de la Paix"
+                                                placeholder={t('Situation.Placeholders.address')}
                                                 disabled={readOnlyFields.has('street')}
                                                 className={cn(
                                                     "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300",
@@ -510,13 +510,13 @@ export default function MobileCreditRequest({
                                         </div>
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.zipCode')}</label>
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Situation.zipCodeLabel')}</label>
                                                 <input
                                                     type="text"
                                                     name="zipCode"
                                                     value={formData.zipCode}
                                                     onChange={handleChange}
-                                                    placeholder="75000"
+                                                    placeholder={t('Situation.Placeholders.zipCode')}
                                                     readOnly={readOnlyFields.has('zipCode')}
                                                     className={cn(
                                                         "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300",
@@ -525,13 +525,13 @@ export default function MobileCreditRequest({
                                                 />
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Form.city')}</label>
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Situation.cityLabel')}</label>
                                                 <input
                                                     type="text"
                                                     name="city"
                                                     value={formData.city}
                                                     onChange={handleChange}
-                                                    placeholder="Paris"
+                                                    placeholder={t('Situation.Placeholders.city')}
                                                     readOnly={readOnlyFields.has('city')}
                                                     className={cn(
                                                         "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 placeholder:text-slate-300",
@@ -547,7 +547,7 @@ export default function MobileCreditRequest({
                                     <div className="space-y-6">
                                         {/* Contract Type */}
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Type de contrat</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Finances.contractTypeLabel')}</label>
                                             <select
                                                 name="contractType"
                                                 value={formData.contractType}
@@ -558,18 +558,18 @@ export default function MobileCreditRequest({
                                                     readOnlyFields.has('contractType') && "bg-slate-100/80 cursor-not-allowed opacity-70"
                                                 )}
                                             >
-                                                <option value="cdi" className="bg-white">CDI</option>
-                                                <option value="cdd" className="bg-white">CDD</option>
-                                                <option value="temporary" className="bg-white">Intérimaire / Mission</option>
-                                                <option value="civil_servant" className="bg-white">Fonctionnaire</option>
-                                                <option value="liberal" className="bg-white">Profession Libérale</option>
-                                                <option value="business_owner" className="bg-white">Chef d'entreprise</option>
-                                                <option value="artisan" className="bg-white">Commerçant / Artisan</option>
-                                                <option value="independent" className="bg-white">Indépendant / Freelance</option>
-                                                <option value="retired" className="bg-white">Retraité</option>
-                                                <option value="student" className="bg-white">Étudiant</option>
-                                                <option value="apprentice" className="bg-white">Apprenti / Alternant</option>
-                                                <option value="unemployed" className="bg-white">Sans emploi</option>
+                                                <option value="cdi" className="bg-white">{t('Finances.options.cdi')}</option>
+                                                <option value="cdd" className="bg-white">{t('Finances.options.cdd')}</option>
+                                                <option value="temporary" className="bg-white">{t('Finances.options.temporary')}</option>
+                                                <option value="civil_servant" className="bg-white">{t('Finances.options.civil_servant')}</option>
+                                                <option value="liberal" className="bg-white">{t('Finances.options.liberal')}</option>
+                                                <option value="business_owner" className="bg-white">{t('Finances.options.business_owner')}</option>
+                                                <option value="artisan" className="bg-white">{t('Finances.options.artisan')}</option>
+                                                <option value="independent" className="bg-white">{t('Finances.options.independent')}</option>
+                                                <option value="retired" className="bg-white">{t('Finances.options.retired')}</option>
+                                                <option value="student" className="bg-white">{t('Finances.options.student')}</option>
+                                                <option value="apprentice" className="bg-white">{t('Finances.options.apprentice')}</option>
+                                                <option value="unemployed" className="bg-white">{t('Finances.options.unemployed')}</option>
                                             </select>
                                         </div>
 
@@ -578,22 +578,22 @@ export default function MobileCreditRequest({
                                             <div className="space-y-3">
                                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
                                                     {formData.contractType === 'student'
-                                                        ? "Établissement / Université"
+                                                        ? t('Finances.Labels.company_student') || "Établissement / Université"
                                                         : formData.contractType === 'apprentice'
-                                                            ? "Entreprise d'accueil / CFA"
+                                                            ? t('Finances.Labels.company_apprentice') || "Entreprise d'accueil / CFA"
                                                             : formData.contractType === 'independent'
-                                                                ? "Nom de votre activité"
+                                                                ? t('Finances.Labels.liberal')
                                                                 : formData.contractType === 'artisan'
-                                                                    ? "Enseigne / Nom de l'Entreprise"
+                                                                    ? t('Finances.Labels.artisan') || "Enseigne / Nom de l'Entreprise"
                                                                     : formData.contractType === 'civil_servant'
-                                                                        ? "Ministère / Administration"
+                                                                        ? t('Finances.Labels.civil_servant') || "Ministère / Administration"
                                                                         : formData.contractType === 'temporary'
-                                                                            ? "Société d'intérim / Employeur"
+                                                                            ? t('Finances.Labels.temporary') || "Société d'intérim / Employeur"
                                                                             : formData.contractType === 'liberal'
-                                                                                ? "Cabinet / Raison sociale"
+                                                                                ? t('Finances.Labels.liberal')
                                                                                 : formData.contractType === 'business_owner'
-                                                                                    ? "Nom de la société / Enseigne"
-                                                                                    : "Nom de l'Employeur"}
+                                                                                    ? t('Finances.Labels.business_owner') || "Nom de la société / Enseigne"
+                                                                                    : t('Finances.Labels.default')}
                                                 </label>
                                                 <div className="relative">
                                                     <input
@@ -601,7 +601,7 @@ export default function MobileCreditRequest({
                                                         name="companyName"
                                                         value={formData.companyName}
                                                         onChange={handleChange}
-                                                        placeholder={formData.contractType === 'student' ? "Sorbonne" : "AGM INVEST"}
+                                                        placeholder={t(`Finances.Placeholders.company_${formData.contractType}`) || t('Finances.Placeholders.company_default')}
                                                         readOnly={readOnlyFields.has('companyName')}
                                                         className={cn(
                                                             "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 pr-12 shadow-sm",
@@ -618,14 +618,14 @@ export default function MobileCreditRequest({
                                             <div className="space-y-3">
                                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
                                                     {formData.contractType === 'civil_servant'
-                                                        ? "Fonction / Grade"
+                                                        ? t('Finances.Labels.profession_civil_servant') || "Fonction / Grade"
                                                         : formData.contractType === 'student'
-                                                            ? "Domaine / Filière d'études"
+                                                            ? t('Finances.Labels.profession_student') || "Domaine / Filière d'études"
                                                             : formData.contractType === 'retired'
-                                                                ? "Ancienne profession"
+                                                                ? t('Finances.Labels.profession_retired')
                                                                 : formData.contractType === 'apprentice'
-                                                                    ? "Métier préparé"
-                                                                    : "Profession / Métier"}
+                                                                    ? t('Finances.Labels.profession_apprentice') || "Métier préparé"
+                                                                    : t('Finances.Labels.profession_default')}
                                                 </label>
                                                 <div className="relative">
                                                     <input
@@ -633,7 +633,7 @@ export default function MobileCreditRequest({
                                                         name="profession"
                                                         value={formData.profession}
                                                         onChange={handleChange}
-                                                        placeholder="Chef de projet"
+                                                        placeholder={t(`Finances.Placeholders.profession_${formData.contractType}`) || t('Finances.Placeholders.profession_default')}
                                                         readOnly={readOnlyFields.has('profession')}
                                                         className={cn(
                                                             "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 pr-12 shadow-sm",
@@ -648,19 +648,7 @@ export default function MobileCreditRequest({
                                         {/* Income */}
                                         <div className="space-y-3">
                                             <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
-                                                {formData.contractType === 'retired'
-                                                    ? "Pension mensuelle (€)"
-                                                    : formData.contractType === 'unemployed'
-                                                        ? "Allocations / Revenus (€)"
-                                                        : formData.contractType === 'student'
-                                                            ? "Bourses / Revenus mensuels (€)"
-                                                            : formData.contractType === 'apprentice'
-                                                                ? "Rémunération mensuelle (€)"
-                                                                : formData.contractType === 'civil_servant'
-                                                                    ? "Traitement mensuel net (€)"
-                                                                    : ['independent', 'artisan', 'liberal', 'business_owner'].includes(formData.contractType)
-                                                                        ? "Revenu mensuel moyen (€)"
-                                                                        : "Revenus mensuels nets (€)"}
+                                                {t(`Finances.Labels.income_${formData.contractType}`) || t('Finances.income')}
                                             </label>
                                             <div className="relative">
                                                 <input
@@ -681,7 +669,7 @@ export default function MobileCreditRequest({
                                         {/* Charges & Other Credits */}
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Charges (€)</label>
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Finances.chargesLabel')} (€)</label>
                                                 <input
                                                     type="number"
                                                     name="charges"
@@ -695,12 +683,13 @@ export default function MobileCreditRequest({
                                                 />
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Autres crédits (€)</label>
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Finances.otherCreditsLabel')} (€)</label>
                                                 <input
                                                     type="number"
                                                     name="otherCredits"
                                                     value={formData.otherCredits}
                                                     onChange={handleChange}
+                                                    placeholder={t('Finances.Placeholders.otherCredits')}
                                                     readOnly={readOnlyFields.has('otherCredits')}
                                                     className={cn(
                                                         "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 shadow-sm",
@@ -716,18 +705,18 @@ export default function MobileCreditRequest({
                                                 <div className="w-8 h-8 rounded-xl bg-ely-mint/10 flex items-center justify-center text-ely-mint">
                                                     <Building2 className="w-4 h-4" />
                                                 </div>
-                                                <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest">Informations Bancaires</h3>
+                                                <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest">{t('Finances.bankInfo')}</h3>
                                             </div>
 
                                             <div className="space-y-4">
                                                 <div className="space-y-3">
-                                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Banque principale</label>
+                                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Finances.bankName')}</label>
                                                     <input
                                                         type="text"
                                                         name="bankName"
                                                         value={formData.bankName}
                                                         onChange={handleChange}
-                                                        placeholder="Nom de banque"
+                                                        placeholder={t('Finances.Placeholders.bankName')}
                                                         readOnly={readOnlyFields.has('bankName')}
                                                         className={cn(
                                                             "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900",
@@ -737,13 +726,13 @@ export default function MobileCreditRequest({
                                                 </div>
 
                                                 <div className="space-y-3">
-                                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">IBAN</label>
+                                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Finances.iban')}</label>
                                                     <input
                                                         type="text"
                                                         name="iban"
                                                         value={formData.iban}
                                                         onChange={handleChange}
-                                                        placeholder="FR76 ..."
+                                                        placeholder={t('Finances.Placeholders.iban')}
                                                         readOnly={readOnlyFields.has('iban')}
                                                         className={cn(
                                                             "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 font-mono",
@@ -754,13 +743,13 @@ export default function MobileCreditRequest({
 
                                                 <div className="grid grid-cols-2 gap-4">
                                                     <div className="space-y-3">
-                                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">BIC</label>
+                                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Finances.bic')}</label>
                                                         <input
                                                             type="text"
                                                             name="bic"
                                                             value={formData.bic}
                                                             onChange={handleChange}
-                                                            placeholder="BIC"
+                                                            placeholder={t('Finances.Placeholders.bic')}
                                                             readOnly={readOnlyFields.has('bic')}
                                                             className={cn(
                                                                 "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900 font-mono uppercase",
@@ -769,13 +758,13 @@ export default function MobileCreditRequest({
                                                         />
                                                     </div>
                                                     <div className="space-y-3">
-                                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">E-mail lié au RIB</label>
+                                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('Finances.ribEmail')}</label>
                                                         <input
                                                             type="email"
                                                             name="ribEmail"
                                                             value={formData.ribEmail}
                                                             onChange={handleChange}
-                                                            placeholder="Email"
+                                                            placeholder={t('Finances.Placeholders.ribEmail')}
                                                             readOnly={readOnlyFields.has('ribEmail')}
                                                             className={cn(
                                                                 "w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm text-slate-900",
@@ -820,11 +809,11 @@ export default function MobileCreditRequest({
                                         <span className="text-sm font-bold">{duration} {t('Simulator.months')}</span>
                                     </div>
                                     <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/5">
-                                        <span className="text-[10px] font-black text-ely-mint uppercase tracking-wider">Assurance (3%)</span>
-                                        <span className="text-sm font-bold text-ely-mint">+{Math.round((amount * 0.03) / duration).toLocaleString()} €/mois</span>
+                                        <span className="text-[10px] font-black text-ely-mint uppercase tracking-wider">{t('Summary.insurance')}</span>
+                                        <span className="text-sm font-bold text-ely-mint">+{Math.round((amount * 0.03) / duration).toLocaleString()} €/{t('Simulator.perMonth')}</span>
                                     </div>
                                     <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/5">
-                                        <span className="text-[10px] font-black text-white/40 uppercase tracking-wider">{t('Form.lastName')}</span>
+                                        <span className="text-[10px] font-black text-white/40 uppercase tracking-wider">{t('Identity.lastNameLabel')}</span>
                                         <span className="text-sm font-bold">{formData.firstName} {formData.lastName.toUpperCase()}</span>
                                     </div>
                                 </div>
@@ -832,7 +821,7 @@ export default function MobileCreditRequest({
                                 <div className="pt-4 text-center relative z-10">
                                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10">
                                         <Lock className="w-3 h-3 text-ely-mint" />
-                                        <span className="text-[10px] font-bold text-white/60 tracking-wide uppercase">ELY-SECURE 256-BIT</span>
+                                        <span className="text-[10px] font-bold text-white/60 tracking-wide uppercase">{t('Summary.secureDesc')}</span>
                                     </div>
                                 </div>
                             </div>
@@ -870,7 +859,7 @@ export default function MobileCreditRequest({
                             disabled={!canGoNext()}
                             className="flex-1 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-[0_8px_30px_rgba(30,58,138,0.4)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 border border-white/10 py-5 disabled:opacity-50 disabled:shadow-none"
                         >
-                            {t('Common.next')}
+                            {t('Navigation.next')}
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </button>
                     ) : (
@@ -879,7 +868,7 @@ export default function MobileCreditRequest({
                             disabled={isSubmitting}
                             className="flex-1 bg-gradient-to-r from-ely-mint to-emerald-500 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-[0_8px_30px_rgba(0,201,167,0.3)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 py-5"
                         >
-                            {isSubmitting ? t('Common.submitting') : t('Common.confirm')}
+                            {isSubmitting ? t('Navigation.submitting') : t('Navigation.confirm')}
                             {!isSubmitting && <CheckCircle2 className="w-5 h-5 shadow-lg" />}
                         </button>
                     )}

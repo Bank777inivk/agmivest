@@ -1,1570 +1,2673 @@
 {
   "Home": {
     "Services": {
-      "title": "[FIXME] Nos solutions de financement",
-      "subtitle": "[FIXME] Une expertise complète pour tous vos besoins financiers.",
-      "cta": "[FIXME] Voir tous nos services"
+      "title": "Våra finansieringslösningar",
+      "subtitle": "Komplett expertis för alla dina finansiella behov.",
+      "cta": "Se alla våra tjänster"
     },
     "Simulator": {
-      "title": "[FIXME] Simulateur de prêt",
-      "subtitle": "[FIXME] Calculez vos mensualités en quelques clics."
+      "title": "Lånesimulator",
+      "subtitle": "Beräkna dina månadskostnader med några få klick."
     },
     "Contact": {
-      "title": "[FIXME] Contact & Accès",
-      "subtitle": "[FIXME] Une question ? Venez nous rencontrer ou envoyez-nous un message."
+      "title": "Kontakt & Hitta oss",
+      "subtitle": "Har du en fråga? Kom och träffa oss eller skicka ett meddelande."
     }
   },
   "Navigation": {
     "home": "Hem",
     "services": "Våra Tjänster",
-    "documents": "[FIXME] Documents",
+    "documents": "Dokument",
     "about": "Om Oss",
     "contact": "Kontakt",
-    "appointment": "[FIXME] Prendre RDV",
-    "creditRequest": "[FIXME] Demander un prêt",
-    "becomeClient": "[FIXME] Devenir Client",
-    "brandSubtitle": "[FIXME] Crédit & Assurance",
-    "reviews": "[FIXME] Avis"
+    "appointment": "Boka tid",
+    "creditRequest": "Ansök om lån",
+    "becomeClient": "Bli kund",
+    "brandSubtitle": "Kredit & Försäkring",
+    "reviews": "Omdömen"
   },
   "Hero": {
-    "titleLine1": "[FIXME] Votre projet",
-    "titleLine2": "[FIXME] immobilier, bien",
-    "titleLine3": "[FIXME] accompagné",
-    "description1": "[FIXME] Votre crédit immobilier ou votre assurance emprunteur aux meilleures conditions :",
-    "descriptionHighlight": "[FIXME] c'est l'expertise AGM INVEST !",
-    "description2": "[FIXME] Notre équipe vous guide à chaque étape pour obtenir le meilleur financement.",
-    "tagline": "[FIXME] Tout simplement !",
+    "titleLine1": "Ditt projekt",
+    "titleLine2": "fastighet, väl",
+    "titleLine3": "vägledd",
+    "description1": "Ditt bolån eller din lånesförsäkring till de bästa villkoren:",
+    "descriptionHighlight": "det är AGM INVEST:s expertis!",
+    "description2": "Vårt team guidar dig i varje steg för att få den bästa finansieringen.",
+    "tagline": "Helt enkelt!",
     "cta": "Simulera mitt projekt"
   },
   "AdBanner": {
-    "msg1": "[FIXME] Besoin d'un prêt ? Je suis là pour vous aider !",
-    "msg2": "[FIXME] Obtenez votre simulation en 2 minutes !",
-    "msg3": "[FIXME] Nos clients nous font confiance depuis 20 ans",
-    "msg4": "[FIXME] Taux compétitifs garantis !",
-    "msg5": "[FIXME] Accompagnement personnalisé à chaque étape"
+    "msg1": "Behöver du ett lån? Jag är här för att hjälpa dig!",
+    "msg2": "Få din simulering på 2 minuter!",
+    "msg3": "Våra kunder har lita på oss i 20 år",
+    "msg4": "Garanterat konkurrenskraftiga priser!",
+    "msg5": "Personlig vägledning i varje steg"
   },
   "Services": {
-    "title": "[FIXME] Nos Services",
-    "subtitle": "[FIXME] Une expertise complète pour tous vos besoins de financement.",
+    "title": "Våra Tjänster",
+    "subtitle": "Komplett expertis för alla dina finansieringsbehov.",
     "Items": {
       "realEstate": {
-        "title": "[FIXME] Prêt Immobilier",
-        "description": "[FIXME] Négociation des meilleurs taux pour votre résidence principale, secondaire ou locative."
+        "title": "Bolån",
+        "description": "Förhandling av de bästa räntorna för din permanentbostad, fritidsbostad eller hyresfastighet."
       },
       "insurance": {
-        "title": "[FIXME] Assurance Emprunteur",
-        "description": "[FIXME] Économisez jusqu'à 50% sur votre assurance de prêt avec les mêmes garanties."
+        "title": "Lånesförsäkring",
+        "description": "Spara upp till 50% på din låneförsäkring med samma garantier."
       },
       "creditConsolidation": {
-        "title": "[FIXME] Regroupement de Crédits",
-        "description": "[FIXME] Regroupez vos crédits pour réduire vos mensualités et simplifier votre budget."
+        "title": "Låneförvaltning",
+        "description": "Samla dina lån för att sänka dina månadskostnader och förenkla din budget."
       },
       "professionalLoan": {
-        "title": "[FIXME] Prêt Professionnel",
-        "description": "[FIXME] Financement de vos murs, fonds de commerce ou équipements professionnels."
+        "title": "Företagslån",
+        "description": "Finansiering av dina lokaler, affärsverksamhet eller professionell utrustning."
       },
       "renegotiation": {
-        "title": "[FIXME] Renégociation de Taux",
-        "description": "[FIXME] Profitez des taux bas actuels pour réduire le coût de votre crédit en cours."
+        "title": "Omförhandling av ränta",
+        "description": "Dra nytta av dagens låga räntor för att sänka kostnaden för ditt nuvarande lån."
       },
       "support": {
-        "title": "[FIXME] Accompagnement",
-        "description": "[FIXME] Un conseiller dédié vous suit de la simulation à la signature chez le notaire."
+        "title": "Vägledning",
+        "description": "En dedikerad rådgivare följer dig från simulering till signering hos notarien."
       }
     }
   },
   "About": {
-    "title": "[FIXME] À Propos de Nous",
-    "subtitle": "[FIXME] Votre partenaire de confiance en crédit et assurance depuis plus de 20 ans.",
+    "title": "Om Oss",
+    "subtitle": "Din pålitliga partner inom kredit och försäkring i över 20 år.",
     "Stats": {
       "experience": {
-        "value": "[FIXME] 20+",
-        "label": "[FIXME] Ans d'expérience"
+        "value": "20+",
+        "label": "Erfarenhet"
       },
       "clients": {
-        "value": "[FIXME] Satisfaits",
-        "label": "[FIXME] Clients"
+        "value": "Nöjda",
+        "label": "Kunder"
       },
       "acceptance": {
-        "value": "[FIXME] 98%",
-        "label": "[FIXME] Taux d'acceptation"
+        "value": "98%",
+        "label": "Beviljande"
       },
       "secure": {
-        "value": "[FIXME] 100%",
-        "label": "[FIXME] Sécurisé"
+        "value": "100%",
+        "label": "Säkert"
       }
     },
     "Mission": {
-      "title": "[FIXME] Notre Mission",
-      "p1": "[FIXME] Depuis plus de 20 ans, <highlight>AGM INVEST</highlight> accompagne les particuliers dans la réalisation de leurs projets immobiliers. Notre équipe d'experts vous guide à chaque étape pour obtenir le meilleur financement.",
-      "p2": "[FIXME] Nous négocions pour vous auprès de nos partenaires bancaires et vous garantissons un accompagnement personnalisé, de la simulation à la signature chez le notaire."
+      "title": "Vårt Uppdrag",
+      "p1": "I över 20 år har <highlight>AGM INVEST</highlight> hjälpt privatpersoner att förverkliga sina fastighetsprojekt. Vårt team av experter guidar dig i varje steg för att få den bästa finansieringen.",
+      "p2": "Vi förhandlar åt dig hos våra bankpartners och garanterar personlig vägledning, från simulering till signering hos notarien."
     },
     "Values": {
-      "title": "[FIXME] Nos Valeurs",
-      "v1": "[FIXME] Transparence totale sur les taux et les frais",
-      "v2": "[FIXME] Accompagnement personnalisé et humain",
-      "v3": "[FIXME] Réactivité et disponibilité de nos conseillers",
-      "v4": "[FIXME] Expertise reconnue sur le marché immobilier"
+      "title": "Våra Värderingar",
+      "v1": "Total transparens gällande räntor och avgifter",
+      "v2": "Personlig och mänsklig vägledning",
+      "v3": "Snabbhet och tillgänglighet hos våra rådgivare",
+      "v4": "Erkänd expertis på fastighetsmarknaden"
     }
   },
   "Process": {
-    "title": "[FIXME] Votre financement en 4 étapes",
-    "subtitle": "[FIXME] Un processus clair et transparent pour réaliser votre projet en toute sérénité.",
+    "title": "Din finansiering i 4 steg",
+    "subtitle": "En tydlig och transparent process för att förverkliga ditt projekt med full trygghet.",
     "Steps": {
       "s1": {
-        "title": "[FIXME] 1. Étude de faisabilité",
-        "description": "[FIXME] Analyse gratuite de votre dossier et définition de votre budget de financement."
+        "title": "1. Genomförbarhetsstudie",
+        "description": "Kostnadsfri analys av ditt ärende och fastställande av din finansieringsbudget."
       },
       "s2": {
-        "title": "[FIXME] 2. Recherche & Négociation",
-        "description": "[FIXME] Nous interrogeons nos partenaires pour obtenir les meilleures conditions du marché."
+        "title": "2. Sökning & Förhandling",
+        "description": "Vi kontaktar våra partners för att få marknadens bästa villkor."
       },
       "s3": {
-        "title": "[FIXME] 3. Accord de prêt",
-        "description": "[FIXME] Présentation des offres et sélection de la meilleure proposition bancaire."
+        "title": "3. Lånebesked",
+        "description": "Presentation av erbjudanden och val av det bästa bankförslaget."
       },
       "s4": {
-        "title": "[FIXME] 4. Signature",
-        "description": "[FIXME] Accompagnement jusqu'aux signatures de l'offre et de l'acte notarié."
+        "title": "4. Signering",
+        "description": "Vägledning fram till signering av erbjudandet och köpekontraktet."
       }
     }
   },
   "WhyChooseUs": {
-    "title": "[FIXME] Pourquoi passer par <highlight>AGM INVEST</highlight> ?",
-    "subtitle": "[FIXME] Dans un marché complexe, avoir un allié expert à vos côtés fait toute la différence.",
+    "title": "Varför välja <highlight>AGM INVEST</highlight>?",
+    "subtitle": "På en komplex marknad gör det stor skillnad att ha en expert vid din sida.",
     "Items": {
       "time": {
-        "title": "[FIXME] Gain de Temps",
-        "description": "[FIXME] Un seul interlocuteur pour interroger toutes les banques. On s'occupe de toute la paperasse."
+        "title": "Tidsbesparing",
+        "description": "En enda kontaktperson för att kontakta alla banker. Vi sköter allt pappersarbete."
       },
       "conditions": {
-        "title": "[FIXME] Conditions Préférentielles",
-        "description": "[FIXME] Grâce à notre volume d'affaires, nous négocions des taux et conditions d'assurance privilégiés."
+        "title": "Förmånliga villkor",
+        "description": "Tack vare vår omfattande verksamhet förhandlar vi fram privilegierade räntor och försäkringsvillkor."
       },
       "expert": {
-        "title": "[FIXME] Conseil d'Expert",
-        "description": "[FIXME] Montage financier optimisé, choix de l'assurance, lissage de crédits... Nous optimisons chaque détail."
+        "title": "Expertråd",
+        "description": "Optimerat finansiellt upplägg, val av försäkring, lånestrukturering... Vi optimerar varje detalj."
       },
       "support": {
-        "title": "[FIXME] Accompagnement Complet",
-        "description": "[FIXME] Nous sommes à vos côtés de la première simulation jusqu'au déblocage des fonds."
+        "title": "Komplett vägledning",
+        "description": "Vi finns vid din sida från den första simuleringen fram till utbetalningen av medlen."
       }
     },
     "Simulation": {
-      "title": "[FIXME] Vos Économies",
-      "marketRate": "[FIXME] Taux moyen marché",
-      "ourRate": "[FIXME] Taux Négocié AGM",
-      "savings": "[FIXME] Économie Potentielle",
-      "disclaimer": "[FIXME] *Sur un prêt de 200 000€ sur 20 ans."
+      "title": "Dina besparingar",
+      "marketRate": "Genomsnittlig marknadsränta",
+      "ourRate": "Förhandlad AGM-ränta",
+      "savings": "Potentiell besparing",
+      "disclaimer": "*På ett lån på 200 000€ över 20 år."
     }
   },
   "Team": {
-    "title": "[FIXME] Une équipe à votre service",
-    "subtitle": "[FIXME] Des experts passionnés dédiés à la réussite de votre projet.",
+    "title": "Ett team till din tjänst",
+    "subtitle": "Brinnande experter dedikerade till att ditt projekt lyckas.",
     "Members": {
       "meyer": {
-        "role": "[FIXME] Directeur Général",
-        "bio": "[FIXME] Expert en Financement Pro et Immobilier depuis 15 ans."
+        "role": "Verkställande direktör",
+        "bio": "Expert på företags- och fastighetsfinansiering i 15 år."
       },
       "cyrille": {
-        "role": "[FIXME] Responsable Crédit",
-        "bio": "[FIXME] Spécialiste des dossiers complexes et des relations bancaires."
+        "role": "Kreditansvarig",
+        "bio": "Specialist på komplexa ärenden och bankrelationer."
       },
       "emilie": {
-        "role": "[FIXME] Experte Financement TPE/PME",
-        "bio": "[FIXME] Accompagne les entrepreneurs dans leur développement."
+        "role": "Expert på finansiering för små och medelstora företag",
+        "bio": "Hjälper entreprenörer i deras utveckling."
       },
       "christophe": {
-        "role": "[FIXME] Chargé d'Affaires",
-        "bio": "[FIXME] Votre interlocuteur privilégié pour le suivi de votre dossier."
+        "role": "Affärsutvecklare",
+        "bio": "Din primära kontaktperson för uppföljning av ditt ärende."
       }
     }
   },
   "History": {
-    "title": "[FIXME] Notre Histoire",
-    "subtitle": "[FIXME] Près de 20 ans d'expertise et d'innovation au service de vos projets.",
+    "title": "Vår Historia",
+    "subtitle": "Närmare 20 års expertis och innovation i tjänst för dina projekt.",
     "Milestones": {
       "m2006": {
-        "title": "[FIXME] Création d'AGM Invest",
-        "description": "[FIXME] Fondation du cabinet à Nantes avec une vision : simplifier l'accès au crédit pour les particuliers."
+        "title": "Grundandet av AGM Invest",
+        "description": "Företaget grundades i Nantes med en vision: att förenkla tillgången till krediter för privatpersoner."
       },
       "m2012": {
-        "title": "[FIXME] Expansion Régionale",
-        "description": "[FIXME] Ouverture de 3 nouvelles agences dans le Grand Ouest et recrutement de 10 experts."
+        "title": "Regional expansion",
+        "description": "Öppnande av 3 nya kontor i västra Frankrike och rekrytering av 10 experter."
       },
       "m2018": {
-        "title": "[FIXME] Pôle Professionnel",
-        "description": "[FIXME] Lancement de l'offre dédiée aux entreprises et aux promoteurs immobiliers."
+        "title": "Företagsdivision",
+        "description": "Lansering av det dedikerade erbjudandet för företag och fastighetsutvecklare."
       },
       "m2024": {
-        "title": "[FIXME] Digitalisation 100%",
-        "description": "[FIXME] Mise en place de notre plateforme en ligne permettant un suivi des dossiers en temps réel."
+        "title": "100% digitalisering",
+        "description": "Implementering av vår onlineplattform som möjliggör uppföljning av ärenden i realtid."
       }
     }
   },
   "Documents": {
-    "title": "[FIXME] Préparez vos documents",
-    "subtitle": "[FIXME] Pour accélérer votre prêt, préparez ces pièces à l'avance.",
-    "cta": "[FIXME] Tous les documents peuvent être envoyés en ligne de manière sécurisée",
+    "title": "Förbered dina dokument",
+    "subtitle": "För att påskynda ditt lån, förbered dessa handlingar i förväg.",
+    "cta": "Alla dokument kan skickas online på ett säkert sätt",
     "Items": {
       "identity": {
-        "title": "[FIXME] Pièce d'identité",
-        "description": "[FIXME] Carte d'identité ou passeport en cours de validité"
+        "title": "Identitetshandling",
+        "description": "Giltigt ID-kort eller pass"
       },
       "income": {
-        "title": "[FIXME] Justificatifs de revenus",
-        "description": "[FIXME] 3 derniers bulletins de salaire et avis d'imposition"
+        "title": "Inkomstbevis",
+        "description": "De 3 senaste lönespecifikationerna och inkomstdeklaration"
       },
       "bank": {
-        "title": "[FIXME] Relevés bancaires",
-        "description": "[FIXME] 3 derniers mois de vos comptes courants"
+        "title": "Bankutdrag",
+        "description": "De 3 senaste månaderna från dina lönekonton"
       },
       "home": {
-        "title": "[FIXME] Justificatif de domicile",
-        "description": "[FIXME] Facture de moins de 3 mois (électricité, eau, téléphone)"
+        "title": "Hemvistbevis",
+        "description": "Faktura som är mindre än 3 månader gammal (el, vatten, telefon)"
       },
       "sales": {
-        "title": "[FIXME] Compromis de vente",
-        "description": "[FIXME] Si vous avez déjà trouvé votre bien immobilier"
+        "title": "Köpekontrakt",
+        "description": "Om du redan har hittat din fastighet"
       },
       "amortization": {
-        "title": "[FIXME] Tableau d'amortissement",
-        "description": "[FIXME] Pour un rachat de crédit ou une renégociation de taux"
+        "title": "Amorteringsplan",
+        "description": "För ett lösen av ett lån eller omförhandling av ränta"
       }
     }
   },
   "Testimonials": {
-    "title": "[FIXME] Ils ont réalisé leur projet",
-    "rating": "[FIXME] 4.9/5 sur plus de 500 avis",
+    "title": "De förverkligade sina projekt",
+    "rating": "4.9/5 baserat på över 500 omdömen",
     "Items": {
       "t1": {
-        "name": "[FIXME] Marc & Sophie",
-        "role": "[FIXME] Premier Achat",
-        "content": "[FIXME] AGM INVEST a réussi à nous obtenir un taux inespéré. Un accompagnement humain et rassurant pour notre premier achat."
+        "name": "Marc & Sophie",
+        "role": "Första köpet",
+        "content": "AGM INVEST lyckades ordna en oväntat bra ränta åt oss. En mänsklig och trygg vägledning inför vårt första köp."
       },
       "t2": {
-        "name": "[FIXME] Jean-Pierre",
-        "role": "[FIXME] Investissement Locatif",
-        "content": "[FIXME] Expertise technique parfaite sur le montage financier. Gain de temps précieux sur la négociation avec les banques."
+        "name": "Jean-Pierre",
+        "role": "Hyresfastighetsinvestering",
+        "content": "Perfekt teknisk expertis gällande det finansiella upplägget. Värdefull tidsbesparing i förhandlingen med bankerna."
       },
       "t3": {
-        "name": "[FIXME] Linda",
-        "role": "[FIXME] Renégociation",
-        "content": "[FIXME] Simplicité et efficacité. Ma mensualité a baissé de 150€ par mois sans rallonger la durée de mon crédit."
+        "name": "Linda",
+        "role": "Omförhandling",
+        "content": "Enkelt och effektivt. Min månadskostnad sjönk med 150€ i månaden utan att lånets löptid förlängdes."
       }
     }
   },
   "Auth": {
     "Login": {
-      "backToHome": "[FIXME] Retour au site",
-      "title": "[FIXME] Bon retour parmi nous",
-      "subtitle": "[FIXME] Accédez à votre espace client sécurisé",
-      "newHere": "[FIXME] Nouveau sur AGM INVEST ?",
-      "createAccount": "[FIXME] Créer un compte",
-      "email": "[FIXME] Adresse Email",
-      "password": "[FIXME] Mot de passe",
-      "rememberMe": "[FIXME] Se souvenir de moi",
-      "forgotPassword": "[FIXME] Mot de passe oublié ?",
-      "submit": "[FIXME] Se connecter",
-      "resetPasswordSuccess": "[FIXME] Email de réinitialisation envoyé ! Vérifiez votre boîte de réception.",
-      "auth/user-not-found": "[FIXME] Aucun compte correspondant à cet email.",
-      "auth/wrong-password": "[FIXME] Mot de passe incorrect.",
-      "auth/invalid-email": "[FIXME] Format d'email invalide.",
-      "auth/too-many-requests": "[FIXME] Compte temporairement bloqué. Réessayez plus tard."
+      "backToHome": "Tillbaka till webbplatsen",
+      "title": "Välkommen tillbaka",
+      "subtitle": "Logga in på ditt säkra kundområde",
+      "newHere": "Ny hos AGM INVEST?",
+      "createAccount": "Skapa ett konto",
+      "email": "E-postadress",
+      "password": "Lösenord",
+      "rememberMe": "Kom ihåg mig",
+      "forgotPassword": "Glömt lösenordet?",
+      "submit": "Logga in",
+      "resetPasswordSuccess": "E-post för återställning skickad! Kontrollera din inkorg.",
+      "auth/user-not-found": "Inget konto hittades med denna e-postadress.",
+      "auth/wrong-password": "Felaktigt lösenord.",
+      "auth/invalid-email": "Ogiltigt e-postformat.",
+      "auth/too-many-requests": "Kontot är tillfälligt blockerat. Försök igen senare."
     },
     "Register": {
-      "backToHome": "[FIXME] Retour au site",
-      "title": "[FIXME] Rejoignez AGM INVEST",
-      "stepIndicator": "[FIXME] Étape {current} sur {total} : {stepName}",
-      "step1": "[FIXME] État Civil",
-      "step2": "[FIXME] Coordonnées",
-      "step3": "[FIXME] Sécurité",
+      "backToHome": "Tillbaka till webbplatsen",
+      "title": "Bli medlem i AGM INVEST",
+      "stepIndicator": "Steg {current} av {total}: {stepName}",
+      "step1": "Personuppgifter",
+      "step2": "Kontaktuppgifter",
+      "step3": "Säkerhet",
       "Fields": {
-        "civility": "[FIXME] Civilité",
-        "firstName": "[FIXME] Prénom",
-        "lastName": "[FIXME] Nom",
-        "birthDate": "[FIXME] Date de naissance",
-        "birthPlace": "[FIXME] Ville de naissance",
-        "birthCountry": "[FIXME] Pays de naissance",
-        "nationality": "[FIXME] Nationalité",
-        "address": "[FIXME] Adresse de résidence",
-        "zipCode": "[FIXME] Code Postal",
-        "city": "[FIXME] Ville",
-        "residenceCountry": "[FIXME] Pays de résidence",
-        "phone": "[FIXME] Téléphone mobile",
-        "email": "[FIXME] Adresse Email",
-        "password": "[FIXME] Mot de passe",
-        "confirmPassword": "[FIXME] Confirmation",
-        "terms": "[FIXME] Je certifie l'exactitude des informations et j'accepte les <bold>Conditions Générales</bold> d'AGM INVEST."
+        "civility": "Titel",
+        "firstName": "Förnamn",
+        "lastName": "Efternamn",
+        "birthDate": "Födelsedatum",
+        "birthPlace": "Födelseort",
+        "birthCountry": "Födelseland",
+        "nationality": "Nationalitet",
+        "address": "Bostadsadress",
+        "zipCode": "Postnummer",
+        "city": "Ort",
+        "residenceCountry": "Bosättningsland",
+        "phone": "Mobiltelefon",
+        "email": "E-postadress",
+        "password": "Lösenord",
+        "confirmPassword": "Bekräfta lösenord",
+        "terms": "Jag intygar att informationen är korrekt och jag accepterar AGM INVEST:s <bold>allmänna villkor</bold>."
       },
-      "back": "[FIXME] Retour",
+      "back": "Tillbaka",
       "submit": {
-        "next": "[FIXME] Continuer",
-        "finish": "[FIXME] Créer mon compte"
+        "next": "Fortsätt",
+        "finish": "Skapa mitt konto"
       },
-      "alreadyClient": "[FIXME] Déjà client ?",
-      "login": "[FIXME] Se connecter",
+      "alreadyClient": "Redan kund?",
+      "login": "Logga in",
       "Errors": {
-        "incompleteDate": "[FIXME] Veuillez saisir une date de naissance complète.",
-        "invalidDate": "[FIXME] La date de naissance saisie est invalide.",
-        "underage": "[FIXME] Vous devez avoir au moins 18 ans pour vous inscrire.",
-        "errorPasswordsDoNotMatch": "[FIXME] Les mots de passe ne correspondent pas."
+        "incompleteDate": "Vänligen ange ett fullständigt födelsedatum.",
+        "invalidDate": "Det angivna födelsedatumet är ogiltigt.",
+        "underage": "Du måste vara minst 18 år för att registrera dig.",
+        "errorPasswordsDoNotMatch": "Lösenorden stämmer inte överens."
       }
     }
   },
   "Partners": {
-    "title": "[FIXME] Nos partenaires bancaires",
-    "subtitle": "[FIXME] Et bien d'autres partenaires assureurs et banques spécialisées...",
+    "title": "Våra bankpartners",
+    "subtitle": "Och många andra försäkringsgivare och specialiserade banker...",
     "list": [
-      "[FIXME] Boursorama Banque",
-      "[FIXME] BNP Paribas",
-      "[FIXME] Crédit Agricole",
-      "[FIXME] Société Générale",
-      "[FIXME] LCL",
-      "[FIXME] HSBC",
-      "[FIXME] Banque Populaire",
-      "[FIXME] Caisse d'Épargne",
-      "[FIXME] Fortuneo",
-      "[FIXME] Mutuelle Générale"
+      "Boursorama Banque",
+      "BNP Paribas",
+      "Crédit Agricole",
+      "Société Générale",
+      "LCL",
+      "HSBC",
+      "Banque Populaire",
+      "Caisse d'Épargne",
+      "Fortuneo",
+      "Mutuelle Générale"
     ],
     "Network": {
-      "title": "[FIXME] Notre force ? Un réseau solide.",
-      "description": "[FIXME] En tant que courtier spécialisé, nous entretenons des relations étroites avec les plus grands établissements bancaires nationaux. Cela nous permet de défendre votre dossier au plus haut niveau et d'obtenir des conditions dérogatoires que vous ne pourriez obtenir seul en agence."
+      "title": "Vår styrka? Ett gediget nätverk.",
+      "description": "Som specialiserad mäklare har vi ett nära samarbete med de största nationella bankinstitutionerna. Detta gör att vi kan föra din talan på högsta nivå och få undantagsvillkor som du inte skulle kunna få själv på ett lokalkontor."
     },
     "stats": {
-      "banks": "[FIXME] Banques Partenaires",
-      "support": "[FIXME] Accompagnement Courtier"
+      "banks": "Partnerbanker",
+      "support": "Mäklarstöd"
     }
   },
   "Contact": {
-    "title": "[FIXME] Contact & Accès",
-    "subtitle": "[FIXME] Une question ? Venez nous rencontrer ou envoyez-nous un message.",
-    "minimalTitle": "[FIXME] Envoyez-nous un message",
+    "title": "Kontakt & Hitta oss",
+    "subtitle": "Har du en fråga? Kom och träffa oss eller skicka ett meddelande.",
+    "minimalTitle": "Skicka ett meddelande till oss",
     "form": {
-      "name": "[FIXME] Nom complet *",
-      "namePlaceholder": "[FIXME] Votre nom",
-      "email": "[FIXME] Adresse email *",
-      "emailPlaceholder": "[FIXME] votre@email.com",
-      "phone": "[FIXME] Téléphone",
-      "phonePlaceholder": "[FIXME] 06 12 34 56 78",
-      "subject": "[FIXME] Sujet",
-      "message": "[FIXME] Message",
-      "messagePlaceholder": "[FIXME] Comment pouvons-nous vous aider ?",
-      "submit": "[FIXME] Envoyer le message",
-      "success": "[FIXME] Votre message a été envoyé avec succès !"
+      "name": "Fullständigt namn *",
+      "namePlaceholder": "Ditt namn",
+      "email": "E-postadress *",
+      "emailPlaceholder": "din@e-post.com",
+      "phone": "Telefon",
+      "phonePlaceholder": "070 123 45 67",
+      "subject": "Ämne",
+      "message": "Meddelande",
+      "messagePlaceholder": "Hur kan vi hjälpa dig?",
+      "submit": "Skicka meddelande",
+      "success": "Ditt meddelande har skickats framgångsrikt!"
     },
     "Why": {
-      "title": "[FIXME] Pourquoi nous contacter ?",
+      "title": "Varför kontakta oss?",
       "reasons": {
-        "r1": "[FIXME] Obtenir une simulation personnalisée gratuite",
-        "r2": "[FIXME] Poser vos questions à nos experts",
-        "r3": "[FIXME] Prendre rendez-vous avec un conseiller",
-        "r4": "[FIXME] Découvrir nos offres du moment"
+        "r1": "Få en kostnadsfri personlig simulering",
+        "r2": "Ställ dina frågor till våra experter",
+        "r3": "Boka tid med en rådgivare",
+        "r4": "Upptäck våra aktuella erbjudanden"
       }
     },
     "QuickResponse": {
-      "title": "[FIXME] Réponse rapide garantie",
-      "text": "[FIXME] Notre équipe s'engage à vous répondre sous <bold>24 heures</bold>. Pour une réponse immédiate, n'hésitez pas à nous appeler au",
-      "phone": "[FIXME] +33 7 56 84 41 45"
+      "title": "Garanterat snabbt svar",
+      "text": "Vårt team åtar sig att svara dig inom <bold>24 timmar</bold>. För ett omedelbart svar, tveka inte att ringa oss på",
+      "phone": "+33 7 56 84 41 45"
     }
   },
   "Location": {
-    "title": "[FIXME] Où nous trouver",
-    "subtitle": "[FIXME] Nos bureaux sont situés au coeur de Paris pour vous accueillir.",
-    "address": "[FIXME] Siège Social",
-    "phone": "[FIXME] Téléphone",
-    "email": "[FIXME] Email",
+    "title": "Var du hittar oss",
+    "subtitle": "Våra kontor ligger i hjärtat av Paris för att välkomna dig.",
+    "address": "Huvudkontor",
+    "phone": "Telefon",
+    "email": "E-post",
     "details": {
-      "address": "[FIXME] 40 Rue Jean Monnet,\n68200 Mulhouse",
-      "phone": "[FIXME] +33 7 56 84 41 45",
-      "email": "[FIXME] contact@agm-negoce.com"
+      "address": "40 Rue Jean Monnet,\n68200 Mulhouse",
+      "phone": "+33 7 56 84 41 45",
+      "email": "contact@agm-negoce.com"
     },
     "hours": {
-      "title": "[FIXME] Horaires d'ouverture",
-      "week": "[FIXME] Lundi - Vendredi : 09h00 - 19h00",
-      "saturday": "[FIXME] Samedi : 10h00 - 16h00",
-      "sunday": "[FIXME] Dimanche : Fermé"
+      "title": "Öppettider",
+      "week": "Måndag - Fredag : 09:00 - 19:00",
+      "saturday": "Lördag : 10:00 - 16:00",
+      "sunday": "Söndag : Stängt"
     }
   },
   "Simulator": {
-    "amountLabel": "[FIXME] Montant souhaité (€)",
-    "durationLabel": "[FIXME] Durée (ans)",
-    "durationSuffix": "[FIXME] ans",
-    "months": "[FIXME] mois",
-    "rateLabel": "[FIXME] Taux d'intérêt (%)",
-    "guaranteedRate": "[FIXME] Taux fixe et garanti.",
-    "monthlyEstimate": "[FIXME] Votre mensualité",
-    "perMonth": "[FIXME] / mois",
-    "excludedInsurance": "[FIXME] Hors assurance",
-    "borrowerInsurance": "[FIXME] Assurance emprunteur",
-    "totalInsuranceCost": "[FIXME] Coût total assurance",
-    "disclaimer": "[FIXME] Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.",
-    "startRequest": "[FIXME] Obtenir mon étude"
+    "amountLabel": "Önskat belopp (€)",
+    "durationLabel": "Löptid (år)",
+    "durationSuffix": "år",
+    "months": "månader",
+    "rateLabel": "Räntesats (%)",
+    "guaranteedRate": "Fast och garanterad ränta.",
+    "monthlyEstimate": "Din månadshostnad",
+    "perMonth": "/ månad",
+    "excludedInsurance": "Exklusive försäkring",
+    "borrowerInsurance": "Låneskydd",
+    "totalInsuranceCost": "Total försäkringshostnad",
+    "disclaimer": "Ett lån innebär ett åtagande och måste återbetalas. Kontrollera din återbetalningsförmåga innan du binder dig.",
+    "startRequest": "Få min studie"
   },
   "Footer": {
-    "description": "[FIXME] Votre partenaire de confiance pour tous vos projets de financement immobilier et d'assurance depuis 20 ans.",
-    "linksTitle": "[FIXME] Liens rapides",
+    "description": "Din pålitliga partner för alla dina fastighetsfinansieringsprojekt och försäkringar i 20 år.",
+    "linksTitle": "Snabblänkar",
     "Links": {
-      "services": "[FIXME] Nos services",
-      "simulator": "[FIXME] Simulateur",
-      "documents": "[FIXME] Documents",
-      "about": "[FIXME] À propos",
-      "contact": "[FIXME] Contact",
-      "clientArea": "[FIXME] Espace Client"
+      "services": "Våra tjänster",
+      "simulator": "Simulator",
+      "documents": "Dokument",
+      "about": "Om oss",
+      "contact": "Kontakt",
+      "clientArea": "Kundområde"
     },
-    "contactTitle": "[FIXME] Contact",
+    "contactTitle": "Kontakt",
     "details": {
-      "phone": "[FIXME] +33 7 56 84 41 45",
-      "email": "[FIXME] contact@agm-negoce.com",
-      "address": "[FIXME] 40 Rue Jean Monnet,\n68200 Mulhouse"
+      "phone": "+33 7 56 84 41 45",
+      "email": "contact@agm-negoce.com",
+      "address": "40 Rue Jean Monnet,\n68200 Mulhouse"
     },
-    "copyright": "[FIXME] AGM INVEST Crédit & Assurance. Tous droits réservés.",
+    "copyright": "AGM INVEST Kredit & Försäkring. Alla rättigheter förbehållna.",
     "legal": {
-      "mentions": "[FIXME] Mentions Légales",
-      "privacy": "[FIXME] Confidentialité",
-      "cookies": "[FIXME] Cookies",
-      "cgu": "[FIXME] CGU",
-      "refund": "[FIXME] Remboursement",
-      "disclaimer": "[FIXME] Disclaimer",
-      "trust": "[FIXME] Sécurité",
-      "ads": "[FIXME] Publicité"
+      "mentions": "Rättsligt meddelande",
+      "privacy": "Integritetspolicy",
+      "cookies": "Cookies",
+      "cgu": "Allmänna villkor",
+      "refund": "Återbetalning",
+      "disclaimer": "Ansvarsfriskrivning",
+      "trust": "Säkerhet",
+      "ads": "Annonsering"
     }
   },
   "ServicesPage": {
     "CTA": {
-      "title": "[FIXME] Prêt à concrétiser votre projet ?",
-      "text": "[FIXME] Obtenez une réponse de principe immédiate pour votre financement.",
-      "button": "[FIXME] Démarrer ma demande"
+      "title": "Redo att förverkliga ditt projekt?",
+      "text": "Få ett preliminärt besked direkt för din finansiering.",
+      "button": "Starta min ansökan"
     }
   },
   "CreditRequest": {
     "Simulator": {
-      "title": "[FIXME] VOTRE SIMULATION",
-      "disclaimer": "[FIXME] *Assurance incluse (3%). Taux fixe selon conditions de l'établissement.",
-      "rateLabel": "[FIXME] Taux nominal"
+      "title": "DIN SIMULERING",
+      "disclaimer": "*Försäkring ingår (3%). Fast ränta enligt institutets villkor.",
+      "rateLabel": "Nominell ränta",
+      "guaranteedRate": "Fast och garanterad ränta.",
+      "months": "månader",
+      "durationSuffix": "år",
+      "perMonth": "månad",
+      "personalProject": "Privatlån",
+      "autoProject": "Bil/MC-lån",
+      "proProject": "Företagslån",
+      "otherProject": "Annat projekt",
+      "otherPrompt": "Specificera ditt projekt (t.ex. renovering, bröllop...)",
+      "amountLabel": "Önskat belopp",
+      "durationLabel": "Löptid",
+      "monthlyLabel": "Din månadskostnad",
+      "personalLabel": "Privatlån",
+      "autoLabel": "Bil/MC-lån",
+      "proLabel": "Företagslån",
+      "otherLabel": "Annat projekt",
+      "amountHint": "Justera efter ditt behov.",
+      "durationHint": "Uttryckt i månatliga avbetalningar"
     },
     "title": {
-      "step1": "[FIXME] Votre projet de financement",
-      "step2": "[FIXME] Votre identité",
-      "step3": "[FIXME] Votre situation personnelle",
-      "step4": "[FIXME] Vos finances",
-      "step5": "[FIXME] Création de compte",
-      "analysis": "[FIXME] Analyse du dossier"
+      "step1": "Ditt finansieringsprojekt",
+      "step2": "Din identitet",
+      "step3": "Din personliga situation",
+      "step4": "Din ekonomi",
+      "step5": "Skapa konto",
+      "analysis": "Analys av ärendet"
     },
-    "subtitle": "[FIXME] Finalisez votre demande en quelques étapes pour une décision instantanée.",
+    "subtitle": "Slutför din ansökan i några få steg för ett direktbeslut.",
     "Steps": {
-      "project": "[FIXME] Projet",
-      "identity": "[FIXME] Identité",
-      "situation": "[FIXME] Situation",
-      "finances": "[FIXME] Finances",
-      "account": "[FIXME] Compte"
+      "project": "Projekt",
+      "identity": "Identitet",
+      "situation": "Situation",
+      "finances": "Ekonomi",
+      "account": "Konto",
+      "summary": "Sammanfattning"
     },
     "Profile": {
-      "label": "[FIXME] Type de profil",
-      "individual": "[FIXME] Particulier",
-      "professional": "[FIXME] Professionnel",
-      "pro_badge": "[FIXME] Demande Pro",
-      "individual_badge": "[FIXME] Demande Particulier"
+      "label": "Typ av profil",
+      "individual": "Privatperson",
+      "professional": "Professionell",
+      "pro_badge": "Företagsansökan",
+      "individual_badge": "Privatansökan"
     },
     "Project": {
       "labels": {
-        "personal": "[FIXME] Prêt Personnel",
-        "auto": "[FIXME] Prêt Auto/Moto",
-        "pro": "[FIXME] Prêt Professionnel",
-        "other": "[FIXME] Autre projet"
+        "personal": "Privatlån",
+        "auto": "Bil/MC-lån",
+        "pro": "Företagslån",
+        "other": "Annat projekt",
+        "personal loan": "Privatlån",
+        "auto loan": "Bil/MC-lån",
+        "business loan": "Företagslån"
       },
-      "detailsLabel": "[FIXME] Précisez votre projet",
-      "detailsPlaceholder": "[FIXME] Décrivez brièvement votre besoin de financement..."
+      "detailsLabel": "Precisera ditt projekt",
+      "detailsPlaceholder": "Beskriv kortfattat ditt finansieringsbehov..."
     },
     "Identity": {
-      "civility": "[FIXME] Civilité",
-      "firstName": "[FIXME] Prénom",
-      "lastName": "[FIXME] Nom",
-      "birthDate": "[FIXME] Date de naissance",
-      "birthPlace": "[FIXME] Ville de naissance",
-      "birthCountry": "[FIXME] Pays de naissance",
-      "nationality": "[FIXME] Nationalité",
+      "civility": "Titel",
+      "firstName": "Förnamn",
+      "lastName": "Efternamn",
+      "birthDate": "Födelsedatum",
+      "birthPlace": "Födelseort",
+      "birthCountry": "Födelseland",
+      "nationality": "Nationalitet",
       "Options": {
-        "mr": "[FIXME] M.",
-        "mrs": "[FIXME] Mme",
-        "ms": "[FIXME] Mlle"
+        "mr": "Herr",
+        "mrs": "Fru",
+        "ms": "Fröken"
+      },
+      "title": "Din identitet",
+      "subtitle": "Denna information gör det möjligt för oss att verifiera din behörighet.",
+      "civilityLabel": "Tilltal",
+      "firstNameLabel": "Förnamn",
+      "lastNameLabel": "Efternamn",
+      "birthDateLabel": "Födelsedatum",
+      "birthPlaceLabel": "Födelseort",
+      "birthCountryLabel": "Födelseland",
+      "nationalityLabel": "Nationalitet",
+      "nationalityPlaceholder": "T.ex.: Svensk",
+      "civilityOptions": {
+        "mr": "Herr",
+        "mrs": "Fru"
+      },
+      "Placeholders": {
+        "birthDate": "DD / MM / ÅÅÅÅ",
+        "birthPlace": "Tex: Stockholm",
+        "nationality": "Tex: Svensk",
+        "firstName": "Tex: Erik",
+        "lastName": "Tex: Svensson"
       }
     },
     "Situation": {
-      "maritalStatus": "[FIXME] Situation familiale",
-      "children": "[FIXME] Nombre d'enfants à charge",
-      "housingType": "[FIXME] Type de logement",
-      "housingSeniority": "[FIXME] Ancienneté logement",
-      "seniorityYears": "[FIXME] ans",
-      "seniorityMonths": "[FIXME] mois",
-      "residenceCountry": "[FIXME] Pays de résidence",
-      "phone": "[FIXME] Téléphone mobile",
-      "street": "[FIXME] Adresse (N° et rue)",
-      "zipCode": "[FIXME] Code Postal",
-      "city": "[FIXME] Ville",
+      "maritalStatus": "Familjesituation",
+      "children": "Antal hemmavarande barn",
+      "housingType": "Typ av boende",
+      "housingSeniority": "Boendetid",
+      "seniorityYears": "år",
+      "seniorityMonths": "månader",
+      "residenceCountry": "Bosättningsland",
+      "phone": "Mobiltelefon",
+      "street": "Adress (Gata och nr)",
+      "zipCode": "Postnummer",
+      "city": "Ort",
       "options": {
-        "single": "[FIXME] Célibataire",
-        "married": "[FIXME] Marié(e) / PACS",
-        "divorced": "[FIXME] Divorcé(e) / Veuf(ve)",
-        "tenant": "[FIXME] Locataire",
-        "owner": "[FIXME] Propriétaire",
-        "hosted": "[FIXME] Logé(e) à titre gratuit"
+        "single": "Ensamstående",
+        "married": "Gift / Sambo",
+        "divorced": "Skild / Änka/Änkling",
+        "tenant": "Hyresgäst",
+        "owner": "Äger boende",
+        "hosted": "Bor gratis (t.ex. hos föräldrar)",
+        "pacs": "Registrerat partnerskap",
+        "widow": "Änka/Änkling",
+        "owner_mortgage": "Ägare (med lån)",
+        "free": "Gratis boende"
       },
       "Placeholders": {
-        "street": "[FIXME] Ex: 40 Rue Jean Monnet",
-        "zipCode": "[FIXME] Ex: 68200",
-        "city": "[FIXME] Ex: Mulhouse"
+        "street": "Ex: 40 Rue Jean Monnet",
+        "zipCode": "Ex: 68200",
+        "city": "Tex: Göteborg",
+        "years": "År",
+        "months": "Månader",
+        "address": "Ange din adress...",
+        "yearsPlaceholder": "År",
+        "monthsPlaceholder": "Månader"
+      },
+      "title": "Din personliga situation",
+      "subtitle": "Lär känna dig bättre för att bättre kunna stödja dig.",
+      "maritalStatusLabel": "Civilstånd",
+      "childrenLabel": "Hemmavarande barn",
+      "housingTypeLabel": "Boendeform",
+      "housingSeniorityLabel": "Tid i bostaden",
+      "residenceCountryLabel": "Bosättningsland",
+      "phoneLabel": "Mobilnummer",
+      "addressLabel": "Bostadsadress",
+      "addressPlaceholder": "Ange din adress...",
+      "zipCodeLabel": "Postnummer",
+      "zipCodePlaceholder": "T.ex.: 11220",
+      "cityLabel": "Stad",
+      "maritalOptions": {
+        "single": "Ogift",
+        "married": "Gift",
+        "pacs": "Partnerskap",
+        "divorced": "Skild",
+        "widow": "Änka/Änkling"
+      },
+      "housingOptions": {
+        "tenant": "Hyresgäst",
+        "owner": "Ägare",
+        "owner_mortgage": "Ägare (med lån)",
+        "free": "Gratis boende",
+        "hosted": "Inneboende"
       }
     },
     "Finances": {
-      "contractType": "[FIXME] Type de contrat",
-      "income": "[FIXME] Revenu net mensuel",
-      "charges": "[FIXME] Loyers / Charges mensuelles",
-      "otherCredits": "[FIXME] Autres crédits en cours",
-      "bankInfo": "[FIXME] Informations Bancaires",
-      "bankName": "[FIXME] Nom de la banque",
-      "iban": "[FIXME] IBAN",
-      "bic": "[FIXME] Code BIC / SWIFT",
-      "ribEmail": "[FIXME] Email pour virements",
-      "disposableIncome": "[FIXME] Reste à vivre mensuel",
+      "contractType": "Anställningsform",
+      "income": "Nettoinkomst per månad",
+      "charges": "Hyra / Månadskostnader",
+      "otherCredits": "Andra pågående lån",
+      "bankInfo": "Bankinformation",
+      "bankName": "Bankens namn",
+      "iban": "IBAN",
+      "bic": "BIC / SWIFT-kod",
+      "ribEmail": "E-post för överföringar",
+      "disposableIncome": "Kvar att leva på per månad",
       "options": {
-        "cdi": "[FIXME] CDI",
-        "cdd": "[FIXME] CDD",
-        "temporary": "[FIXME] Intérimaire",
-        "civil_servant": "[FIXME] Fonctionnaire",
-        "liberal": "[FIXME] Libéral / Indépendant",
-        "business_owner": "[FIXME] Chef d'entreprise",
-        "artisan": "[FIXME] Artisan / Commerçant",
-        "independent": "[FIXME] Freelance",
-        "retired": "[FIXME] Retraité(e)",
-        "student": "[FIXME] Étudiant(e)",
-        "apprentice": "[FIXME] Apprenti(e) / Stagiaire",
-        "unemployed": "[FIXME] Sans emploi"
+        "cdi": "Tillsvidareanställning (CDI)",
+        "cdd": "Tidsbegränsad anställning (CDD)",
+        "temporary": "Extraanställd / Vikarie",
+        "civil_servant": "Statligt anställd",
+        "liberal": "Frilans / Eget företag",
+        "business_owner": "Företagsledare",
+        "artisan": "Hantverkare / Handlare",
+        "independent": "Oberoende konsulent",
+        "retired": "Pensionär",
+        "student": "Student",
+        "apprentice": "Lärling / Praktikant",
+        "unemployed": "Arbetssökande"
       },
       "Labels": {
-        "default": "[FIXME] Nom de l'entreprise",
-        "liberal": "[FIXME] Nom de l'activité",
-        "retired": "[FIXME] Dernier employeur",
-        "profession_default": "[FIXME] Profession actuelle",
-        "profession_retired": "[FIXME] Ancienne profession",
-        "income_retired": "[FIXME] Montant retraite",
-        "income_unemployed": "[FIXME] Allocations mensuelles",
-        "income_cdi": "[FIXME] Salaire net mensuel",
-        "income_cdd": "[FIXME] Salaire net mensuel",
-        "income_temporary": "[FIXME] Revenu net mensuel",
-        "income_civil_servant": "[FIXME] Traitement net mensuel",
-        "income_liberal": "[FIXME] Revenu net mensuel",
-        "income_business_owner": "[FIXME] Rémunération nette mensuelle",
-        "income_artisan": "[FIXME] Bénéfice net mensuel",
-        "income_independent": "[FIXME] CA net mensuel",
-        "income_student": "[FIXME] Bourses / Aide familiale",
-        "income_apprentice": "[FIXME] Gratification mensuelle"
+        "default": "Företagsnamn",
+        "liberal": "Verksamhetens namn",
+        "retired": "Senaste arbetsgivare",
+        "profession_default": "Nuvarande yrke",
+        "profession_retired": "Tidigare yrke",
+        "income_retired": "Pensionsbelopp",
+        "income_unemployed": "Månadsbidrag",
+        "income_cdi": "Netto månadslön",
+        "income_cdd": "Netto månadslön",
+        "income_temporary": "Netto månadsinkomst",
+        "income_civil_servant": "Netto månadslön",
+        "income_liberal": "Netto månadsinkomst",
+        "income_business_owner": "Netto månadsersättning",
+        "income_artisan": "Netto månads vinst",
+        "income_independent": "Netto månadsomsättning",
+        "income_student": "Studiebidrag / Familjestöd",
+        "income_apprentice": "Månadsersättning",
+        "artisan": "Företagsnamn",
+        "civil_servant": "Ministerium / Myndighet",
+        "temporary": "Bemanningsföretag / Arbetsgivare",
+        "business_owner": "Företagsnamn",
+        "company_student": "Skola / Universitet",
+        "company_apprentice": "Företag / Studiecenter"
       },
       "Placeholders": {
-        "company_default": "[FIXME] Le nom de votre employeur",
-        "company_cdi": "[FIXME] Ex: Google France",
-        "company_cdd": "[FIXME] Ex: Amazon Logistics",
-        "company_temporary": "[FIXME] Ex: Adecco / Manpower",
-        "company_civil_servant": "[FIXME] Ex: Ministère de l'Éducation",
-        "company_liberal": "[FIXME] Ex: Cabinet Médical Dupont",
-        "company_business_owner": "[FIXME] Ex: SAS AGM INVEST",
-        "company_artisan": "[FIXME] Ex: Boulangerie de la Paix",
-        "company_independent": "[FIXME] Ex: Freelance Web",
-        "company_student": "[FIXME] Ex: Université de Nantes",
-        "company_apprentice": "[FIXME] Ex: Airbus Atlantic",
-        "profession_default": "[FIXME] Ex: Consultant, Chef de projet...",
-        "profession_cdi": "[FIXME] Ex: Comptable",
-        "profession_cdd": "[FIXME] Ex: Chauffeur-livreur",
-        "profession_temporary": "[FIXME] Ex: Manutentionnaire",
-        "profession_civil_servant": "[FIXME] Ex: Professeur",
-        "profession_liberal": "[FIXME] Ex: Médecin",
-        "profession_business_owner": "[FIXME] Ex: Gérant",
-        "profession_artisan": "[FIXME] Ex: Menuisier",
-        "profession_independent": "[FIXME] Ex: Développeur",
-        "profession_student": "[FIXME] Ex: Étudiant Master 2",
-        "profession_apprentice": "[FIXME] Ex: Apprenti Mécanicien",
-        "bankName": "[FIXME] Ex: Boursorama Banque",
-        "iban": "[FIXME] FR76 1234 5...",
-        "bic": "[FIXME] ALPHFR2PXXX",
-        "ribEmail": "[FIXME] votre@email.com",
-        "charges": "[FIXME] Ex: 800"
-      }
+        "company_default": "Namnet på din arbetsgivare",
+        "company_cdi": "Ex: Google Sverige",
+        "company_cdd": "Ex: Amazon Logistics",
+        "company_temporary": "Ex: Adecco / Manpower",
+        "company_civil_servant": "Ex: Utbildningsdepartementet",
+        "company_liberal": "Ex: Duponts läkarmottagning",
+        "company_business_owner": "Ex: SAS AGM INVEST",
+        "company_artisan": "Ex: Fredens bageri",
+        "company_independent": "Ex: Frilanswebb",
+        "company_student": "Ex: Stockholms universitet",
+        "company_apprentice": "Ex: Airbus Atlantic",
+        "profession_default": "Ex: Konsult, projektledare...",
+        "profession_cdi": "Ex: Revisor",
+        "profession_cdd": "Ex: Budbilschaufför",
+        "profession_temporary": "Ex: Lagerarbetare",
+        "profession_civil_servant": "Ex: Lärare",
+        "profession_liberal": "Ex: Läkare",
+        "profession_business_owner": "Ex: Chef",
+        "profession_artisan": "Ex: Snickare",
+        "profession_independent": "Ex: Utvecklare",
+        "profession_student": "Ex: Masterstudent år 2",
+        "profession_apprentice": "Ex: Mekanikerlärling",
+        "bankName": "Ex: SEB / Swedbank",
+        "iban": "SE76 1234 5...",
+        "bic": "ALPHSE2PXXX",
+        "ribEmail": "din@e-post.com",
+        "charges": "Ex: 800",
+        "otherCredits": "Tex: 200"
+      },
+      "title": "Din ekonomi",
+      "subtitle": "Denna information hjälper oss att beräkna din lånekapacitet.",
+      "contractTypeLabel": "Type de contrat",
+      "contractOptions": {
+        "cdi": "CDI",
+        "cdd": "CDD",
+        "temporary": "Intérimaire",
+        "civil_servant": "Fonctionnaire",
+        "liberal": "Libéral / Indépendant",
+        "business_owner": "Chef d'entreprise",
+        "artisan": "Artisan / Commerçant",
+        "independent": "Freelance",
+        "retired": "Retraité(e)",
+        "student": "Étudiant(e)",
+        "apprentice": "Apprenti(e) / Stagiaire",
+        "unemployed": "Sans emploi"
+      },
+      "chargesLabel": "Hyra / Månadsutgifter",
+      "otherCreditsLabel": "Andra pågående krediter",
+      "profession": "Yrke",
+      "company": "Företag / Arbetsgivare"
     },
     "Account": {
-      "email": "[FIXME] Adresse Email",
-      "password": "[FIXME] Mot de passe",
-      "confirmPassword": "[FIXME] Confirmation",
-      "terms": "[FIXME] Je certifie l'exactitude des informations et j'accepte les Conditions Générales d'AGM INVEST.",
+      "email": "E-postadress",
+      "password": "Lösenord",
+      "confirmPassword": "Bekräfta lösenord",
+      "terms": "Jag intygar att informationen är korrekt och jag accepterar AGM INVEST:s allmänna villkor.",
       "Placeholders": {
-        "email": "[FIXME] votre@email.com"
+        "email": "din@e-post.com"
       }
     },
     "Navigation": {
-      "next": "[FIXME] Étape suivante",
-      "back": "[FIXME] Retour",
-      "submit": "[FIXME] Soumettre ma demande",
-      "analyzing": "[FIXME] Analyse en cours..."
+      "next": "Nästa steg",
+      "back": "Tillbaka",
+      "submit": "Skicka min ansökan",
+      "analyzing": "Analys pågår...",
+      "previous": "Föregående",
+      "confirm": "Bekräfta min ansökan",
+      "submitting": "Skickar...",
+      "modify": "Ändra min ansökan",
+      "project": "Projekt",
+      "identity": "Identitet",
+      "situation": "Situation",
+      "finances": "Ekonomi",
+      "summary": "Sammanfattning"
+    },
+    "Summary": {
+      "monthlyEstimation": "Beräknad månadshostnad",
+      "capital": "Kapital",
+      "duration": "Löptid",
+      "totalCost": "Total kostnad",
+      "insurance": "Försäkring (3%)",
+      "totalDue": "Totalt belopp att återbetala",
+      "taeg": "Effektiv ränta",
+      "secureData": "100% Säkert",
+      "secureDesc": "AES-256 bitars kryptering",
+      "expertiseQuote": "\"AGM INVEST expertis för din finansiering upp till 1 miljon euro.\"",
+      "rgpdCertified": "Certifierad enligt GDPR"
+    },
+    "FinalRecap": {
+      "title": "Slutlig sammanställning",
+      "subtitle": "Vänligen kontrollera dina uppgifter innan du skickar in ditt ärende på ett säkert sätt.",
+      "projectSection": "Projektet",
+      "applicantSection": "Sökande",
+      "amount": "Belopp",
+      "duration": "Löptid",
+      "monthly": "Månadskostnad",
+      "identity": "Identitet",
+      "city": "Ort",
+      "modify": "Ändra",
+      "confirm": "Bekräfta",
+      "processing": "Behandlar...",
+      "submitting": "Skickar..."
     },
     "Result": {
-      "analysisTitle": "[FIXME] Analyse de votre dossier",
-      "analysisMessage": "[FIXME] Nous analysons vos données instantanément grâce à nos partenaires bancaires. Vous allez être redirigé vers votre espace client.",
-      "dashboardButton": "[FIXME] Accéder à mon tableau de bord"
+      "analysisTitle": "Analys av ditt ärende",
+      "analysisMessage": "Vi analyserar dina uppgifter omedelbart tack vare våra bankpartners. Du kommer att omdirigeras till ditt kundområde.",
+      "dashboardButton": "Till min instrumentpanel",
+      "summaryTitle": "DIN SAMMANSTÄLLNING",
+      "checkPrompt": "Slutlig verifiering",
+      "checkMessage": "Se till att all information du angett är korrekt."
+    },
+    "Banners": {
+      "Rejected": {
+        "title": "Jag informerar dig om att:",
+        "message": "Din finansieringsansökan har avvisats av våra tjänster efter granskning av ditt ärende.",
+        "extra": "För mer information eller för att prata med en rådgivare, vänligen kontakta vår support."
+      },
+      "Approved": {
+        "title": "Grattis!",
+        "subtitle": "Det är jackpotten.",
+        "message": "Njut av ditt lån på {amount} för att hantera dina projekt.",
+        "warning": "För närvarande är du inte längre behörig att ansöka om ett lån eftersom du redan har ett under återbetalning."
+      },
+      "Pending": {
+        "title": "Jag informerar dig om att:",
+        "message": "Du har redan en finansieringsansökan under behandling.",
+        "warning": "Som en säkerhetsåtgärd och för kvaliteten på granskningen tillåter vi endast ett aktivt ärende åt gången."
+      }
+    },
+    "Notifications": {
+      "submittedTitle": "Ansökan skickad 📄",
+      "submittedMessage": "Din låneansökan på {amount} har registrerats.",
+      "error": "Ett fel uppstod vid inskickningen. Vänligen kontrollera dina behörigheter."
+    },
+    "Common": {
+      "trackRecord": "Följ mitt ärende",
+      "restart": "Starta om",
+      "previous": "Föregående",
+      "next": "Nästa",
+      "confirm": "Bekräfta",
+      "submitting": "Behandlar...",
+      "modify": "Ändra",
+      "step": "Steg"
     },
     "Errors": {
-      "underage": "[FIXME] Vous devez avoir au moins 18 ans.",
-      "invalidDate": "[FIXME] La date saisie est invalide.",
-      "passwordsDoNotMatch": "[FIXME] Les mots de passe ne correspondent pas."
+      "underage": "Du måste vara minst 18 år.",
+      "invalidDate": "Det angivna datumet är ogiltigt.",
+      "passwordsDoNotMatch": "Lösenorden stämmer inte överens.",
+      "passwordTooShort": "Lösenordet måste innehålla minst 6 tecken.",
+      "emailUsed": "Denna e-postadress används redan. Vänligen logga in eller använd en annan adress.",
+      "weakPassword": "Lösenordet är för svagt. Använd minst 6 tecken.",
+      "invalidEmail": "E-postadressen är inte giltig.",
+      "genericError": "Ett fel uppstod när kontot skulle skapas. Försök igen."
     },
     "Step1": {
-      "amount": "[FIXME] Montant du prêt",
-      "duration": "[FIXME] Durée (mois)",
-      "rate": "[FIXME] Taux nominal"
+      "amount": "Lånebelopp",
+      "duration": "Löptid (månader)",
+      "rate": "Nominell ränta"
+    },
+    "Form": {
+      "lastName": "Efternamn"
     }
   },
   "Legal": {
     "Mentions": {
-      "title": "[FIXME] Mentions Légales",
-      "subtitle": "[FIXME] Informations juridiques et réglementaires concernant AGM INVEST.",
+      "title": "Rättsligt meddelande",
+      "subtitle": "Juridisk och regulatorisk information gällande AGM INVEST.",
       "Section1": {
-        "title": "[FIXME] Identification de la Société",
-        "name": "[FIXME] Dénomination sociale :",
-        "form": "[FIXME] Forme juridique :",
-        "headquarters": "[FIXME] Siège social :",
-        "siren": "[FIXME] SIREN :",
-        "siret": "[FIXME] SIRET :",
-        "rcs": "[FIXME] RCS :",
-        "tva": "[FIXME] TVA Intracommunautaire :",
-        "ape": "[FIXME] Code APE / NAF :",
-        "manager": "[FIXME] Dirigeant :",
-        "creation": "[FIXME] Date de création :",
+        "title": "Identifiering av företaget",
+        "name": "Företagsnamn:",
+        "form": "Juridisk form:",
+        "headquarters": "Säte:",
+        "siren": "SIREN:",
+        "siret": "SIRET:",
+        "rcs": "RCS:",
+        "tva": "Mervärdesskattenummer (TVA):",
+        "ape": "APE / NAF-kod:",
+        "manager": "Chef:",
+        "creation": "Bildat den:",
         "Values": {
-          "name": "[FIXME] AGM INVEST",
-          "form": "[FIXME] SARL au capital de 7 622 €",
-          "headquarters": "[FIXME] MELPARK – 40 rue Jean Monnet, 68200 Mulhouse",
-          "siren": "[FIXME] 389 858 630",
-          "siret": "[FIXME] 389 858 630 00046",
-          "rcs": "[FIXME] 389 858 630 R.C.S. Mulhouse",
-          "tva": "[FIXME] FR51 389858630",
-          "ape": "[FIXME] 64.92Z – Autre distribution de crédit",
-          "manager": "[FIXME] Alain Meyer",
-          "creation": "[FIXME] 16 janvier 1993"
+          "name": "AGM INVEST",
+          "form": "SARL med ett kapital på 7 622 €",
+          "headquarters": "MELPARK – 40 rue Jean Monnet, 68200 Mulhouse",
+          "siren": "389 858 630",
+          "siret": "389 858 630 00046",
+          "rcs": "389 858 630 R.C.S. Mulhouse",
+          "tva": "FR51 389858630",
+          "ape": "64.92Z – Annan kreditgivning",
+          "manager": "Alain Meyer",
+          "creation": "16 januari 1993"
         }
       },
       "Section2": {
-        "title": "[FIXME] Activités & Expertise",
-        "p1": "[FIXME] AGM INVEST est une société française spécialisée dans le conseil financier, le courtage en financements et l’accompagnement stratégique des particuliers et des professionnels. Forte de plus de 50 ans d’expérience cumulée dans les services financiers, AGM INVEST met son expertise au service de projets patrimoniaux, immobiliers et financiers, en toute indépendance.",
+        "title": "Verksamhet & Expertis",
+        "p1": "AGM INVEST är ett franskt företag specialiserat på finansiell rådgivning, kreditförmedling och strategisk vägledning för privatpersoner och yrkesverksamma. Med över 50 års samlad erfarenhet av finansiella tjänster ställer AGM INVEST sin expertis till förfogande för förmögenhets-, fastighets- och finansiella projekt, i fullständigt oberoende.",
         "list": {
-          "li1": "[FIXME] Conseil financier et stratégique",
-          "li2": "[FIXME] Courtage en financements",
-          "li3": "[FIXME] Intermédiation en opérations de banque et services de paiement",
-          "li4": "[FIXME] Accompagnement en négociation et structuration financière",
-          "li5": "[FIXME] Conseil et commercialisation de projets immobiliers",
-          "li6": "[FIXME] Analyse et optimisation de solutions de financement"
+          "li1": "Finansiell och strategisk rådgivning",
+          "li2": "Kreditförmedling",
+          "li3": "Förmedling av bankverksamhet och betaltjänster",
+          "li4": "Vägledning vid förhandling och finansiell strukturering",
+          "li5": "Rådgivning och marknadsföring av fastighetsprojekt",
+          "li6": "Analys och optimering av finansieringslösningar"
         }
       },
       "Section3": {
-        "title": "[FIXME] Conformité & Réglementation",
-        "p1": "[FIXME] AGM INVEST a été immatriculée à l’ORIAS sous le numéro 14001635 en qualité de :",
-        "oriasLink": "[FIXME] www.orias.fr",
-        "role": "[FIXME] ",
+        "title": "Efterlevnad & Reglering",
+        "p1": "AGM INVEST är registrerat hos ORIAS under nummer 14001635 som:",
+        "oriasLink": "www.orias.fr",
+        "role": "",
         "list": {
-          "li1": "[FIXME] Mandataire d’Intermédiaire en Opérations Bancaires et Services de Paiement",
-          "li2": "[FIXME] Courtier en Opérations Bancaires et Services de Paiement",
-          "li3": "[FIXME] Courtier en Assurance"
+          "li1": "Ombud för förmedlare av bankverksamhet och betaltjänster",
+          "li2": "Mäklare för bankverksamhet och betaltjänster",
+          "li3": "Försäkringsmäklare"
         },
-        "p2": "[FIXME] L'activité d'Intermédiaire en Opérations de Banque et en Services de Paiement (IOBSP) est régie par le Code Monétaire et Financier. AGM INVEST est soumise au contrôle de l'Autorité de Contrôle Prudentiel et de Résolution (ACPR), 4 Place de Budapest CS 92459, 75436 Paris Cedex 09."
+        "p2": "Verksamheten för förmedlare av bankverksamhet och betaltjänster (IOBSP) styrs av monetär- och finanslagen. AGM INVEST står under tillsyn av Autorité de Contrôle Prudentiel et de Résolution (ACPR), 4 Place de Budapest CS 92459, 75436 Paris Cedex 09."
       },
       "Section4": {
-        "title": "[FIXME] Contact & Hébergement",
+        "title": "Kontakt & Webbhotell",
         "Service": {
-          "title": "[FIXME] Service Client",
-          "text": "[FIXME] Pour toute question ou réclamation, vous pouvez nous contacter par email :",
-          "address": "[FIXME] 40 rue Jean Monnet, 68200 Mulhouse"
+          "title": "Kundtjänst",
+          "text": "För frågor eller klagomål kan du kontakta oss via e-post:",
+          "address": "40 rue Jean Monnet, 68200 Mulhouse"
         },
         "Hosting": {
-          "title": "[FIXME] Hébergement Web",
-          "text": "[FIXME] Ce site est hébergé par :",
-          "name": "[FIXME] Hostinger",
-          "address": "[FIXME] 61 Lordou Vironos Street\n6023 Larnaca\nChypre"
+          "title": "Webbhotell",
+          "text": "Denna webbplats hostas av:",
+          "name": "Hostinger",
+          "address": "61 Lordou Vironos Street\n6023 Larnaca\nCypern"
         }
       },
       "Footer": {
-        "copyright": "[FIXME] © 1993 – 2026 AGM INVEST – Tous droits réservés",
-        "desc": "[FIXME] Société de conseil financier – Interventions sans maniement de fonds",
-        "disclaimer": "[FIXME] Les informations présentes sur ce site ne constituent pas une offre contractuelle."
+        "copyright": "© 1993 – 2026 AGM INVEST – Alla rättigheter förbehållna",
+        "desc": "Finansiellt rådgivningsföretag – Ingrepp utan hantering av medel",
+        "disclaimer": "Informationen på denna webbplats utgör inte ett avtalsenligt erbjudande."
       }
     },
     "Privacy": {
-      "title": "[FIXME] Politique de Confidentialité",
-      "subtitle": "[FIXME] Engagement de AGM INVEST sur la protection de vos données personnelles et le respect de votre vie privée (RGPD).",
-      "intro": "[FIXME] Chez AGM INVEST, we accordons une importance capitale à la confidentialité et à la sécurité de vos informations. Cette politique détaille comment nous collectons, utilisons et protégeons vos données dans le cadre de nos activités de conseil financier et de courtage.",
+      "title": "Integritetspolicy",
+      "subtitle": "AGM INVEST:s åtagande gällande skydd av dina personuppgifter och respekt för ditt privatliv (GDPR).",
+      "intro": "Hos AGM INVEST fäster vi stor vikt vid sekretess och säkerhet för dina uppgifter. Denna policy beskriver hur vi samlar in, använder och skyddar dina data inom ramen för vår finansiella rådgivning och mäklarverksamhet.",
       "Section1": {
-        "title": "[FIXME] 1. Données Collectées",
-        "description": "[FIXME] Pour traiter vos demandes de financement et vous fournir nos services, nous sommes amenés à collecter les informations suivantes :",
+        "title": "1. Insamlade uppgifter",
+        "description": "För att behandla dina finansieringsansökningar och tillhandahålla våra tjänster samlar vi in följande information:",
         "list": {
-          "li1": "[FIXME] <bold>Identité :</bold> Nom, prénom, date de naissance, nationalité, documents d'identité.",
-          "li2": "[FIXME] <bold>Coordonnées :</bold> Adresse postale, email, numéro de téléphone.",
-          "li3": "[FIXME] <bold>Situation Familiale :</bold> Statut marital, nombre d'enfants à charge.",
-          "li4": "[FIXME] <bold>Situation Professionnelle :</bold> Employeur, type de contrat, ancienneté, revenus.",
-          "li5": "[FIXME] <bold>Situation Financière :</bold> Relevés bancaires, avis d'imposition, emprunts en cours, patrimoine.",
-          "li6": "[FIXME] <bold>Données de Connexion :</bold> Adresse IP, logs de connexion (pour la sécurité)."
+          "li1": "<bold>Identitet:</bold> Namn, förnamn, födelsedatum, nationalitet, identitetshandlingar.",
+          "li2": "<bold>Kontaktuppgifter:</bold> Postadress, e-post, telefonnummer.",
+          "li3": "<bold>Familjesituation:</bold> Civilstånd, antal hemmavarande barn.",
+          "li4": "<bold>Yrkesmässig situation:</bold> Arbetsgivare, anställningsform, anställningstid, inkomster.",
+          "li5": "<bold>Finansiell situation:</bold> Bankutdrag, inkomstdeklarationer, pågående lån, tillgångar.",
+          "li6": "<bold>Inloggningsuppgifter:</bold> IP-adress, inloggningsloggar (för säkerhet)."
         }
       },
       "Section2": {
-        "title": "[FIXME] 2. Finalités du Traitement",
-        "description": "[FIXME] Vos données sont traitées pour des finalités déterminées, explicites et légitimes :",
+        "title": "2. Syften med behandlingen",
+        "description": "Dina uppgifter behandlas för specifika, uttryckliga och legitima ändamål:",
         "Cards": {
           "c1": {
-            "title": "[FIXME] Étude de solvabilité",
-            "desc": "[FIXME] Analyse de votre capacité de remboursement pour l'octroi de crédits."
+            "title": "Kreditprövning",
+            "desc": "Analys av din återbetalningsförmåga för beviljande av krediter."
           },
           "c2": {
-            "title": "[FIXME] Gestion de dossier",
-            "desc": "[FIXME] Suivi administratif, constitution des contrats et gestion de la relation client."
+            "title": "Ärendehantering",
+            "desc": "Administrativ uppföljning, upprättande av kontrakt och hantering av kundrelationer."
           },
           "c3": {
-            "title": "[FIXME] Obligations Légales",
-            "desc": "[FIXME] Lutte contre le blanchiment d'argent et le financement du terrorisme (LCB-FT)."
+            "title": "Rättsliga förpliktelser",
+            "desc": "Kamp mot penningtvätt och finansiering av terrorism (AML/CFT)."
           },
           "c4": {
-            "title": "[FIXME] Sécurité",
-            "desc": "[FIXME] Protection contre la fraude et sécurisation de vos accès en ligne."
+            "title": "Säkerhet",
+            "desc": "Skydd mot bedrägerier och säkring av dina online-åtkomster."
           }
         }
       },
       "Section3": {
-        "title": "[FIXME] 3. Partage et Destinataires",
-        "p1": "[FIXME] Vos données sont strictement confidentielles. Elles ne sont transmises qu'aux destinataires habilités lorsque cela est nécessaire :",
+        "title": "3. Delning och mottagare",
+        "p1": "Dina uppgifter är strikt konfidentiella. De överförs endast till behöriga mottagare när det är nödvändigt:",
         "list": {
-          "li1": "[FIXME] Nos partenaires bancaires et assureurs (pour l'étude et la validation de votre financement).",
-          "li2": "[FIXME] Les organismes publics et régulateurs (sur réquisition légale).",
-          "li3": "[FIXME] Nos prestataires techniques sécurisés (hébergement, signature électronique)."
+          "li1": "Våra bank- och försäkringspartners (för granskning och godkännande av din finansiering).",
+          "li2": "Offentliga organ och tillsynsmyndigheter (enligt lagstadgat krav).",
+          "li3": "Våra säkra tekniska tjänsteleverantörer (webbhotell, elektronisk signatur)."
         },
-        "p2": "[FIXME] AGM INVEST ne vendra jamais vos données personnelles à des tiers à des fins commerciales."
+        "p2": "AGM INVEST kommer aldrig att sälja dina personuppgifter till tredje part för kommersiella ändamål."
       },
       "Section4": {
-        "title": "[FIXME] 4. Vos Droits",
-        "p1": "[FIXME] Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :",
+        "title": "4. Dina rättigheter",
+        "p1": "I enlighet med den allmänna dataskyddsförordningen (GDPR) har du följande rättigheter:",
         "list": {
-          "li1": "[FIXME] Droit d'accès à vos données",
-          "li2": "[FIXME] Droit de rectification",
-          "li3": "[FIXME] Droit à l'effacement (\"droit à l'oubli\")",
-          "li4": "[FIXME] Droit à la limitation du traitement",
-          "li5": "[FIXME] Droit au portabilité des données",
-          "li6": "[FIXME] Droit d'opposition"
+          "li1": "Rätt till tillgång till dina uppgifter",
+          "li2": "Rätt till rättelse",
+          "li3": "Rätt till radering (\"rätten att bli bortglömd\")",
+          "li4": "Rätt till begränsning av behandling",
+          "li5": "Rätt till dataportabilitet",
+          "li6": "Rätt att göra invändningar"
         },
-        "contact": "[FIXME] Pour exercer ces droits, contactez notre Délégué à la Protection des Données (DPO) :",
-        "postal": "[FIXME] ou par courrier postal au siège social."
+        "contact": "För att utöva dessa rättigheter, kontakta vårt dataskyddsombud (DPO):",
+        "postal": "eller via post till huvudkontoret."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026"
+        "updated": "Senast uppdaterad: Februari 2026"
       }
     },
     "Cookies": {
-      "title": "[FIXME] Gestion des Cookies",
-      "subtitle": "[FIXME] Comprendre comment et pourquoi nous utilisons des cookies pour améliorer votre expérience sur AGM INVEST.",
-      "intro": "[FIXME] Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) lors de la visite de notre site. Il permet à AGM INVEST de mémoriser vos actions et préférences sur une période donnée.",
+      "title": "Hantering av Cookies",
+      "subtitle": "Förstå hur och varför vi använder cookies för att förbättra din upplevelse hos AGM INVEST.",
+      "intro": "En cookie är en liten textfil som sparas på din enhet (dator, läsplatta, smartphone) när du besöker vår webbplats. Den tillåter AGM INVEST att komma ihåg dina handlingar och preferenser under en viss period.",
       "Section1": {
-        "title": "[FIXME] 1. Les Cookies que nous utilisons",
+        "title": "1. Cookies som vi använder",
         "Essential": {
-          "title": "[FIXME] Cookies Essentiels",
-          "desc": "[FIXME] Indispensables au bon fonctionnement du site. Ils vous permettent de naviguer, d'accéder à votre espace sécurisé et d'assurer la sécurité des transactions. Ils ne peuvent pas être désactivés."
+          "title": "Nödvändiga Cookies",
+          "desc": "Oumbärliga för webbplatsens funktion. De tillåter dig att navigera, komma åt ditt säkra område och säkerställa transaktionernas säkerhet. De kan inte inaktiveras."
         },
         "Functional": {
-          "title": "[FIXME] Cookies Fonctionnels",
-          "desc": "[FIXME] Permettent de mémoriser vos choix (langue, nom d'utilisateur) pour vous offrir une expérience personnalisée et plus fluide."
+          "title": "Funktionella Cookies",
+          "desc": "Tillåter att komma ihåg dina val (språk, användarnamn) för att erbjuda dig en personlig och smidigare upplevelse."
         },
         "Analytics": {
-          "title": "[FIXME] Cookies Analytiques",
-          "desc": "[FIXME] Nous aident à comprendre comment les visiteurs interagissent avec le site (pages visitées, temps passé) afin d'améliorer nos services. Données anonymisées."
+          "title": "Analyscookies",
+          "desc": "Hjälper oss att förstå hur besökare interagerar med webbplatsen (besökta sidor, tid spenderad) för att förbättra våra tjänster. Uppgifterna är anonymiserade."
         }
       },
       "Section2": {
-        "title": "[FIXME] 2. Gérer vos préférences",
-        "intro": "[FIXME] Vous pouvez à tout moment modifier vos préférences en matière de cookies via les paramètres de votre navigateur web.",
-        "Chrome": "[FIXME] Google Chrome :",
-        "ChromePath": "[FIXME] Paramètres > Confidentialité et sécurité > Cookies",
-        "Firefox": "[FIXME] Firefox :",
-        "FirefoxPath": "[FIXME] Options > Vie privée et sécurité > Cookies",
-        "Safari": "[FIXME] Safari :",
-        "SafariPath": "[FIXME] Préférences > Confidentialité",
-        "Edge": "[FIXME] Edge :",
-        "EdgePath": "[FIXME] Paramètres > Cookies et autorisations de site",
-        "note": "[FIXME] Note : Le refus des cookies essentiels peut empêcher l'accès à certaines fonctionnalités critiques comme la connexion à votre compte client."
+        "title": "2. Hantera dina preferenser",
+        "intro": "Du kan när som helst ändra dina inställningar för cookies via inställningarna i din webbläsare.",
+        "Chrome": "Google Chrome:",
+        "ChromePath": "Inställningar > Integritet och säkerhet > Cookies",
+        "Firefox": "Firefox:",
+        "FirefoxPath": "Inställningar > Sekretess och säkerhet > Cookies",
+        "Safari": "Safari:",
+        "SafariPath": "Inställningar > Integritet",
+        "Edge": "Edge:",
+        "EdgePath": "Inställningar > Cookies och webbplatsbehörigheter",
+        "note": "Notera: Att neka nödvändiga cookies kan förhindra åtkomst till vissa kritiska funktioner som inloggning på ditt kundkonto."
       },
       "Footer": {
-        "copyright": "[FIXME] © AGM INVEST - Politique de Cookies 2026"
+        "copyright": "© AGM INVEST - Cookiepolicy 2026"
       }
     },
     "CGU": {
-      "title": "[FIXME] Conditions Générales d'Utilisation",
-      "subtitle": "[FIXME] Conditions d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne.",
+      "title": "Allmänna villkor (CGU)",
+      "subtitle": "Villkor för användning av de tjänster som erbjuds av AGM INVEST via dess onlineplattform.",
       "Section1": {
-        "title": "[FIXME] 1. Objet",
-        "content": "[FIXME] Les présentes Conditions Générales d'Utilisation (CGU) définissent les conditions d'accès et d'utilisation des services proposés par AGM INVEST via sa plateforme en ligne."
+        "title": "1. Syfte",
+        "content": "Dessa allmänna användarvillkor (CGU) definierar villkoren för åtkomst och användning av de tjänster som erbjuds av AGM INVEST via dess onlineplattform."
       },
       "Section2": {
-        "title": "[FIXME] 2. Accès au Service",
-        "p1": "[FIXME] L'accès à la plateforme est réservé aux utilisateurs disposant d'un compte validé.",
-        "p2": "[FIXME] AGM INVEST se réserve le droit de refuser ou suspendre un compte en cas de non-respect des présentes conditions."
+        "title": "2. Åtkomst till tjänsten",
+        "p1": "Åtkomst till plattformen är reserverad för användare som har ett validerat konto.",
+        "p2": "AGM INVEST förbehåller sig rätten att neka eller stänga av ett konto vid överträdelse av dessa villkor."
       },
       "Section3": {
-        "title": "[FIXME] 3. Nature des Services",
-        "intro": "[FIXME] AGM INVEST propose :",
+        "title": "3. Tjänsternas art",
+        "intro": "AGM INVEST erbjuder:",
         "list": {
-          "li1": "[FIXME] Un accompagnement administratif",
-          "li2": "[FIXME] Une assistance liée à l'acquisition de véhicules",
-          "li3": "[FIXME] Un service de gestion de dossiers clients"
+          "li1": "Administrativ vägledning",
+          "li2": "Assistans relaterad till inköp av fordon",
+          "li3": "Tjänst för hantering av kundärenden"
         },
-        "warning": "[FIXME] AGM INVEST n'est pas un organisme bancaire, ni un établissement de crédit, mais un intermédiaire financier réglementé."
+        "warning": "AGM INVEST är inte ett bankinstitut eller ett kreditmarknadsföretag, utan en reglerad finansiell förmedlare."
       },
       "Section4": {
-        "title": "[FIXME] 4. Processus de Vérification",
-        "content": "[FIXME] L'accès complet aux services nécessite une procédure de vérification en plusieurs étapes définies par AGM INVEST."
+        "title": "4. Verifieringsprocess",
+        "content": "Fullständig tillgång till tjänsterna kräver ett verifieringsförfarande i flera steg som definieras av AGM INVEST."
       },
       "Section5": {
-        "title": "[FIXME] 5. Paiements",
-        "p1": "[FIXME] Certains services peuvent nécessiter le versement de dépôts de sécurité.",
-        "p2": "[FIXME] Ces montants sont communiqués clairement au client avant toute validation."
+        "title": "5. Betalningar",
+        "p1": "Vissa tjänster kan kräva inbetalning av säkerhetsdepositioner.",
+        "p2": "Dessa belopp kommuniceras tydligt till kunden före varje validering."
       },
       "Section6": {
-        "title": "[FIXME] 6. Responsabilité",
-        "content": "[FIXME] AGM INVEST agit en tant qu'intermédiaire administratif et ne garantit pas l'acceptation d'un dossier par des tiers (administrations, partenaires, prestataires)."
+        "title": "6. Ansvar",
+        "content": "AGM INVEST agerar som en administrativ mellanhand och garanterar inte att ett ärende accepteras av tredje part (myndigheter, partners, tjänsteleverantörer)."
       },
       "Section7": {
-        "title": "[FIXME] 7. Données Personnelles",
-        "content": "[FIXME] Les données sont traitées conformément à la réglementation en vigueur. Consultez notre",
-        "link": "[FIXME] Politique de Confidentialité"
+        "title": "7. Personuppgifter",
+        "content": "Uppgifterna behandlas i enlighet med gällande regler. Se vår",
+        "link": "Integritetspolicy"
       },
       "Section8": {
-        "title": "[FIXME] 8. Résiliation",
-        "content": "[FIXME] AGM INVEST se réserve le droit de suspendre un compte en cas de fraude, fausse déclaration ou utilisation abusive du service."
+        "title": "8. Uppsägning",
+        "content": "AGM INVEST förbehåller sig rätten att stänga av ett konto vid bedrägeri, falsk deklaration eller missbruk av tjänsten."
       },
       "Section9": {
-        "title": "[FIXME] 9. Droit Applicable",
-        "p1": "[FIXME] Les présentes CGU sont soumises au droit français.",
-        "p2": "[FIXME] Tout litige relève de la compétence des tribunaux français."
+        "title": "9. Tillämplig lag",
+        "p1": "Dessa CGU styrs av fransk lag.",
+        "p2": "Varje tvist faller under behörigheten för franska domstolar."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Senast uppdaterad: Februari 2026",
+        "copyright": "© 2026 AGM INVEST - Alla rättigheter förbehållna"
       }
     },
     "Refund": {
-      "title": "[FIXME] Conditions de Remboursement",
-      "subtitle": "[FIXME] Modalités de restitution du dépôt sécuritaire fixe AGM INVEST.",
+      "title": "Villkor för återbetalning",
+      "subtitle": "Modaliteter för återbetalning av AGM INVEST:s fasta säkerhetsdeposition.",
       "Section1": {
-        "title": "[FIXME] 1. Dépôt Sécuritaire Fixe",
-        "p1": "[FIXME] Ce dépôt n'est pas des frais. Il doit provenir du même compte bancaire (RIB) que celui fourni lors de votre demande.",
-        "p2": "[FIXME] Il est intégralement restitué en même temps que le virement du crédit.",
-        "p3": "[FIXME] "
+        "title": "1. Fast säkerhetsdeposition",
+        "p1": "Denna deposition är inte en avgift. Den måste komma från samma bankkonto som tillhandahölls vid din ansökan.",
+        "p2": "Den återbetalas i sin helhet samtidigt som lånebeloppet betalas ut.",
+        "p3": ""
       },
       "Section2": {
-        "title": "[FIXME] 2. Restitution",
-        "content": "[FIXME] La restitution du dépôt sécuritaire intervient conformément aux conditions prévues dans le contrat signé entre AGM INVEST et le client."
+        "title": "2. Återbetalning",
+        "content": "Återbetalningen av säkerhetsdepositionen sker i enlighet med de villkor som föreskrivs i det avtal som undertecknats mellan AGM INVEST och kunden."
       },
       "Section3": {
-        "title": "[FIXME] 3. Cas de Non-Restitution",
-        "intro": "[FIXME] Le dépôt sécuritaire peut ne pas être restitué en cas de :",
+        "title": "3. Fall där återbetalning uteblir",
+        "intro": "Säkerhetsdepositionen kan komma att inte återbetalas vid:",
         "list": {
-          "li1": "[FIXME] Abandon volontaire du dossier par le client",
-          "li2": "[FIXME] Fausse déclaration",
-          "li3": "[FIXME] Non-respect des engagements contractuels"
+          "li1": "Frivilligt avbrytande av ärendet från kundens sida",
+          "li2": "Falsk deklaration",
+          "li3": "Bristande efterlevnad av avtalsförpliktelser"
         }
       },
       "Section4": {
-        "title": "[FIXME] 4. Délais",
-        "content": "[FIXME] Les délais de restitution sont indiqués dans le contrat et peuvent varier selon la nature du dossier et les partenaires impliqués."
+        "title": "4. Tidsramar",
+        "content": "Tidsramarna för återbetalning anges i avtalet och kan variera beroende på ärendets art och involverade partners."
       },
       "Section5": {
-        "title": "[FIXME] 5. Litiges",
-        "content": "[FIXME] En cas de litige, le droit français s'applique."
+        "title": "5. Tvister",
+        "content": "Vid tvist tillämpas fransk lag."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Senast uppdaterad: Februari 2026",
+        "copyright": "© 2026 AGM INVEST - Alla rättigheter förbehållna"
       }
     },
     "Trust": {
-      "title": "[FIXME] Confiance & Sécurité",
-      "subtitle": "[FIXME] Chez AGM INVEST, la sécurité des dossiers clients est une priorité absolue.",
-      "intro": "[FIXME] Nous mettons en œuvre des processus rigoureux et transparents pour garantir la sécurité et la confidentialité de vos informations.",
+      "title": "Förtroende & Säkerhet",
+      "subtitle": "Hos AGM INVEST är säkerheten för kundärenden en absolut prioritet.",
+      "intro": "Vi implementerar rigorösa och transparenta processer för att garantera säkerheten och konfidentialiteten för din information.",
       "engagements": {
-        "title": "[FIXME] Nos Engagements Sécurité",
+        "title": "Våra Säkerhetsåtaganden",
         "admin": {
-          "title": "[FIXME] Vérification Administrative",
-          "desc": "[FIXME] Chaque dossier est vérifié minutieusement par notre équipe administrative."
+          "title": "Administrativ verifiering",
+          "desc": "Varje ärende granskas noggrant av vårt administrativa team."
         },
         "multi": {
-          "title": "[FIXME] Validation Multi-Étapes",
-          "desc": "[FIXME] Processus de vérification en plusieurs étapes pour garantir la conformité."
+          "title": "Multi-stegs validering",
+          "desc": "Verifieringsprocess i flera steg för att garantera efterlevnad."
         },
         "contract": {
-          "title": "[FIXME] Encadrement Contractuel Clair",
-          "desc": "[FIXME] Tous nos services sont encadrés par des contrats transparents et détaillés."
+          "title": "Tydliga avtalsramar",
+          "desc": "Alla våra tjänster ramas in av transparenta och detaljerade avtal."
         },
         "trace": {
-          "title": "[FIXME] Traçabilité des Paiements",
-          "desc": "[FIXME] Tous les paiements sont tracés et sécurisés via des systèmes certifiés."
+          "title": "Spårbarhet av betalningar",
+          "desc": "Alla betalningar spåras och säkras via certifierade system."
         },
         "data": {
-          "title": "[FIXME] Protection des Données",
-          "desc": "[FIXME] Conformité RGPD et chiffrement de toutes vos données personnelles."
+          "title": "Dataskydd",
+          "desc": "GDPR-efterlevnad och kryptering av alla dina personuppgifter."
         },
         "support": {
-          "title": "[FIXME] Support Client Dédié",
-          "desc": "[FIXME] Une équipe à votre écoute pour répondre à toutes vos questions."
+          "title": "Dedikerad kundtjänst",
+          "desc": "Ett team som lyssnar på dig för att svara på alla dina frågor."
         }
       },
       "individual": {
-        "title": "[FIXME] Traitement Individuel",
-        "content": "[FIXME] Chaque dossier est traité de manière individuelle par notre équipe. Nous prenons le temps d'analyser votre situation spécifique pour vous proposer un accompagnement personnalisé."
+        "title": "Individuell behandling",
+        "content": "Varje ärende behandlas individuellt av vårt team. Vi tar oss tid att analysera din specifika situation för att erbjuda dig personlig vägledning."
       },
       "promise": {
-        "title": "[FIXME] Notre Engagement",
-        "content": "[FIXME] AGM INVEST s'engage à la transparence dans ses processus et ses communications. Votre confiance est notre priorité."
+        "title": "Vårt åtagande",
+        "content": "AGM INVEST åtar sig att vara transparent i sina processer och kommunikationer. Ditt förtroende är vår prioritet."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Senast uppdaterad : Februari 2026",
+        "copyright": "© 2026 AGM INVEST - Alla rättigheter förbehållna"
       }
     },
     "Disclaimer": {
-      "title": "[FIXME] Disclaimer Financier",
-      "subtitle": "[FIXME] Informations importantes sur la nature des services AGM INVEST.",
+      "title": "Finansiell ansvarsfriskrivning",
+      "subtitle": "Viktig information om arten av AGM INVEST:s tjänster.",
       "warning": {
-        "title": "[FIXME] Avertissement Important",
-        "content": "[FIXME] AGM INVEST n'est ni un établissement bancaire, ni un organisme de crédit, mais un intermédiaire financier réglementé."
+        "title": "Viktig varning",
+        "content": "AGM INVEST är varken ett bankinstitut eller ett kreditmarknadsföretag, utan en reglerad finansiell förmedlare."
       },
       "nature": {
-        "title": "[FIXME] Nature de l'Activité",
-        "p1": "[FIXME] AGM INVEST intervient exclusivement en tant qu'intermédiaire administratif et de mise en relation.",
-        "p2": "[FIXME] Nos services consistent en un accompagnement dans vos démarches administratives et la mise en relation avec des partenaires qualifiés."
+        "title": "Verksamhetens art",
+        "p1": "AGM INVEST agerar uteslutande som en administrativ mellanhand och för förmedling.",
+        "p2": "Våra tjänster består i vägledning i dina administrativa förfaranden och förmedling till kvalificerade partners."
       },
       "limitations": {
-        "title": "[FIXME] Limitations de Garantie",
+        "title": "Begränsningar av garantin",
         "list": {
-          "li1": "[FIXME] AGM INVEST ne garantit pas l'acceptation d'un dossier par des tiers",
-          "li2": "[FIXME] AGM INVEST ne garantit pas l'obtention effective d'un financement",
-          "li3": "[FIXME] Les délais, montants et décisions finales dépendent des partenaires externes et des organismes concernés"
+          "li1": "AGM INVEST garanterar inte att ett ärende accepteras av tredje part",
+          "li2": "AGM INVEST garanterar inte att en finansiering faktiskt erhålls",
+          "li3": "Tidsramar, belopp och slutgiltiga beslut beror på externa partners och berörda organ"
         }
       },
       "indicative": {
-        "title": "[FIXME] Informations Indicatives",
-        "content": "[FIXME] Toute information communiquée par AGM INVEST est fournie à titre indicatif et ne constitue en aucun cas un engagement contractuel de résultat."
+        "title": "Indikativ information",
+        "content": "All information som kommuniceras av AGM INVEST tillhandahålls i informationssyfte och utgör inte på något sätt ett avtalsenligt åtagande om resultat."
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Senast uppdaterad: Februari 2026",
+        "copyright": "© 2026 AGM INVEST - Alla rättigheter förbehållna"
       }
     },
     "Ads": {
-      "title": "[FIXME] Mentions Publicitaires",
-      "subtitle": "[FIXME] Clarifications importantes sur les services proposés par AGM INVEST.",
+      "title": "Annonseringsinformation",
+      "subtitle": "Viktiga förtydliganden om de tjänster som erbjuds av AGM INVEST.",
       "warning": {
-        "title": "[FIXME] Information Importante",
-        "content": "[FIXME] AGM INVEST n'est pas une banque ni un organisme de crédit, mais un intermédiaire financier réglementé."
+        "title": "Viktig information",
+        "content": "AGM INVEST är inte en bank eller ett kreditmarknadsföretag, utan en reglerad finansiell förmedlare."
       },
       "nature": {
-        "title": "[FIXME] Nature des Services",
-        "p1": "[FIXME] Les services proposés par AGM INVEST relèvent de l'accompagnement administratif et de la mise en relation.",
-        "p2": "[FIXME] Nous intervenons en tant qu'intermédiaire pour faciliter vos démarches et vous mettre en contact avec des partenaires qualifiés."
+        "title": "Tjänsternas art",
+        "p1": "De tjänster som erbjuds av AGM INVEST avser administrativ vägledning och förmedling.",
+        "p2": "Vi agerar som mellanhand för att underlätta dina förfaranden och sätta dig i kontakt med kvalificerade partners."
       },
       "acceptance": {
-        "title": "[FIXME] Acceptation des Dossiers",
-        "content": "[FIXME] L'acceptation des dossiers dépend de partenaires externes. AGM INVEST ne peut garantir l'acceptation systématique de votre demande."
+        "title": "Acceptans av ärenden",
+        "content": "Acceptans av ärenden beror på externa partners. AGM INVEST kan inte garantera en systematisk acceptans av din ansökan."
       },
       "results": {
-        "title": "[FIXME] Résultats Variables",
-        "content": "[FIXME] Les résultats peuvent varier selon la situation du client, les critères des partenaires et les conditions du marché."
+        "title": "Varierande resultat",
+        "content": "Resultaten kan variera beroende på kundens situation, partnernas kriterier och marknadsförhållandena."
       },
       "links": {
-        "title": "[FIXME] Pour plus d'informations, consultez nos :",
-        "cgu": "[FIXME] Conditions Générales",
-        "mentions": "[FIXME] Mentions Légales"
+        "title": "För mer information, se våra:",
+        "cgu": "Allmänna villkor",
+        "mentions": "Rättsligt meddelande"
       },
       "Footer": {
-        "updated": "[FIXME] Dernière mise à jour : Février 2026",
-        "copyright": "[FIXME] © 2026 AGM INVEST - Tous droits réservés"
+        "updated": "Senast uppdaterad: Februari 2026",
+        "copyright": "© 2026 AGM INVEST - Alla rättigheter förbehållna"
       }
     }
   },
   "Dashboard": {
+    "Notifications": {
+      "requestSubmitted": {
+        "title": "Låneansökan skickad 📄",
+        "message": "Din låneansökan på {amount} har registrerats framgångsrikt."
+      },
+      "transferInitiated": {
+        "title": "Överföring initierad 🚀",
+        "message": "Din överföring på {amount} behandlas."
+      },
+      "newMessage": {
+        "title": "Nytt meddelande 💬",
+        "message": "Du har fått ett nytt meddelande från din rådgivare."
+      },
+      "statusUpdate": {
+        "title": "Filstatus uppdaterad 🔔",
+        "message": "Din filstatus har uppdaterats."
+      },
+      "verified": {
+        "title": "Identitet verifierad ✅",
+        "message": "Grattis! Din identitet har validerats framgångsrikt."
+      },
+      "rejected": {
+        "title": "Identitet avvisad ❌",
+        "message": "Din identitetsverifiering har avvisats. Kontrollera dina dokument."
+      },
+      "partialRejection": {
+        "title": "Ofullständiga dokument ⚠️",
+        "message": "Vissa dokument i din fil behöver kompletteras."
+      },
+      "verificationSubmitted": {
+        "title": "Verifiering skickad 🛡️",
+        "message": "Dina identitetshandlingar granskas."
+      },
+      "securityUpdate": {
+        "title": "Säkerhet uppdaterad 🔒",
+        "message": "Ditt lösenord har ändrats framgångsrikt."
+      }
+    },
     "Layout": {
       "Sidebar": {
-        "clientSpace": "[FIXME] Espace Client",
-        "balance": "[FIXME] Mon Solde",
-        "makeRequest": "[FIXME] Demander un Prêt",
-        "myRequests": "[FIXME] Mes Demandes",
-        "myDocuments": "[FIXME] Mes Documents",
-        "billing": "[FIXME] Facturation",
-        "myProfile": "[FIXME] Mon Profil",
-        "settings": "[FIXME] Paramètres",
-        "support": "[FIXME] Aide & Support",
-        "logout": "[FIXME] Déconnexion"
+        "menuTitle": "Navigering",
+        "preferencesTitle": "Inställningar",
+        "clientSpace": "Instrumentpanel",
+        "balance": "Mitt konto",
+        "makeRequest": "Ansök om lån",
+        "myRequests": "Mina ansökningar",
+        "myDocuments": "Mina dokument",
+        "billing": "Fakturering",
+        "myProfile": "Min profil",
+        "settings": "Inställningar",
+        "support": "Support",
+        "logout": "Logga ut",
+        "premiumStatus": "Premiumstatus",
+        "verifiedClient": "Verifierad kund",
+        "actionRequired": "Åtgärd krävs",
+        "docsToComplete": "Dokument att slutföra",
+        "docsAttention": "Vissa dokument kräver din uppmärksamhet.",
+        "identityRejected": "Identitet nekad",
+        "contactSupport": "Kontakta supporten."
+      },
+      "Header": {
+        "searchPlaceholder": "Sök...",
+        "notifications": "Aviseringar",
+        "markAllAsRead": "Markera alla som lästa",
+        "noNotifications": "Inga aviseringar",
+        "managePreferences": "Hantera inställningar",
+        "user": "Användare",
+        "verifiedClient": "Verifierad kund",
+        "verificationInProgress": "Verifiering pågår",
+        "actionRequired": "Åtgärd krävs",
+        "identityRejected": "Identitet nekad",
+        "docsToComplete": "Dokument att slutföra",
+        "accountToVerify": "Konto som ska verifieras"
+      },
+      "Notifications": {
+        "statusUpdate": {
+          "title": "Statusuppdatering",
+          "message": "Statusen för din identitetsverifiering har ändrats."
+        },
+        "verified": {
+          "title": "Identitet Verifierad ✅",
+          "message": "Din identitet har bekräftats. Du har nu tillgång till alla funktioner."
+        },
+        "rejected": {
+          "title": "Identitet Nekad ❌",
+          "message": "Dina dokument godkändes inte. Skicka in nya."
+        },
+        "partialRejection": {
+          "title": "Dokument Delvis Nekade ⚠️",
+          "message": "Vissa dokument behöver korrigeras. Se sektionen Verifiering."
+        },
+        "newMessage": {
+          "title": "Nytt Meddelande 💬",
+          "message": "Du har ett nytt meddelande från vårt team."
+        }
+      },
+      "IdentityBanner": {
+        "pendingTitle": "Verifiering pågår...",
+        "pendingMessage": "Våra experter certifierar dina dokument. Din trygghet är vår prioritet, svar inom 24 timmar.",
+        "requiredTitle": "Åtgärd krävs: Identitet",
+        "requiredMessage": "För att låsa upp dina finansieringsalternativ krävs en kort säkerhetsverifiering.",
+        "action": "Verifiera nu"
+      },
+      "Requests": {
+        "Details": {
+          "status": {
+            "pending": "Väntande",
+            "approved": "Godkänd",
+            "rejected": "Avvisad",
+            "processing": "Bearbetas"
+          },
+          "timeline": {
+            "step1": {
+              "title": "Ärende mottaget",
+              "desc": "Din ansökan har registrerats framgångsrikt."
+            },
+            "step2": {
+              "title": "Teknisk analys",
+              "desc": "Våra experter kontrollerar genomförbarheten av ditt projekt."
+            },
+            "step3": {
+              "title": "Dokumentverifiering",
+              "desc": "Detaljerad granskning av inlämnade styrkande handlingar."
+            },
+            "step4": {
+              "approved": {
+                "title": "Slutligt beslut: Godkänd",
+                "desc": "Grattis, din finansiering har validerats."
+              },
+              "rejected": {
+                "title": "Slutligt beslut: Avvisad",
+                "desc": "Tyvärr kan vi inte fortsätta med din ansökan."
+              },
+              "pending": "Väntar på den slutliga kommissionen."
+            }
+          },
+          "banners": {
+            "approved": {
+              "title": "Grattis! Ditt kredit är godkänt 🚀",
+              "message": "Din finansiering har validerats. En sista identitetsverifiering krävs för att aktivera överföringen av medel.",
+              "action": "Verifiering krävs"
+            },
+            "actionRequired": {
+              "title": "Åtgärd krävs",
+              "message": "Din identitet har bekräftats! För att slutföra aktiveringen av ditt kredit krävs nu autentiseringsdepositionens.",
+              "action": "Gör insättning"
+            }
+          },
+          "header": {
+            "back": "Tillbaka",
+            "amountLabel": "Projektbelopp"
+          },
+          "info": {
+            "duration": "Löptid",
+            "monthlyPayment": "Månadsbetalning",
+            "rate": "Ränta (APR)",
+            "creationDate": "Skapelsedatum"
+          },
+          "progression": "Framsteg",
+          "declaration": {
+            "title": "Min Deklaration",
+            "situation": "Yrkessituation",
+            "income": "Månadsinkomst",
+            "expenses": "Uppskattade utgifter",
+            "security": "Total sekretess garanterad av ELYSIO"
+          },
+          "advisor": {
+            "title": "Senior rådgivare",
+            "contact": "Kontakta"
+          },
+          "nextStep": {
+            "title": "Nästa steg",
+            "pending": "Den första analysen avslutas före dagens slut. En expert kontaktar dig vid behov.",
+            "processing": "Vi granskar dina dokument. Inga åtgärder krävs från din sida för tillfället.",
+            "finished": "Ditt ärende är avslutat. Besök fliken 'Konton' för att aktivera din finansiering.",
+            "estimateLabel": "Beräknad tid",
+            "estimateValue": "Mindre än 24h"
+          }
+        }
       }
     },
     "Home": {
-      "welcome": "[FIXME] Bonjour, {name} !",
-      "subtitle": "[FIXME] Bienvenue sur votre tableau de bord.",
-      "status": {
-        "verified": "[FIXME] Compte Vérifié",
-        "premium": "[FIXME] Client Premium"
+      "welcome": "Hej, <bold>{name}</bold> !",
+      "subtitle": "Här är sammanfattningen av ditt kundkonto.",
+      "alerts": {
+        "rejected": {
+          "title": "Ansökan nekad",
+          "message": "Tyvärr har din finansieringsansökan avslagits efter granskning av ditt ärende."
+        },
+        "approvedIdentityNeeded": {
+          "title": "Grattis! Kredit beviljad",
+          "message": "Din ansökan har godkänts. För att låsa upp medlen måste vi slutföra verifieringen av din identitet.",
+          "action": "Verifiera min identitet"
+        },
+        "approvedDepositNeeded": {
+          "title": "Lån redo för utbetalning",
+          "message": "Din identitet har verifierats. Slutför din första insättning för att låsa upp överföringen av dina medel.",
+          "action": "Slutför min insättning"
+        },
+        "idRejected": {
+          "title": "Identitet nekad",
+          "message": "De dokument som tillhandahållits för din identitet uppfyller inte kraven. Vänligen uppdatera dem."
+        },
+        "partialRejection": {
+          "title": "Åtgärd krävs",
+          "message": "Vissa av dina dokument har nekats. Vänligen skicka in nya underlag.",
+          "action": "Uppdatera"
+        }
+      },
+      "loanAccount": {
+        "title": "Kreditkonto",
+        "remainingAmount": "Återstående kapital",
+        "totalAmount": "Lånebelopp"
+      },
+      "balance": {
+        "repaid": "Återbetalt till {percent}%",
+        "monthsRemaining": "{count} månader kvar"
       },
       "stats": {
-        "total": "[FIXME] Total Demandes",
-        "approved": "[FIXME] Approuvées",
-        "pending": "[FIXME] En attente",
-        "projects": "[FIXME] Projets"
+        "total": "Antal ärenden",
+        "approved": "Beviljade ärenden",
+        "pending": "Under handläggning",
+        "projects": "Typ av projekt"
+      },
+      "recentRequests": {
+        "title": "Senaste ansökningar",
+        "viewAll": "Visa alla",
+        "type": "Typ av projekt",
+        "status": "Status",
+        "none": "Inga senaste ansökningar"
+      },
+      "support": {
+        "title": "Behöver du hjälp?",
+        "subtitle": "Vårt team finns tillgängligt för att hjälpa dig med dina ärenden.",
+        "action": "Kontakta support"
+      },
+      "quickActions": {
+        "title": "Snabbåtgärder",
+        "docs": "Mina dokument",
+        "transfer": "Överföring",
+        "history": "Amorteringsplan",
+        "profile": "Min profil"
+      },
+      "security": {
+        "title": "Maximal säkerhet",
+        "message": "Dina konfidentiella uppgifter och bankuppgifter skyddas av ändpunkt-till-ändpunkt-kryptering."
       }
     },
     "Accounts": {
-      "title": "[FIXME] Mon Solde",
-      "subtitle": "[FIXME] Gérez vos comptes et vos informations bancaires."
+      "title": "Mitt konto",
+      "subtitle": "Hantering av ditt lån",
+      "card": {
+        "totalBalance": "Återstående kapital",
+        "capitalRemaining": "Återstående kapital på ditt lån",
+        "initialAmount": "Ursprungligt belopp",
+        "nextInstallment": "Nästa förfallodag",
+        "firstInstallment": "Första förfallodag",
+        "deferredPeriod": "Amorteringsfri period"
+      },
+      "stats": {
+        "rate": "Räntesats",
+        "remainingDuration": "Återstående löptid",
+        "months": "månader"
+      },
+      "actions": {
+        "transfer": "Gör en överföring",
+        "schedule": "Amorteringsplan"
+      },
+      "operations": {
+        "title": "Transaktioner",
+        "none": "Inga transaktioner",
+        "loanDisbursement": "Utbetalning av lån",
+        "externalAccount": "Externt Konto",
+        "transferTo": "Överföring till {bank}",
+        "receivedOn": "Mottaget den {date}",
+        "labels": {
+          "done": "Slutförd",
+          "rejected": "Avvisad",
+          "pending": "Väntande"
+        },
+        "status": {
+          "processing": "Behandlas..."
+        }
+      },
+      "rib": {
+        "title": "Bankinformation (RIB)",
+        "edit": "Ändra",
+        "bank": "Bank",
+        "iban": "IBAN",
+        "bic": "BIC / SWIFT",
+        "email": "Kopplad e-post",
+        "undefined": "Ej definierad",
+        "notProvided": "Ej angiven",
+        "verifiedFooter": "Denna bankinformation är verifierad och säker. Varje ändring måste valideras."
+      },
+      "support": {
+        "title": "Behöver du hjälp?",
+        "message": "Vårt team finns tillgängligt för att hjälpa dig med dina ärenden.",
+        "action": "Kontakta support"
+      },
+      "modal": {
+        "title": "Redigera RIB",
+        "subtitle": "Uppdatera dina bankuppgifter",
+        "bankLabel": "Bankens namn",
+        "bankPlaceholder": "Ex: SEB",
+        "ibanLabel": "IBAN",
+        "ibanPlaceholder": "SE21...",
+        "bicLabel": "BIC / SWIFT",
+        "bicPlaceholder": "ESSE SE...",
+        "emailLabel": "E-postadress",
+        "emailPlaceholder": "din@email.se",
+        "info": "Varje ändring av dina bankuppgifter kommer att verifieras av vårt team innan de valideras.",
+        "save": "Spara ändringar"
+      },
+      "messages": {
+        "success": "Bankinformationen har uppdaterats",
+        "error": "Ett fel uppstod vid uppdateringen. Försök igen senare."
+      }
+    },
+    "Transfers": {
+      "title": "Banköverföring",
+      "subtitle": "Överför medel till ditt bankkonto",
+      "form": {
+        "amountLabel": "Belopp att överföra",
+        "destinationLabel": "Mottagarkonto",
+        "referenceAccount": "Referenskonto",
+        "verifiedAccount": "Verifierad",
+        "delayNote": "Överföringar behandlas inom 24 till 72 arbetstimmar. Du får en bekräftelse via e-post.",
+        "total": "Totalt",
+        "confirm": "Bekräfta överföring",
+        "blocked": "Överföring blockerad",
+        "required": {
+          "verification": "Identitetsverifiering krävs",
+          "finalization": "Slutförande krävs"
+        }
+      },
+      "errors": {
+        "insufficientBalance": "Otillräckligt saldo. Du har {balance}€ och försöker överföra {amount}€."
+      },
+      "messages": {
+        "initiated": "Överföring initierad 💸",
+        "processing": "Din överföringsbegäran på {amount} € behandlas.",
+        "genericError": "Ett fel uppstod under överföringen. Kontrollera dina behörigheter."
+      },
+      "success": {
+        "title": "Överföring påbörjad!",
+        "message": "Din överföring är för närvarande {status}. Du får en avisering så snart den har behandlats.",
+        "pending": "VÄNTANDE",
+        "newTransfer": "Ny överföring",
+        "myAccounts": "Mina konton"
+      },
+      "blocking": {
+        "verification": {
+          "title": "Identitetsverifiering krävs",
+          "short": "Slutför din KYC för att göra överföringar.",
+          "long": "Av säkerhetsskäl måste din identitet verifieras innan du kan göra överföringar. Gå till avsnittet Dokument för att komplettera ditt ärende."
+        },
+        "deposit": {
+          "title": "Första insättning krävs",
+          "short": "Slutför din insättning för att låsa upp överföringar.",
+          "long": "Din första betalning väntar. Slutför din insättning för att låsa upp överföringsfunktionen."
+        }
+      },
+      "security": {
+        "title": "Säkerhetskontroll",
+        "message": "Varje överföring är föremål för en säkerhetskontroll för att skydda dina medel.",
+        "estimatedDelay": "Beräknad fördröjning",
+        "delay": "24 - 72 tim",
+        "protection": "Skydd",
+        "aes": "AES-256"
+      },
+      "status": {
+        "approved": "Beviljad",
+        "rejected": "Avvisad",
+        "review": "Under granskning",
+        "advanced": "Avancerad",
+        "pending": "Väntande"
+      },
+      "history": {
+        "title": "Senaste historik",
+        "full": "Fullständig historik",
+        "subtitle": "Alla dina genomförda överföringar",
+        "none": "Inga överföringar genomförda",
+        "viewAll": "Visa hela historiken",
+        "table": {
+          "date": "Datum",
+          "recipient": "Mottagare",
+          "iban": "IBAN",
+          "amount": "Belopp",
+          "status": "Status",
+          "justNow": "Just nu"
+        },
+        "pagination": {
+          "page": "Sida",
+          "display": "Visar {start} - {end} av {total}"
+        }
+      }
+    },
+    "Verification": {
+      "title": "Verifiering",
+      "subtitle": "Biometriskt säkrad identitet.",
+      "Intro": {
+        "title": "Säkerhetsverifiering",
+        "description": "För att validera din autentiseringsinsättning och säkra tillgången till fonderna måste vi bekräfta din identitet genom en live-selfie och en kort videosekvens.",
+        "selfieTitle": "Selfie-foto",
+        "selfieDesc": "Tydligt ansikte, bra belysning.",
+        "videoTitle": "Video-selfie (10s)",
+        "videoDesc": "Vrid huvudet något.",
+        "startButton": "Starta verifiering",
+        "gdpr": "Obligatorisk åtgärd • GDPR-kompatibel"
+      },
+      "Processing": {
+        "title": "Session pågår",
+        "description": "Vi upptäckte väntande bilder på den här enheten. Vill du slutföra inskickningen eller börja om?",
+        "continueButton": "Fortsätt till inskickning",
+        "resetButton": "Rensa och börja om"
+      },
+      "Notifications": {
+        "submittedTitle": "Verifiering inskickad 📸",
+        "submittedMessage": "Din selfie och video analyseras. Vänligen vänta.",
+        "error": "Ett fel uppstod vid inskickningen."
+      },
+      "Camera": {
+        "desktopError": {
+          "title": "Endast mobilverifiering",
+          "message": "Denna verifiering måste utföras från en smartphone av säkerhetsskäl.",
+          "copyLink": "Kopiera länk",
+          "linkCopied": "Länk kopierad!",
+          "back": "Tillbaka"
+        },
+        "status": {
+          "accessing": "Åtkomst till kameran...",
+          "validatePhoto": "Validera foto",
+          "validateVideo": "Validera video",
+          "finished": "Verifiering klar",
+          "selfieTitle": "Selfie-foto",
+          "videoTitle": "Selfie-video"
+        },
+        "instructions": {
+          "tapToStart": "Tryck för att starta",
+          "turnLeft": "Vrid huvudet åt VÄNSTER",
+          "turnRight": "Vrid huvudet åt HÖGER",
+          "raiseHead": "Lyft på huvudet",
+          "perfect": "Perfekt!"
+        },
+        "actions": {
+          "retake": "Gör om",
+          "validate": "Validera",
+          "upload": "Ladda upp",
+          "finalize": "Slutför verifiering"
+        },
+        "confirmReset": "Är du säker på att du vill rensa alla bilder och börja om?",
+        "submitting": {
+          "title": "Överföring pågår",
+          "message": "Vi säkrar dina data och slutför kopplingen av din betalningsprofil.",
+          "doneTitle": "Verifiering klar",
+          "doneMessage": "Din identitet har skickats in framgångsrikt. Du kommer att vidarestyras...",
+          "encryption": "AES-256-kryptering pågår"
+        },
+        "errors": {
+          "saveSelfie": "Fel vid sparande av selfie.",
+          "saveVideo": "Fel vid sparande av video.",
+          "generic": "Ett fel uppstod vid valideringen.",
+          "missingMedia": "Media saknas",
+          "uploadFailed": "Fel vid sändning av filer."
+        }
+      }
     },
     "Profile": {
-      "title": "[FIXME] Mon Profil",
-      "subtitle": "[FIXME] Gérez vos informations personnelles et votre sécurité.",
-      "editButton": "[FIXME] Modifier Profil",
-      "saveButton": "[FIXME] Enregistrer",
-      "cancelButton": "[FIXME] Annuler",
+      "title": "Min Profil",
+      "subtitle": "Hantera din personliga information och säkerhet.",
+      "editButton": "Redigera Profil",
+      "saveButton": "Spara",
+      "cancelButton": "Avbryt",
       "Identity": {
-        "title": "[FIXME] État Civil"
+        "title": "Personuppgifter"
       },
       "Location": {
-        "title": "[FIXME] Coordonnées"
+        "title": "Kontaktuppgifter"
       },
       "Situation": {
-        "title": "[FIXME] Situation Personnelle"
+        "title": "Personlig situation"
       },
       "Professional": {
-        "title": "[FIXME] Situation Professionnelle"
+        "title": "Yrkesmässig situation"
       },
       "Financial": {
-        "title": "[FIXME] Situation Financière"
+        "title": "Ekonomisk situation"
+      },
+      "sections": {
+        "identity": "Personliga Uppgifter",
+        "contact": "Kontaktuppgifter",
+        "personal": "Personlig Situation",
+        "professional": "Yrkesmässig Situation",
+        "financial": "Ekonomisk Situation"
+      },
+      "fields": {
+        "address": "Bostadsadress",
+        "zipCode": "Postnummer",
+        "city": "Stad",
+        "country": "Land",
+        "phone": "Mobiltelefon"
+      },
+      "companyLabels": {
+        "student": "Skola / Universitet",
+        "apprentice": "Värdföretag / Utbildningscenter",
+        "independent": "Namn på din verksamhet",
+        "artisan": "Företag / Handelsbeteckning",
+        "civil_servant": "Ministerium / Förvaltning",
+        "temporary": "Bemanningsföretag / Arbetsgivare",
+        "liberal": "Byrå / Företagsnamn",
+        "business_owner": "Företagsnamn / Varumärke"
+      },
+      "incomeLabels": {
+        "retired": "Månadslig pension",
+        "unemployed": "Bidrag / Inkomster",
+        "student": "Stipendier / Månadsliga inkomster",
+        "apprentice": "Månadslön",
+        "civil_servant": "Netto månadslön",
+        "selfEmployed": "Genomsnittlig månadslig inkomst"
       }
     },
     "Requests": {
-      "title": "[FIXME] Mes Demandes",
-      "subtitle": "[FIXME] Consultez l'historique et l'avancement de vos dossiers.",
-      "searchPlaceholder": "[FIXME] Rechercher...",
-      "noneFound": "[FIXME] Aucune demande trouvée",
-      "newRequest": "[FIXME] Nouvelle demande"
+      "title": "Mina ansökningar",
+      "subtitle": "Följ status för dina ärenden.",
+      "searchPlaceholder": "Sök...",
+      "noneFound": "Inga ansökningar hittades",
+      "noneDescription": "Du har ännu inte gjort en finansieringsansökan. Börja med att simulera ditt projekt.",
+      "newRequest": "Ny ansökan",
+      "defaultType": "Kreditansökan",
+      "requestedAmount": "Begärt belopp",
+      "follow": "Följ",
+      "status": {
+        "pending": "Väntande",
+        "approved": "Godkänd",
+        "rejected": "Avvisad",
+        "processing": "Bearbetas"
+      },
+      "banners": {
+        "approved": {
+          "title": "Grattis! Ditt kredit är godkänt 🚀",
+          "message": "Goda nyheter: din finansiering har validerats. En sista identitetsverifiering krävs för att aktivera fondöverföringen.",
+          "action": "Verifiering krävs"
+        },
+        "actionRequired": {
+          "title": "Åtgärd krävs",
+          "message": "Din identitet har bekräftats! För att slutföra aktiveringen av ditt kredit krävs nu autentiseringsinsättningen.",
+          "action": "Gör insättning"
+        }
+      },
+      "Details": {
+        "header": {
+          "back": "Tillbaka",
+          "amountLabel": "Begärt belopp"
+        },
+        "status": {
+          "pending": "Väntar",
+          "approved": "Godkänd",
+          "rejected": "Avvisad",
+          "processing": "Analyseras"
+        },
+        "progression": "ÄRENDETS FRAMSTEG",
+        "info": {
+          "duration": "Löptid",
+          "monthlyPayment": "Månadsbetalning",
+          "rate": "Ränta",
+          "creationDate": "Skapelsedatum"
+        },
+        "timeline": {
+          "step1": {
+            "title": "ÄRENDE MOTTAGET",
+            "desc": "Din ansökan har mottagits. Vårt team kommer att granska den."
+          },
+          "step2": {
+            "title": "ANALYS PÅGÅR",
+            "desc": "Våra expertrådgivare analyserar ditt ärende i detalj."
+          },
+          "step3": {
+            "title": "SLUTVERIFIERING",
+            "desc": "Slutlig verifiering av alla delar i ditt ärende."
+          },
+          "step4": {
+            "approved": {
+              "title": "ÄRENDE GODKÄNT",
+              "desc": "Grattis! Din finansiering har godkänts."
+            },
+            "rejected": {
+              "title": "ÄRENDE AVVISAT",
+              "desc": "Din ansökan accepterades inte. Kontakta vår support."
+            },
+            "pending": "Väntar på det slutliga beslutet..."
+          }
+        },
+        "declaration": {
+          "title": "FINANSIELL FÖRKLARING",
+          "situation": "Yrkessituation",
+          "income": "Månatlig inkomst",
+          "expenses": "Månatliga utgifter",
+          "security": "Krypterad och säkrad data - AES-256",
+          "seniorityDesc": "Bekräftad tjänstgöringstid",
+          "incomeDesc": "Netto före skatt",
+          "expensesDesc": "Hyra och lån"
+        },
+        "advisor": {
+          "title": "Din rådgivare",
+          "contact": "Kontakta min rådgivare",
+          "quote": "\"Ditt ärende är i goda händer. Jag tar hand om det personligen.\""
+        },
+        "nextStep": {
+          "title": "NÄSTA STEG",
+          "pending": "Ditt ärende granskas. Vi kontaktar dig inom 24-48 timmar.",
+          "processing": "Vårt team slutför analysen. Du kommer att kontaktas mycket snart.",
+          "finished": "Ditt ärende har behandlats. Kontrollera statusen ovan.",
+          "estimateLabel": "Beräknad tid",
+          "estimateValue": "24 till 48 timmar"
+        },
+        "banners": {
+          "approved": {
+            "title": "DIN FINANSIERING ÄR GODKÄND",
+            "message": "Vi måste verifiera din identitet innan vi frigör medlen.",
+            "action": "Slutför identitetsverifiering"
+          },
+          "actionRequired": {
+            "title": "ÅTGÄRD KRÄVS",
+            "message": "Ditt ärende har godkänts. En åtgärd krävs för att slutföra din finansiering.",
+            "action": "Genomför min betalning"
+          }
+        }
+      }
     },
-    "settings": {
-      "title": "[FIXME] Paramètres",
-      "subtitle": "[FIXME] Gérez vos préférences de compte, les notifications et la sécurité.",
-      "language": "[FIXME] Langue",
-      "lastLogin": "[FIXME] Dernière connexion",
-      "notifications": "[FIXME] Notifications",
-      "security": "[FIXME] Sécurité du Compte",
-      "autoLogout": "[FIXME] Déconnexion auto",
-      "password": "[FIXME] Mot de passe"
+    "Settings": {
+      "title": "Inställningar",
+      "subtitle": "Hantera dina kontoinställningar, aviseringar och säkerhet.",
+      "language": "Språk",
+      "lastLogin": "Senaste inloggning",
+      "notifications": "Aviseringar",
+      "security": "Kontosäkerhet",
+      "loginEmail": "Inloggnings-e-post",
+      "autoLogout": "Automatisk utloggning",
+      "password": "Lösenord",
+      "timeouts": {
+        "never": "Aldrig",
+        "5min": "5 Minuter",
+        "15min": "15 Minuter",
+        "30min": "30 Minuten"
+      },
+      "PasswordModal": {
+        "title": "Ändra Lösenord",
+        "currentLabel": "Nuvarande Lösenord",
+        "newLabel": "Nytt Lösenord",
+        "confirmLabel": "Bekräfta Nytt Lösenord",
+        "submit": "Uppdatera",
+        "updating": "Uppdaterar...",
+        "errorMatch": "Lösenorden stämmer inte överens.",
+        "errorLength": "Lösenordet måste vara minst 6 tecken långt.",
+        "errorWrong": "Nuvarande lösenord är felaktigt.",
+        "errorGeneric": "Ett fel uppstod vid uppdateringen.",
+        "successAlert": "Lösenordet har uppdaterats!"
+      },
+      "Notifications": {
+        "securityTitle": "Säkerhet uppdaterad 🔒",
+        "securityMessage": "Ditt lösenord har ändrats.",
+        "emailLabel": "E-post",
+        "emailDesc": "Ärendeaviseringar",
+        "pushLabel": "Push",
+        "pushDesc": "Direkt mobil",
+        "offersLabel": "Erbjudanden",
+        "offersDesc": "Partners"
+      },
+      "system": {
+        "lastLogin": "Senaste inloggning",
+        "sessionActive": "Aktuell session"
+      },
+      "footer": {
+        "aes": "AES-256 Kryptering",
+        "lastUpdate": "Senaste uppdatering",
+        "february": "Februari"
+      }
+    },
+    "Schedule": {
+      "title": "Min Amorteringsplan",
+      "subtitle": "Finansieringsuppgifter",
+      "back": "Tillbaka till konton",
+      "exportPDF": "Exportera till PDF",
+      "stats": {
+        "monthlyPayment": "Genomsnittlig månadsbetalning",
+        "insurance": "Inklusive {amount} försäkring (3%)",
+        "totalInterest": "Total ränta",
+        "loanDuration": "Lånets löptid",
+        "months": "månader"
+      },
+      "table": {
+        "number": "Nr",
+        "date": "Betalningsdatum",
+        "amount": "Belopp",
+        "principal": "Kapital",
+        "balance": "Återstående saldo",
+        "status": "Status"
+      },
+      "status": {
+        "paid": "Betald",
+        "overdue": "FÖRSENAD",
+        "pending": "Behandlas",
+        "upcoming": "Kommande"
+      },
+      "pagination": {
+        "page": "Sida {current} av {total}"
+      },
+      "footer": {
+        "certified": "Dokumentet är certifierat av AGM INVEST • Banksekretess"
+      },
+      "noActiveLoan": {
+        "title": "Inget aktivt lån hittades",
+        "message": "Du har ännu ingen amorteringsplan tillgänglig att visa.",
+        "back": "Tillbaka till instrumentpanelen"
+      }
+    },
+    "Documents": {
+      "title": "Mina Dokument",
+      "subtitle": "Se och ladda ner dina avtalsdokument, intyg och certifierade garantier.",
+      "empty": {
+        "title": "Inga dokument tillgängliga",
+        "message": "Dina officiella dokument genereras automatiskt när din finansiering är aktiverad."
+      },
+      "contract": {
+        "title": "Låneavtal",
+        "description": "Ditt fullständiga avtal inklusive amorteringsplan, allmänna villkor och rättsliga uppgifter.",
+        "button": "Ladda ner PDF"
+      },
+      "insurance": {
+        "title": "Försäkring",
+        "description": "Medlemscertifikat för AGM INVEST låntagarförsäkring som täcker ditt projekt till 100%.",
+        "button": "Ladda ner Certifikat"
+      },
+      "privacy": {
+        "title": "Integritet",
+        "description": "Dokument som beskriver skyddet av dina personuppgifter och dina GDPR-rättigheter.",
+        "button": "Ladda ner PDF"
+      },
+      "security": {
+        "title": "Certifierade och Säkra Dokument",
+        "message": "\"Alla dokument som genereras från detta utrymme är elektroniskt skyddade och certifierade som konforme av AGM INVEST. De har juridiskt värde för dina ärenden.\""
+      }
+    },
+    "Billing": {
+      "title": "Fakturering",
+      "subtitle": "Hantera dina betalningar och säkra insättningar.",
+      "errors": {
+        "accessDenied": "Åtkomst nekad"
+      },
+      "paymentTypes": {
+        "frais_dossier": "Handläggningsavgifter",
+        "assurance": "Försäkring",
+        "frais_notaire": "Notariekostnader",
+        "authentication_deposit": "Autentiseringsinsättning",
+        "none": "Ingen"
+      },
+      "empty": {
+        "title": "Ingen väntande fakturering",
+        "message": "Ditt konto är uppdaterat. Ingen betalningsåtgärd krävs för tillfället.",
+        "dashboardButton": "Dashboard"
+      },
+      "policy": {
+        "badge": "Noll-avgiftsstadga",
+        "title": "Transparenspolicy",
+        "noHiddenFees": {
+          "text": "AGM INVEST tillämpar",
+          "highlight": "inga dolda avgifter"
+        },
+        "depositExplanation": {
+          "text1": "Denna överföring på",
+          "text2": "motsvarar en",
+          "text3": "från ditt bankkonto."
+        },
+        "important": {
+          "label": "Viktigt:",
+          "text1": "Detta är inte en handläggningsavgift. Beloppet",
+          "highlight": "krediteras till 100%",
+          "text2": "på ditt kundsaldo och kommer att användas för att aktivera din finansiering."
+        }
+      },
+      "deposit": {
+        "label": "Insättningsbelopp",
+        "credited": "Krediterad till 100%"
+      },
+      "sepa": {
+        "title": "SEPA-säkerhet",
+        "description": "Säker direktöverföring till vår europeiska partner."
+      },
+      "rib": {
+        "title": "Bankuppgifter",
+        "subtitle": "Insättningsöverföring",
+        "secureTransfer": "Säker Överföring",
+        "copied": "Kopierat!",
+        "confidentialNote": "Denna överföring är strikt konfidentiell. Din rådgivare får ett automatiskt meddelande när pengarna tagits emot av vår partnerbank.",
+        "fields": {
+          "beneficiary": "Mottagare",
+          "bank": "Finansiellt institut",
+          "iban": "IBAN-kod",
+          "bic": "BIC-kod (SWIFT)"
+        }
+      },
+      "backLater": "Återkom senare"
+    },
+    "Support": {
+      "title": "Supportcenter",
+      "subtitle": "Vi är här för att svara på dina frågor och stödja dig.",
+      "badge": "Hjälp & Support",
+      "searchPlaceholder": "Sök efter en lösning...",
+      "contactButton": "Kontakta",
+      "faqTitle": "Vanliga frågor",
+      "faqAll": "Visa alla frågor",
+      "security": {
+        "title": "Certifierad säker support",
+        "desc": "Aktiva krypteringsprotokoll"
+      },
+      "Methods": {
+        "chat": {
+          "title": "Livechatt",
+          "value": "Online-rådgivare",
+          "desc": "Omedelbart svar"
+        },
+        "phone": {
+          "title": "Telefonlinje",
+          "value": "AGM INVEST +33 7 56 84 41 45",
+          "desc": "09:00 - 18:00 (Mån-Fre)"
+        },
+        "email": {
+          "title": "E-postsupport",
+          "value": "contact@agm-negoce.com",
+          "desc": "Inom 24 timmar"
+        }
+      },
+      "FAQs": [
+        {
+          "q": "Hur går identitetsverifieringen till?",
+          "a": "Verifieringen sker helt online. Ladda bara upp en giltig legitimation och gör en snabb videoselfie för att bekräfta din identitet på några sekunder."
+        },
+        {
+          "q": "Vilka är handläggningstiderna för lån?",
+          "a": "När din ansökan är komplett får du ett omedelbart förhandsbesked. Slutlig analys och utbetalning av medel sker vanligtvis inom 24 till 48 arbetstimmar."
+        },
+        {
+          "q": "Kan jag ändra min ansökan efter att den skickats in?",
+          "a": "Så länge din ansökan har statusen 'Väntande' kan du kontakta vår support för att göra ändringar. När den har validerats är ändringar inte längre möjliga."
+        },
+        {
+          "q": "Hur laddar jag ner mitt signerade kontrakt?",
+          "a": "Ditt kontrakt finns tillgängligt i sektionen 'Mina dokument' på din instrumentpanel så snart den elektroniska signaturen har bekräftats."
+        },
+        {
+          "q": "Vilka är behörighetskraven?",
+          "a": "Du måste vara myndig, vara bosatt i ett berättigat land och kunna styrka en stabil inkomst. Varje projekt studeras personligen av våra experter."
+        },
+        {
+          "q": "Hur säkrar jag mitt konto?",
+          "a": "Vi rekommenderar att du aktiverar tvåfaktorsautentisering (2FA) i dina inställningar och använder ett unikt och komplext lösenord."
+        }
+      ]
+    },
+    "Chat": {
+      "onlineStatus": "KUND ONLINE",
+      "welcome": "Hej!",
+      "advisorReady": "Din rådgivare är redo att hjälpa dig.",
+      "askQuestion": "Ställ din fråga nedan.",
+      "filePlaceholder": "Fil",
+      "loadingFile": "Laddar upp fil...",
+      "inputPlaceholder": "Svara kunden...",
+      "fileTooLarge": "Filen är för stor (max 10MB)",
+      "uploadError": "Fel vid uppladdning av fil. Försök igen.",
+      "fileSent": "📎 Fil skickad"
+    },
+    "KYC": {
+      "title": "Identitetsverifiering",
+      "subtitle": "Efterlevnad och säkerhet.",
+      "Intro": {
+        "badge": "Compliance",
+        "title": "Slutförande av ärendet",
+        "step1": {
+          "title": "Identitet",
+          "desc": "Endast tydliga färgfoton.",
+          "note": "Alla 4 hörn måste synas."
+        },
+        "step2": {
+          "title": "Ekonomi & Bostad",
+          "desc": "Original PDF-format.",
+          "note": "Skannade kopior nekas."
+        },
+        "support": "Teknisk support tillgänglig",
+        "contact": "Kontakt",
+        "secure": "AES-256 Säkerhet"
+      },
+      "Documents": {
+        "identity_1": "Identitet 1",
+        "identity_2": "Identitet 2",
+        "id_front": "ID (Framsida)",
+        "id_back": "ID (Baksida)",
+        "front": "Framsida",
+        "back": "Baksida",
+        "cni": "ID-kort",
+        "passport": "Pass",
+        "resident_card": "Uppehållstillstånd",
+        "driver_license": "Körkort",
+        "vital_card": "Sjukvårdskort",
+        "tax_notice": "Skattebesked",
+        "pay_slip_1": "Lönespec 1",
+        "pay_slip_2": "Lönespec 2",
+        "pay_slip_3": "Lönespec 3",
+        "address_proof": "Adressbevis",
+        "rib": "Bankuppgifter",
+        "nature_1": "ID Typ 1",
+        "nature_2": "ID Typ 2",
+        "labels": {
+          "cni": "ID",
+          "passport": "Pass",
+          "resident_card": "Tillstånd",
+          "driver_license": "Körkort"
+        },
+        "descriptions": {
+          "generic_recto": "Framsida av {label}. Tydlig bild, hörn synliga.",
+          "generic_verso": "Baksida av {label}. Tydlig bild, hörn synliga.",
+          "generic_simple": "Bild på {label}. Tydlig bild, hörn synliga.",
+          "vital_card": "Kopia av sjukvårdskort.",
+          "tax_notice": "Skattebesked (PDF).",
+          "pay_slip": "Lönebesked (PDF).",
+          "pay_slip_detailed": "Nuvarande/förra månaden (PDF).",
+          "address_proof": "Nylig faktura (PDF).",
+          "rib": "I ditt namn (PDF).",
+          "intl_id": "Tydliga foton, hörn synliga.",
+          "intl_address": "Nyligt intyg (PDF)."
+        }
+      },
+      "Status": {
+        "global": "Global Status",
+        "valid": "Validerade",
+        "certified": "Certifierat",
+        "missing": "Saknas",
+        "recorded": "Registrerat",
+        "success": "Klart!",
+        "transmitted": "Skickat",
+        "transmission": "Överföring",
+        "transmission_desc": "Skicka för granskning.",
+        "transmitted_desc": "Skickat framgångsrikt.",
+        "transmitting": "Skickar...",
+        "submit": "Skicka ärende",
+        "finalizing": "Slutför ärende",
+        "encryption": "AES-256 Kryptering",
+        "validCount": "{completed} / {total} Validerade",
+        "transmitted_short": "Skickat"
+      },
+      "Actions": {
+        "capture": "Fota",
+        "upload": "Ladda upp",
+        "home": "Hem",
+        "instructions": "Klicka på en ikon.",
+        "takePhoto": "Ta foto",
+        "selectFile": "Välj fil",
+        "support_short": "Support",
+        "retake": "Gör om",
+        "validate": "Validera"
+      },
+      "Overlays": {
+        "success": {
+          "title": "Klart!",
+          "message": "Dokument skickade. Svar inom 24h."
+        },
+        "cameraError": "Kamera inte tillgänglig.",
+        "analyzing": "Analyserar..."
+      },
+      "Errors": {
+        "pdfRequired": "PDF-format krävs.",
+        "fileTooLarge": "Max 8MB.",
+        "missingDocs": "Saknade dokument.",
+        "submitError": "Fel vid skickande.",
+        "uploadError": "Uppladdningsfel."
+      },
+      "MobileRedirect": {
+        "title": "Använd mobilen",
+        "subtitle": "Fotografering via smartphone.",
+        "method1_label": "Rekommenderat",
+        "method1_desc": "Skanna QR-kod",
+        "method2_label": "Direktlänk",
+        "method2_desc": "agminvest.com",
+        "button": "Jag förstår"
+      }
     }
   },
   "Reviews": {
-    "title": "[FIXME] Ce que nos clients <highlight>disent de nous</highlight>",
-    "description": "[FIXME] Découvrez les témoignages de ceux qui nous ont fait confiance pour leur projet de financement.",
-    "backToHome": "[FIXME] Retour à l'accueil",
-    "allReviews": "[FIXME] Tous les avis",
-    "page": "[FIXME] Page",
-    "of": "[FIXME] sur",
-    "verified": "[FIXME] Avis Vérifié",
-    "previous": "[FIXME] Précédent",
-    "next": "[FIXME] Suivant",
+    "title": "Vad våra kunder <highlight>säger om oss</highlight>",
+    "description": "Upptäck berättelserna från dem som har gett oss förtroendet för sina finansieringsprojekt.",
+    "backToHome": "Tillbaka till hem",
+    "allReviews": "Alla omdömen",
+    "page": "Sida",
+    "of": "av",
+    "verified": "Verifierat omdöme",
+    "previous": "Föregående",
+    "next": "Nästa",
     "Items": {
       "r1": {
-        "region": "[FIXME] Paris",
-        "comment": "[FIXME] Service impeccable ! J'ai obtenu mon financement en moins de 2 semaines. L'équipe est très professionnelle."
+        "region": "Paris",
+        "comment": "Oklanderlig service ! Jag fick min finansiering på mindre än 2 veckor. Teamet är mycket professionellt."
       },
       "r2": {
-        "region": "[FIXME] Lyon",
-        "comment": "[FIXME] Excellente expérience. Le conseiller m'a accompagné à chaque étape. Je recommande vivement AGM INVEST."
+        "region": "Lyon",
+        "comment": "Utmärkt erfarenhet. Rådgivaren följde mig vid varje steg. Jag rekommenderar AGM INVEST varmt."
       },
       "r3": {
-        "region": "[FIXME] Marseille",
-        "comment": "[FIXME] Très satisfait du service. Processus rapide et transparent. Quelques documents à fournir mais c'est normal."
+        "region": "Marseille",
+        "comment": "Mycket nöjd med servicen. Snabb och transparent process. Några dokument att tillhandahålla, men det är normalt."
       },
       "r4": {
-        "region": "[FIXME] Toulouse",
-        "comment": "[FIXME] Je suis ravie ! Mon dossier a été traité rapidement et j'ai pu acheter ma voiture sans stress."
+        "region": "Toulouse",
+        "comment": "Jag är mycket nöjd ! Mitt ärende behandlades snabbt och jag kunde köpa min bil utan stress."
       },
       "r5": {
-        "region": "[FIXME] Nice",
-        "comment": "[FIXME] Service au top ! L'équipe est réactive et à l'écoute. Mon crédit a été validé en 10 jours."
+        "region": "Nice",
+        "comment": "Toppservice ! Teamet är lyhört och lyssnar. Min kredit validerades på 10 dagar."
       },
       "r6": {
-        "region": "[FIXME] Nantes",
-        "comment": "[FIXME] Bonne expérience globale. Le suivi est excellent et les conseillers sont compétents."
+        "region": "Nantes",
+        "comment": "Bra helhetsupplevelse. Uppföljningen är utmärkt och rådgivarna är kompetenta."
       },
       "r7": {
-        "region": "[FIXME] Strasbourg",
-        "comment": "[FIXME] Parfait ! Processus simple et efficace. J'ai eu mon financement automobile sans problème."
+        "region": "Strasbourg",
+        "comment": "Perfekt ! Enkel och effektiv process. Jag fick min bilfinansiering utan problem."
       },
       "r8": {
-        "region": "[FIXME] Montpellier",
-        "comment": "[FIXME] Je recommande à 100% ! Service professionnel, rapide et transparent. Merci à toute l'équipe."
+        "region": "Montpellier",
+        "comment": "Jag rekommenderar till 100% ! Professionell, snabb och transparent service. Tack till hela teamet."
       },
       "r9": {
-        "region": "[FIXME] Bordeaux",
-        "comment": "[FIXME] Très bon service. Les délais ont été respectés et le conseiller était disponible pour répondre à mes questions."
+        "region": "Bordeaux",
+        "comment": "Mycket bra service. Tidsramarna respekterades och rådgivaren var tillgänglig för att svara på mina frågor."
       },
       "r10": {
-        "region": "[FIXME] Lille",
-        "comment": "[FIXME] Expérience exceptionnelle ! Dossier traité rapidement, équipe professionnelle. Je suis très satisfaite."
+        "region": "Lille",
+        "comment": "Enastående erfarenhet ! Ärende behandlat snabbt, professionellt team. Jag är mycket nöjd."
       },
       "r11": {
-        "region": "[FIXME] Rennes",
-        "comment": "[FIXME] Service irréprochable. Mon conseiller m'a guidé tout au long du processus. Financement obtenu en 12 jours."
+        "region": "Rennes",
+        "comment": "Felfri service. Min rådgivare vägledde mig genom hela processen. Finansiering erhållen på 12 dagar."
       },
       "r12": {
-        "region": "[FIXME] Reims",
-        "comment": "[FIXME] Bonne prestation. Le processus est bien expliqué et l'équipe est disponible."
+        "region": "Reims",
+        "comment": "Bra prestation. Processen är väl förklarad och teamet är tillgängligt."
       },
       "r13": {
-        "region": "[FIXME] Le Havre",
-        "comment": "[FIXME] Excellent ! J'ai pu financer mon véhicule rapidement. Service client au top."
+        "region": "Le Havre",
+        "comment": "Utmärkt ! Jag kunde finansiera mitt fordon snabbt. Kundtjänst i toppklass."
       },
       "r14": {
-        "region": "[FIXME] Saint-Étienne",
-        "comment": "[FIXME] Très professionnels et efficaces. Mon dossier a été accepté rapidement. Je recommande."
+        "region": "Saint-Étienne",
+        "comment": "Mycket professionella och effektiva. Mitt ärende accepterades snabbt. Jag rekommenderar."
       },
       "r15": {
-        "region": "[FIXME] Toulon",
-        "comment": "[FIXME] Service de qualité. Bonne communication et suivi régulier du dossier."
+        "region": "Toulon",
+        "comment": "Service av hög kvalitet. Bra kommunikation och regelbunden uppföljning av ärendet."
       },
       "r16": {
-        "region": "[FIXME] Grenoble",
-        "comment": "[FIXME] Parfait du début à la fin ! Équipe réactive et professionnelle. Mon crédit validé en 8 jours."
+        "region": "Grenoble",
+        "comment": "Perfekt från början till slut ! Lyhört och professionellt team. Min kredit validerad på 8 dagar."
       },
       "r17": {
-        "region": "[FIXME] Dijon",
-        "comment": "[FIXME] Je suis très satisfait. Processus simple, rapide et transparent. Merci AGM INVEST !"
+        "region": "Dijon",
+        "comment": "Jag är mycket nöjd. Enkel, snabb och transparent process. Tack AGM INVEST !"
       },
       "r18": {
-        "region": "[FIXME] Angers",
-        "comment": "[FIXME] Bonne expérience. Les conseillers sont compétents et le suivi est régulier."
+        "region": "Angers",
+        "comment": "Bra erfarenhet. Rådgivarna är kompetenta och uppföljningen är regelbunden."
       },
       "r19": {
-        "region": "[FIXME] Nîmes",
-        "comment": "[FIXME] Service excellent ! Mon dossier a été traité rapidement et efficacement."
+        "region": "Nîmes",
+        "comment": "Utmärkt service ! Mitt ärende behandlades snabbt och effektivt."
       },
       "r20": {
-        "region": "[FIXME] Villeurbanne",
-        "comment": "[FIXME] Très bonne expérience. L'équipe est professionnelle et à l'écoute."
+        "region": "Villeurbanne",
+        "comment": "Mycket bra erfarenhet. Teamet är professionellt och lyssnar."
       },
       "r21": {
-        "region": "[FIXME] Le Mans",
-        "comment": "[FIXME] Satisfait du service. Bon accompagnement tout au long du processus."
+        "region": "Le Mans",
+        "comment": "Nöjd med servicen. Bra stöd under hela processen."
       },
       "r22": {
-        "region": "[FIXME] Aix-en-Provence",
-        "comment": "[FIXME] Impeccable ! Financement obtenu rapidement. Je recommande vivement."
+        "region": "Aix-en-Provence",
+        "comment": "Oklanderligt ! Finansiering erhållen snabbt. Jag rekommenderar varmt."
       },
       "r23": {
-        "region": "[FIXME] Clermont-Ferrand",
-        "comment": "[FIXME] Excellent service. Équipe réactive et professionnelle. Dossier validé en 10 jours."
+        "region": "Clermont-Ferrand",
+        "comment": "Utmärkt service. Lyhört och professionellt team. Ärende validerat på 10 dagar."
       },
       "r24": {
-        "region": "[FIXME] Brest",
-        "comment": "[FIXME] Bonne prestation globale. Le conseiller était disponible et compétent."
+        "region": "Brest",
+        "comment": "Bra helhetsprestation. Rådgivaren var tillgänglig och kompetent."
       },
       "r25": {
-        "region": "[FIXME] Tours",
-        "comment": "[FIXME] Service au top ! Processus rapide et transparent. Très satisfait."
+        "region": "Tours",
+        "comment": "Toppservice ! Snabb och transparent process. Mycket nöjd."
       },
       "r26": {
-        "region": "[FIXME] Amiens",
-        "comment": "[FIXME] Parfait ! Mon crédit automobile a été validé rapidement. Équipe professionnelle."
+        "region": "Amiens",
+        "comment": "Perfekt ! Min bilkredit validerades snabbt. Professionellt team."
       },
       "r27": {
-        "region": "[FIXME] Limoges",
-        "comment": "[FIXME] Très bon service. Communication claire et suivi régulier."
+        "region": "Limoges",
+        "comment": "Mycket bra service. Klar kommunikation och regelbunden uppföljning."
       },
       "r28": {
-        "region": "[FIXME] Annecy",
-        "comment": "[FIXME] Excellente expérience ! Conseiller à l'écoute et processus efficace."
+        "region": "Annecy",
+        "comment": "Utmärkt erfarenhet ! Rådgivare som lyssnar och effektiv process."
       },
       "r29": {
-        "region": "[FIXME] Perpignan",
-        "comment": "[FIXME] Je recommande ! Service rapide et professionnel. Mon dossier traité en 2 semaines."
+        "region": "Perpignan",
+        "comment": "Jag rekommenderar ! Snabb och professionell service. Mitt ärende behandlat på 2 veckor."
       },
       "r30": {
-        "region": "[FIXME] Boulogne-Billancourt",
-        "comment": "[FIXME] Bonne expérience. L'équipe est compétente et réactive."
+        "region": "Boulogne-Billancourt",
+        "comment": "Bra erfarenhet. Teamet är kompetent och lyhört."
       },
       "r31": {
-        "region": "[FIXME] Metz",
-        "comment": "[FIXME] Service impeccable ! Financement obtenu rapidement. Très satisfait."
+        "region": "Metz",
+        "comment": "Oklanderlig service ! Finansiering erhållen snabbt. Mycket nöjd."
       },
       "r32": {
-        "region": "[FIXME] Besançon",
-        "comment": "[FIXME] Excellente prestation. Processus simple et équipe professionnelle."
+        "region": "Besançon",
+        "comment": "Utmärkt prestation. Enkel process och professionellt team."
       },
       "r33": {
-        "region": "[FIXME] Orléans",
-        "comment": "[FIXME] Très bon service. Mon conseiller m'a bien accompagné."
+        "region": "Orléans",
+        "comment": "Mycket bra service. Min rådgivare gav mig gott stöd."
       },
       "r34": {
-        "region": "[FIXME] Saint-Denis",
-        "comment": "[FIXME] Parfait ! Dossier traité rapidement et efficacement. Je recommande."
+        "region": "Saint-Denis",
+        "comment": "Perfekt ! Ärende behandlat snabbt och effektivt. Jag rekommenderar."
       },
       "r35": {
-        "region": "[FIXME] Argenteuil",
-        "comment": "[FIXME] Service au top ! Équipe réactive et professionnelle."
+        "region": "Argenteuil",
+        "comment": "Toppservice ! Lyhört och professionellt team."
       },
       "r36": {
-        "region": "[FIXME] Rouen",
-        "comment": "[FIXME] Bonne expérience globale. Processus transparent et bien expliqué."
+        "region": "Rouen",
+        "comment": "Bra helhetsupplevelse. Transparent process och väl förklarad."
       },
       "r37": {
-        "region": "[FIXME] Mulhouse",
-        "comment": "[FIXME] Excellent ! Mon crédit validé en 9 jours. Service professionnel."
+        "region": "Mulhouse",
+        "comment": "Utmärkt ! Min kredit validerad på 9 dagar. Professionell service."
       },
       "r38": {
-        "region": "[FIXME] Montreuil",
-        "comment": "[FIXME] Très satisfaite ! L'équipe est à l'écoute et efficace."
+        "region": "Montreuil",
+        "comment": "Mycket nöjd ! Teamet lyssnar och är effektivt."
       },
       "r39": {
-        "region": "[FIXME] Caen",
-        "comment": "[FIXME] Bon service. Conseiller compétent et disponible."
+        "region": "Caen",
+        "comment": "Bra service. Kompetent och tillgänglig rådgivare."
       },
       "r40": {
-        "region": "[FIXME] Nancy",
-        "comment": "[FIXME] Impeccable ! Processus rapide et transparent. Je recommande vivement."
+        "region": "Nancy",
+        "comment": "Oklanderligt ! Snabb och transparent process. Jag rekommenderar varmt."
       },
       "r41": {
-        "region": "[FIXME] Versailles",
-        "comment": "[FIXME] Service excellent ! Mon dossier a été traité avec professionnalisme."
+        "region": "Versailles",
+        "comment": "Utmärkt service ! Mitt ärende behandlades professionellt."
       },
       "r42": {
-        "region": "[FIXME] Nanterre",
-        "comment": "[FIXME] Très bonne prestation. Équipe réactive et à l'écoute."
+        "region": "Nanterre",
+        "comment": "Mycket bra prestation. Lyhört team som lyssnar."
       },
       "r43": {
-        "region": "[FIXME] Créteil",
-        "comment": "[FIXME] Parfait ! Financement obtenu rapidement. Service professionnel."
+        "region": "Créteil",
+        "comment": "Perfekt ! Finansiering erhållen snabbt. Professionell service."
       },
       "r44": {
-        "region": "[FIXME] Vitry-sur-Seine",
-        "comment": "[FIXME] Excellente expérience ! Conseiller compétent et processus efficace."
+        "region": "Vitry-sur-Seine",
+        "comment": "Utmärkt erfarenhet ! Kompetent rådgivare och effektiv process."
       },
       "r45": {
-        "region": "[FIXME] Avignon",
-        "comment": "[FIXME] Bon service. Communication claire et suivi régulier du dossier."
+        "region": "Avignon",
+        "comment": "Bra service. Klar kommunikation och regelbunden uppföljning av ärendet."
       },
       "r46": {
-        "region": "[FIXME] Poitiers",
-        "comment": "[FIXME] Je recommande ! Service rapide et transparent. Très satisfaite."
+        "region": "Poitiers",
+        "comment": "Jag rekommenderar ! Snabb och transparent service. Mycket nöjd."
       },
       "r47": {
-        "region": "[FIXME] Aubervilliers",
-        "comment": "[FIXME] Service au top ! Mon crédit validé en 11 jours."
+        "region": "Aubervilliers",
+        "comment": "Toppservice ! Min kredit validerad på 11 dagar."
       },
       "r48": {
-        "region": "[FIXME] Aulnay-sous-Bois",
-        "comment": "[FIXME] Bonne expérience. L'équipe est professionnelle et réactive."
+        "region": "Aulnay-sous-Bois",
+        "comment": "Bra erfarenhet. Teamet är professionellt och lyhört."
       },
       "r49": {
-        "region": "[FIXME] Asnières-sur-Seine",
-        "comment": "[FIXME] Excellent ! Processus simple et rapide. Je recommande."
+        "region": "Asnières-sur-Seine",
+        "comment": "Utmärkt ! Enkel och snabb process. Jag rekommenderar."
       },
       "r50": {
-        "region": "[FIXME] Colombes",
-        "comment": "[FIXME] Très satisfaite ! Équipe à l'écoute et efficace."
+        "region": "Colombes",
+        "comment": "Mycket nöjd ! Team som lyssnar och är effektivt."
       },
       "r51": {
-        "region": "[FIXME] La Rochelle",
-        "comment": "[FIXME] Bon service. Mon conseiller était disponible et compétent."
+        "region": "La Rochelle",
+        "comment": "Bra service. Min rådgivare var tillgänglig och kompetent."
       },
       "r52": {
-        "region": "[FIXME] Calais",
-        "comment": "[FIXME] Impeccable ! Dossier traité rapidement. Service professionnel."
+        "region": "Calais",
+        "comment": "Oklanderligt ! Ärende behandlat snabbt. Professionell service."
       },
       "r53": {
-        "region": "[FIXME] Rueil-Malmaison",
-        "comment": "[FIXME] Parfait ! Financement obtenu en moins de 2 semaines."
+        "region": "Rueil-Malmaison",
+        "comment": "Perfekt ! Finansiering erhållen på mindre än 2 veckor."
       },
       "r54": {
-        "region": "[FIXME] Antibes",
-        "comment": "[FIXME] Très bonne prestation. Processus transparent et bien expliqué."
+        "region": "Antibes",
+        "comment": "Mycket bra prestation. Transparent process och väl förklarad."
       },
       "r55": {
-        "region": "[FIXME] Saint-Maur-des-Fossés",
-        "comment": "[FIXME] Excellent service ! Équipe réactive et professionnelle."
+        "region": "Saint-Maur-des-Fossés",
+        "comment": "Utmärkt service ! Lyhört och professionellt team."
       },
       "r56": {
-        "region": "[FIXME] Champigny-sur-Marne",
-        "comment": "[FIXME] Je recommande vivement ! Service rapide et efficace."
+        "region": "Champigny-sur-Marne",
+        "comment": "Jag rekommenderar varmt ! Snabb och effektiv service."
       },
       "r57": {
-        "region": "[FIXME] Dunkerque",
-        "comment": "[FIXME] Bonne expérience globale. Conseiller compétent."
+        "region": "Dunkerque",
+        "comment": "Bra helhetsupplevelse. Kompetent rådgivare."
       },
       "r58": {
-        "region": "[FIXME] Bourges",
-        "comment": "[FIXME] Service au top ! Mon dossier validé rapidement."
+        "region": "Bourges",
+        "comment": "Toppservice ! Mitt ärende validerades snabbt."
       },
       "r59": {
-        "region": "[FIXME] Cannes",
-        "comment": "[FIXME] Parfait ! Processus simple et transparent. Très satisfait."
+        "region": "Cannes",
+        "comment": "Perfekt ! Enkel och transparent process. Mycket nöjd."
       },
       "r60": {
-        "region": "[FIXME] Pau",
-        "comment": "[FIXME] Très bon service. L'équipe est à l'écoute et réactive."
+        "region": "Pau",
+        "comment": "Mycket bra service. Teamet lyssnar och är lyhört."
       },
       "r61": {
-        "region": "[FIXME] Colmar",
-        "comment": "[FIXME] Excellent ! Mon crédit automobile validé en 10 jours."
+        "region": "Colmar",
+        "comment": "Utmärkt ! Min bilkredit validerad på 10 dagar."
       },
       "r62": {
-        "region": "[FIXME] Quimper",
-        "comment": "[FIXME] Service impeccable ! Équipe professionnelle et efficace."
+        "region": "Quimper",
+        "comment": "Oklanderlig service ! Professionellt och effektivt team."
       },
       "r63": {
-        "region": "[FIXME] Valence",
-        "comment": "[FIXME] Bonne prestation. Communication claire et suivi régulier."
+        "region": "Valence",
+        "comment": "Bra prestation. Klar kommunikation och regelbunden uppföljning."
       },
       "r64": {
-        "region": "[FIXME] Troyes",
-        "comment": "[FIXME] Je recommande ! Service rapide et professionnel."
+        "region": "Troyes",
+        "comment": "Jag rekommenderar ! Snabb och professionell service."
       },
       "r65": {
-        "region": "[FIXME] Ajaccio",
-        "comment": "[FIXME] Parfait ! Financement obtenu rapidement. Très satisfait."
+        "region": "Ajaccio",
+        "comment": "Perfekt ! Finansiering erhållen snabbt. Mycket nöjd."
       },
       "r66": {
-        "region": "[FIXME] Chambéry",
-        "comment": "[FIXME] Très bonne expérience. L'équipe est compétente."
+        "region": "Chambéry",
+        "comment": "Mycket bra erfarenhet. Teamet är kompetent."
       },
       "r67": {
-        "region": "[FIXME] Lorient",
-        "comment": "[FIXME] Service excellent ! Processus efficace et transparent."
+        "region": "Lorient",
+        "comment": "Utmärkt service ! Effektiv och transparent process."
       },
       "r68": {
-        "region": "[FIXME] Niort",
-        "comment": "[FIXME] Impeccable ! Mon dossier traité avec professionnalisme."
+        "region": "Niort",
+        "comment": "Oklanderligt ! Mitt ärende behandlades professionellt."
       },
       "r69": {
-        "region": "[FIXME] Sarcelles",
-        "comment": "[FIXME] Bon service. Conseiller disponible et à l'écoute."
+        "region": "Sarcelles",
+        "comment": "Bra service. Tillgänglig rådgivare som lyssnar."
       },
       "r70": {
-        "region": "[FIXME] Beauvais",
-        "comment": "[FIXME] Excellent ! Je recommande vivement AGM INVEST."
+        "region": "Beauvais",
+        "comment": "Utmärkt ! Jag rekommenderar AGM INVEST varmt."
       },
       "r71": {
-        "region": "[FIXME] Vannes",
-        "comment": "[FIXME] Service au top ! Mon crédit validé en 9 jours."
+        "region": "Vannes",
+        "comment": "Toppservice ! Min kredit validerad på 9 dagar."
       },
       "r72": {
-        "region": "[FIXME] Ivry-sur-Seine",
-        "comment": "[FIXME] Très bonne prestation. Équipe réactive et professionnelle."
+        "region": "Ivry-sur-Seine",
+        "comment": "Mycket bra prestation. Lyhört och professionellt team."
       },
       "r73": {
-        "region": "[FIXME] Cergy",
-        "comment": "[FIXME] Parfait ! Processus rapide et transparent."
+        "region": "Cergy",
+        "comment": "Perfekt ! Snabb och transparent process."
       },
       "r74": {
-        "region": "[FIXME] Levallois-Perret",
-        "comment": "[FIXME] Excellente expérience ! Service professionnel."
+        "region": "Levallois-Perret",
+        "comment": "Utmärkt erfarenhet ! Professionell service."
       },
       "r75": {
-        "region": "[FIXME] Pessac",
-        "comment": "[FIXME] Bon service. Mon conseiller était compétent."
+        "region": "Pessac",
+        "comment": "Bra service. Min rådgivare var kompetent."
       },
       "r76": {
-        "region": "[FIXME] Clichy",
-        "comment": "[FIXME] Je recommande ! Dossier traité rapidement."
+        "region": "Clichy",
+        "comment": "Jag rekommenderar ! Ärende behandlat snabbt."
       },
       "r77": {
-        "region": "[FIXME] Arles",
-        "comment": "[FIXME] Service impeccable ! Équipe à l'écoute et efficace."
+        "region": "Arles",
+        "comment": "Oklanderlig service ! Team som lyssnar och är effektivt."
       },
       "r78": {
-        "region": "[FIXME] Vénissieux",
-        "comment": "[FIXME] Très bonne expérience. Processus bien expliqué."
+        "region": "Vénissieux",
+        "comment": "Mycket bra erfarenhet. Processen väl förklarad."
       },
       "r79": {
-        "region": "[FIXME] Antony",
-        "comment": "[FIXME] Excellent ! Mon financement obtenu en 12 jours."
+        "region": "Antony",
+        "comment": "Utmärkt ! Min finansiering erhållen på 12 dagar."
       },
       "r80": {
-        "region": "[FIXME] La Seyne-sur-Mer",
-        "comment": "[FIXME] Parfait ! Service rapide et professionnel."
+        "region": "La Seyne-sur-Mer",
+        "comment": "Perfekt ! Snabb och professionell service."
       },
       "r81": {
-        "region": "[FIXME] Neuilly-sur-Seine",
-        "comment": "[FIXME] Bon service. L'équipe est réactive."
+        "region": "Neuilly-sur-Seine",
+        "comment": "Bra service. Teamet är lyhört."
       },
       "r82": {
-        "region": "[FIXME] Montauban",
-        "comment": "[FIXME] Je recommande vivement ! Service excellent."
+        "region": "Montauban",
+        "comment": "Jag rekommenderar varmt ! Utmärkt service."
       },
       "r83": {
-        "region": "[FIXME] Pantin",
-        "comment": "[FIXME] Service au top ! Dossier validé rapidement."
+        "region": "Pantin",
+        "comment": "Toppservice ! Ärende validerat snabbt."
       },
       "r84": {
-        "region": "[FIXME] Noisy-le-Grand",
-        "comment": "[FIXME] Très bonne prestation. Conseiller compétent."
+        "region": "Noisy-le-Grand",
+        "comment": "Mycket bra prestation. Kompetent rådgivare."
       },
       "r85": {
-        "region": "[FIXME] Évry",
-        "comment": "[FIXME] Excellent service ! Processus efficace."
+        "region": "Évry",
+        "comment": "Utmärkt service ! Effektiv process."
       },
       "r86": {
-        "region": "[FIXME] Villeneuve-d'Ascq",
-        "comment": "[FIXME] Impeccable ! Mon crédit automobile validé."
+        "region": "Villeneuve-d'Ascq",
+        "comment": "Oklanderligt ! Min bilkredit validerad."
       },
       "r87": {
-        "region": "[FIXME] Meaux",
-        "comment": "[FIXME] Bon service. Communication claire."
+        "region": "Meaux",
+        "comment": "Bra service. Klar kommunikation."
       },
       "r88": {
-        "region": "[FIXME] Cholet",
-        "comment": "[FIXME] Parfait ! Équipe professionnelle et réactive."
+        "region": "Cholet",
+        "comment": "Perfekt ! Professionellt och lyhört team."
       },
       "r89": {
-        "region": "[FIXME] Belfort",
-        "comment": "[FIXME] Service excellent ! Je recommande."
+        "region": "Belfort",
+        "comment": "Utmärkt service ! Jag rekommenderar."
       },
       "r90": {
-        "region": "[FIXME] Bayonne",
-        "comment": "[FIXME] Très bonne expérience. Processus transparent."
+        "region": "Bayonne",
+        "comment": "Mycket bra erfarenhet. Transparent process."
       },
       "r91": {
-        "region": "[FIXME] Chartres",
-        "comment": "[FIXME] Impeccable ! Financement obtenu rapidement."
+        "region": "Chartres",
+        "comment": "Oklanderligt ! Finansiering erhållen snabbt."
       },
       "r92": {
-        "region": "[FIXME] Drancy",
-        "comment": "[FIXME] Excellent ! Service professionnel et efficace."
+        "region": "Drancy",
+        "comment": "Utmärkt ! Professionell och effektiv service."
       },
       "r93": {
-        "region": "[FIXME] Sartrouville",
-        "comment": "[FIXME] Bon service. Mon conseiller était disponible."
+        "region": "Sartrouville",
+        "comment": "Bra service. Min rådgivare var tillgänglig."
       },
       "r94": {
-        "region": "[FIXME] Saint-Quentin",
-        "comment": "[FIXME] Je recommande ! Dossier traité avec soin."
+        "region": "Saint-Quentin",
+        "comment": "Jag rekommenderar ! Ärende behandlat med omsorg."
       },
       "r95": {
-        "region": "[FIXME] Île-de-France",
-        "comment": "[FIXME] Service au top ! Très satisfait du résultat."
+        "region": "Storstockholm",
+        "comment": "Toppservice ! Mycket nöjd med resultatet."
       },
       "r96": {
-        "region": "[FIXME] Auvergne-Rhône-Alpes",
-        "comment": "[FIXME] Très bonne prestation. Équipe compétente."
+        "region": "Auvergne-Rhône-Alpes",
+        "comment": "Mycket bra prestation. Kompetent team."
       },
       "r97": {
-        "region": "[FIXME] Nouvelle-Aquitaine",
-        "comment": "[FIXME] Parfait ! Processus simple et rapide."
+        "region": "Nya Akvitanien",
+        "comment": "Perfekt ! Enkel och snabb process."
       },
       "r98": {
-        "region": "[FIXME] Occitanie",
-        "comment": "[FIXME] Excellent service ! Mon crédit validé en 10 jours."
+        "region": "Occitanien",
+        "comment": "Utmärkt service ! Min kredit validerad på 10 dagar."
       },
       "r99": {
-        "region": "[FIXME] Hauts-de-France",
-        "comment": "[FIXME] Bon service. Communication efficace."
+        "region": "Hauts-de-France",
+        "comment": "Bra service. Effektiv kommunikation."
       },
       "r100": {
-        "region": "[FIXME] Provence-Alpes-Côte d'Azur",
-        "comment": "[FIXME] Je recommande vivement ! Service professionnel."
+        "region": "Provence-Alpes-Côte d'Azur",
+        "comment": "Jag rekommenderar varmt ! Professionell service."
       },
       "r101": {
-        "region": "[FIXME] Grand Est",
-        "comment": "[FIXME] Impeccable ! Équipe réactive et à l'écoute."
+        "region": "Grand Est",
+        "comment": "Oklanderligt ! Lyhört team som lyssnar."
       },
       "r102": {
-        "region": "[FIXME] Pays de la Loire",
-        "comment": "[FIXME] Très bonne expérience. Processus transparent."
+        "region": "Pays de la Loire",
+        "comment": "Mycket bra erfarenhet. Transparent process."
       },
       "r103": {
-        "region": "[FIXME] Bretagne",
-        "comment": "[FIXME] Service excellent ! Mon dossier validé rapidement."
+        "region": "Bretagne",
+        "comment": "Utmärkt service ! Mitt ärende validerades snabbt."
       },
       "r104": {
-        "region": "[FIXME] Normandie",
-        "comment": "[FIXME] Parfait ! Je recommande AGM INVEST."
+        "region": "Normandie",
+        "comment": "Perfekt ! Jag rekommenderar AGM INVEST."
       },
       "r105": {
-        "region": "[FIXME] Bourgogne-Franche-Comté",
-        "comment": "[FIXME] Bon service. Conseiller compétent et disponible."
+        "region": "Bourgogne-Franche-Comté",
+        "comment": "Bra service. Kompetent och tillgänglig rådgivare."
       },
       "r106": {
-        "region": "[FIXME] Centre-Val de Loire",
-        "comment": "[FIXME] Excellent ! Financement obtenu en 11 jours."
+        "region": "Centre-Val de Loire",
+        "comment": "Utmärkt ! Finansiering erhållen på 11 dagar."
       },
       "r107": {
-        "region": "[FIXME] Corse",
-        "comment": "[FIXME] Service impeccable ! Équipe professionnelle."
+        "region": "Korsika",
+        "comment": "Oklanderlig service ! Professionellt team."
       },
       "r108": {
-        "region": "[FIXME] Paris",
-        "comment": "[FIXME] Très bonne prestation. Processus efficace."
+        "region": "Paris",
+        "comment": "Mycket bra prestation. Effektiv process."
       },
       "r109": {
-        "region": "[FIXME] Lyon",
-        "comment": "[FIXME] Je recommande ! Service rapide et transparent."
+        "region": "Lyon",
+        "comment": "Jag rekommenderar ! Snabb och transparent service."
       },
       "r110": {
-        "region": "[FIXME] Marseille",
-        "comment": "[FIXME] Parfait ! Mon crédit automobile validé rapidement."
+        "region": "Marseille",
+        "comment": "Perfekt ! Min bilkredit validerad snabbt."
       }
     },
-    "subtitle": "[FIXME] Découvrez les témoignages de ceux qui nous ont fait confiance pour leur projet de financement.",
-    "stars": "[FIXME] étoiles",
-    "seeAll": "[FIXME] Voir tous les avis",
-    "allReviewsLabel": "[FIXME] Tous nos avis",
+    "subtitle": "Upptäck berättelserna från dem som har gett oss förtroendet för sina finansieringsprojekt.",
+    "stars": "stjärnor",
+    "seeAll": "Se alla omdömen",
+    "allReviewsLabel": "Alla våra omdömen",
     "Stats": {
-      "averageRating": "[FIXME] Note Moyenne",
-      "totalReviews": "[FIXME] Avis Vérifiés",
-      "fiveStars": "[FIXME] Avis 5 étoiles"
+      "averageRating": "Genomsnittligt betyg",
+      "totalReviews": "Verifierade omdömen",
+      "fiveStars": "5-stjärniga omdömen"
     }
   },
   "ReviewForm": {
-    "brandName": "[FIXME] AGM INVEST",
-    "certifiedReviews": "[FIXME] Avis Clients Certifiés",
-    "verifiedEstablishment": "[FIXME] Établissement Vérifié",
+    "brandName": "AGM INVEST",
+    "certifiedReviews": "Certifierade kundomdömen",
+    "verifiedEstablishment": "Verifierat etablissemang",
     "Success": {
-      "title": "[FIXME] Merci pour votre avis !",
-      "message": "[FIXME] Votre témoignage a bien été reçu. Il sera publié après validation par notre équipe de modération.",
-      "button": "[FIXME] Fermer"
+      "title": "Tack för ditt omdöme !",
+      "message": "Ditt vittnesmål har tagits emot. Det kommer att publiceras efter validering av vårt modereringsteam.",
+      "button": "Stäng"
     },
-    "ratingLabel": "[FIXME] Votre note globale",
+    "ratingLabel": "Ditt totala betyg",
     "Labels": {
-      "name": "[FIXME] Votre nom complet",
-      "region": "[FIXME] Votre ville / région",
-      "comment": "[FIXME] Votre témoignage"
+      "name": "Ditt fullständiga namn",
+      "region": "Din stad / region",
+      "comment": "Ditt vittnesmål"
     },
     "Placeholders": {
-      "name": "[FIXME] Ex: Jean Dupont",
-      "region": "[FIXME] Ex: Strasbourg, Grand Est",
-      "comment": "[FIXME] Partagez votre expérience avec AGM INVEST..."
+      "name": "Ex: Johan Svensson",
+      "region": "Ex: Stockholm, Sverige",
+      "comment": "Dela din erfarenhet med AGM INVEST..."
     },
-    "submit": "[FIXME] Publier mon avis",
-    "disclaimer": "[FIXME] En publiant cet avis, vous acceptez nos conditions d'utilisation.",
+    "submit": "Publicera mitt omdöme",
+    "disclaimer": "Genom att publicera detta omdöme accepterar du våra användarvillkor.",
     "Errors": {
-      "submission": "[FIXME] Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
-      "name": "[FIXME] Le nom est obligatoire.",
-      "region": "[FIXME] La région est obligatoire.",
-      "commentRequired": "[FIXME] Le commentaire est obligatoire.",
-      "commentTooShort": "[FIXME] Le commentaire doit faire au moins 10 caractères."
+      "submission": "Ett fel uppstod vid insändandet. Vänligen försök igen.",
+      "name": "Namn är obligatoriskt.",
+      "region": "Region är obligatoriskt.",
+      "commentRequired": "Kommentaren är obligatorisk.",
+      "commentTooShort": "Kommentaren måste vara minst 10 tecken lång."
     },
     "Ratings": {
-      "1": "[FIXME] Décevant",
-      "2": "[FIXME] Moyen",
-      "3": "[FIXME] Satisfaisant",
-      "4": "[FIXME] Très bien",
-      "5": "[FIXME] Excellent"
+      "1": "Besvikelse",
+      "2": "Medel",
+      "3": "Tillfredsställande",
+      "4": "Mycket bra",
+      "5": "Utmärkt"
     }
   },
   "NotificationPopup": {
-    "title": "[FIXME] Nouvelle demande !",
-    "from": "[FIXME] de",
-    "action": "[FIXME] vient de soumettre une demande",
-    "close": "[FIXME] Fermer"
+    "title": "Ny ansökan !",
+    "from": "från",
+    "action": "har just skickat in en ansökan",
+    "close": "Stäng"
   }
 }

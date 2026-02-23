@@ -59,21 +59,21 @@ export default function DashboardLayout({
 
                         // Notification on KYC status change
                         if (hasInitialStatus.current && prevStatusRef.current !== newStatus && newStatus) {
-                            let title = t('Dashboard.Layout.Notifications.statusUpdate.title');
-                            let message = t('Dashboard.Layout.Notifications.statusUpdate.message');
+                            let title = 'statusUpdate.title';
+                            let message = 'statusUpdate.message';
                             let type: 'info' | 'success' | 'warning' | 'error' = 'info';
 
                             if (newStatus === 'verified') {
-                                title = t('Dashboard.Layout.Notifications.verified.title');
-                                message = t('Dashboard.Layout.Notifications.verified.message');
+                                title = 'verified.title';
+                                message = 'verified.message';
                                 type = 'success';
                             } else if (newStatus === 'rejected') {
-                                title = t('Dashboard.Layout.Notifications.rejected.title');
-                                message = t('Dashboard.Layout.Notifications.rejected.message');
+                                title = 'rejected.title';
+                                message = 'rejected.message';
                                 type = 'error';
                             } else if (newStatus === 'partial_rejection') {
-                                title = t('Dashboard.Layout.Notifications.partialRejection.title');
-                                message = t('Dashboard.Layout.Notifications.partialRejection.message');
+                                title = 'partialRejection.title';
+                                message = 'partialRejection.message';
                                 type = 'warning';
                             }
 
@@ -107,13 +107,9 @@ export default function DashboardLayout({
             if (docSnap.exists()) {
                 const data = docSnap.data();
                 if (data.unreadClient > 0) {
-                    // We only create a notification if it's "fresh" (last message is from admin)
-                    // and if we haven't already notified about THIS unread count.
-                    // For simplicity, we create a short-lived logic or just notification if chat is not open.
-                    // Note: This logic could be refined but handles the basic "You have a message" requirement.
                     createNotification(user.uid, {
-                        title: t('Dashboard.Layout.Notifications.newMessage.title'),
-                        message: t('Dashboard.Layout.Notifications.newMessage.message'),
+                        title: 'newMessage.title',
+                        message: 'newMessage.message',
                         type: 'info',
                         link: '/dashboard/support'
                     });

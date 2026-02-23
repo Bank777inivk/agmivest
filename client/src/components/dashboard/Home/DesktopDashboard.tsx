@@ -18,7 +18,7 @@ import {
     ShieldCheck,
     CreditCard
 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 
 interface DesktopDashboardProps {
@@ -42,6 +42,7 @@ export default function DesktopDashboard({
     const t = useTranslations('Dashboard.Home');
     const tLayout = useTranslations('Dashboard.Layout');
     const tProjects = useTranslations('CreditRequest.Project.labels');
+    const locale = useLocale();
 
     const container = {
         hidden: { opacity: 0 },
@@ -230,7 +231,7 @@ export default function DesktopDashboard({
                                         <Wallet className="w-5 h-5 text-ely-mint" />
                                     </div>
                                     <span className="text-xs font-black uppercase tracking-[0.2em] text-white/60">
-                                        {loanAccount ? t('balance.activeTitle') : t('balance.inactiveTitle')}
+                                        {loanAccount ? t('loanAccount.title') : t('loanAccount.title')}
                                     </span>
                                 </div>
                                 <ArrowUpRight className="w-6 h-6 transition-all text-white/40 group-hover:text-ely-mint group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -239,10 +240,10 @@ export default function DesktopDashboard({
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
                                 <div>
                                     <p className="text-sm mb-2 font-medium text-white/40">
-                                        {loanAccount ? t('balance.remainingCapital') : t('balance.forecastBalance')}
+                                        {loanAccount ? t('loanAccount.remainingAmount') : t('loanAccount.totalAmount')}
                                     </p>
                                     <h2 className="text-5xl font-black tracking-tighter">
-                                        {new Intl.NumberFormat('fr-FR', {
+                                        {new Intl.NumberFormat(locale === 'Utilisateur' ? 'fr-FR' : locale, {
                                             style: 'currency',
                                             currency: 'EUR',
                                             maximumFractionDigits: 0
@@ -315,10 +316,10 @@ export default function DesktopDashboard({
                         </div>
                         <div className="flex justify-between items-center mb-8 relative z-10">
                             <div>
-                                <h2 className="text-xl font-bold text-gray-900">{t('requests.title')}</h2>
-                                <p className="text-sm text-gray-500 mt-1">{t('requests.subtitle')}</p>
+                                <h2 className="text-xl font-bold text-gray-900">{t('recentRequests.title')}</h2>
+                                <p className="text-sm text-gray-500 mt-1">{t('subtitle')}</p>
                             </div>
-                            <button onClick={() => router.push("/dashboard/requests")} className="text-sm font-bold text-ely-blue hover:underline">{t('requests.viewAll')}</button>
+                            <button onClick={() => router.push("/dashboard/requests")} className="text-sm font-bold text-ely-blue hover:underline">{t('recentRequests.viewAll')}</button>
                         </div>
                         {recentRequests.length > 0 ? (
                             <div className="space-y-4 relative z-10">
@@ -329,16 +330,16 @@ export default function DesktopDashboard({
                                             <div>
                                                 <div className="flex items-center gap-2">
                                                     <span className="font-bold text-gray-900">
-                                                        {request.projectType ? tProjects(request.projectType.toLowerCase()) : t('requests.project')}
+                                                        {request.projectType ? tProjects(request.projectType.toLowerCase()) : t('recentRequests.type')}
                                                     </span>
                                                     <span className="text-[10px] text-gray-400">#{request.id.slice(0, 8)}</span>
                                                 </div>
-                                                <p className="text-xs text-gray-500 mt-0.5">{new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(request.amount || 0)}</p>
+                                                <p className="text-xs text-gray-500 mt-0.5">{new Intl.NumberFormat(locale === 'Utilisateur' ? 'fr-FR' : locale, { style: 'currency', currency: 'EUR' }).format(request.amount || 0)}</p>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-4">
                                             <div className={`px-2 py-0.5 rounded-full text-[10px] font-black uppercase ${request.status === 'approved' ? 'bg-emerald-50 text-emerald-600' : 'bg-ely-blue/5 text-ely-blue'}`}>
-                                                {request.status === 'approved' ? t('requests.statusApproved') : t('requests.statusProcessing')}
+                                                {request.status === 'approved' ? t('recentRequests.status') : t('recentRequests.status')}
                                             </div>
                                             <ChevronRight className="w-4 h-4 text-gray-300" />
                                         </div>
@@ -347,7 +348,7 @@ export default function DesktopDashboard({
                             </div>
                         ) : (
                             <div className="text-center py-10">
-                                <p className="text-gray-500 text-sm">{t('requests.empty')}</p>
+                                <p className="text-gray-500 text-sm">{t('recentRequests.none')}</p>
                             </div>
                         )}
                     </section>
@@ -373,8 +374,8 @@ export default function DesktopDashboard({
                             {[
                                 { label: t('quickActions.docs'), icon: FileText, color: "orange", route: "/dashboard/documents" },
                                 { label: t('quickActions.transfer'), icon: ArrowUpRight, color: "emerald", route: "/dashboard/accounts/transfer" },
-                                { label: t('quickActions.schedule'), icon: Clock, color: "blue", route: "/dashboard/accounts/schedule" },
-                                { label: t('quickActions.ribRef'), icon: Landmark, color: "purple", route: "/dashboard/accounts" },
+                                { label: t('quickActions.history'), icon: Clock, color: "blue", route: "/dashboard/accounts/schedule" },
+                                { label: t('quickActions.profile'), icon: Landmark, color: "purple", route: "/dashboard/profile" },
                             ].map((action, idx) => (
                                 <button
                                     key={idx}

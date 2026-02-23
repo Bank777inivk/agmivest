@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Smartphone, X, QrCode, MonitorOff, ExternalLink } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface MobileRedirectModalProps {
     isOpen: boolean;
@@ -9,6 +10,7 @@ interface MobileRedirectModalProps {
 }
 
 export default function MobileRedirectModal({ isOpen, onClose }: MobileRedirectModalProps) {
+    const t = useTranslations('Dashboard.KYC.MobileRedirect');
     return (
         <AnimatePresence>
             {isOpen && (
@@ -53,9 +55,9 @@ export default function MobileRedirectModal({ isOpen, onClose }: MobileRedirectM
                         {/* Content */}
                         <div className="p-10 pt-8 text-center space-y-6">
                             <div className="space-y-2">
-                                <h3 className="text-2xl font-black text-slate-900 tracking-tight uppercase">Utilisez votre mobile</h3>
+                                <h3 className="text-2xl font-black text-slate-900 tracking-tight uppercase">{t('title')}</h3>
                                 <p className="text-slate-500 font-medium leading-relaxed">
-                                    Pour garantir une qualité de capture optimale et une validation rapide de votre dossier, la fonction de capture est réservée aux smartphones.
+                                    {t('subtitle')}
                                 </p>
                             </div>
 
@@ -65,8 +67,8 @@ export default function MobileRedirectModal({ isOpen, onClose }: MobileRedirectM
                                         <QrCode className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Méthode recommandée</p>
-                                        <p className="text-sm font-bold text-slate-700">Scanner ce site depuis votre téléphone</p>
+                                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">{t('method1_label')}</p>
+                                        <p className="text-sm font-bold text-slate-700">{t('method1_desc')}</p>
                                     </div>
                                 </div>
 
@@ -75,8 +77,8 @@ export default function MobileRedirectModal({ isOpen, onClose }: MobileRedirectM
                                         <ExternalLink className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest leading-none mb-1">Navigation directe</p>
-                                        <p className="text-sm font-bold text-blue-900">Connectez-vous sur agminvest.com</p>
+                                        <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest leading-none mb-1">{t('method2_label')}</p>
+                                        <p className="text-sm font-bold text-blue-900">{t('method2_desc')}</p>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +87,7 @@ export default function MobileRedirectModal({ isOpen, onClose }: MobileRedirectM
                                 onClick={onClose}
                                 className="w-full py-5 bg-slate-900 text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] hover:bg-black transition-all active:scale-95"
                             >
-                                J'ai compris
+                                {t('button')}
                             </button>
                         </div>
 

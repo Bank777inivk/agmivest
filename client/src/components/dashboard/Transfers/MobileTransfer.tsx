@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "@/i18n/routing";
+import { useTranslations, useLocale } from "next-intl";
 
 interface MobileTransferProps {
     amount: string;
@@ -52,19 +53,21 @@ export default function MobileTransfer({
     itemsPerPage
 }: MobileTransferProps) {
     const router = useRouter();
+    const t = useTranslations('Dashboard.Transfers');
+    const locale = useLocale();
 
     const getStatusStyles = (status: string) => {
         switch (status) {
             case 'approved':
-                return { bg: "bg-emerald-50 text-emerald-600 border-emerald-100", label: "Validé", icon: CheckCircle2 };
+                return { bg: "bg-emerald-50 text-emerald-600 border-emerald-100", label: t('status.approved'), icon: CheckCircle2 };
             case 'rejected':
-                return { bg: "bg-red-50 text-red-600 border-red-100", label: "Refusé", icon: X };
+                return { bg: "bg-red-50 text-red-600 border-red-100", label: t('status.rejected'), icon: X };
             case 'review':
-                return { bg: "bg-blue-50 text-blue-600 border-blue-100", label: "En examen", icon: Search };
+                return { bg: "bg-blue-50 text-blue-600 border-blue-100", label: t('status.review'), icon: Search };
             case 'advanced':
-                return { bg: "bg-purple-50 text-purple-600 border-purple-100", label: "Contrôle avancé", icon: ShieldCheck };
+                return { bg: "bg-purple-50 text-purple-600 border-purple-100", label: t('status.advanced'), icon: ShieldCheck };
             default:
-                return { bg: "bg-amber-50 text-amber-600 border-amber-100", label: "En attente", icon: Clock };
+                return { bg: "bg-amber-50 text-amber-600 border-amber-100", label: t('status.pending'), icon: Clock };
         }
     };
 
@@ -79,8 +82,8 @@ export default function MobileTransfer({
                     <ArrowLeft className="w-5 h-5 text-gray-600" />
                 </button>
                 <div>
-                    <h1 className="text-xl font-black text-gray-900 leading-none">Virement</h1>
-                    <p className="text-xs text-gray-500 font-medium pt-1">Espace sécurisé</p>
+                    <h1 className="text-xl font-black text-gray-900 leading-none">{t('title')}</h1>
+                    <p className="text-xs text-gray-500 font-medium pt-1">{t('subtitle')}</p>
                 </div>
             </header>
 
@@ -96,16 +99,18 @@ export default function MobileTransfer({
                             <CheckCircle2 className="w-10 h-10" />
                         </div>
                         <div className="space-y-2">
-                            <h2 className="text-2xl font-black text-gray-900">Virement réussi !</h2>
+                            <h2 className="text-2xl font-black text-gray-900">{t('success.title')}</h2>
                             <p className="text-sm text-gray-500 leading-relaxed px-2">
-                                Votre demande est <span className="text-amber-600 font-bold">en cours de contrôle</span>.
+                                {t.rich('success.message', {
+                                    status: (chunks) => <span className="text-amber-600 font-bold">{t('success.pending')}</span>
+                                })}
                             </p>
                         </div>
                         <button
                             onClick={() => setShowSuccess(false)}
                             className="w-full py-4 bg-gray-900 text-white rounded-xl font-bold text-sm uppercase tracking-wider"
                         >
-                            Nouveau virement
+                            {t('success.newTransfer')}
                         </button>
                     </motion.div>
                 ) : (
@@ -122,10 +127,10 @@ export default function MobileTransfer({
                                 <div className="bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 mb-2">
                                     <p className="text-[10px] font-black uppercase tracking-widest text-ely-mint flex items-center gap-2">
                                         <Wallet className="w-3 h-3" />
-                                        Disponible : {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(loanAccount?.remainingAmount || 0)}
+                                        {useTranslations('Dashboard.Accounts')('card.totalBalance')} : {new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).format(loanAccount?.remainingAmount || 0)}
                                     </p>
                                 </div>
-                                <label className="text-[10px] font-bold text-white/50 uppercase tracking-widest leading-none">Montant à transférer</label>
+                                <label className="text-[10px] font-bold text-white/50 uppercase tracking-widest leading-none">{t('form.amountLabel')}</label>
                                 <div className="flex items-end justify-center gap-1 w-full">
                                     <input
                                         type="number"
@@ -135,7 +140,7 @@ export default function MobileTransfer({
                                         className="bg-transparent text-center text-5xl font-black text-white w-full outline-none placeholder:text-white/10 p-0 m-0 leading-none min-w-0"
                                         style={{ maxWidth: '200px' }}
                                     />
-                                    <span className="text-3xl font-bold text-white/30 mb-1">€</span>
+                                    <span className="text-3xl font-bold text-white/30 mb-1">{new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).formatToParts(0).find(p => p.type === 'currency')?.value}</span>
                                 </div>
                             </div>
 
@@ -145,13 +150,13 @@ export default function MobileTransfer({
                                     <Landmark className="w-6 h-6" />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className="font-bold text-white text-sm truncate">{loanAccount?.bankName || "Compte de référence"}</p>
+                                    <p className="font-bold text-white text-sm truncate">{loanAccount?.bankName || t('form.referenceAccount')}</p>
                                     <p className="font-mono text-[10px] text-white/40 truncate">
                                         {loanAccount?.iban ? `${loanAccount.iban.slice(0, 4)} •••• ${loanAccount.iban.slice(-4)}` : "•••• ••••"}
                                     </p>
                                 </div>
                                 <div className="text-[9px] bg-ely-mint/20 text-ely-mint px-2.5 py-1 rounded-md font-black border border-ely-mint/20 uppercase tracking-tighter">
-                                    Vérifié
+                                    {t('form.verifiedAccount')}
                                 </div>
                             </div>
                         </div>
@@ -164,12 +169,12 @@ export default function MobileTransfer({
                                 </div>
                                 <div className="relative z-10 space-y-1">
                                     <p className="text-xs font-black text-white uppercase tracking-widest">
-                                        {blockingReason === 'verification' ? "Vérification Requise" : "Dépôt Requis"}
+                                        {blockingReason === 'verification' ? t('blocking.verification.title') : t('blocking.deposit.title')}
                                     </p>
                                     <p className="text-[11px] text-slate-400 leading-relaxed font-medium">
                                         {blockingReason === 'verification'
-                                            ? "Vérification d'identité nécessaire pour sécuriser vos virements."
-                                            : "Dépôt d'authentification requis pour finaliser votre accès."
+                                            ? t('blocking.verification.short')
+                                            : t('blocking.deposit.short')
                                         }
                                     </p>
                                 </div>
@@ -201,7 +206,7 @@ export default function MobileTransfer({
                                 <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                             ) : (
                                 <>
-                                    {isBlocked ? "Transfert Bloqué" : "Confirmer le virement"}
+                                    {isBlocked ? t('form.blocked') : t('form.confirm')}
                                     <Send className="w-4 h-4" />
                                 </>
                             )}
@@ -217,19 +222,19 @@ export default function MobileTransfer({
                                 <div className="p-2 bg-white/10 rounded-lg">
                                     <Info className="w-4 h-4 text-ely-mint" />
                                 </div>
-                                Contrôle de sécurité
+                                {t('security.title')}
                             </h4>
                             <p className="text-[11px] text-white/50 leading-relaxed mb-6 font-medium relative z-10">
-                                Par mesure de lutte contre la fraude, chaque virement fait l'objet d'une analyse systématique par nos services de conformité.
+                                {t('security.message')}
                             </p>
                             <div className="grid grid-cols-2 gap-3 relative z-10">
                                 <div className="p-4 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
-                                    <p className="text-[9px] font-black text-white/30 uppercase mb-1 tracking-wider">Délai estimé</p>
-                                    <p className="text-sm font-bold text-white">24h - 48h</p>
+                                    <p className="text-[9px] font-black text-white/30 uppercase mb-1 tracking-wider">{t('security.estimatedDelay')}</p>
+                                    <p className="text-sm font-bold text-white">{t('security.delay')}</p>
                                 </div>
                                 <div className="p-4 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
-                                    <p className="text-[9px] font-black text-white/30 uppercase mb-1 tracking-wider">Protection</p>
-                                    <p className="text-sm font-bold text-white">Cryptage AES</p>
+                                    <p className="text-[9px] font-black text-white/30 uppercase mb-1 tracking-wider">{t('security.protection')}</p>
+                                    <p className="text-sm font-bold text-white">{t('security.aes')}</p>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +242,7 @@ export default function MobileTransfer({
                         {/* Recent History Mobile (CARDS RICHES) */}
                         <div className="pt-4 pb-10">
                             <div className="flex items-center justify-between mb-6 px-2">
-                                <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Historique complet</h3>
+                                <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">{t('history.full')}</h3>
                                 <div className="p-2 bg-ely-blue/5 rounded-lg">
                                     <History className="w-4 h-4 text-ely-blue" />
                                 </div>
@@ -256,10 +261,10 @@ export default function MobileTransfer({
                                                         </div>
                                                         <div>
                                                             <p className="font-black text-gray-900 text-sm">
-                                                                {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(transfer.amount || 0)}
+                                                                {new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).format(transfer.amount || 0)}
                                                             </p>
                                                             <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tight">
-                                                                {transfer.createdAt?.seconds ? new Date(transfer.createdAt.seconds * 1000).toLocaleDateString() : "Juste à l'instant"}
+                                                                {transfer.createdAt?.seconds ? new Date(transfer.createdAt.seconds * 1000).toLocaleDateString() : t('history.table.justNow')}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -272,11 +277,11 @@ export default function MobileTransfer({
 
                                                 <div className="grid grid-cols-2 gap-4 px-2">
                                                     <div>
-                                                        <p className="text-[8px] font-black text-gray-300 uppercase tracking-widest mb-1">Destinataire</p>
-                                                        <p className="text-[11px] font-bold text-gray-600 truncate">{transfer.bankName || "Compte de référence"}</p>
+                                                        <p className="text-[8px] font-black text-gray-300 uppercase tracking-widest mb-1">{t('history.table.recipient')}</p>
+                                                        <p className="text-[11px] font-bold text-gray-600 truncate">{transfer.bankName || t('form.referenceAccount')}</p>
                                                     </div>
                                                     <div>
-                                                        <p className="text-[8px] font-black text-gray-300 uppercase tracking-widest mb-1">IBAN</p>
+                                                        <p className="text-[8px] font-black text-gray-300 uppercase tracking-widest mb-1">{t('history.table.iban')}</p>
                                                         <p className="text-[11px] font-mono text-gray-400">
                                                             {transfer.iban?.slice(0, 4)} •••• {transfer.iban?.slice(-4)}
                                                         </p>
@@ -290,7 +295,7 @@ export default function MobileTransfer({
                                         <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto">
                                             <Search className="w-6 h-6 text-gray-300" />
                                         </div>
-                                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Aucun virement</p>
+                                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t('history.none')}</p>
                                     </div>
                                 )}
                             </div>
@@ -306,7 +311,7 @@ export default function MobileTransfer({
                                         <ChevronLeft className="w-5 h-5 text-gray-600" />
                                     </button>
                                     <div className="text-center">
-                                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Page</p>
+                                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{t('history.pagination.page')}</p>
                                         <p className="text-sm font-black text-gray-900">{currentPage} / {Math.ceil(transfers.length / itemsPerPage)}</p>
                                     </div>
                                     <button

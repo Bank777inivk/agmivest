@@ -12,8 +12,9 @@ import {
     AlertCircle
 } from "lucide-react";
 import Image from "next/image";
-import { VerificationProps } from "./types";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { VerificationProps } from "./types";
 import MobileRedirectModal from "./MobileRedirectModal";
 
 export default function DesktopVerification({
@@ -32,6 +33,7 @@ export default function DesktopVerification({
     setCameraTarget,
     setIsCameraOpen
 }: VerificationProps) {
+    const t = useTranslations('Dashboard.KYC');
     const [isMobileRedirectOpen, setIsMobileRedirectOpen] = useState(false);
 
     return (
@@ -54,9 +56,9 @@ export default function DesktopVerification({
                                     <AlertCircle className="w-6 h-6 text-ely-mint" />
                                 </div>
                                 <div>
-                                    <p className="text-[10px] font-black text-ely-mint/80 uppercase tracking-[0.4em] leading-none mb-1.5">Conformité</p>
+                                    <p className="text-[10px] font-black text-ely-mint/80 uppercase tracking-[0.4em] leading-none mb-1.5">{t('Intro.badge')}</p>
                                     <h2 className="text-3xl font-black text-white tracking-tight leading-tight">
-                                        Finalisation de votre dossier
+                                        {t('Intro.title')}
                                     </h2>
                                 </div>
                             </div>
@@ -68,13 +70,13 @@ export default function DesktopVerification({
                                     <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center border border-white/5">
                                         <span className="text-[10px] font-black text-white">01</span>
                                     </div>
-                                    <h4 className="text-xs font-black uppercase text-ely-mint tracking-widest">Identité</h4>
+                                    <h4 className="text-xs font-black uppercase text-ely-mint tracking-widest">{t('Intro.step1.title')}</h4>
                                 </div>
                                 <div className="space-y-2">
                                     <p className="text-[13px] text-white font-bold leading-relaxed">
-                                        Photos couleur nettes uniquement.
+                                        {t('Intro.step1.desc')}
                                     </p>
-                                    <p className="text-xs text-white/50 font-medium">Les 4 bordures du document doivent impérativement être visibles.</p>
+                                    <p className="text-xs text-white/50 font-medium">{t('Intro.step1.note')}</p>
                                 </div>
                             </div>
                             <div className="space-y-4">
@@ -82,13 +84,13 @@ export default function DesktopVerification({
                                     <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center border border-white/5">
                                         <span className="text-[10px] font-black text-white">02</span>
                                     </div>
-                                    <h4 className="text-xs font-black uppercase text-ely-mint tracking-widest">Finance & Domicile</h4>
+                                    <h4 className="text-xs font-black uppercase text-ely-mint tracking-widest">{t('Intro.step2.title')}</h4>
                                 </div>
                                 <div className="space-y-2">
                                     <p className="text-[13px] text-white font-bold leading-relaxed">
-                                        Format PDF original (non scanné).
+                                        {t('Intro.step2.desc')}
                                     </p>
-                                    <p className="text-xs text-white/50 font-medium">Les captures d'écran ou scans seront rejetés par la conformité.</p>
+                                    <p className="text-xs text-white/50 font-medium">{t('Intro.step2.note')}</p>
                                 </div>
                             </div>
                         </div>
@@ -96,10 +98,10 @@ export default function DesktopVerification({
                         <div className="bg-black/20 backdrop-blur-sm p-5 rounded-[1.5rem] border border-white/5 flex items-center justify-between">
                             <div className="flex items-center gap-3">
                                 <div className="w-2 h-2 rounded-full bg-ely-mint animate-pulse" />
-                                <p className="text-[11px] font-bold text-white/70">Support technique disponible en cas de besoin</p>
+                                <p className="text-[11px] font-bold text-white/70">{t('Intro.support')}</p>
                             </div>
                             <div className="flex items-center gap-2 px-5 py-2.5 bg-white/10 rounded-xl border border-white/10 shrink-0">
-                                <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">Contact</span>
+                                <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">{t('Intro.contact')}</span>
                                 <span className="text-md font-black text-white whitespace-nowrap">AGM INVEST +33 7 56 84 41 45</span>
                             </div>
                         </div>
@@ -125,7 +127,7 @@ export default function DesktopVerification({
                                 {/* Nature Selector Integration */}
                                 {(doc.type === 'identity_1' || doc.type === 'identity_1_front') && (
                                     <div className="mb-6 flex items-center gap-4 border-b border-slate-50 pb-6">
-                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest min-w-[120px]">Nature ID 1</span>
+                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest min-w-[120px]">{t('Documents.nature_1')}</span>
                                         <div className="flex flex-wrap gap-2">
                                             {(['cni', 'passport', 'resident_card', 'driver_license'] as const).map(nature => (
                                                 <button
@@ -138,7 +140,7 @@ export default function DesktopVerification({
                                                             ? 'bg-slate-50 text-slate-200 border-transparent cursor-not-allowed opacity-40'
                                                             : 'bg-slate-50 text-slate-400 border-transparent hover:border-slate-200 hover:text-slate-600'}`}
                                                 >
-                                                    {nature === 'cni' ? 'ID Card' : nature === 'passport' ? 'Passport' : nature === 'resident_card' ? 'Residence' : 'Driver'}
+                                                    {t(`Documents.labels.${nature}`)}
                                                 </button>
                                             ))}
                                         </div>
@@ -146,7 +148,7 @@ export default function DesktopVerification({
                                 )}
                                 {(doc.type === 'identity_2' || doc.type === 'identity_2_front') && (
                                     <div className="mb-6 flex items-center gap-4 border-b border-slate-50 pb-6">
-                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest min-w-[120px]">Nature ID 2</span>
+                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest min-w-[120px]">{t('Documents.nature_2')}</span>
                                         <div className="flex flex-wrap gap-2">
                                             {(['cni', 'passport', 'resident_card', 'driver_license'] as const).map(nature => (
                                                 <button
@@ -159,7 +161,7 @@ export default function DesktopVerification({
                                                             ? 'bg-slate-50 text-slate-200 border-transparent cursor-not-allowed opacity-40'
                                                             : 'bg-slate-50 text-slate-400 border-transparent hover:border-slate-200 hover:text-slate-600'}`}
                                                 >
-                                                    {nature === 'cni' ? 'ID Card' : nature === 'passport' ? 'Passport' : nature === 'resident_card' ? 'Residence' : 'Driver'}
+                                                    {t(`Documents.labels.${nature}`)}
                                                 </button>
                                             ))}
                                         </div>
@@ -176,7 +178,7 @@ export default function DesktopVerification({
                                         <div className="flex items-center gap-3 mb-1">
                                             <h3 className="text-lg font-bold text-slate-900">{doc.label}</h3>
                                             {doc.reviewStatus === 'approved' && (
-                                                <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-[9px] font-black uppercase tracking-[0.2em]">Cértifié</span>
+                                                <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-[9px] font-black uppercase tracking-[0.2em]">{t('Status.certified')}</span>
                                             )}
                                         </div>
                                         <p className="text-sm text-slate-400 font-medium">{doc.description}</p>
@@ -210,7 +212,7 @@ export default function DesktopVerification({
                                                         className="h-14 px-6 rounded-2xl bg-white border border-slate-100 text-slate-900 hover:bg-slate-50 hover:border-slate-200 transition-all flex items-center gap-3 font-bold text-sm shadow-sm"
                                                     >
                                                         <Camera className="w-5 h-5" />
-                                                        Capture
+                                                        {t('Actions.capture')}
                                                     </button>
                                                 )}
                                                 <button
@@ -221,7 +223,7 @@ export default function DesktopVerification({
                                                         }`}
                                                 >
                                                     <Upload className="w-5 h-5" />
-                                                    Uploader
+                                                    {t('Actions.upload')}
                                                 </button>
                                             </div>
                                         )}
@@ -239,7 +241,7 @@ export default function DesktopVerification({
                 <div className="bg-white p-8 rounded-[2.5rem] border-2 border-slate-50 shadow-sm space-y-6">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Global Status</p>
+                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{t('Status.global')}</p>
                             <p className="text-xl font-black text-slate-900">{completedCount} / {docCount}</p>
                         </div>
                         <div className="relative w-16 h-16">
@@ -265,7 +267,7 @@ export default function DesktopVerification({
                                 {doc.status === 'success' ? (
                                     <span className="text-emerald-500 flex items-center gap-1"><CheckCircle className="w-3 h-3" /> OK</span>
                                 ) : (
-                                    <span className="text-slate-300">Manquant</span>
+                                    <span className="text-slate-300">{t('Status.missing')}</span>
                                 )}
                             </div>
                         ))}
@@ -275,8 +277,8 @@ export default function DesktopVerification({
                 {/* Submit Card */}
                 <div className="bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-2xl shadow-slate-200 space-y-8">
                     <div className="space-y-1">
-                        <h3 className="font-black text-xl">Transmission</h3>
-                        <p className="text-xs text-slate-400 font-medium">Envoyez vos documents pour examen.</p>
+                        <h3 className="font-black text-xl">{t('Status.transmission')}</h3>
+                        <p className="text-xs text-slate-400 font-medium">{t('Status.transmission_desc', { defaultValue: 'Envoyez vos documents pour examen.' })}</p>
                     </div>
 
                     <button
@@ -291,16 +293,16 @@ export default function DesktopVerification({
                             {isSubmitting ? (
                                 <>
                                     <Loader2 className="w-5 h-5 animate-spin" />
-                                    En cours...
+                                    {t('Status.transmitting')}
                                 </>
                             ) : isAllSuccess ? (
                                 <>
                                     <CheckCircle className="w-5 h-5" />
-                                    Transmis
+                                    {t('Status.transmitted')}
                                 </>
                             ) : (
                                 <>
-                                    Envoyer le dossier
+                                    {t('Status.submit')}
                                     <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                 </>
                             )}
@@ -309,7 +311,7 @@ export default function DesktopVerification({
 
                     <div className="pt-2 border-t border-white/5 flex items-center justify-center gap-2 text-[9px] font-black text-slate-500 uppercase tracking-widest">
                         <Info className="w-3 h-3" />
-                        Validation securisée AES-256
+                        {t('Status.encryption')}
                     </div>
                 </div>
             </div>

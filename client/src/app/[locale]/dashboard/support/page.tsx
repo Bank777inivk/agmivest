@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import ChatSupport from "@/components/dashboard/ChatSupport";
 import {
     MessageSquare,
@@ -17,28 +18,30 @@ import {
 } from "lucide-react";
 
 export default function SupportPage() {
+    const t = useTranslations('Dashboard.Support');
+    
     const contactMethods = [
         {
             icon: MessageSquare,
-            title: "Chat en direct",
-            value: "Conseiller en ligne",
-            desc: "Réponse immédiate",
+            title: t('Methods.chat.title'),
+            value: t('Methods.chat.value'),
+            desc: t('Methods.chat.desc'),
             color: "text-blue-400",
             bg: "bg-slate-800/50"
         },
         {
             icon: Phone,
-            title: "Ligne Téléphonique",
-            value: "AGM INVEST +33 7 56 84 41 45",
-            desc: "9h - 18h (Lun-Ven)",
+            title: t('Methods.phone.title'),
+            value: t('Methods.phone.value'),
+            desc: t('Methods.phone.desc'),
             color: "text-blue-400",
             bg: "bg-slate-800/50"
         },
         {
             icon: Mail,
-            title: "Assistance Email",
-            value: "contact@agm-negoce.com",
-            desc: "Sous 24 heures",
+            title: t('Methods.email.title'),
+            value: t('Methods.email.value'),
+            desc: t('Methods.email.desc'),
             color: "text-blue-400",
             bg: "bg-slate-800/50"
         },
@@ -61,32 +64,8 @@ export default function SupportPage() {
 
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
-    const faqs = [
-        {
-            q: "Comment se passe la vérification d'identité ?",
-            a: "La vérification s'effectue entièrement en ligne. Il vous suffit de télécharger une pièce d'identité valide et de réaliser un selfie vidéo rapide pour confirmer votre identité en quelques secondes."
-        },
-        {
-            q: "Quels sont les délais d'accord de prêt ?",
-            a: "Une fois votre dossier complet, vous recevez une réponse de principe immédiate. L'analyse finale et le déblocage des fonds interviennent généralement sous 24 à 48 heures ouvrées."
-        },
-        {
-            q: "Puis-je modifier ma demande après soumission ?",
-            a: "Tant que votre demande est en statut 'En attente', vous pouvez contacter notre support pour apporter des modifications. Une fois validée, les modifications ne sont plus possibles."
-        },
-        {
-            q: "Comment télécharger mon contrat signé ?",
-            a: "Votre contrat est disponible dans la section 'Mes Documents' de votre tableau de bord dès que la signature électronique est confirmée."
-        },
-        {
-            q: "Quels sont les critères d'éligibilité ?",
-            a: "Vous devez être majeur, résider dans un pays éligible et justifier de revenus stables. Chaque projet est étudié de manière personnalisée par nos experts."
-        },
-        {
-            q: "Comment sécuriser mon compte ?",
-            a: "Nous recommandons d'activer l'authentification à deux facteurs (2FA) dans vos paramètres et d'utiliser un mot de passe unique et complexe."
-        }
-    ];
+    // Récupération des FAQs depuis les traductions
+    const faqs = t.raw('FAQs') as { q: string, a: string }[];
 
     return (
         <div className="min-h-screen pb-20 bg-[#F8FAFC]">
@@ -95,22 +74,22 @@ export default function SupportPage() {
                 <header className="space-y-4">
                     <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-400 shadow-sm">
                         <LifeBuoy className="w-3.5 h-3.5" />
-                        <span className="text-[10px] font-bold uppercase tracking-widest">Aide & Support</span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest">{t('badge')}</span>
                     </div>
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                         <div className="space-y-2">
                             <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
-                                Centre d'assistance
+                                {t('title')}
                             </h1>
                             <p className="text-slate-500 font-medium max-w-lg">
-                                Nous sommes là pour répondre à vos questions et vous accompagner.
+                                {t('subtitle')}
                             </p>
                         </div>
                         <div className="relative group w-full md:w-80">
                             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-ely-blue transition-colors" />
                             <input
                                 type="text"
-                                placeholder="Rechercher une solution..."
+                                placeholder={t('searchPlaceholder')}
                                 className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-ely-blue/5 focus:border-ely-blue transition-all font-medium text-slate-900 shadow-sm"
                             />
                         </div>
@@ -146,17 +125,17 @@ export default function SupportPage() {
                             </div>
                             <button
                                 onClick={() => {
-                                    if (method.title === "Chat en direct") {
+                                    if (method.title === t('Methods.chat.title')) {
                                         window.dispatchEvent(new CustomEvent('open-chat'));
-                                    } else if (method.title === "Ligne Téléphonique") {
+                                    } else if (method.title === t('Methods.phone.title')) {
                                         window.location.href = `tel:${method.value.replace(/\s/g, '')}`;
-                                    } else if (method.title === "Assistance Email") {
+                                    } else if (method.title === t('Methods.email.title')) {
                                         window.location.href = `mailto:${method.value}`;
                                     }
                                 }}
                                 className="w-full py-3.5 bg-white text-[#002B70] rounded-xl font-bold text-[10px] uppercase tracking-[0.2em] transition-all hover:bg-blue-50 flex items-center justify-center gap-2 shadow-lg shadow-blue-900/40"
                             >
-                                Contacter
+                                {t('contactButton')}
                                 <ArrowRight className="w-3.5 h-3.5" />
                             </button>
                         </motion.div>
@@ -174,7 +153,7 @@ export default function SupportPage() {
                         <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 border border-slate-100">
                             <BookOpen className="w-6 h-6" />
                         </div>
-                        <h2 className="text-xl md:text-2xl font-black text-slate-900 uppercase tracking-tight leading-none">Questions Fréquentes</h2>
+                        <h2 className="text-xl md:text-2xl font-black text-slate-900 uppercase tracking-tight leading-none">{t('faqTitle')}</h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
@@ -185,7 +164,6 @@ export default function SupportPage() {
                             >
                                 <button
                                     onClick={() => setExpandedIndex(expandedIndex === i ? null : i)}
-                                    onMouseEnter={() => setExpandedIndex(i)}
                                     className="w-full flex items-center justify-between py-6 border-b border-slate-50 hover:bg-slate-50/50 px-2 rounded-xl transition-all cursor-pointer text-left"
                                 >
                                     <span className={`font-bold transition-colors text-sm ${expandedIndex === i ? 'text-ely-blue' : 'text-slate-700 group-hover:text-ely-blue'}`}>
@@ -214,7 +192,7 @@ export default function SupportPage() {
                     </div>
 
                     <button className="w-full py-4 text-center text-slate-400 font-bold text-xs uppercase tracking-[0.2em] hover:text-ely-blue transition-colors border-t border-slate-50 pt-8 mt-4">
-                        Afficher toutes les questions
+                        {t('faqAll')}
                     </button>
                 </motion.section>
 
@@ -225,8 +203,8 @@ export default function SupportPage() {
                             <ShieldCheck className="w-5 h-5 text-emerald-500" />
                         </div>
                         <div className="space-y-0.5">
-                            <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Support Certifié Sécurisé</p>
-                            <span className="text-[10px] uppercase tracking-widest font-bold">Protocoles de chiffrement actifs</span>
+                            <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest">{t('security.title')}</p>
+                            <span className="text-[10px] uppercase tracking-widest font-bold">{t('security.desc')}</span>
                         </div>
                     </div>
                 </div>

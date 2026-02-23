@@ -124,8 +124,8 @@ export default function VerificationPage() {
 
             // Create Notification
             await createNotification(userId, {
-                title: "Vérification transmise 📸",
-                message: "Votre selfie et vidéo sont en cours d'analyse. Merci de patienter.",
+                title: 'Verification.Notifications.submittedTitle',
+                message: 'Verification.Notifications.submittedMessage',
                 type: 'info'
             });
 
@@ -140,7 +140,7 @@ export default function VerificationPage() {
             }, 3000);
         } catch (error) {
             console.error("Submit error:", error);
-            alert("Une erreur est survenue lors de l'envoi.");
+            alert("❌ " + t('Verification.Notifications.error'));
         } finally {
             setIsSubmitting(false);
         }
@@ -160,8 +160,8 @@ export default function VerificationPage() {
                     <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                 </button>
                 <div>
-                    <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">Vérification</h1>
-                    <p className="text-slate-500 font-medium text-lg leading-none mt-1">Identité sécurisée par biométrie.</p>
+                    <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">{t('Verification.title')}</h1>
+                    <p className="text-slate-500 font-medium text-lg leading-none mt-1">{t('Verification.subtitle')}</p>
                 </div>
             </header>
 
@@ -180,9 +180,9 @@ export default function VerificationPage() {
                             </div>
 
                             <div className="space-y-4">
-                                <h2 className="text-3xl font-black text-slate-900 tracking-tight uppercase">Vérification de Sécurité</h2>
+                                <h2 className="text-3xl font-black text-slate-900 tracking-tight uppercase">{t('Verification.Intro.title')}</h2>
                                 <p className="text-slate-500 text-lg font-medium leading-relaxed max-w-lg mx-auto">
-                                    Pour valider votre dépôt d'authentification et sécuriser l'accès aux fonds, nous devons confirmer votre identité par un selfie en direct et une courte séquence vidéo.
+                                    {t('Verification.Intro.description')}
                                 </p>
                             </div>
 
@@ -192,8 +192,8 @@ export default function VerificationPage() {
                                         <Camera className="w-5 h-5" />
                                     </div>
                                     <p className="text-[11px] font-bold text-slate-500 leading-tight uppercase tracking-wider pt-1">
-                                        <span className="text-slate-900 block mb-1">Selfie Photo</span>
-                                        Visage dégagé, bonne luminosité.
+                                        <span className="text-slate-900 block mb-1">{t('Verification.Intro.selfieTitle')}</span>
+                                        {t('Verification.Intro.selfieDesc')}
                                     </p>
                                 </div>
                                 <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100 flex items-start gap-4">
@@ -201,8 +201,8 @@ export default function VerificationPage() {
                                         <Video className="w-5 h-5" />
                                     </div>
                                     <p className="text-[11px] font-bold text-slate-500 leading-tight uppercase tracking-wider pt-1">
-                                        <span className="text-slate-900 block mb-1">Selfie Vidéo (10s)</span>
-                                        Tournez légèrement la tête.
+                                        <span className="text-slate-900 block mb-1">{t('Verification.Intro.videoTitle')}</span>
+                                        {t('Verification.Intro.videoDesc')}
                                     </p>
                                 </div>
                             </div>
@@ -211,9 +211,9 @@ export default function VerificationPage() {
                                 onClick={() => router.push("/dashboard/verification/camera?step=1")}
                                 className="w-full py-6 bg-ely-blue text-white rounded-[2rem] font-black text-sm uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20 active:scale-95"
                             >
-                                Démarrer la vérification
+                                {t('Verification.Intro.startButton')}
                             </button>
-                            <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Action obligatoire • Conforme GDPR</p>
+                            <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest">{t('Verification.Intro.gdpr')}</p>
                         </motion.div>
                     )}
 
@@ -229,9 +229,9 @@ export default function VerificationPage() {
                             </div>
 
                             <div className="space-y-4">
-                                <h2 className="text-3xl font-black text-slate-900 tracking-tight uppercase">Session en cours</h2>
+                                <h2 className="text-3xl font-black text-slate-900 tracking-tight uppercase">{t('Verification.Processing.title')}</h2>
                                 <p className="text-slate-500 text-lg font-medium leading-relaxed max-w-lg mx-auto">
-                                    Nous avons détecté des captures en attente sur cet appareil. Voulez-vous finaliser la transmission ou recommencer ?
+                                    {t('Verification.Processing.description')}
                                 </p>
                             </div>
 
@@ -240,7 +240,7 @@ export default function VerificationPage() {
                                     onClick={() => router.push("/dashboard/verification/camera?step=2")}
                                     className="w-full py-6 bg-ely-blue text-white rounded-[2rem] font-black text-sm uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20 active:scale-95"
                                 >
-                                    Continuer vers l'envoi
+                                    {t('Verification.Processing.continueButton')}
                                 </button>
                                 <button
                                     onClick={async () => {
@@ -251,7 +251,7 @@ export default function VerificationPage() {
                                     }}
                                     className="text-slate-400 text-xs font-bold uppercase tracking-widest hover:text-slate-600 transition-colors"
                                 >
-                                    Effacer et recommencer
+                                    {t('Verification.Processing.resetButton')}
                                 </button>
                             </div>
                         </motion.div>

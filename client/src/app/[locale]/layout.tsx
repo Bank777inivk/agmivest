@@ -42,9 +42,8 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <head />
-      <body
+    <>
+      <div
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
@@ -72,7 +71,7 @@ export default async function LocaleLayout({
           </Suspense>
           {children}
         </NextIntlClientProvider>
-      </body>
-    </html>
+      </div>
+    </>
   );
 }
