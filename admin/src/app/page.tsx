@@ -502,7 +502,9 @@ const sendAdminEmail = async (to: string, template: string, language: string, da
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.agm-negoce.com";
     const apiKey = process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024";
 
-    await fetch(`${baseUrl}/api/email`, {
+    console.log(`[Email] Sending ${template} to ${to} via ${baseUrl}/api/email`);
+
+    const response = await fetch(`${baseUrl}/api/email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -514,8 +516,15 @@ const sendAdminEmail = async (to: string, template: string, language: string, da
       }),
       mode: 'cors'
     });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      console.error(`[Email] Server responded with status ${response.status}:`, errorData);
+    } else {
+      console.log(`[Email] ${template} sent successfully.`);
+    }
   } catch (error) {
-    console.error(`Failed to send ${template} email:`, error);
+    console.error(`[Email] Fetch failed for ${template}:`, error);
   }
 };
 
