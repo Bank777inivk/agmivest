@@ -1,20 +1,20 @@
 export function emailLayout(content: string, lang: string = 'fr'): string {
-    const footers: Record<string, string> = {
-        fr: "Vous recevez cet email car vous êtes inscrit sur AGM INVEST. Ne pas répondre à cet email.",
-        en: "You are receiving this email because you are registered on AGM INVEST. Do not reply to this email.",
-        es: "Recibe este correo porque está registrado en AGM INVEST. No responda a este correo.",
-        it: "Stai ricevendo questa email perché sei registrato su AGM INVEST. Non rispondere a questa email.",
-        de: "Sie erhalten diese E-Mail, weil Sie bei AGM INVEST registriert sind. Bitte nicht auf diese E-Mail antworten.",
-        nl: "U ontvangt deze e-mail omdat u geregistreerd bent bij AGM INVEST. Reageer niet op deze e-mail.",
-        pl: "Otrzymujesz tę wiadomość, ponieważ jesteś zarejestrowany w AGM INVEST. Nie odpowiadaj na tę wiadomość.",
-        pt: "Você está recebendo este email porque está registrado no AGM INVEST. Não responda a este email.",
-        ro: "Primiți acest email deoarece sunteți înregistrat pe AGM INVEST. Nu răspundeți la acest email.",
-        sv: "Du får det här e-postmeddelandet eftersom du är registrerad på AGM INVEST. Svara inte på det här e-postmeddelandet.",
-    };
+  const footers: Record<string, string> = {
+    fr: "Vous recevez cet email car vous êtes inscrit sur AGM INVEST. Ne pas répondre à cet email.",
+    en: "You are receiving this email because you are registered on AGM INVEST. Do not reply to this email.",
+    es: "Recibe este correo porque está registrado en AGM INVEST. No responda a este correo.",
+    it: "Stai ricevendo questa email perché sei registrato su AGM INVEST. Non rispondere a questa email.",
+    de: "Sie erhalten diese E-Mail, weil Sie bei AGM INVEST registriert sind. Bitte nicht auf diese E-Mail antworten.",
+    nl: "U ontvangt deze e-mail omdat u geregistreerd bent bij AGM INVEST. Reageer niet op deze e-mail.",
+    pl: "Otrzymujesz tę wiadomość, ponieważ jesteś zarejestrowany w AGM INVEST. Nie odpowiadaj na tę wiadomość.",
+    pt: "Você está recebendo este email porque está registrado no AGM INVEST. Não responda a este email.",
+    ro: "Primiți acest email deoarece sunteți înregistrat pe AGM INVEST. Nu răspundeți la acest email.",
+    sv: "Du får det här e-postmeddelandet eftersom du är registrerad på AGM INVEST. Svara inte på det här e-postmeddelandet.",
+  };
 
-    const footer = footers[lang] || footers['fr'];
+  const footer = footers[lang] || footers['fr'];
 
-    return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html lang="${lang}">
 <head>
   <meta charset="UTF-8" />
@@ -59,9 +59,9 @@ export function emailLayout(content: string, lang: string = 'fr'): string {
 }
 
 export function btn(text: string, url: string): string {
-    return `<div style="text-align:center;margin:32px 0;">
+  return `<div style="text-align:center;margin:32px 0;">
     <a href="${url}" style="display:inline-block;background:linear-gradient(135deg,#1E3A5F,#0EA5E9);color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:700;font-size:14px;letter-spacing:0.3px;">${text}</a>
   </div>`;
 }
 
-export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://agm-invest.vercel.app';
+export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://www.agm-negoce.com';

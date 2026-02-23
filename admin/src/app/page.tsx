@@ -499,14 +499,17 @@ function getContractLabel(contractType: string | undefined): string {
 // Helper to send emails via the client API
 const sendAdminEmail = async (to: string, template: string, language: string, data: any) => {
   try {
-    await fetch("https://agm-invest.vercel.app/api/email", {
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.agm-negoce.com";
+    const apiKey = process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024";
+
+    await fetch(`${baseUrl}/api/email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         to,
         template,
         language: language || 'fr',
-        apiKey: "agm-invest-secure-email-key", // In sync with API
+        apiKey,
         data
       }),
       mode: 'cors'
