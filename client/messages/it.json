@@ -1192,41 +1192,53 @@
   },
   "Dashboard": {
     "Notifications": {
-      "requestSubmitted": {
-        "title": "Richiesta di prestito inviata 📄",
-        "message": "La sua richiesta di prestito di {amount} è stata registrata con successo."
+      "loanApproved": {
+        "title": "Prestito Approvato! 🎉",
+        "message": "La tua richiesta di prestito di {amount} € è stata approvata. Credito disponibile sul tuo conto."
+      },
+      "transferApproved": {
+        "title": "Bonifico Validato ✅",
+        "message": "Il tuo bonifico di {amount} € è stato validato ed è in fase di elaborazione."
+      },
+      "transferRejected": {
+        "title": "Bonifico Rifiutato ❌",
+        "message": "Il tuo bonifico di {amount} € è stato rifiutato. Motivo: {reason}."
       },
       "transferInitiated": {
-        "title": "Bonifico avviato 🚀",
-        "message": "Il suo bonifico di {amount} è in fase di elaborazione."
+        "title": "Bonifico Iniziato 💸",
+        "message": "La tua richiesta di bonifico di {amount} € è stata ricevuta ed è in attesa di convalida."
       },
-      "newMessage": {
-        "title": "Nuovo messaggio 💬",
-        "message": "Ha ricevuto un nuovo messaggio dal suo consulente."
-      },
-      "statusUpdate": {
-        "title": "Stato pratica aggiornato 🔔",
-        "message": "Lo stato della sua pratica è stato aggiornato."
-      },
-      "verified": {
-        "title": "Identità verificata ✅",
-        "message": "Congratulazioni! La sua identità è stata convalidata con successo."
-      },
-      "rejected": {
-        "title": "Identità rifiutata ❌",
-        "message": "La sua verifica dell'identità è stata rifiutata. Si prega di controllare i documenti."
-      },
-      "partialRejection": {
-        "title": "Documenti incompleti ⚠️",
-        "message": "Alcuni documenti nella sua pratica devono essere completati."
+      "requestSubmitted": {
+        "title": "Richiesta Ricevuta 📥",
+        "message": "La tua richiesta di prestito di {amount} € è stata trasmessa con successo."
       },
       "verificationSubmitted": {
-        "title": "Verifica inviata 🛡️",
-        "message": "I suoi documenti d'identità sono in fase di revisione."
+        "title": "Verifica Inviata 📸",
+        "message": "Il tuo selfie e il video sono in fase di analisi. Si prega di attendere."
+      },
+      "statusUpdate": {
+        "title": "Aggiornamento Stato",
+        "message": "Il tuo stato di verifica è stato aggiornato."
+      },
+      "verified": {
+        "title": "Profilo Verificato ✅",
+        "message": "Congratulazioni! La tua identità è stata validata con successo."
+      },
+      "rejected": {
+        "title": "Profilo Rifiutato ❌",
+        "message": "La tua verifica dell'identità è stata rifiutata. Controlla i tuoi documenti."
+      },
+      "partialRejection": {
+        "title": "Azione Richiesta ⚠️",
+        "message": "Alcuni documenti sono stati rifiutati. Si prega di inviarli di nuovo."
       },
       "securityUpdate": {
-        "title": "Sicurezza aggiornata 🔒",
-        "message": "La sua password è stata modificata con successo."
+        "title": "Sicurezza Aggiornata 🔒",
+        "message": "La tua password è stata modificata con successo."
+      },
+      "newMessage": {
+        "title": "Nuovo Messaggio 💬",
+        "message": "Hai ricevuto un nuovo messaggio dal tuo consulente."
       }
     },
     "Layout": {
@@ -1263,7 +1275,8 @@
         "actionRequired": "Azione Richiesta",
         "identityRejected": "Identità Rifiutata",
         "docsToComplete": "Documenti da completare",
-        "accountToVerify": "Conto da verificare"
+        "accountToVerify": "Conto da verificare",
+        "justNow": "Proprio ora"
       },
       "Notifications": {
         "statusUpdate": {

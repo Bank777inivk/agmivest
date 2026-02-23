@@ -1179,41 +1179,53 @@
   },
   "Dashboard": {
     "Notifications": {
-      "requestSubmitted": {
-        "title": "Pedido de empréstimo submetido 📄",
-        "message": "O seu pedido de empréstimo de {amount} foi registado com sucesso."
+      "loanApproved": {
+        "title": "Empréstimo Aprovado! 🎉",
+        "message": "O seu pedido de empréstimo de {amount} € foi aprovado. Crédito disponível na sua conta."
+      },
+      "transferApproved": {
+        "title": "Transferência Validada ✅",
+        "message": "A sua transferência de {amount} € foi validada e está em processamento."
+      },
+      "transferRejected": {
+        "title": "Transferência Rejeitada ❌",
+        "message": "A sua transferência de {amount} € foi rejeitada. Motivo: {reason}."
       },
       "transferInitiated": {
-        "title": "Transferência iniciada 🚀",
-        "message": "A sua transferência de {amount} está a ser processada."
+        "title": "Transferência Iniciada 💸",
+        "message": "O seu pedido de transferência de {amount} € foi recebido e aguarda validação."
       },
-      "newMessage": {
-        "title": "Nova mensagem 💬",
-        "message": "Recebeu uma nova mensagem do seu consultor."
+      "requestSubmitted": {
+        "title": "Pedido Recebido 📥",
+        "message": "O seu pedido de empréstimo de {amount} € foi enviado com sucesso."
+      },
+      "verificationSubmitted": {
+        "title": "Verificação Enviada 📸",
+        "message": "O seu selfie e vídeo estão a ser analisados. Por favor, aguarde."
       },
       "statusUpdate": {
-        "title": "Estado do processo atualizado 🔔",
-        "message": "O estado do seu processo foi atualizado."
+        "title": "Atualização de Estado",
+        "message": "O seu estado de verificação foi atualizado."
       },
       "verified": {
-        "title": "Identidade verificada ✅",
+        "title": "Perfil Verificado ✅",
         "message": "Parabéns! A sua identidade foi validada com sucesso."
       },
       "rejected": {
-        "title": "Identidade rejeitada ❌",
+        "title": "Perfil Rejeitado ❌",
         "message": "A sua verificação de identidade foi rejeitada. Por favor, verifique os seus documentos."
       },
       "partialRejection": {
-        "title": "Documentos incompletos ⚠️",
-        "message": "Alguns documentos no seu processo precisam de ser completados."
-      },
-      "verificationSubmitted": {
-        "title": "Verificação submetida 🛡️",
-        "message": "Os seus documentos de identidade estão a ser analisados."
+        "title": "Ação Requerida ⚠️",
+        "message": "Alguns documentos foram rejeitados. Por favor, reenvie-os."
       },
       "securityUpdate": {
-        "title": "Segurança atualizada 🔒",
+        "title": "Segurança Atualizada 🔒",
         "message": "A sua palavra-passe foi alterada com sucesso."
+      },
+      "newMessage": {
+        "title": "Nova Mensagem 💬",
+        "message": "Recebeu uma nova mensagem do seu consultor."
       }
     },
     "Layout": {
@@ -1250,7 +1262,8 @@
         "actionRequired": "Ação Requerida",
         "identityRejected": "Identidade Rejeitada",
         "docsToComplete": "Documentos a completar",
-        "accountToVerify": "Conta a verificar"
+        "accountToVerify": "Conta a verificar",
+        "justNow": "Agora mesmo"
       },
       "Notifications": {
         "statusUpdate": {

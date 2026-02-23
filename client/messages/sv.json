@@ -1179,41 +1179,53 @@
   },
   "Dashboard": {
     "Notifications": {
-      "requestSubmitted": {
-        "title": "Låneansökan skickad 📄",
-        "message": "Din låneansökan på {amount} har registrerats framgångsrikt."
+      "loanApproved": {
+        "title": "Lån Beviljat! 🎉",
+        "message": "Din låneansökan på {amount} € har beviljats. Kredit tillgänglig på ditt konto."
+      },
+      "transferApproved": {
+        "title": "Överföring Validerad ✅",
+        "message": "Din överföring på {amount} € har validerats och bearbetas."
+      },
+      "transferRejected": {
+        "title": "Överföring Avvisad ❌",
+        "message": "Din överföring på {amount} € avvisades. Orsak: {reason}."
       },
       "transferInitiated": {
-        "title": "Överföring initierad 🚀",
-        "message": "Din överföring på {amount} behandlas."
+        "title": "Överföring Inledd 💸",
+        "message": "Din begäran om överföring på {amount} € har mottagits och väntar på godkännande."
       },
-      "newMessage": {
-        "title": "Nytt meddelande 💬",
-        "message": "Du har fått ett nytt meddelande från din rådgivare."
+      "requestSubmitted": {
+        "title": "Ansökan Mottagen 📥",
+        "message": "Din låneansökan på {amount} € har skickats framgångsrikt."
+      },
+      "verificationSubmitted": {
+        "title": "Verifiering Inskickad 📸",
+        "message": "Ditt selfie och video analyseras. Vänligen vänta."
       },
       "statusUpdate": {
-        "title": "Filstatus uppdaterad 🔔",
-        "message": "Din filstatus har uppdaterats."
+        "title": "Statusuppdatering",
+        "message": "Din verifieringsstatus har uppdaterats."
       },
       "verified": {
-        "title": "Identitet verifierad ✅",
+        "title": "Profil Verifierad ✅",
         "message": "Grattis! Din identitet har validerats framgångsrikt."
       },
       "rejected": {
-        "title": "Identitet avvisad ❌",
-        "message": "Din identitetsverifiering har avvisats. Kontrollera dina dokument."
+        "title": "Profil Avvisad ❌",
+        "message": "Din identitetsverifiering avvisades. Kontrollera dina dokument."
       },
       "partialRejection": {
-        "title": "Ofullständiga dokument ⚠️",
-        "message": "Vissa dokument i din fil behöver kompletteras."
-      },
-      "verificationSubmitted": {
-        "title": "Verifiering skickad 🛡️",
-        "message": "Dina identitetshandlingar granskas."
+        "title": "Åtgärd Krävs ⚠️",
+        "message": "Vissa dokument avvisades. Skicka in dem igen."
       },
       "securityUpdate": {
-        "title": "Säkerhet uppdaterad 🔒",
+        "title": "Säkerhet Uppdaterad 🔒",
         "message": "Ditt lösenord har ändrats framgångsrikt."
+      },
+      "newMessage": {
+        "title": "Nytt Meddelande 💬",
+        "message": "Du har fått ett nytt meddelande från din rådgivare."
       }
     },
     "Layout": {
@@ -1250,7 +1262,8 @@
         "actionRequired": "Åtgärd krävs",
         "identityRejected": "Identitet nekad",
         "docsToComplete": "Dokument att slutföra",
-        "accountToVerify": "Konto som ska verifieras"
+        "accountToVerify": "Konto som ska verifieras",
+        "justNow": "Just nu"
       },
       "Notifications": {
         "statusUpdate": {

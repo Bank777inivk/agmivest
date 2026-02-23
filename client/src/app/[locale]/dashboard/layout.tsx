@@ -4,12 +4,11 @@ import { useState, useEffect } from "react";
 import Sidebar from "@/components/dashboard/Sidebar";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import IdentityBanner from "@/components/dashboard/IdentityBanner";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "@/i18n/routing";
 import { auth, db } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, onSnapshot } from "firebase/firestore";
-import { useRouter } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { createNotification } from "@/hooks/useNotifications";
 import { useRef } from "react";
 
@@ -25,6 +24,7 @@ export default function DashboardLayout({
     const [userName, setUserName] = useState<string>("");
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const router = useRouter();
+    const locale = useLocale();
     const t = useTranslations();
     const pathname = usePathname();
     const prevStatusRef = useRef<string | null>(null);
@@ -56,6 +56,15 @@ export default function DashboardLayout({
                         const newStatus = data.idStatus || null;
                         setIdStatus(newStatus);
                         setUserName(`${data.firstName} ${data.lastName}`);
+
+                        // Sync language preference from Firestore
+                        const preferredLanguage = data.language;
+                        if (preferredLanguage && preferredLanguage !== locale) {
+                            const supportedLocales = ['fr', 'en', 'es', 'it', 'pt', 'de', 'nl', 'pl', 'ro', 'sv'];
+                            if (supportedLocales.includes(preferredLanguage)) {
+                                router.push(pathname, { locale: preferredLanguage as any });
+                            }
+                        }
 
                         // Notification on KYC status change
                         if (hasInitialStatus.current && prevStatusRef.current !== newStatus && newStatus) {

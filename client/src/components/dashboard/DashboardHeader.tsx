@@ -139,10 +139,7 @@ export default function DashboardHeader({ onMenuClick, isCollapsed, idStatus, us
             </div>
 
             <div className="flex items-center gap-2 md:gap-6">
-                {/* Language Selector */}
-                <div className="hidden md:block">
-                    <LanguageSwitcher />
-                </div>
+                {/* Language Selector disabled in dashboard header as per request */}
 
                 {/* Notifications */}
                 <div className="relative" ref={notificationRef}>

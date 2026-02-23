@@ -10,6 +10,7 @@
     "update-reviews": "node scripts/updateReviews.js"
   },
   "dependencies": {
+    "@types/nodemailer": "^7.0.11",
     "@types/nprogress": "^0.2.3",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
@@ -20,6 +21,7 @@
     "lucide-react": "^0.562.0",
     "next": "16.1.4",
     "next-intl": "^4.8.2",
+    "nodemailer": "^8.0.1",
     "nprogress": "^0.2.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",

@@ -1179,41 +1179,53 @@
   },
   "Dashboard": {
     "Notifications": {
-      "requestSubmitted": {
-        "title": "Cerere de împrumut trimisă 📄",
-        "message": "Cererea dumneavoastră de împrumut pentru {amount} a fost înregistrată cu succes."
+      "loanApproved": {
+        "title": "Împrumut Aprobat! 🎉",
+        "message": "Cererea dvs. de împrumut de {amount} € a fost aprobată. Credit disponibil în contul dvs."
+      },
+      "transferApproved": {
+        "title": "Transfer Validat ✅",
+        "message": "Transferul dvs. de {amount} € a fost validat și este în curs de procesare."
+      },
+      "transferRejected": {
+        "title": "Transfer Respins ❌",
+        "message": "Transferul dvs. de {amount} € a fost respins. Motiv: {reason}."
       },
       "transferInitiated": {
-        "title": "Transfer inițiat 🚀",
-        "message": "Transferul dumneavoastră de {amount} este în curs de procesare."
+        "title": "Transfer Inițiat 💸",
+        "message": "Cererea dvs. de transfer de {amount} € a fost primită și așteaptă validarea."
       },
-      "newMessage": {
-        "title": "Mesaj nou 💬",
-        "message": "Ați primit un mesaj nou de la consilierul dumneavoastră."
-      },
-      "statusUpdate": {
-        "title": "Starea dosarului actualizată 🔔",
-        "message": "Starea dosarului dumneavoastră a fost actualizată."
-      },
-      "verified": {
-        "title": "Identitate verificată ✅",
-        "message": "Felicitări! Identitatea dumneavoastră a fost validată cu succes."
-      },
-      "rejected": {
-        "title": "Identitate respinsă ❌",
-        "message": "Verificarea identității dumneavoastră a fost respinsă. Vă rugăm să verificați documentele."
-      },
-      "partialRejection": {
-        "title": "Documente incomplete ⚠️",
-        "message": "Unele documente din dosarul dumneavoastră trebuie completate."
+      "requestSubmitted": {
+        "title": "Cerere Primită 📥",
+        "message": "Cererea dvs. de împrumut de {amount} € a fost transmisă cu succes."
       },
       "verificationSubmitted": {
-        "title": "Verificare trimisă 🛡️",
-        "message": "Documentele dumneavoastră de identitate sunt în curs de examinare."
+        "title": "Verificare Trimisă 📸",
+        "message": "Selfie-ul și videoclipul dvs. sunt în curs de analiză. Vă rugăm să așteptați."
+      },
+      "statusUpdate": {
+        "title": "Actualizare Status",
+        "message": "Statusul verificării dvs. a fost actualizat."
+      },
+      "verified": {
+        "title": "Profil Verificat ✅",
+        "message": "Felicitări! Identitatea dvs. a fost validată cu succes."
+      },
+      "rejected": {
+        "title": "Profil Respins ❌",
+        "message": "Verificarea identității dvs. a fost respinsă. Vă rugăm să verificați documentele."
+      },
+      "partialRejection": {
+        "title": "Acțiune Necesară ⚠️",
+        "message": "Unele documente au fost respinse. Vă rugăm să le trimiteți din nou."
       },
       "securityUpdate": {
-        "title": "Securitate actualizată 🔒",
-        "message": "Parola dumneavoastră a fost modificată cu succes."
+        "title": "Securitate Actualizată 🔒",
+        "message": "Parola dvs. a fost modificată cu succes."
+      },
+      "newMessage": {
+        "title": "Mesaj Nou 💬",
+        "message": "Ați primit un mesaj nou de la consilierul dvs."
       }
     },
     "Layout": {
@@ -1250,7 +1262,8 @@
         "actionRequired": "Acțiune Necesară",
         "identityRejected": "Identitate Respinsă",
         "docsToComplete": "Documente de completat",
-        "accountToVerify": "Cont de verificat"
+        "accountToVerify": "Cont de verificat",
+        "justNow": "Acum"
       },
       "Notifications": {
         "statusUpdate": {

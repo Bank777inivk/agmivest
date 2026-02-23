@@ -8,7 +8,7 @@ import {
     Calendar, MapPin, Globe, Phone, Home
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 type Step = 1 | 2 | 3;
 
@@ -21,6 +21,7 @@ import { useRouter } from "@/i18n/routing";
 
 export default function RegisterPage() {
     const t = useTranslations('Auth.Register');
+    const locale = useLocale();
     const router = useRouter();
     const [step, setStep] = useState(1);
     const [showPassword, setShowPassword] = useState(false);
@@ -222,8 +223,29 @@ export default function RegisterPage() {
                 phoneCountry: formData.phoneCountry,
                 residenceCountry: formData.residenceCountry,
                 createdAt: serverTimestamp(),
-                role: "client"
+                role: "client",
+                language: locale
             });
+
+            // Send Welcome Email
+            try {
+                await fetch("/api/email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        to: formData.email,
+                        template: "welcome",
+                        language: locale,
+                        apiKey: "agm-invest-secure-email-key",
+                        data: {
+                            firstName: formData.firstName,
+                            email: formData.email
+                        }
+                    })
+                });
+            } catch (emailErr) {
+                console.error("Failed to send welcome email:", emailErr);
+            }
 
             router.push("/dashboard");
         } catch (err: any) {

@@ -124,8 +124,8 @@ export default function VerificationPage() {
 
             // Create Notification
             await createNotification(userId, {
-                title: 'Verification.Notifications.submittedTitle',
-                message: 'Verification.Notifications.submittedMessage',
+                title: 'verificationSubmitted.title',
+                message: 'verificationSubmitted.message',
                 type: 'info'
             });
 

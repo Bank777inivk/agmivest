@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe, ChevronDown } from "lucide-react";
+import { auth } from "@/lib/firebase";
 
 const languages = [
     { code: 'fr', name: 'Français', country: 'fr' },
@@ -40,8 +41,23 @@ export default function LanguageSwitcher() {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    const handleLanguageChange = (langCode: string) => {
+    const handleLanguageChange = async (langCode: string) => {
         setIsOpen(false);
+
+        // Update Firestore if user is logged in
+        const user = auth.currentUser;
+        if (user) {
+            try {
+                const { doc, updateDoc } = await import("firebase/firestore");
+                const { db } = await import("@/lib/firebase");
+                await updateDoc(doc(db, "users", user.uid), {
+                    language: langCode
+                });
+            } catch (error) {
+                console.error("Error updating language in Firestore:", error);
+            }
+        }
+
         router.push(pathname, { locale: langCode });
     };
 

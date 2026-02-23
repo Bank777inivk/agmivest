@@ -1179,41 +1179,53 @@
   },
   "Dashboard": {
     "Notifications": {
-      "requestSubmitted": {
-        "title": "Wniosek o pożyczkę złożony 📄",
-        "message": "Twój wniosek o pożyczkę na kwotę {amount} został pomyślnie zarejestrowany."
+      "loanApproved": {
+        "title": "Pożyczka Zatwierdzona! 🎉",
+        "message": "Twój wniosek o pożyczkę na kwotę {amount} € został zatwierdzony. Środki są dostępne na Twoim koncie."
+      },
+      "transferApproved": {
+        "title": "Przelew Zatwierdzony ✅",
+        "message": "Twój przelew na kwotę {amount} € został zatwierdzony i jest przetwarzany."
+      },
+      "transferRejected": {
+        "title": "Przelew Odrzucony ❌",
+        "message": "Twój przelew na kwotę {amount} € został odrzucony. Powód: {reason}."
       },
       "transferInitiated": {
-        "title": "Przelew zainicjowany 🚀",
-        "message": "Twój przelew na kwotę {amount} jest w trakcie przetwarzania."
+        "title": "Przelew Zainicjowany 💸",
+        "message": "Twój wniosek o przelew na kwotę {amount} € został odebrany i oczekuje na zatwierdzenie."
       },
-      "newMessage": {
-        "title": "Nowa wiadomość 💬",
-        "message": "Otrzymałeś nową wiadomość od swojego doradcy."
+      "requestSubmitted": {
+        "title": "Wniosek Odebrany 📥",
+        "message": "Twój wniosek o pożyczkę na kwotę {amount} € został pomyślnie przesłany."
+      },
+      "verificationSubmitted": {
+        "title": "Weryfikacja Przesłana 📸",
+        "message": "Twój selfie i film są analizowane. Proszę czekać."
       },
       "statusUpdate": {
-        "title": "Status pliku zaktualizowany 🔔",
-        "message": "Status Twojego pliku został zaktualizowany."
+        "title": "Aktualizacja Statusu",
+        "message": "Status Twojej weryfikacji został zaktualizowany."
       },
       "verified": {
-        "title": "Tożsamość zweryfikowana ✅",
+        "title": "Profil Zweryfikowany ✅",
         "message": "Gratulacje! Twoja tożsamość została pomyślnie zweryfikowana."
       },
       "rejected": {
-        "title": "Tożsamość odrzucona ❌",
-        "message": "Twoja weryfikacja tożsamości została odrzucona. Proszę sprawdzić swoje dokumenty."
+        "title": "Profil Odrzucony ❌",
+        "message": "Twoja weryfikacja tożsamości została odrzucona. Sprawdź swoje dokumenty."
       },
       "partialRejection": {
-        "title": "Niekompletne dokumenty ⚠️",
-        "message": "Niektóre dokumenty w Twojej kartotece wymagają uzupełnienia."
-      },
-      "verificationSubmitted": {
-        "title": "Weryfikacja przesłana 🛡️",
-        "message": "Twoje dokumenty tożsamości są w trakcie sprawdzania."
+        "title": "Wymagane Działanie ⚠️",
+        "message": "Niektóre dokumenty zostały odrzucone. Prześlij je ponownie."
       },
       "securityUpdate": {
-        "title": "Ochrona zaktualizowana 🔒",
+        "title": "Bezpieczeństwo Zaktualizowane 🔒",
         "message": "Twoje hasło zostało pomyślnie zmienione."
+      },
+      "newMessage": {
+        "title": "Nowa Wiadomość 💬",
+        "message": "Otrzymałeś nową wiadomość od swojego doradcy."
       }
     },
     "Layout": {
@@ -1250,7 +1262,8 @@
         "actionRequired": "Wymagana Akcja",
         "identityRejected": "Tożsamość Odrzucona",
         "docsToComplete": "Dokumenty do uzupełnienia",
-        "accountToVerify": "Konto do zweryfikowania"
+        "accountToVerify": "Konto do zweryfikowania",
+        "justNow": "Przed chwilą"
       },
       "Notifications": {
         "statusUpdate": {

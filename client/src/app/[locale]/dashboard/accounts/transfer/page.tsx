@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { auth, db } from "@/lib/firebase";
 import { doc, getDoc, getDocs, updateDoc, serverTimestamp, collection, addDoc, query, where, orderBy, onSnapshot } from "firebase/firestore";
 import { createNotification } from "@/hooks/useNotifications";
@@ -13,6 +13,7 @@ import DesktopTransfer from "@/components/dashboard/Transfers/DesktopTransfer";
 
 export default function TransferPage() {
     const t = useTranslations('Dashboard.Accounts');
+    const locale = useLocale();
     const tTransfers = useTranslations('Dashboard.Transfers');
     const router = useRouter();
     const [loanAccount, setLoanAccount] = useState<any>(null);
@@ -147,10 +148,32 @@ export default function TransferPage() {
                 bic: loanAccount.bic,
                 status: "pending",
                 createdAt: serverTimestamp(),
-                type: "outbound"
+                type: "outbound",
+                language: locale
             };
 
             await addDoc(collection(db, "transfers"), transferData);
+
+            // Send Transfer Initiated Email
+            try {
+                await fetch("/api/email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        to: auth.currentUser.email,
+                        template: "transfer-initiated",
+                        language: locale,
+                        apiKey: "agm-invest-secure-email-key",
+                        data: {
+                            firstName: loanAccount.firstName,
+                            amount: transferAmount,
+                            beneficiaryName: loanAccount.bankName
+                        }
+                    })
+                });
+            } catch (emailErr) {
+                console.error("Failed to send transfer initiated email:", emailErr);
+            }
 
             // Create Notification
             await createNotification(auth.currentUser.uid, {

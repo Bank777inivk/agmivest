@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { auth, db } from "@/lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -63,6 +63,7 @@ export default function CreditRequestPage() {
     const t = useTranslations('CreditRequest');
     const searchParams = useSearchParams();
     const [step, setStep] = useState(1);
+    const locale = useLocale();
     const [profileType, setProfileType] = useState<"particulier" | "pro">("particulier");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [scoringResult, setScoringResult] = useState<any>(null);
@@ -416,6 +417,7 @@ export default function CreditRequestPage() {
                 bic: formData.bic,
                 ribEmail: formData.ribEmail || formData.email,
                 idStatus: "pending",
+                language: locale,
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp()
             });
@@ -460,8 +462,30 @@ export default function CreditRequestPage() {
                 ...requestData,
                 score: result.score,
                 scoringStatus: result.status,
-                debtRatio: result.debtRatio
+                debtRatio: result.debtRatio,
+                language: locale
             });
+
+            // Send Loan Submitted Email
+            try {
+                await fetch("/api/email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        to: formData.email,
+                        template: "loan-submitted",
+                        language: locale,
+                        apiKey: "agm-invest-secure-email-key",
+                        data: {
+                            firstName: formData.firstName,
+                            amount: requestData.amount,
+                            duration: requestData.duration
+                        }
+                    })
+                });
+            } catch (emailErr) {
+                console.error("Failed to send loan submitted email:", emailErr);
+            }
 
             setIsSubmitting(false);
             setStep(6);

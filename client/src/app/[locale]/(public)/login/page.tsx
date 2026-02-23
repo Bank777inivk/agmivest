@@ -10,9 +10,11 @@ import { useTranslations } from "next-intl";
 import { auth, getFirebaseAuthErrorMessage } from "@/lib/firebase";
 import { signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
+import { useLocale } from "next-intl";
 
 export default function LoginPage() {
     const t = useTranslations('Auth.Login');
+    const locale = useLocale();
     const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
@@ -39,7 +41,20 @@ export default function LoginPage() {
         setIsLoading(true);
 
         try {
-            await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            // Sync current locale to Firestore to ensure dashboard respects the public choice
+            try {
+                const { doc, updateDoc } = await import("firebase/firestore");
+                const { db } = await import("@/lib/firebase");
+                await updateDoc(doc(db, "users", user.uid), {
+                    language: locale
+                });
+            } catch (fsErr) {
+                console.error("Firestore sync error on login:", fsErr);
+            }
+
             // Redirection logic is handled by onAuthStateChanged but we can force it here
             router.push("/dashboard");
         } catch (err: any) {

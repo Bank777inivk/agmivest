@@ -1179,41 +1179,53 @@
   },
   "Dashboard": {
     "Notifications": {
-      "requestSubmitted": {
-        "title": "Leningaanvraag ingediend 📄",
-        "message": "Uw leningaanvraag voor {amount} is succesvol geregistreerd."
+      "loanApproved": {
+        "title": "Lening Goedgekeurd! 🎉",
+        "message": "Uw leningaanvraag van {amount} € is goedgekeurd. Tegoed beschikbaar op uw rekening."
+      },
+      "transferApproved": {
+        "title": "Overboeking Gevalideerd ✅",
+        "message": "Uw overboeking van {amount} € is gevalideerd en wordt verwerkt."
+      },
+      "transferRejected": {
+        "title": "Overboeking Geweigerd ❌",
+        "message": "Uw overboeking van {amount} € is geweigerd. Reden: {reason}."
       },
       "transferInitiated": {
-        "title": "Overboeking geïnitieerd 🚀",
-        "message": "Uw overboeking van {amount} wordt verwerkt."
+        "title": "Overboeking Geïnitieerd 💸",
+        "message": "Uw verzoek tot overboeking van {amount} € is ontvangen en wacht op validatie."
       },
-      "newMessage": {
-        "title": "Nieuw bericht 💬",
-        "message": "U heeft een nieuw bericht ontvangen van uw adviseur."
+      "requestSubmitted": {
+        "title": "Aanvraag Ontvangen 📥",
+        "message": "Uw leningaanvraag van {amount} € is succesvol verzonden."
+      },
+      "verificationSubmitted": {
+        "title": "Verificatie Ingediend 📸",
+        "message": "Uw selfie en video worden geanalyseerd. Even geduld a.u.b."
       },
       "statusUpdate": {
-        "title": "Bestandsstatus bijgewerkt 🔔",
-        "message": "Uw bestandsstatus is bijgewerkt."
+        "title": "Status Update",
+        "message": "Uw verificatiestatus is bijgewerkt."
       },
       "verified": {
-        "title": "Identiteit geverifieerd ✅",
+        "title": "Profiel Geverifieerd ✅",
         "message": "Gefeliciteerd! Uw identiteit is succesvol gevalideerd."
       },
       "rejected": {
-        "title": "Identiteit afgewezen ❌",
-        "message": "Uw identiteitsverificatie is afgewezen. Controleer uw documenten."
+        "title": "Profiel Geweigerd ❌",
+        "message": "Uw identiteitsverificatie is geweigerd. Controleer uw documenten."
       },
       "partialRejection": {
-        "title": "Onvolledige documenten ⚠️",
-        "message": "Sommige documenten in uw dossier moeten worden aangevuld."
-      },
-      "verificationSubmitted": {
-        "title": "Verificatie ingediend 🛡️",
-        "message": "Uw identiteitsdocumenten worden beoordeeld."
+        "title": "Actie Vereist ⚠️",
+        "message": "Sommige documenten zijn geweigerd. Stuur ze opnieuw op."
       },
       "securityUpdate": {
-        "title": "Beveiliging bijgewerkt 🔒",
+        "title": "Beveiliging Bijgewerkt 🔒",
         "message": "Uw wachtwoord is succesvol gewijzigd."
+      },
+      "newMessage": {
+        "title": "Nieuw Bericht 💬",
+        "message": "U heeft een nieuw bericht ontvangen van uw adviseur."
       }
     },
     "Layout": {
@@ -1250,7 +1262,8 @@
         "actionRequired": "Actie Vereist",
         "identityRejected": "Identiteit Geweigerd",
         "docsToComplete": "Documenten te voltooien",
-        "accountToVerify": "Account te verifiëren"
+        "accountToVerify": "Account te verifiëren",
+        "justNow": "Zojuist"
       },
       "Notifications": {
         "statusUpdate": {

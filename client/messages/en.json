@@ -1684,41 +1684,53 @@
   },
   "Dashboard": {
     "Notifications": {
-      "requestSubmitted": {
-        "title": "Loan request submitted 📄",
-        "message": "Your loan request for {amount} has been successfully registered."
+      "loanApproved": {
+        "title": "Loan Approved! 🎉",
+        "message": "Your loan request of {amount} € has been approved. Credit available on your account."
+      },
+      "transferApproved": {
+        "title": "Transfer Validated ✅",
+        "message": "Your transfer of {amount} € has been validated and is being processed."
+      },
+      "transferRejected": {
+        "title": "Transfer Rejected ❌",
+        "message": "Your transfer of {amount} € was rejected. Reason: {reason}."
       },
       "transferInitiated": {
-        "title": "Transfer initiated 🚀",
-        "message": "Your transfer of {amount} is being processed."
+        "title": "Transfer Initiated 💸",
+        "message": "Your transfer request of {amount} € has been received and is awaiting validation."
       },
-      "newMessage": {
-        "title": "New message 💬",
-        "message": "You have received a new message from your advisor."
+      "requestSubmitted": {
+        "title": "Request Received 📥",
+        "message": "Your loan request of {amount} € has been successfully transmitted."
+      },
+      "verificationSubmitted": {
+        "title": "Verification Submitted 📸",
+        "message": "Your selfie and video are being analyzed. Please wait."
       },
       "statusUpdate": {
-        "title": "File status updated 🔔",
-        "message": "Your file status has been updated."
+        "title": "Status Update",
+        "message": "Your verification status has been updated."
       },
       "verified": {
-        "title": "Identity verified ✅",
+        "title": "Profile Verified ✅",
         "message": "Congratulations! Your identity has been successfully validated."
       },
       "rejected": {
-        "title": "Identity rejected ❌",
-        "message": "Your identity verification has been rejected. Please check your documents."
+        "title": "Profile Rejected ❌",
+        "message": "Your identity verification was rejected. Please check your documents."
       },
       "partialRejection": {
-        "title": "Incomplete documents ⚠️",
-        "message": "Some documents in your file need to be completed."
-      },
-      "verificationSubmitted": {
-        "title": "Verification submitted 🛡️",
-        "message": "Your identity documents are being reviewed."
+        "title": "Action Required ⚠️",
+        "message": "Some documents were rejected. Please resubmit them."
       },
       "securityUpdate": {
-        "title": "Security updated 🔒",
-        "message": "Your password has been changed successfully."
+        "title": "Security Updated 🔒",
+        "message": "Your password has been successfully changed."
+      },
+      "newMessage": {
+        "title": "New Message 💬",
+        "message": "You received a new message from your advisor."
       }
     },
     "Layout": {
@@ -1755,7 +1767,8 @@
         "actionRequired": "Action Required",
         "identityRejected": "Identity Rejected",
         "docsToComplete": "Documents to complete",
-        "accountToVerify": "Account to verify"
+        "accountToVerify": "Account to verify",
+        "justNow": "Just now"
       },
       "Notifications": {
         "statusUpdate": {

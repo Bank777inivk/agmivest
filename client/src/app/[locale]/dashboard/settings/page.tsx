@@ -197,7 +197,19 @@ export default function SettingsPage() {
         show: { opacity: 1, y: 0 }
     } as const;
 
-    const switchLanguage = (newLocale: string) => {
+    const switchLanguage = async (newLocale: string) => {
+        const user = auth.currentUser;
+        if (user) {
+            try {
+                const { doc, updateDoc } = await import("firebase/firestore");
+                const { db } = await import("@/lib/firebase");
+                await updateDoc(doc(db, "users", user.uid), {
+                    language: newLocale
+                });
+            } catch (error) {
+                console.error("Error updating language in Firestore:", error);
+            }
+        }
         router.push(pathname, { locale: newLocale });
     };
 

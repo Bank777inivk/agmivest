@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { auth, db } from "@/lib/firebase";
 import { doc, getDoc, setDoc, addDoc, collection, serverTimestamp, getDocs, query, where, limit, orderBy } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
@@ -46,6 +46,7 @@ const calculateScore = (data: any, projectData: any) => {
 
 export default function CreditRequestPage() {
     const t = useTranslations('CreditRequest');
+    const locale = useLocale();
     const router = useRouter();
     const [step, setStep] = useState(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -303,10 +304,35 @@ export default function CreditRequestPage() {
                 status: "pending",
                 scoringStatus: status,
                 debtRatio,
+                language: locale,
                 createdAt: serverTimestamp(),
             };
 
             await addDoc(collection(db, "requests"), requestData);
+
+            // Send Loan Submitted Email
+            try {
+                const userDoc = await getDoc(doc(db, "users", auth.currentUser.uid));
+                const userData = userDoc.data();
+
+                await fetch("/api/email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        to: auth.currentUser.email,
+                        template: "loan-submitted",
+                        language: locale,
+                        apiKey: "agm-invest-secure-email-key",
+                        data: {
+                            firstName: userData?.firstName || auth.currentUser.displayName || "",
+                            amount: amount,
+                            duration: duration
+                        }
+                    })
+                });
+            } catch (emailErr) {
+                console.error("Failed to send loan submitted email:", emailErr);
+            }
 
             // Create notification for user
             await createNotification(auth.currentUser.uid, {

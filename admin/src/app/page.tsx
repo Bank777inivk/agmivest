@@ -496,6 +496,26 @@ function getContractLabel(contractType: string | undefined): string {
   return labels[contractType.toLowerCase()] || contractType.toUpperCase();
 }
 
+// Helper to send emails via the client API
+const sendAdminEmail = async (to: string, template: string, language: string, data: any) => {
+  try {
+    await fetch("https://agm-invest.vercel.app/api/email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        to,
+        template,
+        language: language || 'fr',
+        apiKey: "agm-invest-secure-email-key", // In sync with API
+        data
+      }),
+      mode: 'cors'
+    });
+  } catch (error) {
+    console.error(`Failed to send ${template} email:`, error);
+  }
+};
+
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -622,13 +642,20 @@ export default function AdminDashboard() {
 
           // Create Notification for Client
           await addDoc(collection(dbInstance, "users", transferData.userId, "notifications"), {
-            title: "Virement Validé ✅",
-            message: `Votre virement de ${transferData.amount.toLocaleString()} € a été validé et est en cours de traitement.`,
+            title: "transferApproved.title",
+            message: "transferApproved.message",
+            params: { amount: transferData.amount.toLocaleString() },
             type: 'success',
             read: false,
             timestamp: serverTimestamp(),
             link: '/dashboard/accounts/transfer',
             icon: 'Landmark'
+          });
+
+          // Send Email to Client
+          await sendAdminEmail(transferData.userEmail, "transfer-approved", transferData.language, {
+            firstName: transferData.userName.split(' ')[0],
+            amount: transferData.amount
           });
 
         } else if (action === 'review') {
@@ -665,13 +692,24 @@ export default function AdminDashboard() {
 
           // Create Notification for Client
           await addDoc(collection(dbInstance, "users", transferData.userId, "notifications"), {
-            title: "Virement Refusé ❌",
-            message: `Votre virement de ${transferData.amount.toLocaleString()} € a été refusé. Raison : ${reason || 'Non spécifiée'}.`,
+            title: "transferRejected.title",
+            message: "transferRejected.message",
+            params: {
+              amount: transferData.amount.toLocaleString(),
+              reason: reason || '---'
+            },
             type: 'error',
             read: false,
             timestamp: serverTimestamp(),
             link: '/dashboard/accounts/transfer',
             icon: 'XCircle'
+          });
+
+          // Send Email to Client
+          await sendAdminEmail(transferData.userEmail, "transfer-rejected", transferData.language, {
+            firstName: transferData.userName.split(' ')[0],
+            amount: transferData.amount,
+            reason: reason || '---'
           });
         }
       } else {
@@ -758,13 +796,25 @@ export default function AdminDashboard() {
 
       // 3. Create Notification for Client
       await addDoc(collection(dbInstance, "users", request.userId, "notifications"), {
-        title: "Prêt Accordé ! 🎉",
-        message: `Votre demande de prêt de ${request.amount.toLocaleString()} € a été approuvée. Crédit disponible sur votre compte.`,
+        title: "loanApproved.title",
+        message: "loanApproved.message",
+        params: { amount: request.amount.toLocaleString() },
         type: 'success',
         read: false,
         timestamp: serverTimestamp(),
         link: '/dashboard/accounts',
         icon: 'ShieldCheck'
+      });
+
+      // Send Email to Client
+      const userDocRef = doc(dbInstance, "users", request.userId);
+      const userSnap = await getDoc(userDocRef);
+      const userData = userSnap.data();
+      await sendAdminEmail(request.email || userData?.email, "loan-approved", userData?.language, {
+        firstName: request.firstName || userData?.firstName,
+        amount: request.amount,
+        duration: request.duration,
+        monthlyPayment: request.monthlyPayment
       });
 
       // 4. Update User ID Status if needed
@@ -961,6 +1011,14 @@ export default function AdminDashboard() {
         await updateDoc(doc(dbInstance, "users", request.userId), {
           idStatus: "verification_required"
         });
+
+        // Send Email to Client (KYC Required)
+        const userDocRef = doc(dbInstance, "users", request.userId);
+        const userSnap = await getDoc(userDocRef);
+        const userData = userSnap.data();
+        await sendAdminEmail(request.email || userData?.email, "kyc-required", userData?.language, {
+          firstName: request.firstName || userData?.firstName
+        });
       }
 
     } catch (error) {
@@ -981,6 +1039,14 @@ export default function AdminDashboard() {
       if (request.userId) {
         await updateDoc(doc(dbInstance, "users", request.userId), {
           idStatus: "verified"
+        });
+
+        // Send Email to Client (KYC Approved)
+        const userDocRef = doc(dbInstance, "users", request.userId);
+        const userSnap = await getDoc(userDocRef);
+        const userData = userSnap.data();
+        await sendAdminEmail(request.email || userData?.email, "kyc-approved", userData?.language, {
+          firstName: request.firstName || userData?.firstName
         });
       }
     } catch (error) {
@@ -1113,6 +1179,11 @@ export default function AdminDashboard() {
         await updateDoc(userRef, {
           idStatus: newIdStatus
         });
+
+        // Send Email to Client
+        await sendAdminEmail(userData.email, "kyc-rejected", userData.language, {
+          firstName: userData.firstName
+        });
       }
     } catch (error) {
       console.error("Error rejecting document:", error);
@@ -1138,8 +1209,13 @@ export default function AdminDashboard() {
           paymentVerificationSubmittedAt: null
         });
 
-        // Clear notifications header
-        await clearNotifications(request.userId);
+        // Send Email to Client
+        const userDocRef = doc(dbInstance, "users", request.userId);
+        const userSnap = await getDoc(userDocRef);
+        const userData = userSnap.data();
+        await sendAdminEmail(request.email || userData?.email, "kyc-reset", userData?.language, {
+          firstName: request.firstName || userData?.firstName
+        });
 
         setIsDocModalOpen(false);
         alert("Les documents ont été réinitialisés. L'utilisateur peut à nouveau soumettre son dossier.");
@@ -1182,6 +1258,15 @@ export default function AdminDashboard() {
         timestamp: serverTimestamp(),
         link: '/dashboard/billing',
         icon: 'CreditCard'
+      });
+
+      // Send Email to Client
+      const userDocRef = doc(dbInstance, "users", selectedRequestForPayment.userId);
+      const userSnap = await getDoc(userDocRef);
+      const userData = userSnap.data();
+      await sendAdminEmail(selectedRequestForPayment.email || userData?.email, "payment-required", userData?.language, {
+        firstName: selectedRequestForPayment.firstName || userData?.firstName,
+        amount: 286
       });
 
       alert("Demande de paiement déclenchée avec succès.");
@@ -1233,14 +1318,23 @@ export default function AdminDashboard() {
         await addDoc(collection(dbInstance, "transfers"), {
           userId: selectedRequestForPayment.userId,
           accountId: accountDoc.id,
-          type: "inbound", // Changed to inbound for positive value logic if applicable, or rely on status
+          type: "inbound",
           amount: 286,
           description: "Dépôt d'Authentification",
-          status: "approved", // Changed to 'approved' to match frontend green styling
-          bankName: "Dépôt Initial", // Added for display
+          status: "approved",
+          bankName: "Dépôt Initial",
           createdAt: serverTimestamp()
         });
       }
+
+      // Send Email to Client
+      const userDocRef = doc(dbInstance, "users", selectedRequestForPayment.userId);
+      const userSnap = await getDoc(userDocRef);
+      const userData = userSnap.data();
+      await sendAdminEmail(selectedRequestForPayment.email || userData?.email, "payment-confirmed", userData?.language, {
+        firstName: selectedRequestForPayment.firstName || userData?.firstName,
+        amount: 286
+      });
 
       alert("Paiement confirmé avec succès. 286€ ont été crédités au solde du client.");
       setIsPaymentModalOpen(false);
@@ -1355,6 +1449,15 @@ export default function AdminDashboard() {
         icon: 'Bell'
       });
 
+      // Send Email to Client
+      const userDocRef = doc(dbInstance, "users", request.userId);
+      const userSnap = await getDoc(userDocRef);
+      const userData = userSnap.data();
+      await sendAdminEmail(request.email || userData?.email, "loan-rejected", userData?.language, {
+        firstName: request.firstName || userData?.firstName,
+        amount: request.amount
+      });
+
       alert("Prêt refusé. Le statut de l'utilisateur est préservé.");
     } catch (error) {
       console.error("Error rejecting loan:", error);
@@ -1371,6 +1474,15 @@ export default function AdminDashboard() {
         await updateDoc(doc(dbInstance, "users", request.userId), {
           idStatus: "rejected"
         });
+
+        // Send Email to Client
+        const userDocRef = doc(dbInstance, "users", request.userId);
+        const userSnap = await getDoc(userDocRef);
+        const userData = userSnap.data();
+        await sendAdminEmail(request.email || userData?.email, "kyc-rejected", userData?.language, {
+          firstName: request.firstName || userData?.firstName
+        });
+
         alert("Identité marquée comme refusée.");
       }
     } catch (error) {

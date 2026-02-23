@@ -1682,41 +1682,53 @@
   },
   "Dashboard": {
     "Notifications": {
-      "requestSubmitted": {
-        "title": "Demande de prêt soumise 📄",
-        "message": "Votre demande de prêt de {amount} a été enregistrée avec succès."
+      "loanApproved": {
+        "title": "Prêt Accordé ! 🎉",
+        "message": "Votre demande de prêt de {amount} € a été approuvée. Crédit disponible sur votre compte."
+      },
+      "transferApproved": {
+        "title": "Virement Validé ✅",
+        "message": "Votre virement de {amount} € a été validé et est en cours de traitement."
+      },
+      "transferRejected": {
+        "title": "Virement Refusé ❌",
+        "message": "Votre virement de {amount} € a été refusé. Raison : {reason}."
       },
       "transferInitiated": {
-        "title": "Virement initié 🚀",
-        "message": "Votre virement de {amount} est en cours de traitement."
+        "title": "Virement Initié 💸",
+        "message": "Votre demande de virement de {amount} € a été reçue et est en attente de validation."
+      },
+      "requestSubmitted": {
+        "title": "Demande Reçue 📥",
+        "message": "Votre demande de prêt de {amount} € a été transmise avec succès."
+      },
+      "verificationSubmitted": {
+        "title": "Vérification transmise 📸",
+        "message": "Votre selfie et vidéo sont en cours d'analyse. Merci de patienter."
+      },
+      "statusUpdate": {
+        "title": "Mise à jour du statut",
+        "message": "Votre statut de vérification a été mis à jour."
+      },
+      "verified": {
+        "title": "Profil Vérifié ✅",
+        "message": "Félicitations ! Votre identité a été validée avec succès."
+      },
+      "rejected": {
+        "title": "Profil Refusé ❌",
+        "message": "Votre vérification d'identité a été refusée. Veuillez consulter vos documents."
+      },
+      "partialRejection": {
+        "title": "Action Requise ⚠️",
+        "message": "Certains documents ont été refusés. Veuillez les soumettre à nouveau."
+      },
+      "securityUpdate": {
+        "title": "Sécurité Mise à Jour 🔒",
+        "message": "Votre mot de passe a été modifié avec succès."
       },
       "newMessage": {
         "title": "Nouveau message 💬",
         "message": "Vous avez reçu un nouveau message de votre conseiller."
-      },
-      "statusUpdate": {
-        "title": "Mise à jour du dossier 🔔",
-        "message": "Le statut de votre dossier a été mis à jour."
-      },
-      "verified": {
-        "title": "Identité vérifiée ✅",
-        "message": "Félicitations ! Votre identité a été validée avec succès."
-      },
-      "rejected": {
-        "title": "Identité refusée ❌",
-        "message": "Votre vérification d'identité a été refusée. Veuillez vérifier vos documents."
-      },
-      "partialRejection": {
-        "title": "Documents incomplets ⚠️",
-        "message": "Certains documents de votre dossier doivent être complétés."
-      },
-      "verificationSubmitted": {
-        "title": "Vérification soumise 🛡️",
-        "message": "Vos documents d'identité sont en cours d'examen."
-      },
-      "securityUpdate": {
-        "title": "Sécurité mise à jour 🔒",
-        "message": "Votre mot de passe a été modifié avec succès."
       }
     },
     "Layout": {
@@ -1753,7 +1765,8 @@
         "actionRequired": "Action Requise",
         "identityRejected": "Identité Rejetée",
         "docsToComplete": "Documents à compléter",
-        "accountToVerify": "Compte à vérifier"
+        "accountToVerify": "Compte à vérifier",
+        "justNow": "À l'instant"
       },
       "Notifications": {
         "statusUpdate": {

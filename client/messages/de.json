@@ -1179,41 +1179,53 @@
   },
   "Dashboard": {
     "Notifications": {
-      "requestSubmitted": {
-        "title": "Kreditantrag eingereicht 📄",
-        "message": "Ihr Kreditantrag über {amount} wurde erfolgreich registriert."
+      "loanApproved": {
+        "title": "Kredit Genehmigt! 🎉",
+        "message": "Ihr Kreditantrag über {amount} € wurde genehmigt. Guthaben auf Ihrem Konto verfügbar."
+      },
+      "transferApproved": {
+        "title": "Überweisung Bestätigt ✅",
+        "message": "Ihre Überweisung von {amount} € wurde bestätigt und wird bearbeitet."
+      },
+      "transferRejected": {
+        "title": "Überweisung Abgelehnt ❌",
+        "message": "Ihre Überweisung von {amount} € wurde abgelehnt. Grund: {reason}."
       },
       "transferInitiated": {
-        "title": "Überweisung eingeleitet 🚀",
-        "message": "Ihre Überweisung von {amount} wird bearbeitet."
+        "title": "Überweisung Eingeleitet 💸",
+        "message": "Ihr Überweisungsantrag über {amount} € ist eingegangen und wartet auf die Validierung."
+      },
+      "requestSubmitted": {
+        "title": "Antrag Eingegangen 📥",
+        "message": "Ihr Kreditantrag über {amount} € wurde erfolgreich übermittelt."
+      },
+      "verificationSubmitted": {
+        "title": "Verifizierung Eingereicht 📸",
+        "message": "Ihr Selfie und Video werden analysiert. Bitte warten Sie."
+      },
+      "statusUpdate": {
+        "title": "Status-Update",
+        "message": "Ihr Verifizierungsstatus wurde aktualisiert."
+      },
+      "verified": {
+        "title": "Profil Verifiziert ✅",
+        "message": "Herzlichen Glückwunsch! Ihre Identität wurde erfolgreich validiert."
+      },
+      "rejected": {
+        "title": "Profil Abgelehnt ❌",
+        "message": "Ihre Identitätsprüfung wurde abgelehnt. Bitte prüfen Sie Ihre Dokumente."
+      },
+      "partialRejection": {
+        "title": "Aktion Erforderlich ⚠️",
+        "message": "Einige Dokumente wurden abgelehnt. Bitte reichen Sie diese erneut ein."
+      },
+      "securityUpdate": {
+        "title": "Sicherheit Aktualisiert 🔒",
+        "message": "Ihr Passwort wurde erfolgreich geändert."
       },
       "newMessage": {
         "title": "Neue Nachricht 💬",
         "message": "Sie haben eine neue Nachricht von Ihrem Berater erhalten."
-      },
-      "statusUpdate": {
-        "title": "Dateistatus aktualisiert 🔔",
-        "message": "Ihr Dateistatus wurde aktualisiert."
-      },
-      "verified": {
-        "title": "Identität verifiziert ✅",
-        "message": "Herzlichen Glückwunsch! Ihre Identität wurde erfolgreich validiert."
-      },
-      "rejected": {
-        "title": "Identität abgelehnt ❌",
-        "message": "Ihre Identitätsprüfung wurde abgelehnt. Bitte überprüfen Sie Ihre Dokumente."
-      },
-      "partialRejection": {
-        "title": "Unvollständige Dokumente ⚠️",
-        "message": "Einige Dokumente in Ihrer Akte müssen vervollständigt werden."
-      },
-      "verificationSubmitted": {
-        "title": "Prüfung eingereicht 🛡️",
-        "message": "Ihre Ausweisdokumente werden geprüft."
-      },
-      "securityUpdate": {
-        "title": "Sicherheit aktualisiert 🔒",
-        "message": "Ihr Passwort wurde erfolgreich geändert."
       }
     },
     "Layout": {
@@ -1250,7 +1262,8 @@
         "actionRequired": "Aktion erforderlich",
         "identityRejected": "Identität abgelehnt",
         "docsToComplete": "Dokumente zu vervollständigen",
-        "accountToVerify": "Konto zu verifizieren"
+        "accountToVerify": "Konto zu verifizieren",
+        "justNow": "Gerade eben"
       },
       "Notifications": {
         "statusUpdate": {
