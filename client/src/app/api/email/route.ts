@@ -15,19 +15,18 @@ import { paymentConfirmedTemplate } from '@/emails/templates/payment-confirmed';
 // Simple API Key for basic security between client/admin and API
 const EMAIL_API_KEY = process.env.EMAIL_API_KEY || 'agm-invest-secure-email-key';
 
+// CORS Headers
+const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-api-key',
+};
+
+export async function OPTIONS() {
+    return NextResponse.json({}, { headers: corsHeaders });
+}
+
 export async function POST(req: Request) {
-    // CORS Headers
-    const corsHeaders = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    };
-
-    // Handle OPTIONS request
-    if (req.method === 'OPTIONS') {
-        return new Response(null, { headers: corsHeaders });
-    }
-
     try {
         const body = await req.json();
         const { to, template, language, data, apiKey } = body;
