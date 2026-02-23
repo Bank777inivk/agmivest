@@ -16,17 +16,35 @@ import { paymentConfirmedTemplate } from '@/emails/templates/payment-confirmed';
 const EMAIL_API_KEY = process.env.EMAIL_API_KEY || 'agm-invest-secure-email-key';
 
 export async function POST(req: Request) {
+    // CORS Headers
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+
+    // Handle OPTIONS request
+    if (req.method === 'OPTIONS') {
+        return new Response(null, { headers: corsHeaders });
+    }
+
     try {
         const body = await req.json();
         const { to, template, language, data, apiKey } = body;
 
         // Basic security check
         if (apiKey !== EMAIL_API_KEY) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+            return NextResponse.json({ error: 'Unauthorized' }, {
+                status: 401,
+                headers: corsHeaders
+            });
         }
 
         if (!to || !template) {
-            return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+            return NextResponse.json({ error: 'Missing required fields' }, {
+                status: 400,
+                headers: corsHeaders
+            });
         }
 
         let emailContent: { subject: string; html: string } | null = null;
@@ -73,7 +91,10 @@ export async function POST(req: Request) {
                 emailContent = paymentConfirmedTemplate(data, lang);
                 break;
             default:
-                return NextResponse.json({ error: 'Invalid template' }, { status: 400 });
+                return NextResponse.json({ error: 'Invalid template' }, {
+                    status: 400,
+                    headers: corsHeaders
+                });
         }
 
         if (emailContent) {
@@ -82,12 +103,18 @@ export async function POST(req: Request) {
                 subject: emailContent.subject,
                 html: emailContent.html,
             });
-            return NextResponse.json({ success: true });
+            return NextResponse.json({ success: true }, { headers: corsHeaders });
         }
 
-        return NextResponse.json({ error: 'Failed to generate email content' }, { status: 500 });
+        return NextResponse.json({ error: 'Failed to generate email content' }, {
+            status: 500,
+            headers: corsHeaders
+        });
     } catch (error: any) {
         console.error('Email API Error:', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ error: error.message }, {
+            status: 500,
+            headers: corsHeaders
+        });
     }
 }
