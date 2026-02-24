@@ -35,8 +35,8 @@ export async function POST(req: Request) {
         console.log(`[EmailAPI] SMTP config: host=${process.env.SMTP_HOST}, port=${process.env.SMTP_PORT}, user=${process.env.SMTP_USER}`);
 
         // Basic security check
-        if (apiKey !== EMAIL_API_KEY) {
-            console.error(`[EmailAPI] Unauthorized: received key="${apiKey}", expected key="${EMAIL_API_KEY}"`);
+        if (apiKey?.trim() !== EMAIL_API_KEY.trim()) {
+            console.error(`[EmailAPI] Unauthorized: received key="${apiKey?.trim()}", expected key="${EMAIL_API_KEY.trim()}"`);
             return NextResponse.json({ error: 'Unauthorized' }, {
                 status: 401,
                 headers: corsHeaders
