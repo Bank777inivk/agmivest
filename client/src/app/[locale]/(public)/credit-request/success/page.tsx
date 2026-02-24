@@ -75,20 +75,13 @@ export default function CreditSuccessPage() {
                 </div>
 
                 {/* Actions */}
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex justify-center">
                     <button
                         onClick={() => router.push('/dashboard')}
-                        className="flex-1 bg-ely-blue text-white px-8 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-ely-blue/90 transition-all shadow-xl shadow-ely-blue/20 flex items-center justify-center gap-2 group"
+                        className="w-full max-w-sm bg-ely-blue text-white px-8 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-ely-blue/90 transition-all shadow-xl shadow-ely-blue/20 flex items-center justify-center gap-2 group"
                     >
                         {t('cta')}
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                    <button
-                        onClick={() => router.push('/')}
-                        className="px-8 py-5 rounded-2xl font-black text-sm uppercase tracking-widest text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-all flex items-center justify-center gap-2"
-                    >
-                        <Home className="w-5 h-5" />
-                        {t('home')}
                     </button>
                 </div>
             </motion.div>

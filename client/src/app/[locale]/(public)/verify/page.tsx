@@ -47,6 +47,22 @@ export default function VerifyPage() {
         }
     };
 
+    const handlePaste = (e: React.ClipboardEvent) => {
+        const data = e.clipboardData.getData("text");
+        if (!data || data.length !== 6 || isNaN(Number(data))) return;
+
+        const pasteCode = data.split("");
+        setOtp(pasteCode);
+
+        // Auto submit if full code
+        setTimeout(() => {
+            const fullOtp = pasteCode.join("");
+            if (fullOtp.length === 6) {
+                handleSubmit();
+            }
+        }, 100);
+    };
+
     const handleSubmit = async (e?: React.FormEvent) => {
         if (e) e.preventDefault();
         const fullOtp = otp.join("");
@@ -134,6 +150,7 @@ export default function VerifyPage() {
                                 value={data}
                                 onChange={e => handleChange(e.target, index)}
                                 onKeyDown={e => handleKeyDown(e, index)}
+                                onPaste={handlePaste}
                             />
                         ))}
                     </div>
