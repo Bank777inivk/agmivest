@@ -95,11 +95,12 @@ export async function POST(req: Request) {
                 break;
             case 'verify-email':
                 const { verifyEmailTemplate } = await import('@/emails/templates/verify-email');
-                emailData = verifyEmailTemplate({
+                emailContent = verifyEmailTemplate({
                     firstName: data.firstName,
                     otpCode: data.otpCode
-                }, language);
+                }, lang);
                 break;
+
             default:
                 console.error(`[EmailAPI] Unknown template: "${template}"`);
                 return NextResponse.json({ error: 'Invalid template' }, {

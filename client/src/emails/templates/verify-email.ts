@@ -1,4 +1,5 @@
-import { generateEmailLayout } from '../layout';
+import { emailLayout } from '../layout';
+
 
 export interface VerifyEmailData {
     firstName: string;
@@ -121,6 +122,7 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
 
     return {
         subject: t.subject,
-        html: generateEmailLayout(content, lang)
+        html: emailLayout(content, lang)
+
     };
 };
