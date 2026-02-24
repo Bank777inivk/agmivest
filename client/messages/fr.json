@@ -2697,5 +2697,19 @@
     "invalidCode": "Code invalide ou expiré.",
     "success": "Email vérifié avec succès !"
   },
-  "CreditSuccess": null
+  "CreditSuccess": {
+    "title": "Soumission réussie !",
+    "message": "Félicitations ! Votre demande de prêt a été transmise avec succès à nos experts. Votre dossier est désormais en cours d'analyse.",
+    "cta": "Accéder à mon espace client",
+    "home": "Retour à l'accueil",
+    "footer": "Une question ? Notre support est disponible 24/7.",
+    "Step1": {
+      "title": "Vérification",
+      "desc": "Votre identité a été validée par OTP."
+    },
+    "Step2": {
+      "title": "Analyse",
+      "desc": "Réponse définitive sous 24h ouvrées."
+    }
+  }
 }

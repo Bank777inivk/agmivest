@@ -2699,5 +2699,19 @@
     "invalidCode": "Invalid or expired code.",
     "success": "Email verified successfully!"
   },
-  "CreditSuccess": null
+  "CreditSuccess": {
+    "title": "Submission successful!",
+    "message": "Congratulations! Your loan request has been successfully transmitted to our experts. Your application is now being analyzed.",
+    "cta": "Access my client area",
+    "home": "Back to home",
+    "footer": "Any questions? Our support is available 24/7.",
+    "Step1": {
+      "title": "Verification",
+      "desc": "Your identity has been validated by OTP."
+    },
+    "Step2": {
+      "title": "Analysis",
+      "desc": "Final response within 24 business hours."
+    }
+  }
 }

@@ -189,9 +189,8 @@ for lang in languages:
             if key not in labels:
                 labels[key] = trans.get(lang, trans.get("en"))
     
-    # Add CreditSuccess
-    if "CreditSuccess" not in data:
-        data["CreditSuccess"] = credit_success_translations.get(lang, credit_success_translations.get("en"))
+    # Add or Overwrite CreditSuccess
+    data["CreditSuccess"] = credit_success_translations.get(lang, credit_success_translations.get("en"))
         
     with open(path, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
