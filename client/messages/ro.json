@@ -2682,5 +2682,15 @@
     "from": "de la",
     "action": "tocmai a trimis o cerere",
     "close": "Închide"
+  },
+  "Verification": {
+    "title": "Verificare de securitate",
+    "subtitle": "Un cod de verificare a fost trimis la adresa {email}",
+    "instruction": "Introduceți codul din 6 cifre pentru a continua.",
+    "spamHint": "Verificați folderul spam. Dacă îl găsiți, marcați-l ca 'Nu este spam' pentru a primi notificările noastre viitoare.",
+    "verify": "Verifică",
+    "resend": "Retrimite codul",
+    "invalidCode": "Cod nevalid sau expirat.",
+    "success": "Email verificat cu succes!"
   }
 }

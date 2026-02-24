@@ -2682,5 +2682,15 @@
     "from": "van",
     "action": "heeft zojuist een aanvraag ingediend",
     "close": "Sluiten"
+  },
+  "Verification": {
+    "title": "Veiligheidsverificatie",
+    "subtitle": "Er is een verificatiecode verzonden naar {email}",
+    "instruction": "Voer de 6-cijferige code in om door te gaan.",
+    "spamHint": "Controleer uw spammap. Als u het vindt, markeer het dan als 'Geen spam' om onze toekomstige meldingen te ontvangen.",
+    "verify": "Verifiëren",
+    "resend": "Code opnieuw verzenden",
+    "invalidCode": "Ongeldige of verlopen code.",
+    "success": "E-mail succesvol geverifieerd!"
   }
 }

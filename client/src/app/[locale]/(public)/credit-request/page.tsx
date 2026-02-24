@@ -9,7 +9,9 @@ import {
     Search, CheckCircle2, AlertCircle, TrendingUp, Mail, Lock, ChevronRight, Percent, Eye, EyeOff, Lightbulb
 } from "lucide-react";
 import Link from "next/link";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
+import { useSearchParams } from "next/navigation";
+import { generateOTP, storeOTP } from "@/lib/otp";
 import { useTranslations, useLocale } from "next-intl";
 import { auth, db } from "@/lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -61,6 +63,7 @@ const calculateScore = (data: any) => {
 
 export default function CreditRequestPage() {
     const t = useTranslations('CreditRequest');
+    const router = useRouter();
     const searchParams = useSearchParams();
     const [step, setStep] = useState(1);
     const locale = useLocale();
@@ -466,7 +469,31 @@ export default function CreditRequestPage() {
                 language: locale
             });
 
-            // Send Loan Submitted Email
+            // 5. Generate and store OTP
+            const otpCode = generateOTP();
+            await storeOTP(formData.email, otpCode);
+
+            // 6. Send Verification Email
+            try {
+                await fetch("/api/email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        to: formData.email,
+                        template: "verify-email",
+                        language: locale,
+                        apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
+                        data: {
+                            firstName: formData.firstName,
+                            otpCode: otpCode
+                        }
+                    })
+                });
+            } catch (emailErr) {
+                console.error("Failed to send verification email:", emailErr);
+            }
+
+            // 7. Send Loan Submitted Email
             try {
                 await fetch("/api/email", {
                     method: "POST",
@@ -488,7 +515,8 @@ export default function CreditRequestPage() {
             }
 
             setIsSubmitting(false);
-            setStep(6);
+            // Redirect to Verify Page
+            router.push(`/verify?email=${encodeURIComponent(formData.email)}&firstName=${encodeURIComponent(formData.firstName)}`);
 
         } catch (error: any) {
             setIsSubmitting(false);

@@ -7,7 +7,7 @@ interface WelcomeData {
 
 const translations: Record<string, { subject: string; greeting: string; body: string; cta: string; info: string }> = {
     fr: {
-        subject: "Bienvenue sur AGM INVEST 🎉",
+        subject: "Confirmation de création de compte - AGM INVEST",
         greeting: "Bienvenue",
         body: "Votre compte a été créé avec succès. Vous pouvez dès maintenant accéder à votre espace personnel et soumettre votre demande de financement.",
         cta: "Accéder à mon espace",
@@ -82,7 +82,7 @@ export function welcomeTemplate(data: WelcomeData, lang: string = 'fr'): { subje
     const t = translations[lang] || translations['fr'];
 
     const content = `
-    <h1 style="font-size:24px;font-weight:900;color:#1E3A5F;margin:0 0 8px;">${t.greeting}, ${data.firstName} ! 👋</h1>
+    <h1 style="font-size:24px;font-weight:900;color:#1E3A5F;margin:0 0 8px;">${t.greeting}, ${data.firstName}</h1>
     <p style="font-size:15px;color:#64748B;margin:0 0 24px;line-height:1.7;">${t.body}</p>
 
     <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px 20px;margin:0 0 24px;">

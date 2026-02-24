@@ -2695,5 +2695,15 @@
     "from": "di",
     "action": "ha appena inviato una richiesta",
     "close": "Chiudi"
+  },
+  "Verification": {
+    "title": "Verifica di sicurezza",
+    "subtitle": "Un codice di verifica è stato inviato a {email}",
+    "instruction": "Inserisci il codice a 6 cifre per continuare.",
+    "spamHint": "Controlla la cartella spam. Se lo trovi, contrassegnalo come 'Non spam' per ricevere le nostre future notifiche.",
+    "verify": "Verifica",
+    "resend": "Invia di nuovo il codice",
+    "invalidCode": "Codice non valido o scaduto.",
+    "success": "Email verificata con successo!"
   }
 }

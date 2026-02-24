@@ -2682,5 +2682,15 @@
     "from": "från",
     "action": "har just skickat in en ansökan",
     "close": "Stäng"
+  },
+  "Verification": {
+    "title": "Säkerhetsverifiering",
+    "subtitle": "En verifieringskod har skickats till {email}",
+    "instruction": "Ange den 6-siffriga koden för att fortsätta.",
+    "spamHint": "Kontrolla din skräppostmapp. Om du hittar den, markera den som 'Inte skräppost' för att få våra framtida aviseringar.",
+    "verify": "Verifiera",
+    "resend": "Skicka koden igen",
+    "invalidCode": "Ogiltig eller utgången kod.",
+    "success": "E-postadressen har verifierats!"
   }
 }

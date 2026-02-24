@@ -2682,5 +2682,15 @@
     "from": "aus",
     "action": "hat gerade eine Anfrage gestellt",
     "close": "Schließen"
+  },
+  "Verification": {
+    "title": "Sicherheitsüberprüfung",
+    "subtitle": "Ein Bestätigungscode wurde an {email} gesendet",
+    "instruction": "Geben Sie den 6-stelligen Code ein, um fortzufahren.",
+    "spamHint": "Überprüfen Sie Ihren Spam-Ordner. Falls gefunden, markieren Sie ihn als 'Kein Spam', um unsere zukünftigen Benachrichtigungen zu erhalten.",
+    "verify": "Verifizieren",
+    "resend": "Code erneut senden",
+    "invalidCode": "Ungültiger oder abgelaufener Code.",
+    "success": "E-Mail erfolgreich verifiziert!"
   }
 }

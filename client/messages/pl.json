@@ -2682,5 +2682,15 @@
     "from": "od",
     "action": "właśnie przesłał(a) wniosek",
     "close": "Zamknij"
+  },
+  "Verification": {
+    "title": "Weryfikacja bezpieczeństwa",
+    "subtitle": "Kod weryfikacyjny został wysłany na adres {email}",
+    "instruction": "Wprowadź 6-cyfrowy kod, aby kontynuować.",
+    "spamHint": "Sprawdź folder spam. Jeśli tam jest, oznacz go jako 'To nie jest spam', aby otrzymywać nasze przyszłe powiadomienia.",
+    "verify": "Zweryfikuj",
+    "resend": "Wyślij kod ponownie",
+    "invalidCode": "Nieprawidłowy lub wygasły kod.",
+    "success": "Adres e-mail zweryfikowany pomyślnie!"
   }
 }

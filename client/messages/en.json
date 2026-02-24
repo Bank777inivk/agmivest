@@ -2682,5 +2682,15 @@
         "button": "I understand"
       }
     }
+  },
+  "Verification": {
+    "title": "Security Verification",
+    "subtitle": "A verification code has been sent to {email}",
+    "instruction": "Enter the 6-digit code to continue.",
+    "spamHint": "Check your spam folder. If found, mark it as 'Not spam' to receive our future notifications.",
+    "verify": "Verify",
+    "resend": "Resend code",
+    "invalidCode": "Invalid or expired code.",
+    "success": "Email verified successfully!"
   }
 }

@@ -18,6 +18,7 @@ import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { useRouter } from "@/i18n/routing";
+import { generateOTP, storeOTP } from "@/lib/otp";
 
 export default function RegisterPage() {
     const t = useTranslations('Auth.Register');
@@ -227,27 +228,32 @@ export default function RegisterPage() {
                 language: locale
             });
 
-            // Send Welcome Email
+            // 1. Generate and store OTP
+            const otpCode = generateOTP();
+            await storeOTP(formData.email, otpCode);
+
+            // 2. Send Verification Email (replaces Welcome Email for now)
             try {
                 await fetch("/api/email", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         to: formData.email,
-                        template: "welcome",
+                        template: "verify-email",
                         language: locale,
                         apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
                         data: {
                             firstName: formData.firstName,
-                            email: formData.email
+                            otpCode: otpCode
                         }
                     })
                 });
             } catch (emailErr) {
-                console.error("Failed to send welcome email:", emailErr);
+                console.error("Failed to send verification email:", emailErr);
             }
 
-            router.push("/dashboard");
+            // 3. Redirect to Verify Page instead of direct Dashboard
+            router.push(`/verify?email=${encodeURIComponent(formData.email)}&firstName=${encodeURIComponent(formData.firstName)}`);
         } catch (err: any) {
             console.error("Registration error:", err);
             const errorKey = getFirebaseAuthErrorMessage(err.code);

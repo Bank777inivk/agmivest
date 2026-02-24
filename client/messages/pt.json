@@ -2682,5 +2682,15 @@
     "from": "de",
     "action": "acaba de enviar uma solicitação",
     "close": "Fechar"
+  },
+  "Verification": {
+    "title": "Verificação de segurança",
+    "subtitle": "Um código de verificação foi enviado para {email}",
+    "instruction": "Insira o código de 6 dígitos para continuar.",
+    "spamHint": "Verifique sua pasta de spam. Se encontrado, marque-o como 'Não é spam' para receber nossas futuras notificações.",
+    "verify": "Verificar",
+    "resend": "Reenviar código",
+    "invalidCode": "Código inválido ou expirado.",
+    "success": "E-mail verificado com sucesso!"
   }
 }
