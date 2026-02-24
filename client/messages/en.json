@@ -308,7 +308,8 @@
         "incompleteDate": "Please enter a complete birth date.",
         "invalidDate": "The birth date entered is invalid.",
         "underage": "You must be at least 18 years old to register.",
-        "errorPasswordsDoNotMatch": "Passwords do not match."
+        "errorPasswordsDoNotMatch": "Passwords do not match.",
+        "default": "An error occurred during registration. Please try again."
       }
     }
   },

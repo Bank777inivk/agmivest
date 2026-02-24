@@ -308,7 +308,8 @@
         "incompleteDate": "Veuillez saisir une date de naissance complète.",
         "invalidDate": "La date de naissance saisie est invalide.",
         "underage": "Vous devez avoir au moins 18 ans pour vous inscrire.",
-        "errorPasswordsDoNotMatch": "Les mots de passe ne correspondent pas."
+        "errorPasswordsDoNotMatch": "Les mots de passe ne correspondent pas.",
+        "default": "Une erreur est survenue lors de l'inscription. Veuillez réessayer."
       }
     }
   },

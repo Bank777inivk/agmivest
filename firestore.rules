@@ -138,7 +138,15 @@ service cloud.firestore {
       allow update, delete: if isAdmin();
     }
     
+    // Collection OTPs (codes de vérification)
+    match /otps/{email} {
+      // Permettre la création d'un OTP lors de l'inscription
+      // et la lecture/suppression lors de la vérification.
+      allow read, write: if true; 
+    }
+
     // Refuser tout accès par défaut pour les autres collections non définies
+
     match /{document=**} {
       allow read, write: if false;
     }
