@@ -2683,7 +2683,7 @@
   },
   "Verification": {
     "title": "Vérification de sécurité",
-    "subtitle": "Un code de vérification a été envoyé à {email}",
+    "subtitle": "Un code de vérification a été envoyé à <important>{email}</important>",
     "instruction": "Saisissez le code à 6 chiffres pour continuer.",
     "spamHint": "Consultez vos spams. S'il s'y trouve, marquez-le comme 'Non-spam' pour recevoir nos prochaines notifications.",
     "verify": "Vérifier",

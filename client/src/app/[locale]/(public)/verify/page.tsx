@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ShieldCheck, Mail, ArrowRight, RefreshCw, AlertCircle, Inbox } from "lucide-react";
 import { verifyOTP, storeOTP, generateOTP } from "@/lib/otp";
@@ -109,7 +110,10 @@ export default function VerifyPage() {
                     </div>
                     <h1 className="text-2xl font-bold text-slate-900 mb-2">{t('title')}</h1>
                     <p className="text-slate-500">
-                        {t('subtitle', { email: <span className="text-slate-900 font-medium">{email}</span> })}
+                        {t.rich('subtitle', {
+                            email: email,
+                            important: (chunks) => <span className="text-slate-900 font-medium">{chunks}</span>
+                        })}
                     </p>
                 </div>
 

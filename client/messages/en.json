@@ -2685,7 +2685,7 @@
   },
   "Verification": {
     "title": "Security Verification",
-    "subtitle": "A verification code has been sent to {email}",
+    "subtitle": "A verification code has been sent to <important>{email}</important>",
     "instruction": "Enter the 6-digit code to continue.",
     "spamHint": "Check your spam folder. If found, mark it as 'Not spam' to receive our future notifications.",
     "verify": "Verify",
