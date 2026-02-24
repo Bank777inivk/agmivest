@@ -322,7 +322,7 @@ export default function CreditRequestPage() {
                         to: auth.currentUser.email,
                         template: "loan-submitted",
                         language: locale,
-                        apiKey: "agm-invest-secure-email-key",
+                        apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
                         data: {
                             firstName: userData?.firstName || auth.currentUser.displayName || "",
                             amount: amount,

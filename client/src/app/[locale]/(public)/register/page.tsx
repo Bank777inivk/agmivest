@@ -236,7 +236,7 @@ export default function RegisterPage() {
                         to: formData.email,
                         template: "welcome",
                         language: locale,
-                        apiKey: "agm-invest-secure-email-key",
+                        apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
                         data: {
                             firstName: formData.firstName,
                             email: formData.email

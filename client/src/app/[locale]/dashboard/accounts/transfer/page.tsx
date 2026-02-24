@@ -163,7 +163,7 @@ export default function TransferPage() {
                         to: auth.currentUser.email,
                         template: "transfer-initiated",
                         language: locale,
-                        apiKey: "agm-invest-secure-email-key",
+                        apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
                         data: {
                             firstName: loanAccount.firstName,
                             amount: transferAmount,
