@@ -24,14 +24,14 @@ export default function VerifyPage() {
 
     useEffect(() => {
         if (!email) {
-            router.push(`/${locale}/register`);
+            router.push('/register');
         }
     }, [email, locale, router]);
 
     const handleChange = (element: HTMLInputElement, index: number) => {
         if (isNaN(Number(element.value))) return false;
 
-        setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
+        setOtp([...otp.map((d: string, idx: number) => (idx === index ? element.value : d))]);
 
         // Focus next input
         if (element.nextSibling && element.value !== "") {
@@ -59,7 +59,7 @@ export default function VerifyPage() {
             if (isValid) {
                 setSuccess(true);
                 setTimeout(() => {
-                    router.push(`/${locale}/dashboard`);
+                    router.push('/dashboard');
                 }, 2000);
             } else {
                 setError(t('invalidCode'));
@@ -119,7 +119,7 @@ export default function VerifyPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="flex justify-between gap-2 max-w-xs mx-auto">
-                        {otp.map((data, index) => (
+                        {otp.map((data: string, index: number) => (
                             <input
                                 key={index}
                                 type="text"
