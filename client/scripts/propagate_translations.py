@@ -1,7 +1,7 @@
 import json
 import os
 
-languages = ["de", "es", "it", "nl", "pl", "pt", "ro", "sv"]
+languages = ["fr", "en", "de", "es", "it", "nl", "pl", "pt", "ro", "sv"]
 base_dir = r"c:\Users\tesla\Videos\Nouvelle aventure\pret\client\messages"
 
 # New labels to add to CreditRequest.Finances.Labels

@@ -2698,5 +2698,6 @@
     "resend": "Resend code",
     "invalidCode": "Invalid or expired code.",
     "success": "Email verified successfully!"
-  }
+  },
+  "CreditSuccess": null
 }

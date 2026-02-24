@@ -2696,5 +2696,6 @@
     "resend": "Renvoyer le code",
     "invalidCode": "Code invalide ou expiré.",
     "success": "Email vérifié avec succès !"
-  }
+  },
+  "CreditSuccess": null
 }
