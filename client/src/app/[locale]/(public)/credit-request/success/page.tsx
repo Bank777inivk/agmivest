@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, ArrowRight, Home, ShieldCheck } from 'lucide-react';
+import { CheckCircle2, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useRouter } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';

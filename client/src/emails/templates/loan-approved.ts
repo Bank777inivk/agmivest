@@ -9,15 +9,15 @@ interface LoanApprovedData {
 
 const translations: Record<string, { subject: string; title: string; body: string; details: string; amountLabel: string; durationLabel: string; monthlyLabel: string; cta: string; caveat: string }> = {
   fr: {
-    subject: "Votre prêt a été accordé — AGM INVEST",
-    title: "Votre demande de prêt a été approuvée",
-    body: "Nous avons le plaisir de vous informer que votre demande de financement a été approuvée. Voici le récapitulatif de votre prêt :",
-    details: "Récapitulatif",
-    amountLabel: "Montant accordé",
-    durationLabel: "Durée",
-    monthlyLabel: "Mensualité estimée",
-    cta: "Accéder à mon espace",
-    caveat: "Un dépôt de 286 € est requis pour finaliser votre dossier. Consultez votre espace pour les détails."
+    subject: "Votre pr&ecirc;t a &eacute;t&eacute; accord&eacute; &mdash; AGM INVEST",
+    title: "Votre demande de pr&ecirc;t a &eacute;t&eacute; approuv&eacute;e",
+    body: "Nous avons le plaisir de vous informer que votre demande de financement a &eacute;t&eacute; approuv&eacute;e. Voici le r&eacute;capitulatif de votre pr&ecirc;t :",
+    details: "R&eacute;capitulatif",
+    amountLabel: "Montant accord&eacute;",
+    durationLabel: "Dur&eacute;e",
+    monthlyLabel: "Mensualit&eacute; estim&eacute;e",
+    cta: "Acc&eacute;der &agrave; mon espace",
+    caveat: "Un d&eacute;p&ocirc;t de 286 &euro; est requis pour finaliser votre dossier. Consultez votre espace pour les d&eacute;tails."
   },
   en: {
     subject: "✅ Your loan has been approved — AGM INVEST",
@@ -125,7 +125,7 @@ export function loanApprovedTemplate(data: LoanApprovedData, lang: string = 'fr'
 
   const content = `
     <div style="display:inline-block;background:linear-gradient(135deg,#10B981,#059669);border-radius:50px;padding:8px 20px;margin-bottom:24px;">
-      <span style="color:#ffffff;font-size:13px;font-weight:700;letter-spacing:1px;">APPROUVÉ</span>
+      <span style="color:#ffffff;font-size:13px;font-weight:700;letter-spacing:1px;">APPROUV&Eacute;</span>
     </div>
 
     <h1 style="font-size:22px;font-weight:900;color:#1E3A5F;margin:0 0 12px;">${t.title}</h1>

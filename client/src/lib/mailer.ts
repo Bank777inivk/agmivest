@@ -28,6 +28,7 @@ export async function sendEmail({ to, subject, html }: SendEmailOptions): Promis
         to,
         subject,
         html,
+        textEncoding: 'base64', // Fix for special characters encoding
     });
 
     console.log(`[Mailer] Response: ${info.response} | MessageId: ${info.messageId}`);

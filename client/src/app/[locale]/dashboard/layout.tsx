@@ -19,7 +19,7 @@ export default function DashboardLayout({
 }) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true); // Initial state should be loading
     const [idStatus, setIdStatus] = useState<string | null>(null);
     const [userName, setUserName] = useState<string>("");
     const [userEmail, setUserEmail] = useState<string | null>(null);
@@ -40,11 +40,9 @@ export default function DashboardLayout({
                     unsubUser();
                 }
 
-                // On laisse un petit délai pour éviter les faux positifs au chargement
-                const timeout = setTimeout(() => {
-                    if (!auth.currentUser) router.push("/login");
-                }, 3000);
-                return () => clearTimeout(timeout);
+                // Redirect immediately if not logged in
+                router.push("/login");
+                return;
             } else {
                 setLoading(false);
                 setUserEmail(user.email);
@@ -138,6 +136,13 @@ export default function DashboardLayout({
         return <>{children}</>;
     }
 
+    // Prevent rendering dashboard content until auth is checked
+    if (loading) {
+        return <div className="h-screen w-full bg-[#F8FAFC] flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-ely-blue"></div>
+        </div>;
+    }
+
     return (
         <div className="h-screen bg-[#F8FAFC] overflow-hidden flex">
             {/* Sidebar for Desktop */}
@@ -181,7 +186,8 @@ export default function DashboardLayout({
                 </main>
             </div>
 
-            <style jsx global>{`
+            <style dangerouslySetInnerHTML={{
+                __html: `
                 .custom-scrollbar::-webkit-scrollbar {
                     width: 10px;
                 }
@@ -197,7 +203,7 @@ export default function DashboardLayout({
                 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
                     background: #475569;
                 }
-            `}</style>
+            `}} />
         </div>
     );
 }

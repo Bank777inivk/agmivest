@@ -1,7 +1,14 @@
 import { emailLayout, btn, APP_URL } from '../layout';
 interface LoanSubmittedData { firstName: string; amount: number; duration: number; }
 const translations: Record<string, { subject: string; title: string; body: string; cta: string; amountLabel: string; durationLabel: string }> = {
-  fr: { subject: "Réception de votre demande de prêt — AGM INVEST", title: "Votre demande a bien été reçue", body: "Notre équipe va examiner votre dossier dans les plus brefs délais. Vous serez notifié par email dès qu'une décision sera prise.", cta: "Suivre mon dossier", amountLabel: "Montant demandé", durationLabel: "Durée" },
+  fr: {
+    subject: "R&eacute;ception de votre demande de pr&ecirc;t &mdash; AGM INVEST",
+    title: "Votre demande a bien &eacute;t&eacute; re&ccedil;ue",
+    body: "Notre &eacute;quipe va examiner votre dossier dans les plus brefs d&eacute;lais. Vous serez notifi&eacute; par email d&egrave;s qu'une d&eacute;cision sera prise.",
+    cta: "Suivre mon dossier",
+    amountLabel: "Montant demand&eacute;",
+    durationLabel: "Dur&eacute;e"
+  },
   en: { subject: "Loan application received — AGM INVEST", title: "Your application has been received", body: "Our team will review your file as soon as possible. You will be notified by email once a decision has been made.", cta: "Track my file", amountLabel: "Requested amount", durationLabel: "Duration" },
   es: { subject: "Solicitud de préstamo recibida — AGM INVEST", title: "¡Su solicitud ha sido recibida!", body: "Nuestro equipo revisará su expediente lo antes posible. Se le notificará por correo electrónico en cuanto se tome una decisión.", cta: "Seguir mi expediente", amountLabel: "Importe solicitado", durationLabel: "Duración" },
   it: { subject: "Richiesta di prestito ricevuta — AGM INVEST", title: "La tua richiesta è stata ricevuta", body: "Il nostro team esaminerà la tua pratica il prima possibile. Sarai informato via email non appena verrà presa una decisione.", cta: "Segui la mia pratica", amountLabel: "Importo richiesto", durationLabel: "Durata" },
