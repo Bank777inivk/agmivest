@@ -81,6 +81,24 @@ new_labels = {
 }
 
 credit_success_translations = {
+    "fr": {
+        "title": "Soumission réussie !",
+        "message": "Félicitations ! Votre demande de prêt a été transmise avec succès à nos experts. Votre dossier est désormais en cours d'analyse.",
+        "cta": "Accéder à mon espace client",
+        "home": "Retour à l'accueil",
+        "footer": "Une question ? Notre support est disponible 24/7.",
+        "Step1": {"title": "Vérification", "desc": "Votre identité a été validée par OTP."},
+        "Step2": {"title": "Analyse", "desc": "Réponse définitive sous 24h ouvrées."}
+    },
+    "en": {
+        "title": "Submission successful!",
+        "message": "Congratulations! Your loan request has been successfully transmitted to our experts. Your application is now being analyzed.",
+        "cta": "Access my client area",
+        "home": "Back to home",
+        "footer": "Any questions? Our support is available 24/7.",
+        "Step1": {"title": "Verification", "desc": "Your identity has been validated by OTP."},
+        "Step2": {"title": "Analysis", "desc": "Final response within 24 business hours."}
+    },
     "de": {
         "title": "Einreichung erfolgreich!",
         "message": "Herzlichen Glückwunsch! Ihr Kreditantrag wurde erfolgreich an unsere Experten übermittelt. Ihr Dossier wird nun analysiert.",
