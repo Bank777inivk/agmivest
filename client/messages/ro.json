@@ -643,7 +643,12 @@
         "temporary": "Agenție de interimat / Angajator",
         "business_owner": "Numele societății / Firmă",
         "company_student": "Instituție / Universitate",
-        "company_apprentice": "Companie gazdă / CFA"
+        "company_apprentice": "Companie gazdă / CFA",
+        "cdi": "Numele companiei",
+        "cdd": "Numele companiei",
+        "profession_cdi": "Profesia actuală",
+        "profession_cdd": "Profesia actuală",
+        "profession_temporary": "Profesia actuală"
       },
       "Placeholders": {
         "company_default": "Numele angajatorului dumneavoastră",
@@ -2692,5 +2697,20 @@
     "resend": "Retrimite codul",
     "invalidCode": "Cod nevalid sau expirat.",
     "success": "Email verificat cu succes!"
+  },
+  "CreditSuccess": {
+    "title": "Trimitere reușită!",
+    "message": "Felicitări! Cererea dumneavoastră de împrumut a fost transmisă cu succes experților noștri. Dosarul dumneavoastră este acum în curs de analiză.",
+    "cta": "Accesează spațiul meu client",
+    "home": "Înapoi la pagina principală",
+    "footer": "Aveți întrebări? Suportul nostru este disponibil 24/7.",
+    "Step1": {
+      "title": "Verificare",
+      "desc": "Identitatea dumneavoastră a fost validată prin OTP."
+    },
+    "Step2": {
+      "title": "Analiză",
+      "desc": "Răspuns definitiv în 24 de ore lucrătoare."
+    }
   }
 }

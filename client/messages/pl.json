@@ -643,7 +643,12 @@
         "temporary": "Agencja pracy tymczasowej / Pracodawca",
         "business_owner": "Nazwa firmy / Szyld",
         "company_student": "Placówka / Uniwersytet",
-        "company_apprentice": "Firma przyjmująca / CFA"
+        "company_apprentice": "Firma przyjmująca / CFA",
+        "cdi": "Nazwa firmy",
+        "cdd": "Nazwa firmy",
+        "profession_cdi": "Aktualny zawód",
+        "profession_cdd": "Aktualny zawód",
+        "profession_temporary": "Aktualny zawód"
       },
       "Placeholders": {
         "company_default": "Nazwa Twojego pracodawcy",
@@ -2692,5 +2697,20 @@
     "resend": "Wyślij kod ponownie",
     "invalidCode": "Nieprawidłowy lub wygasły kod.",
     "success": "Adres e-mail zweryfikowany pomyślnie!"
+  },
+  "CreditSuccess": {
+    "title": "Przesłanie zakończone sukcesem!",
+    "message": "Gratulacje! Twój wniosek kredytowy został pomyślnie przekazany naszym ekspertom. Twoja sprawa jest obecnie analizowana.",
+    "cta": "Przejdź do panelu klienta",
+    "home": "Powrót do strony głównej",
+    "footer": "Masz pytania? Nasze wsparcie jest dostępne 24/7.",
+    "Step1": {
+      "title": "Weryfikacja",
+      "desc": "Twoja tożsamość została zweryfikowana za pomocą kodu OTP."
+    },
+    "Step2": {
+      "title": "Analiza",
+      "desc": "Ostateczna odpowiedź w ciągu 24 godzin roboczych."
+    }
   }
 }

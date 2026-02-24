@@ -643,7 +643,12 @@
         "temporary": "Uitzendbureau / Werkgever",
         "business_owner": "Bedrijfsnaam / Handelsnaam",
         "company_student": "Instelling / Universiteit",
-        "company_apprentice": "Gastbedrijf / CFA"
+        "company_apprentice": "Gastbedrijf / CFA",
+        "cdi": "Bedrijfsnaam",
+        "cdd": "Bedrijfsnaam",
+        "profession_cdi": "Huidig beroep",
+        "profession_cdd": "Huidig beroep",
+        "profession_temporary": "Huidig beroep"
       },
       "Placeholders": {
         "company_default": "De naam van uw werkgever",
@@ -2692,5 +2697,20 @@
     "resend": "Code opnieuw verzenden",
     "invalidCode": "Ongeldige of verlopen code.",
     "success": "E-mail succesvol geverifieerd!"
+  },
+  "CreditSuccess": {
+    "title": "Indiening geslaagd!",
+    "message": "Gefeliciteerd! Uw leningaanvraag is succesvol doorgegeven aan onze experts. Uw dossier wordt nu geanalyseerd.",
+    "cta": "Naar mijn klanthoek",
+    "home": "Terug naar startpagina",
+    "footer": "Vragen? Onze ondersteuning is 24/7 beschikbaar.",
+    "Step1": {
+      "title": "Verificatie",
+      "desc": "Uw identiteit is gevalideerd via OTP."
+    },
+    "Step2": {
+      "title": "Analyse",
+      "desc": "Definitief antwoord binnen 24 werkuren."
+    }
   }
 }

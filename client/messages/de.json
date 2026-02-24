@@ -643,7 +643,12 @@
         "temporary": "Zeitarbeitsfirma / Arbeitgeber",
         "business_owner": "Firmenname / Bezeichnung",
         "company_student": "Einrichtung / Universität",
-        "company_apprentice": "Ausbildungsbetrieb / CFA"
+        "company_apprentice": "Ausbildungsbetrieb / CFA",
+        "cdi": "Firmenname",
+        "cdd": "Firmenname",
+        "profession_cdi": "Aktueller Beruf",
+        "profession_cdd": "Aktueller Beruf",
+        "profession_temporary": "Aktueller Beruf"
       },
       "Placeholders": {
         "company_default": "Der Name Ihres Arbeitgebers",
@@ -2692,5 +2697,20 @@
     "resend": "Code erneut senden",
     "invalidCode": "Ungültiger oder abgelaufener Code.",
     "success": "E-Mail erfolgreich verifiziert!"
+  },
+  "CreditSuccess": {
+    "title": "Einreichung erfolgreich!",
+    "message": "Herzlichen Glückwunsch! Ihr Kreditantrag wurde erfolgreich an unsere Experten übermittelt. Ihr Dossier wird nun analysiert.",
+    "cta": "Meinen Kundenbereich aufrufen",
+    "home": "Zurück zur Startseite",
+    "footer": "Haben Sie Fragen? Unser Support ist rund um die Uhr für Sie da.",
+    "Step1": {
+      "title": "Verifizierung",
+      "desc": "Ihre Identität wurde per OTP validiert."
+    },
+    "Step2": {
+      "title": "Analyse",
+      "desc": "Endgültige Antwort innerhalb von 24 Arbeitsstunden."
+    }
   }
 }

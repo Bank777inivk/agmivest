@@ -645,7 +645,12 @@
         "temporary": "Empresa de trabajo temporal / Empleador",
         "business_owner": "Nombre de la sociedad / Marca",
         "company_student": "Establecimiento / Universidad",
-        "company_apprentice": "Empresa de acogida / CFA"
+        "company_apprentice": "Empresa de acogida / CFA",
+        "cdi": "Nombre de la empresa",
+        "cdd": "Nombre de la empresa",
+        "profession_cdi": "Profesión actual",
+        "profession_cdd": "Profesión actual",
+        "profession_temporary": "Profesión actual"
       },
       "Placeholders": {
         "company_default": "Nombre de su empleador",
@@ -2692,5 +2697,20 @@
     "resend": "Reenviar código",
     "invalidCode": "Código inválido o caducado.",
     "success": "¡Email verificado con éxito!"
+  },
+  "CreditSuccess": {
+    "title": "¡Envío exitoso!",
+    "message": "¡Felicidades! Su solicitud de préstamo ha sido enviada con éxito a nuestros expertos. Su expediente está ahora siendo analizado.",
+    "cta": "Acceder a mi espacio cliente",
+    "home": "Volver al inicio",
+    "footer": "¿Tiene alguna pregunta? Nuestro soporte está disponible 24/7.",
+    "Step1": {
+      "title": "Verificación",
+      "desc": "Su identidad ha sido validada por OTP."
+    },
+    "Step2": {
+      "title": "Análisis",
+      "desc": "Respuesta definitiva en 24 horas hábiles."
+    }
   }
 }

@@ -151,7 +151,7 @@ export default function CreditRequestPage() {
             }
         }
 
-        setFormData(prev => {
+        setFormData((prev: typeof formData) => {
             const newData = { ...prev, [name]: val };
 
             // Auto-update nationality when birthCountry changes
@@ -183,7 +183,7 @@ export default function CreditRequestPage() {
     };
 
     const handleAddressSelect = (address: { street: string; city: string; zipCode: string }) => {
-        setFormData(prev => ({
+        setFormData((prev: typeof formData) => ({
             ...prev,
             street: address.street,
             city: address.city,
@@ -249,7 +249,7 @@ export default function CreditRequestPage() {
             }
         }
 
-        setFormData(prev => ({ ...prev, birthDate: maskedValue }));
+        setFormData((prev: typeof formData) => ({ ...prev, birthDate: maskedValue }));
     };
 
     useEffect(() => {
@@ -258,7 +258,7 @@ export default function CreditRequestPage() {
         const rate = searchParams.get("rate");
 
         if (amount || duration || rate) {
-            setFormData(prev => ({
+            setFormData((prev: typeof formData) => ({
                 ...prev,
                 amount: amount || prev.amount,
                 duration: duration || prev.duration,
@@ -270,7 +270,7 @@ export default function CreditRequestPage() {
 
     const handleSimulatorChange = useCallback((amount: number, duration: number, rate: number) => {
         // Synchronisation depuis la calculatrice (durée déjà en mois)
-        setFormData(prev => {
+        setFormData((prev: typeof formData) => {
             // prevent update if values are identical to avoid loops
             if (prev.amount === amount.toString() &&
                 prev.duration === duration.toString() &&
@@ -305,7 +305,7 @@ export default function CreditRequestPage() {
         }
 
         if (correctedValue !== numValue || value !== correctedValue.toString()) {
-            setFormData(prev => ({ ...prev, [name]: correctedValue.toString() }));
+            setFormData((prev: typeof formData) => ({ ...prev, [name]: correctedValue.toString() }));
         }
     };
 
@@ -362,9 +362,9 @@ export default function CreditRequestPage() {
             }
         }
 
-        setStep(s => Math.min(s + 1, 6));
+        setStep((s: number) => Math.min(s + 1, 6));
     };
-    const prevStep = () => setStep(s => Math.max(s - 1, 1));
+    const prevStep = () => setStep((s: number) => Math.max(s - 1, 1));
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -516,7 +516,7 @@ export default function CreditRequestPage() {
 
             setIsSubmitting(false);
             // Redirect to Verify Page
-            router.push(`/verify?email=${encodeURIComponent(formData.email)}&firstName=${encodeURIComponent(formData.firstName)}`);
+            router.push(`/verify?email=${encodeURIComponent(formData.email)}&firstName=${encodeURIComponent(formData.firstName)}&type=credit`);
 
         } catch (error: any) {
             setIsSubmitting(false);
@@ -701,7 +701,7 @@ export default function CreditRequestPage() {
                                                     ].map((type) => (
                                                         <div
                                                             key={type.id}
-                                                            onClick={() => setFormData(f => ({ ...f, creditType: type.id }))}
+                                                            onClick={() => setFormData((f: typeof formData) => ({ ...f, creditType: type.id }))}
                                                             className={`p-6 rounded-2xl border-2 cursor-pointer transition-all flex flex-col items-center gap-3 text-center ${formData.creditType === type.id ? "border-ely-mint bg-ely-mint/5" : "border-gray-50 bg-gray-50/50 hover:border-gray-100"
                                                                 }`}
                                                         >
@@ -954,7 +954,7 @@ export default function CreditRequestPage() {
                                                 <label className="text-sm font-semibold text-gray-700">{t('Situation.street')}</label>
                                                 <AddressAutocomplete
                                                     value={formData.street}
-                                                    onChange={(val) => setFormData(prev => ({ ...prev, street: val }))}
+                                                    onChange={(val: string) => setFormData((prev: typeof formData) => ({ ...prev, street: val }))}
                                                     onSelect={handleAddressSelect}
                                                     country={formData.residenceCountry}
                                                     placeholder={t('Situation.Placeholders.street')}

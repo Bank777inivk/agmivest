@@ -656,7 +656,12 @@
         "temporary": "Agenzia interinale / Datore di lavoro",
         "business_owner": "Ragione sociale / Insegna",
         "company_student": "Istituto / Università",
-        "company_apprentice": "Azienda ospitante / CFA"
+        "company_apprentice": "Azienda ospitante / CFA",
+        "cdi": "Nome dell'azienda",
+        "cdd": "Nome dell'azienda",
+        "profession_cdi": "Professione attuale",
+        "profession_cdd": "Professione actuelle",
+        "profession_temporary": "Professione attuale"
       },
       "Placeholders": {
         "company_default": "Il nome del tuo datore di lavoro",
@@ -2705,5 +2710,20 @@
     "resend": "Invia di nuovo il codice",
     "invalidCode": "Codice non valido o scaduto.",
     "success": "Email verificata con successo!"
+  },
+  "CreditSuccess": {
+    "title": "Invio riuscito!",
+    "message": "Congratulazioni! La tua richiesta di prestito è stata trasmessa con successo ai nostri esperti. La tua pratica è ora in fase di analisi.",
+    "cta": "Accedi alla mia area cliente",
+    "home": "Torna alla home",
+    "footer": "Hai domande? Il nostro supporto è disponibile 24 ore su 24, 7 giorni su 7.",
+    "Step1": {
+      "title": "Verifica",
+      "desc": "La tua identità è stata convalidata tramite OTP."
+    },
+    "Step2": {
+      "title": "Analisi",
+      "desc": "Risposta definitiva entro 24 ore lavorative."
+    }
   }
 }

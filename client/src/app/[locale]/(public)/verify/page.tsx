@@ -1,4 +1,5 @@
-"use client";
+"use client"; // Force Refresh
+
 
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
@@ -58,8 +59,13 @@ export default function VerifyPage() {
             const isValid = await verifyOTP(email, fullOtp);
             if (isValid) {
                 setSuccess(true);
+                const type = searchParams.get('type');
                 setTimeout(() => {
-                    router.push('/dashboard');
+                    if (type === 'credit') {
+                        router.push('/credit-request/success');
+                    } else {
+                        router.push('/dashboard');
+                    }
                 }, 2000);
             } else {
                 setError(t('invalidCode'));

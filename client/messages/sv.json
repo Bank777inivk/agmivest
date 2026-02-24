@@ -643,7 +643,12 @@
         "temporary": "Bemanningsföretag / Arbetsgivare",
         "business_owner": "Företagsnamn",
         "company_student": "Skola / Universitet",
-        "company_apprentice": "Företag / Studiecenter"
+        "company_apprentice": "Företag / Studiecenter",
+        "cdi": "Företagsnamn",
+        "cdd": "Företagsnamn",
+        "profession_cdi": "Nuvarande yrke",
+        "profession_cdd": "Nuvarande yrke",
+        "profession_temporary": "Nuvarande yrke"
       },
       "Placeholders": {
         "company_default": "Namnet på din arbetsgivare",
@@ -2692,5 +2697,20 @@
     "resend": "Skicka koden igen",
     "invalidCode": "Ogiltig eller utgången kod.",
     "success": "E-postadressen har verifierats!"
+  },
+  "CreditSuccess": {
+    "title": "Inskickat!",
+    "message": "Grattis! Din låneansökan har skickats till våra experter. Ditt ärende analyseras nu.",
+    "cta": "Till min kundavdelning",
+    "home": "Tillbaka till startsidan",
+    "footer": "Frågor? Vår support är tillgänglig 24/7.",
+    "Step1": {
+      "title": "Verifiering",
+      "desc": "Din identitet har validerats via OTP."
+    },
+    "Step2": {
+      "title": "Analys",
+      "desc": "Slutgiltigt svar inom 24 arbetstimmar."
+    }
   }
 }
