@@ -7,10 +7,10 @@ interface WelcomeData {
 
 const translations: Record<string, { subject: string; greeting: string; body: string; cta: string; info: string }> = {
     fr: {
-        subject: "Confirmation de cr&eacute;ation de compte - AGM INVEST",
+        subject: "Confirmation de création de compte - AGM INVEST",
         greeting: "Bienvenue",
-        body: "Votre compte a &eacute;t&eacute; cr&eacute;&eacute; avec succ&egrave;s. Vous pouvez d&egrave;s maintenant acc&eacute;der &agrave; votre espace personnel et soumettre votre demande de financement.",
-        cta: "Acc&eacute;der &agrave; mon espace",
+        body: "Votre compte a été créé avec succès. Vous pouvez dès maintenant accéder à votre espace personnel et soumettre votre demande de financement.",
+        cta: "Accéder à mon espace",
         info: "Votre email de connexion : "
     },
     en: {

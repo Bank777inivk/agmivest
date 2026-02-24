@@ -28,7 +28,8 @@ export async function sendEmail({ to, subject, html }: SendEmailOptions): Promis
         to,
         subject,
         html,
-        textEncoding: 'base64', // Fix for special characters encoding
+        charset: 'utf-8',
+        textEncoding: 'quoted-printable',
     });
 
     console.log(`[Mailer] Response: ${info.response} | MessageId: ${info.messageId}`);

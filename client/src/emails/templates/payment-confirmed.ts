@@ -1,7 +1,7 @@
 import { emailLayout, btn, APP_URL } from '../layout';
 interface PaymentConfirmedData { firstName: string; amount?: number; }
 const translations: Record<string, { subject: string; title: string; body: string; cta: string }> = {
-    fr: { subject: "&check; D&eacute;p&ocirc;t confirm&eacute; &mdash; AGM INVEST", title: "Votre d&eacute;p&ocirc;t a &eacute;t&eacute; re&ccedil;u et confirm&eacute;", body: "Nous avons bien re&ccedil;u votre d&eacute;p&ocirc;t. Votre solde a &eacute;t&eacute; mis &agrave; jour et votre dossier progresse vers la finalisation.", cta: "Voir mon compte" },
+    fr: { subject: "✅ Dépôt confirmé — AGM INVEST", title: "Votre dépôt a été reçu et confirmé", body: "Nous avons bien reçu votre dépôt. Votre solde a été mis à jour et votre dossier progresse vers la finalisation.", cta: "Voir mon compte" },
     en: { subject: "✅ Deposit confirmed — AGM INVEST", title: "Your deposit has been received and confirmed", body: "We have received your deposit. Your balance has been updated and your file is progressing towards completion.", cta: "View my account" },
     es: { subject: "✅ Depósito confirmado — AGM INVEST", title: "Su depósito ha sido recibido y confirmado", body: "Hemos recibido su depósito. Su saldo ha sido actualizado y su expediente avanza hacia la finalización.", cta: "Ver mi cuenta" },
     it: { subject: "✅ Deposito confermato — AGM INVEST", title: "Il tuo deposito è stato ricevuto e confermato", body: "Abbiamo ricevuto il tuo deposito. Il tuo saldo è stato aggiornato e la tua pratica sta progredendo verso il completamento.", cta: "Visualizza il mio conto" },
