@@ -31,8 +31,12 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { to, template, language, data, apiKey } = body;
 
+        console.log(`[EmailAPI] Request received: template=${template}, to=${to}, lang=${language}`);
+        console.log(`[EmailAPI] SMTP config: host=${process.env.SMTP_HOST}, port=${process.env.SMTP_PORT}, user=${process.env.SMTP_USER}`);
+
         // Basic security check
         if (apiKey !== EMAIL_API_KEY) {
+            console.error(`[EmailAPI] Unauthorized: received key="${apiKey}", expected key="${EMAIL_API_KEY}"`);
             return NextResponse.json({ error: 'Unauthorized' }, {
                 status: 401,
                 headers: corsHeaders
@@ -90,6 +94,7 @@ export async function POST(req: Request) {
                 emailContent = paymentConfirmedTemplate(data, lang);
                 break;
             default:
+                console.error(`[EmailAPI] Unknown template: "${template}"`);
                 return NextResponse.json({ error: 'Invalid template' }, {
                     status: 400,
                     headers: corsHeaders
@@ -97,12 +102,22 @@ export async function POST(req: Request) {
         }
 
         if (emailContent) {
-            await sendEmail({
-                to,
-                subject: emailContent.subject,
-                html: emailContent.html,
-            });
-            return NextResponse.json({ success: true }, { headers: corsHeaders });
+            console.log(`[EmailAPI] Template generated OK. Subject: "${emailContent.subject}". Sending via SMTP...`);
+            try {
+                await sendEmail({
+                    to,
+                    subject: emailContent.subject,
+                    html: emailContent.html,
+                });
+                console.log(`[EmailAPI] ✅ Email sent successfully to ${to}`);
+                return NextResponse.json({ success: true }, { headers: corsHeaders });
+            } catch (smtpError: any) {
+                console.error(`[EmailAPI] ❌ SMTP Error for ${to}:`, smtpError.message);
+                return NextResponse.json({ error: `SMTP Error: ${smtpError.message}` }, {
+                    status: 500,
+                    headers: corsHeaders
+                });
+            }
         }
 
         return NextResponse.json({ error: 'Failed to generate email content' }, {
@@ -110,7 +125,7 @@ export async function POST(req: Request) {
             headers: corsHeaders
         });
     } catch (error: any) {
-        console.error('Email API Error:', error);
+        console.error('[EmailAPI] Unexpected error:', error);
         return NextResponse.json({ error: error.message }, {
             status: 500,
             headers: corsHeaders
