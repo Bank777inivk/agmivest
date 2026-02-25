@@ -4,61 +4,61 @@ interface TransferData { firstName: string; }
 export function transferApprovedTemplate(data: TransferData, lang: string = 'fr'): { subject: string; html: string } {
     const translations: Record<string, { subject: string; title: string; body: string; cta: string }> = {
         fr: {
-            subject: "Approbation de votre virement — AGM INVEST",
+            subject: "Approbation de votre virement",
             title: "Approbation de votre virement",
             body: "Bonjour " + data.firstName + ",\n\nNous vous informons qu'une nouvelle operation a ete enregistree sur votre compte concernant votre demande de virement. Celle-ci a ete approuvee et suit son cours.",
             cta: "Consulter mon espace"
         },
         en: {
-            subject: "Transfer approval — AGM INVEST",
+            subject: "Transfer approval",
             title: "Transfer approval",
             body: "Hello " + data.firstName + ",\n\nWe inform you that an update has been made to your account regarding your transfer request. It has been approved and is proceeding.",
             cta: "View my space"
         },
         es: {
-            subject: "Aprobacion de su transferencia — AGM INVEST",
+            subject: "Aprobacion de su transferencia",
             title: "Aprobacion de su transferencia",
             body: "Hola " + data.firstName + ",\n\nLe informamos que se ha realizado una actualizacion en su cuenta sobre su solicitud de transferencia. Esta ha sido aprobada y sigue su curso.",
             cta: "Ver mi espacio"
         },
         it: {
-            subject: "Approvazione del tuo trasferimento — AGM INVEST",
+            subject: "Approvazione del tuo trasferimento",
             title: "Approvazione del tuo trasferimento",
             body: "Buongiorno " + data.firstName + ",\n\nTi informiamo che e stato effettuato un aggiornamento sul tuo account in merito alla tua richiesta di trasferimento. Questa e stata approvata e sta procedendo.",
             cta: "Visualizza il mio spazio"
         },
         de: {
-            subject: "Genehmigung Ihres Transfers — AGM INVEST",
+            subject: "Genehmigung Ihres Transfers",
             title: "Genehmigung Ihres Transfers",
             body: "Hallo " + data.firstName + ",\n\nWir informieren Sie, dass Ihr Konto bezuglich Ihrer Transferanfrage aktualisiert wurde. Diese wurde genehmigt und nimmt ihren Lauf.",
             cta: "Meinen Bereich ansehen"
         },
         nl: {
-            subject: "Goedkeuring van uw overboeking — AGM INVEST",
+            subject: "Goedkeuring van uw overboeking",
             title: "Goedkeuring van uw overboeking",
             body: "Hallo " + data.firstName + ",\n\nWij informeren u dat er een update is uitgevoerd op uw account met betrekking tot uw overboekingsverzoek. Dit is goedgekeurd en vordert.",
             cta: "Mijn ruimte bekijken"
         },
         pl: {
-            subject: "Zatwierdzenie Twojego przelewu — AGM INVEST",
+            subject: "Zatwierdzenie Twojego przelewu",
             title: "Zatwierdzenie Twojego przelewu",
             body: "Witaj " + data.firstName + ",\n\nInformujemy, ze na Twoim koncie wprowadzono aktualizację dotyczącą zlecenia przelewu. Zostalo ono zatwierdzone i postępuje.",
             cta: "Zobacz moj obszar"
         },
         pt: {
-            subject: "Aprovacao da sua transferencia — AGM INVEST",
+            subject: "Aprovacao da sua transferencia",
             title: "Aprovacao da sua transferencia",
             body: "Ola " + data.firstName + ",\n\nInformamos que foi efetuada uma atualizacao na sua conta relativamente ao seu pedido de transferencia. Este foi aprovado e esta a progredir.",
             cta: "Ver o meu espaco"
         },
         ro: {
-            subject: "Aprobarea transferului dumneavoastra — AGM INVEST",
+            subject: "Aprobarea transferului dumneavoastra",
             title: "Aprobarea transferului dumneavoastra",
             body: "Buna ziua " + data.firstName + ",\n\nVa informam ca a fost efectuata o actualizare a contului dumneavoastra cu privire la cererea de transfer. Aceasta a fost aprobata si isi urmeaza cursul.",
             cta: "Vizualizati spatiul meu"
         },
         sv: {
-            subject: "Godkannande av din overforing — AGM INVEST",
+            subject: "Godkannande av din overforing",
             title: "Godkannande av din overforing",
             body: "Hej " + data.firstName + ",\n\nVi informerar dig om att en uppdatering har gjorts pa ditt konto angaende din overforingsbegaran. Den har godkants och fortskrider.",
             cta: "Se mitt utrymme"
@@ -73,61 +73,61 @@ export function transferApprovedTemplate(data: TransferData, lang: string = 'fr'
 export function transferRejectedTemplate(data: TransferData, lang: string = 'fr'): { subject: string; html: string } {
     const translations: Record<string, { subject: string; title: string; body: string; cta: string }> = {
         fr: {
-            subject: "Suivi de votre virement — AGM INVEST",
+            subject: "Suivi de votre virement",
             title: "Ajustement de votre virement",
             body: "Bonjour " + data.firstName + ",\n\nDes precisions sont necessaires concernant une operation de virement sur votre dossier. Nous vous invitons a consulter les informations detaillees dans votre espace.",
             cta: "Consulter mon compte"
         },
         en: {
-            subject: "Transfer follow-up — AGM INVEST",
+            subject: "Transfer follow-up",
             title: "Transfer adjustment",
             body: "Hello " + data.firstName + ",\n\nClarifications are needed regarding a transfer operation on your file. We invite you to check the detailed information in your space.",
             cta: "View my account"
         },
         es: {
-            subject: "Seguimiento de su transferencia — AGM INVEST",
+            subject: "Seguimiento de su transferencia",
             title: "Ajuste de su transferencia",
             body: "Hola " + data.firstName + ",\n\nSe necesitan aclaraciones sobre una operacion de transferencia en su expediente. Le invitamos a consultar la informacion detallada en su espacio.",
             cta: "Ver mi cuenta"
         },
         it: {
-            subject: "Seguimento del tuo trasferimento — AGM INVEST",
+            subject: "Seguimento del tuo trasferimento",
             title: "Rettifica del tuo trasferimento",
             body: "Buongiorno " + data.firstName + ",\n\nSono necessari chiarimenti in merito a un'operazione di trasferimento sulla tua pratica. Ti invitiamo a consultare le informazioni dettagliate nel tuo spazio.",
             cta: "Visualizza il mio account"
         },
         de: {
-            subject: "Transfer-Nachverfolgung — AGM INVEST",
+            subject: "Transfer-Nachverfolgung",
             title: "Transferanpassung",
             body: "Hallo " + data.firstName + ",\n\nKlarungen bezuglich eines Transfervorgangs in Ihrer Akte sind erforderlich. Wir laden Sie ein, die detaillierten Informationen in Ihrem Bereich einzusehen.",
             cta: "Mein Konto ansehen"
         },
         nl: {
-            subject: "Opvolging van uw overboeking — AGM INVEST",
+            subject: "Opvolging van uw overboeking",
             title: "Aanpassing van uw overboeking",
             body: "Hallo " + data.firstName + ",\n\nEr is verduidelijking nodig met betrekking tot een overboekingsbewerking in uw dossier. Wij nodigen u uit om de gedetailleerde informatie in uw ruimte te bekijken.",
             cta: "Mijn account bekijken"
         },
         pl: {
-            subject: "Monitorowanie Twojego przelewu — AGM INVEST",
+            subject: "Monitorowanie Twojego przelewu",
             title: "Korekta Twojego przelewu",
             body: "Witaj " + data.firstName + ",\n\nKonieczne sa wyjasnienia dotyczące operacji przelewu w Twoim wniosku. Zapraszamy do zapoznania sie ze szczegolowymi informacjami w Twoim obszarze.",
             cta: "Zobacz moje konto"
         },
         pt: {
-            subject: "Acompanhamento da sua transferencia — AGM INVEST",
+            subject: "Acompanhamento da sua transferencia",
             title: "Ajuste da sua transferencia",
             body: "Ola " + data.firstName + ",\n\nSao necessarios esclarecimentos sobre uma operacao de transferencia no seu processo. Convidamo-lo a consultar as informacoes detalhadas no seu espaco.",
             cta: "Ver a minha conta"
         },
         ro: {
-            subject: "Urmarirea transferului dumneavoastra — AGM INVEST",
+            subject: "Urmarirea transferului dumneavoastra",
             title: "Ajustarea transferului dumneavoastra",
             body: "Buna ziua " + data.firstName + ",\n\nSunt necesare clarificari cu privire la o operatiune de transfer din dosarul dumneavoastra. Va invitam sa consultati informatiile detaliate din spatiul dumneavoastra.",
             cta: "Vizualizati contul meu"
         },
         sv: {
-            subject: "Uppfoljning av din overforing — AGM INVEST",
+            subject: "Uppfoljning av din overforing",
             title: "Justering av din overforing",
             body: "Hej " + data.firstName + ",\n\nFortydliganden behovs angaende en overforingsoperation i din fil. Vi bjuder in dig att kontrollera den detaljerade informationen i ditt utrymme.",
             cta: "Se mitt konto"

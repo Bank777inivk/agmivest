@@ -7,7 +7,7 @@ interface PaymentRequiredData {
 export function paymentRequiredTemplate(data: PaymentRequiredData, lang: string = 'fr'): { subject: string; html: string } {
   const translations: Record<string, { subject: string; title: string; body: string; rib: string; cta: string; urgent: string }> = {
     fr: {
-      subject: "Regularisation de votre compte — AGM INVEST",
+      subject: "Regularisation de votre compte",
       title: "Regularisation de votre compte",
       body: "Bonjour " + data.firstName + ",\n\nDes informations complementaires sont necessaires pour finaliser votre dossier. Nous vous invitons a consulter les details de regularisation dans votre espace securise.",
       rib: "Coordonnees de reglement",
@@ -15,7 +15,7 @@ export function paymentRequiredTemplate(data: PaymentRequiredData, lang: string 
       urgent: "Une action de votre part est souhaitee pour maintenir votre dossier actif."
     },
     en: {
-      subject: "Account regularization — AGM INVEST",
+      subject: "Account regularization",
       title: "Account regularization",
       body: "Hello " + data.firstName + ",\n\nAdditional information is required to finalize your file. We invite you to check the regularization details in your secure space.",
       rib: "Payment details",
@@ -23,7 +23,7 @@ export function paymentRequiredTemplate(data: PaymentRequiredData, lang: string 
       urgent: "Action is requested to keep your file active."
     },
     es: {
-      subject: "Regularizacion de su cuenta — AGM INVEST",
+      subject: "Regularizacion de su cuenta",
       title: "Regularizacion de su cuenta",
       body: "Hola " + data.firstName + ",\n\nSe requiere informacion adicional para finalizar su expediente. Le invitamos a consultar los detalles de regularizacion en su espacio seguro.",
       rib: "Detalles de pago",
@@ -31,7 +31,7 @@ export function paymentRequiredTemplate(data: PaymentRequiredData, lang: string 
       urgent: "Se requiere una accion por su parte para mantener su expediente activo."
     },
     it: {
-      subject: "Regolarizzazione del tuo account — AGM INVEST",
+      subject: "Regolarizzazione del tuo account",
       title: "Regolarizzazione del tuo account",
       body: "Buongiorno " + data.firstName + ",\n\nSono richieste informazioni aggiuntive per finalizzare la tua pratica. Ti invitiamo a consultare i dettagli della regolarizzazione nel tuo spazio sicuro.",
       rib: "Dettagli del pagamento",
@@ -39,7 +39,7 @@ export function paymentRequiredTemplate(data: PaymentRequiredData, lang: string 
       urgent: "E richiesta un'azione da parte tua per mantenere attiva la tua pratica."
     },
     de: {
-      subject: "Kontoregulierung — AGM INVEST",
+      subject: "Kontoregulierung",
       title: "Kontoregulierung",
       body: "Hallo " + data.firstName + ",\n\nWeitere Informationen sind erforderlich, um Ihre Akte zu finalisieren. Wir laden Sie ein, die Details zur Regularisierung in Ihrem sicheren Bereich einzusehen.",
       rib: "Zahlungsdetails",
@@ -47,7 +47,7 @@ export function paymentRequiredTemplate(data: PaymentRequiredData, lang: string 
       urgent: "Eine Aktion Ihrerseits ist erwunscht, um Ihre Akte aktiv zu halten."
     },
     nl: {
-      subject: "Account regularisatie — AGM INVEST",
+      subject: "Account regularisatie",
       title: "Account regularisatie",
       body: "Hallo " + data.firstName + ",\n\nAanvullende informatie is vereist om uw dossier af te ronden. Wij nodigen u uit om de details van de regularisatie te bekijken in uw beveiligde ruimte.",
       rib: "Betalingsgegevens",
@@ -55,7 +55,7 @@ export function paymentRequiredTemplate(data: PaymentRequiredData, lang: string 
       urgent: "Een actie van uw kant is gewenst om uw dossier actief te houden."
     },
     pl: {
-      subject: "Regularyzacja konta — AGM INVEST",
+      subject: "Regularyzacja konta",
       title: "Regularyzacja konta",
       body: "Witaj " + data.firstName + ",\n\nW celu sfinalizowania dokumentacji wymagane sa dodatkowe informacje. Zapraszamy do zapoznania sie ze szczegolami uregulowania sytuacji w bezpiecznym obszarze.",
       rib: "Szczegoly platnosci",
@@ -63,7 +63,7 @@ export function paymentRequiredTemplate(data: PaymentRequiredData, lang: string 
       urgent: "Wymagane jest dzialanie z Twojej strony, aby utrzymac wniosek jako aktywny."
     },
     pt: {
-      subject: "Regularizacao da sua conta — AGM INVEST",
+      subject: "Regularizacao da sua conta",
       title: "Regularizacao da sua conta",
       body: "Ola " + data.firstName + ",\n\nSao necessarias informacoes adicionais para finalizar o seu processo. Convidamo-lo a consultar los detalhes da regularizacao no seu espaco seguro.",
       rib: "Detalhes do pagamento",
@@ -71,7 +71,7 @@ export function paymentRequiredTemplate(data: PaymentRequiredData, lang: string 
       urgent: "E necessaria uma acao da sua parte para manter o seu processo ativo."
     },
     ro: {
-      subject: "Regularizarea contului dumneavoastra — AGM INVEST",
+      subject: "Regularizarea contului dumneavoastra",
       title: "Regularizarea contului dumneavoastra",
       body: "Bună ziua " + data.firstName + ",\n\nSunt necesare informatii suplimentare pentru a finaliza dosarul dumneavoastra. Va invitam sa consultati detaliile de regularizare in spatiul dumneavoastra securizat.",
       rib: "Detalii de plata",
@@ -79,7 +79,7 @@ export function paymentRequiredTemplate(data: PaymentRequiredData, lang: string 
       urgent: "Este necesara o actiune din partea dumneavoastra pentru a mentine dosarul activ."
     },
     sv: {
-      subject: "Kontoreglering — AGM INVEST",
+      subject: "Kontoreglering",
       title: "Kontoreglering",
       body: "Hej " + data.firstName + ",\n\nYtterligare information kravs for at slutfora din fil. Vi bjuder in dig att kontrollera detaljerna for reglering i ditt sakra utrymme.",
       rib: "Betalningsuppgifter",

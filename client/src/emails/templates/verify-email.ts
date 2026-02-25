@@ -8,7 +8,7 @@ export interface VerifyEmailData {
 export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') => {
     const translations: any = {
         fr: {
-            subject: 'Validation de votre compte — AGM INVEST',
+            subject: 'Validation de votre compte',
             greeting: `Validation de votre compte`,
             instruction: "Bonjour " + data.firstName + ",\n\nVoici votre code de validation a usage unique pour acceder a votre espace securise :",
             expire: "Ce code est valide pendant 15 minutes.",
@@ -16,7 +16,7 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
             footer: "AGM INVEST"
         },
         en: {
-            subject: 'Account validation — AGM INVEST',
+            subject: 'Account validation',
             greeting: `Account validation`,
             instruction: "Hello " + data.firstName + ",\n\nHere is your one-time validation code to access your secure space:",
             expire: "This code is valid for 15 minutes.",
@@ -24,7 +24,7 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
             footer: "AGM INVEST"
         },
         es: {
-            subject: 'Validacion de su cuenta — AGM INVEST',
+            subject: 'Validacion de su cuenta',
             greeting: `Validacion de su cuenta`,
             instruction: "Hola " + data.firstName + ",\n\nAqui tiene su codigo de validacion de un solo uso para acceder a su espacio seguro:",
             expire: "Este codigo es valido por 15 minutos.",
@@ -32,7 +32,7 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
             footer: "AGM INVEST"
         },
         it: {
-            subject: 'Validazione del tuo account — AGM INVEST',
+            subject: 'Validazione del tuo account',
             greeting: `Validazione del tuo account`,
             instruction: "Ciao " + data.firstName + ",\n\nEcco il tuo codice di validazione monouso per accedere al tuo spazio sicuro:",
             expire: "Questo codice è valido per 15 minuti.",
@@ -40,7 +40,7 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
             footer: "AGM INVEST"
         },
         de: {
-            subject: 'Kontovalidierung — AGM INVEST',
+            subject: 'Kontovalidierung',
             greeting: `Kontovalidierung`,
             instruction: "Hallo " + data.firstName + ",\n\nHier ist Ihr einmaliger Validierungscode für den Zugriff auf Ihren sicheren Bereich:",
             expire: "Dieser Code ist 15 Minuten lang gültig.",
@@ -48,7 +48,7 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
             footer: "AGM INVEST"
         },
         nl: {
-            subject: 'Accountvalidatie — AGM INVEST',
+            subject: 'Accountvalidatie',
             greeting: `Accountvalidatie`,
             instruction: "Hallo " + data.firstName + ",\n\nHier is uw eenmalige validatiecode om toegang te krijgen tot uw beveiligde ruimte:",
             expire: "Deze code is 15 minuten geldig.",
@@ -56,7 +56,7 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
             footer: "AGM INVEST"
         },
         pl: {
-            subject: 'Walidacja konta — AGM INVEST',
+            subject: 'Walidacja konta',
             greeting: `Walidacja konta`,
             instruction: "Witaj " + data.firstName + ",\n\nOto Twoj jednorazowy kod walidacyjny umozliwiajacy dostep do bezpiecznego obszaru:",
             expire: "Ten kod jest wazny przez 15 minut.",
@@ -64,7 +64,7 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
             footer: "AGM INVEST"
         },
         pt: {
-            subject: 'Validacao da sua conta — AGM INVEST',
+            subject: 'Validacao da sua conta',
             greeting: `Validacao da sua conta`,
             instruction: "Ola " + data.firstName + ",\n\nAqui esta o seu codigo de validacao de utilizacao unica para aceder ao seu espaco seguro:",
             expire: "Este codigo e valido por 15 minutos.",
@@ -72,7 +72,7 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
             footer: "AGM INVEST"
         },
         ro: {
-            subject: 'Validarea contului — AGM INVEST',
+            subject: 'Validarea contului',
             greeting: `Validarea contului`,
             instruction: "Buna ziua " + data.firstName + ",\n\nIata codul dumneavoastra de validare de unica folosinta pentru a accesa spatiul dumneavoastra securizat:",
             expire: "Acest cod este valabil timp de 15 minute.",
@@ -80,7 +80,7 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
             footer: "AGM INVEST"
         },
         sv: {
-            subject: 'Kontovalidering — AGM INVEST',
+            subject: 'Kontovalidering',
             greeting: `Kontovalidering`,
             instruction: "Hej " + data.firstName + ",\n\nHar ar din engangskod for att fa tillgang till ditt sakra utrymme:",
             expire: "Denna kod ar giltig i 15 minuter.",
