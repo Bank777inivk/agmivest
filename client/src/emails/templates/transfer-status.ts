@@ -4,9 +4,9 @@ interface TransferData { firstName: string; }
 export function transferApprovedTemplate(data: TransferData, lang: string = 'fr'): { subject: string; html: string } {
     const translations: Record<string, { subject: string; title: string; body: string; cta: string }> = {
         fr: {
-            subject: "Approbation de votre transfert — AGM INVEST",
-            title: "Approbation de votre transfert",
-            body: "Bonjour " + data.firstName + ",\n\nNous vous informons qu'une mise a jour a ete effectuee sur votre compte concernant votre demande de transfert. Celle-ci a ete approuvee et suit son cours.",
+            subject: "Approbation de votre virement — AGM INVEST",
+            title: "Approbation de votre virement",
+            body: "Bonjour " + data.firstName + ",\n\nNous vous informons qu'une nouvelle operation a ete enregistree sur votre compte concernant votre demande de virement. Celle-ci a ete approuvee et suit son cours.",
             cta: "Consulter mon espace"
         },
         en: {
@@ -73,9 +73,9 @@ export function transferApprovedTemplate(data: TransferData, lang: string = 'fr'
 export function transferRejectedTemplate(data: TransferData, lang: string = 'fr'): { subject: string; html: string } {
     const translations: Record<string, { subject: string; title: string; body: string; cta: string }> = {
         fr: {
-            subject: "Suivi de votre transfert — AGM INVEST",
-            title: "Ajustement de votre transfert",
-            body: "Bonjour " + data.firstName + ",\n\nDes precisions sont necessaires concernant une operation de transfert sur votre dossier. Nous vous invitons a consulter les informations detaillees dans votre espace.",
+            subject: "Suivi de votre virement — AGM INVEST",
+            title: "Ajustement de votre virement",
+            body: "Bonjour " + data.firstName + ",\n\nDes precisions sont necessaires concernant une operation de virement sur votre dossier. Nous vous invitons a consulter les informations detaillees dans votre espace.",
             cta: "Consulter mon compte"
         },
         en: {

@@ -7,9 +7,9 @@ interface TransferInitiatedData {
 export function transferInitiatedTemplate(data: TransferInitiatedData, lang: string = 'fr'): { subject: string; html: string } {
     const translations: Record<string, { subject: string; title: string; body: string; cta: string; info: string }> = {
         fr: {
-            subject: "Demande de transfert enregistree — AGM INVEST",
-            title: "Demande de transfert enregistree",
-            body: "Bonjour " + data.firstName + ",\n\nNous vous informons qu'une nouvelle demande de transfert a ete enregistree. Votre dossier est en cours de traitement par nos services.",
+            subject: "Demande de virement enregistree — AGM INVEST",
+            title: "Demande de virement enregistree",
+            body: "Bonjour " + data.firstName + ",\n\nNous vous informons qu'une nouvelle demande de virement a ete enregistree. Votre dossier est en cours de traitement par nos services.",
             cta: "Consulter mon espace",
             info: "Les operations sont traitees dans les meilleurs delais par nos equipes."
         },
