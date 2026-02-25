@@ -1,7 +1,7 @@
 import { emailLayout, btn, APP_URL } from '../layout';
 interface SimpleData { firstName: string; }
 const kyc_approved: Record<string, { subject: string; title: string; body: string; cta: string }> = {
-    fr: { subject: "✅ Identité vérifiée — AGM INVEST", title: "Votre identité a été vérifiée ✅", body: "Excellent ! Vos documents d'identité ont été examinés et validés par notre équipe. Votre dossier continue sa progression.", cta: "Voir mon dossier" },
+    fr: { subject: "Identite verifiee - AGM INVEST", title: "Votre identit&eacute; a &eacute;t&eacute; v&eacute;rifi&eacute;e", body: "Excellent ! Vos documents d'identit&eacute; ont &eacute;t&eacute; examin&eacute;s et valid&eacute;s par notre &eacute;quipe. Votre dossier continue sa progression.", cta: "Voir mon dossier" },
     en: { subject: "✅ Identity verified — AGM INVEST", title: "Your identity has been verified ✅", body: "Excellent! Your identity documents have been reviewed and validated by our team. Your file continues to progress.", cta: "View my file" },
     es: { subject: "✅ Identidad verificada — AGM INVEST", title: "Su identidad ha sido verificada ✅", body: "¡Excelente! Sus documentos de identidad han sido revisados y validados por nuestro equipo. Su expediente continúa progresando.", cta: "Ver mi expediente" },
     it: { subject: "✅ Identità verificata — AGM INVEST", title: "La tua identità è stata verificata ✅", body: "Ottimo! I tuoi documenti di identità sono stati esaminati e validati dal nostro team. La tua pratica continua a progredire.", cta: "Visualizza la mia pratica" },
@@ -13,7 +13,7 @@ const kyc_approved: Record<string, { subject: string; title: string; body: strin
     sv: { subject: "✅ Identitet verifierad — AGM INVEST", title: "Din identitet har verifierats ✅", body: "Utmärkt! Dina identitetshandlingar har granskats och validerats av vårt team. Din fil fortsätter att gå framåt.", cta: "Se min fil" },
 };
 const kyc_rejected: Record<string, { subject: string; title: string; body: string; cta: string }> = {
-    fr: { subject: "❌ Documents non conformes — AGM INVEST", title: "Vos documents n'ont pas pu être validés", body: "Malheureusement, vos documents d'identité n'ont pas pu être acceptés. Veuillez soumettre de nouveaux documents conformes pour poursuivre votre dossier.", cta: "Soumettre mes documents" },
+    fr: { subject: "Documents non conformes - AGM INVEST", title: "Vos documents n'ont pas pu &ecirc;tre valid&eacute;s", body: "Malheureusement, vos documents d'identit&eacute; n'ont pas pu &ecirc;tre accept&eacute;s. Veuillez soumettre de nouveaux documents conformes pour poursuivre votre dossier.", cta: "Soumettre mes documents" },
     en: { subject: "❌ Documents not compliant — AGM INVEST", title: "Your documents could not be validated", body: "Unfortunately, your identity documents could not be accepted. Please submit new compliant documents to continue your application.", cta: "Submit my documents" },
     es: { subject: "❌ Documentos no conformes — AGM INVEST", title: "Sus documentos no pudieron ser validados", body: "Lamentablemente, sus documentos de identidad no pudieron ser aceptados. Por favor envíe nuevos documentos conformes para continuar su expediente.", cta: "Enviar mis documentos" },
     it: { subject: "❌ Documenti non conformi — AGM INVEST", title: "I tuoi documenti non hanno potuto essere validati", body: "Purtroppo, i tuoi documenti di identità non hanno potuto essere accettati. Invia nuovi documenti conformi per continuare la tua pratica.", cta: "Invia i miei documenti" },

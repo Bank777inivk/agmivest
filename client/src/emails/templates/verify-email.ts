@@ -9,13 +9,13 @@ export interface VerifyEmailData {
 export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') => {
     const translations: any = {
         fr: {
-            subject: 'Votre code de vérification - AGM INVEST',
-            title: 'Vérifiez votre email',
+            subject: 'Votre code de verification - AGM INVEST',
+            title: 'V&eacute;rifiez votre email',
             greeting: `Bonjour ${data.firstName},`,
-            instruction: "Merci de vous être inscrit sur AGM INVEST. Pour finaliser la création de votre compte, veuillez utiliser le code de vérification à 6 chiffres ci-dessous :",
+            instruction: "Merci de vous &ecirc;tre inscrit sur AGM INVEST. Pour finaliser la cr&eacute;ation de votre compte, veuillez utiliser le code de v&eacute;rification &agrave; 6 chiffres ci-dessous :",
             expire: "Ce code expirera dans 15 minutes.",
-            security: "Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet email.",
-            footer: "L'équipe AGM INVEST"
+            security: "Si vous n'&ecirc;tes pas &agrave; l'origine de cette demande, vous pouvez ignorer cet email.",
+            footer: "L'&eacute;quipe AGM INVEST"
         },
         en: {
             subject: 'Your verification code - AGM INVEST',

@@ -24,13 +24,12 @@ export async function sendEmail({ to, subject, html }: SendEmailOptions): Promis
     console.log(`[Mailer] Sending to ${to} via ${process.env.SMTP_HOST}:${process.env.SMTP_PORT}`);
 
     const info = await transporter.sendMail({
-        from: process.env.SMTP_FROM || 'AGM INVEST <contact@agm-negoce.com>',
+        from: `"${process.env.SMTP_FROM_NAME || 'AGM INVEST'}" <${process.env.SMTP_FROM}>`,
         to,
         subject,
         html,
-        charset: 'utf-8',
-        textEncoding: 'quoted-printable',
-    });
+        textEncoding: 'base64',
+    }) as any;
 
     console.log(`[Mailer] Response: ${info.response} | MessageId: ${info.messageId}`);
 }
