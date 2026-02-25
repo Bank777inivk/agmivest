@@ -7,62 +7,62 @@ interface SimpleData {
 const translations: Record<string, { subject: string; title: string; body: string; cta: string }> = {
     fr: {
         subject: "Mise à jour de votre vérification — AGM INVEST",
-        title: "Votre dossier de vérification a été mis à jour",
-        body: "Pour finaliser votre dossier, nous avons réinitialisé votre étape de vérification d'identité. Veuillez soumettre à nouveau vos documents pour régulariser votre situation.",
+        title: "Bonjour",
+        body: "Pour finaliser votre dossier, une nouvelle vérification de vos documents d'identité est nécessaire. Nous vous invitons à soumettre à nouveau vos pièces justificatives.",
         cta: "Soumettre mes documents"
     },
     en: {
         subject: "Verification update — AGM INVEST",
-        title: "Your verification file has been updated",
-        body: "To finalize your file, we have reset your identity verification step. Please resubmit your documents to regularize your situation.",
+        title: "Hello",
+        body: "To finalize your file, a new verification of your identity documents is necessary. We invite you to resubmit your supporting documents.",
         cta: "Submit my documents"
     },
     es: {
         subject: "Actualización de su verificación — AGM INVEST",
-        title: "Su expediente de verificación ha sido actualizado",
-        body: "Para finalizar su expediente, hemos reiniciado su paso de verificación de identidad. Por favor envíe de nuevo sus documentos para regularizar su situación.",
+        title: "Hola",
+        body: "Para finalizar su expediente, es necesaria una nueva verificación de sus documentos de identidad. Le invitamos a enviar de nuevo sus documentos justificativos.",
         cta: "Enviar mis documentos"
     },
     it: {
-        subject: "Aggiornamento della tua verifica — AGM INVEST",
-        title: "La tua pratica di verifica è stata aggiornata",
-        body: "Per finalizzare la tua pratica, abbiamo ripristinato la tua fase di verifica dell'identità. Invia nuovamente i tuoi documenti per regolarizzare la tua situazione.",
+        subject: "Aggiornamento della verifica — AGM INVEST",
+        title: "Buongiorno",
+        body: "Per finalizzare la tua pratica, è necessaria una nuova verifica dei tuoi documenti d'identità. Ti invitiamo a inviare nuovamente i tuoi documenti giustificativi.",
         cta: "Invia i miei documenti"
     },
     de: {
         subject: "Aktualisierung Ihrer Verifizierung — AGM INVEST",
-        title: "Ihre Verifizierungsakte wurde aktualisiert",
-        body: "Um Ihre Akte abzuschließen, haben wir Ihren Schritt zur Identitätsverifizierung zurückgesetzt. Bitte reichen Sie Ihre Dokumente erneut ein, um Ihre Situation zu bereigen.",
+        title: "Hallo",
+        body: "Um Ihre Akte abzuschließen, ist eine neue Verifizierung Ihrer Identitätsdokumente erforderlich. Wir bitten Sie, Ihre Unterlagen erneut einzureichen.",
         cta: "Meine Dokumente einreichen"
     },
     nl: {
         subject: "Bijwerking van uw verificatie — AGM INVEST",
-        title: "Uw verificatiedossier is bijgewerkt",
-        body: "Om uw dossier te voltooien, hebben we uw identiteitsverificatiestap gereset. Stuur uw documenten opnieuw in om uw situatie te regulariseren.",
+        title: "Hallo",
+        body: "Om uw dossier te voltooien, is een nieuwe verificatie van uw identiteitsdocumenten nodig. Wij nodigen u uit om uw bewijsstukken opnieuw in te dienen.",
         cta: "Mijn documenten indienen"
     },
     pl: {
-        subject: "Aktualizacja Twojej weryfikacji — AGM INVEST",
-        title: "Twoja dokumentacja weryfikacyjna została zaktualizowana",
-        body: "W celu sfinalizowania dokumentacji zresetowaliśmy Twój etap weryfikacji tożsamości. Prześlij ponownie swoje dokumenty, aby uregulować sytuację.",
+        subject: "Aktualizacja weryfikacji — AGM INVEST",
+        title: "Witaj",
+        body: "W celu sfinalizowania Twojego wniosku konieczna jest ponowna weryfikacja dokumentów tożsamości. Prosimy o ponowne przesłanie dokumentów uzupełniających.",
         cta: "Prześlij moje dokumenty"
     },
     pt: {
         subject: "Atualização da sua verificação — AGM INVEST",
-        title: "O seu processo de verificação foi atualizado",
-        body: "Para finalizar o seu processo, reiniciámos o seu passo de verificação de identidade. Por favor, envie novamente os seus documentos para regularizar a sua situação.",
+        title: "Olá",
+        body: "Para finalizar o seu processo, é necessária uma nova verificação dos seus documentos de identidade. Convidamo-lo a enviar novamente os seus documentos justificativos.",
         cta: "Enviar os meus documentos"
     },
     ro: {
         subject: "Actualizarea verificării dvs. — AGM INVEST",
-        title: "Dosarul dvs. de verificare a fost actualizat",
-        body: "Pentru a finaliza dosarul dvs., am resetat etapa de verificare a identității. Vă rugăm să trimiteți din nou documentele pentru a vă regulariza situația.",
+        title: "Bună ziua",
+        body: "Pentru a finaliza dosarul dumneavoastră, este necesară o nouă verificare a documentelor de identitate. Vă invităm să trimiteți din nou documentele justificative.",
         cta: "Trimite documentele mele"
     },
     sv: {
         subject: "Uppdatering av din verifiering — AGM INVEST",
-        title: "Din verifieringsfil har uppdaterats",
-        body: "För att slutföra din fil har vi återställt ditt steg för identitetsverifiering. Skicka in dina dokument igen för att reglera din situation.",
+        title: "Hej",
+        body: "För att slutföra din fil krävs en ny verifiering av dina identitetshandlingar. Vi bjuder in dig att skicka in dina underlag igen.",
         cta: "Skicka in mina dokument"
     },
 };
@@ -70,7 +70,7 @@ const translations: Record<string, { subject: string; title: string; body: strin
 export function kycResetTemplate(data: SimpleData, lang: string = 'fr'): { subject: string; html: string } {
     const t = translations[lang] || translations['fr'];
     const content = `
-    <h1 style="font-size:22px;font-weight:900;color:#1E3A5F;margin:0 0 12px;">${t.title}</h1>
+    <h1 style="font-size:22px;font-weight:900;color:#1E3A5F;margin:0 0 16px;">${t.title}, ${data.firstName}</h1>
     <p style="font-size:15px;color:#64748B;margin:0 0 24px;line-height:1.7;">${t.body}</p>
     ${btn(t.cta, `${APP_URL}/dashboard/verification`)}`;
     return { subject: t.subject, html: emailLayout(content, lang) };

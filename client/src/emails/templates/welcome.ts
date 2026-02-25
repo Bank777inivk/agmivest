@@ -7,74 +7,74 @@ interface WelcomeData {
 
 const translations: Record<string, { subject: string; greeting: string; body: string; cta: string; info: string }> = {
     fr: {
-        subject: "Confirmation de création de compte - AGM INVEST",
-        greeting: "Bienvenue",
-        body: "Votre compte a été créé avec succès. Vous pouvez dès maintenant accéder à votre espace personnel et compléter votre dossier.",
+        subject: "Confirmation d'ouverture de compte — AGM INVEST",
+        greeting: "Bonjour",
+        body: "Nous vous confirmons l'ouverture de votre compte. Vous pouvez désormais accéder à votre espace personnel pour compléter votre dossier.",
         cta: "Accéder à mon espace",
-        info: "Votre email de connexion : "
+        info: "Identifiant de connexion : "
     },
     en: {
-        subject: "Welcome to AGM INVEST",
-        greeting: "Welcome",
-        body: "Your account has been successfully created. You can now access your personal space and complete your file.",
-        cta: "Access my account",
-        info: "Your login email: "
+        subject: "Account opening confirmation — AGM INVEST",
+        greeting: "Hello",
+        body: "We confirm the opening of your account. You can now access your personal space to complete your file.",
+        cta: "Access my space",
+        info: "Login identifier: "
     },
     es: {
-        subject: "Bienvenido a AGM INVEST",
-        greeting: "Bienvenido",
-        body: "Su cuenta ha sido creada con éxito. Ahora puede acceder a su espacio personal y completar su expediente.",
+        subject: "Confirmación de apertura de cuenta — AGM INVEST",
+        greeting: "Hola",
+        body: "Le confirmamos la apertura de su cuenta. Ahora puede acceder a su espacio personal para completar su expediente.",
         cta: "Acceder a mi espacio",
-        info: "Su correo electrónico de acceso: "
+        info: "Identificador de acceso: "
     },
     it: {
-        subject: "Benvenuto su AGM INVEST",
-        greeting: "Benvenuto",
-        body: "Il tuo account è stato creato con successo. Ora puoi accedere al tuo spazio personale e completare la tua pratica.",
+        subject: "Conferma apertura conto — AGM INVEST",
+        greeting: "Buongiorno",
+        body: "Ti confermiamo l'apertura del tuo account. Ora puoi accedere al tuo spazio personale per completare la tua pratica.",
         cta: "Accedi al mio spazio",
-        info: "La tua email di accesso: "
+        info: "Identificativo di accesso: "
     },
     de: {
-        subject: "Willkommen bei AGM INVEST",
-        greeting: "Willkommen",
-        body: "Ihr Konto wurde erfolgreich erstellt. Sie können jetzt auf Ihren persönlichen Bereich zugreifen und Ihre Akte vervollständigen.",
-        cta: "Auf meinen Bereich zugreifen",
-        info: "Ihre Anmelde-E-Mail: "
+        subject: "Bestätigung der Kontoeröffnung — AGM INVEST",
+        greeting: "Hallo",
+        body: "Wir bestätigen die Eröffnung Ihres Kontos. Sie können nun auf Ihren persönlichen Bereich zugreifen, um Ihre Akte zu vervollständigen.",
+        cta: "Meinen Bereich ansehen",
+        info: "Anmeldekennung: "
     },
     nl: {
-        subject: "Welkom bij AGM INVEST",
-        greeting: "Welkom",
-        body: "Uw account is succesvol aangemaakt. U kunt nu toegang krijgen tot uw persoonlijke ruimte en uw dossier voltooien.",
-        cta: "Toegang tot mijn account",
-        info: "Uw aanmeldings-e-mail: "
+        subject: "Bevestiging van opening account — AGM INVEST",
+        greeting: "Hallo",
+        body: "Wij bevestigen de opening van uw account. U kunt nu toegang krijgen tot uw persoonlijke ruimte om uw dossier te voltooien.",
+        cta: "Toegang tot mijn ruimte",
+        info: "Inlog-identificatie: "
     },
     pl: {
-        subject: "Witamy w AGM INVEST",
-        greeting: "Witamy",
-        body: "Twoje konto zostało pomyślnie utworzone. Możesz teraz uzyskać dostęp do swojego osobistego obszaru i uzupełnić dokumentację.",
-        cta: "Przejdź do mojego konta",
-        info: "Twój adres e-mail do logowania: "
+        subject: "Potwierdzenie otwarcia konta — AGM INVEST",
+        greeting: "Witaj",
+        body: "Potwierdzamy otwarcie Twojego konta. Możesz teraz uzyskać dostęp do swojego obszaru osobistego, aby uzupełnić dokumentację.",
+        cta: "Zobacz mój obszar",
+        info: "Identyfikator logowania: "
     },
     pt: {
-        subject: "Bem-vindo ao AGM INVEST",
-        greeting: "Bem-vindo",
-        body: "Sua conta foi criada com sucesso. Agora você pode acessar seu espaço pessoal e completar seu processo.",
-        cta: "Acessar meu espaço",
-        info: "Seu e-mail de acesso: "
+        subject: "Confirmação de abertura de conta — AGM INVEST",
+        greeting: "Olá",
+        body: "Confirmamos a abertura da sua conta. Pode agora aceder ao seu espaço pessoal para completar o seu processo.",
+        cta: "Aceder ao meu espaço",
+        info: "Identificador de acesso: "
     },
     ro: {
-        subject: "Bun venit la AGM INVEST",
-        greeting: "Bun venit",
-        body: "Contul dvs. a fost creat cu succes. Acum puteți accesa spațiul personal și completa dosarul.",
-        cta: "Accesați spațiul meu",
-        info: "Email-ul dvs. de conectare: "
+        subject: "Confirmare deschidere cont — AGM INVEST",
+        greeting: "Bună ziua",
+        body: "Vă confirmăm deschiderea contului dumneavoastră. Acum puteți accesa spațiul personal pentru a completa dosarul.",
+        cta: "Accesare spațiul meu",
+        info: "Identificator de conectare: "
     },
     sv: {
-        subject: "Välkommen till AGM INVEST",
-        greeting: "Välkommen",
-        body: "Ditt konto har skapats framgångsrikt. Du kan nu komma åt ditt personliga utrymme och slutföra din fil.",
-        cta: "Gå till mitt konto",
-        info: "Din inlognings-e-post: "
+        subject: "Bekräftelse på kontoöppning — AGM INVEST",
+        greeting: "Hej",
+        body: "Vi bekräftar öppnandet av ditt konto. Du kan nu komma åt ditt personliga utrymme för att slutföra din fil.",
+        cta: "Se mitt utrymme",
+        info: "Inloggningsidentifierare: "
     },
 };
 
@@ -82,7 +82,7 @@ export function welcomeTemplate(data: WelcomeData, lang: string = 'fr'): { subje
     const t = translations[lang] || translations['fr'];
 
     const content = `
-    <h1 style="font-size:24px;font-weight:900;color:#1E3A5F;margin:0 0 8px;">${t.greeting}, ${data.firstName}</h1>
+    <h1 style="font-size:22px;font-weight:900;color:#1E3A5F;margin:0 0 16px;">${t.greeting}, ${data.firstName}</h1>
     <p style="font-size:15px;color:#64748B;margin:0 0 24px;line-height:1.7;">${t.body}</p>
 
     <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px 20px;margin:0 0 24px;">
@@ -91,9 +91,6 @@ export function welcomeTemplate(data: WelcomeData, lang: string = 'fr'): { subje
     </div>
 
     ${btn(t.cta, `${APP_URL}/dashboard`)}
-
-    <hr style="border:none;border-top:1px solid #F1F5F9;margin:32px 0;" />
-    <p style="font-size:12px;color:#94A3B8;text-align:center;margin:0;">AGM INVEST — Votre partenaire de confiance</p>
   `;
 
     return { subject: t.subject, html: emailLayout(content, lang) };

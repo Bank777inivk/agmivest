@@ -1,36 +1,40 @@
 import { emailLayout, btn, APP_URL } from '../layout';
-interface TransferData { firstName: string; amount: number; iban?: string; reason?: string; }
+interface TransferData { firstName: string; }
+
 const approved: Record<string, { subject: string; title: string; body: string; cta: string }> = {
-    fr: { subject: "Mise à jour de votre compte — AGM INVEST", title: "Action validée", body: "Bonne nouvelle ! Votre opération a été traitée et validée par notre équipe.", cta: "Voir mes opérations" },
-    en: { subject: "Account update — AGM INVEST", title: "Action approved", body: "Good news! Your operation has been processed and approved by our team.", cta: "View my operations" },
-    es: { subject: "Actualización de su cuenta — AGM INVEST", title: "Acción aprobada", body: "¡Buenas noticias! Su operación ha sido procesada y aprobada por nuestro equipo.", cta: "Ver mis operaciones" },
-    it: { subject: "Aggiornamento del tuo conto — AGM INVEST", title: "Azione approvata", body: "Buone notizie! La tua operazione è stata elaborata e approvata dal nostro team.", cta: "Visualizza le mie operazioni" },
-    de: { subject: "Kontoaktualisierung — AGM INVEST", title: "Aktion genehmigt", body: "Gute Nachrichten! Ihr Vorgang wurde von unserem Team bearbeitet und genehmigt.", cta: "Meine Vorgänge ansehen" },
-    nl: { subject: "Account bijwerking — AGM INVEST", title: "Actie goedgekeurd", body: "Goed nieuws! Uw bewerking is verwerkt en goedgekeurd door ons team.", cta: "Mijn bewerkingen bekijken" },
-    pl: { subject: "Aktualizacja konta — AGM INVEST", title: "Działanie zatwierdzone", body: "Dobra wiadomość! Twoja operacja została przetworzona i zatwierdzona przez nasz zespół.", cta: "Zobacz moje operacje" },
-    pt: { subject: "Atualização da sua conta — AGM INVEST", title: "Ação aprovada", body: "Boas notícias! A sua operação foi processada e aprovada pela nossa equipa.", cta: "Ver as minhas opérations" },
-    ro: { subject: "Actualizare cont — AGM INVEST", title: "Acțiune aprobată", body: "Vești bune! Operațiunea dvs. a fost procesată și aprobată de echipa noastră.", cta: "Vezi operațiunile mele" },
-    sv: { subject: "Kontouppdatering — AGM INVEST", title: "Åtgärd godkänd", body: "Goda nyheter! Din operation har behandlats och godkänts av vårt team.", cta: "Se mina transaktioner" },
+    fr: { subject: "Mise à jour de votre compte — AGM INVEST", title: "Bonjour", body: "Une mise à jour a été effectuée sur votre compte. Votre dossier progresse conformément aux procédures prévues.", cta: "Consulter mon espace" },
+    en: { subject: "Account update — AGM INVEST", title: "Hello", body: "An update has been made to your account. Your file is progressing in accordance with the planned procedures.", cta: "View my space" },
+    es: { subject: "Actualización de su cuenta — AGM INVEST", title: "Hola", body: "Se ha realizado una actualización en su cuenta. Su expediente progresa de acuerdo con los procedimientos previstos.", cta: "Ver mi espacio" },
+    it: { subject: "Aggiornamento dell'account — AGM INVEST", title: "Buongiorno", body: "È stato effettuato un aggiornamento sul tuo account. La tua pratica sta procedendo secondo le procedure previste.", cta: "Visualizza il mio spazio" },
+    de: { subject: "Konto-Aktualisierung — AGM INVEST", title: "Hallo", body: "Ihr Konto wurde aktualisiert. Ihre Akte schreitet gemäß den geplanten Verfahren voran.", cta: "Meinen Bereich ansehen" },
+    nl: { subject: "Account bijwerking — AGM INVEST", title: "Hallo", body: "Er is een update uitgevoerd op uw account. Uw dossier vordert in overeenstemming met de geplande procedures.", cta: "Mijn ruimte bekijken" },
+    pl: { subject: "Aktualizacja konta — AGM INVEST", title: "Witaj", body: "Na Twoim koncie wprowadzono aktualizację. Twój wniosek postępuje zgodnie z przewidzianymi procedurami.", cta: "Zobacz mój obszar" },
+    pt: { subject: "Atualização da sua conta — AGM INVEST", title: "Olá", body: "Foi efetuada uma atualização na sua conta. O seu processo está a progredir de acordo com os procedimentos previstos.", cta: "Ver o meu espaço" },
+    ro: { subject: "Actualizare cont — AGM INVEST", title: "Bună ziua", body: "Contul dumneavoastră a fost actualizat. Dosarul dumneavoastră progresează în conformitate cu procedurile prevăzute.", cta: "Vizualizați spațiul meu" },
+    sv: { subject: "Kontouppdatering — AGM INVEST", title: "Hej", body: "En uppdatering har gjorts på ditt konto. Din fil fortskrider i enlighet med de planerade procedurerna.", cta: "Se mitt utrymme" },
 };
+
 const rejected: Record<string, { subject: string; title: string; body: string; cta: string }> = {
-    fr: { subject: "Action requise sur votre compte — AGM INVEST", title: "Information sur votre opération", body: "Votre demande de mise à jour n'a pas pu être finalisée. Consultez votre espace pour plus d'informations ou contactez notre support.", cta: "Contacter le support" },
-    en: { subject: "Account action required — AGM INVEST", title: "Information about your operation", body: "Your update request could not be finalized. Check your account for more information or contact our support.", cta: "Contact support" },
-    es: { subject: "Acción requerida en su cuenta — AGM INVEST", title: "Información sobre su operación", body: "Su solicitud de actualización no pudo ser finalizada. Consulte su espacio para obtener más información o contacte a nuestro soporte.", cta: "Contactar soporte" },
-    it: { subject: "Azione richiesta sul tuo conto — AGM INVEST", title: "Informazioni sulla tua operazione", body: "La tua richiesta di aggiornamento non ha potuto essere finalizzata. Consulta il tuo spazio per ulteriori informazioni o contatta il nostro supporto.", cta: "Contatta il supporto" },
-    de: { subject: "Kontoaktion erforderlich — AGM INVEST", title: "Informationen zu Ihrem Vorgang", body: "Ihr Aktualisierungsantrag konnte nicht abgeschlossen werden. Überprüfen Sie Ihren Bereich für weitere Informationen oder kontaktieren Sie unseren Support.", cta: "Support kontaktieren" },
-    nl: { subject: "Account actie vereist — AGM INVEST", title: "Informatie over uw bewerking", body: "Uw verzoek om bijwerking kon niet worden voltooid. Raadpleeg uw account voor meer informatie of neem contact op met onze ondersteuning.", cta: "Contact opnemen" },
-    pl: { subject: "Wymagane działanie na koncie — AGM INVEST", title: "Informacja o Twojej operacji", body: "Twój wniosek o aktualizację nie mógł zostać sfinalizowany. Sprawdź swoje konto, aby uzyskać więcej informacji lub skontaktuj się z pomocą.", cta: "Skontaktuj się z pomocą" },
-    pt: { subject: "Ação necessária na sua conta — AGM INVEST", title: "Informação sobre a sua operação", body: "O seu pedido de atualização não pôde ser finalizado. Consulte o seu espace para mais informações ou contacte o nosso suporte.", cta: "Contactar suporte" },
-    ro: { subject: "Acțiune necesară pe cont — AGM INVEST", title: "Informații despre operațiunea dvs.", body: "Cererea dvs. de actualizare nu a putut fi finalizată. Consultați spațiul dvs. para mai multe informações ou contactați suportul nostru.", cta: "Contactați suportul" },
-    sv: { subject: "Kontoåtgärd krävs — AGM INVEST", title: "Information om din operation", body: "Din uppdateringsansökan kunde inte slutföras. Kontrollera ditt konto för mer information eller kontakta vår support.", cta: "Kontakta support" },
+    fr: { subject: "Action requise sur votre compte — AGM INVEST", title: "Bonjour", body: "Des précisions sont nécessaires concernant une opération sur votre dossier. Nous vous invitons à consulter les informations détaillées dans votre espace.", cta: "Consulter mon compte" },
+    en: { subject: "Account action required — AGM INVEST", title: "Hello", body: "Clarifications are needed regarding an operation on your file. We invite you to check the detailed information in your space.", cta: "View my account" },
+    es: { subject: "Acción requerida en su cuenta — AGM INVEST", title: "Hola", body: "Se necesitan aclaraciones sobre una operación en su expediente. Le invitamos a consultar la información detallada en su espacio.", cta: "Ver mi cuenta" },
+    it: { subject: "Azione richiesta sul tuo account — AGM INVEST", title: "Buongiorno", body: "Sono necessari chiarimenti in merito a un'operazione sulla tua pratica. Ti invitiamo a consultare le informazioni dettagliate nel tuo spazio.", cta: "Visualizza il mio account" },
+    de: { subject: "Kontoaktion erforderlich — AGM INVEST", title: "Hallo", body: "Klärungen bezüglich eines Vorgangs in Ihrer Akte sind erforderlich. Wir laden Sie ein, die detaillierten Informationen in Ihrem Bereich einzusehen.", cta: "Mein Konto ansehen" },
+    nl: { subject: "Account actie vereist — AGM INVEST", title: "Hallo", body: "Er is verduidelijking nodig met betrekking tot een bewerking in uw dossier. Wij nodigen u uit om de gedetailleerde informatie in uw ruimte te bekijken.", cta: "Mijn account bekijken" },
+    pl: { subject: "Wymagane działanie na koncie — AGM INVEST", title: "Witaj", body: "Konieczne są wyjaśnienia dotyczące operacji w Twoim wniosku. Zapraszamy do zapoznania się ze szczegółowymi informacjami w Twoim obszarze.", cta: "Zobacz moje konto" },
+    pt: { subject: "Ação necessária na sua conta — AGM INVEST", title: "Olá", body: "São necessários esclarecimentos sobre uma operação no seu processo. Convidamo-lo a consultar as informações detalhadas no seu espaço.", cta: "Ver a minha conta" },
+    ro: { subject: "Acțiune necesară pe cont — AGM INVEST", title: "Bună ziua", body: "Sunt necesare clarificări cu privire la o operațiune din dosarul dumneavoastră. Vă invităm să consultați informațiile detaliate din spațiul dumneavoastră.", cta: "Vizualizați contul meu" },
+    sv: { subject: "Kontoåtgärd krävs — AGM INVEST", title: "Hej", body: "Förtydliganden behövs angående en operation i din fil. Vi bjuder in dig att kontrollera den detaljerade informationen i ditt utrymme.", cta: "Se mitt konto" },
 };
+
 export function transferApprovedTemplate(data: TransferData, lang: string = 'fr'): { subject: string; html: string } {
     const t = approved[lang] || approved['fr'];
-    const content = `<h1 style="font-size:22px;font-weight:900;color:#1E3A5F;margin:0 0 12px;">${t.title}</h1><p style="font-size:15px;color:#64748B;margin:0 0 24px;line-height:1.7;">${t.body}</p><div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:20px;margin:0 0 24px;text-align:center;"><p style="font-size:28px;font-weight:900;color:#16A34A;margin:0;">${data.amount.toLocaleString()} €</p></div>${btn(t.cta, `${APP_URL}/dashboard/accounts/transfer`)}`;
+    const content = `<h1 style="font-size:22px;font-weight:900;color:#1E3A5F;margin:0 0 16px;">${t.title}, ${data.firstName}</h1><p style="font-size:15px;color:#64748B;margin:0 0 24px;line-height:1.7;">${t.body}</p>${btn(t.cta, `${APP_URL}/dashboard`)}`;
     return { subject: t.subject, html: emailLayout(content, lang) };
 }
+
 export function transferRejectedTemplate(data: TransferData, lang: string = 'fr'): { subject: string; html: string } {
     const t = rejected[lang] || rejected['fr'];
-    const content = `<h1 style="font-size:22px;font-weight:900;color:#1E3A5F;margin:0 0 12px;">${t.title}</h1><p style="font-size:15px;color:#64748B;margin:0 0 24px;line-height:1.7;">${t.body}</p>${data.reason ? `<div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:12px;padding:16px;margin:0 0 24px;"><p style="font-size:13px;color:#991B1B;margin:0;">Raison : ${data.reason}</p></div>` : ''}${btn(t.cta, `${APP_URL}/dashboard/support`)}`;
+    const content = `<h1 style="font-size:22px;font-weight:900;color:#1E3A5F;margin:0 0 16px;">${t.title}, ${data.firstName}</h1><p style="font-size:15px;color:#64748B;margin:0 0 24px;line-height:1.7;">${t.body}</p>${btn(t.cta, `${APP_URL}/dashboard/support`)}`;
     return { subject: t.subject, html: emailLayout(content, lang) };
 }

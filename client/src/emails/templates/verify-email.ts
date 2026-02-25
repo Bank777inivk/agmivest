@@ -1,6 +1,5 @@
 import { emailLayout } from '../layout';
 
-
 export interface VerifyEmailData {
     firstName: string;
     otpCode: string;
@@ -9,94 +8,84 @@ export interface VerifyEmailData {
 export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') => {
     const translations: any = {
         fr: {
-            subject: 'Votre acces securise - AGM INVEST',
-            title: 'ACCES A VOTRE ESPACE',
+            subject: 'Validation de votre acces — AGM INVEST',
             greeting: `Bonjour ${data.firstName},`,
-            instruction: "Pour finaliser votre connexion sécurisée à l'interface AGM INVEST, voici votre code de vérification :",
-            expire: "Ce code est valable 15 minutes.",
-            security: "Si vous n'attendez pas de code, ignorez simplement ce message.",
-            footer: "L'équipe AGM INVEST"
+            instruction: "Voici votre code de validation à usage unique pour accéder à votre espace sécurisé :",
+            expire: "Ce code est valide pendant 15 minutes.",
+            security: "Pour des raisons de sécurité, ne partagez jamais ce code.",
+            footer: "AGM INVEST"
         },
         en: {
-            subject: 'Your verification code - AGM INVEST',
-            title: 'Verify your email',
+            subject: 'Access validation — AGM INVEST',
             greeting: `Hello ${data.firstName},`,
-            instruction: "Thank you for joining AGM INVEST. To complete your account registration, please use the 6-digit verification code below:",
-            expire: "This code will expire in 15 minutes.",
-            security: "If you did not request this code, you can safely ignore this email.",
-            footer: "The AGM INVEST Team"
+            instruction: "Here is your one-time validation code to access your secure space:",
+            expire: "This code is valid for 15 minutes.",
+            security: "For security reasons, never share this code.",
+            footer: "AGM INVEST"
         },
         es: {
-            subject: 'Tu código de verificación - AGM INVEST',
-            title: 'Verifica tu email',
+            subject: 'Validación de acceso — AGM INVEST',
             greeting: `Hola ${data.firstName},`,
-            instruction: "Gracias por unirte a AGM INVEST. Para completar el registro de tu cuenta, utiliza le código de verificación de 6 dígitos a continuación:",
-            expire: "Este código caducará en 15 minutos.",
-            security: "Si no solicitaste este código, puedes ignorar este mensaje.",
-            footer: "El equipo de AGM INVEST"
+            instruction: "Aquí tiene su código de validación de un solo uso para acceder a su espacio seguro:",
+            expire: "Este código es válido por 15 minutos.",
+            security: "Por razones de seguridad, nunca comparta este código.",
+            footer: "AGM INVEST"
         },
         it: {
-            subject: 'Il tuo codice di verifica - AGM INVEST',
-            title: 'Verifica la tua email',
+            subject: 'Validazione accesso — AGM INVEST',
             greeting: `Ciao ${data.firstName},`,
-            instruction: "Grazie per esserti iscritto ad AGM INVEST. Per completare la registrazione del tuo account, utilizza il codice di verifica a 6 cifre riportato di seguito:",
-            expire: "Questo codice scadrà tra 15 minuti.",
-            security: "Se non hai richiesto questo codice, puoi ignorare questo messaggio.",
-            footer: "Il team di AGM INVEST"
+            instruction: "Ecco il tuo codice di validazione monouso per accedere al tuo spazio sicuro:",
+            expire: "Questo codice è valido per 15 minuti.",
+            security: "Per ragioni di sicurezza, non condividere mai questo codice.",
+            footer: "AGM INVEST"
         },
         de: {
-            subject: 'Ihr Bestätigungscode - AGM INVEST',
-            title: 'Bestätigen Sie Ihre E-Mail',
+            subject: 'Zugriffsvalidierung — AGM INVEST',
             greeting: `Hallo ${data.firstName},`,
-            instruction: "Vielen Dank, dass Sie sich bei AGM INVEST angemeldet haben. Um Ihre Registrierung abzuschließen, verwenden Sie bitte den unten stehenden 6-stelligen Bestätigungscode:",
-            expire: "Dieser Code läuft in 15 Minuten ab.",
-            security: "Wenn Sie diesen Code nicht angefordert haben, können Sie diese E-Mail ignorieren.",
-            footer: "Ihr AGM INVEST Team"
+            instruction: "Hier ist Ihr einmaliger Validierungscode für den Zugriff auf Ihren sicheren Bereich:",
+            expire: "Dieser Code ist 15 Minuten lang gültig.",
+            security: "Teilen Sie diesen Code aus Sicherheitsgründen niemals mit anderen.",
+            footer: "AGM INVEST"
         },
         nl: {
-            subject: 'Uw verificatiecode - AGM INVEST',
-            title: 'Verifieer uw e-mail',
+            subject: 'Toegangsvalidatie — AGM INVEST',
             greeting: `Hallo ${data.firstName},`,
-            instruction: "Bedankt voor uw aanmelding bij AGM INVEST. Om uw registratie te voltooien, gebruikt u de onderstaande 6-cijferige verificatiecode:",
-            expire: "Deze code verloopt over 15 minuten.",
-            security: "Als u deze code niet heeft aangevraagd, kunt u deze e-mail negeren.",
-            footer: "Het AGM INVEST-team"
+            instruction: "Hier is uw eenmalige validatiecode om toegang te krijgen tot uw beveiligde ruimte:",
+            expire: "Deze code is 15 minuten geldig.",
+            security: "Deel deze code om veiligheidsredenen nooit.",
+            footer: "AGM INVEST"
         },
         pl: {
-            subject: 'Twój kod weryfikacyjny - AGM INVEST',
-            title: 'Zweryfikuj swój e-mail',
+            subject: 'Walidacja dostępu — AGM INVEST',
             greeting: `Witaj ${data.firstName},`,
-            instruction: "Dziękujemy za dołączenie do AGM INVEST. Aby dokończyć rejestrację konta, użyj poniższego 6-cyfrowego kodu weryfikacyjnego:",
-            expire: "Ten kod wygaśnie za 15 minut.",
-            security: "Jeśli nie prosiłeś o ten kod, możesz zignorować tę wiadomość.",
-            footer: "Zespół AGM INVEST"
+            instruction: "Oto Twój jednorazowy kod walidacyjny umożliwiający dostęp do bezpiecznego obszaru:",
+            expire: "Ten kod jest ważny przez 15 minut.",
+            security: "Ze względów bezpieczeństwa nigdy nie udostępniaj tego kodu.",
+            footer: "AGM INVEST"
         },
         pt: {
-            subject: 'Seu código de verificação - AGM INVEST',
-            title: 'Verifique seu e-mail',
+            subject: 'Validação de acesso — AGM INVEST',
             greeting: `Olá ${data.firstName},`,
-            instruction: "Obrigado por se juntar à AGM INVEST. Para completar o registo da sua conta, utilize o código de verificação de 6 dígitos abaixo:",
-            expire: "Este código expira em 15 minutos.",
-            security: "Se não solicitou este código, pode ignorar esta mensagem.",
-            footer: "A equipa AGM INVEST"
+            instruction: "Aqui está o seu código de validação de utilização única para aceder ao seu espaço seguro:",
+            expire: "Este código é válido por 15 minutos.",
+            security: "Por razões de segurança, nunca partilhe este código.",
+            footer: "AGM INVEST"
         },
         ro: {
-            subject: 'Codul tău de verificare - AGM INVEST',
-            title: 'Verifică-ți adresa de email',
+            subject: 'Validarea accesului — AGM INVEST',
             greeting: `Bună ziua ${data.firstName},`,
-            instruction: "Vă mulțumim că v-ați alăturat AGM INVEST. Pentru a finaliza înregistrarea contului, vă rugăm să utilizați codul de verificare din 6 cifre de mai jos:",
-            expire: "Acest cod va expira în 15 minute.",
-            security: "Dacă nu ați solicitat acest cod, puteți ignora acest mesaj.",
-            footer: "Echipa AGM INVEST"
+            instruction: "Iată codul dumneavoastră de validare de unică folosință pentru a accesa spațiul dumneavoastră securizat:",
+            expire: "Acest cod este valabil timp de 15 minute.",
+            security: "Din motive de securitate, nu partajați niciodată acest cod.",
+            footer: "AGM INVEST"
         },
         sv: {
-            subject: 'Din verifieringskod - AGM INVEST',
-            title: 'Verifiera din e-post',
+            subject: 'Atkomstvalidering — AGM INVEST',
             greeting: `Hej ${data.firstName},`,
-            instruction: "Tack för att du har gått med i AGM INVEST. För att slutföra din kontoregistrering, använd den 6-siffriga verifieringskoden nedan:",
-            expire: "Denna kod upphör att gälla om 15 minuter.",
-            security: "Om du inte har begärt denna kod kan du bortse från detta e-postmeddelande.",
-            footer: "AGM INVEST-teamet"
+            instruction: "Här är din engångskod för att få tillgång till ditt säkra utrymme:",
+            expire: "Denna kod är giltig i 15 minuter.",
+            security: "Av säkerhetsskäl ska du aldrig dela denna kod.",
+            footer: "AGM INVEST"
         }
     };
 
@@ -104,25 +93,20 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
 
     const content = `
     <div style="text-align: center; padding: 20px 0;">
-      <p style="color: #0F172A; font-size: 26px; font-weight: 900; margin-bottom: 20px; font-family: sans-serif;">${t.title}</p>
-      <p style="color: #64748B; font-size: 16px; line-height: 24px;">${t.greeting}</p>
-      <p style="color: #64748B; font-size: 16px; line-height: 24px;">${t.instruction}</p>
+      <h1 style="font-size:22px;font-weight:900;color:#1E3A5F;margin:0 0 16px;">${t.greeting}</h1>
+      <p style="color: #64748B; font-size: 15px; line-height: 24px;">${t.instruction}</p>
       
-      <div style="background-color: #F8FAFC; border: 2px dashed #E2E8F0; border-radius: 12px; padding: 24px; margin: 30px 0;">
-        <span style="font-family: 'Courier New', Courier, monospace; font-size: 42px; font-weight: bold; letter-spacing: 10px; color: #2563EB;">
+      <div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 32px; margin: 30px 0;">
+        <span style="font-family: 'Courier New', Courier, monospace; font-size: 42px; font-weight: bold; letter-spacing: 12px; color: #1E3A5F;">
           ${data.otpCode}
         </span>
       </div>
       
-      <p style="color: #94A3B8; font-size: 14px;"><em>${t.expire}</em></p>
-      <p style="color: #64748B; font-size: 15px; margin-top: 30px;">${t.security}</p>
-      <p style="color: #0F172A; font-size: 16px; font-weight: bold; margin-top: 20px;">${t.footer}</p>
+      <p style="color: #94A3B8; font-size: 13px;"><em>${t.expire}</em></p>
+      <p style="color: #94A3B8; font-size: 13px; margin-top: 24px;">${t.security}</p>
+      <p style="color: #1E3A5F; font-size: 14px; font-weight: bold; margin-top: 32px;">${t.footer}</p>
     </div>
   `;
 
-    return {
-        subject: t.subject,
-        html: emailLayout(content, lang)
-
-    };
+    return { subject: t.subject, html: emailLayout(content, lang) };
 };
