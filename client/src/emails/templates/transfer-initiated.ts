@@ -8,104 +8,104 @@ interface TransferInitiatedData {
 
 const translations: Record<string, { subject: string; title: string; body: string; details: string; amountLabel: string; beneficiaryLabel: string; cta: string; info: string }> = {
     fr: {
-        subject: "📨 Votre demande de virement a été reçue — AGM INVEST",
-        title: "Demande de virement enregistrée",
-        body: "Nous avons bien reçu votre demande de virement. Elle est actuellement en cours de traitement par nos services.",
-        details: "Détails du virement",
+        subject: "Votre demande de mise à jour a été reçue — AGM INVEST",
+        title: "Demande enregistrée",
+        body: "Nous avons bien reçu votre demande de mise à jour. Elle est actuellement en cours de traitement par nos services.",
+        details: "Détails de l'opération",
         amountLabel: "Montant",
-        beneficiaryLabel: "Bénéficiaire",
+        beneficiaryLabel: "Destinataire",
         cta: "Suivre mes opérations",
-        info: "Les virements sont généralement traités sous 24h à 48h ouvrées."
+        info: "Les opérations sont généralement traitées sous 24h à 48h ouvrées."
     },
     en: {
-        subject: "📨 Your transfer request received — AGM INVEST",
-        title: "Transfer request recorded",
-        body: "We have received your transfer request. It is currently being processed by our services.",
-        details: "Transfer details",
+        subject: "Your update request received — AGM INVEST",
+        title: "Update request recorded",
+        body: "We have received your update request. It is currently being processed by our services.",
+        details: "Operation details",
         amountLabel: "Amount",
-        beneficiaryLabel: "Beneficiary",
+        beneficiaryLabel: "Recipient",
         cta: "Track my operations",
-        info: "Transfers are usually processed within 24 to 48 business hours."
+        info: "Operations are usually processed within 24 to 48 business hours."
     },
     es: {
-        subject: "📨 Su solicitud de transferencia ha sido recibida — AGM INVEST",
-        title: "Solicitud de transferencia registrada",
-        body: "Hemos recibido su solicitud de transferencia. Actualmente está siendo procesada por nuestros servicios.",
-        details: "Detalles de la transferencia",
+        subject: "Su solicitud de actualización ha sido recibida — AGM INVEST",
+        title: "Solicitud registrada",
+        body: "Hemos recibido su solicitud de actualización. Actualmente está siendo procesada por nuestros servicios.",
+        details: "Detalles de la operación",
         amountLabel: "Importe",
-        beneficiaryLabel: "Beneficiario",
+        beneficiaryLabel: "Destinatario",
         cta: "Seguir mis operaciones",
-        info: "Las transferencias se procesan generalmente en un plazo de 24 a 48 horas hábiles."
+        info: "Las operaciones se procesan generalmente en un plazo de 24 a 48 horas hábiles."
     },
     it: {
-        subject: "📨 La tua richiesta di bonifico è stata ricevuta — AGM INVEST",
-        title: "Richiesta di bonifico registrata",
-        body: "Abbiamo ricevuto la tua richiesta di bonifico. È attualmente in fase di elaborazione dai nostri servizi.",
-        details: "Dettagli del bonifico",
+        subject: "La tua richiesta di aggiornamento è stata ricevuta — AGM INVEST",
+        title: "Richiesta registrata",
+        body: "Abbiamo ricevuto la tua richiesta di aggiornamento. È attualmente in fase di elaborazione dai nostri servizi.",
+        details: "Dettagli dell'operazione",
         amountLabel: "Importo",
-        beneficiaryLabel: "Beneficiario",
+        beneficiaryLabel: "Destinatario",
         cta: "Segui le mie operazioni",
-        info: "I bonifici vengono solitamente elaborati entro 24-48 ore lavorative."
+        info: "Le operazioni vengono solitamente elaborate entro 24-48 ore lavorative."
     },
     de: {
-        subject: "📨 Ihr Überweisungsantrag wurde empfangen — AGM INVEST",
-        title: "Überweisungsantrag registriert",
-        body: "Wir haben Ihren Überweisungsantrag erhalten. Er wird derzeit von unseren Diensten bearbeitet.",
-        details: "Überweisungsdetails",
+        subject: "Ihr Aktualisierungsantrag wurde empfangen — AGM INVEST",
+        title: "Antrag registriert",
+        body: "Wir haben Ihren Aktualisierungsantrag erhalten. Er wird derzeit von unseren Diensten bearbeitet.",
+        details: "Vorgangsdetails",
         amountLabel: "Betrag",
         beneficiaryLabel: "Empfänger",
         cta: "Meine Vorgänge verfolgen",
-        info: "Überweisungen werden in der Regel innerhalb von 24 bis 48 Geschäftsstunden bearbeitet."
+        info: "Vorgänge werden in der Regel innerhalb von 24 bis 48 Geschäftsstunden bearbeitet."
     },
     nl: {
-        subject: "📨 Uw overschrijvingsverzoek ontvangen — AGM INVEST",
-        title: "Overboekingsverzoek geregistreerd",
-        body: "Wij hebben uw overboekingsverzoek ontvangen. Het wordt momenteel verwerkt door onze diensten.",
-        details: "Overboekingsgegevens",
+        subject: "Uw verzoek om bijwerking ontvangen — AGM INVEST",
+        title: "Verzoek geregistreerd",
+        body: "Wij hebben uw verzoek om bijwerking ontvangen. Het wordt momenteel verwerkt door onze diensten.",
+        details: "Operationele gegevens",
         amountLabel: "Bedrag",
         beneficiaryLabel: "Begunstigde",
         cta: "Mijn verrichtingen volgen",
-        info: "Overboekingen worden gewoonlijk binnen 24 tot 48 werkuren verwerkt."
+        info: "Bewerkingen worden gewoonlijk binnen 24 tot 48 werkuren verwerkt."
     },
     pl: {
-        subject: "📨 Twój wniosek o przelew został otrzymany — AGM INVEST",
-        title: "Wniosek o przelew zarejestrowany",
-        body: "Otrzymaliśmy Twój wniosek o przelew. Jest on obecnie przetwarzany przez nasze służby.",
-        details: "Szczegóły przelewu",
+        subject: "Twój wniosek o aktualizację został otrzymany — AGM INVEST",
+        title: "Wniosek zarejestrowany",
+        body: "Otrzymaliśmy Twój wniosek o aktualizację. Jest on obecnie przetwarzany przez nasze służby.",
+        details: "Szczegóły operacji",
         amountLabel: "Kwota",
         beneficiaryLabel: "Beneficjent",
         cta: "Śledź moje operacje",
-        info: "Przelewy są zazwyczaj przetwarzane w ciągu 24 do 48 godzin roboczych."
+        info: "Operacje są zazwyczaj przetwarzane w ciągu 24 do 48 godzin roboczych."
     },
     pt: {
-        subject: "📨 O seu pedido de transferência foi recebido — AGM INVEST",
-        title: "Pedido de transferência registado",
-        body: "Recebemos o seu pedido de transferência. Ele está atualmente a ser processado pelos nossos serviços.",
-        details: "Detalhes da transferência",
+        subject: "O seu pedido de atualização foi recebido — AGM INVEST",
+        title: "Pedido registado",
+        body: "Recebemos o seu pedido de atualização. Ele está atualmente a ser processado pelos nossos serviços.",
+        details: "Detalhes da operação",
         amountLabel: "Valor",
         beneficiaryLabel: "Beneficiário",
         cta: "Acompanhar as minhas operações",
-        info: "As transferências são geralmente processadas dentro de 24 a 48 horas úteis."
+        info: "As operações são geralmente processadas dentro de 24 a 48 horas úteis."
     },
     ro: {
-        subject: "📨 Cererea dvs. de transfer a fost primită — AGM INVEST",
-        title: "Cerere de transfer înregistrată",
-        body: "Am primit cererea dvs. de transfer. Aceasta este în curs de procesare de către serviciile noastre.",
-        details: "Detalii transfer",
+        subject: "Cererea dvs. de actualizare a fost primită — AGM INVEST",
+        title: "Cerere înregistrată",
+        body: "Am primit cererea dvs. de actualizare. Aceasta este în curs de procesare de către serviciile noastre.",
+        details: "Detalii operațiune",
         amountLabel: "Sumă",
         beneficiaryLabel: "Beneficiar",
         cta: "Urmăriți operațiunile mele",
-        info: "Transferurile sunt procesate de obicei în termen de 24 până la 48 de ore lucrătoare."
+        info: "Operațiunile sunt procesate de obicei în termen de 24 până la 48 de ore lucrătoare."
     },
     sv: {
-        subject: "📨 Din överföringsansökan har mottagits — AGM INVEST",
-        title: "Överföringsansökan registrerad",
-        body: "Vi har mottagit din överföringsansökan. Den behandlas just nu av våra tjänster.",
-        details: "Överföringsdetaljer",
+        subject: "Din uppdateringsansökan har mottagits — AGM INVEST",
+        title: "Ansökan registrerad",
+        body: "Vi har mottagit din uppdateringsansökan. Den behandlas just nu av våra tjänster.",
+        details: "Operationsdetaljer",
         amountLabel: "Belopp",
         beneficiaryLabel: "Mottagare",
         cta: "Följ mina transaktioner",
-        info: "Överföringar behandlas vanligtvis inom 24 till 48 arbetstimmar."
+        info: "Operationer behandlas vanligtvis inom 24 till 48 arbetstimmar."
     },
 };
 
