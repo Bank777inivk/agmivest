@@ -10,12 +10,12 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
     const translations: any = {
         fr: {
             subject: 'Votre code de verification - AGM INVEST',
-            title: 'V&eacute;rifiez votre email',
+            title: 'V&#233;rifiez votre email (v5)',
             greeting: `Bonjour ${data.firstName},`,
-            instruction: "Merci de vous &ecirc;tre inscrit sur AGM INVEST. Pour finaliser la cr&eacute;ation de votre compte, veuillez utiliser le code de v&eacute;rification &agrave; 6 chiffres ci-dessous :",
+            instruction: "Merci de vous &#234;tre inscrit sur AGM INVEST. Pour finaliser la cr&#233;ation de votre compte, veuillez utiliser le code de v&#233;rification &#224; 6 chiffres ci-dessous :",
             expire: "Ce code expirera dans 15 minutes.",
-            security: "Si vous n'&ecirc;tes pas &agrave; l'origine de cette demande, vous pouvez ignorer cet email.",
-            footer: "L'&eacute;quipe AGM INVEST"
+            security: "Si vous n'&#234;tes pas &#224; l'origine de cette demande, vous pouvez ignorer cet email.",
+            footer: "L'&#233;quipe AGM INVEST"
         },
         en: {
             subject: 'Your verification code - AGM INVEST',
@@ -104,7 +104,7 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
 
     const content = `
     <div style="text-align: center; padding: 20px 0;">
-      <h1 style="color: #0F172A; font-size: 24px; margin-bottom: 20px;">${t.title}</h1>
+      <p style="color: #0F172A; font-size: 26px; font-weight: 900; margin-bottom: 20px; font-family: sans-serif;">${t.title}</p>
       <p style="color: #64748B; font-size: 16px; line-height: 24px;">${t.greeting}</p>
       <p style="color: #64748B; font-size: 16px; line-height: 24px;">${t.instruction}</p>
       

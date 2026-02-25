@@ -2,12 +2,12 @@ import { emailLayout, btn, APP_URL } from '../layout';
 interface LoanSubmittedData { firstName: string; amount: number; duration: number; }
 const translations: Record<string, { subject: string; title: string; body: string; cta: string; amountLabel: string; durationLabel: string }> = {
   fr: {
-    subject: "Réception de votre demande de prêt — AGM INVEST",
-    title: "Votre demande a bien été reçue (v4)",
-    body: "Notre équipe va examiner votre dossier dans les plus brefs délais. Vous serez notifié par email dès qu'une décision sera prise.",
+    subject: "Reception de votre demande de pret - AGM INVEST",
+    title: "Votre demande a bien &#233;t&#233; re&#231;ue (v5)",
+    body: "Notre &#233;quipe va examiner votre dossier dans les plus brefs d&#233;lais. Vous serez notifi&#233; par email d&#232;s qu'une d&#233;cision sera prise.",
     cta: "Suivre mon dossier",
-    amountLabel: "Montant demandé",
-    durationLabel: "Durée"
+    amountLabel: "Montant demand&#233;",
+    durationLabel: "Dur&#233;e"
   },
   en: { subject: "Loan application received — AGM INVEST", title: "Your application has been received", body: "Our team will review your file as soon as possible. You will be notified by email once a decision has been made.", cta: "Track my file", amountLabel: "Requested amount", durationLabel: "Duration" },
   es: { subject: "Solicitud de préstamo recibida — AGM INVEST", title: "¡Su solicitud ha sido recibida!", body: "Nuestro equipo revisará su expediente lo antes posible. Se le notificará por correo electrónico en cuanto se tome una decisión.", cta: "Seguir mi expediente", amountLabel: "Importe solicitado", durationLabel: "Duración" },
@@ -22,7 +22,7 @@ const translations: Record<string, { subject: string; title: string; body: strin
 export function loanSubmittedTemplate(data: LoanSubmittedData, lang: string = 'fr'): { subject: string; html: string } {
   const t = translations[lang] || translations['fr'];
   const content = `
-    <h1 style="font-size:22px;font-weight:900;color:#1E3A5F;margin:0 0 12px;">${t.title}</h1>
+    <p style="font-size:24px;font-weight:900;color:#1E3A5F;margin:0 0 12px;font-family:sans-serif;">${t.title}</p>
     <p style="font-size:15px;color:#64748B;margin:0 0 24px;line-height:1.7;">${t.body}</p>
     <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:20px;margin:0 0 24px;">
       <table width="100%" cellpadding="0" cellspacing="0">
