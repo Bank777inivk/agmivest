@@ -10,7 +10,7 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
     const translations: any = {
         fr: {
             subject: 'Votre code de verification - AGM INVEST',
-            title: 'V&#233;rifiez votre email (v5)',
+            title: 'VERIFICATION DE VOTRE EMAIL (v6)',
             greeting: `Bonjour ${data.firstName},`,
             instruction: "Merci de vous &#234;tre inscrit sur AGM INVEST. Pour finaliser la cr&#233;ation de votre compte, veuillez utiliser le code de v&#233;rification &#224; 6 chiffres ci-dessous :",
             expire: "Ce code expirera dans 15 minutes.",
