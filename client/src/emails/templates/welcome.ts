@@ -9,8 +9,8 @@ const translations: Record<string, { subject: string; greeting: string; body: st
     fr: {
         subject: "Confirmation d'ouverture de compte — AGM INVEST",
         greeting: "Bonjour",
-        body: "Nous vous confirmons l'ouverture de votre compte. Vous pouvez désormais accéder à votre espace personnel pour compléter votre dossier.",
-        cta: "Accéder à mon espace",
+        body: "Nous vous confirmons l'ouverture de votre compte. Vous pouvez desormais acceder a votre espace personnel pour completer votre dossier.",
+        cta: "Acceder a mon espace",
         info: "Identifiant de connexion : "
     },
     en: {

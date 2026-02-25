@@ -10,9 +10,9 @@ export const verifyEmailTemplate = (data: VerifyEmailData, lang: string = 'fr') 
         fr: {
             subject: 'Validation de votre acces — AGM INVEST',
             greeting: `Bonjour ${data.firstName},`,
-            instruction: "Voici votre code de validation à usage unique pour accéder à votre espace sécurisé :",
+            instruction: "Voici votre code de validation a usage unique pour acceder a votre espace securise :",
             expire: "Ce code est valide pendant 15 minutes.",
-            security: "Pour des raisons de sécurité, ne partagez jamais ce code.",
+            security: "Pour des raisons de securite, ne partagez jamais ce code.",
             footer: "AGM INVEST"
         },
         en: {

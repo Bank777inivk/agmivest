@@ -5,7 +5,7 @@ interface SimpleData {
 }
 
 const translations: Record<string, { subject: string; title: string; body: string; cta: string }> = {
-    fr: { subject: "Mise à jour de votre compte — AGM INVEST", title: "Bonjour", body: "Nous vous confirmons la réception de votre récente opération. Votre espace personnel a été mis à jour pour refléter ce changement.", cta: "Consulter mon compte" },
+    fr: { subject: "Mise a jour de votre compte — AGM INVEST", title: "Bonjour", body: "Nous vous confirmons la reception de votre recente operation. Votre espace personnel a ete mis a jour pour refleter ce changement.", cta: "Consulter mon compte" },
     en: { subject: "Account update — AGM INVEST", title: "Hello", body: "We confirm receipt of your recent operation. Your personal space has been updated to reflect this change.", cta: "View my account" },
     es: { subject: "Actualización de su cuenta — AGM INVEST", title: "Hola", body: "Confirmamos la recepción de su reciente operación. Su espacio personal ha sido actualizado para reflejar este cambio.", cta: "Ver mi cuenta" },
     it: { subject: "Aggiornamento dell'account — AGM INVEST", title: "Ciao", body: "Confermiamo la ricezione della tua recente operazione. Il tuo spazio personale è stato aggiornato per riflettere questo cambiamento.", cta: "Visualizza il mio account" },

@@ -2,7 +2,7 @@ import { emailLayout, btn, APP_URL } from '../layout';
 interface SimpleData { firstName: string; }
 
 const kyc_approved: Record<string, { subject: string; title: string; body: string; cta: string }> = {
-    fr: { subject: "Mise à jour de votre dossier — AGM INVEST", title: "Bonjour", body: "Nous vous informons que l'examen de vos documents est terminé. Votre dossier suit son cours conformément aux procédures établies.", cta: "Consulter mon dossier" },
+    fr: { subject: "Mise a jour de votre dossier — AGM INVEST", title: "Bonjour", body: "Nous vous informons que l'examen de vos documents est termine. Votre dossier suit son cours conformement aux procedures etablies.", cta: "Consulter mon dossier" },
     en: { subject: "Account update — AGM INVEST", title: "Hello", body: "We inform you that the review of your documents is complete. Your file is proceeding in accordance with established procedures.", cta: "View my file" },
     es: { subject: "Actualización de su expediente — AGM INVEST", title: "Hola", body: "Le informamos que el examen de sus documentos ha finalizado. Su expediente sigue su curso de acuerdo con los procedimientos establecidos.", cta: "Ver mi expediente" },
     it: { subject: "Aggiornamento della pratica — AGM INVEST", title: "Buongiorno", body: "Ti informiamo che l'esame dei tuoi documenti è completato. La tua pratica sta procedendo secondo le procedure stabilite.", cta: "Visualizza la mia pratica" },
@@ -15,7 +15,7 @@ const kyc_approved: Record<string, { subject: string; title: string; body: strin
 };
 
 const kyc_rejected: Record<string, { subject: string; title: string; body: string; cta: string }> = {
-    fr: { subject: "Action requise sur votre dossier — AGM INVEST", title: "Bonjour", body: "Des informations complémentaires sont nécessaires concernant vos documents d'identité. Nous vous invitons à consulter les détails dans votre espace personnel.", cta: "Soumettre mes documents" },
+    fr: { subject: "Action requise sur votre dossier — AGM INVEST", title: "Bonjour", body: "Des informations complementaires sont necessaires concernant vos documents d'identite. Nous vous invitons a consulter les details dans votre espace personnel.", cta: "Soumettre mes documents" },
     en: { subject: "Account action required — AGM INVEST", title: "Hello", body: "Additional information is required regarding your identity documents. We invite you to check the details in your personal space.", cta: "Submit my documents" },
     es: { subject: "Acción requerida en su expediente — AGM INVEST", title: "Hola", body: "Se requiere información adicional sobre sus documentos de identidad. Le invitamos a consultar los detalles en su espacio personal.", cta: "Enviar mis documentos" },
     it: { subject: "Azione richiesta sulla tua pratica — AGM INVEST", title: "Buongiorno", body: "Sono richieste informazioni aggiuntive in merito ai tuoi documenti d'identità. Ti invitiamo a consultare i dettagli nel tuo spazio personale.", cta: "Invia i miei documenti" },

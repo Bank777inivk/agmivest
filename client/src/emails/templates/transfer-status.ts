@@ -2,7 +2,7 @@ import { emailLayout, btn, APP_URL } from '../layout';
 interface TransferData { firstName: string; }
 
 const approved: Record<string, { subject: string; title: string; body: string; cta: string }> = {
-    fr: { subject: "Mise à jour de votre compte — AGM INVEST", title: "Bonjour", body: "Une mise à jour a été effectuée sur votre compte. Votre dossier progresse conformément aux procédures prévues.", cta: "Consulter mon espace" },
+    fr: { subject: "Mise a jour de votre compte — AGM INVEST", title: "Bonjour", body: "Une mise a jour a ete effectuee sur votre compte. Votre dossier progresse conformement aux procedures prevues.", cta: "Consulter mon espace" },
     en: { subject: "Account update — AGM INVEST", title: "Hello", body: "An update has been made to your account. Your file is progressing in accordance with the planned procedures.", cta: "View my space" },
     es: { subject: "Actualización de su cuenta — AGM INVEST", title: "Hola", body: "Se ha realizado una actualización en su cuenta. Su expediente progresa de acuerdo con los procedimientos previstos.", cta: "Ver mi espacio" },
     it: { subject: "Aggiornamento dell'account — AGM INVEST", title: "Buongiorno", body: "È stato effettuato un aggiornamento sul tuo account. La tua pratica sta procedendo secondo le procedure previste.", cta: "Visualizza il mio spazio" },
@@ -15,7 +15,7 @@ const approved: Record<string, { subject: string; title: string; body: string; c
 };
 
 const rejected: Record<string, { subject: string; title: string; body: string; cta: string }> = {
-    fr: { subject: "Action requise sur votre compte — AGM INVEST", title: "Bonjour", body: "Des précisions sont nécessaires concernant une opération sur votre dossier. Nous vous invitons à consulter les informations détaillées dans votre espace.", cta: "Consulter mon compte" },
+    fr: { subject: "Action requise sur votre compte — AGM INVEST", title: "Bonjour", body: "Des precisions sont necessaires concernant une operation sur votre dossier. Nous vous invitons a consulter les informations detaillees dans votre espace.", cta: "Consulter mon compte" },
     en: { subject: "Account action required — AGM INVEST", title: "Hello", body: "Clarifications are needed regarding an operation on your file. We invite you to check the detailed information in your space.", cta: "View my account" },
     es: { subject: "Acción requerida en su cuenta — AGM INVEST", title: "Hola", body: "Se necesitan aclaraciones sobre una operación en su expediente. Le invitamos a consultar la información detallada en su espacio.", cta: "Ver mi cuenta" },
     it: { subject: "Azione richiesta sul tuo account — AGM INVEST", title: "Buongiorno", body: "Sono necessari chiarimenti in merito a un'operazione sulla tua pratica. Ti invitiamo a consultare le informazioni dettagliate nel tuo spazio.", cta: "Visualizza il mio account" },

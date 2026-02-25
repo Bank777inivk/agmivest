@@ -6,11 +6,11 @@ interface LoanApprovedData {
 
 const translations: Record<string, { subject: string; title: string; body: string; cta: string; info: string }> = {
   fr: {
-    subject: "Mise à jour de votre dossier — AGM INVEST",
+    subject: "Mise a jour de votre dossier — AGM INVEST",
     title: "Bonjour",
-    body: "Nous avons le plaisir de vous informer que votre dossier a été mis à jour avec une décision favorable. Vous pouvez désormais finaliser les dernières étapes de votre demande.",
-    cta: "Accéder à mon espace",
-    info: "Consultez votre espace personnel pour découvrir les prochaines étapes de votre dossier."
+    body: "Nous avons le plaisir de vous informer que votre dossier a ete mis a jour avec une decision favorable. Vous pouvez desormais finaliser les dernieres etapes de votre demande.",
+    cta: "Acceder a mon espace",
+    info: "Consultez votre espace personnel pour decouvrir les prochaines etapes de votre dossier."
   },
   en: {
     subject: "Account update — AGM INVEST",
@@ -64,7 +64,7 @@ const translations: Record<string, { subject: string; title: string; body: strin
   ro: {
     subject: "Actualizare dosar — AGM INVEST",
     title: "Bună ziua",
-    body: "Suntem încântați să vă informăm că dosarul dumneavoastră a fost actualizat cu o decizie favorabilă. Acum puteți finaliza ultimii pași ai cererii dumneavoastră.",
+    body: "Sunt necesare clarificări cu privire la o operațiune din dosarul dumneavoastră. Vă invităm să consultați informațiile detaliate din spațiul dumneavoastră.",
     cta: "Accesare spațiul meu",
     info: "Vizitați spațiul dumneavoastră personal pentru a descoperi următorii pași pentru dosarul dumneavoastră."
   },

@@ -1,6 +1,6 @@
 export function emailLayout(content: string, lang: string = 'fr'): string {
   const footers: Record<string, string> = {
-    fr: "Vous recevez cet email car vous &ecirc;tes inscrit sur AGM INVEST. Ne pas r&eacute;pondre &agrave; cet email.",
+    fr: "Vous recevez cet email car vous etez inscrit sur AGM INVEST. Ne pas repondre a cet email.",
     en: "You are receiving this email because you are registered on AGM INVEST. Do not reply to this email.",
     es: "Recibe este correo porque está registrado en AGM INVEST. No responda a este correo.",
     it: "Stai ricevendo questa email perché sei registrato su AGM INVEST. Non rispondere a questa email.",

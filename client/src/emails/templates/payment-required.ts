@@ -5,7 +5,7 @@ interface PaymentRequiredData {
 }
 
 const translations: Record<string, { subject: string; title: string; body: string; rib: string; cta: string; urgent: string }> = {
-  fr: { subject: "Mise à jour de votre espace — AGM INVEST", title: "Bonjour", body: "Des informations complémentaires sont nécessaires pour finaliser votre dossier. Nous vous invitons à consulter les détails de régularisation dans votre espace sécurisé.", rib: "Coordonnées de règlement", cta: "Consulter mon dossier", urgent: "Une action de votre part est souhaitée pour maintenir votre dossier actif." },
+  fr: { subject: "Mise a jour de votre espace — AGM INVEST", title: "Bonjour", body: "Des informations complementaires sont necessaires pour finaliser votre dossier. Nous vous invitons a consulter les details de regularisation dans votre espace securise.", rib: "Coordonnees de reglement", cta: "Consulter mon dossier", urgent: "Une action de votre part est souhaitee pour maintenir votre dossier actif." },
   en: { subject: "Account update — AGM INVEST", title: "Hello", body: "Additional information is required to finalize your file. We invite you to check the regularization details in your secure space.", rib: "Payment details", cta: "View my file", urgent: "Action is requested to keep your file active." },
   es: { subject: "Actualización de su cuenta — AGM INVEST", title: "Buenos días", body: "Se requiere información adicional para finalizar su expediente. Le invitamos a consultar los detalles de regularización en su espacio seguro.", rib: "Detalles de pago", cta: "Ver mi expediente", urgent: "Se requiere una acción por su parte para mantener su expediente activo." },
   it: { subject: "Aggiornamento dell'account — AGM INVEST", title: "Buongiorno", body: "Sono richieste informazioni aggiuntive per finalizzare la tua pratica. Ti invitiamo a consultare i dettagli della regolarizzazione nel tuo spazio sicuro.", rib: "Dettagli del pagamento", cta: "Visualizza la mia pratica", urgent: "È richiesta un'azione da parte tua per mantenere attiva la tua pratica." },
@@ -27,7 +27,7 @@ export function paymentRequiredTemplate(data: PaymentRequiredData, lang: string 
     <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:0 0 24px;">
       <h3 style="font-size:13px;text-transform:uppercase;color:#94A3B8;margin:0 0 16px;letter-spacing:0.05em;">${t.rib}</h3>
       <p style="font-size:15px;color:#1E3A5F;font-weight:600;margin:0;line-height:1.6;">
-        Consultez les informations de règlement directement sur l'interface de votre compte.
+        Consultez les informations de reglement directement sur l'interface de votre compte.
       </p>
     </div>
 

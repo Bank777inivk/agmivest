@@ -8,9 +8,9 @@ const translations: Record<string, { subject: string; title: string; body: strin
     fr: {
         subject: "Confirmation d'enregistrement — AGM INVEST",
         title: "Bonjour",
-        body: "Nous vous informons qu'un nouvel enregistrement d'opération a été reçu. Votre dossier est en cours de traitement par nos services.",
+        body: "Nous vous informons qu'un nouvel enregistrement d'operation a ete recu. Votre dossier est en cours de traitement par nos services.",
         cta: "Consulter mon espace",
-        info: "Les opérations sont traitées dans les meilleurs délais par nos équipes."
+        info: "Les operations sont traitees dans les meilleurs delais par nos equipes."
     },
     en: {
         subject: "Recording confirmation — AGM INVEST",
@@ -86,7 +86,7 @@ export function transferInitiatedTemplate(data: TransferInitiatedData, lang: str
 
     <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:0 0 24px;">
       <p style="font-size:14px;color:#1E3A5F;font-weight:600;margin:0;line-height:1.6;">
-        Vous pouvez suivre l'état d'avancement de cette mise à jour directement dans votre espace sécurisé.
+        Vous pouvez suivre l'etat d'avancement de cette mise a jour directement dans votre espace securise.
       </p>
     </div>
 

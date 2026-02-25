@@ -6,11 +6,11 @@ interface LoanSubmittedData {
 
 const translations: Record<string, { subject: string; title: string; body: string; cta: string; info: string }> = {
   fr: {
-    subject: "Accusé de réception de votre dossier — AGM INVEST",
+    subject: "Accuse de reception de votre dossier — AGM INVEST",
     title: "Bonjour",
-    body: "Nous vous confirmons avoir bien reçu les informations transmises pour votre dossier. Nos services procèdent actuellement à leur étude.",
+    body: "Nous vous confirmons avoir bien recu les informations transmises pour votre dossier. Nos services procedent actuellement a leur etude.",
     cta: "Suivre mon dossier",
-    info: "Vous pouvez consulter l'état d'avancement de votre dossier à tout moment depuis votre espace sécurisé."
+    info: "Vous pouvez consulter l'etat d'avancement de votre dossier a tout moment depuis votre espace securise."
   },
   en: {
     subject: "File reception confirmation — AGM INVEST",

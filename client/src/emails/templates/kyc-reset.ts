@@ -6,9 +6,9 @@ interface SimpleData {
 
 const translations: Record<string, { subject: string; title: string; body: string; cta: string }> = {
     fr: {
-        subject: "Mise à jour de votre vérification — AGM INVEST",
+        subject: "Mise a jour de votre verification — AGM INVEST",
         title: "Bonjour",
-        body: "Pour finaliser votre dossier, une nouvelle vérification de vos documents d'identité est nécessaire. Nous vous invitons à soumettre à nouveau vos pièces justificatives.",
+        body: "Pour finaliser votre dossier, une nouvelle verification de vos documents d'identite est necessaire. Nous vous invitons a soumettre a nouveau vos pieces justificatives.",
         cta: "Soumettre mes documents"
     },
     en: {
@@ -26,7 +26,7 @@ const translations: Record<string, { subject: string; title: string; body: strin
     it: {
         subject: "Aggiornamento della verifica — AGM INVEST",
         title: "Buongiorno",
-        body: "Per finalizzare la tua pratica, è necessaria una nuova verifica dei tuoi documenti d'identità. Ti invitiamo a inviare nuovamente i tuoi documenti giustificativi.",
+        body: "Per finalizzare la tua pratica, è necessaria una nouvelle verifica dei tuoi documenti d'identità. Ti invitiamo a inviare nuovamente i tuoi documenti giustificativi.",
         cta: "Invia i miei documenti"
     },
     de: {
