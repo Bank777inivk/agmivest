@@ -2701,6 +2701,7 @@
   "CreditSuccess": {
     "title": "Trimitere reușită!",
     "message": "Felicitări! Cererea dumneavoastră de împrumut a fost transmisă cu succes experților noștri. Dosarul dumneavoastră este acum în curs de analiză.",
+    "spamWarning": "Important: Vă rugăm să marcați e-mailul nostru de confirmare ca 'Nu este spam' pentru a primi notificări în timp real.",
     "cta": "Accesează spațiul meu client",
     "home": "Înapoi la pagina principală",
     "footer": "Aveți întrebări? Suportul nostru este disponibil 24/7.",

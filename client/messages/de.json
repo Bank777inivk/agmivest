@@ -2701,6 +2701,7 @@
   "CreditSuccess": {
     "title": "Einreichung erfolgreich!",
     "message": "Herzlichen Glückwunsch! Ihr Kreditantrag wurde erfolgreich an unsere Experten übermittelt. Ihr Dossier wird nun analysiert.",
+    "spamWarning": "Wichtig: Bitte markieren Sie unsere Bestätigungs-E-Mail als 'Kein Spam', um Benachrichtigungen in Echtzeit zu erhalten.",
     "cta": "Meinen Kundenbereich aufrufen",
     "home": "Zurück zur Startseite",
     "footer": "Haben Sie Fragen? Unser Support ist rund um die Uhr für Sie da.",

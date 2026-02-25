@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, ArrowRight, ShieldCheck } from 'lucide-react';
+import { CheckCircle2, ArrowRight, ShieldCheck, MailWarning } from 'lucide-react';
 import { useRouter } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -48,9 +48,45 @@ export default function CreditSuccessPage() {
                 <h1 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4 tracking-tight">
                     {t('title')}
                 </h1>
-                <p className="text-gray-500 text-lg mb-10 max-w-md mx-auto leading-relaxed">
+                <p className="text-gray-500 text-lg mb-6 max-w-md mx-auto leading-relaxed">
                     {t('message')}
                 </p>
+                <div className="relative mb-10 max-w-md mx-auto group">
+                    {/* Border Beam Effect */}
+                    <div className="absolute -inset-[2px] rounded-[1.3rem] overflow-hidden">
+                        <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_280deg,#ef4444_320deg,#f59e0b_360deg)] opacity-100"
+                        />
+                    </div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="relative p-5 bg-white rounded-2xl flex items-center gap-4 overflow-hidden shadow-sm"
+                    >
+                        {/* Subtle background glow */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-amber-50/50 to-transparent pointer-events-none" />
+
+                        <div className="absolute top-0 right-0 p-1 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <MailWarning className="w-12 h-12 text-amber-600 rotate-12" />
+                        </div>
+
+                        <div className="bg-white p-2.5 rounded-xl shadow-sm border border-amber-100/50 text-amber-600 shrink-0 relative z-10">
+                            <MailWarning className="w-5 h-5" />
+                        </div>
+
+                        <div className="text-left relative z-10">
+                            <div className="flex items-center gap-2 mb-1">
+                                <span className="text-amber-600 text-[10px] uppercase font-black tracking-widest bg-amber-100/50 px-2 py-0.5 rounded-md border border-amber-200/50">Attention</span>
+                            </div>
+                            <p className="text-amber-900 text-[13px] font-bold leading-snug">
+                                {t('spamWarning')}
+                            </p>
+                        </div>
+                    </motion.div>
+                </div>
 
                 {/* Features / Next steps */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 text-left">

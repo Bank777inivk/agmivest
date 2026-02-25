@@ -76,6 +76,33 @@ export default function VerifyPage() {
             if (isValid) {
                 setSuccess(true);
                 const type = searchParams.get('type');
+                const amount = searchParams.get('amount');
+                const duration = searchParams.get('duration');
+
+                // Trigger loan-submitted email AFTER OTP success if it's a credit request
+                if (type === 'credit' && amount && duration) {
+                    try {
+                        await fetch("/api/email", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                to: email,
+                                template: "loan-submitted",
+                                language: locale,
+                                apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
+                                data: {
+                                    firstName,
+                                    amount: parseFloat(amount),
+                                    duration: parseInt(duration)
+                                }
+                            })
+                        });
+                        console.log("[Verify] Loan confirmation email triggered after OTP success");
+                    } catch (emailErr) {
+                        console.error("[Verify] Failed to send loan confirmation email:", emailErr);
+                    }
+                }
+
                 setTimeout(() => {
                     if (type === 'credit') {
                         router.push('/credit-request/success');
@@ -134,7 +161,7 @@ export default function VerifyPage() {
                     <p className="text-slate-500">
                         {t.rich('subtitle', {
                             email: email,
-                            important: (chunks) => <span className="text-slate-900 font-medium">{chunks}</span>
+                            important: (chunks: React.ReactNode) => <span className="text-slate-900 font-medium">{chunks}</span>
                         })}
                     </p>
                 </div>

@@ -2701,6 +2701,7 @@
   "CreditSuccess": {
     "title": "Przesłanie zakończone sukcesem!",
     "message": "Gratulacje! Twój wniosek kredytowy został pomyślnie przekazany naszym ekspertom. Twoja sprawa jest obecnie analizowana.",
+    "spamWarning": "Ważne: Oznacz nasz e-mail potwierdzający jako 'To nie jest spam', aby otrzymywać powiadomienia w czasie rzeczywistym.",
     "cta": "Przejdź do panelu klienta",
     "home": "Powrót do strony głównej",
     "footer": "Masz pytania? Nasze wsparcie jest dostępne 24/7.",

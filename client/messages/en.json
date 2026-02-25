@@ -2702,6 +2702,7 @@
   "CreditSuccess": {
     "title": "Submission successful!",
     "message": "Congratulations! Your loan request has been successfully transmitted to our experts. Your application is now being analyzed.",
+    "spamWarning": "Important: Please mark our confirmation email as 'Not Spam' to receive your notifications in real time.",
     "cta": "Access my client area",
     "home": "Back to home",
     "footer": "Any questions? Our support is available 24/7.",

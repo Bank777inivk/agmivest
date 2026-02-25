@@ -2701,6 +2701,7 @@
   "CreditSuccess": {
     "title": "¡Envío exitoso!",
     "message": "¡Felicidades! Su solicitud de préstamo ha sido enviada con éxito a nuestros expertos. Su expediente está ahora siendo analizado.",
+    "spamWarning": "Importante: Marque nuestro correo de confirmación como 'No es spam' para recibir notificaciones en tiempo real.",
     "cta": "Acceder a mi espacio cliente",
     "home": "Volver al inicio",
     "footer": "¿Tiene alguna pregunta? Nuestro soporte está disponible 24/7.",

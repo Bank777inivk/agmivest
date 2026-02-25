@@ -32,7 +32,6 @@ export function emailLayout(content: string, lang: string = 'fr'): string {
           <tr>
             <td style="background:linear-gradient(135deg,#1E3A5F 0%,#0EA5E9 100%);border-radius:16px 16px 0 0;padding:32px 40px;text-align:center;">
               <div style="font-size:28px;font-weight:900;color:#ffffff;letter-spacing:-0.5px;">AGM INVEST</div>
-              <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;letter-spacing:2px;text-transform:uppercase;">Financial Solutions</div>
             </td>
           </tr>
 

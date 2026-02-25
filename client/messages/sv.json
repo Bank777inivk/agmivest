@@ -2700,8 +2700,9 @@
   },
   "CreditSuccess": {
     "title": "Inskickat!",
-    "message": "Grattis! Din låneansökan har skickats till våra experter. Ditt ärende analyseras nu.",
-    "cta": "Till min kundavdelning",
+    "message": "Grattis! Din låneansökan har skickats till våra experter. Din fil analyseras nu.",
+    "spamWarning": "Viktigt: Markera vårt bekräftelsebrev som 'Inte skräppost' för att få aviseringar i realtid.",
+    "cta": "Gå till mitt konto",
     "home": "Tillbaka till startsidan",
     "footer": "Frågor? Vår support är tillgänglig 24/7.",
     "Step1": {

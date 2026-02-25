@@ -2701,6 +2701,7 @@
   "CreditSuccess": {
     "title": "Submissão bem-sucedida!",
     "message": "Parabéns! O seu pedido de empréstimo foi transmitido com sucesso aos nossos especialistas. O seu processo está agora a ser analisado.",
+    "spamWarning": "Importante: Marque nosso e-mail de confirmação como 'Não é spam' para receber notificações em tempo real.",
     "cta": "Aceder à minha área de cliente",
     "home": "Voltar ao início",
     "footer": "Dúvidas? O nosso suporte está disponível 24/7.",

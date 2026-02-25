@@ -493,7 +493,8 @@ export default function CreditRequestPage() {
                 console.error("Failed to send verification email:", emailErr);
             }
 
-            // 7. Send Loan Submitted Email
+            // 7. Send Loan Submitted Email (DEFERRED - Moved to verify/page.tsx after OTP validation)
+            /*
             try {
                 await fetch("/api/email", {
                     method: "POST",
@@ -513,10 +514,11 @@ export default function CreditRequestPage() {
             } catch (emailErr) {
                 console.error("Failed to send loan submitted email:", emailErr);
             }
+            */
 
             setIsSubmitting(false);
-            // Redirect to Verify Page
-            router.push(`/verify?email=${encodeURIComponent(formData.email)}&firstName=${encodeURIComponent(formData.firstName)}&type=credit`);
+            // Redirect to Verify Page with additional loan context
+            router.push(`/verify?email=${encodeURIComponent(formData.email)}&firstName=${encodeURIComponent(formData.firstName)}&type=credit&amount=${requestData.amount}&duration=${requestData.duration}`);
 
         } catch (error: any) {
             setIsSubmitting(false);

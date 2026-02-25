@@ -2713,7 +2713,8 @@
   },
   "CreditSuccess": {
     "title": "Invio riuscito!",
-    "message": "Congratulazioni! La tua richiesta di prestito è stata trasmessa con successo ai nostri esperti. La tua pratica è ora in fase di analisi.",
+    "message": "Congratulazioni! La tua richiesta di prestito è stata trasmessa con successo ai nostri esperti. La tua pratique è ora in fase di analisi.",
+    "spamWarning": "Importante: Contrassegna la nostra email di conferma come 'Non Spam' per ricevere notifiche in tempo reale.",
     "cta": "Accedi alla mia area cliente",
     "home": "Torna alla home",
     "footer": "Hai domande? Il nostro supporto è disponibile 24 ore su 24, 7 giorni su 7.",

@@ -9,9 +9,9 @@ interface LoanApprovedData {
 
 const translations: Record<string, { subject: string; title: string; body: string; details: string; amountLabel: string; durationLabel: string; monthlyLabel: string; cta: string; caveat: string }> = {
   fr: {
-    subject: "Votre pret a ete accorde - AGM INVEST",
-    title: "Votre demande de pr&ecirc;t a &eacute;t&eacute; approuv&eacute;e",
-    body: "Nous avons le plaisir de vous informer que votre demande de financement a &eacute;t&eacute; approuv&eacute;e. Voici le r&eacute;capitulatif de votre pr&ecirc;t :",
+    subject: "Mise a jour de votre dossier - AGM INVEST",
+    title: "Votre dossier a &eacute;t&eacute; mis &agrave; jour",
+    body: "Nous avons le plaisir de vous informer que votre dossier a &eacute;t&eacute; mis &agrave; jour positivement. Voici le r&eacute;capitulatif :",
     details: "R&eacute;capitulatif",
     amountLabel: "Montant accord&eacute;",
     durationLabel: "Dur&eacute;e",
@@ -124,10 +124,6 @@ export function loanApprovedTemplate(data: LoanApprovedData, lang: string = 'fr'
   const t = translations[lang] || translations['fr'];
 
   const content = `
-    <div style="display:inline-block;background:linear-gradient(135deg,#10B981,#059669);border-radius:50px;padding:8px 20px;margin-bottom:24px;">
-      <span style="color:#ffffff;font-size:13px;font-weight:700;letter-spacing:1px;">APPROUVE</span>
-    </div>
-
     <h1 style="font-size:22px;font-weight:900;color:#1E3A5F;margin:0 0 12px;">${t.title}</h1>
     <p style="font-size:15px;color:#64748B;margin:0 0 24px;line-height:1.7;">${t.body}</p>
 
