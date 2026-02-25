@@ -28,6 +28,9 @@ export async function sendEmail({ to, subject, html }: SendEmailOptions): Promis
         to,
         subject,
         html,
+        headers: {
+            'Content-Type': 'text/html; charset=UTF-8',
+        },
         textEncoding: 'base64',
     }) as any;
 

@@ -22,7 +22,7 @@ export function emailLayout(content: string, lang: string = 'fr'): string {
   <meta name="google" content="notranslate" />
   <title>AGM INVEST</title>
 </head>
-<body style="margin:0;padding:0;background-color:#F1F5F9;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+<body class="notranslate" translate="no" style="margin:0;padding:0;background-color:#F1F5F9;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#F1F5F9;padding:40px 16px;">
     <tr>
       <td align="center">

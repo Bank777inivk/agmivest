@@ -2,12 +2,12 @@ import { emailLayout, btn, APP_URL } from '../layout';
 interface LoanSubmittedData { firstName: string; amount: number; duration: number; }
 const translations: Record<string, { subject: string; title: string; body: string; cta: string; amountLabel: string; durationLabel: string }> = {
   fr: {
-    subject: "Reception de votre demande de pret - AGM INVEST",
-    title: "Votre demande a bien &eacute;t&eacute; re&ccedil;ue",
-    body: "Notre &eacute;quipe va examiner votre dossier dans les plus brefs d&eacute;lais. Vous serez notifi&eacute; par email d&egrave;s qu'une d&eacute;cision sera prise.",
+    subject: "Réception de votre demande de prêt — AGM INVEST",
+    title: "Votre demande a bien été reçue (v4)",
+    body: "Notre équipe va examiner votre dossier dans les plus brefs délais. Vous serez notifié par email dès qu'une décision sera prise.",
     cta: "Suivre mon dossier",
-    amountLabel: "Montant demand&eacute;",
-    durationLabel: "Dur&eacute;e"
+    amountLabel: "Montant demandé",
+    durationLabel: "Durée"
   },
   en: { subject: "Loan application received — AGM INVEST", title: "Your application has been received", body: "Our team will review your file as soon as possible. You will be notified by email once a decision has been made.", cta: "Track my file", amountLabel: "Requested amount", durationLabel: "Duration" },
   es: { subject: "Solicitud de préstamo recibida — AGM INVEST", title: "¡Su solicitud ha sido recibida!", body: "Nuestro equipo revisará su expediente lo antes posible. Se le notificará por correo electrónico en cuanto se tome una decisión.", cta: "Seguir mi expediente", amountLabel: "Importe solicitado", durationLabel: "Duración" },
