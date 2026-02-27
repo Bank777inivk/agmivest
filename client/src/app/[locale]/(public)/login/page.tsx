@@ -57,7 +57,7 @@ export default function LoginPage() {
 
             // Redirection logic is handled by onAuthStateChanged but we can force it here
             router.push("/dashboard");
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error("Login error:", err);
             const errorKey = getFirebaseAuthErrorMessage(err.code);
             setError(t(errorKey));
@@ -79,7 +79,7 @@ export default function LoginPage() {
         try {
             await sendPasswordResetEmail(auth, email);
             setSuccess(t('resetPasswordSuccess'));
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error("Reset password error:", err);
             const errorKey = getFirebaseAuthErrorMessage(err.code);
             setError(t(errorKey));

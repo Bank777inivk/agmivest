@@ -213,7 +213,7 @@ export default function CreditRequestPage() {
                 } else {
                     router.push("/login");
                 }
-            } catch (error: any) {
+            } catch (error: unknown) {
                 console.error("Firestore error in useEffect:", error);
                 // Handle permission-denied or other errors gracefully
                 if (error.code === 'permission-denied') {
@@ -360,7 +360,7 @@ export default function CreditRequestPage() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        let newValue = value;
+        const newValue = value;
 
         setFormData(prev => {
             const updated = { ...prev, [name]: newValue };

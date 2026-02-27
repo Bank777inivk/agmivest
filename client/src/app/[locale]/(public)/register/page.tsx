@@ -68,9 +68,9 @@ export default function RegisterPage() {
             if (country && country.grouping) {
                 let formatted = "";
                 let currentPos = 0;
-                for (let groupSize of country.grouping) {
+                for (const groupSize of country.grouping) {
                     if (currentPos >= digits.length) break;
-                    let group = digits.slice(currentPos, currentPos + groupSize);
+                    const group = digits.slice(currentPos, currentPos + groupSize);
                     formatted += (formatted ? " " : "") + group;
                     currentPos += groupSize;
                 }
@@ -135,17 +135,17 @@ export default function RegisterPage() {
         const currentYear = new Date().getFullYear();
 
         if (day.length === 2) {
-            let d = parseInt(day);
+            const d = parseInt(day);
             if (d > 31) day = "31";
             if (d === 0) day = "01";
         }
         if (month.length === 2) {
-            let m = parseInt(month);
+            const m = parseInt(month);
             if (m > 12) month = "12";
             if (m === 0) month = "01";
         }
         if (year.length === 4) {
-            let y = parseInt(year);
+            const y = parseInt(year);
             if (y > currentYear) year = currentYear.toString();
         }
 
@@ -254,7 +254,7 @@ export default function RegisterPage() {
 
             // 3. Redirect to Verify Page instead of direct Dashboard
             router.push(`/verify?email=${encodeURIComponent(formData.email)}&firstName=${encodeURIComponent(formData.firstName)}`);
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error("Registration error:", err);
             const errorKey = getFirebaseAuthErrorMessage(err.code);
             setError(t(errorKey));

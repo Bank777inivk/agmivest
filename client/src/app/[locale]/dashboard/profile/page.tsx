@@ -98,9 +98,9 @@ export default function ProfilePage() {
             if (country && country.grouping) {
                 let formatted = "";
                 let currentPos = 0;
-                for (let groupSize of country.grouping) {
+                for (const groupSize of country.grouping) {
                     if (currentPos >= digits.length) break;
-                    let group = digits.slice(currentPos, currentPos + groupSize);
+                    const group = digits.slice(currentPos, currentPos + groupSize);
                     formatted += (formatted ? " " : "") + group;
                     currentPos += groupSize;
                 }

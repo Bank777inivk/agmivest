@@ -357,13 +357,13 @@ export default function RequestDetailsPage() {
                                         <p className="text-white/60 text-[11px] font-medium mt-1">{request.advisorEmail || "contact@agm-negoce.com"}</p>
                                     </div>
                                 </div>
-                                <a
-                                    href="/dashboard/support"
+                                <button
+                                    onClick={() => router.push("/dashboard/support")}
                                     className="w-full bg-white text-ely-blue px-8 py-4 rounded-2xl font-black text-xs sm:text-sm uppercase tracking-widest shadow-xl shadow-blue-900/10 hover:shadow-blue-900/30 transition-all flex items-center justify-center gap-2 group/btn"
                                 >
                                     <span>{t('advisor.contact')}</span>
                                     <ArrowRight className="w-4 h-4 sm:w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </section>

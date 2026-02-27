@@ -170,7 +170,7 @@ export default function SettingsPage() {
             });
 
             alert(t('PasswordModal.successAlert'));
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error(error);
             if (error.code === 'auth/wrong-password') {
                 setPasswordError(t('PasswordModal.errorWrong'));

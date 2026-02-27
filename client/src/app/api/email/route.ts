@@ -11,6 +11,8 @@ import { transferApprovedTemplate, transferRejectedTemplate } from '@/emails/tem
 import { transferInitiatedTemplate } from '@/emails/templates/transfer-initiated';
 import { paymentRequiredTemplate } from '@/emails/templates/payment-required';
 import { paymentConfirmedTemplate } from '@/emails/templates/payment-confirmed';
+import { kycReceivedTemplate } from '@/emails/templates/kyc-received';
+import { identityReceivedTemplate } from '@/emails/templates/identity-received';
 
 // Simple API Key for basic security between client/admin and API
 const EMAIL_API_KEY = process.env.EMAIL_API_KEY || 'agm-invest-secure-email-key';
@@ -93,6 +95,12 @@ export async function POST(req: Request) {
             case 'payment-confirmed':
                 emailContent = paymentConfirmedTemplate(data, lang);
                 break;
+            case 'kyc-received':
+                emailContent = kycReceivedTemplate(data, lang);
+                break;
+            case 'identity-received':
+                emailContent = identityReceivedTemplate(data, lang);
+                break;
             case 'verify-email':
                 const { verifyEmailTemplate } = await import('@/emails/templates/verify-email');
                 emailContent = verifyEmailTemplate({
@@ -132,7 +140,7 @@ export async function POST(req: Request) {
             status: 500,
             headers: corsHeaders
         });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('[EmailAPI] Unexpected error:', error);
         return NextResponse.json({ error: error.message }, {
             status: 500,

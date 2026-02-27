@@ -9,6 +9,7 @@ export interface DocumentUpload {
     icon: LucideIcon;
     file: File | null;
     preview: string | null;
+    isPdf?: boolean;
     url: string | null;
     status: "idle" | "uploading" | "success" | "error";
     reviewStatus?: "pending" | "approved" | "rejected";

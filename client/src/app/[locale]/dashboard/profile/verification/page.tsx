@@ -22,7 +22,7 @@ import { doc, updateDoc, serverTimestamp, onSnapshot } from "firebase/firestore"
 import { onAuthStateChanged } from "firebase/auth";
 import Image from "next/image";
 import CameraModal from "@/components/dashboard/CameraModal";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 import DesktopVerification from "@/components/dashboard/KYC/DesktopVerification";
 import MobileVerification from "@/components/dashboard/KYC/MobileVerification";
@@ -30,11 +30,13 @@ import { DocumentUpload, IdNature } from "@/components/dashboard/KYC/types";
 
 export default function IdentityVerificationPage() {
     const t = useTranslations('Dashboard.KYC');
+    const locale = useLocale();
     const router = useRouter();
     const [userId, setUserId] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [residenceCountry, setResidenceCountry] = useState<string>("France");
     const [documents, setDocuments] = useState<Record<string, DocumentUpload>>({});
+    const [userData, setUserData] = useState<any>(null);
     const [isMobile, setIsMobile] = useState(false);
 
     // Identity Types
@@ -67,8 +69,9 @@ export default function IdentityVerificationPage() {
                 const userDocRef = doc(db, "users", user.uid);
                 unsubDoc = onSnapshot(userDocRef, (docSnap) => {
                     if (docSnap.exists()) {
-                        const userData = docSnap.data();
-                        const kycDocs = userData.kycDocuments || {};
+                        const data = docSnap.data();
+                        setUserData(data);
+                        const kycDocs = data.kycDocuments || {};
                         const country = userData.residenceCountry || "France";
                         setResidenceCountry(country);
                         const isFrance = country === "France";
@@ -187,6 +190,7 @@ export default function IdentityVerificationPage() {
             alert("❌ " + t('Errors.fileTooLarge'));
             return;
         }
+        const isPdf = file.type === "application/pdf";
         const previewUrl = file.type.startsWith('image/') ? URL.createObjectURL(file) : null;
         setDocuments(prev => ({
             ...prev,
@@ -194,6 +198,7 @@ export default function IdentityVerificationPage() {
                 ...prev[activeDoc],
                 file,
                 preview: previewUrl,
+                isPdf,
                 status: "idle"
             }
         }));
@@ -290,6 +295,26 @@ export default function IdentityVerificationPage() {
                 kycSubmittedAt: serverTimestamp(),
                 updatedAt: serverTimestamp()
             });
+
+            // Send Confirmation Email
+            try {
+                await fetch("/api/email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        to: auth.currentUser?.email,
+                        template: "kyc-received",
+                        language: locale,
+                        apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
+                        data: {
+                            firstName: userData?.firstName || userData?.displayName || "Client"
+                        }
+                    })
+                });
+            } catch (emailErr) {
+                console.error("Failed to send KYC confirmation email:", emailErr);
+            }
+
             setTimeout(() => router.push("/dashboard"), 2000);
         } catch (error) {
             console.error("Submit error:", error);

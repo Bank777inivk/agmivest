@@ -25,6 +25,7 @@ interface ScheduleItem {
 
 export default function SchedulePage() {
     const t = useTranslations('Dashboard.Accounts');
+    const tSchedule = useTranslations('Dashboard.Schedule');
     const router = useRouter();
     const [loanAccount, setLoanAccount] = useState<any>(null);
     const [schedule, setSchedule] = useState<ScheduleItem[]>([]);
@@ -35,46 +36,9 @@ export default function SchedulePage() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8; // Reduced for better mobile view, but maybe keep 12 for desktop? Let's use 10 as a middle ground or keep 12
 
-    useEffect(() => {
-        let unsubscribeAccount: (() => void) | null = null;
-
-        const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                // Fetch user info for PDF (one-time)
-                const userDoc = await getDoc(doc(db, "users", user.uid));
-                if (userDoc.exists()) {
-                    setUserName(userDoc.data().firstName || "Client");
-                }
-
-                // Setup Real-time listener for account
-                const q = query(
-                    collection(db, "accounts"),
-                    where("userId", "==", user.uid),
-                    limit(1)
-                );
-
-                unsubscribeAccount = onSnapshot(q, (snapshot: QuerySnapshot) => {
-                    if (!snapshot.empty) {
-                        const data = snapshot.docs[0].data();
-                        console.log("Account update received in real-time:", data);
-                        setLoanAccount({ id: snapshot.docs[0].id, ...data });
-                        generateSchedule(data);
-                    }
-                    setIsLoading(false);
-                }, (error: FirestoreError) => {
-                    console.error("Firestore Error:", error);
-                    setIsLoading(false);
-                });
-            } else {
-                setIsLoading(false);
-            }
-        });
-
-        return () => {
-            unsubscribeAuth();
-            if (unsubscribeAccount) unsubscribeAccount();
-        };
-    }, []);
+    const formatCurrency = (val: number) => {
+        return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(val);
+    };
 
     const generateSchedule = (account: any) => {
         if (!account) return;
@@ -136,9 +100,48 @@ export default function SchedulePage() {
         setSchedule(newSchedule);
     };
 
-    const formatCurrency = (val: number) => {
-        return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(val);
-    };
+    useEffect(() => {
+        let unsubscribeAccount: (() => void) | null = null;
+
+        const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // Fetch user info for PDF (one-time)
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                if (userDoc.exists()) {
+                    setUserName(userDoc.data().firstName || "Client");
+                }
+
+                // Setup Real-time listener for account
+                const q = query(
+                    collection(db, "accounts"),
+                    where("userId", "==", user.uid),
+                    limit(1)
+                );
+
+                unsubscribeAccount = onSnapshot(q, (snapshot: QuerySnapshot) => {
+                    if (!snapshot.empty) {
+                        const data = snapshot.docs[0].data();
+                        console.log("Account update received in real-time:", data);
+                        setLoanAccount({ id: snapshot.docs[0].id, ...data });
+                        generateSchedule(data);
+                    }
+                    setIsLoading(false);
+                }, (error: FirestoreError) => {
+                    console.error("Firestore Error:", error);
+                    setIsLoading(false);
+                });
+            } else {
+                setIsLoading(false);
+            }
+        });
+
+        return () => {
+            unsubscribeAuth();
+            if (unsubscribeAccount) unsubscribeAccount();
+        };
+    }, []);
+
+
 
     const handleDownloadPDF = () => {
         if (!schedule.length || !loanAccount) return;
@@ -263,8 +266,6 @@ export default function SchedulePage() {
         totalPages,
         paginatedSchedule
     };
-
-    const tSchedule = useTranslations('Dashboard.Schedule');
 
     if (isLoading) {
         return (

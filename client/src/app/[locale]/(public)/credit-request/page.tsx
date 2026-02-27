@@ -139,9 +139,9 @@ export default function CreditRequestPage() {
             if (country && country.grouping) {
                 let formatted = "";
                 let currentPos = 0;
-                for (let groupSize of country.grouping) {
+                for (const groupSize of country.grouping) {
                     if (currentPos >= digits.length) break;
-                    let group = digits.slice(currentPos, currentPos + groupSize);
+                    const group = digits.slice(currentPos, currentPos + groupSize);
                     formatted += (formatted ? " " : "") + group;
                     currentPos += groupSize;
                 }
@@ -222,17 +222,17 @@ export default function CreditRequestPage() {
         const currentYear = new Date().getFullYear();
 
         if (day.length === 2) {
-            let d = parseInt(day);
+            const d = parseInt(day);
             if (d > 31) day = "31";
             if (d === 0) day = "01";
         }
         if (month.length === 2) {
-            let m = parseInt(month);
+            const m = parseInt(month);
             if (m > 12) month = "12";
             if (m === 0) month = "01";
         }
         if (year.length === 4) {
-            let y = parseInt(year);
+            const y = parseInt(year);
             if (y > currentYear) year = currentYear.toString();
         }
 
@@ -520,7 +520,7 @@ export default function CreditRequestPage() {
             // Redirect to Verify Page with additional loan context
             router.push(`/verify?email=${encodeURIComponent(formData.email)}&firstName=${encodeURIComponent(formData.firstName)}&type=credit&amount=${requestData.amount}&duration=${requestData.duration}`);
 
-        } catch (error: any) {
+        } catch (error: unknown) {
             setIsSubmitting(false);
             console.error("Erreur lors de la soumission:", error);
 

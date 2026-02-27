@@ -70,23 +70,6 @@ export default function CameraPage() {
         return () => window.removeEventListener('resize', checkDevice);
     }, []);
 
-    // Synchroniser stream avec video element
-    useEffect(() => {
-        if (stream && videoRef.current && !isReviewing && !isVideoReviewing) {
-            videoRef.current.srcObject = stream;
-            videoRef.current.play().catch(err => console.error("Video play error:", err));
-        }
-    }, [stream, isReviewing, isVideoReviewing]);
-
-    // Démarrer caméra automatiquement
-    useEffect(() => {
-        const shouldStartCamera = !isDesktop && !isReviewing && !isVideoReviewing;
-        if (shouldStartCamera) {
-            startCamera();
-        }
-        return () => stopCamera();
-    }, [isDesktop, step, isReviewing, isVideoReviewing]);
-
     const startCamera = async () => {
         if (isDesktop) return;
 
@@ -113,6 +96,23 @@ export default function CameraPage() {
             setStream(null);
         }
     };
+
+    // Synchroniser stream avec video element
+    useEffect(() => {
+        if (stream && videoRef.current && !isReviewing && !isVideoReviewing) {
+            videoRef.current.srcObject = stream;
+            videoRef.current.play().catch(err => console.error("Video play error:", err));
+        }
+    }, [stream, isReviewing, isVideoReviewing]);
+
+    // Démarrer caméra automatiquement
+    useEffect(() => {
+        const shouldStartCamera = !isDesktop && !isReviewing && !isVideoReviewing;
+        if (shouldStartCamera) {
+            startCamera();
+        }
+        return () => stopCamera();
+    }, [isDesktop, step, isReviewing, isVideoReviewing]);
 
     // --- SELFIE LOGIC ---
 

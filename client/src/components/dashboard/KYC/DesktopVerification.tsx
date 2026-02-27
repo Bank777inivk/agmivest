@@ -9,7 +9,8 @@ import {
     Loader2,
     ChevronRight,
     Info,
-    AlertCircle
+    AlertCircle,
+    FileText
 } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -187,8 +188,12 @@ export default function DesktopVerification({
                                     <div className="flex items-center gap-4">
                                         {doc.preview || (doc.url && doc.reviewStatus !== 'rejected') ? (
                                             <div className="relative group">
-                                                <div className="w-24 h-16 rounded-2xl overflow-hidden border-2 border-slate-100 shadow-inner">
-                                                    <Image src={doc.preview || doc.url!} alt="" fill className="object-cover transition-transform group-hover:scale-110" />
+                                                <div className="w-24 h-16 rounded-2xl overflow-hidden border-2 border-slate-100 shadow-inner flex items-center justify-center bg-slate-50">
+                                                    {doc.isPdf || doc.url?.toLowerCase().endsWith('.pdf') ? (
+                                                        <FileText className="w-8 h-8 text-slate-400" />
+                                                    ) : (
+                                                        <Image src={doc.preview || doc.url!} alt="" fill className="object-cover transition-transform group-hover:scale-110" />
+                                                    )}
                                                     {doc.status === 'uploading' && (
                                                         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center">
                                                             <Loader2 className="w-6 h-6 text-white animate-spin" />

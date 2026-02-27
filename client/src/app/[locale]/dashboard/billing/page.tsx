@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import {
     CreditCard,
@@ -23,7 +24,7 @@ import {
     History
 } from "lucide-react";
 import { auth, db } from "@/lib/firebase";
-import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { collection, query, where, getDocs, limit, onSnapshot } from "firebase/firestore";
 import { AnimatePresence } from "framer-motion";
 import { onAuthStateChanged } from "firebase/auth";
@@ -44,6 +45,9 @@ export default function BillingPage() {
 
     // Tunnel Steps: 0: Intro, 1: Selfie, 2: Video, 3: Processing, 4: RIB
     const [verificationStep, setVerificationStep] = useState(0);
+    const [userData, setUserData] = useState<any>(null);
+    const searchParams = useSearchParams();
+    const locale = useLocale();
     const [selfiePreview, setSelfiePreview] = useState<string | null>(null);
     const [selfieFile, setSelfieFile] = useState<File | null>(null);
     const [videoPreview, setVideoPreview] = useState<string | null>(null);
@@ -90,7 +94,13 @@ export default function BillingPage() {
                         const data = querySnapshot.docs[0].data();
                         setRequest({ id: querySnapshot.docs[0].id, ...data });
                     }
-                } catch (error: any) {
+
+                    // Fetch user data for name
+                    const userSnap = await getDoc(doc(db, "users", user.uid));
+                    if (userSnap.exists()) {
+                        setUserData(userSnap.data());
+                    }
+                } catch (error: unknown) {
                     console.error("Error fetching payment request:", error);
                     setSystemError(error.code === 'permission-denied' ? t('errors.accessDenied') : error.message);
                 } finally {
@@ -102,6 +112,35 @@ export default function BillingPage() {
         });
         return () => unsubscribe();
     }, [router]);
+
+    // Handle verification success email
+    useEffect(() => {
+        if (searchParams.get('verified') === 'true' && userData && userId) {
+            const sendIdentityEmail = async () => {
+                try {
+                    await fetch("/api/email", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            to: auth.currentUser?.email,
+                            template: "identity-received",
+                            language: locale,
+                            apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
+                            data: {
+                                firstName: userData.firstName || userData.displayName || "Client"
+                            }
+                        })
+                    });
+                    // Clean URL to prevent multiple sends on refresh
+                    const newUrl = window.location.pathname;
+                    window.history.replaceState({}, '', newUrl);
+                } catch (err) {
+                    console.error("Failed to send identity confirmation email:", err);
+                }
+            };
+            sendIdentityEmail();
+        }
+    }, [searchParams, userData, userId, locale]);
 
     const copyToClipboard = (text: string, field: string) => {
         navigator.clipboard.writeText(text);

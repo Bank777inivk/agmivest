@@ -30,6 +30,7 @@ export default function ReviewsPage() {
     // Reset to page 1 if reviews change (e.g. filter or new data)
     useEffect(() => {
         setCurrentPage(1);
+        // eslint-disable-next-line react-hooks/set-state-in-effect
     }, [reviews.length]);
 
     const totalPages = Math.ceil(reviews.length / pageSize);
@@ -54,7 +55,7 @@ export default function ReviewsPage() {
                 month: 'long',
                 day: 'numeric'
             });
-        } catch (e) {
+        } catch {
             return dateString;
         }
     };
@@ -127,7 +128,7 @@ export default function ReviewsPage() {
                                                         : t(`Items.r${review.id}.region`)}
                                                 </p>
                                             </div>
-                                            {(review as any).verified && (
+                                            {(review as { verified?: boolean }).verified && (
                                                 <div className="flex items-center gap-1 bg-green-50 text-green-700 px-2 py-1 rounded-lg text-xs font-semibold">
                                                     <Star className="w-3 h-3 fill-green-700" />
                                                     {t('verified')}
@@ -140,9 +141,9 @@ export default function ReviewsPage() {
                                         </div>
 
                                         <p className="text-slate-600 text-sm leading-relaxed mb-4 min-h-[60px]">
-                                            "{typeof review.id === 'string'
+                                            &quot;{typeof review.id === 'string'
                                                 ? review.comment
-                                                : t(`Items.r${review.id}.comment`)}"
+                                                : t(`Items.r${review.id}.comment`)}&quot;
                                         </p>
 
                                         <p className="text-xs text-slate-400">

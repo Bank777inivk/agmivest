@@ -47,7 +47,7 @@ export default function TransferPage() {
                 try {
                     // Try User Profile first for IBAN
                     const userSnap = await getDoc(doc(db, "users", user.uid));
-                    let userData = userSnap.exists() ? userSnap.data() : {};
+                    const userData = userSnap.exists() ? userSnap.data() : {};
 
                     // Fetch Loan Account Data (where remainingAmount is stored)
                     const accountsQuery = query(collection(db, "accounts"), where("userId", "==", user.uid));

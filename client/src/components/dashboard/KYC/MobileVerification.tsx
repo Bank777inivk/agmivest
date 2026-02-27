@@ -10,7 +10,8 @@ import {
     ChevronRight,
     ShieldCheck,
     LucideIcon,
-    AlertCircle
+    AlertCircle,
+    FileText
 } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -60,8 +61,12 @@ const ChecklistItem = ({
                 <AnimatePresence mode="wait">
                     {doc.preview || (doc.url && doc.reviewStatus !== 'rejected') ? (
                         <div key="preview" className="relative group">
-                            <div className="w-12 h-12 rounded-xl overflow-hidden border border-slate-100 shadow-sm relative">
-                                <Image src={doc.preview || doc.url!} alt="" fill className="object-cover" />
+                            <div className="w-12 h-12 rounded-xl overflow-hidden border border-slate-100 shadow-sm relative flex items-center justify-center bg-slate-50">
+                                {doc.isPdf || doc.url?.toLowerCase().endsWith('.pdf') ? (
+                                    <FileText className="w-6 h-6 text-slate-400" />
+                                ) : (
+                                    <Image src={doc.preview || doc.url!} alt="" fill className="object-cover" />
+                                )}
                                 {doc.status === 'uploading' && (
                                     <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px] flex items-center justify-center">
                                         <Loader2 className="w-4 h-4 text-white animate-spin" />

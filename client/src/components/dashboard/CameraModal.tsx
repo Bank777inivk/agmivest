@@ -33,24 +33,6 @@ export default function CameraModal({ isOpen, onClose, onCapture, title }: Camer
         checkDevice();
     }, []);
 
-    // Start/Stop Camera
-    useEffect(() => {
-        if (isOpen && !preview) {
-            startCamera();
-        } else {
-            stopCamera();
-        }
-        return () => stopCamera();
-    }, [isOpen, preview]);
-
-    // Sync stream with video element
-    useEffect(() => {
-        if (stream && videoRef.current && !isReviewing) {
-            videoRef.current.srcObject = stream;
-            videoRef.current.play().catch(err => console.error("Video play error:", err));
-        }
-    }, [stream, isReviewing]);
-
     const startCamera = async () => {
         try {
             const constraints = {
@@ -66,7 +48,6 @@ export default function CameraModal({ isOpen, onClose, onCapture, title }: Camer
             setStream(mediaStream);
         } catch (error) {
             console.error("Camera error:", error);
-            // Fallback to front camera if back fails
             // Fallback to front camera if back fails
             try {
                 const mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
@@ -84,6 +65,24 @@ export default function CameraModal({ isOpen, onClose, onCapture, title }: Camer
             setStream(null);
         }
     };
+
+    // Start/Stop Camera
+    useEffect(() => {
+        if (isOpen && !preview) {
+            startCamera();
+        } else {
+            stopCamera();
+        }
+        return () => stopCamera();
+    }, [isOpen, preview]);
+
+    // Sync stream with video element
+    useEffect(() => {
+        if (stream && videoRef.current && !isReviewing) {
+            videoRef.current.srcObject = stream;
+            videoRef.current.play().catch(err => console.error("Video play error:", err));
+        }
+    }, [stream, isReviewing]);
 
     const capturePhoto = () => {
         if (videoRef.current) {

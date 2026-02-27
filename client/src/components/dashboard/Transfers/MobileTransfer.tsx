@@ -54,6 +54,7 @@ export default function MobileTransfer({
 }: MobileTransferProps) {
     const router = useRouter();
     const t = useTranslations('Dashboard.Transfers');
+    const tAccounts = useTranslations('Dashboard.Accounts');
     const locale = useLocale();
 
     const getStatusStyles = (status: string) => {
@@ -127,7 +128,7 @@ export default function MobileTransfer({
                                 <div className="bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 mb-2">
                                     <p className="text-[10px] font-black uppercase tracking-widest text-ely-mint flex items-center gap-2">
                                         <Wallet className="w-3 h-3" />
-                                        {useTranslations('Dashboard.Accounts')('card.totalBalance')} : {new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).format(loanAccount?.remainingAmount || 0)}
+                                        {tAccounts('card.totalBalance')} : {new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).format(loanAccount?.remainingAmount || 0)}
                                     </p>
                                 </div>
                                 <label className="text-[10px] font-bold text-white/50 uppercase tracking-widest leading-none">{t('form.amountLabel')}</label>
