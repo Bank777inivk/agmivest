@@ -29,9 +29,6 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
 
-  turbopack: {
-    root: path.resolve(process.cwd()),
-  },
 
   // Production optimizations
   reactStrictMode: true,
