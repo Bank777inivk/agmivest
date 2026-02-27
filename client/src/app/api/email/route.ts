@@ -142,7 +142,7 @@ export async function POST(req: Request) {
         });
     } catch (error: unknown) {
         console.error('[EmailAPI] Unexpected error:', error);
-        return NextResponse.json({ error: error.message }, {
+        return NextResponse.json({ error: error instanceof Error ? error.message : String(error) }, {
             status: 500,
             headers: corsHeaders
         });

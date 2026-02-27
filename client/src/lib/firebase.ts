@@ -18,8 +18,16 @@ const db = initializeFirestore(app, {
     localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
 });
 
+// Type guard for Firebase errors
+const isFirebaseError = (error: unknown): error is { code: string } => {
+    return typeof error === 'object' && error !== null && 'code' in error;
+};
+
 // Helper to map Firebase Auth error codes to translation keys
-const getFirebaseAuthErrorMessage = (code: string): string => {
+const getFirebaseAuthErrorMessage = (error: unknown): string => {
+    if (!isFirebaseError(error)) return 'Errors.default';
+
+    const code = error.code;
     const errorMap: Record<string, string> = {
         'auth/invalid-email': 'Errors.auth/invalid-email',
         'auth/user-disabled': 'Errors.auth/user-disabled',
@@ -33,4 +41,4 @@ const getFirebaseAuthErrorMessage = (code: string): string => {
     return errorMap[code] || 'Errors.default';
 };
 
-export { app, auth, db, getFirebaseAuthErrorMessage };
+export { app, auth, db, getFirebaseAuthErrorMessage, isFirebaseError };

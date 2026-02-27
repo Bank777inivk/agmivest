@@ -29,7 +29,7 @@ import {
     reauthenticateWithCredential,
     EmailAuthProvider
 } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { auth, isFirebaseError } from "@/lib/firebase";
 import { createNotification } from "@/hooks/useNotifications";
 
 const languages = [
@@ -172,7 +172,7 @@ export default function SettingsPage() {
             alert(t('PasswordModal.successAlert'));
         } catch (error: unknown) {
             console.error(error);
-            if (error.code === 'auth/wrong-password') {
+            if (isFirebaseError(error) && error.code === 'auth/wrong-password') {
                 setPasswordError(t('PasswordModal.errorWrong'));
             } else {
                 setPasswordError(t('PasswordModal.errorGeneric'));

@@ -256,7 +256,7 @@ export default function RegisterPage() {
             router.push(`/verify?email=${encodeURIComponent(formData.email)}&firstName=${encodeURIComponent(formData.firstName)}`);
         } catch (err: unknown) {
             console.error("Registration error:", err);
-            const errorKey = getFirebaseAuthErrorMessage(err.code);
+            const errorKey = getFirebaseAuthErrorMessage(err);
             setError(t(errorKey));
         } finally {
             setIsLoading(false);

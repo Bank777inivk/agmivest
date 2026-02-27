@@ -23,7 +23,7 @@ import {
     StopCircle,
     History
 } from "lucide-react";
-import { auth, db } from "@/lib/firebase";
+import { auth, db, isFirebaseError } from "@/lib/firebase";
 import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { collection, query, where, getDocs, limit, onSnapshot } from "firebase/firestore";
 import { AnimatePresence } from "framer-motion";
@@ -102,7 +102,15 @@ export default function BillingPage() {
                     }
                 } catch (error: unknown) {
                     console.error("Error fetching payment request:", error);
-                    setSystemError(error.code === 'permission-denied' ? t('errors.accessDenied') : error.message);
+                    let message = "";
+                    if (isFirebaseError(error)) {
+                        message = error.code === 'permission-denied' ? t('errors.accessDenied') : error.code;
+                    } else if (error instanceof Error) {
+                        message = error.message;
+                    } else {
+                        message = String(error);
+                    }
+                    setSystemError(message);
                 } finally {
                     setIsLoading(false);
                 }

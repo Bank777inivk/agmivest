@@ -13,7 +13,7 @@ import { useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { generateOTP, storeOTP } from "@/lib/otp";
 import { useTranslations, useLocale } from "next-intl";
-import { auth, db } from "@/lib/firebase";
+import { auth, db, isFirebaseError } from "@/lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import Simulator from "@/components/Simulator";
@@ -525,12 +525,16 @@ export default function CreditRequestPage() {
             console.error("Erreur lors de la soumission:", error);
 
             // Gestion des erreurs Firebase
-            if (error.code === "auth/email-already-in-use") {
-                alert(t('Errors.emailUsed'));
-            } else if (error.code === "auth/weak-password") {
-                alert(t('Errors.weakPassword'));
-            } else if (error.code === "auth/invalid-email") {
-                alert(t('Errors.invalidEmail'));
+            if (isFirebaseError(error)) {
+                if (error.code === "auth/email-already-in-use") {
+                    alert(t('Errors.emailUsed'));
+                } else if (error.code === "auth/weak-password") {
+                    alert(t('Errors.weakPassword'));
+                } else if (error.code === "auth/invalid-email") {
+                    alert(t('Errors.invalidEmail'));
+                } else {
+                    alert(t('Errors.genericError'));
+                }
             } else {
                 alert(t('Errors.genericError'));
             }

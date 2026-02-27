@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { auth, db } from "@/lib/firebase";
+import { auth, db, isFirebaseError } from "@/lib/firebase";
 import { doc, getDoc, setDoc, addDoc, collection, serverTimestamp, getDocs, query, where, limit, orderBy } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
@@ -216,7 +216,7 @@ export default function CreditRequestPage() {
             } catch (error: unknown) {
                 console.error("Firestore error in useEffect:", error);
                 // Handle permission-denied or other errors gracefully
-                if (error.code === 'permission-denied') {
+                if (isFirebaseError(error) && error.code === 'permission-denied') {
                     // Maybe the rules for 'requests' are strict or index missing
                 }
             } finally {

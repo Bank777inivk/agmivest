@@ -59,7 +59,7 @@ export default function LoginPage() {
             router.push("/dashboard");
         } catch (err: unknown) {
             console.error("Login error:", err);
-            const errorKey = getFirebaseAuthErrorMessage(err.code);
+            const errorKey = getFirebaseAuthErrorMessage(err);
             setError(t(errorKey));
         } finally {
             setIsLoading(false);
@@ -81,7 +81,7 @@ export default function LoginPage() {
             setSuccess(t('resetPasswordSuccess'));
         } catch (err: unknown) {
             console.error("Reset password error:", err);
-            const errorKey = getFirebaseAuthErrorMessage(err.code);
+            const errorKey = getFirebaseAuthErrorMessage(err);
             setError(t(errorKey));
         } finally {
             setIsResetLoading(false);
