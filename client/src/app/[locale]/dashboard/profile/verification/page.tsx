@@ -72,7 +72,7 @@ export default function IdentityVerificationPage() {
                         const data = docSnap.data();
                         setUserData(data);
                         const kycDocs = data.kycDocuments || {};
-                        const country = userData.residenceCountry || "France";
+                        const country = data.residenceCountry || "France";
                         setResidenceCountry(country);
                         const isFrance = country === "France";
 
