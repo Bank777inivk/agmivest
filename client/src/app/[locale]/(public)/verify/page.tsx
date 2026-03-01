@@ -23,11 +23,13 @@ export default function VerifyPage() {
     const [resendLoading, setResendLoading] = useState(false);
     const [success, setSuccess] = useState(false);
 
+    const requestId = searchParams.get('requestId') || "";
+
     useEffect(() => {
         if (!email) {
             router.push('/register');
         }
-    }, [email, locale, router]);
+    }, [email, locale, router, requestId, firstName]);
 
     const handleChange = (element: HTMLInputElement, index: number) => {
         if (isNaN(Number(element.value))) return false;

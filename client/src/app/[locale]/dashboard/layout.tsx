@@ -7,7 +7,7 @@ import IdentityBanner from "@/components/dashboard/IdentityBanner";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { auth, db } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, query, collection, where, limit, orderBy, getDoc } from "firebase/firestore";
 import { useTranslations, useLocale } from "next-intl";
 import { createNotification } from "@/hooks/useNotifications";
 import { useRef } from "react";
@@ -126,6 +126,59 @@ export default function DashboardLayout({
 
         return () => unsubscribeChat();
     }, []);
+
+    // --- GLOBAL AUTO-ANALYSE TRIGGER (1 MINUTE DELAY) ---
+    // Watches for pending requests and triggers analysis if user stays online
+    useEffect(() => {
+        const user = auth.currentUser;
+        if (!user) return;
+
+        // Query for the latest pending request of the user
+        const q = query(
+            collection(db, "requests"),
+            where("userId", "==", user.uid),
+            where("stepAnalysis", "==", false),
+            where("status", "==", "pending"),
+            orderBy("createdAt", "desc"),
+            limit(1)
+        );
+
+        const unsubscribe = onSnapshot(q, async (snapshot) => {
+            if (!snapshot.empty) {
+                const requestDoc = snapshot.docs[0];
+                const requestId = requestDoc.id;
+                const requestData = requestDoc.data();
+
+                console.log(`[DashboardLayout] Pending request found: ${requestId}. Starting 1min timer...`);
+
+                const timer = setTimeout(async () => {
+                    try {
+                        const userDoc = await getDoc(doc(db, "users", user.uid));
+                        const userData = userDoc.data();
+
+                        await fetch("/api/requests/auto-analyse", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                requestId,
+                                userId: user.uid,
+                                firstName: userData?.firstName || "",
+                                email: userData?.email || user.email,
+                                language: locale
+                            })
+                        });
+                        console.log(`[DashboardLayout] Auto-analysis triggered for request ${requestId}`);
+                    } catch (err) {
+                        console.error("[DashboardLayout] Failed to trigger auto-analysis:", err);
+                    }
+                }, 60000); // 1 minute
+
+                return () => clearTimeout(timer);
+            }
+        });
+
+        return () => unsubscribe();
+    }, [locale]);
 
     // On ne bloque plus le rendu global par un spinner
     // Le contenu (children) sera géré par loading.tsx si nécessaire

@@ -1,15 +1,44 @@
-"use client";
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight, ShieldCheck, MailWarning } from 'lucide-react';
 import { useRouter } from '@/i18n/routing';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 
 export default function CreditSuccessPage() {
     const t = useTranslations('CreditSuccess');
+    const locale = useLocale();
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const requestId = searchParams.get('requestId');
+    const firstName = searchParams.get('firstName') || "";
+    const email = searchParams.get('email') || "";
+
+    useEffect(() => {
+        if (requestId) {
+            console.log("[CreditSuccess] Starting 1-minute countdown for auto-analyse...");
+            const timer = setTimeout(async () => {
+                try {
+                    await fetch("/api/requests/auto-analyse", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            requestId,
+                            firstName,
+                            email,
+                            language: locale
+                        })
+                    });
+                    console.log("[CreditSuccess] Automatic analysis triggered successfully.");
+                } catch (err) {
+                    console.error("[CreditSuccess] Failed to trigger automatic analysis:", err);
+                }
+            }, 60000); // 1 minute
+
+            return () => clearTimeout(timer);
+        }
+    }, [requestId, firstName, email, locale]);
 
     return (
         <main className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center p-4 relative overflow-hidden">

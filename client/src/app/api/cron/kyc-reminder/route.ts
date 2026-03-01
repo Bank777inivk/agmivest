@@ -24,7 +24,7 @@ export async function GET(req: Request) {
 
         // --- PART 1: AUTO-ANALYSE NEW REQUESTS ---
         const requestsUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents:runQuery?key=${FIREBASE_API_KEY}`;
-        const thirtyMinsAgo = new Date(Date.now() - 30 * 60 * 1000).toISOString();
+        const twoMinsAgo = new Date(Date.now() - 2 * 60 * 1000).toISOString();
 
         const analysisQuery = {
             structuredQuery: {
