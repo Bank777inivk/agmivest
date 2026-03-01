@@ -1021,16 +1021,25 @@ export default function AdminDashboard() {
       // 2. Trigger Identity Verification for User
       if (request.userId) {
         await updateDoc(doc(dbInstance, "users", request.userId), {
-          idStatus: "verification_required"
+          idStatus: "verification_required",
+          kycReminderStartedAt: serverTimestamp() // Track when reminders started for cron job
         });
 
-        // Send Email to Client (KYC Required)
+        // Send Email to Client (KYC Required) — 1 minute delay
         const userDocRef = doc(dbInstance, "users", request.userId);
         const userSnap = await getDoc(userDocRef);
         const userData = userSnap.data();
-        await sendAdminEmail(request.email || userData?.email, "kyc-required", userData?.language, {
-          firstName: request.firstName || userData?.firstName
-        });
+        const emailTo = request.email || userData?.email;
+        const firstName = request.firstName || userData?.firstName;
+        const language = userData?.language;
+
+        setTimeout(async () => {
+          try {
+            await sendAdminEmail(emailTo, "kyc-required", language, { firstName });
+          } catch (e) {
+            console.error("Failed to send delayed kyc-required email:", e);
+          }
+        }, 60000); // 1 minute delay
       }
 
     } catch (error) {
