@@ -133,23 +133,27 @@ export default function DashboardLayout({
         const user = auth.currentUser;
         if (!user) return;
 
-        // Query for the latest pending request of the user
+        // Query for pending requests of the user
         const q = query(
             collection(db, "requests"),
             where("userId", "==", user.uid),
-            where("stepAnalysis", "==", false),
-            where("status", "==", "pending"),
-            orderBy("createdAt", "desc"),
-            limit(1)
+            where("status", "==", "pending")
         );
 
         const unsubscribe = onSnapshot(q, async (snapshot) => {
             if (!snapshot.empty) {
-                const requestDoc = snapshot.docs[0];
-                const requestId = requestDoc.id;
-                const requestData = requestDoc.data();
+                // Filter and sort in memory to avoid complex index requirements
+                const pendingRequests = snapshot.docs
+                    .map(doc => ({ id: doc.id, ...doc.data() as any }))
+                    .filter(req => req.stepAnalysis === false)
+                    .sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
 
-                console.log(`[DashboardLayout] Pending request found: ${requestId}. Starting 1min timer...`);
+                if (pendingRequests.length === 0) return;
+
+                const latestRequest = pendingRequests[0];
+                const requestId = latestRequest.id;
+
+                console.log(`[DashboardLayout] Found unanalyzed request: ${requestId}. Starting 1min timer...`);
 
                 const timer = setTimeout(async () => {
                     try {

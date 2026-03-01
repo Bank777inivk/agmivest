@@ -498,7 +498,7 @@ export default function CreditRequestPage() {
             // --- REDIRECTION ---
             setIsSubmitting(false);
             // Redirect to Verify Page with additional loan context + requestId for auto-analyse
-            router.push(`/verify?email=${encodeURIComponent(formData.email)}&firstName=${encodeURIComponent(formData.firstName)}&type=credit&amount=${requestData.amount}&duration=${requestData.duration}&requestId=${requestId}`);
+            router.push(`/verify?email=${encodeURIComponent(formData.email)}&firstName=${encodeURIComponent(formData.firstName)}&type=credit&amount=${requestData.amount}&duration=${requestData.duration}&requestId=${requestId}&userId=${requestData.userId}`);
 
         } catch (error: unknown) {
             setIsSubmitting(false);

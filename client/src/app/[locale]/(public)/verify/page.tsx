@@ -107,7 +107,8 @@ export default function VerifyPage() {
 
                 setTimeout(() => {
                     if (type === 'credit') {
-                        router.push('/credit-request/success');
+                        const userId = searchParams.get('userId') || "";
+                        router.push(`/credit-request/success?requestId=${requestId}&userId=${userId}&email=${encodeURIComponent(email)}&firstName=${encodeURIComponent(firstName || "")}`);
                     } else {
                         router.push('/dashboard');
                     }

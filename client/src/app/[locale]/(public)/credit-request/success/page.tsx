@@ -14,12 +14,13 @@ export default function CreditSuccessPage() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const requestId = searchParams.get('requestId');
+    const userId = searchParams.get('userId');
     const firstName = searchParams.get('firstName') || "";
     const email = searchParams.get('email') || "";
 
     useEffect(() => {
-        if (requestId) {
-            console.log("[CreditSuccess] Starting 1-minute countdown for auto-analyse...");
+        if (requestId && userId) {
+            console.log(`[CreditSuccess] Starting 1-minute countdown for auto-analyse (Request: ${requestId}, User: ${userId})...`);
             const timer = setTimeout(async () => {
                 try {
                     await fetch("/api/requests/auto-analyse", {
@@ -27,6 +28,7 @@ export default function CreditSuccessPage() {
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             requestId,
+                            userId,
                             firstName,
                             email,
                             language: locale
@@ -40,7 +42,7 @@ export default function CreditSuccessPage() {
 
             return () => clearTimeout(timer);
         }
-    }, [requestId, firstName, email, locale]);
+    }, [requestId, userId, firstName, email, locale]);
 
     return (
         <main className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center p-4 relative overflow-hidden">

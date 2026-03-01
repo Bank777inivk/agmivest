@@ -14,13 +14,11 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { requestId, userId, firstName, email, language } = body;
 
-        console.log(`[AutoAnalyse] Processing request ${requestId} for user ${userId}`);
-
-        if (!requestId || !userId) {
-            return NextResponse.json({ error: 'Missing requestId or userId' }, { status: 400 });
+        if (!requestId) {
+            return NextResponse.json({ error: 'Missing requestId' }, { status: 400 });
         }
 
-        // 1. Check if already analyzed to prevent double work
+        // 1. Fetch Request to check status and get userId
         const docUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents/requests/${requestId}?key=${FIREBASE_API_KEY}`;
         const checkRes = await fetch(docUrl);
         if (!checkRes.ok) {
@@ -28,6 +26,12 @@ export async function POST(req: Request) {
         }
 
         const requestDoc = await checkRes.json();
+        const resolvedUserId = userId || requestDoc.fields?.userId?.stringValue;
+
+        if (!resolvedUserId) {
+            return NextResponse.json({ error: 'Could not resolve userId' }, { status: 400 });
+        }
+
         if (requestDoc.fields?.stepAnalysis?.booleanValue === true) {
             return NextResponse.json({ success: true, message: 'Already analyzed' });
         }
@@ -47,7 +51,7 @@ export async function POST(req: Request) {
         });
 
         // 3. Set User to verification_required
-        const patchUserUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents/users/${userId}?updateMask.fieldPaths=idStatus&updateMask.fieldPaths=kycReminderStartedAt&key=${FIREBASE_API_KEY}`;
+        const patchUserUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents/users/${resolvedUserId}?updateMask.fieldPaths=idStatus&updateMask.fieldPaths=kycReminderStartedAt&key=${FIREBASE_API_KEY}`;
         await fetch(patchUserUrl, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
