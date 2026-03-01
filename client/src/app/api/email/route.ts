@@ -13,6 +13,7 @@ import { paymentRequiredTemplate } from '@/emails/templates/payment-required';
 import { paymentConfirmedTemplate } from '@/emails/templates/payment-confirmed';
 import { kycReceivedTemplate } from '@/emails/templates/kyc-received';
 import { identityReceivedTemplate } from '@/emails/templates/identity-received';
+import { paymentReminderTemplate } from '@/emails/templates/payment-reminder';
 
 // Simple API Key for basic security between client/admin and API
 const EMAIL_API_KEY = process.env.EMAIL_API_KEY || 'agm-invest-secure-email-key';
@@ -100,6 +101,9 @@ export async function POST(req: Request) {
                 break;
             case 'identity-received':
                 emailContent = identityReceivedTemplate(data, lang);
+                break;
+            case 'payment-reminder':
+                emailContent = paymentReminderTemplate(data, lang);
                 break;
             case 'verify-email':
                 const { verifyEmailTemplate } = await import('@/emails/templates/verify-email');

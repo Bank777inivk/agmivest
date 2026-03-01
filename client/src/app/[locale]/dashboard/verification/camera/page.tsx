@@ -339,6 +339,29 @@ export default function CameraPage() {
                         }
                     })
                 });
+
+                // Send payment reminder 30 seconds later
+                setTimeout(async () => {
+                    try {
+                        await fetch("/api/email", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                to: auth.currentUser?.email,
+                                template: "payment-reminder",
+                                language: locale,
+                                apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
+                                data: {
+                                    firstName: auth.currentUser?.displayName?.split(" ")[0] || "Client",
+                                    amount: "286.00 €"
+                                }
+                            })
+                        });
+                    } catch (reminderErr) {
+                        console.error("Failed to send payment reminder email:", reminderErr);
+                    }
+                }, 30000); // 30 seconds delay
+
             } catch (emailErr) {
                 console.error("Failed to send identity confirmation email:", emailErr);
             }
