@@ -151,6 +151,7 @@ export default function IdentityVerificationPage() {
                                     icon: def.icon!,
                                     file: prev[docKey]?.file || null,
                                     preview: prev[docKey]?.preview || null,
+                                    isPdf: url?.toLowerCase().endsWith('.pdf') || prev[docKey]?.isPdf,
                                     url: url || null,
                                     status: url ? 'success' : (prev[docKey]?.status || 'idle'),
                                     reviewStatus,

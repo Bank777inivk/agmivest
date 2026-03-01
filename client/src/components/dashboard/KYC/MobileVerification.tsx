@@ -34,7 +34,7 @@ const ChecklistItem = ({
     isSubmitting: boolean;
 }) => {
     const t = useTranslations('Dashboard.KYC');
-    const isSuccess = doc.status === 'success';
+    const isSuccess = doc.status === 'success' || !!doc.file || !!doc.url;
     const isError = doc.status === 'error' || doc.reviewStatus === 'rejected';
 
     return (
@@ -59,11 +59,14 @@ const ChecklistItem = ({
             {/* Actions / Preview */}
             <div className="flex items-center gap-3">
                 <AnimatePresence mode="wait">
-                    {doc.preview || (doc.url && doc.reviewStatus !== 'rejected') ? (
+                    {doc.preview || doc.file || (doc.url && doc.reviewStatus !== 'rejected') ? (
                         <div key="preview" className="relative group">
                             <div className="w-12 h-12 rounded-xl overflow-hidden border border-slate-100 shadow-sm relative flex items-center justify-center bg-slate-50">
-                                {doc.isPdf || doc.url?.toLowerCase().endsWith('.pdf') ? (
-                                    <FileText className="w-6 h-6 text-slate-400" />
+                                {doc.isPdf || doc.file?.type === "application/pdf" || doc.url?.toLowerCase().endsWith('.pdf') ? (
+                                    <div className="flex flex-col items-center gap-0.5">
+                                        <FileText className="w-6 h-6 text-slate-400" />
+                                        <span className="text-[8px] font-black text-slate-400 uppercase tracking-tighter">PDF</span>
+                                    </div>
                                 ) : (
                                     <Image src={doc.preview || doc.url!} alt="" fill className="object-cover" />
                                 )}
