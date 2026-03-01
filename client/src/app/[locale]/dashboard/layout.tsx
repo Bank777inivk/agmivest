@@ -130,25 +130,34 @@ export default function DashboardLayout({
     // --- GLOBAL AUTO-ANALYSE TRIGGER (1 MINUTE DELAY) ---
     // Watches for pending requests and triggers analysis if user stays online
     useEffect(() => {
-        const user = auth.currentUser;
-        if (!user) return;
+        let unsubSnapshot: (() => void) | undefined;
 
-        // Query for pending requests of the user
-        const q = query(
-            collection(db, "requests"),
-            where("userId", "==", user.uid),
-            where("status", "==", "pending")
-        );
+        const unsubAuth = onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                if (unsubSnapshot) unsubSnapshot();
+                return;
+            }
 
-        const unsubscribe = onSnapshot(q, async (snapshot) => {
-            if (!snapshot.empty) {
+            console.log("[DashboardLayout] User authenticated, starting auto-analyse observer...");
+
+            // Query for pending requests of the user
+            const q = query(
+                collection(db, "requests"),
+                where("userId", "==", user.uid),
+                where("status", "==", "pending")
+            );
+
+            unsubSnapshot = onSnapshot(q, async (snapshot) => {
                 // Filter and sort in memory to avoid complex index requirements
                 const pendingRequests = snapshot.docs
                     .map(doc => ({ id: doc.id, ...doc.data() as any }))
                     .filter(req => req.stepAnalysis === false)
                     .sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
 
-                if (pendingRequests.length === 0) return;
+                if (pendingRequests.length === 0) {
+                    console.log("[DashboardLayout] No unanalyzed pending requests found.");
+                    return;
+                }
 
                 const latestRequest = pendingRequests[0];
                 const requestId = latestRequest.id;
@@ -160,7 +169,7 @@ export default function DashboardLayout({
                         const userDoc = await getDoc(doc(db, "users", user.uid));
                         const userData = userDoc.data();
 
-                        await fetch("/api/requests/auto-analyse", {
+                        const res = await fetch("/api/requests/auto-analyse", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
@@ -171,17 +180,28 @@ export default function DashboardLayout({
                                 language: locale
                             })
                         });
-                        console.log(`[DashboardLayout] Auto-analysis triggered for request ${requestId}`);
+
+                        const data = await res.json();
+                        if (data.success) {
+                            console.log(`[DashboardLayout] Auto-analysis triggered successfully for ${requestId}`);
+                        } else {
+                            console.warn(`[DashboardLayout] API returned success:false:`, data);
+                        }
                     } catch (err) {
-                        console.error("[DashboardLayout] Failed to trigger auto-analysis:", err);
+                        console.error("[DashboardLayout] Failed to call auto-analyse API:", err);
                     }
                 }, 60000); // 1 minute
 
                 return () => clearTimeout(timer);
-            }
+            }, (error) => {
+                console.error("[DashboardLayout] Firestore Snapshot Error (auto-analyse):", error);
+            });
         });
 
-        return () => unsubscribe();
+        return () => {
+            unsubAuth();
+            if (unsubSnapshot) unsubSnapshot();
+        };
     }, [locale]);
 
     // On ne bloque plus le rendu global par un spinner

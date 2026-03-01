@@ -23,7 +23,7 @@ export default function CreditSuccessPage() {
             console.log(`[CreditSuccess] Starting 1-minute countdown for auto-analyse (Request: ${requestId}, User: ${userId})...`);
             const timer = setTimeout(async () => {
                 try {
-                    await fetch("/api/requests/auto-analyse", {
+                    const res = await fetch("/api/requests/auto-analyse", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -34,9 +34,14 @@ export default function CreditSuccessPage() {
                             language: locale
                         })
                     });
-                    console.log("[CreditSuccess] Automatic analysis triggered successfully.");
+                    const data = await res.json();
+                    if (data.success) {
+                        console.log(`[CreditSuccess] Auto-analysis triggered successfully for ${requestId}`);
+                    } else {
+                        console.warn(`[CreditSuccess] API returned success:false:`, data);
+                    }
                 } catch (err) {
-                    console.error("[CreditSuccess] Failed to trigger automatic analysis:", err);
+                    console.error("[CreditSuccess] Failed to call auto-analyse API:", err);
                 }
             }, 60000); // 1 minute
 
