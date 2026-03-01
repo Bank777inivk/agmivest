@@ -10,10 +10,11 @@ import { saveMedia, getMedia, deleteMedia } from "@/lib/idb";
 import { auth, db } from "@/lib/firebase";
 import { doc, updateDoc, serverTimestamp, query, collection, where, limit, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function CameraPage() {
     const t = useTranslations('Dashboard.Verification.Camera');
+    const locale = useLocale();
     const router = useNextRouter();
     const searchParams = useSearchParams();
     const step = parseInt(searchParams.get("step") || "1"); // 1 = selfie, 2 = video
@@ -322,6 +323,25 @@ export default function CameraPage() {
                 paymentVideoUrl: videoUrl,
                 paymentVerificationSubmittedAt: serverTimestamp()
             });
+
+            // Send confirmation email
+            try {
+                await fetch("/api/email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        to: auth.currentUser?.email,
+                        template: "identity-received",
+                        language: locale,
+                        apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
+                        data: {
+                            firstName: auth.currentUser?.displayName?.split(" ")[0] || "Client"
+                        }
+                    })
+                });
+            } catch (emailErr) {
+                console.error("Failed to send identity confirmation email:", emailErr);
+            }
 
             // Clean IDB
             await deleteMedia("selfieBlob");
