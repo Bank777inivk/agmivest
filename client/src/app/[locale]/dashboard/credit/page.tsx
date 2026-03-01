@@ -308,7 +308,29 @@ export default function CreditRequestPage() {
                 createdAt: serverTimestamp(),
             };
 
-            await addDoc(collection(db, "requests"), requestData);
+            const requestRef = await addDoc(collection(db, "requests"), requestData);
+
+            // --- PART 2: AUTO-ANALYSE TRIGGER (1 MINUTE DELAY) ---
+            const requestId = requestRef.id;
+            setTimeout(async () => {
+                try {
+                    const userDoc = await getDoc(doc(db, "users", auth.currentUser!.uid));
+                    const userData = userDoc.data();
+                    await fetch("/api/requests/auto-analyse", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            requestId,
+                            userId: auth.currentUser!.uid,
+                            firstName: userData?.firstName || "",
+                            email: userData?.email || auth.currentUser!.email,
+                            language: locale
+                        })
+                    });
+                } catch (autoErr) {
+                    console.error("Failed to trigger automatic analysis:", autoErr);
+                }
+            }, 60000); // 1 minute delay
 
             // Send Loan Submitted Email
             try {

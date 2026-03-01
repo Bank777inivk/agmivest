@@ -20,9 +20,109 @@ export async function GET(req: Request) {
     }
 
     try {
-        console.log('[KYCReminderCron] Starting daily KYC reminder job...');
+        console.log('[KYCReminderCron] Starting daily job (Auto-Analyse + Reminders)...');
 
-        // 2. Query Firestore via REST API — users with idStatus = 'verification_required'
+        // --- PART 1: AUTO-ANALYSE NEW REQUESTS ---
+        const requestsUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents:runQuery?key=${FIREBASE_API_KEY}`;
+        const thirtyMinsAgo = new Date(Date.now() - 30 * 60 * 1000).toISOString();
+
+        const analysisQuery = {
+            structuredQuery: {
+                from: [{ collectionId: 'requests' }],
+                where: {
+                    compositeFilter: {
+                        op: 'AND',
+                        filters: [
+                            {
+                                fieldFilter: {
+                                    field: { fieldPath: 'stepAnalysis' },
+                                    op: 'EQUAL',
+                                    value: { booleanValue: false }
+                                }
+                            },
+                            {
+                                fieldFilter: {
+                                    field: { fieldPath: 'status' },
+                                    op: 'EQUAL',
+                                    value: { stringValue: 'pending' }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        };
+
+        const analysisRes = await fetch(requestsUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(analysisQuery)
+        });
+
+        if (analysisRes.ok) {
+            const results: any[] = await analysisRes.json();
+            const unanalyzedRequests = (results || []).filter(r => r.document);
+            console.log(`[KYCReminderCron] Found ${unanalyzedRequests.length} unanalyzed requests to process.`);
+
+            for (const res of unanalyzedRequests) {
+                const docName = res.document.name; // e.g. projects/.../requests/ID
+                const reqId = docName.split('/').pop();
+                const fields = res.document.fields || {};
+                const userId = fields.userId?.stringValue;
+                const email = fields.email?.stringValue;
+                const firstName = fields.firstName?.stringValue || 'Client';
+
+                // 1. Mark as Analyzed and update status
+                const patchUrl = `https://firestore.googleapis.com/v1/${docName}?updateMask.fieldPaths=stepAnalysis&updateMask.fieldPaths=status&updateMask.fieldPaths=updatedAt&key=${FIREBASE_API_KEY}`;
+                await fetch(patchUrl, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        fields: {
+                            stepAnalysis: { booleanValue: true },
+                            status: { stringValue: 'processing' },
+                            updatedAt: { timestampValue: new Date().toISOString() }
+                        }
+                    })
+                });
+
+                // 2. Set User to verification_required
+                if (userId) {
+                    const userPatchUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents/users/${userId}?updateMask.fieldPaths=idStatus&updateMask.fieldPaths=kycReminderStartedAt&key=${FIREBASE_API_KEY}`;
+                    await fetch(userPatchUrl, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            fields: {
+                                idStatus: { stringValue: 'verification_required' },
+                                kycReminderStartedAt: { timestampValue: new Date().toISOString() }
+                            }
+                        })
+                    });
+
+                    // 3. Send initial KYC Required email
+                    try {
+                        const userDocUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents/users/${userId}?key=${FIREBASE_API_KEY}`;
+                        const userFetch = await fetch(userDocUrl);
+                        const userD = await userFetch.json();
+                        const locale = userD.fields?.language?.stringValue || 'fr';
+
+                        const emailContent = kycRequiredTemplate({ firstName }, locale);
+                        await sendEmail({
+                            to: email || userD.fields?.email?.stringValue,
+                            subject: emailContent.subject,
+                            html: emailContent.html
+                        });
+                        console.log(`[KYCReminderCron] ✅ Auto-Analyzed and emailed ${email}`);
+                    } catch (e) {
+                        console.error(`[KYCReminderCron] Email failed for ${reqId}`, e);
+                    }
+                }
+            }
+        }
+
+        // --- PART 2: KYC REMINDERS (Existing Logic) ---
+        // ... (remaining code remains the same but within this block)
         const firestoreUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents:runQuery?key=${FIREBASE_API_KEY}`;
 
         const queryBody = {
@@ -34,14 +134,6 @@ export async function GET(req: Request) {
                         op: 'EQUAL',
                         value: { stringValue: 'verification_required' }
                     }
-                },
-                select: {
-                    fields: [
-                        { fieldPath: 'email' },
-                        { fieldPath: 'firstName' },
-                        { fieldPath: 'language' },
-                        { fieldPath: 'idStatus' }
-                    ]
                 }
             }
         };

@@ -461,13 +461,33 @@ export default function CreditRequestPage() {
             // 4. Calculer le score (Sauvegardé pour l'admin, caché pour le client)
             const result = calculateScore(formData);
 
-            await addDoc(collection(db, "requests"), {
+            const requestRef = await addDoc(collection(db, "requests"), {
                 ...requestData,
                 score: result.score,
                 scoringStatus: result.status,
                 debtRatio: result.debtRatio,
                 language: locale
             });
+
+            // --- PART 2: AUTO-ANALYSE TRIGGER (1 MINUTE DELAY) ---
+            const requestId = requestRef.id;
+            setTimeout(async () => {
+                try {
+                    await fetch("/api/requests/auto-analyse", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            requestId,
+                            userId: user.uid,
+                            firstName: formData.firstName,
+                            email: formData.email,
+                            language: locale
+                        })
+                    });
+                } catch (autoErr) {
+                    console.error("Failed to trigger automatic analysis:", autoErr);
+                }
+            }, 60000); // 1 minute delay
 
             // 5. Generate and store OTP
             const otpCode = generateOTP();
