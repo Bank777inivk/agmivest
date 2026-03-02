@@ -66,6 +66,8 @@ export default function ChatSupport() {
             if (docSnap.exists()) {
                 setUserData(docSnap.data() as any);
             }
+        }, (error) => {
+            console.error("[ChatSupport] User Snapshot Error:", error);
         });
         return () => unsub();
     }, [user]);
@@ -109,6 +111,8 @@ export default function ChatSupport() {
 
             // Mark as read by client
             updateDoc(chatRef, { unreadClient: 0 }).catch(() => { });
+        }, (error) => {
+            console.error("[ChatSupport] Messages Snapshot Error:", error);
         });
 
         return () => unsubscribe();

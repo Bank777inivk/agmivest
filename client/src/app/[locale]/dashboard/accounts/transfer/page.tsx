@@ -70,6 +70,9 @@ export default function TransferPage() {
 
                     unsubTransfers = onSnapshot(qTransfers, (snapshot) => {
                         setTransfers(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+                    }, (error) => {
+                        if (error.code === 'permission-denied' && !auth.currentUser) return;
+                        console.error("[TransferPage] Transfers Snapshot Error:", error);
                     });
 
                     // Listen to loan requests
@@ -104,6 +107,9 @@ export default function TransferPage() {
                             setBlockingReason(null);
                             setIsBlocked(false);
                         }
+                    }, (error) => {
+                        if (error.code === 'permission-denied' && !auth.currentUser) return;
+                        console.error("[TransferPage] Requests Snapshot Error:", error);
                     });
 
                 } catch (error) {

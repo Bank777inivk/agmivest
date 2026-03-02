@@ -2,7 +2,7 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // Fonctions utilisateur
+    // --- BASIC FUNCTIONS ---
     function isSignedIn() {
       return request.auth != null;
     }
@@ -11,56 +11,39 @@ service cloud.firestore {
       return request.auth.uid == userId;
     }
     
-    function getUserData() {
-      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
-    }
-
+    // Optimized Admin check
     function isAdmin() {
       return isSignedIn() && 
              exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
-             (getUserData().role == 'admin' || getUserData().role == 'super_admin');
-    }
-    
-    function isSuperAdmin() {
-      return isSignedIn() && 
-             exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
-             getUserData().role == 'super_admin';
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'super_admin'];
     }
 
-    // Collection Utilisateurs (users)
+    // --- COLLECTION RULES ---
+
+    // Collection: Users
     match /users/{userId} {
-      // L'utilisateur peut lire son propre profil (Condition simplifiée pour éviter isAdmin si isOwner)
-      allow read: if isSignedIn() && isOwner(userId);
-      // L'admin peut tout lire
-      allow read: if isAdmin();
-      
-      // Inscription : l'utilisateur peut créer son propre document.
+      allow read: if isSignedIn() && (isOwner(userId) || isAdmin());
       allow create: if isSignedIn() && isOwner(userId);
-      
-      // Mise à jour : 
-      // - L'utilisateur peut modifier ses propres infos.
-      // - Le 'super_admin' peut modifier n'importe quel utilisateur (ex: changer les rôles).
-      // - L'admin "simple" peut lire mais pas forcément modifier les rôles des autres (selon besoins).
-      allow update: if isSignedIn() && (isOwner(userId) || isSuperAdmin());  
+      allow update: if isSignedIn() && (isOwner(userId) || isAdmin());  
 
-      // Sous-collection notifications
       match /notifications/{notifId} {
-        allow read, write: if isSignedIn() && isOwner(userId);
-        allow read, write: if isAdmin();
+        allow read, write: if isSignedIn() && (isOwner(userId) || isAdmin());
       }
     }
 
-    // Collection Demandes (requests)
+    // Collection: Requests
     match /requests/{requestId} {
-      // Le propriétaire peut lire ses demandes, l'admin peut tout lire.
-      // Le propriétaire peut lire ses demandes, l'admin peut tout lire.
-      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      // Standard owners/admins can read.
+      // NOTE: Queries MUST include .where("userId", "==", user.uid)
+      allow read: if isSignedIn() && (
+        (resource != null && resource.data.userId == request.auth.uid) || 
+        isAdmin()
+      );
       
-      // Le propriétaire peut créer une demande pour lui-même.
+      // Allow creation for self
       allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
       
-      // Seul l'Admin peut modifier une demande (pour changer le statut en 'approved' ou 'rejected').
-      // Sauf pour la soumission des preuves de vérification de paiement par l'utilisateur.
+      // Admin handles processing. User can only update specific verification fields.
       allow update: if isAdmin() || (
         isSignedIn() && 
         resource.data.userId == request.auth.uid &&
@@ -73,80 +56,55 @@ service cloud.firestore {
       ); 
     }
 
-    // Collection Comptes (accounts)
+    // Collection: Accounts
     match /accounts/{accountId} {
-       // Seul l'Admin peut créer des comptes
        allow create: if isAdmin();
-       
-       // Le propriétaire peut consulter son compte, l'admin aussi.
        allow read: if isSignedIn() && (
-         ('userId' in resource.data && resource.data.userId == request.auth.uid) || 
+         (resource.data.userId == request.auth.uid) || 
          isAdmin()
        );
-       
-       // L'utilisateur peut mettre à jour son RIB. L'Admin peut tout modifier.
        allow update: if isSignedIn() && (
-         (isOwner(resource.data.userId) && 
-          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['iban', 'bankName', 'bic', 'ribEmail', 'updatedAt'])) ||
+         (resource.data.userId == request.auth.uid && 
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['iban', 'bankName', 'bic', 'ribEmail', 'updatedAt', 'userId'])) ||
          isAdmin()
        );
-
-       // L'admin doit pouvoir supprimer un compte lors d'une réinitialisation.
        allow delete: if isAdmin();
     }
 
-    // Collection Virements (transfers)
+    // Collection: Transfers
     match /transfers/{transferId} {
-      // Les admins peuvent tout lire, modifier et supprimer (pour validation et réinitialisation)
       allow read, update, delete: if isAdmin();
-      
-      // Les admins peuvent créer des transactions (ex: dépôt d'authentification)
-      allow create: if isAdmin();
-      
-      // Les utilisateurs peuvent lire leurs propres virements
-      allow read: if isSignedIn() && resource.data.userId == request.auth.uid;
-      
-      // Les utilisateurs peuvent créer un virement
-      // Règle CRITIQUE : le statut doit être 'pending' lors de la création par un utilisateur
-      allow create: if isSignedIn() && 
-                    request.resource.data.userId == request.auth.uid &&
-                    request.resource.data.status == 'pending';
+      allow create: if isAdmin() || (
+        isSignedIn() && 
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.status == 'pending'
+      );
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
     }
 
-    // Collection Chat (chats)
+    // Collection: Chats
     match /chats/{userId} {
-      // Un utilisateur peut lire et modifier son propre document de chat.
-      // L'admin peut lire et modifier tous les documents.
       allow read, write: if isSignedIn() && (isOwner(userId) || isAdmin());
-
-      // Sous-collection Messages
       match /messages/{messageId} {
-        // Même logique pour les messages individuels.
         allow read, write: if isSignedIn() && (isOwner(userId) || isAdmin());
       }
     }
     
-    // Collection Avis (reviews)
+    // Collection: Reviews
     match /reviews/{reviewId} {
-      // Tout le monde peut lire les avis approuvés
       allow read: if resource.data.status == 'approved' || isAdmin();
-      
-      // Tout le monde peut laisser un avis (forcé en 'pending')
       allow create: if request.resource.data.status == 'pending';
-      
-      // Seul l'admin peut modérer (approuver/rejeter) ou supprimer
       allow update, delete: if isAdmin();
     }
     
-    // Collection OTPs (codes de vérification)
+    // Collection: OTPs (Critical Security)
     match /otps/{email} {
-      // Permettre la création d'un OTP lors de l'inscription
-      // et la lecture/suppression lors de la vérification.
-      allow read, write: if true; 
+      // Allow creation, retrieval, update (for overwrite) and deletion (for cleanup)
+      allow create, get, update, delete: if true; 
+      allow list: if false; 
     }
 
-    // Refuser tout accès par défaut pour les autres collections non définies
-
+    // GLOBAL DENY
     match /{document=**} {
       allow read, write: if false;
     }

@@ -159,6 +159,9 @@ export default function AccountsPage() {
                                 id: doc.id,
                                 ...doc.data()
                             })));
+                        }, (error) => {
+                            if (error.code === 'permission-denied' && !auth.currentUser) return;
+                            console.error("[AccountsPage] Transfers Snapshot Error:", error);
                         });
                     }
                 } catch (error) {

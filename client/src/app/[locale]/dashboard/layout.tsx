@@ -122,6 +122,8 @@ export default function DashboardLayout({
                     });
                 }
             }
+        }, (error) => {
+            console.error("[DashboardLayout] Chat Snapshot Error:", error);
         });
 
         return () => unsubscribeChat();
@@ -147,8 +149,11 @@ export default function DashboardLayout({
                 where("status", "==", "pending")
             );
 
+            let timerId: NodeJS.Timeout | undefined;
+
             unsubSnapshot = onSnapshot(q, async (snapshot) => {
-                // Filter and sort in memory to avoid complex index requirements
+                if (timerId) clearTimeout(timerId);
+
                 const pendingRequests = snapshot.docs
                     .map(doc => ({ id: doc.id, ...doc.data() as any }))
                     .filter(req => req.stepAnalysis === false)
@@ -164,7 +169,7 @@ export default function DashboardLayout({
 
                 console.log(`[DashboardLayout] Found unanalyzed request: ${requestId}. Starting 1min timer...`);
 
-                const timer = setTimeout(async () => {
+                timerId = setTimeout(async () => {
                     try {
                         const userDoc = await getDoc(doc(db, "users", user.uid));
                         const userData = userDoc.data();
@@ -190,9 +195,7 @@ export default function DashboardLayout({
                     } catch (err) {
                         console.error("[DashboardLayout] Failed to call auto-analyse API:", err);
                     }
-                }, 60000); // 1 minute
-
-                return () => clearTimeout(timer);
+                }, 60000);
             }, (error) => {
                 console.error("[DashboardLayout] Firestore Snapshot Error (auto-analyse):", error);
             });

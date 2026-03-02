@@ -51,6 +51,9 @@ export function useNotifications() {
             setNotifications(items);
             setUnreadCount(items.filter(n => !n.read).length);
             setLoading(false);
+        }, (error) => {
+            console.error("[useNotifications] Snapshot Error:", error);
+            setLoading(false);
         });
 
         return () => unsubscribe();
