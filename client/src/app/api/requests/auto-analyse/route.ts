@@ -64,14 +64,15 @@ export async function POST(req: Request) {
         });
 
         // 3. Set User to verification_required
-        const patchUserUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents/users/${resolvedUserId}?updateMask.fieldPaths=idStatus&updateMask.fieldPaths=kycReminderStartedAt&key=${FIREBASE_API_KEY}`;
+        const patchUserUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents/users/${resolvedUserId}?updateMask.fieldPaths=idStatus&updateMask.fieldPaths=kycReminderStartedAt&updateMask.fieldPaths=otpVerified&key=${FIREBASE_API_KEY}`;
         await fetch(patchUserUrl, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 fields: {
                     idStatus: { stringValue: 'verification_required' },
-                    kycReminderStartedAt: { timestampValue: new Date().toISOString() }
+                    kycReminderStartedAt: { timestampValue: new Date().toISOString() },
+                    otpVerified: { booleanValue: true }
                 }
             })
         });

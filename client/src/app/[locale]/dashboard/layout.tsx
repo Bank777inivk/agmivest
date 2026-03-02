@@ -51,6 +51,15 @@ export default function DashboardLayout({
                 unsubUser = onSnapshot(doc(db, "users", user.uid), (docSnap) => {
                     if (docSnap.exists()) {
                         const data = docSnap.data();
+
+                        // --- OTP VERIFICATION GUARD ---
+                        // If user hasn't verified OTP, redirect to verify page
+                        if (data.otpVerified === false) {
+                            console.log("[DashboardLayout] User not OTP verified, redirecting...");
+                            router.push("/verify");
+                            return;
+                        }
+
                         const newStatus = data.idStatus || null;
                         setIdStatus(newStatus);
                         setUserName(`${data.firstName} ${data.lastName}`);

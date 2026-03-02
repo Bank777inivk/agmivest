@@ -26,7 +26,7 @@ service cloud.firestore {
       allow create: if isSignedIn() && isOwner(userId);
       // Allow updates for self/admin OR specifically for the auto-analyse KYC start
       allow update: if (isSignedIn() && (isOwner(userId) || isAdmin())) || 
-                    (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['idStatus', 'kycReminderStartedAt']));  
+                    (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['idStatus', 'kycReminderStartedAt', 'otpVerified']));  
 
       match /notifications/{notifId} {
         allow read, write: if isSignedIn() && (isOwner(userId) || isAdmin());

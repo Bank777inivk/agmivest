@@ -420,6 +420,7 @@ export default function CreditRequestPage() {
                 bic: formData.bic,
                 ribEmail: formData.ribEmail || formData.email,
                 idStatus: "pending",
+                otpVerified: false,
                 language: locale,
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp()

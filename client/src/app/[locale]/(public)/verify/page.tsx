@@ -8,14 +8,23 @@ import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ShieldCheck, Mail, ArrowRight, RefreshCw, AlertCircle, Inbox } from "lucide-react";
 import { verifyOTP, storeOTP, generateOTP } from "@/lib/otp";
+import { auth, db } from "@/lib/firebase";
+import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 
 export default function VerifyPage() {
     const t = useTranslations('Verification');
     const locale = useLocale();
     const router = useRouter();
     const searchParams = useSearchParams();
-    const email = searchParams.get('email') || "";
+    const searchEmail = searchParams.get('email') || "";
     const firstName = searchParams.get('firstName') || "";
+    const [currentEmail, setCurrentEmail] = useState(searchEmail);
+
+    useEffect(() => {
+        if (!currentEmail && auth.currentUser?.email) {
+            setCurrentEmail(auth.currentUser.email);
+        }
+    }, [auth.currentUser]);
 
     const [otp, setOtp] = useState(["", "", "", "", "", ""]);
     const [error, setError] = useState("");
@@ -26,10 +35,11 @@ export default function VerifyPage() {
     const requestId = searchParams.get('requestId') || "";
 
     useEffect(() => {
-        if (!email) {
+        // Fallback to logged in user if email is missing from params
+        if (!currentEmail && !auth.currentUser) {
             router.push('/register');
         }
-    }, [email, locale, router, requestId, firstName]);
+    }, [currentEmail, locale, router, requestId, firstName]);
 
     const handleChange = (element: HTMLInputElement, index: number) => {
         if (isNaN(Number(element.value))) return false;
@@ -74,8 +84,17 @@ export default function VerifyPage() {
         setError("");
 
         try {
-            const isValid = await verifyOTP(email, fullOtp);
+            const isValid = await verifyOTP(currentEmail, fullOtp);
             if (isValid) {
+                // Update User document to persist verification
+                const user = auth.currentUser;
+                if (user) {
+                    await updateDoc(doc(db, "users", user.uid), {
+                        otpVerified: true,
+                        updatedAt: serverTimestamp()
+                    });
+                }
+
                 setSuccess(true);
                 const type = searchParams.get('type');
                 const amount = searchParams.get('amount');
@@ -88,7 +107,7 @@ export default function VerifyPage() {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
-                                to: email,
+                                to: currentEmail,
                                 template: "loan-submitted",
                                 language: locale,
                                 apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
@@ -108,7 +127,7 @@ export default function VerifyPage() {
                 setTimeout(() => {
                     if (type === 'credit') {
                         const userId = searchParams.get('userId') || "";
-                        router.push(`/credit-request/success?requestId=${requestId}&userId=${userId}&email=${encodeURIComponent(email)}&firstName=${encodeURIComponent(firstName || "")}`);
+                        router.push(`/credit-request/success?requestId=${requestId}&userId=${userId}&email=${encodeURIComponent(currentEmail)}&firstName=${encodeURIComponent(firstName || "")}`);
                     } else {
                         router.push('/dashboard');
                     }
@@ -127,13 +146,13 @@ export default function VerifyPage() {
         setResendLoading(true);
         try {
             const newOtp = generateOTP();
-            await storeOTP(email, newOtp);
+            await storeOTP(currentEmail, newOtp);
 
             await fetch("/api/email", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    to: email,
+                    to: currentEmail,
                     template: "verify-email",
                     language: locale,
                     apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
@@ -163,7 +182,7 @@ export default function VerifyPage() {
                     <h1 className="text-2xl font-bold text-slate-900 mb-2">{t('title')}</h1>
                     <p className="text-slate-500">
                         {t.rich('subtitle', {
-                            email: email,
+                            email: currentEmail,
                             important: (chunks: React.ReactNode) => <span className="text-slate-900 font-medium">{chunks}</span>
                         })}
                     </p>
