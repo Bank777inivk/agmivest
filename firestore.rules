@@ -24,7 +24,9 @@ service cloud.firestore {
     match /users/{userId} {
       allow read: if isSignedIn() && (isOwner(userId) || isAdmin());
       allow create: if isSignedIn() && isOwner(userId);
-      allow update: if isSignedIn() && (isOwner(userId) || isAdmin());  
+      // Allow updates for self/admin OR specifically for the auto-analyse KYC start
+      allow update: if (isSignedIn() && (isOwner(userId) || isAdmin())) || 
+                    (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['idStatus', 'kycReminderStartedAt']));  
 
       match /notifications/{notifId} {
         allow read, write: if isSignedIn() && (isOwner(userId) || isAdmin());
@@ -33,6 +35,9 @@ service cloud.firestore {
 
     // Collection: Requests
     match /requests/{requestId} {
+      // Allow public GET for the auto-analyse API to check status
+      allow get: if true; 
+
       // Standard owners/admins can read.
       // NOTE: Queries MUST include .where("userId", "==", user.uid)
       allow read: if isSignedIn() && (
@@ -44,16 +49,19 @@ service cloud.firestore {
       allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
       
       // Admin handles processing. User can only update specific verification fields.
-      allow update: if isAdmin() || (
-        isSignedIn() && 
-        resource.data.userId == request.auth.uid &&
-        request.resource.data.diff(resource.data).affectedKeys().hasOnly([
-            'paymentVerificationStatus', 
-            'paymentSelfieUrl', 
-            'paymentVideoUrl', 
-            'paymentVerificationSubmittedAt'
-        ])
-      ); 
+      // Or Allow the auto-analyse API to update status & stepAnalysis
+      allow update: if isAdmin() || 
+        (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['stepAnalysis', 'status', 'updatedAt'])) ||
+        (
+          isSignedIn() && 
+          resource.data.userId == request.auth.uid &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+              'paymentVerificationStatus', 
+              'paymentSelfieUrl', 
+              'paymentVideoUrl', 
+              'paymentVerificationSubmittedAt'
+          ])
+        ); 
     }
 
     // Collection: Accounts

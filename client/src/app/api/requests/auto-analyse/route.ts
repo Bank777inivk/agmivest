@@ -10,6 +10,14 @@ const FIREBASE_PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
  * Triggered by the client 1 minute after submission
  */
 export async function POST(req: Request) {
+    console.log("[AutoAnalyse] API Triggered");
+    console.log("[AutoAnalyse] Env Check - Project ID:", FIREBASE_PROJECT_ID ? "LOADED" : "MISSING");
+    console.log("[AutoAnalyse] Env Check - API Key:", FIREBASE_API_KEY ? "LOADED" : "MISSING");
+
+    if (!FIREBASE_PROJECT_ID || !FIREBASE_API_KEY) {
+        return NextResponse.json({ error: 'Server misconfiguration: missing Firebase keys' }, { status: 500 });
+    }
+
     try {
         const body = await req.json();
         const { requestId, userId, firstName, email, language } = body;
@@ -20,12 +28,17 @@ export async function POST(req: Request) {
 
         // 1. Fetch Request to check status and get userId
         const docUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents/requests/${requestId}?key=${FIREBASE_API_KEY}`;
+        console.log(`[AutoAnalyse] Fetching Firestore doc: ${docUrl}`);
+
         const checkRes = await fetch(docUrl);
         if (!checkRes.ok) {
+            const errorText = await checkRes.text();
+            console.error(`[AutoAnalyse] Firestore fetch failed (${checkRes.status}):`, errorText);
             return NextResponse.json({ error: 'Request not found' }, { status: 404 });
         }
 
         const requestDoc = await checkRes.json();
+        console.log(`[AutoAnalyse] Found request document for user: ${requestDoc.fields?.userId?.stringValue}`);
         const resolvedUserId = userId || requestDoc.fields?.userId?.stringValue;
 
         if (!resolvedUserId) {
