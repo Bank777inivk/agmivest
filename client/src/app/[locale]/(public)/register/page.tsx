@@ -298,7 +298,7 @@ export default function RegisterPage() {
                             className="inline-block"
                         >
                             <Image
-                                src="/logo-official.png"
+                                src="/logo-official.webp"
                                 alt="AGM INVEST"
                                 width={160}
                                 height={40}

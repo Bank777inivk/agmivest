@@ -22,7 +22,7 @@ export default function PremiumSpinner() {
                 <div className="relative bg-white p-4 rounded-3xl shadow-xl border border-gray-100">
                     <div className="w-12 h-12 relative">
                         <Image
-                            src="/logo-official.png"
+                            src="/logo-official.webp"
                             alt="Loading"
                             fill
                             className="object-contain"

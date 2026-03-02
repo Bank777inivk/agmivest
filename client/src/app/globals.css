@@ -50,6 +50,11 @@ body {
   width: 100%;
 }
 
+/* Prevent image dragging */
+img {
+  -webkit-user-drag: none;
+}
+
 .ely-gradient {
   background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
 }

@@ -64,7 +64,7 @@ export default function CreditSuccessPage() {
                 {/* Logo */}
                 <div className="mb-10 flex justify-center">
                     <Image
-                        src="/logo-official.png"
+                        src="/logo-official.webp"
                         alt="AGM INVEST"
                         width={180}
                         height={80}

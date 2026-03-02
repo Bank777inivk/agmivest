@@ -11,28 +11,28 @@ export default function TeamSection() {
         {
             name: "Meyer Alain",
             role: t('Members.meyer.role'),
-            image: "/team/meyer.png",
+            image: "/team/meyer.webp",
             bio: t('Members.meyer.bio'),
             email: "directeurmeyer@agm-negoce.com"
         },
         {
             name: "Cyrille KLING",
             role: t('Members.cyrille.role'),
-            image: "/team/cyrille.jpeg",
+            image: "/team/cyrille.webp",
             bio: t('Members.cyrille.bio'),
             email: "klingcyrille@agm-negoce.com"
         },
         {
             name: "ROUSSEL EMILIE",
             role: t('Members.emilie.role'),
-            image: "/team/emilie.jpeg", // Note the extension is .jpeg
+            image: "/team/emilie.webp", // Note the extension is .webp
             bio: t('Members.emilie.bio'),
             email: "emilieroussel@agm-negoce.com"
         },
         {
             name: "M. CHAINTEREAU CHRISTOPHE JEAN-PIERRE",
             role: t('Members.christophe.role'),
-            image: "/team/christophe.jpeg", // Note the extension is .jpeg
+            image: "/team/christophe.webp", // Note the extension is .webp
             bio: t('Members.christophe.bio'),
             email: "conseillerchristophe@agm-negoce.com"
         },

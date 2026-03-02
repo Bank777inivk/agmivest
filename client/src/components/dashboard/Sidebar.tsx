@@ -82,7 +82,7 @@ export default function Sidebar({
                     <div className={`bg-white p-2 rounded-xl shadow-lg transition-all duration-300 ${isCollapsed && !isMobile ? "w-11 h-11 flex items-center justify-center" : "w-32 h-12"}`}>
                         <div className="relative w-full h-full">
                             <Image
-                                src="/logo-official.png"
+                                src="/logo-official.webp"
                                 alt="AGM INVEST"
                                 fill
                                 className="object-contain"

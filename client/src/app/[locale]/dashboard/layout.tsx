@@ -27,6 +27,7 @@ export default function DashboardLayout({
     const locale = useLocale();
     const t = useTranslations();
     const pathname = usePathname();
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
     const prevStatusRef = useRef<string | null>(null);
     const hasInitialStatus = useRef(false);
     const [mounted, setMounted] = useState(false);
@@ -142,6 +143,13 @@ export default function DashboardLayout({
 
         return () => unsubscribeChat();
     }, []);
+
+    // Reset scroll on navigation
+    useEffect(() => {
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollTo(0, 0);
+        }
+    }, [pathname]);
 
     // --- GLOBAL AUTO-ANALYSE TRIGGER (1 MINUTE DELAY) ---
     // Watches for pending requests and triggers analysis if user stays online
@@ -272,7 +280,10 @@ export default function DashboardLayout({
                     userName={userName}
                     userEmail={userEmail}
                 />
-                <main className="flex-1 overflow-y-auto custom-scrollbar pt-20">
+                <main
+                    ref={scrollContainerRef}
+                    className="flex-1 overflow-y-auto custom-scrollbar pt-20"
+                >
                     <div className={`mx-auto max-w-7xl ${(mounted && pathname?.includes('/verification')) ? 'p-0' : 'p-4 md:p-8'}`}>
                         {(mounted && !pathname?.includes('/verification')) && <IdentityBanner idStatus={idStatus} />}
                         {children}

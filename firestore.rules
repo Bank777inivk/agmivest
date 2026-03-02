@@ -35,9 +35,6 @@ service cloud.firestore {
 
     // Collection: Requests
     match /requests/{requestId} {
-      // Allow public GET for the auto-analyse API to check status
-      allow get: if true; 
-
       // Standard owners/admins can read.
       // NOTE: Queries MUST include .where("userId", "==", user.uid)
       allow read: if isSignedIn() && (
@@ -107,9 +104,12 @@ service cloud.firestore {
     
     // Collection: OTPs (Critical Security)
     match /otps/{email} {
-      // Allow creation, retrieval, update (for overwrite) and deletion (for cleanup)
-      allow create, get, update, delete: if true; 
-      allow list: if false; 
+      // Allow creation only if it doesn't already exist (to prevent brute force overwrite)
+      // Allow get for verification.
+      // Updates and deletes are NOT allowed from the client.
+      allow create: if !exists(/databases/$(database)/documents/otps/$(email));
+      allow get: if true; 
+      allow update, delete, list: if false; 
     }
 
     // GLOBAL DENY
