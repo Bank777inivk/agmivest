@@ -156,7 +156,7 @@ export default function DashboardLayout({
 
                 const pendingRequests = snapshot.docs
                     .map(doc => ({ id: doc.id, ...doc.data() as any }))
-                    .filter(req => req.stepAnalysis === false)
+                    .filter(req => req.stepAnalysis !== true)
                     .sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
 
                 if (pendingRequests.length === 0) {
