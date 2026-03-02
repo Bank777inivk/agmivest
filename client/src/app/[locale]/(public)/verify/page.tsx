@@ -1,7 +1,7 @@
 "use client"; // Force Refresh
 
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
@@ -11,20 +11,22 @@ import { verifyOTP, storeOTP, generateOTP } from "@/lib/otp";
 import { auth, db } from "@/lib/firebase";
 import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 
-export default function VerifyPage() {
+function VerifyPageContent() {
     const t = useTranslations('Verification');
     const locale = useLocale();
     const router = useRouter();
     const searchParams = useSearchParams();
     const searchEmail = searchParams.get('email') || "";
     const firstName = searchParams.get('firstName') || "";
-    const [currentEmail, setCurrentEmail] = useState(searchEmail);
+    const [currentEmail, setCurrentEmail] = useState("");
 
     useEffect(() => {
-        if (!currentEmail && auth.currentUser?.email) {
+        if (searchEmail) {
+            setCurrentEmail(searchEmail);
+        } else if (auth.currentUser?.email) {
             setCurrentEmail(auth.currentUser.email);
         }
-    }, [auth.currentUser]);
+    }, [searchEmail, auth.currentUser]);
 
     const [otp, setOtp] = useState(["", "", "", "", "", ""]);
     const [error, setError] = useState("");
@@ -252,5 +254,17 @@ export default function VerifyPage() {
                 </div>
             </motion.div>
         </div>
+    );
+}
+
+export default function VerifyPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+                <RefreshCw className="w-8 h-8 animate-spin text-blue-600" />
+            </div>
+        }>
+            <VerifyPageContent />
+        </Suspense>
     );
 }
