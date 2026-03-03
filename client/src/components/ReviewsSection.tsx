@@ -195,7 +195,7 @@ export default function ReviewsSection() {
                             </p>
 
                             {/* Date */}
-                            <p className="text-xs text-slate-400">
+                            <p className="text-xs text-slate-400" suppressHydrationWarning>
                                 {formatDate(review.date)}
                             </p>
                         </motion.div>
