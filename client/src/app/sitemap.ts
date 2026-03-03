@@ -1,0 +1,23 @@
+import { MetadataRoute } from 'next';
+
+const locales = ['fr', 'de', 'en', 'es', 'it', 'pt', 'tr', 'ro', 'nl', 'pl'];
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.agm-negoce.com';
+
+export default function sitemap(): MetadataRoute.Sitemap {
+    const routes = ['', '/services', '/reviews', '/documents', '/register', '/login'];
+
+    const entries: MetadataRoute.Sitemap = [];
+
+    locales.forEach((locale) => {
+        routes.forEach((route) => {
+            entries.push({
+                url: `${baseUrl}/${locale}${route}`,
+                lastModified: new Date(),
+                changeFrequency: 'monthly',
+                priority: route === '' ? 1 : 0.8,
+            });
+        });
+    });
+
+    return entries;
+}

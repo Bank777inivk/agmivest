@@ -20,8 +20,48 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AGM INVEST Crédit & Assurances",
-  description: "Votre partenaire de confiance pour le financement immobilier",
+  title: {
+    default: "AGM INVEST | Crédit & Assurances",
+    template: "%s | AGM INVEST"
+  },
+  description: "Partenaire de confiance pour le financement immobilier, crédits à la consommation et assurances en Europe. Solutions flexibles et rapides.",
+  keywords: ["crédit immobilier", "assurance emprunteur", "financement", "prêt personnel", "AGM INVEST", "crédit rapide"],
+  authors: [{ name: "AGM INVEST" }],
+  creator: "AGM INVEST",
+  publisher: "AGM INVEST",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://www.agm-negoce.com'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'fr-FR': '/fr',
+      'en-US': '/en',
+      'de-DE': '/de',
+      'es-ES': '/es',
+      'it-IT': '/it',
+      'pt-PT': '/pt',
+      'tr-TR': '/tr',
+      'ro-RO': '/ro',
+      'nl-NL': '/nl',
+      'pl-PL': '/pl',
+    },
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/logo-official.webp',
+  },
+  openGraph: {
+    title: 'AGM INVEST | Crédit & Assurances',
+    description: 'Financez vos projets immobiliers et personnels avec AGM INVEST.',
+    url: 'https://www.agm-negoce.com',
+    siteName: 'AGM INVEST',
+    locale: 'fr_FR',
+    type: 'website',
+  },
 };
 
 export default async function LocaleLayout({

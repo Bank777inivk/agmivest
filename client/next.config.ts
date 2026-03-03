@@ -27,10 +27,6 @@ const nextConfig: NextConfig = {
   // Experimental features for better performance
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
-    // @ts-ignore
-    turbopack: {
-      root: '.',
-    },
   },
 
 
