@@ -13,14 +13,22 @@ if (!admin.apps.length) {
                 let privateKey = serviceAccount.private_key;
                 if (privateKey) {
                     // 1. Convert literal "\\n" strings back to actual newlines
-                    // 2. Ensure it's not wrapped in extra quotes
-                    privateKey = privateKey.replace(/\\n/g, '\n');
+                    // 2. Remove any carriage returns (\r)
+                    // 3. Trim all whitespace
+                    privateKey = privateKey.replace(/\\n/g, '\n').replace(/\r/g, '').trim();
 
-                    // Sometimes Vercel's env parsing might leave literal newlines as double escapes
-                    // if they were added via a UI that escaped them again.
-                    // We also ensure it starts/ends correctly.
-                    if (!privateKey.includes('-----BEGIN PRIVATE KEY-----')) {
-                        console.error('[FirebaseAdmin] Private key missing BEGIN header');
+                    // 4. Remove potential wrapping quotes if they exist
+                    if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
+                        privateKey = privateKey.slice(1, -1);
+                    }
+
+                    // Diagnostic logging (safe)
+                    console.log(`[FirebaseAdmin] Normalizing private key. Length: ${privateKey.length}`);
+                    if (!privateKey.startsWith('-----BEGIN PRIVATE KEY-----')) {
+                        console.error('[FirebaseAdmin] Private key DOES NOT start with BEGIN header (found: ' + privateKey.substring(0, 15) + '...)');
+                    }
+                    if (!privateKey.endsWith('-----END PRIVATE KEY-----')) {
+                        console.error('[FirebaseAdmin] Private key DOES NOT end with END header (found: ...' + privateKey.substring(privateKey.length - 15) + ')');
                     }
 
                     serviceAccount.private_key = privateKey;
