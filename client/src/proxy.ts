@@ -14,7 +14,7 @@ export async function proxy(request: any) {
     response.headers.set('X-Frame-Options', 'SAMEORIGIN');
     response.headers.set('X-Content-Type-Options', 'nosniff');
     response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
-    response.headers.set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://*.cloudinary.com; frame-src 'self' https://www.youtube.com https://www.facebook.com https://www.google.com https://maps.google.com;");
+    response.headers.set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://*.cloudinary.com; frame-src 'self' https://www.youtube.com https://www.facebook.com https://www.google.com https://maps.google.com https://agm-invest.firebaseapp.com https://*.firebaseapp.com;");
 
     return response;
 }
