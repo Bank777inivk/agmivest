@@ -4,7 +4,7 @@ import { routing } from './i18n/routing';
 
 const intlMiddleware = createMiddleware(routing);
 
-export default async function middleware(request: any) {
+export async function proxy(request: any) {
     const response = await intlMiddleware(request);
 
     // Security Headers

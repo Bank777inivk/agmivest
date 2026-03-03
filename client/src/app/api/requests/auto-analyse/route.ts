@@ -14,12 +14,17 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { requestId, userId, firstName, email, language } = body;
 
+        if (!adminDb) {
+            console.error("[AutoAnalyse] Firebase Admin not initialized");
+            return NextResponse.json({ error: 'Database connection failed' }, { status: 500 });
+        }
+
         if (!requestId) {
             return NextResponse.json({ error: 'Missing requestId' }, { status: 400 });
         }
 
         // 1. Fetch Request to check status and get userId
-        const requestRef = adminDb.collection('requests').doc(requestId);
+        const requestRef = adminDb!.collection('requests').doc(requestId);
         const requestSnap = await requestRef.get();
 
         if (!requestSnap.exists) {
@@ -47,7 +52,7 @@ export async function POST(req: Request) {
         });
 
         // 3. Set User to verification_required
-        const userRef = adminDb.collection('users').doc(resolvedUserId);
+        const userRef = adminDb!.collection('users').doc(resolvedUserId);
         await userRef.update({
             idStatus: 'verification_required',
             kycReminderStartedAt: new Date().toISOString(),
