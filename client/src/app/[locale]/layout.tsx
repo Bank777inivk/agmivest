@@ -83,14 +83,11 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <NextIntlClientProvider messages={messages}>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
+    <html lang={locale} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
                 if (typeof Node !== 'undefined' && Node.prototype.removeChild) {
                   const originalRemoveChild = Node.prototype.removeChild;
                   Node.prototype.removeChild = function(child) {
@@ -104,8 +101,13 @@ export default async function LocaleLayout({
                   };
                 }
               `,
-            }}
-          />
+          }}
+        />
+      </head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <NextIntlClientProvider messages={messages}>
           <Suspense fallback={null}>
             <ProgressBar />
           </Suspense>
