@@ -9,6 +9,11 @@ if (!admin.apps.length) {
             const serviceAccount = JSON.parse(cleanJson);
 
             if (serviceAccount && serviceAccount.project_id) {
+                // Fix for special characters in private key (especially newlines on Vercel)
+                if (serviceAccount.private_key) {
+                    serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+                }
+
                 admin.initializeApp({
                     credential: admin.credential.cert(serviceAccount),
                 });
