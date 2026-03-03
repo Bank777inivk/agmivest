@@ -12,10 +12,10 @@ if (!admin.apps.length) {
                 // Fix for special characters in private key (especially newlines on Vercel)
                 let privateKey = serviceAccount.private_key;
                 if (privateKey) {
-                    // 1. Convert literal "\\n" strings back to actual newlines
+                    // 1. Convert literal triple or double escaped newlines back to actual newlines
                     // 2. Remove any carriage returns (\r)
                     // 3. Trim all whitespace
-                    privateKey = privateKey.replace(/\\n/g, '\n').replace(/\r/g, '').trim();
+                    privateKey = privateKey.replace(/\\\\\\n/g, '\n').replace(/\\\\n/g, '\n').replace(/\\n/g, '\n').replace(/\r/g, '').trim();
 
                     // 4. Remove potential wrapping quotes if they exist
                     if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
