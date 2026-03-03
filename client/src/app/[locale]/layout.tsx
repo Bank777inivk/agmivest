@@ -50,10 +50,6 @@ export const metadata: Metadata = {
       'pl-PL': '/pl',
     },
   },
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/logo-official.webp',
-  },
   openGraph: {
     title: 'AGM INVEST | Crédit & Assurances',
     description: 'Financez vos projets immobiliers et personnels avec AGM INVEST.',
