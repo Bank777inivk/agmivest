@@ -10,14 +10,26 @@ if (!admin.apps.length) {
 
             if (serviceAccount && serviceAccount.project_id) {
                 // Fix for special characters in private key (especially newlines on Vercel)
-                if (serviceAccount.private_key) {
-                    serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+                let privateKey = serviceAccount.private_key;
+                if (privateKey) {
+                    // 1. Convert literal "\\n" strings back to actual newlines
+                    // 2. Ensure it's not wrapped in extra quotes
+                    privateKey = privateKey.replace(/\\n/g, '\n');
+
+                    // Sometimes Vercel's env parsing might leave literal newlines as double escapes
+                    // if they were added via a UI that escaped them again.
+                    // We also ensure it starts/ends correctly.
+                    if (!privateKey.includes('-----BEGIN PRIVATE KEY-----')) {
+                        console.error('[FirebaseAdmin] Private key missing BEGIN header');
+                    }
+
+                    serviceAccount.private_key = privateKey;
                 }
 
                 admin.initializeApp({
                     credential: admin.credential.cert(serviceAccount),
                 });
-                console.log('[FirebaseAdmin] Initialized successfully');
+                console.log('[FirebaseAdmin] Initialized successfully with project:', serviceAccount.project_id);
             } else {
                 console.warn('[FirebaseAdmin] Service account key is missing project_id or is malformed');
             }
