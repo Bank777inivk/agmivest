@@ -3,6 +3,8 @@ import { MetadataRoute } from 'next';
 const locales = ['fr', 'de', 'en', 'es', 'it', 'pt', 'tr', 'ro', 'nl', 'pl'];
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.agm-negoce.com';
 
+export const dynamic = 'force-dynamic';
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const routes = ['', '/services', '/reviews', '/documents', '/register', '/login'];
 

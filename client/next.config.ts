@@ -32,6 +32,18 @@ const nextConfig: NextConfig = {
 
   // Production optimizations
   reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: '/fr/sitemap.xml',
+        destination: '/sitemap.xml',
+      },
+      {
+        source: '/fr/robots.txt',
+        destination: '/robots.txt',
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);
