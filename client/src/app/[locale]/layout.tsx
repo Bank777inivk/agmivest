@@ -79,6 +79,9 @@ export const metadata: Metadata = {
     shortcut: '/favicon.webp',
     apple: '/favicon.webp',
   },
+  verification: {
+    google: 'j2PL1QjUcu4Jx6MXT20gkVgBjA0TTzhEET62',
+  },
 };
 
 export default async function LocaleLayout({
