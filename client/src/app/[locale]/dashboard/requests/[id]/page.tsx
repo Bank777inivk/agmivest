@@ -49,13 +49,15 @@ export default function RequestDetailsPage() {
                 unsubRequest = onSnapshot(docRef, (docSnap) => {
                     if (docSnap.exists() && docSnap.data().userId === user.uid) {
                         setRequest({ id: docSnap.id, ...docSnap.data() });
-                    } else if (!docSnap.exists()) {
+                    } else {
+                        // If document doesn't exist or doesn't belong to user
                         router.push("/dashboard/requests");
                     }
                     setIsLoading(false);
                 }, (error) => {
-                    // Ignore permission errors if we're in the middle of logging out
-                    if (error.code === 'permission-denied' && !auth.currentUser) {
+                    // Mute permission errors - they are handled by the redirect above or rules
+                    if (error.code === 'permission-denied') {
+                        router.push("/dashboard/requests");
                         return;
                     }
                     console.error("Error fetching request:", error);

@@ -37,7 +37,6 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://www.agm-negoce.com'),
   alternates: {
-    canonical: '/',
     languages: {
       'fr-FR': '/fr',
       'en-US': '/en',
@@ -161,9 +160,9 @@ export default async function LocaleLayout({
             <>
               <Script
                 src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}`}
-                strategy="afterInteractive"
+                strategy="lazyOnload"
               />
-              <Script id="google-ads-init" strategy="afterInteractive">
+              <Script id="google-ads-init" strategy="lazyOnload">
                 {`
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}

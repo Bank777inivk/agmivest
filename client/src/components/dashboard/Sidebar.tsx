@@ -85,6 +85,7 @@ export default function Sidebar({
                                 src="/logo-official.webp"
                                 alt="AGM INVEST"
                                 fill
+                                sizes="(max-width: 768px) 120px, 120px"
                                 className="object-contain"
                             />
                         </div>

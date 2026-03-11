@@ -116,12 +116,13 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                     {/* Amount */}
                     <div className={`space-y-${embedded ? '3' : '3 md:space-y-4'}`}>
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                            <label className={`${embedded ? 'text-sm font-bold text-gray-700 tracking-tight' : 'text-base md:text-lg font-semibold text-ely-blue'}`}>{t('amountLabel')}</label>
+                            <label htmlFor="amount-input" className={`${embedded ? 'text-sm font-bold text-gray-700 tracking-tight' : 'text-base md:text-lg font-semibold text-ely-blue'}`}>{t('amountLabel')}</label>
                             <div className={cn(
                                 "flex items-center gap-1",
                                 embedded ? "text-lg font-black text-ely-blue bg-white shadow-sm border border-gray-100 px-3 py-1.5 rounded-lg" : "text-xl md:text-2xl font-bold text-ely-blue bg-gray-50 px-4 py-1 rounded-lg"
                             )}>
                                 <input
+                                    id="amount-input"
                                     type="number"
                                     name="amount"
                                     value={amount}
@@ -139,6 +140,7 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                             step="1000"
                             value={amount}
                             onChange={(e) => handleAmountChange(Number(e.target.value))}
+                            aria-label={t('amountLabel')}
                             className={`w-full ${embedded ? 'h-1.5' : 'h-2'} bg-gray-100 rounded-lg appearance-none cursor-pointer accent-ely-mint hover:accent-ely-mint/80 transition-all focus:outline-none focus:ring-2 focus:ring-ely-mint/20`}
                         />
                         <div className="flex justify-between text-xs text-gray-400 font-medium px-1">
@@ -150,12 +152,13 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                     {/* Duration */}
                     <div className={`space-y-${embedded ? '3' : '3 md:space-y-4'}`}>
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                            <label className={`${embedded ? 'text-sm font-bold text-gray-700 tracking-tight' : 'text-base md:text-lg font-semibold text-ely-blue'}`}>{t('durationLabel')}</label>
+                            <label htmlFor="duration-input" className={`${embedded ? 'text-sm font-bold text-gray-700 tracking-tight' : 'text-base md:text-lg font-semibold text-ely-blue'}`}>{t('durationLabel')}</label>
                             <div className={cn(
                                 "flex items-center gap-1",
                                 embedded ? "text-lg font-black text-ely-blue bg-white shadow-sm border border-gray-100 px-3 py-1.5 rounded-lg" : "text-xl md:text-2xl font-bold text-ely-blue bg-gray-50 px-4 py-1 rounded-lg"
                             )}>
                                 <input
+                                    id="duration-input"
                                     type="number"
                                     name="duration"
                                     value={duration}
@@ -174,6 +177,7 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                             step="0.5"
                             value={duration}
                             onChange={(e) => handleDurationChange(Number(e.target.value))}
+                            aria-label={t('durationLabel')}
                             className={`w-full ${embedded ? 'h-1.5' : 'h-2'} bg-gray-100 rounded-lg appearance-none cursor-pointer accent-ely-mint hover:accent-ely-mint/80 transition-all focus:outline-none focus:ring-2 focus:ring-ely-mint/20`}
                         />
                         <div className="flex justify-between text-xs text-gray-400 font-medium px-1">
@@ -185,12 +189,13 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                     {/* Rate - Locked at 2.6% */}
                     <div className={`space-y-${embedded ? '3' : '3 md:space-y-4'}`}>
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                            <label className={`${embedded ? 'text-sm font-bold text-gray-700 tracking-tight' : 'text-base md:text-lg font-semibold text-ely-blue'}`}>{t('rateLabel')}</label>
+                            <label htmlFor="rate-input" className={`${embedded ? 'text-sm font-bold text-gray-700 tracking-tight' : 'text-base md:text-lg font-semibold text-ely-blue'}`}>{t('rateLabel')}</label>
                             <div className={cn(
                                 "flex items-center gap-1",
                                 embedded ? "text-lg font-black text-ely-blue bg-gray-100 shadow-sm border border-gray-200 px-3 py-1.5 rounded-lg" : "text-xl md:text-2xl font-bold text-ely-blue bg-gray-100 px-4 py-1 rounded-lg"
                             )}>
                                 <input
+                                    id="rate-input"
                                     type="number"
                                     name="rate"
                                     value={2.6}

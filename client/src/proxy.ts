@@ -14,10 +14,12 @@ export default async function proxy(request: any) {
     response.headers.set('X-Frame-Options', 'SAMEORIGIN');
     response.headers.set('X-Content-Type-Options', 'nosniff');
     response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
+    response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+    response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
 
     const cspHeader = [
         "default-src 'self'",
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.google.com https://*.doubleclick.net https://connect.facebook.net https://apis.google.com",
+        "script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.google.com https://*.doubleclick.net https://connect.facebook.net https://apis.google.com",
         "script-src-elem 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.google.com https://*.doubleclick.net",
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
         "img-src 'self' data: https: https://*.google.com https://*.googleadservices.com https://*.googletagmanager.com https://*.google-analytics.com https://*.doubleclick.net https://*.g.doubleclick.net",
