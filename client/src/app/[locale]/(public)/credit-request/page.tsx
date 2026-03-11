@@ -19,6 +19,7 @@ import { doc, setDoc, collection, addDoc, serverTimestamp } from "firebase/fires
 import Simulator from "@/components/Simulator";
 import { COUNTRY_PHONE_DATA, COUNTRIES, COUNTRY_TO_NATIONALITY } from "@/lib/constants";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
+import { trackEvent, trackConversion } from "@/lib/gtag";
 
 // Validation logic and score calculation (Mock)
 const calculateScore = (data: any) => {
@@ -362,7 +363,11 @@ export default function CreditRequestPage() {
             }
         }
 
-        setStep((s: number) => Math.min(s + 1, 6));
+        setStep((s: number) => {
+            const nextS = Math.min(s + 1, 6);
+            trackEvent('credit_request_step', { step: nextS, profileType });
+            return nextS;
+        });
     };
     const prevStep = () => setStep((s: number) => Math.max(s - 1, 1));
 
@@ -498,6 +503,18 @@ export default function CreditRequestPage() {
 
             // --- REDIRECTION ---
             setIsSubmitting(false);
+
+            // Track Conversion
+            trackConversion(requestData.amount, 'EUR', {
+                email: formData.email,
+                phone: formData.phone
+            });
+            trackEvent('credit_request_submitted', {
+                amount: requestData.amount,
+                type: requestData.projectType,
+                requestId: requestId
+            });
+
             // Redirect to Verify Page with additional loan context + requestId for auto-analyse
             router.push(`/verify?email=${encodeURIComponent(formData.email)}&firstName=${encodeURIComponent(formData.firstName)}&type=credit&amount=${requestData.amount}&duration=${requestData.duration}&requestId=${requestId}&userId=${requestData.userId}`);
 

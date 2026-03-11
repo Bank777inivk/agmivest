@@ -18,6 +18,26 @@ export default function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FinancialService",
+            "name": "AGM INVEST - Crédits et Assurances",
+            "description": "Solutions de financement immobilier, crédits à la consommation et assurances.",
+            "url": "https://www.agm-negoce.com",
+            "image": "https://www.agm-negoce.com/og-image.png",
+            "priceRange": "$$",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Paris",
+              "addressCountry": "FR"
+            },
+            "areaServed": "Europe"
+          })
+        }}
+      />
       <Hero />
 
       {/* Services & Simulator (Two Columns) */}

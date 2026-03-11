@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
+import { trackSimulation, trackEvent } from "@/lib/gtag";
 
 interface SimulatorProps {
     isMinimal?: boolean;
@@ -70,6 +71,7 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
     // This breaks the loop because updates from props (sync) only update state.
     const handleAmountChange = (val: number) => {
         setAmount(val);
+        trackSimulation('start', val, duration * 12);
         if (embedded && onValuesChange) {
             onValuesChange(val, duration * 12, rate);
         }
@@ -244,7 +246,11 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
 
                     {!embedded && (
                         <button
-                            onClick={() => router.push(`/credit-request?amount=${amount}&duration=${duration * 12}&rate=${rate}`)}
+                            onClick={() => {
+                                trackSimulation('complete', amount, duration * 12);
+                                trackEvent('click_simulator_cta', { amount, duration_months: duration * 12 });
+                                router.push(`/credit-request?amount=${amount}&duration=${duration * 12}&rate=${rate}`);
+                            }}
                             className={`w-full bg-ely-mint text-white ${embedded ? 'py-2 text-sm' : 'py-3 md:py-4'} rounded-xl font-bold ${embedded ? 'text-base' : 'text-base md:text-lg'} hover:bg-ely-mint/90 transition-all shadow-lg hover:shadow-ely-mint/20 mt-4 active:scale-95`}
                         >
                             {t('startRequest')}

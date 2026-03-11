@@ -8,6 +8,7 @@ import { routing } from '@/i18n/routing';
 import ProgressBar from "@/components/ProgressBar";
 import { Suspense } from "react";
 import ClientProvider from "@/components/ClientProvider";
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,6 +58,21 @@ export const metadata: Metadata = {
     siteName: 'AGM INVEST',
     locale: 'fr_FR',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'AGM INVEST - Votre partenaire crédit et assurances',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AGM INVEST | Crédit & Assurances',
+    description: 'Financez vos projets immobiliers et personnels avec AGM INVEST.',
+    images: ['/og-image.png'],
+    creator: '@agminvest',
   },
 };
 
@@ -99,6 +115,30 @@ export default async function LocaleLayout({
               `,
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "AGM INVEST",
+              "url": "https://www.agm-negoce.com",
+              "logo": "https://www.agm-negoce.com/logo-official.webp",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+33-1-00-00-00-00",
+                "contactType": "customer service",
+                "areaServed": "FR",
+                "availableLanguage": ["French", "English"]
+              },
+              "sameAs": [
+                "https://www.facebook.com/agminvest",
+                "https://www.linkedin.com/company/agminvest",
+                "https://twitter.com/agminvest"
+              ]
+            })
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -111,6 +151,9 @@ export default async function LocaleLayout({
           <ClientProvider>
             {children}
           </ClientProvider>
+          {process.env.NEXT_PUBLIC_GOOGLE_ADS_ID && (
+            <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_ADS_ID} />
+          )}
         </NextIntlClientProvider>
       </body>
     </html>
