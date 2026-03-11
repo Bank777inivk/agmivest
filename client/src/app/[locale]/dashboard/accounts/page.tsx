@@ -19,7 +19,7 @@ import {
     X,
     CheckCircle2
 } from "lucide-react";
-import { auth, db } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { collection, query, where, getDocs, limit, doc, getDoc, updateDoc, serverTimestamp, onSnapshot, orderBy } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { cn } from "@/lib/utils";
@@ -44,11 +44,14 @@ export default function AccountsPage() {
 
     useEffect(() => {
         let unsubTransfers: () => void;
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
+
+        const unsubscribe = onAuthStateChanged(_auth, async (user) => {
             if (user) {
                 try {
                     const q = query(
-                        collection(db, "accounts"),
+                        collection(_db, "accounts"),
                         where("userId", "==", user.uid),
                         limit(1)
                     );
@@ -94,7 +97,7 @@ export default function AccountsPage() {
                         if (!iban || !bic || !bankName) {
                             try {
                                 // 1. Try User Profile (Current source of truth for the person)
-                                const userSnap = await getDoc(doc(db, "users", user.uid));
+                                const userSnap = await getDoc(doc(_db, "users", user.uid));
                                 if (userSnap.exists()) {
                                     const userData = userSnap.data();
                                     if (!iban) iban = userData.iban;
@@ -118,7 +121,7 @@ export default function AccountsPage() {
 
                                 // 2. Fallback to original request if still missing
                                 if ((!iban || !bic || !bankName) && data.requestId) {
-                                    const requestSnap = await getDoc(doc(db, "requests", data.requestId));
+                                    const requestSnap = await getDoc(doc(_db, "requests", data.requestId));
                                     if (requestSnap.exists()) {
                                         const reqData = requestSnap.data();
                                         if (!iban) iban = reqData.iban;
@@ -149,7 +152,7 @@ export default function AccountsPage() {
 
                         // Real-time Transfers Listener
                         const qT = query(
-                            collection(db, "transfers"),
+                            collection(_db, "transfers"),
                             where("userId", "==", user.uid),
                             orderBy("createdAt", "desc"),
                             limit(5)
@@ -160,7 +163,7 @@ export default function AccountsPage() {
                                 ...doc.data()
                             })));
                         }, (error) => {
-                            if (error.code === 'permission-denied' && !auth.currentUser) return;
+                            if (error.code === 'permission-denied' && !_auth.currentUser) return;
                             console.error("[AccountsPage] Transfers Snapshot Error:", error);
                         });
                     }
@@ -178,11 +181,13 @@ export default function AccountsPage() {
     }, []);
 
     const handleUpdateRIB = async () => {
-        if (!auth.currentUser || !newIBAN) return;
+        const _auth = getFirebaseAuth();
+        if (!_auth.currentUser || !newIBAN) return;
         setIsProcessing(true);
         try {
+            const _db = getFirestore();
             // Update User Profile
-            await updateDoc(doc(db, "users", auth.currentUser.uid), {
+            await updateDoc(doc(_db, "users", _auth.currentUser.uid), {
                 iban: newIBAN,
                 bankName: newBank,
                 bic: newBIC,
@@ -192,7 +197,7 @@ export default function AccountsPage() {
 
             // Update Account Document if it exists
             if (loanAccount?.id) {
-                await updateDoc(doc(db, "accounts", loanAccount.id), {
+                await updateDoc(doc(_db, "accounts", loanAccount.id), {
                     iban: newIBAN,
                     bankName: newBank, // Consistency
                     bic: newBIC,

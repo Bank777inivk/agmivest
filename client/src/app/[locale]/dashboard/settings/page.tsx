@@ -29,7 +29,7 @@ import {
     reauthenticateWithCredential,
     EmailAuthProvider
 } from "firebase/auth";
-import { auth, isFirebaseError } from "@/lib/firebase";
+import { getFirebaseAuth, isFirebaseError } from "@/lib/firebase";
 import { createNotification } from "@/hooks/useNotifications";
 
 const languages = [
@@ -94,7 +94,8 @@ export default function SettingsPage() {
         const storedTimeout = localStorage.getItem('inactivityTimeout');
         if (storedTimeout) setInactivityTimeout(storedTimeout);
 
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const _auth = getFirebaseAuth();
+        const unsubscribe = onAuthStateChanged(_auth, (user) => {
             if (user) {
                 setUserEmail(user.email);
                 setLastLogin(user.metadata.lastSignInTime || null);
@@ -113,7 +114,8 @@ export default function SettingsPage() {
         const resetTimer = () => {
             clearTimeout(timeout);
             timeout = setTimeout(() => {
-                auth.signOut().then(() => {
+                const _auth = getFirebaseAuth();
+                _auth.signOut().then(() => {
                     router.push('/login');
                 });
             }, timeoutMs);
@@ -150,7 +152,8 @@ export default function SettingsPage() {
         setPasswordError(null);
 
         try {
-            const user = auth.currentUser;
+            const _auth = getFirebaseAuth();
+            const user = _auth.currentUser;
             if (!user || !user.email) throw new Error("Utilisateur non connecté.");
 
             const credential = EmailAuthProvider.credential(user.email, currentPassword);
@@ -198,12 +201,14 @@ export default function SettingsPage() {
     } as const;
 
     const switchLanguage = async (newLocale: string) => {
-        const user = auth.currentUser;
+        const _auth = getFirebaseAuth();
+        const user = _auth.currentUser;
         if (user) {
             try {
                 const { doc, updateDoc } = await import("firebase/firestore");
-                const { db } = await import("@/lib/firebase");
-                await updateDoc(doc(db, "users", user.uid), {
+                const { getFirestore } = await import("@/lib/firebase");
+                const _db = getFirestore();
+                await updateDoc(doc(_db, "users", user.uid), {
                     language: newLocale
                 });
             } catch (error) {

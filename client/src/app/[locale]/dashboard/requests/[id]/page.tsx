@@ -19,7 +19,7 @@ import {
     CreditCard,
     Lock
 } from "lucide-react";
-import { auth, db } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
@@ -41,10 +41,12 @@ export default function RequestDetailsPage() {
 
     useEffect(() => {
         let unsubRequest: (() => void) | null = null;
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
 
-        const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+        const unsubscribeAuth = onAuthStateChanged(_auth, (user) => {
             if (user && params.id) {
-                const docRef = doc(db, "requests", params.id as string);
+                const docRef = doc(_db, "requests", params.id as string);
 
                 unsubRequest = onSnapshot(docRef, (docSnap) => {
                     if (docSnap.exists() && docSnap.data().userId === user.uid) {

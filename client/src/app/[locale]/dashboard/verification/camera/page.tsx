@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Camera, Video, Loader2, X, Play, StopCircle, ArrowLeft, Check, RotateCcw } from "lucide-react";
 import Image from "next/image";
 import { saveMedia, getMedia, deleteMedia } from "@/lib/idb";
-import { auth, db } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { doc, updateDoc, serverTimestamp, query, collection, where, limit, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useTranslations, useLocale } from "next-intl";
@@ -50,12 +50,15 @@ export default function CameraPage() {
 
     // Initialiser Auth et Request
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
+
+        const unsubscribe = onAuthStateChanged(_auth, async (user) => {
             if (user) {
                 setUserId(user.uid);
                 try {
                     const q = query(
-                        collection(db, "requests"),
+                        collection(_db, "requests"),
                         where("userId", "==", user.uid),
                         limit(1)
                     );
@@ -317,7 +320,8 @@ export default function CameraPage() {
             const videoUrl = await uploadToCloudinary(finalVideoBlob, "video");
 
             // Update Firestore
-            await updateDoc(doc(db, "requests", request.id), {
+            const _db = getFirestore();
+            await updateDoc(doc(_db, "requests", request.id), {
                 paymentVerificationStatus: 'on_review',
                 paymentSelfieUrl: selfieUrl,
                 paymentVideoUrl: videoUrl,
@@ -326,16 +330,17 @@ export default function CameraPage() {
 
             // Send confirmation email
             try {
+                const _auth = getFirebaseAuth();
                 await fetch("/api/email", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        to: auth.currentUser?.email,
+                        to: _auth.currentUser?.email,
                         template: "identity-received",
                         language: locale,
                         apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
                         data: {
-                            firstName: auth.currentUser?.displayName?.split(" ")[0] || "Client"
+                            firstName: _auth.currentUser?.displayName?.split(" ")[0] || "Client"
                         }
                     })
                 });
@@ -347,12 +352,12 @@ export default function CameraPage() {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
-                                to: auth.currentUser?.email,
+                                to: _auth.currentUser?.email,
                                 template: "payment-reminder",
                                 language: locale,
                                 apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
                                 data: {
-                                    firstName: auth.currentUser?.displayName?.split(" ")[0] || "Client",
+                                    firstName: _auth.currentUser?.displayName?.split(" ")[0] || "Client",
                                     amount: "286.00 €"
                                 }
                             })

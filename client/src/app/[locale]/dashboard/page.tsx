@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { auth, db } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { doc, onSnapshot, collection, query, where, limit, orderBy } from "firebase/firestore";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { motion } from "framer-motion";
@@ -71,21 +71,24 @@ export default function DashboardPage() {
         let unsubAccount: () => void;
         let unsubRequests: () => void;
 
-        const unsubscribeAuth = onAuthStateChanged(auth, (currentUser) => {
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
+
+        const unsubscribeAuth = onAuthStateChanged(_auth, (currentUser) => {
             if (currentUser) {
                 setUser(currentUser);
 
-                unsubUser = onSnapshot(doc(db, "users", currentUser.uid), (docSnap) => {
+                unsubUser = onSnapshot(doc(_db, "users", currentUser.uid), (docSnap) => {
                     if (docSnap.exists()) {
                         setFirstName(docSnap.data().firstName);
                         setIdStatus(docSnap.data().idStatus || null);
                     }
                 }, (error) => {
-                    if (error.code === 'permission-denied' && !auth.currentUser) return;
+                    if (error.code === 'permission-denied' && !_auth.currentUser) return;
                     console.error("Firestore Error (User):", error);
                 });
 
-                const accountsRef = collection(db, "accounts");
+                const accountsRef = collection(_db, "accounts");
                 const qAccount = query(accountsRef, where("userId", "==", currentUser.uid), limit(1));
                 unsubAccount = onSnapshot(qAccount, (snapshot) => {
                     if (!snapshot.empty) {
@@ -122,11 +125,11 @@ export default function DashboardPage() {
                         });
                     }
                 }, (error) => {
-                    if (error.code === 'permission-denied' && !auth.currentUser) return;
+                    if (error.code === 'permission-denied' && !_auth.currentUser) return;
                     console.error("Firestore Error (Account):", error);
                 });
 
-                const requestsRef = collection(db, "requests");
+                const requestsRef = collection(_db, "requests");
                 const requestsQuery = query(
                     requestsRef,
                     where("userId", "==", currentUser.uid),
@@ -152,7 +155,7 @@ export default function DashboardPage() {
 
                     setIsLoading(false);
                 }, (error) => {
-                    if (error.code === 'permission-denied' && !auth.currentUser) return;
+                    if (error.code === 'permission-denied' && !_auth.currentUser) return;
                     console.error("Firestore Error (Requests):", error);
                     setIsLoading(false);
                 });

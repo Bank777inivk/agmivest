@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
-import { auth, db } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { collection, query, where, limit, doc, getDoc, onSnapshot, QuerySnapshot, FirestoreError } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import jsPDF from "jspdf";
@@ -102,18 +102,20 @@ export default function SchedulePage() {
 
     useEffect(() => {
         let unsubscribeAccount: (() => void) | null = null;
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
 
-        const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
+        const unsubscribeAuth = onAuthStateChanged(_auth, async (user) => {
             if (user) {
                 // Fetch user info for PDF (one-time)
-                const userDoc = await getDoc(doc(db, "users", user.uid));
+                const userDoc = await getDoc(doc(_db, "users", user.uid));
                 if (userDoc.exists()) {
                     setUserName(userDoc.data().firstName || "Client");
                 }
 
                 // Setup Real-time listener for account
                 const q = query(
-                    collection(db, "accounts"),
+                    collection(_db, "accounts"),
                     where("userId", "==", user.uid),
                     limit(1)
                 );

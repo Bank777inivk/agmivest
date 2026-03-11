@@ -1,4 +1,4 @@
-import { db } from './firebase';
+import { getFirestore } from './firebase';
 import { doc, setDoc, getDoc, deleteDoc, Timestamp } from 'firebase/firestore';
 
 /**
@@ -13,7 +13,8 @@ export function generateOTP(): string {
  * Expire après 15 minutes
  */
 export async function storeOTP(email: string, code: string): Promise<void> {
-    const otpRef = doc(db, 'otps', email.toLowerCase());
+    const _db = getFirestore();
+    const otpRef = doc(_db, 'otps', email.toLowerCase());
     const expiresAt = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
 
     await setDoc(otpRef, {
@@ -27,7 +28,8 @@ export async function storeOTP(email: string, code: string): Promise<void> {
  * Vérifie si un code OTP est valide pour un email donné
  */
 export async function verifyOTP(email: string, code: string): Promise<boolean> {
-    const otpRef = doc(db, 'otps', email.toLowerCase());
+    const _db = getFirestore();
+    const otpRef = doc(_db, 'otps', email.toLowerCase());
     const otpDoc = await getDoc(otpRef);
 
     if (!otpDoc.exists()) return false;

@@ -17,8 +17,8 @@ import {
     Info
 } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
-import { auth, db } from "@/lib/firebase";
-import { doc, updateDoc, serverTimestamp, onSnapshot } from "firebase/firestore";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
+import { doc, updateDoc, serverTimestamp, onSnapshot, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import Image from "next/image";
 import CameraModal from "@/components/dashboard/CameraModal";
@@ -62,11 +62,14 @@ export default function IdentityVerificationPage() {
 
     useEffect(() => {
         let unsubDoc: () => void;
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
+
+        const unsubscribe = onAuthStateChanged(_auth, (user) => {
             if (user) {
                 setUserId(user.uid);
 
-                const userDocRef = doc(db, "users", user.uid);
+                const userDocRef = doc(_db, "users", user.uid);
                 unsubDoc = onSnapshot(userDocRef, (docSnap) => {
                     if (docSnap.exists()) {
                         const data = docSnap.data();
@@ -264,6 +267,7 @@ export default function IdentityVerificationPage() {
     };
 
     const handleSubmit = async () => {
+        const _auth = getFirebaseAuth();
         if (!userId) return;
         const allDocsPresent = Object.values(documents).every(doc => doc && (doc.file || doc.url));
         if (!allDocsPresent) {
@@ -272,6 +276,7 @@ export default function IdentityVerificationPage() {
         }
         setIsSubmitting(true);
         try {
+            const _db = getFirestore();
             const kycDocuments: Record<string, any> = {};
             for (const key of Object.keys(documents)) {
                 const docData = documents[key];
@@ -290,7 +295,7 @@ export default function IdentityVerificationPage() {
                     kycDocuments[key] = { url: docData.url, status: docData.reviewStatus || 'pending' };
                 }
             }
-            await updateDoc(doc(db, "users", userId), {
+            await updateDoc(doc(_db, "users", userId), {
                 idStatus: "pending_verification",
                 kycDocuments,
                 kycSubmittedAt: serverTimestamp(),
@@ -303,7 +308,7 @@ export default function IdentityVerificationPage() {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        to: auth.currentUser?.email,
+                        to: _auth.currentUser?.email,
                         template: "kyc-received",
                         language: locale,
                         apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",

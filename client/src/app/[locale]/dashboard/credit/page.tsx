@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { auth, db, isFirebaseError } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore, isFirebaseError } from "@/lib/firebase";
 import { doc, getDoc, setDoc, addDoc, collection, serverTimestamp, getDocs, query, where, limit, orderBy } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
@@ -98,11 +98,14 @@ export default function CreditRequestPage() {
 
     useEffect(() => {
         setIsMounted(true);
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
+
+        const unsubscribe = onAuthStateChanged(_auth, async (user) => {
             try {
                 if (user) {
                     // Fetch user data to pre-fill form
-                    const userDoc = await getDoc(doc(db, "users", user.uid));
+                    const userDoc = await getDoc(doc(_db, "users", user.uid));
                     const userData = userDoc.exists() ? userDoc.data() : {};
                     const newReadOnlyFields = new Set<string>();
 
@@ -150,7 +153,7 @@ export default function CreditRequestPage() {
 
                     // Check for active loan request
                     const q = query(
-                        collection(db, "requests"),
+                        collection(_db, "requests"),
                         where("userId", "==", user.uid),
                         orderBy("createdAt", "desc"),
                         limit(1)
@@ -283,14 +286,16 @@ export default function CreditRequestPage() {
     };
 
     const handleSubmit = async () => {
-        if (!auth.currentUser) return;
+        const _auth = getFirebaseAuth();
+        if (!_auth.currentUser) return;
         setIsSubmitting(true);
 
         try {
+            const _db = getFirestore();
             const { score, status, debtRatio } = calculateScore(formData, { amount, duration });
 
             const requestData = {
-                userId: auth.currentUser.uid,
+                userId: _auth.currentUser.uid,
                 ...formData,
                 amount,
                 duration,
@@ -308,23 +313,23 @@ export default function CreditRequestPage() {
                 createdAt: serverTimestamp(),
             };
 
-            const requestRef = await addDoc(collection(db, "requests"), requestData);
+            const requestRef = await addDoc(collection(_db, "requests"), requestData);
 
             // Send Loan Submitted Email
             try {
-                const userDoc = await getDoc(doc(db, "users", auth.currentUser.uid));
+                const userDoc = await getDoc(doc(_db, "users", _auth.currentUser.uid));
                 const userData = userDoc.data();
 
                 await fetch("/api/email", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        to: auth.currentUser.email,
+                        to: _auth.currentUser.email,
                         template: "loan-submitted",
                         language: locale,
                         apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
                         data: {
-                            firstName: userData?.firstName || auth.currentUser.displayName || "",
+                            firstName: userData?.firstName || _auth.currentUser.displayName || "",
                             amount: amount,
                             duration: duration
                         }
@@ -335,7 +340,7 @@ export default function CreditRequestPage() {
             }
 
             // Create notification for user
-            await createNotification(auth.currentUser.uid, {
+            await createNotification(_auth.currentUser.uid, {
                 title: 'requestSubmitted.title',
                 message: 'requestSubmitted.message',
                 params: { amount: amount.toLocaleString() },
@@ -344,7 +349,7 @@ export default function CreditRequestPage() {
             });
 
             // Also update user profile with latest info
-            await setDoc(doc(db, "users", auth.currentUser.uid), {
+            await setDoc(doc(_db, "users", _auth.currentUser.uid), {
                 ...formData,
                 updatedAt: serverTimestamp()
             }, { merge: true });

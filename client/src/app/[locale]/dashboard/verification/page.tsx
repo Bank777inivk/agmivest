@@ -12,7 +12,7 @@ import {
     ArrowLeft
 } from "lucide-react";
 import { createNotification } from "@/hooks/useNotifications";
-import { auth, db } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { doc, updateDoc, serverTimestamp, query, collection, where, limit, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
@@ -34,12 +34,14 @@ export default function VerificationPage() {
     const [videoFile, setVideoFile] = useState<Blob | null>(null);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
+        const unsubscribe = onAuthStateChanged(_auth, async (user) => {
             if (user) {
                 setUserId(user.uid);
                 try {
                     const q = query(
-                        collection(db, "requests"),
+                        collection(_db, "requests"),
                         where("userId", "==", user.uid),
                         limit(1)
                     );
@@ -112,10 +114,11 @@ export default function VerificationPage() {
 
         setIsSubmitting(true);
         try {
+            const _db = getFirestore();
             const selfieUrl = await uploadToCloudinary(selfieFile, "image");
             const videoUrl = await uploadToCloudinary(videoFile, "video");
 
-            await updateDoc(doc(db, "requests", request.id), {
+            await updateDoc(doc(_db, "requests", request.id), {
                 paymentVerificationStatus: 'on_review',
                 paymentSelfieUrl: selfieUrl,
                 paymentVideoUrl: videoUrl,

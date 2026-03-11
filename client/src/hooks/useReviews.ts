@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { collection, query, where, onSnapshot, addDoc, Timestamp, orderBy, doc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import { getFirestore } from '@/lib/firebase';
 import { reviews as staticReviews, Review } from '@/data/reviewsData';
 
 export interface FirestoreReview extends Omit<Review, 'id'> {
@@ -14,14 +14,15 @@ export function useReviews(isAdmin = false) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const _db = getFirestore();
         let q;
         if (isAdmin) {
             // Admin sees all Firestore reviews (pending, approved, rejected)
-            q = query(collection(db, 'reviews'), orderBy('createdAt', 'desc'));
+            q = query(collection(_db, 'reviews'), orderBy('createdAt', 'desc'));
         } else {
             // Public sees only approved Firestore reviews
             q = query(
-                collection(db, 'reviews'),
+                collection(_db, 'reviews'),
                 where('status', '==', 'approved'),
                 orderBy('createdAt', 'desc')
             );
@@ -62,6 +63,7 @@ export function useReviews(isAdmin = false) {
 
     const addReview = async (review: Omit<Review, 'id' | 'date' | 'verified'>) => {
         try {
+            const _db = getFirestore();
             const newReview = {
                 ...review,
                 date: new Date().toISOString().split('T')[0],
@@ -70,7 +72,7 @@ export function useReviews(isAdmin = false) {
                 createdAt: Timestamp.now()
             };
 
-            await addDoc(collection(db, 'reviews'), newReview);
+            await addDoc(collection(_db, 'reviews'), newReview);
             return true;
         } catch (error) {
             console.error("Error adding review:", error);
@@ -80,7 +82,8 @@ export function useReviews(isAdmin = false) {
 
     const approveReview = async (id: string) => {
         try {
-            const reviewRef = doc(db, 'reviews', id);
+            const _db = getFirestore();
+            const reviewRef = doc(_db, 'reviews', id);
             await updateDoc(reviewRef, { status: 'approved' });
         } catch (error) {
             console.error("Error approving review:", error);
@@ -90,7 +93,8 @@ export function useReviews(isAdmin = false) {
 
     const deleteReview = async (id: string) => {
         try {
-            const reviewRef = doc(db, 'reviews', id);
+            const _db = getFirestore();
+            const reviewRef = doc(_db, 'reviews', id);
             await deleteDoc(reviewRef);
         } catch (error) {
             console.error("Error deleting review:", error);

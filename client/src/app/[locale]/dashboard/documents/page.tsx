@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FileText, Download, ShieldCheck, AlertCircle, FileSignature, FolderOpen, Lock } from "lucide-react";
-import { auth, db } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { collection, query, where, getDocs, limit, doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { generateLoanContract, generateInsuranceCertificate, generatePrivacyPolicy } from "@/lib/pdfGenerator";
@@ -18,18 +18,21 @@ export default function DocumentsPage() {
     const [activeRequest, setActiveRequest] = useState<any>(null);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
+
+        const unsubscribe = onAuthStateChanged(_auth, async (currentUser) => {
             if (currentUser) {
                 try {
                     // 1. User Profile
-                    const userSnap = await getDoc(doc(db, "users", currentUser.uid));
+                    const userSnap = await getDoc(doc(_db, "users", currentUser.uid));
                     if (userSnap.exists()) {
                         setUser({ uid: currentUser.uid, ...userSnap.data() });
                     }
 
                     // 2. Active Account?
                     const qAccount = query(
-                        collection(db, "accounts"),
+                        collection(_db, "accounts"),
                         where("userId", "==", currentUser.uid),
                         limit(1)
                     );
@@ -51,7 +54,7 @@ export default function DocumentsPage() {
                     // 3. Approved Request? (If no active account yet)
                     if (accountSnap.empty) {
                         const qRequest = query(
-                            collection(db, "requests"),
+                            collection(_db, "requests"),
                             where("userId", "==", currentUser.uid),
                             where("status", "==", "approved"),
                             limit(1)

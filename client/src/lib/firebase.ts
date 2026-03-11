@@ -14,15 +14,25 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
-// Persistent instances
-const auth = getAuth(app);
-const db = initializeFirestore(app, {
-    localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
-});
+// Lazy initialization helpers
+let _auth: any;
+let _db: any;
 
-// For compatibility with newest code
-export const getFirebaseAuth = () => auth;
-export const getFirestore = () => db;
+export const getFirebaseAuth = () => {
+    if (!_auth) {
+        _auth = getAuth(app);
+    }
+    return _auth;
+};
+
+export const getFirestore = () => {
+    if (!_db) {
+        _db = initializeFirestore(app, {
+            localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
+        });
+    }
+    return _db;
+};
 
 // Type guard for Firebase errors
 const isFirebaseError = (error: unknown): error is { code: string } => {
@@ -47,4 +57,4 @@ const getFirebaseAuthErrorMessage = (error: unknown): string => {
     return errorMap[code] || 'Errors.default';
 };
 
-export { app, auth, db, getFirebaseAuthErrorMessage, isFirebaseError };
+export { app, getFirebaseAuthErrorMessage, isFirebaseError };

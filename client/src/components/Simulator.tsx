@@ -256,13 +256,13 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                                 trackEvent('click_simulator_cta', { amount, duration_months: duration * 12 });
                                 router.push(`/credit-request?amount=${amount}&duration=${duration * 12}&rate=${rate}`);
                             }}
-                            className={`w-full bg-ely-mint text-ely-blue ${embedded ? 'py-2 text-sm' : 'py-3 md:py-4'} rounded-xl font-bold ${embedded ? 'text-base' : 'text-base md:text-lg'} hover:bg-ely-mint/90 transition-all shadow-lg hover:shadow-ely-mint/20 mt-4 active:scale-95`}
+                            className={`w-full bg-ely-mint text-white ${embedded ? 'py-2 text-sm' : 'py-3 md:py-4'} rounded-xl font-bold ${embedded ? 'text-base' : 'text-base md:text-lg'} hover:bg-ely-mint/90 transition-all shadow-lg hover:shadow-ely-mint/20 mt-4 active:scale-95`}
                         >
                             {t('startRequest')}
                         </button>
                     )}
                 </div>
             </div>
-        </div>
+        </div >
     );
 }

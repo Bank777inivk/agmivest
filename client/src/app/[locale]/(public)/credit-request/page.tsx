@@ -13,7 +13,7 @@ import { useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { generateOTP, storeOTP } from "@/lib/otp";
 import { useTranslations, useLocale } from "next-intl";
-import { auth, db, isFirebaseError } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore, isFirebaseError } from "@/lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import Simulator from "@/components/Simulator";
@@ -388,16 +388,18 @@ export default function CreditRequestPage() {
         setIsSubmitting(true);
 
         try {
+            const _auth = getFirebaseAuth();
+            const _db = getFirestore();
             // 1. Créer le compte utilisateur
             const userCredential = await createUserWithEmailAndPassword(
-                auth,
+                _auth,
                 formData.email,
                 formData.password
             );
             const user = userCredential.user;
 
             // 2. Enregistrer les données utilisateur dans Firestore
-            await setDoc(doc(db, "users", user.uid), {
+            await setDoc(doc(_db, "users", user.uid), {
                 email: formData.email,
                 firstName: formData.firstName,
                 lastName: formData.lastName,
@@ -467,7 +469,7 @@ export default function CreditRequestPage() {
             // 4. Calculer le score (Sauvegardé pour l'admin, caché pour le client)
             const result = calculateScore(formData);
 
-            const requestRef = await addDoc(collection(db, "requests"), {
+            const requestRef = await addDoc(collection(_db, "requests"), {
                 ...requestData,
                 score: result.score,
                 scoringStatus: result.status,

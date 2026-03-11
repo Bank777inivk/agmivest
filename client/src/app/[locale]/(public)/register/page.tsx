@@ -12,7 +12,7 @@ import { useTranslations, useLocale } from "next-intl";
 
 type Step = 1 | 2 | 3;
 
-import { auth, db, getFirebaseAuthErrorMessage } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore, getFirebaseAuthErrorMessage } from "@/lib/firebase";
 import { COUNTRY_PHONE_DATA, COUNTRIES, COUNTRY_TO_NATIONALITY } from "@/lib/constants";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -204,11 +204,13 @@ export default function RegisterPage() {
         setIsLoading(true);
 
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+            const _auth = getFirebaseAuth();
+            const _db = getFirestore();
+            const userCredential = await createUserWithEmailAndPassword(_auth, formData.email, formData.password);
             const user = userCredential.user;
 
             // Save extra user data to Firestore
-            await setDoc(doc(db, "users", user.uid), {
+            await setDoc(doc(_db, "users", user.uid), {
                 uid: user.uid,
                 email: formData.email,
                 civility: formData.civility,

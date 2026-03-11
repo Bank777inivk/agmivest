@@ -12,7 +12,8 @@ import {
     addDoc,
     serverTimestamp
 } from "firebase/firestore";
-import { db, auth } from "@/lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { getFirestore, getFirebaseAuth } from "@/lib/firebase";
 
 export interface Notification {
     id: string;
@@ -31,46 +32,59 @@ export function useNotifications() {
     const [loading, setLoading] = useState(true);
     const [unreadCount, setUnreadCount] = useState(0);
 
-    const user = auth.currentUser;
-
     useEffect(() => {
-        if (!user) {
-            setLoading(false);
-            return;
-        }
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
 
-        const notificationsRef = collection(db, "users", user.uid, "notifications");
-        const q = query(notificationsRef, orderBy("timestamp", "desc"));
+        const unsubscribeAuth = onAuthStateChanged(_auth, (user) => {
+            if (!user) {
+                setNotifications([]);
+                setUnreadCount(0);
+                setLoading(false);
+                return;
+            }
 
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            const items = snapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            } as Notification));
+            const notificationsRef = collection(_db, "users", user.uid, "notifications");
+            const q = query(notificationsRef, orderBy("timestamp", "desc"));
 
-            setNotifications(items);
-            setUnreadCount(items.filter(n => !n.read).length);
-            setLoading(false);
-        }, (error) => {
-            console.error("[useNotifications] Snapshot Error:", error);
-            setLoading(false);
+            const unsubscribeSnap = onSnapshot(q, (snapshot) => {
+                const items = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                } as Notification));
+
+                setNotifications(items);
+                setUnreadCount(items.filter(n => !n.read).length);
+                setLoading(false);
+            }, (error) => {
+                console.error("[useNotifications] Snapshot Error:", error);
+                setLoading(false);
+            });
+
+            return () => unsubscribeSnap();
         });
 
-        return () => unsubscribe();
-    }, [user]);
+        return () => unsubscribeAuth();
+    }, []);
 
     const markAsRead = async (notificationId: string) => {
+        const _auth = getFirebaseAuth();
+        const user = _auth.currentUser;
         if (!user) return;
-        const navRef = doc(db, "users", user.uid, "notifications", notificationId);
+        const _db = getFirestore();
+        const navRef = doc(_db, "users", user.uid, "notifications", notificationId);
         await updateDoc(navRef, { read: true });
     };
 
     const markAllAsRead = async () => {
+        const _auth = getFirebaseAuth();
+        const user = _auth.currentUser;
         if (!user || notifications.length === 0) return;
-        const batch = writeBatch(db);
+        const _db = getFirestore();
+        const batch = writeBatch(_db);
         notifications.forEach(n => {
             if (!n.read) {
-                const ref = doc(db, "users", user.uid, "notifications", n.id);
+                const ref = doc(_db, "users", user.uid, "notifications", n.id);
                 batch.update(ref, { read: true });
             }
         });
@@ -82,6 +96,7 @@ export function useNotifications() {
 
 export const createNotification = async (userId: string, data: Partial<Notification>) => {
     try {
+        const db = getFirestore();
         const notificationsRef = collection(db, "users", userId, "notifications");
         await addDoc(notificationsRef, {
             title: data.title || "Notification",

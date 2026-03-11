@@ -31,7 +31,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { auth } from "@/lib/firebase";
+import { getFirebaseAuth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
 
@@ -70,6 +70,7 @@ export default function Sidebar({
     const t = useTranslations();
 
     const handleSignOut = async () => {
+        const auth = getFirebaseAuth();
         await signOut(auth);
         router.push("/login");
     };

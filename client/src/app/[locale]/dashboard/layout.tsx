@@ -5,7 +5,7 @@ import Sidebar from "@/components/dashboard/Sidebar";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import IdentityBanner from "@/components/dashboard/IdentityBanner";
 import { usePathname, useRouter } from "@/i18n/routing";
-import { auth, db } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, onSnapshot, query, collection, where, limit, orderBy, getDoc } from "firebase/firestore";
 import { useTranslations, useLocale } from "next-intl";
@@ -38,6 +38,8 @@ export default function DashboardLayout({
 
     useEffect(() => {
         let unsubUser: () => void;
+        const auth = getFirebaseAuth();
+        const db = getFirestore();
 
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (!user) {
@@ -122,6 +124,8 @@ export default function DashboardLayout({
 
     // Separate effect for chat notifications to avoid layout re-runs
     useEffect(() => {
+        const auth = getFirebaseAuth();
+        const db = getFirestore();
         const user = auth.currentUser;
         if (!user) return;
 
@@ -155,6 +159,9 @@ export default function DashboardLayout({
     // Watches for pending requests and triggers analysis if user stays online
     useEffect(() => {
         let unsubSnapshot: (() => void) | undefined;
+
+        const auth = getFirebaseAuth();
+        const db = getFirestore();
 
         const unsubAuth = onAuthStateChanged(auth, (user) => {
             if (!user) {

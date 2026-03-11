@@ -7,7 +7,7 @@ import { Eye, EyeOff, Lock, Mail, ArrowRight, ArrowLeft, CheckCircle } from "luc
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 
-import { auth, getFirebaseAuthErrorMessage } from "@/lib/firebase";
+import { getFirebaseAuth, getFirebaseAuthErrorMessage } from "@/lib/firebase";
 import { signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
@@ -26,7 +26,8 @@ export default function LoginPage() {
 
     // Auto-redirect if already logged in
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const _auth = getFirebaseAuth();
+        const unsubscribe = onAuthStateChanged(_auth, (user) => {
             if (user) {
                 router.push("/dashboard");
             }
@@ -41,13 +42,15 @@ export default function LoginPage() {
         setIsLoading(true);
 
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const _auth = getFirebaseAuth();
+            const userCredential = await signInWithEmailAndPassword(_auth, email, password);
             const user = userCredential.user;
 
             // Sync current locale to Firestore to ensure dashboard respects the public choice
             try {
                 const { doc, updateDoc } = await import("firebase/firestore");
-                const { db } = await import("@/lib/firebase");
+                const { getFirestore } = await import("@/lib/firebase");
+                const db = getFirestore();
                 await updateDoc(doc(db, "users", user.uid), {
                     language: locale
                 });
@@ -77,7 +80,8 @@ export default function LoginPage() {
         setIsResetLoading(true);
 
         try {
-            await sendPasswordResetEmail(auth, email);
+            const _auth = getFirebaseAuth();
+            await sendPasswordResetEmail(_auth, email);
             setSuccess(t('resetPasswordSuccess'));
         } catch (err: unknown) {
             console.error("Reset password error:", err);

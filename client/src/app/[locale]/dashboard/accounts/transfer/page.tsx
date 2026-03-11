@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { auth, db } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { doc, getDoc, getDocs, updateDoc, serverTimestamp, collection, addDoc, query, where, orderBy, onSnapshot } from "firebase/firestore";
 import { createNotification } from "@/hooks/useNotifications";
 import { onAuthStateChanged } from "firebase/auth";
@@ -42,15 +42,18 @@ export default function TransferPage() {
         let unsubTransfers: () => void;
         let unsubRequests: () => void;
 
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
+
+        const unsubscribe = onAuthStateChanged(_auth, async (user) => {
             if (user) {
                 try {
                     // Try User Profile first for IBAN
-                    const userSnap = await getDoc(doc(db, "users", user.uid));
+                    const userSnap = await getDoc(doc(_db, "users", user.uid));
                     const userData = userSnap.exists() ? userSnap.data() : {};
 
                     // Fetch Loan Account Data (where remainingAmount is stored)
-                    const accountsQuery = query(collection(db, "accounts"), where("userId", "==", user.uid));
+                    const accountsQuery = query(collection(_db, "accounts"), where("userId", "==", user.uid));
                     const accountsSnap = await getDocs(accountsQuery);
 
                     if (!accountsSnap.empty) {
@@ -63,7 +66,7 @@ export default function TransferPage() {
 
                     // Listen to transfers
                     const qTransfers = query(
-                        collection(db, "transfers"),
+                        collection(_db, "transfers"),
                         where("userId", "==", user.uid),
                         orderBy("createdAt", "desc")
                     );
@@ -71,13 +74,13 @@ export default function TransferPage() {
                     unsubTransfers = onSnapshot(qTransfers, (snapshot) => {
                         setTransfers(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
                     }, (error) => {
-                        if (error.code === 'permission-denied' && !auth.currentUser) return;
+                        if (error.code === 'permission-denied' && !_auth.currentUser) return;
                         console.error("[TransferPage] Transfers Snapshot Error:", error);
                     });
 
                     // Listen to loan requests
                     const qRequests = query(
-                        collection(db, "requests"),
+                        collection(_db, "requests"),
                         where("userId", "==", user.uid)
                     );
 
@@ -108,7 +111,7 @@ export default function TransferPage() {
                             setIsBlocked(false);
                         }
                     }, (error) => {
-                        if (error.code === 'permission-denied' && !auth.currentUser) return;
+                        if (error.code === 'permission-denied' && !_auth.currentUser) return;
                         console.error("[TransferPage] Requests Snapshot Error:", error);
                     });
 
@@ -127,7 +130,8 @@ export default function TransferPage() {
     }, []);
 
     const handleTransfer = async () => {
-        if (!amount || parseFloat(amount) <= 0 || !auth.currentUser || !loanAccount || isBlocked) return;
+        const _auth = getFirebaseAuth();
+        if (!amount || parseFloat(amount) <= 0 || !_auth.currentUser || !loanAccount || isBlocked) return;
 
         // Check if balance is sufficient
         const transferAmount = parseFloat(amount);
@@ -144,10 +148,11 @@ export default function TransferPage() {
         setIsProcessing(true);
 
         try {
+            const _db = getFirestore();
             const transferData = {
-                userId: auth.currentUser.uid,
+                userId: _auth.currentUser.uid,
                 userName: loanAccount.firstName + " " + loanAccount.lastName,
-                userEmail: auth.currentUser.email,
+                userEmail: _auth.currentUser.email,
                 amount: transferAmount,
                 bankName: loanAccount.bankName,
                 iban: loanAccount.iban,
@@ -158,7 +163,7 @@ export default function TransferPage() {
                 language: locale
             };
 
-            await addDoc(collection(db, "transfers"), transferData);
+            await addDoc(collection(_db, "transfers"), transferData);
 
             // Send Transfer Initiated Email
             try {
@@ -166,7 +171,7 @@ export default function TransferPage() {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        to: auth.currentUser.email,
+                        to: _auth.currentUser.email,
                         template: "transfer-initiated",
                         language: locale,
                         apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
@@ -182,7 +187,7 @@ export default function TransferPage() {
             }
 
             // Create Notification
-            await createNotification(auth.currentUser.uid, {
+            await createNotification(_auth.currentUser.uid, {
                 title: 'transferInitiated.title',
                 message: 'transferInitiated.message',
                 params: { amount: transferAmount.toLocaleString() },

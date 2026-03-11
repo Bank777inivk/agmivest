@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Star, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import { getFirestore } from '@/lib/firebase';
 import { useTranslations } from 'next-intl';
 
 interface ReviewFormData {
@@ -71,7 +71,8 @@ export default function ReviewForm() {
 
         setIsSubmitting(true);
         try {
-            await addDoc(collection(db, 'reviews'), {
+            const _db = getFirestore();
+            await addDoc(collection(_db, 'reviews'), {
                 ...formData,
                 date: new Date().toISOString().split('T')[0],
                 verified: false,

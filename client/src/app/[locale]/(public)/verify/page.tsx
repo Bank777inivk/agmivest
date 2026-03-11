@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ShieldCheck, Mail, ArrowRight, RefreshCw, AlertCircle, Inbox } from "lucide-react";
 import { verifyOTP, storeOTP, generateOTP } from "@/lib/otp";
-import { auth, db } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 
 function VerifyPageContent() {
@@ -23,10 +23,13 @@ function VerifyPageContent() {
     useEffect(() => {
         if (searchEmail) {
             setCurrentEmail(searchEmail);
-        } else if (auth.currentUser?.email) {
-            setCurrentEmail(auth.currentUser.email);
+        } else {
+            const _auth = getFirebaseAuth();
+            if (_auth.currentUser?.email) {
+                setCurrentEmail(_auth.currentUser.email);
+            }
         }
-    }, [searchEmail, auth.currentUser]);
+    }, [searchEmail]);
 
     const [otp, setOtp] = useState(["", "", "", "", "", ""]);
     const [error, setError] = useState("");
@@ -37,8 +40,9 @@ function VerifyPageContent() {
     const requestId = searchParams.get('requestId') || "";
 
     useEffect(() => {
+        const _auth = getFirebaseAuth();
         // Fallback to logged in user if email is missing from params
-        if (!currentEmail && !auth.currentUser) {
+        if (!currentEmail && !_auth.currentUser) {
             router.push('/register');
         }
     }, [currentEmail, locale, router, requestId, firstName]);
@@ -89,9 +93,11 @@ function VerifyPageContent() {
             const isValid = await verifyOTP(currentEmail, fullOtp);
             if (isValid) {
                 // Update User document to persist verification
-                const user = auth.currentUser;
+                const _auth = getFirebaseAuth();
+                const _db = getFirestore();
+                const user = _auth.currentUser;
                 if (user) {
-                    await updateDoc(doc(db, "users", user.uid), {
+                    await updateDoc(doc(_db, "users", user.uid), {
                         otpVerified: true,
                         updatedAt: serverTimestamp()
                     });

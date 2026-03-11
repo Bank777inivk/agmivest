@@ -17,7 +17,7 @@ import {
     ShieldCheck,
     Euro
 } from "lucide-react";
-import { auth, db } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { collection, query, where, orderBy, onSnapshot } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
@@ -40,10 +40,13 @@ export default function RequestsPage() {
 
     useEffect(() => {
         let unsubRequests: () => void;
-        const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
+
+        const unsubscribeAuth = onAuthStateChanged(_auth, (user) => {
             if (user) {
                 const q = query(
-                    collection(db, "requests"),
+                    collection(_db, "requests"),
                     where("userId", "==", user.uid),
                     orderBy("createdAt", "desc")
                 );
@@ -53,7 +56,7 @@ export default function RequestsPage() {
                     setRequests(docs);
                     setIsLoading(false);
                 }, (error) => {
-                    if (error.code === 'permission-denied' && !auth.currentUser) return;
+                    if (error.code === 'permission-denied' && !_auth.currentUser) return;
                     console.error("Error fetching requests:", error);
                     setIsLoading(false);
                 });

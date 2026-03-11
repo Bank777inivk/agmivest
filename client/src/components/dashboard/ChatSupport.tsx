@@ -24,7 +24,7 @@ import {
     updateDoc,
     setDoc
 } from "firebase/firestore";
-import { db, auth } from "@/lib/firebase";
+import { getFirestore, getFirebaseAuth } from "@/lib/firebase";
 import { cn } from "@/lib/utils";
 
 interface Message {
@@ -46,14 +46,17 @@ export default function ChatSupport() {
     const [messages, setMessages] = useState<Message[]>([]);
     const [loading, setLoading] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
-    const user = auth.currentUser;
+    const [user, setUser] = useState<any>(null);
     const [userData, setUserData] = useState<{ firstName?: string, lastName?: string } | null>(null);
     const [showEmojis, setShowEmojis] = useState(false);
     const [uploading, setUploading] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    // Listen for custom open-chat event
+    // Listen for custom open-chat event and handle auth
     useEffect(() => {
+        const _auth = getFirebaseAuth();
+        setUser(_auth.currentUser);
+
         const handleOpenChat = () => setIsOpen(true);
         window.addEventListener('open-chat', handleOpenChat);
         return () => window.removeEventListener('open-chat', handleOpenChat);
@@ -62,7 +65,8 @@ export default function ChatSupport() {
     // Fetch user data for his name
     useEffect(() => {
         if (!user) return;
-        const unsub = onSnapshot(doc(db, "users", user.uid), (docSnap) => {
+        const _db = getFirestore();
+        const unsub = onSnapshot(doc(_db, "users", user.uid), (docSnap) => {
             if (docSnap.exists()) {
                 setUserData(docSnap.data() as any);
             }
@@ -86,7 +90,8 @@ export default function ChatSupport() {
     // Sync userName to chat doc when available
     useEffect(() => {
         if (!user || !userData || !isOpen) return;
-        const chatRef = doc(db, "chats", user.uid);
+        const _db = getFirestore();
+        const chatRef = doc(_db, "chats", user.uid);
         setDoc(chatRef, {
             userName: `${userData.firstName} ${userData.lastName}`,
             userEmail: user.email,
@@ -98,7 +103,8 @@ export default function ChatSupport() {
     useEffect(() => {
         if (!user || !isOpen) return;
 
-        const chatRef = doc(db, "chats", user.uid);
+        const _db = getFirestore();
+        const chatRef = doc(_db, "chats", user.uid);
         const messagesRef = collection(chatRef, "messages");
         const q = query(messagesRef, orderBy("timestamp", "asc"));
 
@@ -154,7 +160,8 @@ export default function ChatSupport() {
             const cloudinaryData = await cloudinaryResponse.json();
             const downloadURL = cloudinaryData.secure_url;
 
-            const chatRef = doc(db, "chats", user.uid);
+            const _db = getFirestore();
+            const chatRef = doc(_db, "chats", user.uid);
             const messagesRef = collection(chatRef, "messages");
 
             await addDoc(messagesRef, {
@@ -190,7 +197,8 @@ export default function ChatSupport() {
         setLoading(true);
 
         try {
-            const chatRef = doc(db, "chats", user.uid);
+            const _db = getFirestore();
+            const chatRef = doc(_db, "chats", user.uid);
             const messagesRef = collection(chatRef, "messages");
 
             // Ensure chat document exists

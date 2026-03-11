@@ -14,7 +14,8 @@ import {
     Crown
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { auth } from "@/lib/firebase";
+import { getFirebaseAuth } from "@/lib/firebase";
+import { signOut } from "firebase/auth";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/routing";
 import { useNotifications } from "@/hooks/useNotifications";
@@ -294,7 +295,8 @@ export default function DashboardHeader({ onMenuClick, isCollapsed, idStatus, us
                                 <div className="border-t border-gray-50 mt-1" />
                                 <button
                                     onClick={async () => {
-                                        await auth.signOut();
+                                        const auth = getFirebaseAuth();
+                                        await signOut(auth);
                                         setShowProfileMenu(false);
                                         router.push("/login");
                                     }}

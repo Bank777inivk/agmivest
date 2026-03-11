@@ -40,7 +40,7 @@ export default function Footer() {
 
                     {/* Column 2: Quick Links */}
                     <div className="space-y-3 md:space-y-4">
-                        <h3 className="text-ely-mint font-bold text-base md:text-xl">{t('linksTitle')}</h3>
+                        <h3 className="text-emerald-400 font-bold text-base md:text-xl">{t('linksTitle')}</h3>
                         <ul className="space-y-1.5 md:space-y-2">
                             {footerLinks.map((link) => (
                                 <li key={link.href}>
@@ -57,7 +57,7 @@ export default function Footer() {
 
                     {/* Column 3: Contact */}
                     <div className="space-y-3 md:space-y-4 relative">
-                        <h3 className="text-ely-mint font-bold text-base md:text-xl">{t('contactTitle')}</h3>
+                        <h3 className="text-emerald-400 font-bold text-base md:text-xl">{t('contactTitle')}</h3>
                         <ul className="space-y-3 md:space-y-4">
                             <li className="flex items-center gap-3 text-gray-300 group">
                                 <Phone className="w-4 h-4 md:w-5 md:h-5 text-ely-mint" />

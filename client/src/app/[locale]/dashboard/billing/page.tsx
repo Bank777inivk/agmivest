@@ -23,7 +23,7 @@ import {
     StopCircle,
     History
 } from "lucide-react";
-import { auth, db, isFirebaseError } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore, isFirebaseError } from "@/lib/firebase";
 import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { collection, query, where, getDocs, limit, onSnapshot } from "firebase/firestore";
 import { AnimatePresence } from "framer-motion";
@@ -80,12 +80,15 @@ export default function BillingPage() {
     }[request?.paymentType as string] || t('paymentTypes.authentication_deposit');
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
+
+        const unsubscribe = onAuthStateChanged(_auth, async (user) => {
             if (user) {
                 setUserId(user.uid);
                 try {
                     const q = query(
-                        collection(db, "requests"),
+                        collection(_db, "requests"),
                         where("userId", "==", user.uid),
                         limit(1)
                     );
@@ -96,7 +99,7 @@ export default function BillingPage() {
                     }
 
                     // Fetch user data for name
-                    const userSnap = await getDoc(doc(db, "users", user.uid));
+                    const userSnap = await getDoc(doc(_db, "users", user.uid));
                     if (userSnap.exists()) {
                         setUserData(userSnap.data());
                     }
@@ -126,11 +129,12 @@ export default function BillingPage() {
         if (searchParams.get('verified') === 'true' && userData && userId) {
             const sendIdentityEmail = async () => {
                 try {
+                    const _auth = getFirebaseAuth();
                     await fetch("/api/email", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                            to: auth.currentUser?.email,
+                            to: _auth.currentUser?.email,
                             template: "identity-received",
                             language: locale,
                             apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",

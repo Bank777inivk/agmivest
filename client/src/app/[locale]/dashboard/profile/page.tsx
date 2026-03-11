@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { User, Mail, Phone, MapPin, Calendar, Globe, Edit2, Edit3, Save, X, Briefcase, Euro, Home, Heart, Baby, CheckCircle, ArrowLeft } from "lucide-react";
 import { collection, query, where, orderBy, limit, getDocs, doc, getDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "@/lib/firebase";
+import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { COUNTRY_PHONE_DATA, COUNTRIES } from "@/lib/constants";
 
 export default function ProfilePage() {
@@ -22,9 +22,12 @@ export default function ProfilePage() {
     const [formData, setFormData] = useState<any>({});
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
+
+        const unsubscribe = onAuthStateChanged(_auth, async (user) => {
             if (user) {
-                const userRef = doc(db, "users", user.uid);
+                const userRef = doc(_db, "users", user.uid);
                 const userSnap = await getDoc(userRef);
 
                 let finalData: any = {};
@@ -49,7 +52,7 @@ export default function ProfilePage() {
                 if (normalized.income === 0 && normalized.charges === 0) {
                     try {
                         const q = query(
-                            collection(db, "requests"),
+                            collection(_db, "requests"),
                             where("userId", "==", user.uid),
                             orderBy("createdAt", "desc"),
                             limit(1)
@@ -130,10 +133,12 @@ export default function ProfilePage() {
     };
 
     const handleSave = async () => {
-        if (!auth.currentUser) return;
+        const _auth = getFirebaseAuth();
+        const _db = getFirestore();
+        if (!_auth.currentUser) return;
         setIsSaving(true);
         try {
-            const userRef = doc(db, "users", auth.currentUser.uid);
+            const userRef = doc(_db, "users", _auth.currentUser.uid);
 
             const cleanedData = { ...formData };
             if (cleanedData.children) cleanedData.children = parseInt(cleanedData.children) || 0;
