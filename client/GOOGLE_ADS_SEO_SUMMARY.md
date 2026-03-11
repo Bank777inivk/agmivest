@@ -25,7 +25,13 @@ Ce document récapitule toutes les mises à jour effectuées pour rendre l'appli
 - **Favicon Modernisé** : Remplacement du favicon par une version **ronde** et au format **WebP** (`/public/favicon.webp`) pour une performance et une esthétique accrues.
 - **Métadonnées Dynamiques** : Optimisation des titres et descriptions selon la langue.
 
-## 4. Prochaines étapes suggérées
+## 4. Outils de Vérification (Extensions Navigateur)
+Pour vérifier que tout fonctionne bien (comme le Facebook Pixel Helper), vous pouvez utiliser :
+- **Google Tag Assistant (Companion)** : L'extension officielle pour Chrome. Elle vous indiquera si votre balise `AW-18003866031` est bien détectée et si les événements de conversion se déclenchent.
+- **Tag Assistant (Web)** : Allez sur [tagassistant.google.com](https://tagassistant.google.com). Entrez l'URL de votre site pour entrer en mode "Debug". Vous verrez en temps réel chaque clic et chaque conversion envoyée à Google.
+- **Adswerve DataLayer Inspector+** : Une extension très précise pour voir ce qui se passe dans le "dataLayer" sans ouvrir la console.
+
+## 5. Prochaines étapes suggérées
 - **Google Search Console** : Soumettre le sitemap généré à `https://www.agm-negoce.com/sitemap.xml`.
 - **Vérification Ads** : Vérifier dans l'interface Google Ads que les événements remontent bien après 24h.
 
