@@ -308,7 +308,14 @@
         "incompleteDate": "Vänligen ange ett fullständigt födelsedatum.",
         "invalidDate": "Det angivna födelsedatumet är ogiltigt.",
         "underage": "Du måste vara minst 18 år för att registrera dig.",
-        "errorPasswordsDoNotMatch": "Lösenorden stämmer inte överens."
+        "errorPasswordsDoNotMatch": "Lösenorden stämmer inte överens.",
+        "auth/invalid-email": "Ogiltigt e-postformat.",
+        "auth/user-not-found": "Inget konto motsvarar denna e-post.",
+        "auth/wrong-password": "Felaktigt lösenord.",
+        "auth/too-many-requests": "Konto tillfälligt blockerat. Försök igen senare.",
+        "auth/email-already-in-use": "Denna e-post används redan av ett annat konto.",
+        "auth/weak-password": "Lösenordet måste vara minst 6 tecken långt.",
+        "auth/default": "Ett autentiseringsfel uppstod. Vänligen försök igen."
       }
     }
   },

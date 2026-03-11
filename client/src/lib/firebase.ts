@@ -45,16 +45,16 @@ const getFirebaseAuthErrorMessage = (error: unknown): string => {
 
     const code = error.code;
     const errorMap: Record<string, string> = {
-        'auth/invalid-email': 'Errors.auth/invalid-email',
-        'auth/user-disabled': 'Errors.auth/user-disabled',
-        'auth/user-not-found': 'Errors.auth/user-not-found',
-        'auth/wrong-password': 'Errors.auth/wrong-password',
-        'auth/too-many-requests': 'Errors.auth/too-many-requests',
-        'auth/email-already-in-use': 'Errors.auth/email-already-in-use',
-        'auth/weak-password': 'Errors.auth/weak-password',
-        'auth/invalid-credential': 'Errors.auth/wrong-password', // Map new Firebase error to old one for translation
+        'auth/invalid-email': 'auth/invalid-email',
+        'auth/user-disabled': 'auth/user-disabled',
+        'auth/user-not-found': 'auth/user-not-found',
+        'auth/wrong-password': 'auth/wrong-password',
+        'auth/too-many-requests': 'auth/too-many-requests',
+        'auth/email-already-in-use': 'auth/email-already-in-use',
+        'auth/weak-password': 'auth/weak-password',
+        'auth/invalid-credential': 'auth/wrong-password', // Map new Firebase error to old one for translation
     };
-    return errorMap[code] || 'Errors.default';
+    return errorMap[code] || 'auth/default';
 };
 
 export { app, getFirebaseAuthErrorMessage, isFirebaseError };

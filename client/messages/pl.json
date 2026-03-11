@@ -308,7 +308,14 @@
         "incompleteDate": "Proszę podać pełną datę urodzenia.",
         "invalidDate": "Podana data urodzenia jest nieprawidłowa.",
         "underage": "Musisz mieć ukończone 18 lat, aby się zarejestrować.",
-        "errorPasswordsDoNotMatch": "Hasła nie są identyczne."
+        "errorPasswordsDoNotMatch": "Hasła nie są identyczne.",
+        "auth/invalid-email": "Nieprawidłowy format e-mail.",
+        "auth/user-not-found": "Żadne konto nie odpowiada temu adresowi e-mail.",
+        "auth/wrong-password": "Nieprawidłowe hasło.",
+        "auth/too-many-requests": "Konto tymczasowo zablokowane. Spróbuj ponownie później.",
+        "auth/email-already-in-use": "Ten e-mail jest już używany przez inne konto.",
+        "auth/weak-password": "Hasło musi mieć co najmniej 6 znaków.",
+        "auth/default": "Wystąpił błąd autoryzacji. Spróbuj ponownie."
       }
     }
   },

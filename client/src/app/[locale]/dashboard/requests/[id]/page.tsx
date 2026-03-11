@@ -357,7 +357,7 @@ export default function RequestDetailsPage() {
                                     </div>
                                     <div>
                                         <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-none pt-1">{t('advisor.title')}</p>
-                                        <p className="text-white text-base sm:text-xl font-black tracking-tight">{request.advisorName || "Jean-Luc Dupont"}</p>
+                                        <p className="text-white text-base sm:text-xl font-black tracking-tight">{request.advisorName || "M. CHAINTEREAU CHRISTOPHE JEAN-PIERRE"}</p>
                                         <p className="text-white/60 text-[11px] font-medium mt-1">{request.advisorEmail || "contact@agm-negoce.com"}</p>
                                     </div>
                                 </div>

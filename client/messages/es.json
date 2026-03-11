@@ -308,7 +308,14 @@
         "incompleteDate": "Por favor, introduzca una fecha de nacimiento completa.",
         "invalidDate": "La fecha de nacimiento introducida no es válida.",
         "underage": "Debe tener al menos 18 años para registrarse.",
-        "errorPasswordsDoNotMatch": "Las contraseñas no coinciden."
+        "errorPasswordsDoNotMatch": "Las contraseñas no coinciden.",
+        "auth/invalid-email": "Formato de correo inválido.",
+        "auth/user-not-found": "Ninguna cuenta corresponde a este correo.",
+        "auth/wrong-password": "Contraseña incorrecta.",
+        "auth/too-many-requests": "Cuenta bloqueada temporalmente. Intente más tarde.",
+        "auth/email-already-in-use": "Este correo ya está en uso por otra cuenta.",
+        "auth/weak-password": "La contraseña debe tener al menos 6 caracteres.",
+        "auth/default": "Ocurrió un error de autenticación. Por favor intente de nuevo."
       }
     }
   },

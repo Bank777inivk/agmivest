@@ -309,7 +309,14 @@
         "invalidDate": "The birth date entered is invalid.",
         "underage": "You must be at least 18 years old to register.",
         "errorPasswordsDoNotMatch": "Passwords do not match.",
-        "default": "An error occurred during registration. Please try again."
+        "default": "An error occurred during registration. Please try again.",
+        "auth/invalid-email": "Invalid email format.",
+        "auth/user-not-found": "No account corresponds to this email.",
+        "auth/wrong-password": "Incorrect password.",
+        "auth/too-many-requests": "Account temporarily blocked. Try again later.",
+        "auth/email-already-in-use": "This email is already used by another account.",
+        "auth/weak-password": "Password must be at least 6 characters.",
+        "auth/default": "An authentication error occurred. Please try again."
       }
     }
   },

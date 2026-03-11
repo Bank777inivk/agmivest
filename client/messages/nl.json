@@ -308,7 +308,14 @@
         "incompleteDate": "Voer een volledige geboortedatum in.",
         "invalidDate": "De ingevoerde geboortedatum is ongeldig.",
         "underage": "U moet ten minste 18 jaar oud zijn om u te registreren.",
-        "errorPasswordsDoNotMatch": "De wachtwoorden komen niet overeen."
+        "errorPasswordsDoNotMatch": "De wachtwoorden komen niet overeen.",
+        "auth/invalid-email": "Ongeldig e-mailformaat.",
+        "auth/user-not-found": "Geen account komt overeen met deze e-mail.",
+        "auth/wrong-password": "Onjuist wachtwoord.",
+        "auth/too-many-requests": "Account tijdelijk geblokkeerd. Probeer het later opnieuw.",
+        "auth/email-already-in-use": "Dit e-mailadres is al in gebruik door een ander account.",
+        "auth/weak-password": "Wachtwoord moet minimaal 6 tekens bevatten.",
+        "auth/default": "Er is een authenticatiefout opgetreden. Probeer het opnieuw."
       }
     }
   },

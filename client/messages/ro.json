@@ -308,7 +308,14 @@
         "incompleteDate": "Vă rugăm să introduceți o dată de naștere completă.",
         "invalidDate": "Data nașterii introdusă este invalidă.",
         "underage": "Trebuie să aveți cel puțin 18 ani pentru a vă înregistra.",
-        "errorPasswordsDoNotMatch": "Parolele nu se potrivesc."
+        "errorPasswordsDoNotMatch": "Parolele nu se potrivesc.",
+        "auth/invalid-email": "Format email invalid.",
+        "auth/user-not-found": "Niciun cont nu corespunde acestui email.",
+        "auth/wrong-password": "Parolă incorectă.",
+        "auth/too-many-requests": "Cont temporar blocat. Încercați din nou mai târziu.",
+        "auth/email-already-in-use": "Acest email este deja folosit de un alt cont.",
+        "auth/weak-password": "Parola trebuie să aibă cel puțin 6 caractere.",
+        "auth/default": "A apărut o eroare de autentificare. Vă rugăm să încercați din nou."
       }
     }
   },

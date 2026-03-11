@@ -314,7 +314,14 @@
         "incompleteDate": "Inserisci una data di nascita completa.",
         "invalidDate": "La data di nascita inserita non è valida.",
         "underage": "Devi avere almeno 18 ans pour vous inscrire.",
-        "errorPasswordsDoNotMatch": "Le password non corrispondono."
+        "errorPasswordsDoNotMatch": "Le password non corrispondono.",
+        "auth/invalid-email": "Formato email non valido.",
+        "auth/user-not-found": "Nessun account corrisponde a questa email.",
+        "auth/wrong-password": "Password errata.",
+        "auth/too-many-requests": "Account temporaneamente bloccato. Riprova più tardi.",
+        "auth/email-already-in-use": "Questa email è già utilizzata da un altro account.",
+        "auth/weak-password": "La password deve contenere almeno 6 caratteri.",
+        "auth/default": "Si è verificato un errore di autenticazione. Riprova."
       }
     }
   },

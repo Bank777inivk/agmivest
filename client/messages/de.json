@@ -308,7 +308,14 @@
         "incompleteDate": "Bitte geben Sie ein vollständiges Geburtsdatum ein.",
         "invalidDate": "Das eingegebene Geburtsdatum ist ungültig.",
         "underage": "Sie müssen mindestens 18 Jahre alt sein, um sich zu registrieren.",
-        "errorPasswordsDoNotMatch": "Die Passwörter stimmen nicht überein."
+        "errorPasswordsDoNotMatch": "Die Passwörter stimmen nicht überein.",
+        "auth/invalid-email": "Ungültiges E-Mail-Format.",
+        "auth/user-not-found": "Kein Konto mit dieser E-Mail gefunden.",
+        "auth/wrong-password": "Falsches Passwort.",
+        "auth/too-many-requests": "Konto vorübergehend blockiert. Später erneut versuchen.",
+        "auth/email-already-in-use": "Diese E-Mail wird bereits für ein anderes Konto verwendet.",
+        "auth/weak-password": "Das Passwort muss mindestens 6 Zeichen lang sein.",
+        "auth/default": "Ein Authentifizierungsfehler ist aufgetreten. Bitte versuchen Sie es erneut."
       }
     }
   },
