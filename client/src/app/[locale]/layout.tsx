@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.webp',
         width: 1200,
         height: 630,
         alt: 'AGM INVEST - Votre partenaire crédit et assurances',
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'AGM INVEST | Crédit & Assurances',
     description: 'Financez vos projets immobiliers et personnels avec AGM INVEST.',
-    images: ['/og-image.png'],
+    images: ['/og-image.webp'],
     creator: '@agminvest',
   },
 };

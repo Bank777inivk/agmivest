@@ -17,7 +17,7 @@ Ce document récapitule toutes les mises à jour effectuées pour rendre l'appli
     - Événement final `credit_request_submitted` : Déclenché uniquement lors du succès réel, incluant le montant et le type de projet.
 
 ## 3. SEO & Visibilité Sociale
-- **Image Open Graph (OG)** : Génération d'une image de marque premium (1200x630) stockée dans `/public/og-image.png`.
+- **Image Open Graph (OG)** : Génération d'une image de marque premium (1200x630) stockée dans `/public/og-image.webp`.
 - **Twitter Cards** : Configuration pour des aperçus grand format sur X.
 - **Données Structurées JSON-LD** :
     - `Organization` : Pour l'identité de marque globale.

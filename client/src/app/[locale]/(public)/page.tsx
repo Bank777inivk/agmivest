@@ -27,7 +27,7 @@ export default function Home() {
             "name": "AGM INVEST - Crédits et Assurances",
             "description": "Solutions de financement immobilier, crédits à la consommation et assurances.",
             "url": "https://www.agm-negoce.com",
-            "image": "https://www.agm-negoce.com/og-image.png",
+            "image": "https://www.agm-negoce.com/og-image.webp",
             "priceRange": "$$",
             "address": {
               "@type": "PostalAddress",
