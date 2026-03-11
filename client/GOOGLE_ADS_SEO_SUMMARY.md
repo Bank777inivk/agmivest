@@ -22,6 +22,7 @@ Ce document récapitule toutes les mises à jour effectuées pour rendre l'appli
 - **Données Structurées JSON-LD** :
     - `Organization` : Pour l'identité de marque globale.
     - `FinancialService` : Pour que Google reconnaisse spécifiquement vos services de crédit.
+- **Favicon Modernisé** : Remplacement du favicon par une version **ronde** et au format **WebP** (`/public/favicon.webp`) pour une performance et une esthétique accrues.
 - **Métadonnées Dynamiques** : Optimisation des titres et descriptions selon la langue.
 
 ## 4. Prochaines étapes suggérées

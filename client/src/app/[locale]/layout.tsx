@@ -74,6 +74,11 @@ export const metadata: Metadata = {
     images: ['/og-image.webp'],
     creator: '@agminvest',
   },
+  icons: {
+    icon: '/favicon.webp',
+    shortcut: '/favicon.webp',
+    apple: '/favicon.webp',
+  },
 };
 
 export default async function LocaleLayout({
