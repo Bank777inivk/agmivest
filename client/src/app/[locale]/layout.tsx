@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     apple: '/favicon.webp',
   },
   verification: {
-    google: 'j2PL1QjUcu4Jx6MXT20gkVgBjA0TTzhEET62',
+    google: 'j2PL1QjUcu4Jx6MXT20gkVgBjA0TTzhEET625UDQ-_I',
   },
 };
 
