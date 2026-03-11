@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         "ely-blue": "#003d82",
-        "ely-mint": "#059669",
+        "ely-mint": "#047857",
       },
     },
   },

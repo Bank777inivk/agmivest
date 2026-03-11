@@ -30,7 +30,7 @@ export default function Hero() {
                         <div className="space-y-3 md:space-y-4 text-sm sm:text-base text-gray-700">
                             <p>
                                 {t('description1')}
-                                <span className="bg-ely-mint text-white px-2 py-0.5 ml-1 font-semibold rounded-sm">
+                                <span className="bg-ely-mint text-ely-blue px-2 py-0.5 ml-1 font-semibold rounded-sm">
                                     {t('descriptionHighlight')}
                                 </span>
                             </p>
@@ -40,7 +40,7 @@ export default function Hero() {
                             </p>
 
                             <div className="pt-2 md:pt-3">
-                                <p className="bg-ely-mint text-white px-3 py-1 inline-block font-bold rounded-sm mb-4 md:mb-5 text-xs sm:text-sm">
+                                <p className="bg-ely-mint text-ely-blue px-3 py-1 inline-block font-bold rounded-sm mb-4 md:mb-5 text-xs sm:text-sm">
                                     {t('tagline')}
                                 </p>
 

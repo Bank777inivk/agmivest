@@ -113,15 +113,17 @@ export default function AnimatedAdBanner() {
                     </motion.div>
                 </div>
 
-                {/* Progress Indicators */}
-                <div className="flex gap-2 mt-4">
+                <div className="flex gap-4 mt-6">
                     {messages.map((_, index) => (
                         <button
                             key={index}
                             onClick={() => setCurrentIndex(index)}
-                            className={`w-2 h-2 rounded-full transition-all ${index === currentIndex ? "bg-ely-mint w-6" : "bg-white/40"
-                                }`}
-                        />
+                            aria-label={`Go to slide ${index + 1}`}
+                            className="relative p-2 group"
+                        >
+                            <div className={`w-2.5 h-2.5 rounded-full transition-all ${index === currentIndex ? "bg-ely-mint w-8" : "bg-white/40 group-hover:bg-white/60"
+                                }`} />
+                        </button>
                     ))}
                 </div>
             </div>

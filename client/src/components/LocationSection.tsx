@@ -53,6 +53,7 @@ export default function LocationSection({ isMinimal = false }: LocationSectionPr
                             scrolling="no"
                             marginHeight={0}
                             marginWidth={0}
+                            loading="lazy"
                             src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=fr&amp;q=40%20Rue%20Jean%20Monnet%2C%2068200%20Mulhouse+(AGM%20Invest)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                             className="w-full h-full filter grayscale-[0.2] hover:grayscale-0 transition-all duration-500"
                         >

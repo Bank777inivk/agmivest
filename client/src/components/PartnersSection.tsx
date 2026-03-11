@@ -23,7 +23,7 @@ export default function PartnersSection({ isMinimal = false }: PartnersSectionPr
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        className={`${isMinimal ? 'text-lg md:text-xl' : 'text-xl md:text-2xl'} font-bold text-gray-400 uppercase tracking-widest`}
+                        className={`${isMinimal ? 'text-lg md:text-xl' : 'text-xl md:text-2xl'} font-bold text-gray-600 uppercase tracking-widest`}
                     >
                         {t('title')}
                     </motion.h3>
@@ -55,7 +55,7 @@ export default function PartnersSection({ isMinimal = false }: PartnersSectionPr
                                 <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center group-hover:bg-ely-mint group-hover:text-white transition-colors">
                                     <Building className="w-5 h-5 transition-transform group-hover:scale-110" />
                                 </div>
-                                <span className="font-bold text-base md:text-lg text-gray-500 group-hover:text-ely-blue transition-colors whitespace-nowrap">
+                                <span className="font-bold text-base md:text-lg text-gray-600 group-hover:text-ely-blue transition-colors whitespace-nowrap">
                                     {partner}
                                 </span>
                             </div>
@@ -64,7 +64,7 @@ export default function PartnersSection({ isMinimal = false }: PartnersSectionPr
                 </div>
 
                 <div className={`mt-10 ${isMinimal ? 'text-left' : 'text-center'}`}>
-                    <p className="text-gray-400 text-sm md:text-base italic mb-8">
+                    <p className="text-gray-600 text-sm md:text-base italic mb-8">
                         {t('subtitle')}
                     </p>
 
@@ -82,12 +82,12 @@ export default function PartnersSection({ isMinimal = false }: PartnersSectionPr
                             <div className="mt-4 flex gap-6">
                                 <div className="flex flex-col">
                                     <span className="text-ely-mint font-bold text-xl">20+</span>
-                                    <span className="text-[10px] text-gray-400 uppercase font-bold tracking-widest leading-none">{t('stats.banks')}</span>
+                                    <span className="text-[10px] text-gray-500 uppercase font-bold tracking-widest leading-none">{t('stats.banks')}</span>
                                 </div>
                                 <div className="w-px bg-gray-100 h-8 self-center"></div>
                                 <div className="flex flex-col">
                                     <span className="text-ely-mint font-bold text-xl">100%</span>
-                                    <span className="text-[10px] text-gray-400 uppercase font-bold tracking-widest leading-none">{t('stats.support')}</span>
+                                    <span className="text-[10px] text-gray-500 uppercase font-bold tracking-widest leading-none">{t('stats.support')}</span>
                                 </div>
                             </div>
                         </motion.div>

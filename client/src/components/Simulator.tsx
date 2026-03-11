@@ -143,7 +143,7 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                             aria-label={t('amountLabel')}
                             className={`w-full ${embedded ? 'h-1.5' : 'h-2'} bg-gray-100 rounded-lg appearance-none cursor-pointer accent-ely-mint hover:accent-ely-mint/80 transition-all focus:outline-none focus:ring-2 focus:ring-ely-mint/20`}
                         />
-                        <div className="flex justify-between text-xs text-gray-400 font-medium px-1">
+                        <div className="flex justify-between text-xs text-gray-600 font-medium px-1">
                             <span>2 000 €</span>
                             <span>1 000 000 €</span>
                         </div>
@@ -180,7 +180,7 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                             aria-label={t('durationLabel')}
                             className={`w-full ${embedded ? 'h-1.5' : 'h-2'} bg-gray-100 rounded-lg appearance-none cursor-pointer accent-ely-mint hover:accent-ely-mint/80 transition-all focus:outline-none focus:ring-2 focus:ring-ely-mint/20`}
                         />
-                        <div className="flex justify-between text-xs text-gray-400 font-medium px-1">
+                        <div className="flex justify-between text-xs text-gray-600 font-medium px-1">
                             <span>6 {t('months')}</span>
                             <span>30 {t('durationSuffix')}</span>
                         </div>
@@ -225,7 +225,7 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                         className={`${embedded ? 'text-4xl' : 'text-4xl sm:text-5xl md:text-6xl'} font-black text-white dropshawdow-xl tracking-tighter`}
                     >
                         <span suppressHydrationWarning className="bg-clip-text text-transparent bg-gradient-to-r from-white via-ely-mint to-white">{hasMounted ? Math.round(monthly).toLocaleString() : Math.round(monthly)}</span>
-                        <span className={`${embedded ? 'text-xl' : 'text-4xl'} text-ely-mint ml-1`}>€</span>
+                        <span className={`${embedded ? 'text-xl' : 'text-4xl'} text-ely-mint ml-1 font-bold`}>€</span>
                         <span className={`${embedded ? 'text-xs font-medium text-gray-400 block mt-1 uppercase tracking-wide' : 'text-lg md:text-xl font-normal text-white ml-2'}`}>{t('perMonth')}</span>
                     </motion.div>
 
@@ -239,7 +239,7 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                             <span className="font-bold text-ely-mint">+{hasMounted ? Math.round((amount * 0.03) / (duration * 12)).toLocaleString() : Math.round((amount * 0.03) / (duration * 12))} €{t('perMonth')}</span>
                         </div>
                         <div className="border-t border-white/10 my-2"></div>
-                        <div className="flex justify-between items-center text-[10px] text-gray-400">
+                        <div className="flex justify-between items-center text-[10px] text-gray-300">
                             <span>{t('totalInsuranceCost')}</span>
                             <span>{hasMounted ? Math.round(amount * 0.03).toLocaleString() : Math.round(amount * 0.03)} €</span>
                         </div>
@@ -256,7 +256,7 @@ export default function Simulator({ isMinimal = false, embedded = false, onValue
                                 trackEvent('click_simulator_cta', { amount, duration_months: duration * 12 });
                                 router.push(`/credit-request?amount=${amount}&duration=${duration * 12}&rate=${rate}`);
                             }}
-                            className={`w-full bg-ely-mint text-white ${embedded ? 'py-2 text-sm' : 'py-3 md:py-4'} rounded-xl font-bold ${embedded ? 'text-base' : 'text-base md:text-lg'} hover:bg-ely-mint/90 transition-all shadow-lg hover:shadow-ely-mint/20 mt-4 active:scale-95`}
+                            className={`w-full bg-ely-mint text-ely-blue ${embedded ? 'py-2 text-sm' : 'py-3 md:py-4'} rounded-xl font-bold ${embedded ? 'text-base' : 'text-base md:text-lg'} hover:bg-ely-mint/90 transition-all shadow-lg hover:shadow-ely-mint/20 mt-4 active:scale-95`}
                         >
                             {t('startRequest')}
                         </button>
