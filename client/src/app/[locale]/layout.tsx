@@ -146,6 +146,10 @@ export default async function LocaleLayout({
             })
           }}
         />
+        <link rel="preconnect" href="https://agm-invest.firebaseapp.com" />
+        <link rel="dns-prefetch" href="https://agm-invest.firebaseapp.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

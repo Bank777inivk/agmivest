@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe, ChevronDown } from "lucide-react";
-import { auth } from "@/lib/firebase";
+import { getFirebaseAuth } from "@/lib/firebase";
 
 const languages = [
     { code: 'fr', name: 'Français', country: 'fr' },
@@ -45,11 +45,13 @@ export default function LanguageSwitcher() {
         setIsOpen(false);
 
         // Update Firestore if user is logged in
+        const auth = getFirebaseAuth();
         const user = auth.currentUser;
         if (user) {
             try {
                 const { doc, updateDoc } = await import("firebase/firestore");
-                const { db } = await import("@/lib/firebase");
+                const { getFirestore } = await import("@/lib/firebase");
+                const db = getFirestore();
                 await updateDoc(doc(db, "users", user.uid), {
                     language: langCode
                 });
