@@ -8,7 +8,7 @@ import { routing } from '@/i18n/routing';
 import ProgressBar from "@/components/ProgressBar";
 import { Suspense } from "react";
 import ClientProvider from "@/components/ClientProvider";
-import { GoogleTagManager } from '@next/third-parties/google';
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -153,11 +153,24 @@ export default async function LocaleLayout({
           <Suspense fallback={null}>
             <ProgressBar />
           </Suspense>
-          <ClientProvider>
-            {children}
-          </ClientProvider>
+          {children}
           {process.env.NEXT_PUBLIC_GOOGLE_ADS_ID && (
-            <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_ADS_ID} />
+            <>
+              <Script
+                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}`}
+                strategy="afterInteractive"
+              />
+              <Script id="google-ads-init" strategy="afterInteractive">
+                {`
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}', {
+                    'send_page_view': true
+                  });
+                `}
+              </Script>
+            </>
           )}
         </NextIntlClientProvider>
       </body>
