@@ -19,6 +19,16 @@ export default function CreditSuccessPage() {
     const email = searchParams.get('email') || "";
 
     useEffect(() => {
+        // Trigger Google Ads Conversion on page load
+        if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+            (window as any).gtag('event', 'conversion', {
+                'send_to': 'AW-18003866031/bRipCOjk9YYcEK_j9IhD'
+            });
+            console.log("[CreditSuccess] Google Ads conversion event triggered");
+        }
+    }, []);
+
+    useEffect(() => {
         if (requestId && userId) {
             console.log(`[CreditSuccess] Starting 1-minute countdown for auto-analyse (Request: ${requestId}, User: ${userId})...`);
             const timer = setTimeout(async () => {
