@@ -1549,7 +1549,7 @@
       },
       "success": {
         "title": "Überweisung eingeleitet!",
-        "message": "Ihre Überweisung ist derzeit {status}. Sie erhalten eine Benachrichtigung, sobald sie bearbeitet wurde.",
+        "message": "Ihre Überweisung ist derzeit <status />. Sie erhalten eine Benachrichtigung, sobald sie bearbeitet wurde.",
         "pending": "IN ERWARTUNG",
         "newTransfer": "Neue Überweisung",
         "myAccounts": "Meine Konten"

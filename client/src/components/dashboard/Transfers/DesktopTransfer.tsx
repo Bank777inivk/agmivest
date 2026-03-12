@@ -176,7 +176,14 @@ export default function DesktopTransfer({
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div className="px-4 py-2 bg-ely-mint/20 text-ely-mint text-[10px] font-black rounded-full uppercase tracking-widest border border-ely-mint/20">{t('form.verifiedAccount')}</div>
+                                                <div className={cn(
+                                                    "px-4 py-2 text-[10px] font-black rounded-full uppercase tracking-widest border",
+                                                    loanAccount?.verified 
+                                                        ? "bg-ely-mint/20 text-ely-mint border-ely-mint/20" 
+                                                        : "bg-amber-500/20 text-amber-500 border-amber-500/20"
+                                                )}>
+                                                    {loanAccount?.verified ? t('form.verifiedAccount') : t('status.pending')}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

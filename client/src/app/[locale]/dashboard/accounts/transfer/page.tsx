@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
-import { doc, getDoc, getDocs, updateDoc, serverTimestamp, collection, addDoc, query, where, orderBy, onSnapshot } from "firebase/firestore";
+import { doc, getDoc, getDocs, updateDoc, serverTimestamp, collection, addDoc, query, where, orderBy, onSnapshot, limit } from "firebase/firestore";
 import { createNotification } from "@/hooks/useNotifications";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "@/i18n/routing";
@@ -41,6 +41,7 @@ export default function TransferPage() {
     useEffect(() => {
         let unsubTransfers: () => void;
         let unsubRequests: () => void;
+        let unsubUser: () => void;
 
         const _auth = getFirebaseAuth();
         const _db = getFirestore();
@@ -48,72 +49,100 @@ export default function TransferPage() {
         const unsubscribe = onAuthStateChanged(_auth, async (user) => {
             if (user) {
                 try {
-                    // Try User Profile first for IBAN
-                    const userSnap = await getDoc(doc(_db, "users", user.uid));
-                    const userData = userSnap.exists() ? userSnap.data() : {};
+                    const db = getFirestore();
+                    const userRef = doc(db, "users", user.uid);
 
-                    // Fetch Loan Account Data (where remainingAmount is stored)
-                    const accountsQuery = query(collection(_db, "accounts"), where("userId", "==", user.uid));
-                    const accountsSnap = await getDocs(accountsQuery);
+                    // 1. Listen to User Profile for real-time KYC/idStatus
+                    unsubUser = onSnapshot(userRef, async (userSnap) => {
+                        const userData = userSnap.exists() ? userSnap.data() : {};
+                        const isVerifiedGlobal = userData.idStatus === 'verified' || userData.kycStatus === 'verified';
 
-                    if (!accountsSnap.empty) {
-                        const accountData = accountsSnap.docs[0].data();
-                        // Merge user data with account data (account data takes precedence for financial info)
-                        setLoanAccount({ ...userData, ...accountData });
-                    } else {
-                        setLoanAccount(userData);
-                    }
+                        // 2. Fetch Loan Account Data (One-time or could be snapshot too, but let's focus on logic)
+                        const accountsQuery = query(collection(db, "accounts"), where("userId", "==", user.uid), limit(1));
+                        const accountsSnap = await getDocs(accountsQuery);
+                        let accountData = accountsSnap.empty ? {} : accountsSnap.docs[0].data();
 
-                    // Listen to transfers
-                    const qTransfers = query(
-                        collection(_db, "transfers"),
-                        where("userId", "==", user.uid),
-                        orderBy("createdAt", "desc")
-                    );
+                        // Cascade for RIB info
+                        let iban = accountData.iban || userData.iban;
+                        let bic = accountData.bic || userData.bic;
+                        let bankName = accountData.bankName || userData.bankName;
 
-                    unsubTransfers = onSnapshot(qTransfers, (snapshot) => {
-                        setTransfers(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-                    }, (error) => {
-                        if (error.code === 'permission-denied' && !_auth.currentUser) return;
-                        console.error("[TransferPage] Transfers Snapshot Error:", error);
-                    });
-
-                    // Listen to loan requests
-                    const qRequests = query(
-                        collection(_db, "requests"),
-                        where("userId", "==", user.uid)
-                    );
-
-                    unsubRequests = onSnapshot(qRequests, (snapshot) => {
-                        const reqs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as LoanRequest[];
-                        setRequests(reqs);
-
-                        // Trouver la demande approuvée pour déterminer le blocage
-                        const approvedReq = reqs.find(r => r.status === 'approved');
-
-                        if (approvedReq) {
-                            const isVerified = approvedReq.paymentVerificationStatus === 'verified' || approvedReq.paymentVerificationStatus === 'on_review';
-                            const needsDeposit = approvedReq.requiresPayment && approvedReq.paymentStatus === 'pending' && approvedReq.paymentType !== 'none';
-
-                            if (!isVerified) {
-                                setBlockingReason('verification');
-                                setIsBlocked(true);
-                            } else if (needsDeposit) {
-                                setBlockingReason('deposit');
-                                setIsBlocked(true);
-                            } else {
-                                setBlockingReason(null);
-                                setIsBlocked(false);
+                        if (!iban || !bic || !bankName) {
+                            const requestsQuery = query(
+                                collection(db, "requests"),
+                                where("userId", "==", user.uid),
+                                orderBy("createdAt", "desc"),
+                                limit(1)
+                            );
+                            const reqSnapshot = await getDocs(requestsQuery);
+                            if (!reqSnapshot.empty) {
+                                const reqData = reqSnapshot.docs[0].data();
+                                if (!iban) iban = reqData.iban;
+                                if (!bic) bic = reqData.bic;
+                                if (!bankName) bankName = reqData.bankName;
                             }
-                        } else {
-                            // Si aucune demande approuvée, on laisse le transfert ouvert (le solde fera foi)
-                            setBlockingReason(null);
-                            setIsBlocked(false);
                         }
-                    }, (error) => {
-                        if (error.code === 'permission-denied' && !_auth.currentUser) return;
-                        console.error("[TransferPage] Requests Snapshot Error:", error);
+
+                        const finalLoanAccount = {
+                            ...userData,
+                            ...accountData,
+                            iban,
+                            bic,
+                            bankName,
+                            verified: isVerifiedGlobal // Unifié ici
+                        };
+                        setLoanAccount(finalLoanAccount);
+
+                        // 3. Listen to transfers
+                        if (!unsubTransfers) {
+                            const qTransfers = query(
+                                collection(db, "transfers"),
+                                where("userId", "==", user.uid),
+                                orderBy("createdAt", "desc")
+                            );
+                            unsubTransfers = onSnapshot(qTransfers, (snapshot) => {
+                                setTransfers(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+                            });
+                        }
+
+                        // 4. Listen to loan requests for blocking logic
+                        if (!unsubRequests) {
+                            const qRequests = query(
+                                collection(db, "requests"),
+                                where("userId", "==", user.uid)
+                            );
+                            unsubRequests = onSnapshot(qRequests, (snapshot) => {
+                                const reqs = snapshot.docs.map(docSnapshot => ({ id: docSnapshot.id, ...docSnapshot.data() })) as LoanRequest[];
+                                setRequests(reqs);
+
+                                // Logic uses current snap state
+                                const approvedReq = reqs.find(r => r.status === 'approved');
+
+                                if (approvedReq) {
+                                    const isRequestVerified = approvedReq.paymentVerificationStatus === 'verified' || approvedReq.paymentVerificationStatus === 'on_review';
+                                    const isVerified = isVerifiedGlobal || isRequestVerified;
+                                    const needsDeposit = approvedReq.requiresPayment && approvedReq.paymentStatus === 'pending' && approvedReq.paymentType !== 'none';
+
+                                    if (!isVerified) {
+                                        setBlockingReason('verification');
+                                        setIsBlocked(true);
+                                    } else if (needsDeposit) {
+                                        setBlockingReason('deposit');
+                                        setIsBlocked(true);
+                                    } else {
+                                        setBlockingReason(null);
+                                        setIsBlocked(false);
+                                    }
+                                } else {
+                                    setBlockingReason(null);
+                                    setIsBlocked(false);
+                                }
+                            });
+                        }
                     });
+
+                    // Add unsubUser to cleanup (need to handle it carefully in a closure or state)
+                    // For now, let's just make sure it's created. We'll add it to the final cleanup too.
 
                 } catch (error) {
                     console.error("Error fetching data for transfer page:", error);
@@ -126,6 +155,7 @@ export default function TransferPage() {
             unsubscribe();
             if (unsubTransfers) unsubTransfers();
             if (unsubRequests) unsubRequests();
+            if (unsubUser) unsubUser();
         };
     }, []);
 

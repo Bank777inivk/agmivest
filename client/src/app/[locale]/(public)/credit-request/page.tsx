@@ -500,6 +500,10 @@ export default function CreditRequestPage() {
                 companyName: formData.companyName,
                 profession: formData.profession,
                 situation: formData.contractType,
+                bankName: formData.bankName,
+                iban: formData.iban,
+                bic: formData.bic,
+                ribEmail: formData.ribEmail || formData.email,
                 status: "pending",
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp()

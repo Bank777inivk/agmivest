@@ -1549,7 +1549,7 @@
       },
       "success": {
         "title": "Transferência iniciada!",
-        "message": "Sua transferência está atualmente {status}. Você receberá uma notificação assim que for processada.",
+        "message": "Sua transferência está atualmente <status />. Você receberá uma notificação assim que for processada.",
         "pending": "EM ESPERA",
         "newTransfer": "Nova transferência",
         "myAccounts": "Minhas contas"

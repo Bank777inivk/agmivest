@@ -1549,7 +1549,7 @@
       },
       "success": {
         "title": "Przelew zlecony!",
-        "message": "Twój przelew jest obecnie w statusie {status}. Otrzymasz powiadomienie po jego przetworzeniu.",
+        "message": "Twój przelew jest obecnie w statusie <status />. Otrzymasz powiadomienie po jego przetworzeniu.",
         "pending": "W OCZEKIWANIU",
         "newTransfer": "Nowy przelew",
         "myAccounts": "Moje konta"

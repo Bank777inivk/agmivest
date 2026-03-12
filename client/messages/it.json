@@ -1562,7 +1562,7 @@
       },
       "success": {
         "title": "Bonifico avviato!",
-        "message": "Il tuo bonifico è attualmente {status}. Riceverai una notifica non appena sarà elaborato.",
+        "message": "Il tuo bonifico è attualmente <status />. Riceverai una notifica non appena sarà elaborato.",
         "pending": "IN ATTESA",
         "newTransfer": "Nuovo bonifico",
         "myAccounts": "I miei conti"

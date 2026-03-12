@@ -2055,7 +2055,7 @@
       },
       "success": {
         "title": "Transfer initiated!",
-        "message": "Your transfer is currently {status}. You will receive a notification as soon as it is processed.",
+        "message": "Your transfer is currently <status />. You will receive a notification as soon as it is processed.",
         "pending": "PENDING",
         "newTransfer": "New transfer",
         "myAccounts": "My accounts"

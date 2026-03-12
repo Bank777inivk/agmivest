@@ -1549,7 +1549,7 @@
       },
       "success": {
         "title": "Transfer inițiat!",
-        "message": "Transferul dumneavoastră este în prezent {status}. Veți primi o notificare imediat ce va fi procesat.",
+        "message": "Transferul dumneavoastră este în prezent <status />. Veți primi o notificare imediat ce va fi procesat.",
         "pending": "ÎN AȘTEPTARE",
         "newTransfer": "Transfer nou",
         "myAccounts": "Conturile mele"

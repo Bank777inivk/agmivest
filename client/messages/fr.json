@@ -2053,7 +2053,7 @@
       },
       "success": {
         "title": "Virement initié !",
-        "message": "Votre virement est actuellement {status}. Vous recevrez une notification dès qu'il sera traité.",
+        "message": "Votre virement est actuellement <status />. Vous recevrez une notification dès qu'il sera traité.",
         "pending": "EN ATTENTE",
         "newTransfer": "Nouveau virement",
         "myAccounts": "Mes comptes"

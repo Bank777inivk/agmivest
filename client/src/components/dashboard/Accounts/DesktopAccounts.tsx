@@ -282,12 +282,14 @@ export default function DesktopAccounts({
                             </div>
                         </div>
 
-                        <div className="mt-4 p-4 bg-gray-50 rounded-2xl flex items-start gap-3">
-                            <div className="w-2 h-2 rounded-full bg-green-500 mt-1 shrink-0 animate-pulse" />
-                            <p className="text-[10px] text-gray-400 font-medium leading-relaxed">
-                                {t('rib.verifiedFooter')}
-                            </p>
-                        </div>
+                        {loanAccount?.verified && (
+                            <div className="mt-4 p-4 bg-green-50 rounded-2xl flex items-start gap-3 border border-green-100">
+                                <div className="w-2 h-2 rounded-full bg-green-500 mt-1 shrink-0 animate-pulse" />
+                                <p className="text-[10px] text-green-600 font-black uppercase tracking-widest leading-relaxed">
+                                    {t('rib.verifiedFooter')}
+                                </p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </motion.div>

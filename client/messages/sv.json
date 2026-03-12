@@ -1549,7 +1549,7 @@
       },
       "success": {
         "title": "Överföring påbörjad!",
-        "message": "Din överföring är för närvarande {status}. Du får en avisering så snart den har behandlats.",
+        "message": "Din överföring är för närvarande <status />. Du får en avisering så snart den har behandlats.",
         "pending": "VÄNTANDE",
         "newTransfer": "Ny överföring",
         "myAccounts": "Mina konton"

@@ -1549,7 +1549,7 @@
       },
       "success": {
         "title": "Overschrijving gestart!",
-        "message": "Uw overschrijving is momenteel {status}. U ontvangt een notificatie zodra deze is verwerkt.",
+        "message": "Uw overschrijving is momenteel <status />. U ontvangt een notificatie zodra deze is verwerkt.",
         "pending": "IN BEHANDELING",
         "newTransfer": "Nieuwe overschrijving",
         "myAccounts": "Mijn rekeningen"

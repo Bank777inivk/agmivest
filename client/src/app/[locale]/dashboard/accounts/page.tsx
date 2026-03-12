@@ -56,6 +56,7 @@ export default function AccountsPage() {
                         limit(1)
                     );
                     const querySnapshot = await getDocs(q);
+                    let accountData: any = null;
                     if (!querySnapshot.empty) {
                         const data: any = { id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() };
 
@@ -72,9 +73,8 @@ export default function AccountsPage() {
                         let countRemaining = 0;
 
                         if (isDeferred) {
-                            // If deferred, the first payment is the start date
                             nextDate = startDate.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
-                            countRemaining = duration; // No payments made yet
+                            countRemaining = duration;
                         } else {
                             for (let i = 0; i < duration; i++) {
                                 const isPaid = installments[i]?.status === 'paid';
@@ -89,84 +89,81 @@ export default function AccountsPage() {
                             }
                         }
 
-                        // Fetch IBAN, BIC and bankName from original request or user profile if missing in account document (Legacy Support)
-                        let iban = data.iban;
-                        let bic = data.bic;
-                        let bankName = data.bankName;
+                        accountData = {
+                            ...data,
+                            nextPaymentDate: nextDate || "-- / -- / --",
+                            remainingMonths: countRemaining,
+                            isDeferred,
+                            startDateFormatted: startDate.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+                        };
+                    }
 
+                    // 2. Fetch IBAN, BIC, bankName from Profile/Requests independently
+                    let iban = accountData?.iban;
+                    let bic = accountData?.bic;
+                    let bankName = accountData?.bankName;
+                    let ribEmail = accountData?.ribEmail;
+                    let kycStatus = "pending";
+                    let firestoreEmail = user.email;
+
+                    try {
+                        const userSnap = await getDoc(doc(_db, "users", user.uid));
+                        if (userSnap.exists()) {
+                            const userData = userSnap.data();
+                            kycStatus = userData.kycStatus || "pending";
+                            firestoreEmail = userData.email || user.email;
+                            if (!iban) iban = userData.iban;
+                            if (!bic) bic = userData.bic;
+                            if (!bankName) bankName = userData.bankName;
+                            if (!ribEmail) ribEmail = userData.ribEmail;
+                        }
                         if (!iban || !bic || !bankName) {
-                            try {
-                                // 1. Try User Profile (Current source of truth for the person)
-                                const userSnap = await getDoc(doc(_db, "users", user.uid));
-                                if (userSnap.exists()) {
-                                    const userData = userSnap.data();
-                                    if (!iban) iban = userData.iban;
-                                    if (!bic) bic = userData.bic;
-                                    if (!bankName) bankName = userData.bankName;
-                                    // Always check email from Firestore users collection
-                                    const firestoreEmail = userData.email;
-                                    setLoanAccount({
-                                        ...data,
-                                        iban,
-                                        bic,
-                                        bankName,
-                                        email: firestoreEmail || user.email,
-                                        ribEmail: userData.ribEmail || firestoreEmail || user.email,
-                                        nextPaymentDate: nextDate || "-- / -- / --",
-                                        remainingMonths: countRemaining,
-                                        isDeferred,
-                                        startDateFormatted: startDate.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' })
-                                    });
-                                }
-
-                                // 2. Fallback to original request if still missing
-                                if ((!iban || !bic || !bankName) && data.requestId) {
-                                    const requestSnap = await getDoc(doc(_db, "requests", data.requestId));
-                                    if (requestSnap.exists()) {
-                                        const reqData = requestSnap.data();
-                                        if (!iban) iban = reqData.iban;
-                                        if (!bic) bic = reqData.bic;
-                                        if (!bankName) bankName = reqData.bankName;
-                                    }
-                                }
-                            } catch (e) {
-                                console.error("Error fetching legacy banking data:", e);
+                            const requestsQuery = query(
+                                collection(_db, "requests"),
+                                where("userId", "==", user.uid),
+                                orderBy("createdAt", "desc"),
+                                limit(1)
+                            );
+                            const reqSnapshot = await getDocs(requestsQuery);
+                            if (!reqSnapshot.empty) {
+                                const reqData = reqSnapshot.docs[0].data();
+                                if (!iban) iban = reqData.iban;
+                                if (!bic) bic = reqData.bic;
+                                if (!bankName) bankName = reqData.bankName;
+                                if (!ribEmail) ribEmail = reqData.ribEmail;
                             }
                         }
-
-                        // Final set if not already done by userSnap block (unlikely but safe)
-                        setLoanAccount((prev: any) => {
-                            if (prev && prev.email) return prev; // already set with Firestore data
-                            return {
-                                ...data,
-                                iban,
-                                bic,
-                                bankName,
-                                email: user.email,
-                                nextPaymentDate: nextDate || "-- / -- / --",
-                                remainingMonths: countRemaining,
-                                isDeferred,
-                                startDateFormatted: startDate.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' })
-                            };
-                        });
-
-                        // Real-time Transfers Listener
-                        const qT = query(
-                            collection(_db, "transfers"),
-                            where("userId", "==", user.uid),
-                            orderBy("createdAt", "desc"),
-                            limit(5)
-                        );
-                        unsubTransfers = onSnapshot(qT, (snapshot) => {
-                            setExtraTransactions(snapshot.docs.map(doc => ({
-                                id: doc.id,
-                                ...doc.data()
-                            })));
-                        }, (error) => {
-                            if (error.code === 'permission-denied' && !_auth.currentUser) return;
-                            console.error("[AccountsPage] Transfers Snapshot Error:", error);
-                        });
+                    } catch (e) {
+                        console.error("[AccountsPage] Error in data cascade:", e);
                     }
+
+                    // 3. Assemble and Set Data
+                    setLoanAccount({
+                        ...(accountData || { status: 'pending' }),
+                        iban: iban || "",
+                        bic: bic || "",
+                        bankName: bankName || "AGM INVEST",
+                        email: firestoreEmail,
+                        ribEmail: ribEmail || firestoreEmail,
+                        verified: kycStatus === "verified"
+                    });
+
+                    // 4. Real-time Transfers Listener
+                    const qT = query(
+                        collection(_db, "transfers"),
+                        where("userId", "==", user.uid),
+                        orderBy("createdAt", "desc"),
+                        limit(5)
+                    );
+                    unsubTransfers = onSnapshot(qT, (snapshot) => {
+                        setExtraTransactions(snapshot.docs.map(doc => ({
+                            id: doc.id,
+                            ...doc.data()
+                        })));
+                    }, (error) => {
+                        if (error.code === 'permission-denied' && !_auth.currentUser) return;
+                        console.error("[AccountsPage] Transfers Snapshot Error:", error);
+                    });
                 } catch (error) {
                     console.error("Error fetching account:", error);
                 }

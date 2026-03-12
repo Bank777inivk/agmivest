@@ -156,8 +156,13 @@ export default function MobileTransfer({
                                         {loanAccount?.iban ? `${loanAccount.iban.slice(0, 4)} •••• ${loanAccount.iban.slice(-4)}` : "•••• ••••"}
                                     </p>
                                 </div>
-                                <div className="text-[9px] bg-ely-mint/20 text-ely-mint px-2.5 py-1 rounded-md font-black border border-ely-mint/20 uppercase tracking-tighter">
-                                    {t('form.verifiedAccount')}
+                                <div className={cn(
+                                    "text-[9px] px-2.5 py-1 rounded-md font-black border uppercase tracking-tighter",
+                                    loanAccount?.verified 
+                                        ? "bg-ely-mint/20 text-ely-mint border-ely-mint/20" 
+                                        : "bg-amber-500/20 text-amber-500 border-amber-500/20"
+                                )}>
+                                    {loanAccount?.verified ? t('form.verifiedAccount') : t('status.pending')}
                                 </div>
                             </div>
                         </div>
