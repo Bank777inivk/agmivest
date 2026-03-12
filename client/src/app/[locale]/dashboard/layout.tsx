@@ -296,8 +296,8 @@ export default function DashboardLayout({
                     ref={scrollContainerRef}
                     className="flex-1 overflow-y-auto custom-scrollbar pt-20"
                 >
-                    <div className={`mx-auto max-w-7xl ${(mounted && pathname?.includes('/verification')) ? 'p-0' : 'p-4 md:p-8'}`}>
-                        {(mounted && !pathname?.includes('/verification')) && <IdentityBanner idStatus={idStatus} />}
+                    <div className={`mx-auto max-w-7xl ${pathname?.includes('/verification') ? 'p-0' : 'p-4 md:p-8'}`}>
+                        {!pathname?.includes('/verification') && <IdentityBanner idStatus={idStatus} />}
                         {children}
                     </div>
                 </main>

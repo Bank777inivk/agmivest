@@ -197,11 +197,13 @@ export default function DesktopVerification({
                                                             </div>
                                                         ) : (
                                                             <img
-                                                                src={doc.preview || doc.url || ""}
-                                                                alt=""
+                                                                src={String(doc.preview || doc.url || "")}
+                                                                alt={doc.label}
                                                                 className="w-full h-full object-cover transition-transform group-hover:scale-110"
                                                                 onError={(e) => {
-                                                                    (e.target as HTMLImageElement).src = 'https://res.cloudinary.com/dja8hpsf7/image/upload/v1739812543/kyc/placeholder_id.png';
+                                                                    const target = e.target as HTMLImageElement;
+                                                                    target.onerror = null; // Prevent infinite loop
+                                                                    target.src = 'https://res.cloudinary.com/dja8hpsf7/image/upload/v1739812543/kyc/placeholder_id.png';
                                                                 }}
                                                             />
                                                         )}

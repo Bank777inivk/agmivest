@@ -102,26 +102,9 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale}>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-                if (typeof Node !== 'undefined' && Node.prototype.removeChild) {
-                  const originalRemoveChild = Node.prototype.removeChild;
-                  Node.prototype.removeChild = function(child) {
-                    if (child.parentNode !== this) {
-                      if (console) {
-                        console.warn('Anti-crash: child is not a child of this node.', child, this);
-                      }
-                      return child;
-                    }
-                    return originalRemoveChild.apply(this, arguments);
-                  };
-                }
-              `,
-          }}
-        />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -153,7 +136,6 @@ export default async function LocaleLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        suppressHydrationWarning
       >
         <NextIntlClientProvider messages={messages}>
           <Suspense fallback={null}>
