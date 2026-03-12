@@ -2703,6 +2703,7 @@
     "verify": "Verifizieren",
     "resend": "Code erneut senden",
     "invalidCode": "Ungültiger oder abgelaufener Code.",
+    "resendSuccess": "Ein neuer Code wurde an Ihre E-Mail-Adresse gesendet.",
     "success": "E-Mail erfolgreich verifiziert!"
   },
   "CreditSuccess": {

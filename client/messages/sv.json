@@ -2703,6 +2703,7 @@
     "verify": "Verifiera",
     "resend": "Skicka koden igen",
     "invalidCode": "Ogiltig eller utgången kod.",
+    "resendSuccess": "En ny kod har skickats till din e-postadress.",
     "success": "E-postadressen har verifierats!"
   },
   "CreditSuccess": {

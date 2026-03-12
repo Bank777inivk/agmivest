@@ -2702,6 +2702,7 @@
     "verify": "Vérifier",
     "resend": "Renvoyer le code",
     "invalidCode": "Code invalide ou expiré.",
+    "resendSuccess": "Un nouveau code a été envoyé à votre adresse email.",
     "success": "Email vérifié avec succès !"
   },
   "CreditSuccess": {

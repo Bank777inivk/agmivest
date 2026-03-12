@@ -2703,6 +2703,7 @@
     "verify": "Verifică",
     "resend": "Retrimite codul",
     "invalidCode": "Cod nevalid sau expirat.",
+    "resendSuccess": "Un nou cod a fost trimis la adresa ta de email.",
     "success": "Email verificat cu succes!"
   },
   "CreditSuccess": {

@@ -2704,6 +2704,7 @@
     "verify": "Verify",
     "resend": "Resend code",
     "invalidCode": "Invalid or expired code.",
+    "resendSuccess": "A new code has been sent to your email address.",
     "success": "Email verified successfully!"
   },
   "CreditSuccess": {

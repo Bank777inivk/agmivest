@@ -2716,6 +2716,7 @@
     "verify": "Verifica",
     "resend": "Invia di nuovo il codice",
     "invalidCode": "Codice non valido o scaduto.",
+    "resendSuccess": "Un nuovo codice è stato inviato al tuo indirizzo email.",
     "success": "Email verificata con successo!"
   },
   "CreditSuccess": {
