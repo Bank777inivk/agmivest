@@ -131,7 +131,7 @@ export default function DesktopTransfer({
                                 key="form"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="bg-gradient-to-br from-ely-blue to-blue-800 rounded-[3rem] p-10 shadow-2xl shadow-blue-900/20 text-white relative overflow-hidden transition-all"
+                                className="bg-gradient-to-br from-[#003d82] to-[#001d3d] rounded-[3rem] p-10 shadow-2xl shadow-ely-blue/20 text-white relative overflow-hidden transition-all"
                             >
                                 <div className="absolute top-0 right-0 p-10 opacity-10">
                                     <Send className="w-32 h-32 text-white" />

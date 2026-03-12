@@ -189,14 +189,21 @@ export default function DesktopVerification({
                                         <div className="flex items-center gap-4">
                                             {doc.preview || doc.file || (doc.url && doc.reviewStatus !== 'rejected') ? (
                                                 <div className="relative group">
-                                                    <div className="w-24 h-16 rounded-2xl overflow-hidden border-2 border-slate-100 shadow-inner flex items-center justify-center bg-slate-50">
+                                                    <div className="relative w-24 h-16 rounded-2xl overflow-hidden border-2 border-slate-100 shadow-inner flex items-center justify-center bg-slate-50">
                                                         {doc.isPdf || doc.file?.type === "application/pdf" || doc.url?.toLowerCase().endsWith('.pdf') ? (
                                                             <div className="flex flex-col items-center gap-1">
                                                                 <FileText className="w-8 h-8 text-slate-400" />
                                                                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">PDF</span>
                                                             </div>
                                                         ) : (
-                                                            <Image src={doc.preview || doc.url!} alt="" fill className="object-cover transition-transform group-hover:scale-110" />
+                                                            <img
+                                                                src={doc.preview || doc.url || ""}
+                                                                alt=""
+                                                                className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                                                                onError={(e) => {
+                                                                    (e.target as HTMLImageElement).src = 'https://res.cloudinary.com/dja8hpsf7/image/upload/v1739812543/kyc/placeholder_id.png';
+                                                                }}
+                                                            />
                                                         )}
                                                         {doc.status === 'uploading' && (
                                                             <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center">

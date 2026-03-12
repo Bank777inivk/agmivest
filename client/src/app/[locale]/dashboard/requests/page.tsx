@@ -196,7 +196,7 @@ export default function RequestsPage() {
                                 className="group bg-white p-5 md:p-8 rounded-[2.5rem] shadow-sm border border-slate-100 hover:shadow-2xl hover:shadow-slate-200/60 transition-all duration-500 flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer relative overflow-hidden"
                             >
                                 {/* Premium accent line */}
-                                <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-ely-blue to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#003d82] to-[#001d3d] opacity-0 group-hover:opacity-100 transition-opacity" />
 
                                 <div className="flex items-center gap-5">
                                     <div className={`p-4 md:p-5 rounded-2xl bg-gradient-to-br transition-all duration-300 ${style.color === 'ely-mint' ? 'from-emerald-50 to-emerald-100/50 text-emerald-600' :
@@ -238,7 +238,7 @@ export default function RequestsPage() {
                                         </p>
                                     </div>
 
-                                    <div className="flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest shadow-xl shadow-blue-900/10 hover:shadow-blue-900/30 transition-all duration-300 active:scale-95 group/btn">
+                                    <div className="flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-gradient-to-r from-[#003d82] to-[#001d3d] text-white rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest shadow-xl shadow-ely-blue/10 hover:shadow-ely-blue/30 transition-all duration-300 active:scale-95 group/btn">
                                         <span>{t('follow')}</span>
                                         <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                                     </div>
@@ -258,7 +258,7 @@ export default function RequestsPage() {
                     </div>
                     <button
                         onClick={() => router.push("/dashboard/credit")}
-                        className="mt-6 px-10 py-5 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-sm uppercase tracking-widest shadow-2xl shadow-blue-900/20 hover:scale-[1.02] active:scale-95 transition-all"
+                        className="mt-6 px-10 py-5 bg-gradient-to-r from-[#003d82] to-[#001d3d] text-white rounded-2xl font-black text-sm uppercase tracking-widest shadow-2xl shadow-ely-blue/20 hover:scale-[1.02] active:scale-95 transition-all"
                     >
                         {t('newRequest')}
                     </button>

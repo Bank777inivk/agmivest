@@ -140,7 +140,7 @@ export default function DesktopCreditRequest({
                         className="grid grid-cols-1 lg:grid-cols-12 gap-10"
                     >
                         {/* Simulation controls */}
-                        <div className="lg:col-span-8 bg-gradient-to-br from-ely-blue to-blue-800 p-6 md:p-10 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl shadow-blue-900/30 border border-white/10 space-y-8 md:space-y-10 relative overflow-hidden group">
+                        <div className="lg:col-span-8 bg-gradient-to-br from-[#003d82] to-[#001d3d] p-6 md:p-10 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl shadow-ely-blue/20 border border-white/10 space-y-8 md:space-y-10 relative overflow-hidden group">
                             <div className="absolute top-0 right-0 p-20 opacity-10 pointer-events-none text-white group-hover:scale-110 transition-transform duration-1000">
                                 <Calculator className="w-64 h-64" />
                             </div>
@@ -379,7 +379,7 @@ export default function DesktopCreditRequest({
 
                             <button
                                 onClick={() => setStep(2)}
-                                className="w-full py-5 bg-gradient-to-br from-ely-blue to-blue-800 text-white rounded-[1.8rem] font-black text-lg shadow-xl shadow-ely-blue/20 hover:shadow-ely-blue/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 mt-6"
+                                className="w-full py-5 bg-gradient-to-br from-[#003d82] to-[#001d3d] text-white rounded-[1.8rem] font-black text-lg shadow-xl shadow-ely-blue/20 hover:shadow-ely-blue/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 mt-6"
                             >
                                 <span className="uppercase tracking-[0.2em] text-xs">{t('Navigation.next')}</span>
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
@@ -388,7 +388,7 @@ export default function DesktopCreditRequest({
 
                         {/* Summary View */}
                         <div className="lg:col-span-4 space-y-8">
-                            <div className="bg-gradient-to-br from-ely-blue to-blue-800 text-white p-8 rounded-[2.5rem] shadow-xl shadow-blue-900/20 relative overflow-hidden group border border-white/10 backdrop-blur-md">
+                            <div className="bg-gradient-to-br from-[#003d82] to-[#001d3d] text-white p-8 rounded-[2.5rem] shadow-xl shadow-ely-blue/20 relative overflow-hidden group border border-white/10 backdrop-blur-md">
                                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700" />
                                 <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-ely-mint/5 rounded-full blur-2xl" />
 
@@ -403,28 +403,30 @@ export default function DesktopCreditRequest({
                                         </div>
                                     </div>
 
-                                    <div className="space-y-5 pt-10 border-t border-white/10">
+                                    <div className="space-y-4 pt-10 border-t border-white/10">
                                         <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
-                                            <span className="text-xs font-black uppercase tracking-widest text-white/90">{t('Summary.capital')}</span>
-                                            <span className="font-black text-sm">{amount.toLocaleString()} €</span>
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-white/70">{t('Summary.capital')}</span>
+                                            <span className="font-black text-sm text-white">{amount.toLocaleString()} €</span>
                                         </div>
                                         <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
-                                            <span className="text-xs font-black uppercase tracking-widest text-white/90">{t('Summary.totalCost')}</span>
-                                            <span className="font-black text-sm text-ely-mint">{(totalCost - (amount * 0.03)).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 2 })} €</span>
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-white/70">{t('Summary.totalCost')}</span>
+                                            <span className="font-black text-sm text-white">{(totalCost - (amount * 0.03)).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 2 })} €</span>
                                         </div>
-                                        <div className="flex justify-between items-center py-4 px-5 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-sm">
-                                            <span className="text-xs font-black uppercase tracking-widest text-ely-mint">{t('Summary.insurance')}</span>
-                                            <span className="font-black text-sm text-ely-mint">+{((amount * 0.03) / duration).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €/{t('Simulator.perMonth')}</span>
+                                        <div className="flex justify-between items-center py-4 px-5 bg-white/10 rounded-2xl border border-white/10 backdrop-blur-sm">
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-ely-mint">{t('Summary.insurance')}</span>
+                                            <span className="font-black text-sm text-white">+{((amount * 0.03) / duration).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €/{t('Simulator.perMonth')}</span>
                                         </div>
 
-                                        <div className="pt-6 px-2 flex justify-between items-end">
+                                        <div className="pt-6 px-1 flex justify-between items-end">
                                             <div className="space-y-1">
-                                                <span className="text-[9px] font-black uppercase tracking-widest text-white/30 block">{t('Summary.totalDue')}</span>
-                                                <span className="font-black text-2xl text-white tracking-tighter">{(amount + totalCost).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €</span>
+                                                <span className="text-[10px] font-black uppercase tracking-widest text-white/50 block">{t('Summary.totalDue')}</span>
+                                                <span className="font-black text-3xl text-white tracking-tighter block">
+                                                    {(amount + totalCost).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €
+                                                </span>
                                             </div>
                                             <div className="text-right">
-                                                <span className="text-[9px] font-black uppercase tracking-widest text-white/30 block mb-1">{t('Summary.taeg')}</span>
-                                                <span className="px-3 py-1 bg-ely-mint/10 text-ely-mint rounded-lg text-[11px] font-black border border-ely-mint/20">
+                                                <span className="text-[10px] font-black uppercase tracking-widest text-white/50 block mb-2">{t('Summary.taeg')}</span>
+                                                <span className="px-3 py-1.5 bg-ely-mint/20 text-ely-mint rounded-xl text-[11px] font-black border border-ely-mint/30 shadow-lg shadow-ely-mint/10">
                                                     {(annualRate + 0.55).toFixed(2)} %
                                                 </span>
                                             </div>
@@ -1011,7 +1013,7 @@ export default function DesktopCreditRequest({
                                 <button
                                     onClick={() => canGoNext() && setStep(step + 1)}
                                     disabled={!canGoNext()}
-                                    className="flex-[2] py-4 bg-gradient-to-br from-ely-blue to-blue-800 text-white rounded-2xl font-black text-[13px] uppercase tracking-widest shadow-xl shadow-ely-blue/20 hover:shadow-ely-blue/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-4 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                                    className="flex-[2] py-4 bg-gradient-to-br from-[#003d82] to-[#001d3d] text-white rounded-2xl font-black text-[13px] uppercase tracking-widest shadow-xl shadow-ely-blue/20 hover:shadow-ely-blue/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-4 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                                 >
                                     {t('Common.next')}
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
@@ -1021,7 +1023,7 @@ export default function DesktopCreditRequest({
 
                         {/* Summary View (Right Column) */}
                         <div className="lg:col-span-4 space-y-6">
-                            <div className="bg-gradient-to-br from-ely-blue to-blue-800 text-white p-8 rounded-[2rem] shadow-xl shadow-blue-900/20 relative overflow-hidden group border border-white/10 backdrop-blur-md">
+                            <div className="bg-gradient-to-br from-[#003d82] to-[#001d3d] text-white p-8 rounded-[2rem] shadow-xl shadow-ely-blue/20 relative overflow-hidden group border border-white/10 backdrop-blur-md">
                                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700" />
                                 <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-ely-mint/5 rounded-full blur-2xl" />
 

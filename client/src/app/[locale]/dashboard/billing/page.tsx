@@ -210,7 +210,7 @@ export default function BillingPage() {
                         </p>
                         <button
                             onClick={() => router.push("/dashboard")}
-                            className="mt-10 px-10 py-5 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-900/10"
+                            className="mt-10 px-10 py-5 bg-gradient-to-r from-[#003d82] to-[#001d3d] text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-ely-blue/20"
                         >
                             {t('empty.dashboardButton')}
                         </button>
@@ -221,7 +221,7 @@ export default function BillingPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10">
                         {/* Status Column */}
                         <div className="lg:col-span-1 space-y-8">
-                            <div className="bg-gradient-to-br from-slate-900 via-ely-blue to-blue-900 rounded-[3rem] p-10 text-white shadow-2xl shadow-blue-900/40 relative overflow-hidden group">
+                            <div className="bg-gradient-to-br from-[#003d82] via-[#002d5d] to-[#001d3d] rounded-[3rem] p-10 text-white shadow-2xl shadow-ely-blue/20 relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:scale-110 transition-transform duration-700">
                                     <ShieldCheck className="w-32 h-32" />
                                 </div>
@@ -274,7 +274,7 @@ export default function BillingPage() {
 
                                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 relative z-10">
                                     <div className="flex items-center gap-5">
-                                        <div className="w-16 h-16 bg-gradient-to-br from-ely-blue to-blue-700 text-white rounded-2xl flex items-center justify-center shadow-xl shadow-blue-900/20 ring-4 ring-blue-50">
+                                        <div className="w-16 h-16 bg-gradient-to-br from-[#003d82] to-[#001d3d] text-white rounded-2xl flex items-center justify-center shadow-xl shadow-ely-blue/20 ring-4 ring-blue-50">
                                             <Landmark className="w-8 h-8" />
                                         </div>
                                         <div>

@@ -123,7 +123,7 @@ export default function MobileCreditRequest({
                             className="space-y-6"
                         >
                             {/* Premium Card Container */}
-                            <div className="bg-gradient-to-br from-ely-blue to-blue-700 backdrop-blur-xl p-6 rounded-[2.5rem] border border-white/10 shadow-2xl shadow-blue-900/30 space-y-8">
+                            <div className="bg-gradient-to-br from-[#003d82] to-[#001d3d] backdrop-blur-xl p-6 rounded-[2.5rem] border border-white/10 shadow-2xl shadow-ely-blue/20 space-y-8">
                                 {/* Profile Type Toggle */}
                                 <div className="bg-blue-950/20 p-1.5 rounded-2xl border border-white/10 flex gap-1">
                                     <button
@@ -789,7 +789,7 @@ export default function MobileCreditRequest({
                             exit={{ opacity: 0, scale: 0.9 }}
                             className="space-y-6"
                         >
-                            <div className="bg-gradient-to-br from-ely-blue to-blue-700 p-8 rounded-[3rem] text-white space-y-8 relative overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(30,58,138,0.3)]">
+                            <div className="bg-gradient-to-br from-[#003d82] to-[#001d3d] p-8 rounded-[3rem] text-white space-y-8 relative overflow-hidden border border-white/10 shadow-2xl shadow-ely-blue/30">
                                 <div className="absolute top-[-20px] right-[-20px] p-10 opacity-10 rotate-12">
                                     <ShieldCheck className="w-40 h-40" />
                                 </div>

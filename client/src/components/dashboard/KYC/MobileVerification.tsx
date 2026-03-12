@@ -61,14 +61,21 @@ const ChecklistItem = ({
                 <AnimatePresence mode="wait">
                     {doc.preview || doc.file || (doc.url && doc.reviewStatus !== 'rejected') ? (
                         <div key="preview" className="relative group">
-                            <div className="w-12 h-12 rounded-xl overflow-hidden border border-slate-100 shadow-sm relative flex items-center justify-center bg-slate-50">
+                            <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-slate-100 shadow-sm flex items-center justify-center bg-slate-50">
                                 {doc.isPdf || doc.file?.type === "application/pdf" || doc.url?.toLowerCase().endsWith('.pdf') ? (
                                     <div className="flex flex-col items-center gap-0.5">
                                         <FileText className="w-6 h-6 text-slate-400" />
                                         <span className="text-[8px] font-black text-slate-400 uppercase tracking-tighter">PDF</span>
                                     </div>
                                 ) : (
-                                    <Image src={doc.preview || doc.url!} alt="" fill className="object-cover" />
+                                    <img
+                                        src={doc.preview || doc.url || ""}
+                                        alt=""
+                                        className="w-full h-full object-cover"
+                                        onError={(e) => {
+                                            (e.target as HTMLImageElement).src = 'https://res.cloudinary.com/dja8hpsf7/image/upload/v1739812543/kyc/placeholder_id.png';
+                                        }}
+                                    />
                                 )}
                                 {doc.status === 'uploading' && (
                                     <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px] flex items-center justify-center">

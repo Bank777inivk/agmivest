@@ -247,7 +247,7 @@ export default function Sidebar({
             <div className="p-4 border-t border-white/5">
                 <button
                     onClick={handleSignOut}
-                    className="flex items-center gap-3 w-full px-4 py-3 text-red-400 hover:bg-white/[0.03] rounded-2xl transition-all font-medium group"
+                    className="w-full flex items-center gap-4 px-6 py-5 text-red-500 hover:bg-red-500/10 rounded-2xl transition-all group cursor-pointer hover:shadow-2xl hover:shadow-red-500/40 active:scale-95 border border-transparent hover:border-red-500/20"
                 >
                     <LogOut className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                     {(!isCollapsed || isMobile) && <span>{t('Dashboard.Layout.Sidebar.logout')}</span>}

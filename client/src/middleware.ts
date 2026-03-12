@@ -22,7 +22,7 @@ export default async function proxy(request: any) {
         "script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.google.com https://*.doubleclick.net https://connect.facebook.net https://apis.google.com",
         "script-src-elem 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.google.com https://*.doubleclick.net",
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-        "img-src 'self' data: https: https://*.google.com https://*.googleadservices.com https://*.googletagmanager.com https://*.google-analytics.com https://*.doubleclick.net https://*.g.doubleclick.net",
+        "img-src 'self' data: blob: https: https://*.google.com https://*.googleadservices.com https://*.googletagmanager.com https://*.google-analytics.com https://*.doubleclick.net https://*.g.doubleclick.net https://res.cloudinary.com",
         "font-src 'self' https://fonts.gstatic.com",
         "connect-src 'self' https://api-adresse.data.gouv.fr https://www.googleadservices.com https://www.google.fr https://*.firebaseio.com https://*.googleapis.com https://*.cloudinary.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.doubleclick.net https://*.g.doubleclick.net https://*.google.com https://tagassistant.google.com",
         "frame-src 'self' https://www.youtube.com https://www.facebook.com https://www.google.com https://maps.google.com https://agm-invest.firebaseapp.com https://*.firebaseapp.com https://tagassistant.google.com"

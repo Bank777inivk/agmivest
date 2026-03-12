@@ -218,7 +218,7 @@ export default function DesktopDashboard({
                         animate={{ opacity: 1, scale: 1 }}
                         whileHover={{ y: -5 }}
                         onClick={() => router.push("/dashboard/accounts")}
-                        className="relative overflow-hidden p-8 md:p-10 rounded-[3rem] shadow-2xl transition-all duration-500 group cursor-pointer border bg-gradient-to-br from-ely-blue to-blue-800 text-white shadow-ely-blue/30 border-white/10"
+                        className="relative overflow-hidden p-8 md:p-10 rounded-[3rem] shadow-2xl transition-all duration-500 group cursor-pointer border bg-gradient-to-br from-[#003d82] to-[#001d3d] text-white shadow-ely-blue/20 border-white/10"
                     >
                         <div className="absolute top-0 right-0 p-10 transition-all duration-500 opacity-10 group-hover:scale-110 group-hover:opacity-20 text-white">
                             <Landmark className="w-40 h-40" />
@@ -355,7 +355,7 @@ export default function DesktopDashboard({
                 </div>
 
                 <aside className="space-y-6">
-                    <section className="bg-gradient-to-br from-ely-blue to-blue-800 text-white p-8 rounded-[2.5rem] shadow-xl relative overflow-hidden group">
+                    <section className="bg-gradient-to-br from-[#003d82] to-[#001d3d] text-white p-8 rounded-[2.5rem] shadow-xl shadow-ely-blue/20 relative overflow-hidden group">
                         <div className="relative z-10">
                             <HelpCircle className="w-10 h-10 text-ely-mint mb-6" />
                             <h3 className="text-xl font-bold mb-3">{t('support.title')}</h3>

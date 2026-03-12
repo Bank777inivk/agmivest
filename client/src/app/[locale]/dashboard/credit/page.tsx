@@ -401,7 +401,7 @@ export default function CreditRequestPage() {
                 <motion.div
                     initial={{ opacity: 0, y: 20, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    className="w-full max-w-4xl bg-gradient-to-br from-ely-blue to-blue-800 p-8 md:p-20 rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl shadow-blue-900/40 border border-white/10 space-y-10 md:space-y-12 relative overflow-hidden z-10"
+                    className="w-full max-w-4xl bg-gradient-to-br from-[#003d82] to-[#001d3d] p-8 md:p-20 rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl shadow-ely-blue/40 border border-white/10 space-y-10 md:space-y-12 relative overflow-hidden z-10"
                 >
                     <div className="absolute top-0 right-0 p-8 md:p-12 opacity-[0.05] pointer-events-none text-white">
                         {isApproved ? <TrendingUp className="w-48 h-48 md:w-64 md:h-64" /> : <Lock className="w-48 h-48 md:w-64 md:h-64" />}
@@ -554,7 +554,7 @@ export default function CreditRequestPage() {
                         key="step-success"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="w-full max-w-lg text-center bg-gradient-to-br from-ely-blue to-blue-700 backdrop-blur-2xl p-10 md:p-16 rounded-[3rem] shadow-2xl shadow-blue-900/30 border border-white/10 space-y-10 relative z-10"
+                        className="w-full max-w-lg text-center bg-gradient-to-br from-[#003d82] to-[#001d3d] backdrop-blur-2xl p-10 md:p-16 rounded-[3rem] shadow-2xl shadow-ely-blue/30 border border-white/10 space-y-10 relative z-10"
                     >
                         <motion.div
                             initial={{ scale: 0 }}

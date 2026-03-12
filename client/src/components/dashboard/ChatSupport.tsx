@@ -235,7 +235,7 @@ export default function ChatSupport() {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setIsOpen(true)}
-                    className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[60] w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#002B70] to-[#011B45] text-white rounded-full shadow-2xl flex items-center justify-center border border-white/10 group"
+                    className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[60] w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#003d82] to-[#001d3d] text-white rounded-full shadow-2xl shadow-ely-blue/30 flex items-center justify-center border border-white/10 group"
                 >
                     <MessageCircle className="w-7 h-7 md:w-8 md:h-8 group-hover:rotate-12 transition-transform" />
                     <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse" />
@@ -260,7 +260,7 @@ export default function ChatSupport() {
                                 <X className="w-5 h-5 text-gray-600" />
                             </button>
 
-                            <div className="w-10 h-10 rounded-full bg-[#002B70] text-white flex items-center justify-center font-bold text-sm">
+                            <div className="w-10 h-10 rounded-full bg-ely-blue text-white flex items-center justify-center font-bold text-sm">
                                 {userData?.firstName?.[0]}{userData?.lastName?.[0]}
                             </div>
 
@@ -308,7 +308,7 @@ export default function ChatSupport() {
                                         <div className={cn(
                                             "px-4 py-3 rounded-[20px] text-sm leading-relaxed",
                                             msg.sender === 'client'
-                                                ? "bg-[#002B70] text-white rounded-br-sm"
+                                                ? "bg-ely-blue text-white rounded-br-sm"
                                                 : "bg-gray-100 text-gray-900 rounded-bl-sm"
                                         )}>
                                             {msg.fileUrl ? (

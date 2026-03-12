@@ -248,7 +248,7 @@ export default function DashboardHeader({ onMenuClick, isCollapsed, idStatus, us
                         onClick={() => setShowProfileMenu(!showProfileMenu)}
                         className="flex items-center gap-2 p-1.5 pr-3 hover:bg-gray-50 rounded-2xl transition-all duration-200"
                     >
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ely-blue to-blue-600 flex items-center justify-center text-white shadow-lg shadow-ely-blue/20">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#003d82] to-[#001d3d] flex items-center justify-center text-white shadow-lg shadow-ely-blue/20">
                             {userName ? userName.charAt(0) : <User className="w-5 h-5" />}
                         </div>
                         <div className="hidden lg:block text-left">

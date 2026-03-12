@@ -166,7 +166,7 @@ export default function DocumentsPage() {
 
                             <button
                                 onClick={handleDownloadContract}
-                                className="w-full py-5 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-900/10"
+                                className="w-full py-5 bg-gradient-to-r from-[#003d82] to-[#001d3d] text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-ely-blue/20"
                             >
                                 <Download className="w-5 h-5" />
                                 {t('contract.button')}

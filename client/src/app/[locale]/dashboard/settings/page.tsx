@@ -247,7 +247,7 @@ export default function SettingsPage() {
                     {/* Langues */}
                     <motion.section
                         variants={item}
-                        className="bg-white p-8 rounded-3xl border border-blue-50 shadow-sm shadow-blue-900/5 space-y-6 group hover:border-ely-blue/20 transition-colors"
+                        className="bg-white p-8 rounded-3xl border border-blue-50 shadow-sm shadow-ely-blue/5 space-y-6 group hover:border-ely-blue/20 transition-colors"
                     >
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-blue-50/50 rounded-xl flex items-center justify-center text-ely-blue border border-blue-100">
@@ -302,7 +302,7 @@ export default function SettingsPage() {
                     {/* Statut Système */}
                     <motion.section
                         variants={item}
-                        className="bg-ely-blue p-8 rounded-3xl shadow-xl shadow-blue-900/20 flex flex-col justify-center gap-4 relative overflow-hidden group"
+                        className="bg-gradient-to-br from-[#003d82] to-[#001d3d] p-8 rounded-3xl shadow-xl shadow-ely-blue/20 flex flex-col justify-center gap-4 relative overflow-hidden group"
                     >
                         <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-120 transition-transform duration-500">
                             <Globe className="w-24 h-24 text-white" />

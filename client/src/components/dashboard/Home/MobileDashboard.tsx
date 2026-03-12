@@ -203,7 +203,7 @@ export default function MobileDashboard({
                         className={cn(
                             "p-5 rounded-[2rem] border shadow-sm transition-all",
                             stat.id === 'approved'
-                                ? "bg-gradient-to-br from-ely-blue to-blue-800 border-white/10 text-white shadow-blue-900/20"
+                                ? "bg-gradient-to-br from-[#003d82] to-[#001d3d] border-white/10 text-white shadow-ely-blue/20"
                                 : "bg-white border-gray-100"
                         )}
                     >
@@ -289,7 +289,7 @@ export default function MobileDashboard({
             </motion.div>
 
             {/* Help Card */}
-            <motion.div variants={item} className="bg-gradient-to-br from-ely-blue to-blue-800 p-8 rounded-[2.5rem] text-white relative overflow-hidden">
+            <motion.div variants={item} className="bg-gradient-to-br from-[#003d82] to-[#001d3d] p-8 rounded-[2.5rem] text-white shadow-xl shadow-ely-blue/20 relative overflow-hidden">
                 <div className="relative z-10 flex flex-col gap-6">
                     <div className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center">
                         <HelpCircle className="w-5 h-5 text-ely-mint" />

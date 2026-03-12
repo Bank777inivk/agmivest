@@ -122,7 +122,7 @@ export default function MobileTransfer({
                         className="px-4 space-y-6"
                     >
                         {/* Main Interaction Card */}
-                        <div className="bg-gradient-to-br from-ely-blue to-blue-800 rounded-[2rem] p-6 text-white shadow-xl shadow-blue-900/10 relative overflow-hidden">
+                        <div className="bg-gradient-to-br from-[#003d82] to-[#001d3d] rounded-[2rem] p-6 text-white shadow-xl shadow-ely-blue/20 relative overflow-hidden">
                             {/* Input Amount - Simplified */}
                             <div className="relative z-10 flex flex-col items-center justify-center space-y-2 py-4">
                                 <div className="bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 mb-2">
@@ -214,7 +214,7 @@ export default function MobileTransfer({
                         </button>
 
                         {/* Security Control Card (Mobile) */}
-                        <div className="bg-gradient-to-br from-ely-blue to-blue-800 rounded-[2rem] p-7 text-white shadow-xl shadow-blue-900/10 relative overflow-hidden group">
+                        <div className="bg-gradient-to-br from-[#003d82] to-[#001d3d] rounded-[2rem] p-7 text-white shadow-xl shadow-ely-blue/20 relative overflow-hidden group">
                             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform">
                                 <ShieldCheck className="w-24 h-24" />
                             </div>

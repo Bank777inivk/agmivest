@@ -196,7 +196,7 @@ export default function ProfilePage() {
                 {!isEditing ? (
                     <button
                         onClick={() => setIsEditing(true)}
-                        className="flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-ely-blue to-blue-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-900/10"
+                        className="flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-[#003d82] to-[#001d3d] text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-ely-blue/20"
                     >
                         <Edit2 className="w-5 h-5" />
                         {t('editButton')}
