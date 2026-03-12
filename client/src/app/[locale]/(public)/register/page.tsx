@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -187,6 +187,11 @@ export default function RegisterPage() {
     };
     const handleBack = () => setStep(prev => prev - 1);
 
+    // Auto-scroll to top when step changes
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [step]);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
@@ -227,6 +232,7 @@ export default function RegisterPage() {
                 residenceCountry: formData.residenceCountry,
                 createdAt: serverTimestamp(),
                 role: "client",
+                otpVerified: false,
                 language: locale
             });
 

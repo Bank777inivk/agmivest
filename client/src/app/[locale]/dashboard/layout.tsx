@@ -62,7 +62,7 @@ export default function DashboardLayout({
 
                         // --- OTP VERIFICATION GUARD ---
                         // If user hasn't verified OTP, redirect to verify page
-                        if (data.otpVerified === false) {
+                        if (data.otpVerified !== true) {
                             console.log("[DashboardLayout] User not OTP verified, redirecting...");
                             router.push("/verify");
                             return;

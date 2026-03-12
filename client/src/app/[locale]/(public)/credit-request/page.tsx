@@ -269,6 +269,11 @@ export default function CreditRequestPage() {
         }
     }, [searchParams]);
 
+    // Auto-scroll to top when step changes
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [step]);
+
 
     const handleSimulatorChange = useCallback((amount: number, duration: number, rate: number) => {
         // Synchronisation depuis la calculatrice (durée déjà en mois)
