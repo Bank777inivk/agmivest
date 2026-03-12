@@ -93,14 +93,18 @@ function VerifyPageContent() {
             const isValid = await verifyOTP(currentEmail, fullOtp);
             if (isValid) {
                 // Update User document to persist verification
-                const _auth = getFirebaseAuth();
-                const _db = getFirestore();
-                const user = _auth.currentUser;
-                if (user) {
-                    await updateDoc(doc(_db, "users", user.uid), {
-                        otpVerified: true,
-                        updatedAt: serverTimestamp()
-                    });
+                try {
+                    const _auth = getFirebaseAuth();
+                    const _db = getFirestore();
+                    const user = _auth.currentUser;
+                    if (user) {
+                        await updateDoc(doc(_db, "users", user.uid), {
+                            otpVerified: true,
+                            updatedAt: serverTimestamp()
+                        });
+                    }
+                } catch (updateErr) {
+                    console.error("[Verify] Failed to update user otpVerified status:", updateErr);
                 }
 
                 setSuccess(true);
@@ -144,6 +148,7 @@ function VerifyPageContent() {
                 setError(t('invalidCode'));
             }
         } catch (err) {
+            console.error("OTP Error:", err);
             setError("An error occurred. Please try again.");
         } finally {
             setIsLoading(false);
