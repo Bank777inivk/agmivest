@@ -18,7 +18,7 @@ import AddressAutocomplete from "@/components/AddressAutocomplete";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { useRouter } from "@/i18n/routing";
-import { generateOTP, storeOTP } from "@/lib/otp";
+import { generateOTP } from "@/lib/otp";
 
 export default function RegisterPage() {
     const t = useTranslations('Auth.Register');
@@ -230,9 +230,13 @@ export default function RegisterPage() {
                 language: locale
             });
 
-            // 1. Generate and store OTP
+            // 1. Generate and store OTP (server-side to bypass Firestore security rules)
             const otpCode = generateOTP();
-            await storeOTP(formData.email, otpCode);
+            await fetch('/api/otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'store', email: formData.email, otpCode })
+            });
 
             // 2. Send Verification Email (replaces Welcome Email for now)
             try {

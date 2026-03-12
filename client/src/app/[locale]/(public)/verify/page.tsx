@@ -7,7 +7,7 @@ import { useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ShieldCheck, Mail, ArrowRight, RefreshCw, AlertCircle, Inbox } from "lucide-react";
-import { verifyOTP, storeOTP, generateOTP } from "@/lib/otp";
+import { generateOTP } from "@/lib/otp";
 import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 
@@ -18,34 +18,37 @@ function VerifyPageContent() {
     const searchParams = useSearchParams();
     const searchEmail = searchParams.get('email') || "";
     const firstName = searchParams.get('firstName') || "";
+    const [authReady, setAuthReady] = useState(false);
     const [currentEmail, setCurrentEmail] = useState("");
-
-    useEffect(() => {
-        if (searchEmail) {
-            setCurrentEmail(searchEmail);
-        } else {
-            const _auth = getFirebaseAuth();
-            if (_auth.currentUser?.email) {
-                setCurrentEmail(_auth.currentUser.email);
-            }
-        }
-    }, [searchEmail]);
-
     const [otp, setOtp] = useState(["", "", "", "", "", ""]);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [resendLoading, setResendLoading] = useState(false);
+    const [resendSuccess, setResendSuccess] = useState(false);
     const [success, setSuccess] = useState(false);
-
     const requestId = searchParams.get('requestId') || "";
 
     useEffect(() => {
         const _auth = getFirebaseAuth();
-        // Fallback to logged in user if email is missing from params
-        if (!currentEmail && !_auth.currentUser) {
+        // Wait for Firebase Auth to initialize before making redirect decisions
+        const unsubscribe = (_auth as any).onAuthStateChanged((user: any) => {
+            if (searchEmail) {
+                setCurrentEmail(searchEmail);
+            } else if (user?.email) {
+                setCurrentEmail(user.email);
+            }
+            setAuthReady(true);
+        });
+        return () => unsubscribe();
+    }, [searchEmail]);
+
+    useEffect(() => {
+        // Only redirect after auth state is known
+        if (!authReady) return;
+        if (!currentEmail) {
             router.push('/register');
         }
-    }, [currentEmail, locale, router, requestId, firstName]);
+    }, [authReady, currentEmail, router]);
 
     const handleChange = (element: HTMLInputElement, index: number) => {
         if (isNaN(Number(element.value))) return false;
@@ -90,7 +93,14 @@ function VerifyPageContent() {
         setError("");
 
         try {
-            const isValid = await verifyOTP(currentEmail, fullOtp);
+            // Verify OTP server-side (bypasses Firestore security rules)
+            const otpRes = await fetch('/api/otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'verify', email: currentEmail, code: fullOtp })
+            });
+            const otpData = await otpRes.json();
+            const isValid = otpData.valid === true;
             if (isValid) {
                 // Update User document to persist verification
                 try {
@@ -145,7 +155,12 @@ function VerifyPageContent() {
                     }
                 }, 2000);
             } else {
-                setError(t('invalidCode'));
+                // Show specific error based on reason
+                if (otpData.reason === 'expired') {
+                    setError(t('codeExpired') || "Code expiré. Veuillez demander un nouveau code.");
+                } else {
+                    setError(t('invalidCode'));
+                }
             }
         } catch (err) {
             console.error("OTP Error:", err);
@@ -159,7 +174,12 @@ function VerifyPageContent() {
         setResendLoading(true);
         try {
             const newOtp = generateOTP();
-            await storeOTP(currentEmail, newOtp);
+            // Store OTP server-side
+            await fetch('/api/otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'store', email: currentEmail, otpCode: newOtp })
+            });
 
             await fetch("/api/email", {
                 method: "POST",
@@ -173,7 +193,8 @@ function VerifyPageContent() {
                 }),
             });
 
-            alert(t('success'));
+            setResendSuccess(true);
+            setTimeout(() => setResendSuccess(false), 4000); // Hide after 4s
         } catch (err) {
             setError("Could not resend code.");
         } finally {
@@ -224,15 +245,20 @@ function VerifyPageContent() {
                         </div>
                     )}
 
+                    {resendSuccess && (
+                        <div className="flex items-center gap-2 text-green-700 bg-green-50 p-3 rounded-xl text-sm border border-green-100">
+                            <ShieldCheck className="w-4 h-4" />
+                            <span>{t('resendSuccess') || "Un nouveau code a été envoyé à votre email."}</span>
+                        </div>
+                    )}
+
                     <button
                         type="submit"
-                        disabled={isLoading || otp.join("").length !== 6 || success}
+                        disabled={isLoading || otp.join("").length !== 6}
                         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-xl shadow-lg shadow-blue-200 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {isLoading ? (
                             <RefreshCw className="w-5 h-5 animate-spin" />
-                        ) : success ? (
-                            <ShieldCheck className="w-5 h-5" />
                         ) : (
                             <>
                                 {t('verify')}

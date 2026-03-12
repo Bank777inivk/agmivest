@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
-import { generateOTP, storeOTP } from "@/lib/otp";
+import { generateOTP } from "@/lib/otp";
 import { useTranslations, useLocale } from "next-intl";
 import { getFirebaseAuth, getFirestore, isFirebaseError } from "@/lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -479,9 +479,13 @@ export default function CreditRequestPage() {
 
             const requestId = requestRef.id;
 
-            // 5. Generate and store OTP
+            // 5. Generate and store OTP (server-side to bypass Firestore security rules)
             const otpCode = generateOTP();
-            await storeOTP(formData.email, otpCode);
+            await fetch('/api/otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'store', email: formData.email, otpCode })
+            });
 
             // 6. Send Verification Email
             try {

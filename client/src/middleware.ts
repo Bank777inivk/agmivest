@@ -24,7 +24,7 @@ export default async function proxy(request: any) {
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
         "img-src 'self' data: https: https://*.google.com https://*.googleadservices.com https://*.googletagmanager.com https://*.google-analytics.com https://*.doubleclick.net https://*.g.doubleclick.net",
         "font-src 'self' https://fonts.gstatic.com",
-        "connect-src 'self' https://api-adresse.data.gouv.fr https://*.firebaseio.com https://*.googleapis.com https://*.cloudinary.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.doubleclick.net https://*.g.doubleclick.net https://*.google.com https://tagassistant.google.com",
+        "connect-src 'self' https://api-adresse.data.gouv.fr https://www.googleadservices.com https://www.google.fr https://*.firebaseio.com https://*.googleapis.com https://*.cloudinary.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.doubleclick.net https://*.g.doubleclick.net https://*.google.com https://tagassistant.google.com",
         "frame-src 'self' https://www.youtube.com https://www.facebook.com https://www.google.com https://maps.google.com https://agm-invest.firebaseapp.com https://*.firebaseapp.com https://tagassistant.google.com"
     ].join('; ');
 

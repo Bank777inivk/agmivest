@@ -12,25 +12,35 @@ if (!admin.apps.length) {
                 // Fix for special characters in private key (especially newlines on Vercel)
                 let privateKey = serviceAccount.private_key;
                 if (privateKey) {
-                    // 1. Convert literal triple or double escaped newlines back to actual newlines
-                    // 2. Remove any carriage returns (\r)
-                    // 3. Trim all whitespace
-                    privateKey = privateKey.replace(/\\\\\\n/g, '\n').replace(/\\\\n/g, '\n').replace(/\\n/g, '\n').replace(/\r/g, '').trim();
+                    try {
+                        const pemHeader = '-----BEGIN PRIVATE KEY-----';
+                        const pemFooter = '-----END PRIVATE KEY-----';
 
-                    // 4. Remove potential wrapping quotes if they exist
-                    if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
-                        privateKey = privateKey.slice(1, -1);
-                    }
+                        // Step 1: Normalize all escaped newline variants to actual newlines
+                        let normalized = privateKey
+                            .split('\\\\n').join('\n')
+                            .split('\\n').join('\n')
+                            .replace(/\r\n/g, '\n')
+                            .replace(/\r/g, '\n');
 
-                    // Diagnostic logging (safe)
-                    console.log(`[FirebaseAdmin] Normalizing private key. Length: ${privateKey.length}`);
-                    if (!privateKey.startsWith('-----BEGIN PRIVATE KEY-----')) {
-                        console.error('[FirebaseAdmin] Private key DOES NOT start with BEGIN header (found: ' + privateKey.substring(0, 15) + '...)');
-                    }
-                    if (!privateKey.endsWith('-----END PRIVATE KEY-----')) {
-                        console.error('[FirebaseAdmin] Private key DOES NOT end with END header (found: ...' + privateKey.substring(privateKey.length - 15) + ')');
-                    }
+                        // Step 2: Extract raw base64 (strip headers, footers, and ALL whitespace)
+                        const base64Raw = normalized
+                            .replace(/-----BEGIN PRIVATE KEY-----/g, '')
+                            .replace(/-----END PRIVATE KEY-----/g, '')
+                            .replace(/\s+/g, ''); // Remove all whitespace including \n
 
+                        // Step 3: Rebuild PEM with proper 64-char line wrapping
+                        const lineLength = 64;
+                        const lines: string[] = [];
+                        for (let i = 0; i < base64Raw.length; i += lineLength) {
+                            lines.push(base64Raw.substring(i, i + lineLength));
+                        }
+                        privateKey = `${pemHeader}\n${lines.join('\n')}\n${pemFooter}\n`;
+
+                        console.log(`[FirebaseAdmin] PEM key reconstructed. Length: ${privateKey.length}, Lines: ${lines.length + 2}`);
+                    } catch (keyErr) {
+                        console.error('[FirebaseAdmin] Key normalization failed:', keyErr);
+                    }
                     serviceAccount.private_key = privateKey;
                 }
 
