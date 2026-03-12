@@ -46,7 +46,7 @@ export default function DesktopVerification({
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                 <div className="lg:col-span-2 space-y-6">
                     {/* Intro Card */}
-                    <div className="bg-gradient-to-br from-[#003d82] to-[#1e40af] p-10 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden group">
+                    <div className="bg-ely-blue p-10 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden group">
                         {/* Decorative Background Elements */}
                         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" />
                         <div className="absolute bottom-0 left-0 w-48 h-48 bg-ely-mint/5 blur-[80px] rounded-full translate-y-1/2 -translate-x-1/2" />

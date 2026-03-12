@@ -129,7 +129,7 @@ export default function MobileVerification({
     return (
         <div className="flex flex-col min-h-screen bg-white">
             {/* Minimal Header - FIXED (Actually attached to global header) */}
-            <div className="fixed top-20 left-0 right-0 px-6 py-6 bg-gradient-to-br from-[#003d82] to-[#1e40af] border-b border-white/10 z-30 shadow-xl h-[132px]">
+            <div className="fixed top-20 left-0 right-0 px-6 py-6 bg-ely-blue border-b border-white/10 z-30 shadow-xl h-[132px]">
                 <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
                         <div className="w-1 h-5 bg-ely-mint rounded-full shadow-[0_0_10px_rgba(40,232,152,0.4)]" />
@@ -157,7 +157,7 @@ export default function MobileVerification({
             <div className="h-[132px] w-full shrink-0" />
 
             {/* Instructions Section */}
-            <div className="mx-6 mt-6 p-6 bg-gradient-to-br from-[#003d82] to-[#1e40af] rounded-3xl border border-white/10 shadow-xl relative overflow-hidden group">
+            <div className="mx-6 mt-6 p-6 bg-ely-blue rounded-3xl border border-white/10 shadow-xl relative overflow-hidden group">
                 {/* Decorative Elements */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-ely-mint/5 blur-2xl rounded-full translate-y-1/2 -translate-x-1/2" />

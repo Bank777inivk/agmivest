@@ -76,7 +76,7 @@ export default function Sidebar({
     };
 
     const sidebarContent = (
-        <div className="flex flex-col h-full bg-gradient-to-br from-[#003d82] to-[#1e40af] border-r border-white/5">
+        <div className="flex flex-col h-full bg-ely-blue border-r border-white/5">
             {/* Logo Area */}
             <div className="p-6">
                 <Link href="/" className={`flex items-center gap-3 transition-all duration-300 ${isCollapsed && !isMobile ? "justify-center" : ""}`}>
@@ -258,7 +258,7 @@ export default function Sidebar({
             {!isMobile && (
                 <button
                     onClick={() => setIsCollapsed(!isCollapsed)}
-                    className="absolute bottom-24 -right-3 w-6 h-6 bg-[#003d82] border border-white/20 rounded-full flex items-center justify-center shadow-lg text-white/50 hover:text-white transition-colors"
+                    className="absolute bottom-24 -right-3 w-6 h-6 bg-ely-blue border border-white/20 rounded-full flex items-center justify-center shadow-lg text-white/50 hover:text-white transition-colors"
                 >
                     {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
                 </button>
@@ -295,7 +295,7 @@ export default function Sidebar({
 
     return (
         <aside
-            className={`fixed left-0 top-0 bottom-0 bg-[#003d82] z-20 transition-all duration-300 ease-in-out border-r border-white/5 ${isCollapsed ? "w-20" : "w-72"
+            className={`fixed left-0 top-0 bottom-0 bg-ely-blue z-20 transition-all duration-300 ease-in-out border-r border-white/5 ${isCollapsed ? "w-20" : "w-72"
                 }`}
         >
             {sidebarContent}

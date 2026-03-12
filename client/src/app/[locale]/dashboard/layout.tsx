@@ -251,7 +251,6 @@ export default function DashboardLayout({
         return <>{children}</>;
     }
 
-    // Prevent rendering dashboard content until auth is checked
     if (loading) {
         return <div className="h-screen w-full bg-[#F8FAFC] flex items-center justify-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-ely-blue"></div>
