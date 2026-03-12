@@ -83,10 +83,10 @@ const ChecklistItem = ({
                                     </div>
                                 )}
                             </div>
-                            {!isSubmitting && !isSuccess && (
+                            {!isSubmitting && (
                                 <button
                                     onClick={onRemove}
-                                    className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-white shadow-md rounded-full flex items-center justify-center text-red-500 border border-slate-50 active:scale-90"
+                                    className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-white shadow-md rounded-full flex items-center justify-center text-red-500 border border-slate-50 active:scale-90 z-10"
                                 >
                                     <X className="w-3 h-3" />
                                 </button>

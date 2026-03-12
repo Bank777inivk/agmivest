@@ -46,11 +46,11 @@ export default function NotificationPopup() {
         <AnimatePresence>
             {isVisible && notification && (
                 <motion.div
-                    initial={{ opacity: 0, y: 50, x: 100 }}
+                    initial={{ opacity: 0, y: -50, x: 0 }}
                     animate={{ opacity: 1, y: 0, x: 0 }}
-                    exit={{ opacity: 0, x: 100 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    className="fixed bottom-6 right-6 z-50 max-w-sm"
+                    className="fixed top-24 md:top-auto md:bottom-6 left-6 right-6 md:left-auto md:right-6 z-[100] max-w-sm mx-auto md:mx-0"
                 >
                     <div className="relative bg-gradient-to-br from-ely-blue to-ely-mint rounded-2xl shadow-2xl overflow-hidden backdrop-blur-lg border border-white/20">
                         {/* Glassmorphism overlay */}
