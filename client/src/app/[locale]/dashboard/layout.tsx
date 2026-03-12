@@ -52,7 +52,6 @@ export default function DashboardLayout({
                 router.push("/login");
                 return;
             } else {
-                setLoading(false);
                 setUserEmail(user.email);
 
                 // Fetch user data for identity banner and header
@@ -67,6 +66,9 @@ export default function DashboardLayout({
                             router.push("/verify");
                             return;
                         }
+
+                        // Check passed, safe to show dashboard content
+                        setLoading(false);
 
                         const newStatus = data.idStatus || null;
                         setIdStatus(newStatus);
@@ -106,6 +108,10 @@ export default function DashboardLayout({
 
                         prevStatusRef.current = newStatus;
                         hasInitialStatus.current = true;
+                    } else {
+                        // User document doesn't exist yet, stay loading or redirect
+                        console.warn("[DashboardLayout] User document missing, redirecting to register...");
+                        router.push("/register");
                     }
                 }, (error: any) => {
                     console.error("Firestore Error (User Layout):", error);
