@@ -14,7 +14,7 @@ import { useSearchParams } from "next/navigation";
 import { generateOTP } from "@/lib/otp";
 import { useTranslations, useLocale } from "next-intl";
 import { getFirebaseAuth, getFirestore, isFirebaseError } from "@/lib/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import Simulator from "@/components/Simulator";
 import { COUNTRY_PHONE_DATA, COUNTRIES, COUNTRY_TO_NATIONALITY } from "@/lib/constants";
@@ -73,6 +73,7 @@ export default function CreditRequestPage() {
     const [scoringResult, setScoringResult] = useState<any>(null);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
 
     const [formData, setFormData] = useState({
         // Project
@@ -390,48 +391,81 @@ export default function CreditRequestPage() {
         try {
             const _auth = getFirebaseAuth();
             const _db = getFirestore();
-            // 1. Créer le compte utilisateur
-            const userCredential = await createUserWithEmailAndPassword(
-                _auth,
-                formData.email,
-                formData.password
-            );
-            const user = userCredential.user;
 
-            // 2. Enregistrer les données utilisateur dans Firestore
-            await setDoc(doc(_db, "users", user.uid), {
-                email: formData.email,
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                civility: formData.civility,
-                birthDate: formData.birthDate,
-                birthPlace: formData.birthPlace,
-                birthCountry: formData.birthCountry,
-                nationality: formData.nationality,
-                phone: formData.phone,
-                maritalStatus: formData.maritalStatus,
-                children: parseInt(formData.children) || 0,
-                housingType: formData.housingType,
-                housingSeniority: parseInt(formData.housingSeniority) || 0,
-                street: formData.street,
-                zipCode: formData.zipCode,
-                city: formData.city,
-                profession: formData.profession,
-                companyName: formData.companyName,
-                contractType: formData.contractType,
-                income: parseFloat(formData.income) || 0,
-                charges: parseFloat(formData.charges) || 0,
-                otherCredits: parseFloat(formData.otherCredits) || 0,
-                bankName: formData.bankName,
-                iban: formData.iban,
-                bic: formData.bic,
-                ribEmail: formData.ribEmail || formData.email,
-                idStatus: "pending",
-                otpVerified: false,
-                language: locale,
-                createdAt: serverTimestamp(),
-                updatedAt: serverTimestamp()
-            });
+            let user;
+            try {
+                // 1. Try to create the user account
+                const userCredential = await createUserWithEmailAndPassword(
+                    _auth,
+                    formData.email,
+                    formData.password
+                );
+                user = userCredential.user;
+
+                // 2a. New User: Register full data in Firestore
+                await setDoc(doc(_db, "users", user.uid), {
+                    email: formData.email,
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    civility: formData.civility,
+                    birthDate: formData.birthDate,
+                    birthPlace: formData.birthPlace,
+                    birthCountry: formData.birthCountry,
+                    nationality: formData.nationality,
+                    phone: formData.phone,
+                    maritalStatus: formData.maritalStatus,
+                    children: parseInt(formData.children) || 0,
+                    housingType: formData.housingType,
+                    housingSeniority: parseInt(formData.housingSeniority) || 0,
+                    street: formData.street,
+                    zipCode: formData.zipCode,
+                    city: formData.city,
+                    profession: formData.profession,
+                    companyName: formData.companyName,
+                    contractType: formData.contractType,
+                    income: parseFloat(formData.income) || 0,
+                    charges: parseFloat(formData.charges) || 0,
+                    otherCredits: parseFloat(formData.otherCredits) || 0,
+                    bankName: formData.bankName,
+                    iban: formData.iban,
+                    bic: formData.bic,
+                    ribEmail: formData.ribEmail || formData.email,
+                    idStatus: "pending",
+                    otpVerified: false,
+                    language: locale,
+                    createdAt: serverTimestamp(),
+                    updatedAt: serverTimestamp()
+                });
+            } catch (authErr: any) {
+                if (authErr.code === "auth/email-already-in-use") {
+                    // Try to log them in instead if they exist
+                    try {
+                        const signInCredential = await signInWithEmailAndPassword(
+                            _auth,
+                            formData.email,
+                            formData.password
+                        );
+                        user = signInCredential.user;
+
+                        // 2b. Existing User: Update some data, but don't overwrite critical info
+                        await setDoc(doc(_db, "users", user.uid), {
+                            phone: formData.phone,
+                            income: parseFloat(formData.income) || 0,
+                            charges: parseFloat(formData.charges) || 0,
+                            updatedAt: serverTimestamp()
+                        }, { merge: true });
+                    } catch (signInErr: any) {
+                        if (signInErr.code === "auth/wrong-password" || signInErr.code === "auth/invalid-credential") {
+                            setIsSubmitting(false);
+                            alert(t('Errors.emailUsedWrongPassword' as any) || t('Errors.emailUsed'));
+                            return;
+                        }
+                        throw signInErr; // Rethrow other errors
+                    }
+                } else {
+                    throw authErr;
+                }
+            }
 
             // 3. Créer la demande de prêt
             const requestData = {
