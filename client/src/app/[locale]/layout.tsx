@@ -9,6 +9,7 @@ import ProgressBar from "@/components/ProgressBar";
 import { Suspense } from "react";
 import ClientProvider from "@/components/ClientProvider";
 import Script from "next/script";
+import { headers } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,68 +21,79 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "AGM INVEST | Crédit & Assurances",
-    template: "%s | AGM INVEST"
-  },
-  description: "Partenaire de confiance pour le financement immobilier, crédits à la consommation et assurances en Europe. Solutions flexibles et rapides.",
-  keywords: ["crédit immobilier", "assurance emprunteur", "financement", "prêt personnel", "AGM INVEST", "crédit rapide"],
-  authors: [{ name: "AGM INVEST" }],
-  creator: "AGM INVEST",
-  publisher: "AGM INVEST",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://www.agm-negoce.com'),
-  alternates: {
-    languages: {
-      'fr-FR': '/fr',
-      'en-US': '/en',
-      'de-DE': '/de',
-      'es-ES': '/es',
-      'it-IT': '/it',
-      'pt-PT': '/pt',
-      'tr-TR': '/tr',
-      'ro-RO': '/ro',
-      'nl-NL': '/nl',
-      'pl-PL': '/pl',
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const currentPath = headersList.get('x-current-path') || '/';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.agm-negoce.com';
+  
+  // Combine base URL and path, ensuring no double slashes
+  const cleanBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+  const canonicalUrl = `${cleanBaseUrl}${currentPath}`;
+
+  return {
+    title: {
+      default: "AGM INVEST | Crédit & Assurances",
+      template: "%s | AGM INVEST"
     },
-  },
-  openGraph: {
-    title: 'AGM INVEST | Crédit & Assurances',
-    description: 'Financez vos projets immobiliers et personnels avec AGM INVEST.',
-    url: 'https://www.agm-negoce.com',
-    siteName: 'AGM INVEST',
-    locale: 'fr_FR',
-    type: 'website',
-    images: [
-      {
-        url: '/og-image.webp',
-        width: 1200,
-        height: 630,
-        alt: 'AGM INVEST - Votre partenaire crédit et assurances',
+    description: "Partenaire de confiance pour le financement immobilier, crédits à la consommation et assurances en Europe. Solutions flexibles et rapides.",
+    keywords: ["crédit immobilier", "assurance emprunteur", "financement", "prêt personnel", "AGM INVEST", "crédit rapide"],
+    authors: [{ name: "AGM INVEST" }],
+    creator: "AGM INVEST",
+    publisher: "AGM INVEST",
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    metadataBase: new URL(cleanBaseUrl),
+    alternates: {
+      canonical: currentPath,
+      languages: {
+        'fr-FR': '/fr',
+        'en-US': '/en',
+        'de-DE': '/de',
+        'es-ES': '/es',
+        'it-IT': '/it',
+        'pt-PT': '/pt',
+        'tr-TR': '/tr',
+        'ro-RO': '/ro',
+        'nl-NL': '/nl',
+        'pl-PL': '/pl',
       },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'AGM INVEST | Crédit & Assurances',
-    description: 'Financez vos projets immobiliers et personnels avec AGM INVEST.',
-    images: ['/og-image.webp'],
-    creator: '@agminvest',
-  },
-  icons: {
-    icon: '/favicon.webp',
-    shortcut: '/favicon.webp',
-    apple: '/favicon.webp',
-  },
-  verification: {
-    google: 'j2PL1QjUcu4Jx6MXT20gkVgBjA0TTzhEET625UDQ-_I',
-  },
-};
+    },
+    openGraph: {
+      title: 'AGM INVEST | Crédit & Assurances',
+      description: 'Financez vos projets immobiliers et personnels avec AGM INVEST.',
+      url: cleanBaseUrl,
+      siteName: 'AGM INVEST',
+      locale: 'fr_FR',
+      type: 'website',
+      images: [
+        {
+          url: '/og-image.webp',
+          width: 1200,
+          height: 630,
+          alt: 'AGM INVEST - Votre partenaire crédit et assurances',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'AGM INVEST | Crédit & Assurances',
+      description: 'Financez vos projets immobiliers et personnels avec AGM INVEST.',
+      images: ['/og-image.webp'],
+      creator: '@agminvest',
+    },
+    icons: {
+      icon: '/favicon.webp',
+      shortcut: '/favicon.webp',
+      apple: '/favicon.webp',
+    },
+    verification: {
+      google: 'j2PL1QjUcu4Jx6MXT20gkVgBjA0TTzhEET625UDQ-_I',
+    },
+  };
+}
 
 export default async function LocaleLayout({
   children,

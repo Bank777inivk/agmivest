@@ -30,6 +30,9 @@ export default async function proxy(request: any) {
 
     response.headers.set('Content-Security-Policy', cspHeader);
 
+    // Inject current path for canonical URL generation in Server Components
+    response.headers.set('x-current-path', request.nextUrl.pathname);
+
     return response;
 }
 
