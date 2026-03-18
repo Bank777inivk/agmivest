@@ -6,7 +6,26 @@ const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.agm-negoce.com';
 export const dynamic = 'force-dynamic';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const routes = ['', '/services', '/reviews', '/documents', '/register', '/login'];
+    const routes = [
+        '',
+        '/about',
+        '/services',
+        '/reviews',
+        '/contact',
+        '/documents',
+        '/register',
+        '/login',
+        '/verify',
+        '/credit-request',
+        '/cgu',
+        '/mentions-legales',
+        '/politique-confidentialite',
+        '/cookies',
+        '/conditions-remboursement',
+        '/confiance-securite',
+        '/disclaimer-financier',
+        '/mentions-publicitaires',
+    ];
 
     const entries: MetadataRoute.Sitemap = [];
 

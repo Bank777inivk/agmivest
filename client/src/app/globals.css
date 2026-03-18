@@ -35,7 +35,7 @@
   --color-ely-blue: #001A4B;
   --color-ely-mint: #047857;
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-inter), 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 html,

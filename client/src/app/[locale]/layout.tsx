@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from 'next-intl/server';
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
@@ -12,14 +12,15 @@ import ClientProvider from "@/components/ClientProvider";
 import Script from "next/script";
 import { headers } from "next/headers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
@@ -145,7 +146,7 @@ export default async function LocaleLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
         <NextIntlClientProvider messages={messages}>
