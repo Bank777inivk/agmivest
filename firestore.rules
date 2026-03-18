@@ -104,6 +104,12 @@ service cloud.firestore {
       allow update, delete: if isAdmin();
     }
     
+    // Collection: Settings
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
     // Collection: OTPs (Critical Security)
     match /otps/{email} {
       // Allow creation only if it doesn't already exist (to prevent brute force overwrite)

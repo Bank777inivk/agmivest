@@ -3,7 +3,7 @@
 
 
 import { useEffect, useState, useRef } from "react";
-import { LayoutDashboard, Users, FileText, Settings, LogOut, Search, Bell, CheckCircle, XCircle, Clock, RotateCcw, Menu, X, ExternalLink, ArrowLeft, Shield, Trash2, Mail, Phone, MapPin, TrendingUp, Euro, Briefcase, Calendar, CalendarRange, Send, History, Landmark, ChevronLeft, ChevronRight, CreditCard, ShieldCheck, Info, MessageCircle, Star } from "lucide-react";
+import { LayoutDashboard, Users, FileText, Settings, Lock, Save, Plus, LogOut, Search, Bell, CheckCircle, XCircle, Clock, RotateCcw, Menu, X, ExternalLink, ArrowLeft, Shield, Trash2, Mail, Phone, MapPin, TrendingUp, Euro, Briefcase, Calendar, CalendarRange, Send, History, Landmark, ChevronLeft, ChevronRight, CreditCard, ShieldCheck, Info, MessageCircle, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { collection, query, orderBy, onSnapshot, doc, updateDoc, addDoc, serverTimestamp, getDoc, deleteDoc, where, getDocs, setDoc, writeBatch } from "firebase/firestore";
@@ -601,6 +601,19 @@ export default function AdminDashboard() {
     beneficiary: "ELYSSIO FINANCE - CONSEILLER FINANCIER"
   });
 
+  // Configuration States
+  const [activeSettingsSubTab, setActiveSettingsSubTab] = useState("general");
+  const [globalSettings, setGlobalSettings] = useState({
+    siteName: "AGM INVEST",
+    supportEmail: "support@agm-invest.com",
+    contactPhone: "+33 1 23 45 67 89",
+    maintenanceMode: false,
+    minLoanAmount: 1000,
+    maxLoanAmount: 1000000,
+    allowRegistration: true
+  });
+  const [newAdminEmail, setNewAdminEmail] = useState("");
+
   const [chats, setChats] = useState<any[]>([]);
   const [selectedChat, setSelectedChat] = useState<any>(null);
 
@@ -619,6 +632,17 @@ export default function AdminDashboard() {
       console.error("Error clearing notifications:", error);
     }
   };
+
+  // Fetch Global Settings
+  useEffect(() => {
+    if (!user || activeTab !== 'settings') return;
+    const unsub = onSnapshot(doc(dbInstance, "settings", "global"), (doc) => {
+      if (doc.exists()) {
+        setGlobalSettings(prev => ({ ...prev, ...doc.data() }));
+      }
+    });
+    return () => unsub();
+  }, [user, activeTab]);
 
   const handleAdminAction = async (action: string, id: string, type: 'loan' | 'doc' | 'transfer' = 'loan') => {
     setProcessingId(id);
@@ -1514,14 +1538,78 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleToggleAdmin = async (u: any) => {
-    const newRole = u.role === 'super_admin' ? 'client' : 'super_admin';
-    if (!confirm(`Changer le rôle de ${u.firstName} en ${newRole === 'super_admin' ? 'Super Admin' : 'Client'} ?`)) return;
+  const handleToggleAdminRole = async (targetUser: any) => {
+    if (user.role !== 'super_admin') {
+      alert("Seul un Super Admin peut gérer l'équipe.");
+      return;
+    }
+    const newRole = targetUser.role === 'client' ? 'admin' : 'client';
+    const confirmMsg = newRole === 'admin' 
+      ? `Promouvoir ${targetUser.email} au rang d'Administrateur ?` 
+      : `Révoquer les droits d'administration de ${targetUser.email} ?`;
+    
+    if (!confirm(confirmMsg)) return;
+
+    setProcessingId(targetUser.id);
     try {
-      await updateDoc(doc(dbInstance, "users", u.id), { role: newRole });
-      setActiveActionMenu(null);
+      await updateDoc(doc(dbInstance, "users", targetUser.id), {
+        role: newRole,
+        updatedAt: serverTimestamp()
+      });
+      alert(`Rôle de ${targetUser.email} mis à jour : ${newRole.toUpperCase()}`);
     } catch (e) {
-      console.error("Error toggling admin:", e);
+      console.error(e);
+      alert("Erreur lors de la mise à jour du rôle.");
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
+  const handlePromoteAdminByEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (user.role !== 'super_admin') return;
+    const emailToPromote = newAdminEmail.trim().toLowerCase();
+    if (!emailToPromote) return;
+
+    setProcessingId("promote-admin");
+    try {
+      const q = query(collection(dbInstance, "users"), where("email", "==", emailToPromote));
+      const snap = await getDocs(q);
+      if (snap.empty) {
+        alert("Utilisateur non trouvé avec cet email.");
+      } else {
+        const target = snap.docs[0];
+        await updateDoc(target.ref, { role: 'admin', updatedAt: serverTimestamp() });
+        alert(`${emailToPromote} est maintenant Administrateur.`);
+        setNewAdminEmail("");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Erreur.");
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
+  const handleSaveGlobalSettings = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (user.role !== 'super_admin') {
+      alert("Seul un Super Admin peut modifier ces paramètres.");
+      return;
+    }
+    setProcessingId("settings-save");
+    try {
+      await setDoc(doc(dbInstance, "settings", "global"), {
+        ...globalSettings,
+        updatedAt: serverTimestamp(),
+        updatedBy: user.email
+      }, { merge: true });
+      alert("Paramètres enregistrés avec succès.");
+    } catch (e) {
+      console.error(e);
+      alert("Erreur lors de la sauvegarde.");
+    } finally {
+      setProcessingId(null);
     }
   };
 
@@ -2089,7 +2177,7 @@ export default function AdminDashboard() {
                 </div>
                 <div className="p-6 space-y-4">
                   <button
-                    onClick={() => handleToggleAdmin(u)}
+                    onClick={() => handleToggleAdminRole(u)}
                     className="w-full p-4 hover:bg-slate-50 text-slate-700 text-xs font-bold flex items-center justify-between group transition-all rounded-2xl border border-slate-100"
                   >
                     <div className="flex items-center gap-3">
@@ -3312,15 +3400,243 @@ export default function AdminDashboard() {
 
       case "settings":
         return (
-          <div className="space-y-8">
-            <header>
-              <h1 className="text-2xl font-bold text-slate-900">Configuration</h1>
-              <p className="text-slate-500">Paramètres du système et gestion des administrateurs.</p>
+          <div className="space-y-8 max-w-5xl mx-auto pb-20">
+            <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div>
+                <h1 className="text-3xl font-black text-slate-900 tracking-tight">Configuration</h1>
+                <p className="text-slate-500 font-medium font-outfit mt-1">Gérez les paramètres globaux et votre équipe d'administration.</p>
+              </div>
+              <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 w-fit">
+                <button
+                  onClick={() => setActiveSettingsSubTab("general")}
+                  className={cn(
+                    "px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all",
+                    activeSettingsSubTab === "general" ? "bg-white text-ely-blue shadow-sm" : "text-slate-400 hover:text-slate-600"
+                  )}
+                >
+                  Général
+                </button>
+                <button
+                  onClick={() => setActiveSettingsSubTab("team")}
+                  className={cn(
+                    "px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all",
+                    activeSettingsSubTab === "team" ? "bg-white text-ely-blue shadow-sm" : "text-slate-400 hover:text-slate-600"
+                  )}
+                >
+                  Équipe Admin
+                </button>
+              </div>
             </header>
-            <div className="p-12 bg-white rounded-3xl border-2 border-dashed border-slate-200 text-center">
-              <Settings className="w-12 h-12 text-slate-200 mx-auto mb-4" />
-              <p className="text-slate-500 font-medium font-outfit">L'interface de configuration globale sera bientôt disponible.</p>
-            </div>
+
+            {activeSettingsSubTab === "general" ? (
+              <motion.form
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                onSubmit={handleSaveGlobalSettings}
+                className="space-y-8"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm space-y-6">
+                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-blue-50 flex items-center justify-center">
+                        <Settings className="w-4 h-4 text-ely-blue" />
+                      </div>
+                      Infos Plateforme
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-2 block">Nom du site</label>
+                        <input
+                          type="text"
+                          value={globalSettings.siteName}
+                          onChange={(e) => setGlobalSettings({ ...globalSettings, siteName: e.target.value })}
+                          className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold text-slate-700 focus:bg-white focus:ring-2 focus:ring-ely-blue/10 transition-all outline-none"
+                          placeholder="Ex: AGM INVEST"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-2 block">Email de Support</label>
+                        <input
+                          type="email"
+                          value={globalSettings.supportEmail}
+                          onChange={(e) => setGlobalSettings({ ...globalSettings, supportEmail: e.target.value })}
+                          className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold text-slate-700 focus:bg-white focus:ring-2 focus:ring-ely-blue/10 transition-all outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-2 block">Téléphone Contact</label>
+                        <input
+                          type="text"
+                          value={globalSettings.contactPhone}
+                          onChange={(e) => setGlobalSettings({ ...globalSettings, contactPhone: e.target.value })}
+                          className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold text-slate-700 focus:bg-white focus:ring-2 focus:ring-ely-blue/10 transition-all outline-none"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm space-y-6">
+                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-amber-50 flex items-center justify-center">
+                        <Lock className="w-4 h-4 text-amber-500" />
+                      </div>
+                      Contrôles Système
+                    </h3>
+                    <div className="space-y-6">
+                      <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <div>
+                          <p className="text-xs font-black text-slate-900 uppercase tracking-widest">Mode Maintenance</p>
+                          <p className="text-[10px] text-slate-500 font-medium">Empêche les nouveaux prêts et accès client.</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setGlobalSettings({ ...globalSettings, maintenanceMode: !globalSettings.maintenanceMode })}
+                          className={cn(
+                            "w-12 h-6 rounded-full transition-all relative",
+                            globalSettings.maintenanceMode ? "bg-amber-500" : "bg-slate-300"
+                          )}
+                        >
+                          <div className={cn(
+                            "absolute top-1 w-4 h-4 bg-white rounded-full transition-all shadow-sm",
+                            globalSettings.maintenanceMode ? "right-1" : "left-1"
+                          )} />
+                        </button>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-2 block">Montant Min</label>
+                          <input
+                            type="number"
+                            value={globalSettings.minLoanAmount}
+                            onChange={(e) => setGlobalSettings({ ...globalSettings, minLoanAmount: Number(e.target.value) })}
+                            className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-2xl text-xs font-bold text-slate-700"
+                          />
+                        </div>
+                        <div>
+                          <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-2 block">Montant Max</label>
+                          <input
+                            type="number"
+                            value={globalSettings.maxLoanAmount}
+                            onChange={(e) => setGlobalSettings({ ...globalSettings, maxLoanAmount: Number(e.target.value) })}
+                            className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-2xl text-xs font-bold text-slate-700"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <div>
+                          <p className="text-xs font-black text-slate-900 uppercase tracking-widest">Inscriptions</p>
+                          <p className="text-[10px] text-slate-500 font-medium">Autoriser la création de comptes.</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setGlobalSettings({ ...globalSettings, allowRegistration: !globalSettings.allowRegistration })}
+                          className={cn(
+                            "w-12 h-6 rounded-full transition-all relative",
+                            globalSettings.allowRegistration ? "bg-emerald-500" : "bg-slate-300"
+                          )}
+                        >
+                          <div className={cn(
+                            "absolute top-1 w-4 h-4 bg-white rounded-full transition-all shadow-sm",
+                            globalSettings.allowRegistration ? "right-1" : "left-1"
+                          )} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-end pt-4">
+                  <button
+                    type="submit"
+                    disabled={processingId === "settings-save"}
+                    className="px-12 py-5 bg-ely-blue text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl shadow-ely-blue/20 flex items-center gap-3 disabled:opacity-50"
+                  >
+                    {processingId === "settings-save" ? <LoadingSpinner /> : <Save className="w-4 h-4" />}
+                    Enregistrer les paramètres
+                  </button>
+                </div>
+              </motion.form>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="space-y-8"
+              >
+                {/* Add Admin Form */}
+                <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm">
+                  <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-6 flex items-center gap-3">
+                    <Plus className="w-10 h-10 p-2.5 bg-emerald-50 text-emerald-500 rounded-2xl shadow-sm border border-emerald-100" />
+                    Promouvoir un nouvel Administrateur
+                  </h3>
+                  <form onSubmit={handlePromoteAdminByEmail} className="flex flex-col md:flex-row gap-4">
+                    <div className="flex-1 relative group">
+                      <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 group-focus-within:text-ely-blue transition-colors" />
+                      <input
+                        type="email"
+                        required
+                        placeholder="Adresse email du futur administrateur..."
+                        className="w-full pl-16 pr-6 py-5 bg-slate-50 border border-slate-100 rounded-3xl text-sm font-bold text-slate-700 outline-none focus:bg-white focus:ring-2 focus:ring-ely-blue/10 transition-all"
+                        value={newAdminEmail}
+                        onChange={(e) => setNewAdminEmail(e.target.value)}
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={processingId === "promote-admin"}
+                      className="px-8 py-5 bg-slate-900 text-white rounded-3xl text-[10px] font-black uppercase tracking-widest hover:bg-ely-blue transition-all active:scale-95 disabled:opacity-50"
+                    >
+                      {processingId === "promote-admin" ? "Vérification..." : "Ajouter à l'équipe"}
+                    </button>
+                  </form>
+                  <p className="text-[10px] text-slate-400 mt-4 px-2 italic font-medium">
+                    ⚠️ L'utilisateur doit avoir déjà créé un compte sur la plateforme avant d'être promu.
+                  </p>
+                </div>
+
+                {/* Admins List */}
+                <div className="bg-white rounded-[2.5rem] border border-slate-200 shadow-sm overflow-hidden">
+                  <div className="p-8 border-b border-slate-50 bg-slate-50/20">
+                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest">Liste des Administrateurs</h3>
+                  </div>
+                  <div className="divide-y divide-slate-50">
+                    {usersList.filter(u => u.role === 'admin' || u.role === 'super_admin').map((admin) => (
+                      <div key={admin.id} className="p-6 flex items-center justify-between hover:bg-slate-50/50 transition-colors">
+                        <div className="flex items-center gap-4">
+                          <UserAvatar name={`${admin.firstName} ${admin.lastName}`} className="w-12 h-12 rounded-2xl bg-white text-slate-900 border border-slate-100 shadow-sm font-black text-sm" />
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <p className="text-sm font-black text-slate-900">{admin.firstName} {admin.lastName}</p>
+                              {admin.role === 'super_admin' && (
+                                <span className="bg-ely-mint/10 text-ely-mint text-[8px] font-black uppercase px-2 py-0.5 rounded-full tracking-tighter">Super Admin</span>
+                              )}
+                            </div>
+                            <p className="text-xs text-slate-400 font-bold mt-0.5">{admin.email}</p>
+                          </div>
+                        </div>
+                        {admin.id !== user.uid && admin.role !== 'super_admin' && (
+                          <button
+                            onClick={() => handleToggleAdminRole(admin)}
+                            disabled={processingId === admin.id}
+                            className="p-3 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-all"
+                            title="Révoquer les accès admin"
+                          >
+                            <Trash2 className="w-5 h-5" />
+                          </button>
+                        )}
+                        {admin.role === 'super_admin' && admin.id !== user.uid && (
+                          <ShieldCheck className="w-6 h-6 text-emerald-500 opacity-20 mr-2" />
+                        )}
+                        {admin.id === user.uid && (
+                          <span className="text-[10px] text-slate-300 font-bold uppercase tracking-widest mr-4 italic">Vous</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </div>
         );
 
