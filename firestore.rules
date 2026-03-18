@@ -27,6 +27,7 @@ service cloud.firestore {
       // Allow updates for self/admin OR specifically for the auto-analyse KYC start
       allow update: if (isSignedIn() && (isOwner(userId) || isAdmin())) || 
                     (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['idStatus', 'kycReminderStartedAt', 'otpVerified']));  
+      allow delete: if isAdmin();
 
       match /notifications/{notifId} {
         allow read, write: if isSignedIn() && (isOwner(userId) || isAdmin());
@@ -58,7 +59,8 @@ service cloud.firestore {
               'paymentVideoUrl', 
               'paymentVerificationSubmittedAt'
           ])
-        ); 
+        ) || isAdmin(); 
+      allow delete: if isAdmin();
     }
 
     // Collection: Accounts

@@ -5,7 +5,8 @@ import {
     Paperclip,
     Smile,
     ArrowLeft,
-    X
+    X,
+    Trash2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -16,6 +17,9 @@ import {
     doc,
     updateDoc,
     addDoc,
+    deleteDoc,
+    getDocs,
+    writeBatch,
     serverTimestamp
 } from "firebase/firestore";
 import { db } from "@/lib/firebase"; // Assurez-vous que ce chemin est correct
@@ -161,6 +165,31 @@ export default function AdminChat({ chats, setChats, selectedChat, setSelectedCh
         }
     };
 
+    const handleDeleteChat = async (id?: string) => {
+        const targetChat = id ? chats.find((c: any) => c.id === id) : selectedChat;
+        if (!targetChat) return;
+        if (!confirm(`⚠️ SUPPRIMER DÉFINITIVEMENT toute cette discussion avec ${getChatUserName(targetChat)} ?\nCette action supprimera également tous les messages.`)) return;
+
+        try {
+            // 1. Delete all messages first
+            const messagesRef = collection(db, "chats", targetChat.id, "messages");
+            const snapshot = await getDocs(messagesRef);
+            const batch = writeBatch(db);
+            snapshot.docs.forEach((d) => batch.delete(d.ref));
+            await batch.commit();
+
+            // 2. Delete the chat document
+            await deleteDoc(doc(db, "chats", targetChat.id));
+
+            // 3. Clear selection and alert
+            if (selectedChat?.id === targetChat.id) setSelectedChat(null);
+            alert("La discussion a été supprimée.");
+        } catch (error) {
+            console.error("Error deleting chat:", error);
+            alert("Erreur lors de la suppression de la discussion.");
+        }
+    };
+
     return (
         <div className="flex flex-col lg:flex-row h-[calc(100vh-8rem)] lg:h-[calc(100vh-10rem)] gap-0 lg:gap-6 overflow-hidden -mx-4 -mb-4 md:mx-0 md:mb-0 relative">
 
@@ -206,9 +235,21 @@ export default function AdminChat({ chats, setChats, selectedChat, setSelectedCh
                                         {chat.lastMessage || "Nouveau message"}
                                     </p>
                                 </div>
-                                {chat.unreadAdmin > 0 && selectedChat?.id !== chat.id && (
-                                    <div className="absolute top-4 right-4 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                                )}
+                                <div className="flex flex-col items-end gap-2">
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleDeleteChat(chat.id);
+                                        }}
+                                        className="opacity-0 group-hover:opacity-100 p-2 hover:bg-red-50 text-red-500 rounded-lg transition-all"
+                                        title="Supprimer"
+                                    >
+                                        <Trash2 className="w-4 h-4" />
+                                    </button>
+                                    {chat.unreadAdmin > 0 && selectedChat?.id !== chat.id && (
+                                        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-sm shadow-red-500/50" />
+                                    )}
+                                </div>
                             </button>
                         ))
                     )}
@@ -241,7 +282,15 @@ export default function AdminChat({ chats, setChats, selectedChat, setSelectedCh
                                     <p className="text-[10px] text-emerald-500 font-bold mt-1 uppercase tracking-widest">Client en ligne</p>
                                 </div>
                             </div>
-                            {/* Bouton fermeture mobile optionnel ou autre action */}
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={() => handleDeleteChat()}
+                                    className="p-2 hover:bg-red-50 text-red-500 rounded-full transition-all"
+                                    title="Supprimer la discussion"
+                                >
+                                    <Trash2 className="w-5 h-5" />
+                                </button>
+                            </div>
                         </div>
 
                         {/* Messages Area */}

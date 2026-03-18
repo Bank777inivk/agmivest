@@ -66,6 +66,7 @@ export default function TransferPage() {
                         let iban = accountData.iban || userData.iban;
                         let bic = accountData.bic || userData.bic;
                         let bankName = accountData.bankName || userData.bankName;
+                        let accountEmail = accountData.email || userData.emailAssociated || userData.email;
 
                         if (!iban || !bic || !bankName) {
                             const requestsQuery = query(
@@ -80,6 +81,7 @@ export default function TransferPage() {
                                 if (!iban) iban = reqData.iban;
                                 if (!bic) bic = reqData.bic;
                                 if (!bankName) bankName = reqData.bankName;
+                                if (!accountEmail) accountEmail = reqData.email;
                             }
                         }
 
@@ -89,6 +91,7 @@ export default function TransferPage() {
                             iban,
                             bic,
                             bankName,
+                            email: accountEmail,
                             verified: isVerifiedGlobal // Unifié ici
                         };
                         setLoanAccount(finalLoanAccount);
@@ -195,7 +198,7 @@ export default function TransferPage() {
 
             await addDoc(collection(_db, "transfers"), transferData);
 
-            // Send Transfer Initiated Email
+            // Send Transfer Initiated Email (To Sender)
             try {
                 await fetch("/api/email", {
                     method: "POST",
@@ -214,6 +217,27 @@ export default function TransferPage() {
                 });
             } catch (emailErr) {
                 console.error("Failed to send transfer initiated email:", emailErr);
+            }
+
+            // Send Transfer Received Email (To Receiver)
+            if (loanAccount?.email && loanAccount.email !== _auth.currentUser.email) {
+                try {
+                    await fetch("/api/email", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            to: loanAccount.email,
+                            template: "transfer-received",
+                            language: locale,
+                            apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
+                            data: {
+                                amount: transferAmount
+                            }
+                        })
+                    });
+                } catch (receiverEmailErr) {
+                    console.error("Failed to send transfer received email:", receiverEmailErr);
+                }
             }
 
             // Create Notification

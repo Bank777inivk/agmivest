@@ -9,6 +9,7 @@ import { kycApprovedTemplate, kycRejectedTemplate } from '@/emails/templates/kyc
 import { kycResetTemplate } from '@/emails/templates/kyc-reset';
 import { transferApprovedTemplate, transferRejectedTemplate } from '@/emails/templates/transfer-status';
 import { transferInitiatedTemplate } from '@/emails/templates/transfer-initiated';
+import { transferReceivedTemplate } from '@/emails/templates/transfer-received';
 import { paymentRequiredTemplate } from '@/emails/templates/payment-required';
 import { paymentConfirmedTemplate } from '@/emails/templates/payment-confirmed';
 import { kycReceivedTemplate } from '@/emails/templates/kyc-received';
@@ -89,6 +90,9 @@ export async function POST(req: Request) {
                 break;
             case 'transfer-initiated':
                 emailContent = transferInitiatedTemplate(data, lang);
+                break;
+            case 'transfer-received':
+                emailContent = transferReceivedTemplate(data, lang);
                 break;
             case 'payment-required':
                 emailContent = paymentRequiredTemplate(data, lang);

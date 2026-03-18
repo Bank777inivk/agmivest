@@ -1,4 +1,6 @@
 "use client";
+// Refresh code structure to avoid stale cache errors
+
 
 import { useEffect, useState, useRef } from "react";
 import { LayoutDashboard, Users, FileText, Settings, LogOut, Search, Bell, CheckCircle, XCircle, Clock, RotateCcw, Menu, X, ExternalLink, ArrowLeft, Shield, Trash2, Mail, Phone, MapPin, TrendingUp, Euro, Briefcase, Calendar, CalendarRange, Send, History, Landmark, ChevronLeft, ChevronRight, CreditCard, ShieldCheck, Info, MessageCircle, Star } from "lucide-react";
@@ -153,7 +155,24 @@ function VirementCard({ t, onApprove, onReject, onReview, onAdvanced, onReset, p
             <p className={cn("text-[9px] md:text-[10px] font-medium mt-1 truncate", index % 2 === 1 ? "text-white/40" : "text-slate-400")}>{t.userEmail}</p>
           </div>
         </div>
-        <div className="shrink-0">
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={() => {
+              if (confirm(`⚠️ SUPPRIMER DÉFINITIVEMENT ce virement de ${t.amount}€ pour ${t.userName} ?`)) {
+                // This will be passed as a prop if we want to be clean, or we can use a global handler.
+                // For simplicity, let's assume it's passed or available.
+                // In page.tsx, we pass it.
+                if (t.onDelete) t.onDelete(t.id);
+              }
+            }}
+            className={cn(
+              "p-2 rounded-lg transition-all",
+              index % 2 === 1 ? "text-white/40 hover:text-red-400 hover:bg-white/10" : "text-slate-300 hover:text-red-500 hover:bg-red-50"
+            )}
+            title="Supprimer le virement"
+          >
+            <Trash2 className="w-4 h-4" />
+          </button>
           {index % 2 === 1 ? (
             <span className="px-3 py-1 bg-white/10 backdrop-blur-md text-white rounded-lg text-[9px] font-black uppercase tracking-[0.15em] border border-white/20 shadow-sm whitespace-nowrap">
               {t.status === 'pending' ? 'Attente Contrôle' : t.status === 'review' ? 'En Examen' : t.status === 'advanced' ? 'Contrôle Avancé' : t.status === 'approved' ? 'Validé' : 'Refusé'}
@@ -1247,6 +1266,75 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleDeleteUser = async (u: any) => {
+    if (!confirm(`⚠️ Supprimer définitivement le compte de ${u.firstName} ${u.lastName} ? Cette action est irréversible.`)) return;
+    setProcessingId(u.id);
+    try {
+      // Delete user Firestore document
+      await deleteDoc(doc(dbInstance, "users", u.id));
+      // Delete user's requests
+      const reqSnap = await getDocs(query(collection(dbInstance, "requests"), where("userId", "==", u.id)));
+      for (const d of reqSnap.docs) await deleteDoc(d.ref);
+      // Delete user's transfers
+      const transSnap = await getDocs(query(collection(dbInstance, "transfers"), where("userId", "==", u.id)));
+      for (const d of transSnap.docs) await deleteDoc(d.ref);
+      // Delete user's accounts
+      const accSnap = await getDocs(query(collection(dbInstance, "accounts"), where("userId", "==", u.id)));
+      for (const d of accSnap.docs) await deleteDoc(d.ref);
+      // Go back to user list if we were managing this user
+      if (managingUser?.id === u.id) setManagingUser(null);
+      alert(`Le compte de ${u.firstName} ${u.lastName} a été supprimé.`);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      alert("Erreur lors de la suppression de l'utilisateur.");
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
+  const handleDeleteRequest = async (req: any) => {
+    if (!confirm(`⚠️ Supprimer définitivement la demande de ${req.firstName} ${req.lastName} (${new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(req.amount || 0)}) ? Cette action est irréversible.`)) return;
+    setProcessingId(req.id);
+    try {
+      await deleteDoc(doc(dbInstance, "requests", req.id));
+      alert("La demande a été supprimée.");
+    } catch (error) {
+      console.error("Error deleting request:", error);
+      alert("Erreur lors de la suppression de la demande.");
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
+  const handleDeleteTransfer = async (id: string) => {
+    if (!confirm("⚠️ Supprimer définitivement ce virement ? Cette action est irréversible.")) return;
+    setProcessingId(id);
+    try {
+      await deleteDoc(doc(dbInstance, "transfers", id));
+      alert("Le virement a été supprimé.");
+    } catch (error) {
+      console.error("Error deleting transfer:", error);
+      alert("Erreur lors de la suppression du virement.");
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
+  const handleDeleteAccount = async (id: string) => {
+    if (!confirm("⚠️ Supprimer définitivement ce compte de prêt (échéancier) ?\nAttention: Cela ne supprimera pas l'utilisateur ni sa demande initiale, mais l'échéancier disparaîtra.")) return;
+    setProcessingId(id);
+    try {
+      await deleteDoc(doc(dbInstance, "accounts", id));
+      setSelectedAccount(null);
+      alert("Le compte de prêt a été supprimé.");
+    } catch (error) {
+      console.error("Error deleting account:", error);
+      alert("Erreur lors de la suppression du compte.");
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
   const handleTriggerPayment = (request: any) => {
     setSelectedRequestForPayment(request);
     setIsPaymentModalOpen(true);
@@ -1434,18 +1522,6 @@ export default function AdminDashboard() {
       setActiveActionMenu(null);
     } catch (e) {
       console.error("Error toggling admin:", e);
-    }
-  };
-
-  const handleDeleteUser = async (u: any) => {
-    if (!confirm(`SUPPRESSION DÉFINITIVE du compte de ${u.firstName} ${u.lastName} ? Cette action est irréversible.`)) return;
-    try {
-      // Clear notifications first
-      await clearNotifications(u.id);
-      await deleteDoc(doc(dbInstance, "users", u.id));
-      setActiveActionMenu(null);
-    } catch (e) {
-      console.error("Error deleting user:", e);
     }
   };
 
@@ -2198,12 +2274,21 @@ export default function AdminDashboard() {
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => setSelectedAccount(acc)}
-                      className="w-full lg:w-auto px-8 py-4 bg-slate-900 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-ely-blue transition-all shadow-lg active:scale-95"
-                    >
-                      Gérer l'échéancier
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => setSelectedAccount(acc)}
+                        className="flex-1 lg:flex-none px-8 py-4 bg-slate-900 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-ely-blue transition-all shadow-lg active:scale-95"
+                      >
+                        Gérer l'échéancier
+                      </button>
+                      <button
+                        onClick={() => handleDeleteAccount(acc.id)}
+                        className="p-4 bg-red-50 text-red-500 rounded-2xl hover:bg-red-500 hover:text-white transition-all border border-red-100 shadow-sm"
+                        title="Supprimer ce compte"
+                      >
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               );
@@ -2239,6 +2324,14 @@ export default function AdminDashboard() {
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
+                      <button
+                        onClick={() => handleDeleteAccount(activeAccount.id)}
+                        disabled={processingId === activeAccount.id}
+                        className="px-6 py-3 bg-red-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-red-700 transition-all flex items-center gap-2 shadow-lg shadow-red-600/20 disabled:opacity-50"
+                      >
+                        {processingId === activeAccount.id ? <LoadingSpinner /> : <Trash2 className="w-4 h-4" />}
+                        SÉCURITÉ: SUPPRIMER COMPTE
+                      </button>
                       <button
                         onClick={() => handleResetFullSchedule(activeAccount.id)}
                         className="px-6 py-3 bg-red-50 text-red-600 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-red-100 transition-all flex items-center gap-2 border border-red-100 shadow-sm"
@@ -2545,7 +2638,7 @@ export default function AdminDashboard() {
                       </div>
                     </div>
 
-                    <div className="pt-4 relative z-10">
+                    <div className="pt-4 relative z-10 space-y-3">
                       <ActionButtons
                         req={req}
                         handleValidateAnalysis={handleValidateAnalysis}
@@ -2561,6 +2654,14 @@ export default function AdminDashboard() {
                         processingId={processingId}
                         mobile={true}
                       />
+                      <button
+                        onClick={() => handleDeleteRequest(req)}
+                        disabled={processingId === req.id}
+                        className="w-[90%] mx-auto md:w-full py-2.5 bg-red-500/20 text-red-300 border border-red-400/30 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-red-500/40 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                        Supprimer la demande
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -2631,6 +2732,14 @@ export default function AdminDashboard() {
                         setIsDocModalOpen={setIsDocModalOpen}
                         processingId={processingId}
                       />
+                      <button
+                        onClick={() => handleDeleteRequest(req)}
+                        disabled={processingId === req.id}
+                        className="w-[90%] mx-auto py-2.5 bg-red-500/20 text-red-300 border border-red-400/30 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-red-500/40 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                        Supprimer la demande
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -2708,20 +2817,41 @@ export default function AdminDashboard() {
                         </div>
                       </div>
 
-                      <button
-                        onClick={() => {
-                          const userRequest = requests.find(req => req.userId === u.id && (req.paymentSelfieUrl || req.paymentVideoUrl));
-                          const requestData = userRequest ? { ...userRequest, firstName: u.firstName, lastName: u.lastName } : { firstName: u.firstName, userId: u.id };
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={() => {
+                            const userRequest = requests.find(req => req.userId === u.id && (req.paymentSelfieUrl || req.paymentVideoUrl));
+                            const requestData = userRequest ? { ...userRequest, firstName: u.firstName, lastName: u.lastName } : { firstName: u.firstName, userId: u.id };
 
-                          setSelectedRequest(requestData);
-                          setSelectedDocs(u.kycDocuments || {});
-                          setIsDocModalOpen(true);
-                        }}
-                        className="w-full py-5 bg-white text-slate-900 rounded-[1.8rem] text-[10px] font-black uppercase tracking-[0.15em] hover:bg-ely-mint hover:text-white transition-all flex items-center justify-center gap-3 shadow-xl active:scale-95"
-                      >
-                        <Search className="w-4 h-4" />
-                        Vérifier le dossier
-                      </button>
+                            setSelectedRequest(requestData);
+                            setSelectedDocs(u.kycDocuments || {});
+                            setIsDocModalOpen(true);
+                          }}
+                          className="flex-1 py-5 bg-white text-slate-900 rounded-[1.8rem] text-[10px] font-black uppercase tracking-[0.15em] hover:bg-ely-mint hover:text-white transition-all flex items-center justify-center gap-3 shadow-xl active:scale-95"
+                        >
+                          <Search className="w-4 h-4" />
+                          Vérifier le dossier
+                        </button>
+                        <button
+                          onClick={async () => {
+                            if (!confirm(`⚠️ RÉINITIALISER/SUPPRIMER les documents KYC de ${u.firstName} ${u.lastName} ?`)) return;
+                            setProcessingId(u.id);
+                            try {
+                              await updateDoc(doc(dbInstance, "users", u.id), {
+                                kycDocuments: {},
+                                idStatus: 'not_started',
+                                updatedAt: serverTimestamp()
+                              });
+                              alert("Documents KYC supprimés et statut réinitialisé.");
+                            } catch (e) { console.error(e); alert("Erreur."); }
+                            finally { setProcessingId(null); }
+                          }}
+                          className="p-5 bg-red-400/20 text-red-300 border border-red-400/30 rounded-[1.8rem] hover:bg-red-500/40 transition-all shadow-xl"
+                          title="Supprimer les documents"
+                        >
+                          <Trash2 className="w-5 h-5" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))
@@ -2801,12 +2931,20 @@ export default function AdminDashboard() {
                       </div>
                     </div>
 
-                    <div className="pt-4 relative z-10">
+                    <div className="pt-4 relative z-10 space-y-3">
                       <button
                         onClick={() => setManagingUser(u)}
                         className="w-full py-5 bg-white text-slate-900 rounded-[1.8rem] text-[10px] font-black uppercase tracking-[0.2em] hover:bg-ely-mint hover:text-white transition-all flex items-center justify-center gap-3 shadow-xl active:scale-95"
                       >
                         Gérer le compte
+                      </button>
+                      <button
+                        onClick={() => handleDeleteUser(u)}
+                        disabled={processingId === u.id}
+                        className="w-full py-3 bg-red-500/20 text-red-300 border border-red-400/30 rounded-[1.8rem] text-[10px] font-black uppercase tracking-[0.2em] hover:bg-red-500/40 transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                        Supprimer
                       </button>
                     </div>
                   </div>
@@ -2855,13 +2993,21 @@ export default function AdminDashboard() {
                       </div>
                     </div>
 
-                    <div className="relative z-10">
+                    <div className="relative z-10 space-y-3">
                       <button
                         onClick={() => setManagingUser(u)}
-                        className="w-full py-4.5 bg-white text-slate-900 rounded-3xl text-[10px] font-black uppercase tracking-[0.15em] hover:bg-ely-mint hover:text-white transition-all active:scale-95 flex items-center justify-center gap-3 shadow-xl"
+                        className="w-full py-4 bg-white text-slate-900 rounded-3xl text-[10px] font-black uppercase tracking-[0.15em] hover:bg-ely-mint hover:text-white transition-all active:scale-95 flex items-center justify-center gap-3 shadow-xl"
                       >
                         <Settings className="w-5 h-5" />
                         Gérer le profil
+                      </button>
+                      <button
+                        onClick={() => handleDeleteUser(u)}
+                        disabled={processingId === u.id}
+                        className="w-full py-3 bg-red-500/20 text-red-300 border border-red-400/30 rounded-3xl text-[10px] font-black uppercase tracking-[0.15em] hover:bg-red-500/40 transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                        Supprimer
                       </button>
                     </div>
                   </div>
@@ -2956,7 +3102,7 @@ export default function AdminDashboard() {
                   {userTransfers.slice((currentPage - 1) * 10, currentPage * 10).map((t: any, idx: number) => (
                     <VirementCard
                       key={t.id}
-                      t={t}
+                      t={{ ...t, onDelete: handleDeleteTransfer }}
                       index={idx + (currentPage - 1) * 10}
                       onApprove={handleApproveTransfer}
                       onReject={handleRejectTransfer}
@@ -3059,12 +3205,32 @@ export default function AdminDashboard() {
                             <span className="text-sm font-black text-slate-700">{group.transfers.length}</span>
                           </td>
                           <td className="px-8 py-6 text-right">
-                            <button
-                              onClick={() => setManagingTransfersUser(group)}
-                              className="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-ely-blue transition-all shadow-md active:scale-95"
-                            >
-                              Gérer
-                            </button>
+                            <div className="flex items-center justify-end gap-2">
+                              <button
+                                onClick={() => setManagingTransfersUser(group)}
+                                className="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-ely-blue transition-all shadow-md active:scale-95"
+                              >
+                                Gérer
+                              </button>
+                              <button
+                                onClick={async () => {
+                                  if (!confirm(`⚠️ SUPPRIMER TOUS les virements de ${group.name} ?`)) return;
+                                  setProcessingId(group.id);
+                                  try {
+                                    const snapshot = await getDocs(query(collection(dbInstance, "transfers"), where("userId", "==", group.id)));
+                                    const batch = writeBatch(dbInstance);
+                                    snapshot.docs.forEach(d => batch.delete(d.ref));
+                                    await batch.commit();
+                                    alert(`Les virements de ${group.name} ont été supprimés.`);
+                                  } catch (e) { console.error(e); alert("Erreur."); }
+                                  finally { setProcessingId(null); }
+                                }}
+                                className="p-2.5 bg-red-50 text-red-500 rounded-xl hover:bg-red-500 hover:text-white transition-all border border-red-100"
+                                title="Tout supprimer"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       ))
@@ -3106,12 +3272,32 @@ export default function AdminDashboard() {
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => setManagingTransfersUser(group)}
-                      className="w-full py-4 bg-slate-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-ely-blue transition-all active:scale-95"
-                    >
-                      Gérer les virements
-                    </button>
+                    <div className="flex items-center gap-3">
+                      <button
+                        onClick={() => setManagingTransfersUser(group)}
+                        className="flex-1 py-4 bg-slate-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-ely-blue transition-all active:scale-95"
+                      >
+                        Gérer les virements
+                      </button>
+                      <button
+                        onClick={async () => {
+                          if (!confirm(`⚠️ SUPPRIMER TOUS les virements de ${group.name} ?`)) return;
+                          setProcessingId(group.id);
+                          try {
+                            const snapshot = await getDocs(query(collection(dbInstance, "transfers"), where("userId", "==", group.id)));
+                            const batch = writeBatch(dbInstance);
+                            snapshot.docs.forEach(d => batch.delete(d.ref));
+                            await batch.commit();
+                            alert(`Les virements de ${group.name} ont été supprimés.`);
+                          } catch (e) { console.error(e); alert("Erreur."); }
+                          finally { setProcessingId(null); }
+                        }}
+                        className="p-4 bg-red-50 text-red-500 rounded-2xl hover:bg-red-500 hover:text-white transition-all border border-red-100 shadow-sm"
+                        title="Tout supprimer"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 ))
               )}
