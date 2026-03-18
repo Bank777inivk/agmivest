@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "@next/third-parties": "^16.1.6",
+    "@sentry/nextjs": "^10.44.0",
     "@types/nodemailer": "^7.0.11",
     "@types/nprogress": "^0.2.3",
+    "@vercel/speed-insights": "^2.0.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "firebase": "^12.8.0",

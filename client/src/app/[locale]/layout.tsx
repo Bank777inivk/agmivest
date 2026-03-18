@@ -9,6 +9,7 @@ import { routing } from '@/i18n/routing';
 import ProgressBar from "@/components/ProgressBar";
 import { Suspense } from "react";
 import ClientProvider from "@/components/ClientProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import { headers } from "next/headers";
 
@@ -153,6 +154,7 @@ export default async function LocaleLayout({
           <Suspense fallback={null}>
             <ProgressBar />
           </Suspense>
+          <SpeedInsights />
           {children}
           {process.env.NEXT_PUBLIC_GOOGLE_ADS_ID && (
             <>

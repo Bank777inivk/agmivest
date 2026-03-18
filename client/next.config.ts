@@ -1,6 +1,6 @@
 import createNextIntlPlugin from 'next-intl/plugin';
+import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from 'next';
-import path from 'path';
 
 const withNextIntl = createNextIntlPlugin(
   './src/i18n/request.ts'
@@ -34,7 +34,6 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
 
-
   // Production optimizations
   reactStrictMode: true,
   async rewrites() {
@@ -51,4 +50,22 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+// Combine plugins
+const configWithIntl = withNextIntl(nextConfig);
+
+export default withSentryConfig(configWithIntl, {
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options
+
+  org: "agm-invest",
+  project: "javascript-nextjs",
+
+  // Only print logs for uploading source maps in CI
+  silent: !process.env.CI,
+
+  // For all available options, see:
+  // https://www.npmjs.com/package/@sentry/webpack-plugin#options
+
+  // Automatically tree-shake Sentry logger statements to reduce bundle size
+  disableLogger: true,
+});
