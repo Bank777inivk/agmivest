@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from 'next-intl/server';
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { NextIntlClientProvider } from 'next-intl';
@@ -21,7 +22,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'SEO' });
   const headersList = await headers();
   const currentPath = headersList.get('x-current-path') || '/';
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.agm-negoce.com';
@@ -32,10 +35,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      default: "AGM INVEST | Crédit & Assurances",
-      template: "%s | AGM INVEST"
+      default: t('default.title'),
+      template: `%s | ${t('default.title').split('|')[0].trim()}`
     },
-    description: "Partenaire de confiance pour le financement immobilier, crédits à la consommation et assurances en Europe. Solutions flexibles et rapides.",
+    description: t('default.description'),
     keywords: ["crédit immobilier", "assurance emprunteur", "financement", "prêt personnel", "AGM INVEST", "crédit rapide"],
     authors: [{ name: "AGM INVEST" }],
     creator: "AGM INVEST",
@@ -48,18 +51,13 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(cleanBaseUrl),
     alternates: {
       canonical: currentPath,
-      languages: {
-        'fr-FR': '/fr',
-        'en-US': '/en',
-        'de-DE': '/de',
-        'es-ES': '/es',
-        'it-IT': '/it',
-        'pt-PT': '/pt',
-        'tr-TR': '/tr',
-        'ro-RO': '/ro',
-        'nl-NL': '/nl',
-        'pl-PL': '/pl',
-      },
+      languages: routing.locales.reduce((acc, l) => {
+        // Extract the sub-path after the locale
+        const pathParts = currentPath.split('/').filter(Boolean);
+        const subPath = pathParts.slice(1).join('/');
+        acc[l] = `/${l}${subPath ? '/' + subPath : ''}`;
+        return acc;
+      }, {} as Record<string, string>),
     },
     openGraph: {
       title: 'AGM INVEST | Crédit & Assurances',

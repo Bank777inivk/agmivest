@@ -1,4 +1,74 @@
 {
+  "SEO": {
+    "default": {
+      "title": "AGM INVEST | Kredit, Rückkauf & Versicherung",
+      "description": "Ihr Partner für Immobilienfinanzierung, Konsumentenkredite und Versicherungen in Europa. Flexible und schnelle Lösungen."
+    },
+    "About": {
+      "title": "Über uns",
+      "description": "Entdecken Sie die Geschichte und Werte von AGM INVEST, Ihrem Maklerexperten seit über 20 Jahren."
+    },
+    "Services": {
+      "title": "Unsere Finanzdienstleistungen",
+      "description": "Immobilienkredit, Privatkredit, Restschuldversicherung: Entdecken Sie alle unsere Finanzierungslösungen."
+    },
+    "Contact": {
+      "title": "Kontaktieren Sie uns",
+      "description": "Fragen zu Ihrem Projekt? Unsere Berater antworten Ihnen innerhalb von 24 Stunden. Kontaktieren Sie AGM INVEST."
+    },
+    "Reviews": {
+      "title": "Kundenbewertungen",
+      "description": "Lesen Sie die Erfahrungsberichte unserer Kunden, die mit unseren Kredit- und Versicherungslösungen zufrieden sind."
+    },
+    "Documents": {
+      "title": "Erforderliche Dokumente",
+      "description": "Bereiten Sie Ihren Kreditantrag mit der Liste der erforderlichen Unterlagen vor."
+    },
+    "Login": {
+      "title": "Kunden-Login",
+      "description": "Greifen Sie auf Ihren sicheren Bereich zu, um Ihre Kreditanfragen zu verfolgen und Ihre Dokumente zu verwalten."
+    },
+    "Register": {
+      "title": "Kundenregistrierung",
+      "description": "Erstellen Sie Ihr AGM INVEST-Konto, um Ihren Online-Finanzierungsantrag zu starten."
+    },
+    "CreditRequest": {
+      "title": "Online-Kreditantrag",
+      "description": "Simulieren und reichen Sie Ihren Kreditantrag in wenigen Minuten für eine schnelle Antwort ein."
+    },
+    "Legal": {
+      "title": "Impressum",
+      "description": "Rechtliche und gerichtliche Informationen über das Unternehmen AGM INVEST."
+    },
+    "Privacy": {
+      "title": "Datenschutzrichtlinie",
+      "description": "Wie wir Ihre personenbezogenen Daten bei AGM INVEST schützen und verwalten."
+    },
+    "Cookies": {
+      "title": "Cookie-Verwaltung",
+      "description": "Informationen zur Verwendung von Cookies auf der Website agm-negoce.com."
+    },
+    "CGU": {
+      "title": "Nutzungsbedingungen",
+      "description": "Regeln und Bedingungen für die Nutzung der AGM INVEST-Plattform."
+    },
+    "Refund": {
+      "title": "Rückerstattungsrichtlinie",
+      "description": "Bedingungen und Konditionen für die Rückerstattung Ihrer Gebühren oder Raten."
+    },
+    "Security": {
+      "title": "Vertrauen & Sicherheit",
+      "description": "Entdecken Sie unsere Sicherheitsprotokolle zum Schutz Ihrer Transaktionen und Bankdaten."
+    },
+    "Promo": {
+      "title": "Werbehinweise",
+      "description": "Informationen zu Werbeangeboten und Anzeigen von AGM INVEST."
+    },
+    "Financial": {
+      "title": "Finanzieller Haftungsausschluss",
+      "description": "Wichtige Warnungen vor den Risiken im Zusammenhang mit Krediten und finanziellen Verpflichtungen."
+    }
+  },
   "Home": {
     "Services": {
       "title": "Unsere Finanzierungslösungen",

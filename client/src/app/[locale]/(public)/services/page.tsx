@@ -1,14 +1,23 @@
-"use client";
-
 import ServicesSection from "@/components/ServicesSection";
 import ProcessSection from "@/components/ProcessSection";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { Metadata } from "next";
 
-export default function ServicesPage() {
-    const t = useTranslations('ServicesPage');
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'SEO.Services' });
+    return {
+        title: t('title'),
+        description: t('description'),
+    };
+}
+
+export default async function ServicesPage({ params }: { params: { locale: string } }) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'ServicesPage' });
 
     return (
         <main className="min-h-screen bg-white">
@@ -24,7 +33,7 @@ export default function ServicesPage() {
                         {t('CTA.text')}
                     </p>
                     <Link
-                        href="/credit-request"
+                        href={`/${locale}/credit-request`}
                         className="inline-flex items-center gap-3 bg-ely-mint text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-ely-mint/90 transition-all shadow-lg hover:shadow-ely-mint/20 hover:-translate-y-1"
                     >
                         {t('CTA.button')}

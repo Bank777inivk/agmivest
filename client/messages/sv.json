@@ -1,4 +1,74 @@
 {
+  "SEO": {
+    "default": {
+      "title": "AGM INVEST | SV Language Support",
+      "description": "Trusted partner for real estate financing, consumer credit and insurance in Europe. Flexible and fast solutions."
+    },
+    "About": {
+      "title": "About Us",
+      "description": "Discover the history and values of AGM INVEST, your brokerage expert for over 20 years."
+    },
+    "Services": {
+      "title": "Our Financial Services",
+      "description": "Mortgage, personal loan, borrower insurance: discover all our financing solutions."
+    },
+    "Contact": {
+      "title": "Contact Us",
+      "description": "A question about your project? Our advisors answer you within 24 hours. Contact AGM INVEST."
+    },
+    "Reviews": {
+      "title": "Customer Reviews",
+      "description": "Consult the testimonials of our customers satisfied by our credit and insurance solutions."
+    },
+    "Documents": {
+      "title": "Required Documents",
+      "description": "Prepare your loan application with the list of necessary supporting documents."
+    },
+    "Login": {
+      "title": "Customer Login",
+      "description": "Access your secure area to track your loan requests and manage your documents."
+    },
+    "Register": {
+      "title": "Customer Registration",
+      "description": "Create your AGM INVEST account to start your online financing application."
+    },
+    "CreditRequest": {
+      "title": "Online Loan Application",
+      "description": "Simulate and submit your credit application in a few minutes for a fast response."
+    },
+    "Legal": {
+      "title": "Legal Notices",
+      "description": "Legal and jurisdictional information regarding the AGM INVEST company."
+    },
+    "Privacy": {
+      "title": "Privacy Policy",
+      "description": "How we protect and manage your personal data at AGM INVEST."
+    },
+    "Cookies": {
+      "title": "Cookie Management",
+      "description": "Information on the use of cookies on the agm-negoce.com website."
+    },
+    "CGU": {
+      "title": "Terms of Use",
+      "description": "Rules and conditions for using the AGM INVEST platform."
+    },
+    "Refund": {
+      "title": "Refund Policy",
+      "description": "Terms and conditions related to the refund of your fees or installments."
+    },
+    "Security": {
+      "title": "Trust & Security",
+      "description": "Discover our security protocols to protect your transactions and banking data."
+    },
+    "Promo": {
+      "title": "Advertising Notices",
+      "description": "Information regarding promotional offers and advertisements of AGM INVEST."
+    },
+    "Financial": {
+      "title": "Financial Disclaimer",
+      "description": "Important warnings about the risks related to credit and financial commitments."
+    }
+  },
   "Home": {
     "Services": {
       "title": "Våra finansieringslösningar",

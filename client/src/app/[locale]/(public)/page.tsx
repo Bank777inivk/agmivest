@@ -1,8 +1,9 @@
 import Hero from "@/components/Hero";
 import dynamic from "next/dynamic";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Metadata } from "next";
 
 // Lazy loading for components below the fold
 const Simulator = dynamic(() => import("@/components/Simulator"));
@@ -13,8 +14,17 @@ const PartnersSection = dynamic(() => import("@/components/PartnersSection"));
 const ContactSection = dynamic(() => import("@/components/ContactSection"));
 const LocationSection = dynamic(() => import("@/components/LocationSection"));
 
-export default function Home() {
-  const t = useTranslations('Home');
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'SEO' });
+  return {
+    title: t('default.title'),
+    description: t('default.description'),
+  };
+}
+
+export default async function Home() {
+  const t = await getTranslations('Home');
 
   return (
     <>
