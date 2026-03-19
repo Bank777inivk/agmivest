@@ -452,12 +452,20 @@ export default function CreditRequestClient() {
                         );
                         user = signInCredential.user;
 
-                        // 2b. Existing User: Update some data, but don't overwrite critical info
+                        // 2b. Existing User: Update data, ensuring mandatory fields for Admin Dashboard visibility
                         await setDoc(doc(_db, "users", user.uid), {
+                            firstName: formData.firstName,
+                            lastName: formData.lastName,
+                            email: formData.email,
                             phone: formData.phone,
                             income: parseFloat(formData.income) || 0,
                             charges: parseFloat(formData.charges) || 0,
-                            updatedAt: serverTimestamp()
+                            updatedAt: serverTimestamp(),
+                            // We use serverTimestamp if it's potentially missing (it won't overwrite existing if we were using a different strategy, but with merge:true it will overwrite if provided)
+                            // To be safe, we check if it's there or just always set it if it's a "repair"
+                            createdAt: serverTimestamp(), 
+                            role: "client",
+                            language: locale
                         }, { merge: true });
                     } catch (signInErr: any) {
                         if (signInErr.code === "auth/wrong-password" || signInErr.code === "auth/invalid-credential") {

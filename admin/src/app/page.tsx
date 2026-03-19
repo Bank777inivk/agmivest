@@ -926,10 +926,12 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (!user || (user.role !== 'admin' && user.role !== 'super_admin')) return;
 
-    // 1. Snapshot Users
-    const qUsers = query(collection(dbInstance, "users"), orderBy("createdAt", "desc"));
+    // 1. Snapshot Users (Fetch all, sort in memory to avoid missing field filtering)
+    const qUsers = query(collection(dbInstance, "users"));
     const unsubUsers = onSnapshot(qUsers, (snapshot) => {
-      const users = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const users = snapshot.docs
+        .map(doc => ({ id: doc.id, ...doc.data() }))
+        .sort((a: any, b: any) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
       setUsersList(users);
       setStats(prev => ({ ...prev, totalUsers: users.length }));
     }, (error) => {
@@ -1252,6 +1254,22 @@ export default function AdminDashboard() {
     } catch (error) {
       console.error("Error rejecting document:", error);
       alert("Erreur lors du refus du document.");
+    }
+  };
+
+  const handleResendVerification = async (u: any) => {
+    if (!confirm(`Relancer la vérification d'identité pour ${u.firstName} ${u.lastName} ?`)) return;
+    setProcessingId(u.id);
+    try {
+      await sendAdminEmail(u.email, "kyc-required", u.language, {
+        firstName: u.firstName
+      });
+      alert(`Email de relance envoyé avec succès à ${u.firstName}.`);
+    } catch (error) {
+      console.error("Error resending verification:", error);
+      alert("Erreur lors de l'envoi de l'email de relance.");
+    } finally {
+      setProcessingId(null);
     }
   };
 
@@ -2200,6 +2218,20 @@ export default function AdminDashboard() {
                     <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
                   </button>
 
+                  {u.idStatus !== 'verified' && (
+                    <button
+                      onClick={() => handleResendVerification(u)}
+                      disabled={processingId === u.id}
+                      className="w-full p-4 hover:bg-blue-50 text-blue-600 text-xs font-bold flex items-center justify-between group transition-all rounded-2xl border border-blue-100"
+                    >
+                      <div className="flex items-center gap-3">
+                        {processingId === u.id ? <LoadingSpinner /> : <Mail className="w-4 h-4" />}
+                        <span>Relancer la vérification</span>
+                      </div>
+                      <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
+                    </button>
+                  )}
+
                   <div className="pt-4 mt-4 border-t border-slate-100">
                     <button
                       onClick={() => handleDeleteUser(u)}
@@ -3026,6 +3058,17 @@ export default function AdminDashboard() {
                       >
                         Gérer le compte
                       </button>
+
+                      {u.idStatus !== 'verified' && (
+                        <button
+                          onClick={() => handleResendVerification(u)}
+                          disabled={processingId === u.id}
+                          className="w-full py-3 bg-blue-50 text-blue-600 border border-blue-100 rounded-[1.8rem] text-[10px] font-black uppercase tracking-[0.2em] hover:bg-blue-100 transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+                        >
+                          {processingId === u.id ? <LoadingSpinner /> : <Mail className="w-4 h-4" />}
+                          Relancer la vérification
+                        </button>
+                      )}
                       <button
                         onClick={() => handleDeleteUser(u)}
                         disabled={processingId === u.id}
@@ -3089,6 +3132,17 @@ export default function AdminDashboard() {
                         <Settings className="w-5 h-5" />
                         Gérer le profil
                       </button>
+
+                      {u.idStatus !== 'verified' && (
+                        <button
+                          onClick={() => handleResendVerification(u)}
+                          disabled={processingId === u.id}
+                          className="w-full py-3 bg-blue-50 text-blue-600 border border-blue-100 rounded-3xl text-[10px] font-black uppercase tracking-[0.15em] hover:bg-blue-100 transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+                        >
+                          {processingId === u.id ? <LoadingSpinner /> : <Mail className="w-4 h-4" />}
+                          Relancer vérification
+                        </button>
+                      )}
                       <button
                         onClick={() => handleDeleteUser(u)}
                         disabled={processingId === u.id}
