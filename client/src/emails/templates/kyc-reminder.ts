@@ -7,9 +7,9 @@ interface KycReminderData {
 export function kycReminderTemplate(data: KycReminderData, lang: string = 'fr'): { subject: string; html: string } {
   const translations: Record<string, { subject: string; title: string; body: string; cta: string }> = {
     fr: {
-      subject: "Relance : Vérification de votre identité",
+      subject: "Relance : Verification de votre identite",
       title: "Action requise",
-      body: `Bonjour ${data.firstName},\n\nVotre vérification d'identité vous attend pour la finalisation de votre demande. Les prochaines étapes de votre dossier sont bloquées jusqu'à réception de vos documents.`,
+      body: `Bonjour ${data.firstName},\n\nVotre verification d'identite vous attend pour la finalisation de votre demande. Les prochaines etapes de votre dossier sont bloquees jusqu'a reception de vos documents.`,
       cta: "Finaliser ma demande"
     },
     en: {
@@ -75,7 +75,7 @@ export function kycReminderTemplate(data: KycReminderData, lang: string = 'fr'):
     
     <div style="background:#FFFBF0;border:1px solid #FDE68A;border-radius:12px;padding:24px;margin:0 0 24px;">
       <p style="font-size:14px;color:#92400E;font-weight:600;margin:0;line-height:1.6;">
-        Toutes les pièces peuvent être transmises de manière sécurisée depuis votre interface de vérification.
+        Toutes les pieces peuvent etre transmises de maniere securisee depuis votre interface de verification.
       </p>
     </div>
     
