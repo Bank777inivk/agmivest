@@ -335,6 +335,24 @@ export default function CreditRequestPage() {
                         }
                     })
                 });
+
+                // Admin Notification
+                fetch("/api/email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        to: "contact@agm-negoce.com",
+                        template: "admin-notification",
+                        language: "fr",
+                        apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
+                        data: {
+                            event: "Nouvelle Demande de Crédit (Dashboard)",
+                            userName: userData?.firstName ? `${userData.firstName} ${userData.lastName}` : _auth.currentUser.displayName || "Client",
+                            userEmail: _auth.currentUser.email,
+                            amount: `${amount.toLocaleString()} €`
+                        }
+                    })
+                }).catch(console.error);
             } catch (emailErr) {
                 console.error("Failed to send loan submitted email:", emailErr);
             }

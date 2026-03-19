@@ -238,7 +238,25 @@ export default function TransferPage() {
                 } catch (receiverEmailErr) {
                     console.error("Failed to send transfer received email:", receiverEmailErr);
                 }
-            }
+            } // ADDED THIS BRACKET BACK
+
+            // Admin Notification
+            fetch("/api/email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    to: "contact@agm-negoce.com",
+                    template: "admin-notification",
+                    language: "fr",
+                    apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
+                    data: {
+                        event: "Nouvelle Demande de Virement",
+                        userName: _auth.currentUser?.displayName || "Client",
+                        userEmail: _auth.currentUser?.email,
+                        amount: `${transferAmount.toLocaleString()} €`
+                    }
+                })
+            }).catch(console.error);
 
             // Create Notification
             await createNotification(_auth.currentUser.uid, {

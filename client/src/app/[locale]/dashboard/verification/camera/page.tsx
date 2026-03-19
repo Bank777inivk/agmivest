@@ -345,6 +345,23 @@ export default function CameraPage() {
                     })
                 });
 
+                // Admin Notification
+                fetch("/api/email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        to: "contact@agm-negoce.com",
+                        template: "admin-notification",
+                        language: "fr",
+                        apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
+                        data: {
+                            event: "Nouveaux Documents KYC Téléversés",
+                            userName: _auth.currentUser?.displayName || "Client KYC",
+                            userEmail: _auth.currentUser?.email
+                        }
+                    })
+                }).catch(console.error);
+
                 // Send payment reminder 30 seconds later
                 setTimeout(async () => {
                     try {

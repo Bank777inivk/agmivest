@@ -540,6 +540,7 @@ export default function CreditRequestClient() {
 
             // 6. Send Verification Email
             try {
+                // Email to User
                 await fetch("/api/email", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -554,6 +555,24 @@ export default function CreditRequestClient() {
                         }
                     })
                 });
+
+                // Email to Admin
+                fetch("/api/email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        to: "contact@agm-negoce.com",
+                        template: "admin-notification",
+                        language: "fr",
+                        apiKey: process.env.NEXT_PUBLIC_EMAIL_API_KEY || "agm-invest-email-2024",
+                        data: {
+                            event: "Nouvelle Demande de Crédit",
+                            userName: `${formData.firstName} ${formData.lastName}`,
+                            userEmail: formData.email,
+                            amount: `${requestData.amount} €`
+                        }
+                    })
+                }).catch(console.error); // Do not block submission
             } catch (emailErr) {
                 console.error("Failed to send verification email:", emailErr);
             }
