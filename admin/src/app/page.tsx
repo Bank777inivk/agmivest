@@ -1261,7 +1261,7 @@ export default function AdminDashboard() {
     if (!confirm(`Relancer la vérification d'identité pour ${u.firstName} ${u.lastName} ?`)) return;
     setProcessingId(u.id);
     try {
-      await sendAdminEmail(u.email, "kyc-required", u.language, {
+      await sendAdminEmail(u.email, "kyc-reminder", u.language, {
         firstName: u.firstName
       });
       alert(`Email de relance envoyé avec succès à ${u.firstName}.`);

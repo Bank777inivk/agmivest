@@ -5,6 +5,7 @@ import { loanApprovedTemplate } from '@/emails/templates/loan-approved';
 import { loanRejectedTemplate } from '@/emails/templates/loan-rejected';
 import { loanSubmittedTemplate } from '@/emails/templates/loan-submitted';
 import { kycRequiredTemplate } from '@/emails/templates/kyc-required';
+import { kycReminderTemplate } from '@/emails/templates/kyc-reminder';
 import { kycApprovedTemplate, kycRejectedTemplate } from '@/emails/templates/kyc-status';
 import { kycResetTemplate } from '@/emails/templates/kyc-reset';
 import { transferApprovedTemplate, transferRejectedTemplate } from '@/emails/templates/transfer-status';
@@ -72,6 +73,9 @@ export async function POST(req: Request) {
                 break;
             case 'kyc-required':
                 emailContent = kycRequiredTemplate(data, lang);
+                break;
+            case 'kyc-reminder':
+                emailContent = kycReminderTemplate(data, lang);
                 break;
             case 'kyc-approved':
                 emailContent = kycApprovedTemplate(data, lang);

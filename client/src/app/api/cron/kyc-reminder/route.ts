@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { sendEmail } from '@/lib/mailer';
 import { kycRequiredTemplate } from '@/emails/templates/kyc-required';
+import { kycReminderTemplate } from '@/emails/templates/kyc-reminder';
 
 const CRON_SECRET = process.env.CRON_SECRET;
 const FIREBASE_API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
@@ -170,7 +171,7 @@ export async function GET(req: Request) {
             if (!email) continue;
 
             try {
-                const emailContent = kycRequiredTemplate({ firstName }, locale);
+                const emailContent = kycReminderTemplate({ firstName }, locale);
                 await sendEmail({
                     to: email,
                     subject: emailContent.subject,
