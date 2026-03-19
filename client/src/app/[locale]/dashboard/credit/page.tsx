@@ -349,7 +349,35 @@ export default function CreditRequestPage() {
                             event: "Nouvelle Demande de Crédit (Dashboard)",
                             userName: userData?.firstName ? `${userData.firstName} ${userData.lastName}` : _auth.currentUser.displayName || "Client",
                             userEmail: _auth.currentUser.email,
-                            amount: `${amount.toLocaleString()} €`
+                            amount: `${amount.toLocaleString()} €`,
+                            fullData: {
+                                "Civilité": formData.civility,
+                                "Prénom": formData.firstName,
+                                "Nom": formData.lastName,
+                                "Date de naissance": formData.birthDate,
+                                "Lieu de naissance": formData.birthPlace,
+                                "Nationalité": formData.nationality,
+                                "Situation familiale": formData.maritalStatus,
+                                "Enfants à charge": formData.children,
+                                "Logement": formData.housingType,
+                                "Ancienneté logement": `${formData.housingSeniority} ans, ${formData.housingSeniorityMonths} mois`,
+                                "Pays de résidence": formData.residenceCountry,
+                                "Téléphone": formData.phone,
+                                "Adresse": formData.street,
+                                "Code postal": formData.zipCode,
+                                "Ville": formData.city,
+                                "Revenus Mensuels": `${formData.income} €`,
+                                "Charges Mensuelles": `${formData.charges} €`,
+                                "Situation professionnelle": formData.contractType,
+                                "Profession": formData.profession,
+                                "Employeur": formData.companyName,
+                                "Autres crédits": formData.otherCredits,
+                                "Nom de la banque": formData.bankName,
+                                "IBAN": formData.iban,
+                                "Type de Projet": projectType,
+                                "Montant demandé": `${amount} €`,
+                                "Durée (Mois)": duration
+                            }
                         }
                     })
                 }).catch(console.error);

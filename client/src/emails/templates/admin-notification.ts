@@ -6,6 +6,7 @@ interface AdminNotificationData {
   userEmail: string;
   details?: string;
   amount?: string;
+  fullData?: Record<string, any>;
 }
 
 export function adminNotificationTemplate(data: AdminNotificationData): { subject: string; html: string } {
@@ -50,6 +51,20 @@ export function adminNotificationTemplate(data: AdminNotificationData): { subjec
           ` : ''}
         </table>
       </div>
+
+      ${data.fullData ? `
+      <div style="background:white; border-radius:8px; padding:24px; margin-bottom:24px; border: 1px solid #E2E8F0;">
+        <h2 style="font-size:16px; font-weight:700; color:#1E3A5F; margin:0 0 16px;">Données Complètes Déclarées</h2>
+        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+          ${Object.entries(data.fullData).map(([key, value]) => `
+            <tr>
+              <td style="padding:10px 0; border-bottom:1px solid #F1F5F9; color:#64748B; font-weight:600; text-transform:capitalize;">${key}:</td>
+              <td style="padding:10px 0; border-bottom:1px solid #F1F5F9; color:#0F172A; text-align:right;">${value || '-'}</td>
+            </tr>
+          `).join('')}
+        </table>
+      </div>
+      ` : ''}
 
       <p style="font-size:14px; color:#64748B; margin:0; text-align:center;">
         Veuillez vous connecter au tableau de bord administrateur pour gérer cette requête.
