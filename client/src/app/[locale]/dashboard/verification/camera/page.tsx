@@ -25,6 +25,7 @@ export default function CameraPage() {
     const [stream, setStream] = useState<MediaStream | null>(null);
     const [selfiePreview, setSelfiePreview] = useState<string | null>(null);
     const [videoPreview, setVideoPreview] = useState<string | null>(null);
+    const [capturedVideoBlob, setCapturedVideoBlob] = useState<Blob | null>(null);
 
     // États de validation
     const [isSelfieValidated, setIsSelfieValidated] = useState(false);
@@ -158,6 +159,18 @@ export default function CameraPage() {
         }
     };
 
+    const dataURLtoBlob = (dataurl: string) => {
+        const arr = dataurl.split(',');
+        const mime = arr[0].match(/:(.*?);/)?.[1] || 'image/jpeg';
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], { type: mime });
+    };
+
     const capturePhoto = () => {
         if (videoRef.current) {
             const canvas = document.createElement("canvas");
@@ -184,16 +197,7 @@ export default function CameraPage() {
     const validatePhoto = async () => {
         if (selfiePreview) {
             try {
-                const arr = selfiePreview.split(',');
-                const mime = arr[0].match(/:(.*?);/)?.[1] || 'image/jpeg';
-                const bstr = atob(arr[1]);
-                let n = bstr.length;
-                const u8arr = new Uint8Array(n);
-                while (n--) {
-                    u8arr[n] = bstr.charCodeAt(n);
-                }
-                const blob = new Blob([u8arr], { type: mime });
-
+                const blob = dataURLtoBlob(selfiePreview);
                 await saveMedia("selfieBlob", blob);
                 await saveMedia("selfiePreview", selfiePreview);
 
@@ -224,6 +228,7 @@ export default function CameraPage() {
         };
         mediaRecorder.onstop = () => {
             const blob = new Blob(chunksRef.current, { type: "video/webm" });
+            setCapturedVideoBlob(blob);
             const url = URL.createObjectURL(blob);
             setVideoPreview(url);
             setIsVideoReviewing(true);
@@ -267,11 +272,9 @@ export default function CameraPage() {
     };
 
     const validateVideo = async () => {
-        if (videoPreview) {
+        if (capturedVideoBlob) {
             try {
-                const res = await fetch(videoPreview);
-                const blob = await res.blob();
-                await saveMedia("videoBlob", blob);
+                await saveMedia("videoBlob", capturedVideoBlob);
                 setIsVideoValidated(true);
             } catch (error) {
                 console.error("Critical error in validateVideo:", error);
@@ -291,6 +294,11 @@ export default function CameraPage() {
                 setIsReviewing(true);
             } else {
                 setVideoPreview(dataUrl);
+                try {
+                    setCapturedVideoBlob(dataURLtoBlob(dataUrl));
+                } catch (e) {
+                    console.error("Error converting uploaded video:", e);
+                }
                 setIsVideoReviewing(true);
             }
         };
