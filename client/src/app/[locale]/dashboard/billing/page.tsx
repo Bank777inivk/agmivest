@@ -65,7 +65,11 @@ export default function BillingPage() {
     const [isDesktop, setIsDesktop] = useState(false);
 
     const [globalSettings, setGlobalSettings] = useState<any>(null);
-    const advisorRIB = request?.customRIB || {
+    
+    // Logic to determine if we use the specific RIB on the request or the global default
+    // If request.customRIB is the old static default, we ignore it to use the new dynamic global settings
+    const isOldStaticDefault = request?.customRIB?.iban === "FR76 3000 3020 1000 5000 7890 123";
+    const advisorRIB = (request?.customRIB && !isOldStaticDefault) ? request.customRIB : {
         bankName: globalSettings?.bankName || "ELYSSIO INVESTMENT BANK",
         iban: globalSettings?.iban || "FR76 3000 3020 1000 5000 7890 123",
         bic: globalSettings?.bic || "ELYSPRPPXXX",
