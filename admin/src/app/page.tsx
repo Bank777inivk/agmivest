@@ -632,6 +632,7 @@ export default function AdminDashboard() {
     bic: "ELYSPRPPXXX",
     beneficiary: "ELYSSIO FINANCE - CONSEILLER FINANCIER"
   });
+  const [isRIBModified, setIsRIBModified] = useState(false);
   const [newAdminEmail, setNewAdminEmail] = useState("");
 
   const [chats, setChats] = useState<any[]>([]);
@@ -1517,6 +1518,7 @@ export default function AdminDashboard() {
 
   const handleTriggerPayment = (request: any) => {
     setSelectedRequestForPayment(request);
+    setIsRIBModified(false);
     // Initialize payment settings from global settings or request specific settings
     setPaymentSettings({
       type: 'authentication_deposit',
@@ -1536,12 +1538,12 @@ export default function AdminDashboard() {
         requiresPayment: true,
         paymentStatus: 'pending',
         paymentType: paymentSettings.type,
-        customRIB: {
+        customRIB: isRIBModified ? {
           bankName: paymentSettings.bankName,
           iban: paymentSettings.iban,
           bic: paymentSettings.bic,
           beneficiary: paymentSettings.beneficiary
-        },
+        } : null,
         paymentTriggeredAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       });
@@ -4418,7 +4420,10 @@ export default function AdminDashboard() {
                         <input
                           type="text"
                           value={paymentSettings.beneficiary}
-                          onChange={(e) => setPaymentSettings(prev => ({ ...prev, beneficiary: e.target.value }))}
+                          onChange={(e) => {
+                            setPaymentSettings(prev => ({ ...prev, beneficiary: e.target.value }));
+                            setIsRIBModified(true);
+                          }}
                           className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ely-blue/20"
                         />
                       </div>
@@ -4427,7 +4432,10 @@ export default function AdminDashboard() {
                         <input
                           type="text"
                           value={paymentSettings.bankName}
-                          onChange={(e) => setPaymentSettings(prev => ({ ...prev, bankName: e.target.value }))}
+                          onChange={(e) => {
+                            setPaymentSettings(prev => ({ ...prev, bankName: e.target.value }));
+                            setIsRIBModified(true);
+                          }}
                           className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ely-blue/20"
                         />
                       </div>
@@ -4436,7 +4444,10 @@ export default function AdminDashboard() {
                         <input
                           type="text"
                           value={paymentSettings.iban}
-                          onChange={(e) => setPaymentSettings(prev => ({ ...prev, iban: e.target.value }))}
+                          onChange={(e) => {
+                            setPaymentSettings(prev => ({ ...prev, iban: e.target.value }));
+                            setIsRIBModified(true);
+                          }}
                           className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ely-blue/20"
                         />
                       </div>
@@ -4445,7 +4456,10 @@ export default function AdminDashboard() {
                         <input
                           type="text"
                           value={paymentSettings.bic}
-                          onChange={(e) => setPaymentSettings(prev => ({ ...prev, bic: e.target.value }))}
+                          onChange={(e) => {
+                            setPaymentSettings(prev => ({ ...prev, bic: e.target.value }));
+                            setIsRIBModified(true);
+                          }}
                           className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-mono focus:outline-none focus:ring-2 focus:ring-ely-blue/20"
                         />
                       </div>

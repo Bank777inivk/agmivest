@@ -64,11 +64,12 @@ export default function BillingPage() {
     const [systemError, setSystemError] = useState<string | null>(null);
     const [isDesktop, setIsDesktop] = useState(false);
 
+    const [globalSettings, setGlobalSettings] = useState<any>(null);
     const advisorRIB = request?.customRIB || {
-        bankName: "ELYSSIO INVESTMENT BANK",
-        iban: "FR76 3000 3020 1000 5000 7890 123",
-        bic: "ELYSPRPPXXX",
-        beneficiary: "ELYSSIO FINANCE - CONSEILLER FINANCIER"
+        bankName: globalSettings?.bankName || "ELYSSIO INVESTMENT BANK",
+        iban: globalSettings?.iban || "FR76 3000 3020 1000 5000 7890 123",
+        bic: globalSettings?.bic || "ELYSPRPPXXX",
+        beneficiary: globalSettings?.beneficiary || "ELYSSIO FINANCE - CONSEILLER FINANCIER"
     };
 
     const paymentTypeLabel = {
@@ -123,6 +124,17 @@ export default function BillingPage() {
         });
         return () => unsubscribe();
     }, [router]);
+
+    // Listen for Global Settings (RIB)
+    useEffect(() => {
+        const _db = getFirestore();
+        const unsub = onSnapshot(doc(_db, "settings", "global"), (docSnap) => {
+            if (docSnap.exists()) {
+                setGlobalSettings(docSnap.data());
+            }
+        });
+        return () => unsub();
+    }, []);
 
     // Handle verification success email
     useEffect(() => {
