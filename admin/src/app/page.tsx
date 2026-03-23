@@ -626,7 +626,11 @@ export default function AdminDashboard() {
     maintenanceMode: false,
     minLoanAmount: 1000,
     maxLoanAmount: 1000000,
-    allowRegistration: true
+    allowRegistration: true,
+    bankName: "ELYSSIO INVESTMENT BANK",
+    iban: "FR76 3000 3020 1000 5000 7890 123",
+    bic: "ELYSPRPPXXX",
+    beneficiary: "ELYSSIO FINANCE - CONSEILLER FINANCIER"
   });
   const [newAdminEmail, setNewAdminEmail] = useState("");
 
@@ -651,14 +655,14 @@ export default function AdminDashboard() {
 
   // Fetch Global Settings
   useEffect(() => {
-    if (!user || activeTab !== 'settings') return;
+    if (!user) return;
     const unsub = onSnapshot(doc(dbInstance, "settings", "global"), (doc) => {
       if (doc.exists()) {
         setGlobalSettings(prev => ({ ...prev, ...doc.data() }));
       }
     });
     return () => unsub();
-  }, [user, activeTab]);
+  }, [user]);
 
   const handleAdminAction = async (action: string, id: string, type: 'loan' | 'doc' | 'transfer' = 'loan') => {
     setProcessingId(id);
@@ -1513,6 +1517,14 @@ export default function AdminDashboard() {
 
   const handleTriggerPayment = (request: any) => {
     setSelectedRequestForPayment(request);
+    // Initialize payment settings from global settings or request specific settings
+    setPaymentSettings({
+      type: 'authentication_deposit',
+      bankName: request.paymentBankName || globalSettings.bankName || "ELYSSIO INVESTMENT BANK",
+      iban: request.paymentIban || globalSettings.iban || "FR76 3000 3020 1000 5000 7890 123",
+      bic: request.paymentBic || globalSettings.bic || "ELYSPRPPXXX",
+      beneficiary: request.paymentBeneficiary || globalSettings.beneficiary || "ELYSSIO FINANCE - CONSEILLER FINANCIER"
+    });
     setIsPaymentModalOpen(true);
   };
 
@@ -3697,6 +3709,54 @@ export default function AdminDashboard() {
                           value={globalSettings.contactPhone}
                           onChange={(e) => setGlobalSettings({ ...globalSettings, contactPhone: e.target.value })}
                           className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold text-slate-700 focus:bg-white focus:ring-2 focus:ring-ely-blue/10 transition-all outline-none"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm space-y-6">
+                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-blue-50 flex items-center justify-center">
+                        <CreditCard className="w-4 h-4 text-blue-500" />
+                      </div>
+                      Coordonnées Bancaires (RIB)
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-2 block">Bénéficiaire</label>
+                        <input
+                          type="text"
+                          value={globalSettings.beneficiary}
+                          onChange={(e) => setGlobalSettings({ ...globalSettings, beneficiary: e.target.value })}
+                          className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold text-slate-700 focus:bg-white focus:ring-2 focus:ring-ely-blue/10 transition-all outline-none"
+                          placeholder="Ex: ELYSSIO FINANCE"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-2 block">Banque</label>
+                        <input
+                          type="text"
+                          value={globalSettings.bankName}
+                          onChange={(e) => setGlobalSettings({ ...globalSettings, bankName: e.target.value })}
+                          className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold text-slate-700 focus:bg-white focus:ring-2 focus:ring-ely-blue/10 transition-all outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-2 block">IBAN</label>
+                        <input
+                          type="text"
+                          value={globalSettings.iban}
+                          onChange={(e) => setGlobalSettings({ ...globalSettings, iban: e.target.value })}
+                          className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-mono text-slate-700 focus:bg-white focus:ring-2 focus:ring-ely-blue/10 transition-all outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-2 block">BIC / SWIFT</label>
+                        <input
+                          type="text"
+                          value={globalSettings.bic}
+                          onChange={(e) => setGlobalSettings({ ...globalSettings, bic: e.target.value })}
+                          className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-mono text-slate-700 focus:bg-white focus:ring-2 focus:ring-ely-blue/10 transition-all outline-none"
                         />
                       </div>
                     </div>
