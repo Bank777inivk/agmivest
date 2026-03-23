@@ -195,8 +195,8 @@ export default function DashboardHeader({ onMenuClick, isCollapsed, idStatus, us
                                                     key={notif.id}
                                                     onClick={() => {
                                                         markAsRead(notif.id);
-                                                        if (notif.link) router.push(notif.link);
-                                                        setShowNotifications(false);
+                                                        // if (notif.link) router.push(notif.link);
+                                                        // setShowNotifications(false);
                                                     }}
                                                     className={`w-full p-5 text-left flex gap-4 transition-colors border-b border-slate-50 last:border-0 ${notif.read ? 'opacity-60 grayscale-[0.5]' : 'bg-blue-50/30'}`}
                                                 >
