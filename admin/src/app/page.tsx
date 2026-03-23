@@ -1487,14 +1487,33 @@ export default function AdminDashboard() {
   };
 
   const handleDeleteCustomDoc = async (request: any, docKey: string) => {
-    if (!confirm(`Supprimer la demande de document "${docKey}" ? Le client n'aura plus à le fournir.`)) return;
+    const docLabel = request?.kycDocuments?.[docKey]?.label || docKey;
+    if (!confirm(`Annuler la demande du document "${docLabel}" ? Le client n'aura plus à le fournir et la bannière sera retirée si aucun autre document n'est en attente.`)) return;
     try {
       if (request.userId) {
         const userDocRef = doc(dbInstance, "users", request.userId);
+
+        // Delete the specific custom doc
         await updateDoc(userDocRef, {
           [`kycDocuments.${docKey}`]: deleteField(),
           updatedAt: serverTimestamp()
         });
+
+        // Re-read to check remaining pending custom docs
+        const freshSnap = await getDoc(userDocRef);
+        const freshData = freshSnap.data();
+        const remainingDocs = freshData?.kycDocuments || {};
+        const hasPendingCustomDocs = Object.values(remainingDocs).some(
+          (d: any) => d?.isCustom && !d?.url
+        );
+
+        // If no more pending custom docs, lift the verification_required status
+        if (!hasPendingCustomDocs && freshData?.idStatus === 'verification_required') {
+          await updateDoc(userDocRef, {
+            idStatus: 'verified',
+            updatedAt: serverTimestamp()
+          });
+        }
       }
     } catch (error) {
       console.error("Error deleting custom doc:", error);
