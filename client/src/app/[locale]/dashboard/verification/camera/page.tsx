@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Camera, Video, Loader2, X, Play, StopCircle, ArrowLeft, Check, RotateCcw } from "lucide-react";
 import Image from "next/image";
-import { saveMedia, getMedia, deleteMedia } from "@/lib/idb";
+import { saveMedia, getMedia, deleteMedia, openDB } from "@/lib/idb";
 import { getFirebaseAuth, getFirestore } from "@/lib/firebase";
 import { doc, updateDoc, serverTimestamp, query, collection, where, limit, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
@@ -74,6 +74,19 @@ export default function CameraPage() {
         });
         return () => unsubscribe();
     }, []);
+
+    // Vérifier la disponibilité de IndexedDB au démarrage
+    useEffect(() => {
+        const testIDB = async () => {
+            try {
+                await openDB();
+            } catch (err) {
+                console.error("IDB initialization failed:", err);
+                alert("⚠️ " + (t('errors.idbBlocked') || "Votre navigateur semble bloquer le stockage local (IndexedDB). Merci d'utiliser un mode de navigation standard."));
+            }
+        };
+        testIDB();
+    }, [t]);
 
     // Initialiser le selfie depuis IDB si on est à l'étape 2 (vidéo)
     useEffect(() => {
@@ -171,8 +184,16 @@ export default function CameraPage() {
     const validatePhoto = async () => {
         if (selfiePreview) {
             try {
-                const res = await fetch(selfiePreview);
-                const blob = await res.blob();
+                const arr = selfiePreview.split(',');
+                const mime = arr[0].match(/:(.*?);/)?.[1] || 'image/jpeg';
+                const bstr = atob(arr[1]);
+                let n = bstr.length;
+                const u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                const blob = new Blob([u8arr], { type: mime });
+
                 await saveMedia("selfieBlob", blob);
                 await saveMedia("selfiePreview", selfiePreview);
 
@@ -180,8 +201,8 @@ export default function CameraPage() {
                 setIsReviewing(false);
                 router.push("/dashboard/verification/camera?step=2");
             } catch (error) {
-                console.error("Error saving selfie:", error);
-                alert("❌ " + t('errors.saveSelfie'));
+                console.error("Critical error in validatePhoto:", error);
+                alert("❌ " + t('errors.saveSelfie') + " (" + (error instanceof Error ? error.message : "IDB Error") + ")");
             }
         }
     };

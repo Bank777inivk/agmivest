@@ -210,11 +210,18 @@ export default function AdminChat({ chats, setChats, selectedChat, setSelectedCh
                         </div>
                     ) : (
                         chats.map((chat: any) => (
-                            <button
+                            <div
                                 key={chat.id}
+                                role="button"
+                                tabIndex={0}
                                 onClick={() => setSelectedChat(chat)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        setSelectedChat(chat);
+                                    }
+                                }}
                                 className={cn(
-                                    "w-full p-4 rounded-2xl transition-all flex items-center gap-4 text-left border relative group",
+                                    "w-full p-4 rounded-2xl transition-all flex items-center gap-4 text-left border relative group cursor-pointer",
                                     selectedChat?.id === chat.id
                                         ? "bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-600/20"
                                         : "bg-white border-transparent hover:bg-slate-50 text-slate-600"
@@ -250,7 +257,7 @@ export default function AdminChat({ chats, setChats, selectedChat, setSelectedCh
                                         <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-sm shadow-red-500/50" />
                                     )}
                                 </div>
-                            </button>
+                            </div>
                         ))
                     )}
                 </div>

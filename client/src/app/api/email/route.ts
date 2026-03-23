@@ -17,6 +17,7 @@ import { kycReceivedTemplate } from '@/emails/templates/kyc-received';
 import { identityReceivedTemplate } from '@/emails/templates/identity-received';
 import { paymentReminderTemplate } from '@/emails/templates/payment-reminder';
 import { adminNotificationTemplate } from '@/emails/templates/admin-notification';
+import { chatNotificationTemplate } from '@/emails/templates/chat-notification';
 
 // Simple API Key for basic security between client/admin and API
 const EMAIL_API_KEY = process.env.EMAIL_API_KEY || 'agm-invest-secure-email-key';
@@ -123,6 +124,9 @@ export async function POST(req: Request) {
                 break;
             case 'admin-notification':
                 emailContent = adminNotificationTemplate(data);
+                break;
+            case 'chat-notification':
+                emailContent = chatNotificationTemplate(data, lang);
                 break;
 
             default:

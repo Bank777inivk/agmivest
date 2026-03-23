@@ -24,15 +24,27 @@ export const openDB = (): Promise<IDBDatabase> => {
 };
 
 export const saveMedia = async (key: string, blob: Blob | string): Promise<void> => {
-    const db = await openDB();
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction(STORE_NAME, "readwrite");
-        const store = transaction.objectStore(STORE_NAME);
-        const request = store.put(blob, key);
+    try {
+        const db = await openDB();
+        return new Promise((resolve, reject) => {
+            const transaction = db.transaction(STORE_NAME, "readwrite");
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.put(blob, key);
 
-        request.onsuccess = () => resolve();
-        request.onerror = () => reject(request.error);
-    });
+            request.onsuccess = () => resolve();
+            request.onerror = () => {
+                console.error(`IDB save error for key ${key}:`, request.error);
+                reject(request.error);
+            };
+            transaction.onabort = () => {
+                console.error(`IDB transaction aborted for key ${key}`);
+                reject(new Error("Transaction aborted"));
+            };
+        });
+    } catch (err) {
+        console.error(`Failed to open DB for saving ${key}:`, err);
+        throw err;
+    }
 };
 
 export const getMedia = async (key: string): Promise<Blob | string | null> => {

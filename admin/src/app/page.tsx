@@ -321,6 +321,7 @@ function ActionButtons({
   handleValidateAnalysis,
   handleValidateVerification,
   handleApprove,
+  handleEditApproved,
   handleRejectLoan,
   handleRejectDocs,
   handleReset,
@@ -439,6 +440,18 @@ function ActionButtons({
             >
               <CreditCard className="w-3 h-3" />
               Paiement
+            </button>
+          )}
+
+          {req.status === "approved" && (
+            <button
+              disabled={isProcessing}
+              onClick={() => handleEditApproved(req)}
+              className={cn(btnClass, "bg-blue-100 text-blue-700 hover:bg-blue-200 w-auto ml-2")}
+              title="Modifier les conditions"
+            >
+              <Settings className="w-3 h-3" />
+              Modifier
             </button>
           )}
 
@@ -589,6 +602,9 @@ export default function AdminDashboard() {
   const [isApproveModalOpen, setIsApproveModalOpen] = useState(false);
   const [selectedRequestForApproval, setSelectedRequestForApproval] = useState<any>(null);
   const [startDelay, setStartDelay] = useState(1);
+  const [editableAmount, setEditableAmount] = useState<number>(0);
+  const [editableDuration, setEditableDuration] = useState<number>(0);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   // Payment Request States
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
@@ -784,10 +800,106 @@ export default function AdminDashboard() {
   const handleRejectTransfer = (id: string) => handleAdminAction('reject', id, 'transfer');
   const handleResetTransfer = (id: string) => handleAdminAction('pending', id, 'transfer');
 
+  const handleMessageUser = async (u: any) => {
+    setProcessingId(`msg-${u.id}`);
+    try {
+      // 1. Chercher si un chat existe déjà
+      let existingChat = chats.find((c: any) => c.userId === u.id || c.email === u.email);
+
+      if (existingChat) {
+        setSelectedChat(existingChat);
+      } else {
+        // 2. Créer un nouveau chat
+        const newChatData = {
+          userId: u.id,
+          userName: `${u.firstName || ''} ${u.lastName || ''}`.trim() || u.email,
+          email: u.email,
+          lastMessage: "Conversation initiée par l'admin",
+          lastTimestamp: serverTimestamp(),
+          unreadAdmin: 0,
+          unreadClient: 1,
+          updatedAt: serverTimestamp(),
+          createdAt: serverTimestamp()
+        };
+        const docRef = await addDoc(collection(dbInstance, "chats"), newChatData);
+        setSelectedChat({ id: docRef.id, ...newChatData });
+      }
+
+      // 3. Basculer vers l'onglet support
+      setActiveTab("support");
+    } catch (error) {
+      console.error("Error creating chat:", error);
+      alert("Erreur lors de l'initiation de la conversation.");
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
   const handleApprove = (request: any) => {
+    setIsEditMode(false);
     setSelectedRequestForApproval(request);
+    setEditableAmount(request.amount || 0);
+    setEditableDuration(request.duration || 12);
     setStartDelay(1); // Default to 1 month (standard)
     setIsApproveModalOpen(true);
+  };
+
+  const handleEditApproved = (request: any) => {
+    setIsEditMode(true);
+    setSelectedRequestForApproval(request);
+    setEditableAmount(request.amount || 0);
+    setEditableDuration(request.duration || 12);
+    setStartDelay(1); 
+    setIsApproveModalOpen(true);
+  };
+
+  const confirmEditApproved = async () => {
+    const request = selectedRequestForApproval;
+    if (!request) return;
+
+    setProcessingId(request.id);
+    try {
+      const currentRate = request.annualRate || request.rate || 4.95;
+      const newMonthlyPayment = Math.round((editableAmount * (1 + (currentRate / 100))) / (editableDuration || 12));
+
+      // 1. Update Request
+      await updateDoc(doc(dbInstance, "requests", request.id), {
+        amount: editableAmount,
+        duration: editableDuration,
+        updatedAt: serverTimestamp()
+      });
+
+      // 2. Find and Update Account
+      const accountsRef = collection(dbInstance, "accounts");
+      const q = query(accountsRef, where("requestId", "==", request.id));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const accountDoc = querySnapshot.docs[0];
+        const accountData = accountDoc.data();
+
+        // Calculate new remaining amount (preserve amount already repaid)
+        const amountAlreadyPaid = (accountData.totalAmount || 0) - (accountData.remainingAmount || 0);
+        const newRemainingAmount = Math.max(0, editableAmount - amountAlreadyPaid);
+
+        await updateDoc(accountDoc.ref, {
+          totalAmount: editableAmount,
+          remainingAmount: newRemainingAmount,
+          duration: editableDuration,
+          monthlyPayment: newMonthlyPayment,
+          updatedAt: serverTimestamp()
+        });
+      }
+
+      alert("Conditions de prêt mises à jour avec succès !");
+      setIsApproveModalOpen(false);
+      setIsEditMode(false);
+    } catch (error) {
+      console.error("Error updating approved loan:", error);
+      alert("Erreur lors de la mise à jour.");
+    } finally {
+      setProcessingId(null);
+    }
   };
 
   const confirmApprove = async () => {
@@ -810,6 +922,8 @@ export default function AdminDashboard() {
       // 1. Update Request Status & Auto-trigger Authentication Deposit (286€)
       await updateDoc(doc(dbInstance, "requests", request.id), {
         status: "approved",
+        amount: editableAmount, // Use updated amount
+        duration: editableDuration, // Use updated duration
         approvedAt: serverTimestamp(),
         requiresPayment: true,
         paymentStatus: 'pending',
@@ -825,15 +939,20 @@ export default function AdminDashboard() {
         updatedAt: serverTimestamp()
       });
 
+      // Recalculate monthly payment based on new amount and new duration if needed
+      // Current formula: (Amount * (1 + Rate/100)) / Duration
+      const currentRate = request.annualRate || request.rate || 4.95;
+      const newMonthlyPayment = Math.round((editableAmount * (1 + (currentRate / 100))) / (editableDuration || 12));
+
       // 2. Create/Recharge Account
       await addDoc(collection(dbInstance, "accounts"), {
         userId: request.userId,
         requestId: request.id,
-        totalAmount: request.amount,
-        remainingAmount: request.amount,
-        rate: request.annualRate || request.rate || 4.95,
-        duration: request.duration,
-        monthlyPayment: request.monthlyPayment,
+        totalAmount: editableAmount,
+        remainingAmount: editableAmount,
+        rate: currentRate,
+        duration: editableDuration,
+        monthlyPayment: newMonthlyPayment,
         projectType: request.projectType,
         status: "active",
         startDate: startDate,
@@ -843,9 +962,9 @@ export default function AdminDashboard() {
         // Keep a copy of full request details for the scheduler
         details: request.details || {},
         originalRequest: {
-          amount: request.amount,
-          duration: request.duration,
-          rate: request.annualRate || request.rate
+          amount: editableAmount,
+          duration: editableDuration,
+          rate: currentRate
         }
       });
 
@@ -853,7 +972,7 @@ export default function AdminDashboard() {
       await addDoc(collection(dbInstance, "users", request.userId, "notifications"), {
         title: "loanApproved.title",
         message: "loanApproved.message",
-        params: { amount: request.amount.toLocaleString() },
+        params: { amount: editableAmount.toLocaleString() },
         type: 'success',
         read: false,
         timestamp: serverTimestamp(),
@@ -1259,7 +1378,7 @@ export default function AdminDashboard() {
 
   const handleResendVerification = async (u: any) => {
     if (!confirm(`Relancer la vérification d'identité pour ${u.firstName} ${u.lastName} ?`)) return;
-    setProcessingId(u.id);
+    setProcessingId(`verify-${u.id}`);
     try {
       await sendAdminEmail(u.email, "kyc-reminder", u.language, {
         firstName: u.firstName
@@ -1268,6 +1387,22 @@ export default function AdminDashboard() {
     } catch (error) {
       console.error("Error resending verification:", error);
       alert("Erreur lors de l'envoi de l'email de relance.");
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
+  const handleResendChatNotification = async (u: any) => {
+    if (!confirm(`Envoyer une notification par email à ${u.firstName} pour l'informer d'un nouveau message ?`)) return;
+    setProcessingId(`chat-notify-${u.id}`);
+    try {
+      await sendAdminEmail(u.email, "chat-notification", u.language, {
+        firstName: u.firstName
+      });
+      alert(`Notification envoyée avec succès à ${u.firstName}.`);
+    } catch (error) {
+      console.error("Error resending chat notification:", error);
+      alert("Erreur lors de l'envoi de la notification.");
     } finally {
       setProcessingId(null);
     }
@@ -1298,7 +1433,6 @@ export default function AdminDashboard() {
         await sendAdminEmail(request.email || userData?.email, "kyc-reset", userData?.language, {
           firstName: request.firstName || userData?.firstName
         });
-
         setIsDocModalOpen(false);
         alert("Les documents ont été réinitialisés. L'utilisateur peut à nouveau soumettre son dossier.");
       }
@@ -1309,8 +1443,8 @@ export default function AdminDashboard() {
   };
 
   const handleDeleteUser = async (u: any) => {
-    if (!confirm(`⚠️ Supprimer définitivement le compte de ${u.firstName} ${u.lastName} ? Cette action est irréversible.`)) return;
-    setProcessingId(u.id);
+    if (!confirm(`⚠️ SUPPRIMER DÉFINITIVEMENT le compte de ${u.firstName} ${u.lastName} ?\nCette action est irréversible.`)) return;
+    setProcessingId(`del-${u.id}`);
     try {
       // Delete user Firestore document
       await deleteDoc(doc(dbInstance, "users", u.id));
@@ -2050,6 +2184,7 @@ export default function AdminDashboard() {
                               handleValidateAnalysis={handleValidateAnalysis}
                               handleValidateVerification={handleValidateVerification}
                               handleApprove={handleApprove}
+                              handleEditApproved={handleEditApproved}
                               handleRejectLoan={handleRejectLoan}
                               handleRejectDocs={handleRejectDocs}
                               handleReset={handleReset}
@@ -2218,14 +2353,14 @@ export default function AdminDashboard() {
                     <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
                   </button>
 
-                  {u.idStatus !== 'verified' && (
+                  {(u.idStatus === 'verification_required' || u.idStatus === 'rejected' || !u.idStatus) && (
                     <button
                       onClick={() => handleResendVerification(u)}
-                      disabled={processingId === u.id}
+                      disabled={processingId === `verify-${u.id}`}
                       className="w-full p-4 hover:bg-blue-50 text-blue-600 text-xs font-bold flex items-center justify-between group transition-all rounded-2xl border border-blue-100"
                     >
                       <div className="flex items-center gap-3">
-                        {processingId === u.id ? <LoadingSpinner /> : <Mail className="w-4 h-4" />}
+                        {processingId === `verify-${u.id}` ? <LoadingSpinner /> : <Mail className="w-4 h-4" />}
                         <span>Relancer la vérification</span>
                       </div>
                       <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
@@ -2764,6 +2899,7 @@ export default function AdminDashboard() {
                         handleValidateAnalysis={handleValidateAnalysis}
                         handleValidateVerification={handleValidateVerification}
                         handleApprove={handleApprove}
+                        handleEditApproved={handleEditApproved}
                         handleRejectLoan={handleRejectLoan}
                         handleRejectDocs={handleRejectDocs}
                         handleReset={handleReset}
@@ -2843,6 +2979,7 @@ export default function AdminDashboard() {
                         handleValidateAnalysis={handleValidateAnalysis}
                         handleValidateVerification={handleValidateVerification}
                         handleApprove={handleApprove}
+                        handleEditApproved={handleEditApproved}
                         handleRejectLoan={handleRejectLoan}
                         handleRejectDocs={handleRejectDocs}
                         handleReset={handleReset}
@@ -3059,22 +3196,40 @@ export default function AdminDashboard() {
                         Gérer le compte
                       </button>
 
-                      {u.idStatus !== 'verified' && (
+                      <button
+                        onClick={() => handleMessageUser(u)}
+                        disabled={processingId === `msg-${u.id}`}
+                        className="w-full py-5 bg-ely-blue text-white rounded-[1.8rem] text-[10px] font-black uppercase tracking-[0.2em] hover:bg-blue-700 transition-all flex items-center justify-center gap-3 shadow-xl active:scale-95 disabled:opacity-50"
+                      >
+                        {processingId === `msg-${u.id}` ? <LoadingSpinner /> : <MessageCircle className="w-4 h-4" />}
+                        Envoyer un message
+                      </button>
+
+                      <button
+                        onClick={() => handleResendChatNotification(u)}
+                        disabled={processingId === `chat-notify-${u.id}`}
+                        className="w-full py-3 bg-amber-50 text-amber-600 border border-amber-100 rounded-[1.8rem] text-[10px] font-black uppercase tracking-[0.2em] hover:bg-amber-100 transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+                      >
+                        {processingId === `chat-notify-${u.id}` ? <LoadingSpinner /> : <Bell className="w-4 h-4" />}
+                        Relancer Message
+                      </button>
+
+                      {(u.idStatus === 'verification_required' || u.idStatus === 'rejected' || !u.idStatus) && (
                         <button
                           onClick={() => handleResendVerification(u)}
-                          disabled={processingId === u.id}
+                          disabled={processingId === `verify-${u.id}`}
                           className="w-full py-3 bg-blue-50 text-blue-600 border border-blue-100 rounded-[1.8rem] text-[10px] font-black uppercase tracking-[0.2em] hover:bg-blue-100 transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
                         >
-                          {processingId === u.id ? <LoadingSpinner /> : <Mail className="w-4 h-4" />}
+                          {processingId === `verify-${u.id}` ? <LoadingSpinner /> : <Mail className="w-4 h-4" />}
                           Relancer la vérification
                         </button>
                       )}
                       <button
                         onClick={() => handleDeleteUser(u)}
-                        disabled={processingId === u.id}
+                        disabled={processingId === `del-${u.id}`}
                         className="w-full py-3 bg-red-500/20 text-red-300 border border-red-400/30 rounded-[1.8rem] text-[10px] font-black uppercase tracking-[0.2em] hover:bg-red-500/40 transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
+                        {processingId === `del-${u.id}` ? <LoadingSpinner /> : <Trash2 className="w-3.5 h-3.5" />}
                         Supprimer
                       </button>
                     </div>
@@ -3133,22 +3288,40 @@ export default function AdminDashboard() {
                         Gérer le profil
                       </button>
 
-                      {u.idStatus !== 'verified' && (
+                      <button
+                        onClick={() => handleMessageUser(u)}
+                        disabled={processingId === `msg-${u.id}`}
+                        className="w-full py-4 bg-ely-blue text-white rounded-3xl text-[10px] font-black uppercase tracking-[0.15em] hover:bg-blue-700 transition-all active:scale-95 flex items-center justify-center gap-3 shadow-xl disabled:opacity-50"
+                      >
+                        {processingId === `msg-${u.id}` ? <LoadingSpinner /> : <MessageCircle className="w-5 h-5" />}
+                        Message Client
+                      </button>
+
+                      <button
+                        onClick={() => handleResendChatNotification(u)}
+                        disabled={processingId === `chat-notify-${u.id}`}
+                        className="w-full py-3 bg-amber-50 text-amber-600 border border-amber-100 rounded-3xl text-[10px] font-black uppercase tracking-[0.15em] hover:bg-amber-100 transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+                      >
+                        {processingId === `chat-notify-${u.id}` ? <LoadingSpinner /> : <Bell className="w-4 h-4" />}
+                        Relancer Message
+                      </button>
+
+                      {(u.idStatus === 'verification_required' || u.idStatus === 'rejected' || !u.idStatus) && (
                         <button
                           onClick={() => handleResendVerification(u)}
-                          disabled={processingId === u.id}
+                          disabled={processingId === `verify-${u.id}`}
                           className="w-full py-3 bg-blue-50 text-blue-600 border border-blue-100 rounded-3xl text-[10px] font-black uppercase tracking-[0.15em] hover:bg-blue-100 transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
                         >
-                          {processingId === u.id ? <LoadingSpinner /> : <Mail className="w-4 h-4" />}
+                          {processingId === `verify-${u.id}` ? <LoadingSpinner /> : <Mail className="w-4 h-4" />}
                           Relancer vérification
                         </button>
                       )}
                       <button
                         onClick={() => handleDeleteUser(u)}
-                        disabled={processingId === u.id}
+                        disabled={processingId === `del-${u.id}`}
                         className="w-full py-3 bg-red-500/20 text-red-300 border border-red-400/30 rounded-3xl text-[10px] font-black uppercase tracking-[0.15em] hover:bg-red-500/40 transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
+                        {processingId === `del-${u.id}` ? <LoadingSpinner /> : <Trash2 className="w-3.5 h-3.5" />}
                         Supprimer
                       </button>
                     </div>
@@ -3830,22 +4003,53 @@ export default function AdminDashboard() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 className="bg-white w-full max-w-lg rounded-[2.5rem] shadow-2xl overflow-hidden"
               >
-                <div className="p-8 border-b border-slate-100 bg-slate-50/50">
-                  <h3 className="text-xl font-black text-slate-900 mb-1">Confirmer l'accord de prêt</h3>
-                  <p className="text-sm text-slate-500 font-medium">
-                    Pour {selectedRequestForApproval.firstName} {selectedRequestForApproval.lastName}
-                  </p>
+                <div className="p-8 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+                  <div>
+                    <h3 className="text-xl font-black text-slate-900 mb-1">
+                      {isEditMode ? "Modifier les conditions de prêt" : "Confirmer l'accord de prêt"}
+                    </h3>
+                    <p className="text-sm text-slate-500 font-medium">
+                      Pour {selectedRequestForApproval.firstName} {selectedRequestForApproval.lastName}
+                    </p>
+                  </div>
+                  {isEditMode && (
+                    <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-[10px] font-black uppercase tracking-widest border border-blue-200">
+                      Mode Édition
+                    </span>
+                  )}
                 </div>
 
                 <div className="p-8 space-y-6">
                   <div className="bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Montant</span>
-                      <span className="text-lg font-black text-ely-blue">{selectedRequestForApproval.amount?.toLocaleString()} €</span>
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="number"
+                          value={editableAmount}
+                          onChange={(e) => setEditableAmount(Number(e.target.value))}
+                          className="w-32 p-2 bg-white border border-blue-200 rounded-xl text-lg font-black text-ely-blue focus:ring-2 focus:ring-ely-blue outline-none text-right"
+                        />
+                        <span className="text-lg font-black text-ely-blue">€</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Mensualité</span>
-                      <span className="text-sm font-bold text-slate-700">{selectedRequestForApproval.monthlyPayment?.toLocaleString()} €</span>
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Durée (mois)</span>
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="number"
+                          value={editableDuration}
+                          onChange={(e) => setEditableDuration(Number(e.target.value))}
+                          className="w-32 p-2 bg-white border border-blue-200 rounded-xl text-lg font-black text-ely-blue focus:ring-2 focus:ring-ely-blue outline-none text-right"
+                        />
+                        <span className="text-lg font-black text-ely-blue">Mois</span>
+                      </div>
+                    </div>
+                    <div className="pt-4 border-t border-blue-100/30 flex justify-between items-center">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Mensualité estimée</span>
+                      <span className="text-xl font-black text-emerald-600">
+                        {Math.round((editableAmount * (1 + ((selectedRequestForApproval.annualRate || selectedRequestForApproval.rate || 4.95) / 100))) / (editableDuration || 12)).toLocaleString()} €
+                      </span>
                     </div>
                   </div>
 
@@ -3883,12 +4087,23 @@ export default function AdminDashboard() {
                     Annuler
                   </button>
                   <button
-                    onClick={confirmApprove}
+                    onClick={() => {
+                      if (isEditMode) {
+                        confirmEditApproved();
+                      } else {
+                        confirmApprove();
+                      }
+                    }}
                     disabled={!!processingId}
-                    className="flex-1 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl font-black uppercase tracking-widest shadow-lg shadow-emerald-500/30 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className={cn(
+                      "flex-1 py-4 text-white rounded-2xl font-black uppercase tracking-widest shadow-lg transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2",
+                      isEditMode
+                        ? "bg-blue-600 hover:bg-blue-700 shadow-blue-500/30"
+                        : "bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/30"
+                    )}
                   >
                     {processingId ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <CheckCircle className="w-5 h-5" />}
-                    Valider l'accord
+                    {isEditMode ? "Enregistrer les modifications" : "Valider l'accord"}
                   </button>
                 </div>
               </motion.div>
