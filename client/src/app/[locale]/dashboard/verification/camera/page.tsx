@@ -266,23 +266,17 @@ export default function CameraPage() {
         setIsVideoValidated(false);
     };
 
-    const validateVideo = () => {
+    const validateVideo = async () => {
         if (videoPreview) {
-            fetch(videoPreview)
-                .then(r => r.blob())
-                .then(async (blob) => {
-                    try {
-                        await saveMedia("videoBlob", blob);
-                        setIsVideoValidated(true);
-                    } catch (error) {
-                        console.error("Storage error:", error);
-                        alert("❌ " + t('errors.saveVideo'));
-                    }
-                })
-                .catch(err => {
-                    console.error("Video validation error:", err);
-                    alert("❌ " + t('errors.generic'));
-                });
+            try {
+                const res = await fetch(videoPreview);
+                const blob = await res.blob();
+                await saveMedia("videoBlob", blob);
+                setIsVideoValidated(true);
+            } catch (error) {
+                console.error("Critical error in validateVideo:", error);
+                alert("❌ " + t('errors.saveVideo') + " (" + (error instanceof Error ? error.message : "IDB Error") + ")");
+            }
         }
     };
 
