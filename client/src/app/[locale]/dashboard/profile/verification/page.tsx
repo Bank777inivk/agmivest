@@ -159,6 +159,9 @@ export default function IdentityVerificationPage() {
                                 const reviewStatus = typeof docData === 'object' ? docData?.status : 'pending';
                                 const rejectionReason = typeof docData === 'object' ? docData?.rejectionReason : null;
 
+                                // Hide approved documents — client no longer needs to do anything
+                                if (reviewStatus === 'approved') return;
+
                                 updated[docKey] = {
                                     type: docKey,
                                     label: def.label!,

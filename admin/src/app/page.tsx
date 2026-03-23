@@ -6,7 +6,8 @@ import { useEffect, useState, useRef } from "react";
 import { LayoutDashboard, Users, FileText, Settings, Lock, Save, Plus, LogOut, Search, Bell, CheckCircle, XCircle, Clock, RotateCcw, Menu, X, ExternalLink, ArrowLeft, Shield, Trash2, Mail, Phone, MapPin, TrendingUp, Euro, Briefcase, Calendar, CalendarRange, Send, History, Landmark, ChevronLeft, ChevronRight, CreditCard, ShieldCheck, Info, MessageCircle, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { collection, query, orderBy, onSnapshot, doc, updateDoc, addDoc, serverTimestamp, getDoc, deleteDoc, where, getDocs, setDoc, writeBatch } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, doc, updateDoc, addDoc, serverTimestamp, getDoc, deleteDoc, where, getDocs, setDoc, writeBatch, deleteField } from "firebase/firestore";
+
 import { auth, db } from "@/lib/firebase";
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import AdminChat from "@/components/admin/AdminChat";
@@ -1482,6 +1483,22 @@ export default function AdminDashboard() {
     } catch (error) {
       console.error("Error adding custom doc:", error);
       alert("Erreur lors de l'ajout du document.");
+    }
+  };
+
+  const handleDeleteCustomDoc = async (request: any, docKey: string) => {
+    if (!confirm(`Supprimer la demande de document "${docKey}" ? Le client n'aura plus à le fournir.`)) return;
+    try {
+      if (request.userId) {
+        const userDocRef = doc(dbInstance, "users", request.userId);
+        await updateDoc(userDocRef, {
+          [`kycDocuments.${docKey}`]: deleteField(),
+          updatedAt: serverTimestamp()
+        });
+      }
+    } catch (error) {
+      console.error("Error deleting custom doc:", error);
+      alert("Erreur lors de la suppression du document.");
     }
   };
 
@@ -4291,6 +4308,45 @@ export default function AdminDashboard() {
                       const url = typeof docData === 'string' ? docData : docData?.url;
                       const status = typeof docData === 'object' ? docData?.status : 'pending';
                       const rejectionReason = typeof docData === 'object' ? docData?.rejectionReason : null;
+
+                      // For custom docs, use the stored label
+                      if (docData?.isCustom && docData?.label) {
+                        const isNotSubmitted = !url;
+                        return (
+                          <div key={key || `doc-${idx}`} className="space-y-4">
+                            <div className="flex items-center justify-between px-1">
+                              <p className="text-[10px] font-black text-ely-blue uppercase tracking-widest">
+                                📎 {docData.label}
+                              </p>
+                              <span className="text-[9px] font-black text-slate-300 uppercase tracking-widest px-2 py-1 bg-slate-50 rounded-full">
+                                {isNotSubmitted ? "NON SOUMIS" : "SOUMIS"}
+                              </span>
+                            </div>
+                            {url ? (
+                              <div className="group relative aspect-square rounded-[2rem] overflow-hidden border-4 border-white shadow-xl bg-white transition-all hover:shadow-2xl hover:-translate-y-1">
+                                <img src={url} alt={docData.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                                  <a href={url} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/20 backdrop-blur-md rounded-2xl hover:bg-white text-white hover:text-slate-900 transition-all shadow-xl">
+                                    <ExternalLink className="w-6 h-6" />
+                                  </a>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="aspect-square rounded-[2rem] border-2 border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center gap-3 text-slate-300">
+                                <FileText className="w-10 h-10" />
+                                <p className="text-[10px] font-black uppercase tracking-widest">En attente du client</p>
+                              </div>
+                            )}
+                            <button
+                              onClick={() => handleDeleteCustomDoc(selectedRequest, key)}
+                              className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-xs font-bold bg-white text-red-500 hover:bg-red-50 border border-red-100 transition-all shadow-sm"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                              Annuler la demande
+                            </button>
+                          </div>
+                        );
+                      }
 
                       const getLabel = (k: string) => {
                         const lowKey = k.toLowerCase();
