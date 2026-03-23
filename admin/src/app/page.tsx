@@ -633,6 +633,8 @@ export default function AdminDashboard() {
     beneficiary: "ELYSSIO FINANCE - CONSEILLER FINANCIER"
   });
   const [isRIBModified, setIsRIBModified] = useState(false);
+  const [isAddingCustomDoc, setIsAddingCustomDoc] = useState(false);
+  const [newCustomDocName, setNewCustomDocName] = useState("");
   const [newAdminEmail, setNewAdminEmail] = useState("");
 
   const [chats, setChats] = useState<any[]>([]);
@@ -1444,6 +1446,42 @@ export default function AdminDashboard() {
     } catch (error) {
       console.error("Error resetting KYC:", error);
       alert("Erreur lors de la réinitialisation.");
+    }
+  };
+
+  const handleAddCustomDoc = async (request: any) => {
+    if (!newCustomDocName.trim()) return;
+    try {
+      if (request.userId) {
+        const userDocRef = doc(dbInstance, "users", request.userId);
+        const userSnap = await getDoc(userDocRef);
+        const userData = userSnap.data();
+        
+        const docId = `custom_${Date.now()}`;
+        
+        await updateDoc(userDocRef, {
+          idStatus: "verification_required",
+          [`kycDocuments.${docId}`]: {
+            label: newCustomDocName.trim(),
+            status: "pending",
+            isCustom: true,
+            requestedAt: serverTimestamp()
+          },
+          updatedAt: serverTimestamp()
+        });
+
+        // Send Email to Client to notify them about the new required document
+        await sendAdminEmail(request.email || userData?.email, "kyc-reminder", userData?.language, {
+          firstName: request.firstName || userData?.firstName
+        });
+
+        setNewCustomDocName("");
+        setIsAddingCustomDoc(false);
+        alert(`Le document "${newCustomDocName.trim()}" a été ajouté à la liste des documents requis.`);
+      }
+    } catch (error) {
+      console.error("Error adding custom doc:", error);
+      alert("Erreur lors de l'ajout du document.");
     }
   };
 
@@ -4336,6 +4374,57 @@ export default function AdminDashboard() {
                         </div>
                       );
                     })}
+
+                    {/* Add Custom Document Button/Form */}
+                    <div className="flex flex-col items-center justify-center p-8 rounded-[2rem] border-2 border-dashed border-slate-200 bg-slate-50/50 hover:border-ely-blue/40 hover:bg-ely-blue/[0.02] transition-all group min-h-[200px]">
+                      {!isAddingCustomDoc ? (
+                        <button
+                          onClick={() => setIsAddingCustomDoc(true)}
+                          className="flex flex-col items-center gap-4 text-slate-400 group-hover:text-ely-blue transition-colors"
+                        >
+                          <div className="w-16 h-16 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all">
+                            <Plus className="w-8 h-8" />
+                          </div>
+                          <div>
+                            <p className="text-sm font-black uppercase tracking-widest">Ajouter un document</p>
+                            <p className="text-[10px] font-bold opacity-60">Demander une pièce supplémentaire</p>
+                          </div>
+                        </button>
+                      ) : (
+                        <div className="w-full space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                          <div className="space-y-2 text-center">
+                            <p className="text-[10px] font-black text-ely-blue uppercase tracking-widest">Nom du document requis</p>
+                            <input
+                              autoFocus
+                              type="text"
+                              value={newCustomDocName}
+                              onChange={(e) => setNewCustomDocName(e.target.value)}
+                              placeholder="ex: Justificatif de revenus fonciers"
+                              className="w-full p-4 bg-white border-2 border-ely-blue/20 rounded-2xl text-sm font-bold focus:outline-none focus:ring-4 focus:ring-ely-blue/10 transition-all placeholder:text-slate-300"
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') handleAddCustomDoc(selectedRequest);
+                                if (e.key === 'Escape') setIsAddingCustomDoc(false);
+                              }}
+                            />
+                          </div>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => handleAddCustomDoc(selectedRequest)}
+                              disabled={!newCustomDocName.trim()}
+                              className="flex-1 py-4 bg-ely-blue text-white rounded-xl text-xs font-black uppercase tracking-widest hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/20 transition-all"
+                            >
+                              Demander
+                            </button>
+                            <button
+                              onClick={() => setIsAddingCustomDoc(false)}
+                              className="px-6 py-4 bg-slate-100 text-slate-400 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-slate-200 transition-all"
+                            >
+                              Annuler
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 

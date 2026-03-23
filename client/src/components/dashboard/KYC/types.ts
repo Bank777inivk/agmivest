@@ -14,6 +14,7 @@ export interface DocumentUpload {
     status: "idle" | "uploading" | "success" | "error";
     reviewStatus?: "pending" | "approved" | "rejected";
     rejectionReason?: string;
+    isCustom?: boolean;
 }
 
 export interface VerificationProps {

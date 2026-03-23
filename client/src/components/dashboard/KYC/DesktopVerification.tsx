@@ -113,7 +113,7 @@ export default function DesktopVerification({
                     {/* Documents List */}
                     <div className="grid grid-cols-1 gap-4">
                         {Object.values(documents).map((doc, index) => {
-                            const uploadOnly = ["tax_notice", "pay_slip_1", "pay_slip_2", "pay_slip_3", "address_proof", "rib"].includes(doc.type);
+                            const uploadOnly = ["tax_notice", "pay_slip_1", "pay_slip_2", "pay_slip_3", "address_proof", "rib"].includes(doc.type) || doc.isCustom;
 
                             return (
                                 <motion.div

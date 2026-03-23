@@ -224,7 +224,7 @@ export default function MobileVerification({
                     </p>
                 </div>
                 {Object.values(documents).map((doc, index) => {
-                    const uploadOnly = ["tax_notice", "pay_slip_1", "pay_slip_2", "pay_slip_3", "address_proof", "rib"].includes(doc.type);
+                    const uploadOnly = ["tax_notice", "pay_slip_1", "pay_slip_2", "pay_slip_3", "address_proof", "rib"].includes(doc.type) || doc.isCustom;
 
                     return (
                         <div key={doc.type}>

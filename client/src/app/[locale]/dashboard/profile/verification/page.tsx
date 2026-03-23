@@ -138,6 +138,18 @@ export default function IdentityVerificationPage() {
                             docDefinitions.address_proof = { label: t('Documents.address_proof'), description: t('Documents.descriptions.intl_address'), icon: Search };
                         }
 
+                        // Include custom documents requested by admin
+                        Object.entries(kycDocs).forEach(([key, value]: [string, any]) => {
+                            if (!docDefinitions[key] && value?.isCustom) {
+                                docDefinitions[key] = {
+                                    label: value.label || key,
+                                    description: t('Documents.descriptions.custom_doc', { defaultValue: 'Document supplémentaire demandé par votre conseiller.' }),
+                                    icon: FileText,
+                                    isCustom: true
+                                };
+                            }
+                        });
+
                         setDocuments(prev => {
                             const updated: Record<string, DocumentUpload> = {};
                             Object.entries(docDefinitions).forEach(([key, def]) => {
@@ -158,7 +170,8 @@ export default function IdentityVerificationPage() {
                                     url: url || null,
                                     status: url ? 'success' : (prev[docKey]?.status || 'idle'),
                                     reviewStatus,
-                                    rejectionReason
+                                    rejectionReason,
+                                    isCustom: def.isCustom
                                 };
                             });
                             return updated;
