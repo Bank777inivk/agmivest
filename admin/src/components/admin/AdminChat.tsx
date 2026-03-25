@@ -113,7 +113,7 @@ function AiAssistantPanel({ chatMessages, chatUserName, onInjectText, onClose }:
 
         const chatContext = buildChatContext();
         const systemWithContext = chatContext
-            ? `${SYSTEM_PROMPT}\n\n--- Contexte de la conversation en cours avec ${chatUserName} ---\n${chatContext}\n---`
+            ? `${SYSTEM_PROMPT}\n\nIMPORTANT : Le client s'appelle **${chatUserName}**. Tu DOIS impérativement utiliser son nom/prénom dans ta réponse et NE JAMAIS laisser de crochets comme [Prénom] ou [Nom du client].\n\n--- Contexte de la conversation en cours avec ${chatUserName} ---\n${chatContext}\n---`
             : SYSTEM_PROMPT;
 
         const newUserMessage: AiMessage = { role: "user", content: userText };
@@ -679,19 +679,28 @@ export default function AdminChat({ chats, setChats, selectedChat, setSelectedCh
                                     <Smile className="w-5 h-5 lg:w-6 lg:h-6" />
                                 </button>
 
-                                <div className="flex-1 relative flex items-center">
-                                    <input
-                                        type="text"
+                                <div className="flex-1 relative flex items-end bg-gray-100 rounded-[24px] min-h-[44px] lg:min-h-[48px]">
+                                    <textarea
                                         value={newChatMessage}
-                                        onChange={(e) => setNewChatMessage(e.target.value)}
+                                        onChange={(e) => {
+                                            setNewChatMessage(e.target.value);
+                                            // Auto-resize logic could go here if needed, but max-h + overflow is safer for now
+                                        }}
                                         placeholder="Message..."
-                                        className="w-full h-11 lg:h-12 bg-gray-100 border-0 rounded-[24px] pl-4 pr-10 lg:pl-5 lg:pr-12 text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+                                        rows={Math.min(5, newChatMessage.split('\n').length || 1)}
+                                        className="w-full bg-transparent border-0 py-3 pl-4 pr-10 lg:pl-5 lg:pr-12 text-sm lg:text-base focus:outline-none focus:ring-0 resize-none custom-scrollbar disabled:opacity-50"
                                         disabled={uploading}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' && !e.shiftKey && !uploading) {
+                                                e.preventDefault();
+                                                handleSendAdminMessage(e as any);
+                                            }
+                                        }}
                                     />
                                     <button
                                         type="button"
                                         onClick={() => fileInputRef.current?.click()}
-                                        className="absolute right-1 w-9 h-9 flex items-center justify-center rounded-full text-gray-400 hover:bg-white transition-colors"
+                                        className="absolute right-1 bottom-1 w-9 h-9 flex items-center justify-center rounded-full text-gray-400 hover:bg-white transition-colors"
                                     >
                                         <Paperclip className="w-5 h-5" />
                                     </button>
