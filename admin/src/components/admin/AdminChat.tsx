@@ -146,7 +146,7 @@ function AiAssistantPanel({ chatMessages, chatUserName, onInjectText, onClose }:
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
             transition={{ type: "spring", damping: 28, stiffness: 300 }}
-            className="absolute inset-0 lg:relative lg:w-80 xl:w-96 bg-gradient-to-b from-[#0f172a] to-[#1e293b] flex flex-col z-40 lg:rounded-[2.5rem] overflow-hidden shadow-2xl"
+            className="absolute inset-0 lg:relative lg:w-80 xl:w-96 bg-gradient-to-b from-[#0f172a] to-[#1e293b] flex flex-col z-[60] lg:rounded-[2.5rem] overflow-hidden shadow-2xl"
         >
             {/* Header */}
             <div className="px-5 py-4 flex items-center justify-between border-b border-white/10 shrink-0">
@@ -545,9 +545,9 @@ export default function AdminChat({ chats, setChats, selectedChat, setSelectedCh
                                         <ArrowLeft className="w-6 h-6" />
                                     </button>
                                     <UserAvatar name={getChatUserName(selectedChat)} className="w-10 h-10 rounded-full bg-blue-900 text-white" />
-                                    <div>
-                                        <h4 className="text-sm font-bold text-slate-900 leading-none">{getChatUserName(selectedChat)}</h4>
-                                        <p className="text-[10px] text-emerald-500 font-bold mt-1 uppercase tracking-widest">Client en ligne</p>
+                                    <div className="min-w-0 flex-1">
+                                        <h4 className="text-sm font-bold text-slate-900 leading-none truncate max-w-[120px] sm:max-w-[200px]">{getChatUserName(selectedChat)}</h4>
+                                        <p className="text-[10px] text-emerald-500 font-bold mt-1 uppercase tracking-widest truncate">Client en ligne</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-2">
@@ -563,6 +563,7 @@ export default function AdminChat({ chats, setChats, selectedChat, setSelectedCh
                                         )}
                                     >
                                         <Sparkles className="w-3.5 h-3.5" />
+                                        <span className="sm:hidden">IA</span>
                                         <span className="hidden sm:inline">Assistant IA</span>
                                     </button>
                                     <button
