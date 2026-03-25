@@ -1133,6 +1133,7 @@ export default function AdminDashboard() {
         setChats={setChats}
         selectedChat={selectedChat}
         setSelectedChat={setSelectedChat}
+        adminUser={user}
       />
     );
   };

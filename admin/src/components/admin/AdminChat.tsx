@@ -76,11 +76,12 @@ interface AiMessage {
 interface AiAssistantPanelProps {
     chatMessages: any[];
     chatUserName: string;
+    adminName: string;
     onInjectText: (text: string) => void;
     onClose: () => void;
 }
 
-function AiAssistantPanel({ chatMessages, chatUserName, onInjectText, onClose }: AiAssistantPanelProps) {
+function AiAssistantPanel({ chatMessages, chatUserName, adminName, onInjectText, onClose }: AiAssistantPanelProps) {
     const [aiInput, setAiInput] = useState("");
     const [aiHistory, setAiHistory] = useState<AiMessage[]>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -113,7 +114,7 @@ function AiAssistantPanel({ chatMessages, chatUserName, onInjectText, onClose }:
 
         const chatContext = buildChatContext();
         const systemWithContext = chatContext
-            ? `${SYSTEM_PROMPT}\n\nIMPORTANT : Le client s'appelle **${chatUserName}**. Tu DOIS impérativement utiliser son nom/prénom dans ta réponse et NE JAMAIS laisser de crochets comme [Prénom] ou [Nom du client].\n\n--- Contexte de la conversation en cours avec ${chatUserName} ---\n${chatContext}\n---`
+            ? `${SYSTEM_PROMPT}\n\nIDENTITÉ : Tu rédiges au nom de **${adminName}**, Conseiller AGM INVEST. Signe toujours tes messages par "${adminName}, Conseiller AGM INVEST".\n\nIMPORTANT : Le client s'appelle **${chatUserName}**. Tu DOIS impérativement utiliser son nom/prénom dans ta réponse et NE JAMAIS laisser de crochets comme [Prénom] ou [Nom du client].\n\n--- Contexte de la conversation en cours avec ${chatUserName} ---\n${chatContext}\n---`
             : SYSTEM_PROMPT;
 
         const newUserMessage: AiMessage = { role: "user", content: userText };
@@ -327,7 +328,15 @@ function AiAssistantPanel({ chatMessages, chatUserName, onInjectText, onClose }:
     );
 }
 
-export default function AdminChat({ chats, setChats, selectedChat, setSelectedChat }: any) {
+interface AdminChatProps {
+    chats: any[];
+    setChats: React.Dispatch<React.SetStateAction<any[]>>;
+    selectedChat: any;
+    setSelectedChat: React.Dispatch<React.SetStateAction<any>>;
+    adminUser?: any;
+}
+
+export default function AdminChat({ chats, setChats, selectedChat, setSelectedChat, adminUser }: AdminChatProps) {
     const [newChatMessage, setNewChatMessage] = useState("");
     const [chatMessages, setChatMessages] = useState<any[]>([]);
     const [showEmojis, setShowEmojis] = useState(false);
@@ -732,6 +741,7 @@ export default function AdminChat({ chats, setChats, selectedChat, setSelectedCh
                         <AiAssistantPanel
                             chatMessages={chatMessages}
                             chatUserName={getChatUserName(selectedChat)}
+                            adminName={adminUser?.firstName ? `${adminUser.firstName} ${adminUser.lastName || ''}` : "Conseiller"}
                             onInjectText={(text) => {
                                 setNewChatMessage(text);
                                 setShowAiPanel(false);
