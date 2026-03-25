@@ -623,69 +623,73 @@ export default function AdminChat({ chats, setChats, selectedChat, setSelectedCh
                             </div>
 
                             {/* Input Area */}
-                            <form onSubmit={handleSendAdminMessage} className="p-3 bg-white border-t border-slate-100 shrink-0 safe-bottom relative">
-                                <input
-                                    type="file"
-                                    ref={fileInputRef}
-                                    onChange={handleAdminFileChange}
-                                    className="hidden"
-                                />
-                                <AnimatePresence>
-                                    {showEmojis && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                            className="absolute bottom-20 left-4 p-3 bg-white rounded-2xl shadow-xl border border-gray-100 z-50 grid grid-cols-4 gap-2"
-                                        >
-                                            {COMMON_EMOJIS.map(emoji => (
-                                                <button
-                                                    key={emoji}
-                                                    type="button"
-                                                    onClick={() => {
-                                                        setNewChatMessage(prev => prev + emoji);
-                                                        setShowEmojis(false);
-                                                    }}
-                                                    className="w-10 h-10 flex items-center justify-center hover:bg-gray-50 rounded-xl text-xl"
-                                                >
-                                                    {emoji}
-                                                </button>
-                                            ))}
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                                <div className="flex items-center gap-2">
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowEmojis(!showEmojis)}
-                                        className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 transition-colors"
+                        <form onSubmit={handleSendAdminMessage} className="p-2 lg:p-3 bg-white border-t border-slate-100 shrink-0 safe-bottom relative">
+                            <input
+                                type="file"
+                                ref={fileInputRef}
+                                onChange={handleAdminFileChange}
+                                className="hidden"
+                            />
+                            <AnimatePresence>
+                                {showEmojis && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        className="absolute bottom-20 left-4 p-3 bg-white rounded-2xl shadow-xl border border-gray-100 z-50 grid grid-cols-4 gap-2"
                                     >
-                                        <Smile className="w-6 h-6" />
-                                    </button>
+                                        {COMMON_EMOJIS.map(emoji => (
+                                            <button
+                                                key={emoji}
+                                                type="button"
+                                                onClick={() => {
+                                                    setNewChatMessage(prev => prev + emoji);
+                                                    setShowEmojis(false);
+                                                }}
+                                                className="w-10 h-10 flex items-center justify-center hover:bg-gray-50 rounded-xl text-xl"
+                                            >
+                                                {emoji}
+                                            </button>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                            <div className="flex items-center gap-1.5 lg:gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() => setShowEmojis(!showEmojis)}
+                                    className="flex-shrink-0 w-9 h-9 lg:w-10 lg:h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 transition-colors"
+                                >
+                                    <Smile className="w-5 h-5 lg:w-6 lg:h-6" />
+                                </button>
+
+                                <div className="flex-1 relative flex items-center">
                                     <input
                                         type="text"
                                         value={newChatMessage}
                                         onChange={(e) => setNewChatMessage(e.target.value)}
                                         placeholder="Message..."
-                                        className="flex-1 h-12 bg-gray-100 border-0 rounded-[24px] px-5 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+                                        className="w-full h-11 lg:h-12 bg-gray-100 border-0 rounded-[24px] pl-4 pr-10 lg:pl-5 lg:pr-12 text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
                                         disabled={uploading}
                                     />
                                     <button
                                         type="button"
                                         onClick={() => fileInputRef.current?.click()}
-                                        className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 transition-colors"
+                                        className="absolute right-1 w-9 h-9 flex items-center justify-center rounded-full text-gray-400 hover:bg-white transition-colors"
                                     >
-                                        <Paperclip className="w-6 h-6" />
-                                    </button>
-                                    <button
-                                        type="submit"
-                                        disabled={!newChatMessage.trim() || uploading}
-                                        className="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-md disabled:opacity-50 disabled:grayscale transition-all active:scale-95"
-                                    >
-                                        <Send className="w-5 h-5 ml-0.5" />
+                                        <Paperclip className="w-5 h-5" />
                                     </button>
                                 </div>
-                            </form>
+
+                                <button
+                                    type="submit"
+                                    disabled={!newChatMessage.trim() || uploading}
+                                    className="flex-shrink-0 w-11 h-11 lg:w-12 lg:h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-md disabled:opacity-50 disabled:grayscale transition-all active:scale-95"
+                                >
+                                    <Send className="w-5 h-5 ml-0.5" />
+                                </button>
+                            </div>
+                        </form>
                         </>
                     ) : (
                         <div className="h-full flex flex-col items-center justify-center text-center p-8 space-y-4">
