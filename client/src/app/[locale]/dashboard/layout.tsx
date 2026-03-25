@@ -129,6 +129,7 @@ export default function DashboardLayout({
     }, [pathname, router]);
 
     // Separate effect for chat notifications to avoid layout re-runs
+    const prevUnreadCountRef = useRef<number>(0);
     useEffect(() => {
         const auth = getFirebaseAuth();
         const db = getFirestore();
@@ -138,7 +139,10 @@ export default function DashboardLayout({
         const unsubscribeChat = onSnapshot(doc(db, "chats", user.uid), (docSnap) => {
             if (docSnap.exists()) {
                 const data = docSnap.data();
-                if (data.unreadClient > 0) {
+                const currentUnread = data.unreadClient || 0;
+                
+                // Only create a notification if the count has INCREASED
+                if (currentUnread > prevUnreadCountRef.current && currentUnread > 0) {
                     createNotification(user.uid, {
                         title: 'newMessage.title',
                         message: 'newMessage.message',
@@ -146,6 +150,9 @@ export default function DashboardLayout({
                         link: '/dashboard/support'
                     });
                 }
+                prevUnreadCountRef.current = currentUnread;
+            } else {
+                prevUnreadCountRef.current = 0;
             }
         }, (error) => {
             console.error("[DashboardLayout] Chat Snapshot Error:", error);
