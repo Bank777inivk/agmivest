@@ -829,8 +829,9 @@ export default function AdminDashboard() {
           updatedAt: serverTimestamp(),
           createdAt: serverTimestamp()
         };
-        const docRef = await addDoc(collection(dbInstance, "chats"), newChatData);
-        setSelectedChat({ id: docRef.id, ...newChatData });
+        const docRef = doc(dbInstance, "chats", u.id);
+        await setDoc(docRef, newChatData, { merge: true });
+        setSelectedChat({ id: u.id, ...newChatData });
       }
 
       // 3. Basculer vers l'onglet support

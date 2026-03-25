@@ -26,6 +26,7 @@ import {
 } from "firebase/firestore";
 import { getFirestore, getFirebaseAuth } from "@/lib/firebase";
 import { cn } from "@/lib/utils";
+import { useUnreadMessages } from "@/hooks/useUnreadMessages";
 
 interface Message {
     id: string;
@@ -51,6 +52,7 @@ export default function ChatSupport() {
     const [showEmojis, setShowEmojis] = useState(false);
     const [uploading, setUploading] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const unreadMessages = useUnreadMessages();
 
     // Listen for custom open-chat event and handle auth
     useEffect(() => {
@@ -238,7 +240,13 @@ export default function ChatSupport() {
                     className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[60] w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#003d82] to-[#001d3d] text-white rounded-full shadow-2xl shadow-ely-blue/30 flex items-center justify-center border border-white/10 group"
                 >
                     <MessageCircle className="w-7 h-7 md:w-8 md:h-8 group-hover:rotate-12 transition-transform" />
-                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse" />
+                    {unreadMessages > 0 ? (
+                        <span className="absolute -top-1 -right-1 min-w-[20px] h-5 bg-red-500 text-white text-[10px] font-black rounded-full flex items-center justify-center px-1 border-2 border-white shadow-sm shadow-red-500/50 animate-bounce">
+                            {unreadMessages > 9 ? '9+' : unreadMessages}
+                        </span>
+                    ) : (
+                        <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse" />
+                    )}
                 </motion.button>
             )}
 

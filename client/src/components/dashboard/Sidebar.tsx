@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useUnreadMessages } from "@/hooks/useUnreadMessages";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -68,6 +69,7 @@ export default function Sidebar({
     const pathname = usePathname();
     const router = useRouter();
     const t = useTranslations();
+    const unreadMessages = useUnreadMessages();
 
     const handleSignOut = async () => {
         const auth = getFirebaseAuth();
@@ -143,6 +145,8 @@ export default function Sidebar({
                     <nav className="space-y-0.5">
                         {secondaryItems.map((item) => {
                             const isActive = pathname.includes(item.href);
+                            const isSupport = item.href === "/dashboard/support";
+                            const showBadge = isSupport && unreadMessages > 0;
                             return (
                                 <Link
                                     key={item.href}
@@ -152,10 +156,22 @@ export default function Sidebar({
                                         : "text-white hover:bg-white/10"
                                         }`}
                                 >
-                                    <item.icon className={`w-4 h-4 flex-shrink-0 transition-transform duration-300 ${isActive ? 'scale-110 text-ely-mint' : 'group-hover:scale-110 text-white'}`} />
+                                    <div className="relative flex-shrink-0">
+                                        <item.icon className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'scale-110 text-ely-mint' : 'group-hover:scale-110 text-white'}`} />
+                                        {showBadge && isCollapsed && !isMobile && (
+                                            <span className="absolute -top-1.5 -right-1.5 min-w-[14px] h-[14px] bg-red-500 text-white text-[8px] font-black rounded-full flex items-center justify-center px-0.5 border border-ely-blue">
+                                                {unreadMessages > 9 ? '9+' : unreadMessages}
+                                            </span>
+                                        )}
+                                    </div>
                                     {(!isCollapsed || isMobile) && (
-                                        <span className={`text-xs font-semibold tracking-wide transition-all duration-300 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
+                                        <span className={`text-xs font-semibold tracking-wide transition-all duration-300 flex-1 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
                                             {t(item.label)}
+                                        </span>
+                                    )}
+                                    {showBadge && (!isCollapsed || isMobile) && (
+                                        <span className="ml-auto min-w-[18px] h-[18px] bg-red-500 text-white text-[9px] font-black rounded-full flex items-center justify-center px-1 shadow-sm shadow-red-500/40 animate-pulse">
+                                            {unreadMessages > 9 ? '9+' : unreadMessages}
                                         </span>
                                     )}
                                     {/* Hover glow effect */}
