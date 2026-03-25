@@ -85,11 +85,11 @@ function AiAssistantPanel({ chatMessages, chatUserName, adminName, onInjectText,
     }, [aiHistory]);
 
     // Build context from last 10 chat messages
-    const buildChatContext = () => {
+    const buildChatContext = (currentAdminName: string) => {
         if (!chatMessages.length) return "";
         const recent = chatMessages.slice(-10);
         const lines = recent.map((m: any) => {
-            const sender = m.sender === "admin" ? "Conseiller" : chatUserName;
+            const sender = m.sender === "admin" ? currentAdminName : chatUserName;
             const text = m.fileUrl ? `[Fichier: ${m.fileName || "pièce jointe"}]` : (m.text || "");
             return `${sender}: ${text}`;
         });
@@ -103,7 +103,7 @@ function AiAssistantPanel({ chatMessages, chatUserName, adminName, onInjectText,
         setAiInput("");
         setIsLoading(true);
 
-        const chatContext = buildChatContext();
+        const chatContext = buildChatContext(adminName);
         const systemWithContext = `${SYSTEM_PROMPT}
 
 CONSIGNES D'IDENTITÉ ACTUELLE :
@@ -153,7 +153,7 @@ ${chatContext ? `CONTEXTE DE LA DISCUSSION :\n---\n${chatContext}\n---` : ""}`;
         }
     };
 
-    const chatContext = buildChatContext();
+    const chatContext = buildChatContext(adminName);
 
     return (
         <motion.div
